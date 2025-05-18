@@ -1,6 +1,25 @@
 export default async function handler(req, res) {
   try {
-    const { message } = req.body;
+    if (req.method !== "POST") {
+      return res.status(405).json({ error: "Método não permitido. Use POST." });
+    }
+
+    // Garante que o corpo JSON foi recebido corretamente
+    let message = null;
+
+    // Em Vercel edge functions recentes pode ser necessário usar req.body diretamente
+    if (req.body && req.body.message) {
+      message = req.body.message;
+    } else {
+      // fallback: tenta fazer o parse manual
+      const buffers = [];
+      for await (const chunk of req) {
+        buffers.push(chunk);
+      }
+      const rawBody = Buffer.concat(buffers).toString();
+      const parsed = JSON.parse(rawBody);
+      message = parsed.message;
+    }
 
     if (!message) {
       return res.status(400).json({ error: "Mensagem não enviada." });
