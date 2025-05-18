@@ -4,20 +4,20 @@ export default async function handler(req, res) {
       return res.status(405).json({ error: "Método não permitido. Use POST." });
     }
 
-    // Lê corretamente o corpo JSON mesmo se req.body estiver vazio
-    let message = null;
-
+    let body = {};
     if (req.body && req.body.message) {
-      message = req.body.message;
+      body = req.body;
     } else {
       const buffers = [];
       for await (const chunk of req) {
         buffers.push(chunk);
       }
       const rawBody = Buffer.concat(buffers).toString();
-      const parsed = JSON.parse(rawBody);
-      message = parsed.message;
+      body = JSON.parse(rawBody);
     }
+
+    const message = body.message;
+    const userName = body.name || "amigo";
 
     if (!message) {
       return res.status(400).json({ error: "Mensagem não enviada." });
@@ -25,13 +25,14 @@ export default async function handler(req, res) {
 
     console.log("Mensagem recebida:", message);
 
-    // Detecta se a mensagem contém sinais de português
-    const isPortuguese = /[ãõçáéíóúâêôà]/i.test(message) || / você | estou | gostaria | saúde | suplemento | problema | posso | bom /i.test(message);
+    // Detecção de português robusta
+    const ptIndicators = [' você ', ' estou ', ' gostaria ', ' suplemento ', ' saúde ', ' problema ', ' posso ', ' bom ', ' obrigada ', ' obrigado '];
+    const isPortuguese = /[ãõçáéíóúâêôà]/i.test(message) || ptIndicators.some(word => message.toLowerCase().includes(word));
 
-    // Cria o prompt dinâmico com base no idioma
+    // Prompt personalizado com nome e idioma
     const systemPrompt = isPortuguese
-      ? "Você é um assistente de saúde amigável e profissional chamado OwlCore AI. Responda com clareza, usando o português do Brasil e uma linguagem acessível e confiável."
-      : "You are OwlCore AI, a helpful and professional health assistant. Answer clearly in American English with accurate, friendly tone.";
+      ? `Você é OwlCore AI, um assistente de saúde simpático e profissional. Responda em português do Brasil. Use um tom acessível, direto e chame o usuário pelo nome "${userName}".`
+      : `You are OwlCore AI, a helpful and professional health assistant. Speak in American English and address the user by name: "${userName}". Be clear and friendly.`;
 
     const openaiRes = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
@@ -62,4 +63,3 @@ export default async function handler(req, res) {
     res.status(500).json({ error: "Erro interno no servidor", details: err.message });
   }
 }
-
