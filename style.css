@@ -115,3 +115,26 @@ input {
   font-size: 0.9rem;
   color: #444;
 }
+
+
+button,
+.footer span {
+  cursor: pointer;
+}
+
+/* Form field filled state */
+input:focus, input:valid {
+  background-color: #f0f3ff;
+}
+
+/* Discrete footer buttons */
+.footer span {
+  background-color: #eee;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  transition: background 0.3s ease;
+}
+.footer span:hover {
+  background-color: #d4b8f0;
+}
