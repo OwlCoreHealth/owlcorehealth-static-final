@@ -1,64 +1,89 @@
 
 body {
-  background: linear-gradient(135deg, #f7f4fa, #fdfbff);
+  background: #f4f0fa;
   font-family: Arial, sans-serif;
-  color: #333;
-  font-size: 16px;
   margin: 0;
-  padding: 0;
+  padding: 20px;
 }
+
 .chat-box {
-  width: 96vw;
-  max-width: 960px;
-  margin: 20px auto;
   background: #fff;
-  padding: 2rem;
-  box-shadow: 0 0 12px rgba(140, 101, 183, 0.3);
-  border-radius: 14px;
-  box-sizing: border-box;
+  max-width: 900px;
+  margin: auto;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(140, 101, 183, 0.2);
 }
-input, button {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-}
-button {
-  background-color: #d7c4eb;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-}
+
 .owl-img {
   display: block;
-  margin: 0 auto 20px auto;
-  width: 120px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(140, 101, 183, 0.3);
+  margin: 0 auto;
+  width: 100px;
 }
-.chat-row {
+
+h2 {
+  text-align: center;
+  color: #6a4f9c;
+}
+
+input, button {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background-color: #d7c4eb;
+  cursor: pointer;
+}
+
+.chat-controls {
   display: flex;
   gap: 10px;
-  align-items: center;
+  margin-top: 20px;
 }
+
+.chat-controls input {
+  flex: 1;
+}
+
+.skip {
+  text-align: center;
+  margin-top: 10px;
+  cursor: pointer;
+  color: #888;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
 #response {
   margin-top: 20px;
-  padding: 12px;
-  background-color: #eee;
-  border-radius: 8px;
-  height: 200px;
-  overflow-y: auto;
+  padding: 10px;
+  background: #eee;
+  border-radius: 10px;
+  min-height: 100px;
+  white-space: pre-wrap;
 }
+
 .dark-mode {
   background: #121212;
   color: #f0f0f0;
 }
+
 .dark-mode .chat-box {
-  background: #2b2b2b;
-}
-.dark-mode #response {
-  background-color: #444;
+  background: #1e1e1e;
   color: #fff;
+}
+
+.dark-mode input, .dark-mode button {
+  background: #2c2c2c;
+  color: #f0f0f0;
 }

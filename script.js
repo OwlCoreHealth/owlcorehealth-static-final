@@ -6,18 +6,15 @@ let messageHistory = [
   }
 ];
 
-const responseBox = document.getElementById("response");
-
-async function sendToGPT() {
+function sendMessage() {
   const input = document.getElementById("userInput");
-  const message = input.value.trim();
-  if (!message) return;
+  const msg = input.value.trim();
+  if (!msg) return;
 
-  responseBox.innerHTML += `<p><strong>🧐 You:</strong> ${message}</p>`;
-  messageHistory.push({ role: "user", content: message });
-  input.value = "";
+  document.getElementById("response").textContent += "\n\n🧐 You: " + msg;
+  messageHistory.push({ role: "user", content: msg });
 
-  const res = await fetch("https://api.openai.com/v1/chat/completions", {
+  fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -27,23 +24,48 @@ async function sendToGPT() {
       model: "gpt-4",
       messages: messageHistory
     })
+  })
+  .then(res => res.json())
+  .then(data => {
+    const reply = data.choices?.[0]?.message?.content || "No response.";
+    messageHistory.push({ role: "assistant", content: reply });
+    document.getElementById("response").textContent += "\n\n🦉 Owl: " + reply;
+    speak(reply);
+    document.getElementById("userInput").value = "";
+  })
+  .catch(err => {
+    document.getElementById("response").textContent += "\n\n❌ Error: " + err.message;
   });
-
-  const data = await res.json();
-  const reply = data.choices?.[0]?.message?.content || "No response.";
-  messageHistory.push({ role: "assistant", content: reply });
-  responseBox.innerHTML += `<p><strong>🦉 Owl:</strong> ${reply}</p>`;
-  responseBox.scrollTop = responseBox.scrollHeight;
 }
 
 function toggleDarkMode() {
   document.body.classList.toggle("dark-mode");
 }
 
-function readLastResponse() {
-  const last = messageHistory.slice().reverse().find(m => m.role === "assistant");
-  if (last) {
-    const utterance = new SpeechSynthesisUtterance(last.content);
-    speechSynthesis.speak(utterance);
-  }
+function speak(text) {
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.voice = speechSynthesis.getVoices().find(v => v.name.includes("Male")) || speechSynthesis.getVoices()[0];
+  speechSynthesis.speak(utter);
+}
+
+function speakResponse() {
+  const text = document.getElementById("response").textContent.split("🦉 Owl: ").pop();
+  speak(text);
+}
+
+function startListening() {
+  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+  recognition.lang = "en-US";
+  recognition.start();
+  recognition.onresult = function(event) {
+    document.getElementById("userInput").value = event.results[0][0].transcript;
+  };
+}
+
+function subscribe() {
+  alert("Subscribed and continuing...");
+}
+
+function continueWithoutSub() {
+  alert("Continuing without subscribing...");
 }
