@@ -25,7 +25,6 @@ export default async function handler(req, res) {
 
     console.log("Mensagem recebida:", message);
 
-    // Detecção de idioma com base em conteúdo
     const ptIndicators = [' você ', ' estou ', ' gostaria ', 'suplemento', ' saúde', ' problema ', ' posso ', ' obrigado', ' obrigada'];
     const isPortuguese = /[ãõçáéíóúâêôà]/i.test(message) || ptIndicators.some(word => message.toLowerCase().includes(word));
 
@@ -62,4 +61,3 @@ export default async function handler(req, res) {
     res.status(500).json({ error: "Erro interno no servidor", details: err.message });
   }
 }
-
