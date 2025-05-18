@@ -3,13 +3,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>OwlCoreHealth AI</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <img src="owl-doctor.png" alt="Owl Doctor" style="width: 60px; margin-bottom: 1rem;" />
+    <img src="owl-doctor.png" alt="Owl Doctor" class="owl-img" />
     <h1>Welcome to OwlCoreHealth AI</h1>
     <p class="subtitle">Your personal assistant for health and wellness.</p>
 
@@ -23,21 +23,21 @@
         <input type="text" placeholder="Weight" />
       </div>
       <button class="subscribe-btn">Subscribe</button>
-<input type="email" placeholder="Email (optional)" class="full-input" />
+      <input type="email" placeholder="Email (optional)" class="full-input" />
       <p class="continue-link">Continue without subscribing</p>
     </form>
 
-    <div class="chat-box">
-      <div class="input-row">
-        <input type="text" class="chat-input" placeholder="Type your message..." />
-        <button class="send-btn">Send</button>
-        <button class="mic-btn">🎤</button>
-      </div>
+    <div class="chat-box"></div>
+
+    <div class="input-row">
+      <input type="text" class="chat-input" placeholder="Type your message..." />
+      <button class="send-btn">Send</button>
+      <button class="mic-btn">🎤</button>
     </div>
 
     <div class="footer">
-      <span>🌙 Dark Mode</span>
-      <span>🔊 Read Aloud</span>
+      <span class="dark-mode-toggle">🌙 Dark Mode</span>
+      <span class="read-aloud">🔊 Read Aloud</span>
     </div>
   </div>
   <script src="script.js"></script>
