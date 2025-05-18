@@ -1,43 +1,28 @@
 
-const darkToggle = document.getElementById("darkModeToggle");
-darkToggle.onclick = () => document.body.classList.toggle("dark-mode");
-
-const readToggle = document.getElementById("readAloudToggle");
-function speak(text) {
-  const msg = new SpeechSynthesisUtterance(text);
-  msg.voice = speechSynthesis.getVoices().find(voice => voice.name.includes('Male') || voice.name.includes('Daniel'));
-  speechSynthesis.speak(msg);
-}
-
-document.getElementById("sendBtn").onclick = () => {
+function sendMessage() {
   const input = document.getElementById("userInput").value;
-  if (!input.trim()) return;
-  const chatBox = document.getElementById("chatBox");
-  chatBox.innerText += "\nYou: " + input + "\n🦉 Owl: Thinking...";
-  fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer YOUR_OPENAI_KEY"
-    },
-    body: JSON.stringify({
-      model: "gpt-4",
-      messages: [{ role: "user", content: input }]
-    })
-  })
-  .then(res => res.json())
-  .then(data => {
-    const reply = data.choices?.[0]?.message?.content || "No response";
-    chatBox.innerText += "\n🦉 Owl: " + reply;
-    if (readToggle) speak(reply);
-  });
-};
-
-document.getElementById("micBtn").onclick = () => {
-  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-  recognition.lang = "en-US";
-  recognition.start();
-  recognition.onresult = event => {
-    document.getElementById("userInput").value = event.results[0][0].transcript;
-  };
-};
+  const response = document.getElementById("response");
+  if (input.trim()) {
+    response.innerHTML += "<p><strong>You:</strong> " + input + "</p>";
+    response.innerHTML += "<p><strong>🦉 Owl:</strong> Thinking...</p>";
+  }
+}
+function startListening() {
+  alert("Microphone input not yet implemented in this static version.");
+}
+function toggleDarkMode() {
+  document.body.classList.toggle("dark-mode");
+}
+function readAloud() {
+  const text = document.getElementById("response").innerText;
+  const speech = new SpeechSynthesisUtterance(text);
+  speech.voice = speechSynthesis.getVoices().find(v => v.name.includes('Google US English Male')) || null;
+  speechSynthesis.speak(speech);
+}
+function subscribe() {
+  const email = document.getElementById("email").value;
+  alert("Subscribed with: " + email);
+}
+function continueWithout() {
+  alert("Continuing without subscription.");
+}

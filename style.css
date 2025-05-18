@@ -1,71 +1,90 @@
 
 body {
+  background-color: #f8f5fc;
   font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background: #f7f4fa;
   color: #333;
+  margin: 0;
+  padding: 20px;
 }
 .container {
-  max-width: 600px;
+  max-width: 700px;
   margin: auto;
   background: #fff;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(140, 101, 183, 0.2);
-  text-align: center;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 0 12px rgba(140, 101, 183, 0.3);
 }
-.owl-image {
+.owl-img {
+  display: block;
+  margin: 0 auto;
   width: 120px;
-  margin-bottom: 10px;
+}
+h1 {
+  text-align: center;
+  color: #432c79;
 }
 .subtitle {
-  margin-top: -10px;
+  text-align: center;
+  color: #555;
   margin-bottom: 20px;
-  font-size: 0.95em;
-  color: #666;
 }
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
-  margin-bottom: 10px;
 }
-input, textarea, button {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  margin-bottom: 10px;
-  font-size: 1em;
-}
-textarea {
+input, textarea {
   width: 100%;
-  height: 60px;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
 }
-#chatBox {
-  margin-top: 20px;
-  background: #eee;
+.subscribe-btn {
+  background-color: #d1b4f4;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  margin-top: 15px;
+  font-weight: bold;
+}
+.skip {
+  text-align: center;
+  margin: 10px 0;
+  color: #555;
+  cursor: pointer;
+}
+.input-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+.send-btn, .mic-btn {
+  flex: 1;
+  margin: 5px;
+  padding: 10px;
+  background-color: #e5d3f8;
+  border: none;
+  border-radius: 6px;
+}
+#response {
+  background-color: #f2f2f2;
+  margin-top: 15px;
   padding: 10px;
   border-radius: 8px;
-  height: 150px;
+  height: 160px;
   overflow-y: auto;
-  white-space: pre-wrap;
 }
-.chat-row {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-}
-.options {
+.footer {
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 .dark-mode {
-  background: #222;
-  color: #f0f0f0;
+  background-color: #1c1c1c;
+  color: #eee;
 }
 .dark-mode .container {
-  background: #2f2f2f;
+  background-color: #2e2e2e;
 }
