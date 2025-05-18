@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // INSERIR MENSAGEM NO CHAT
+  // ADICIONAR MENSAGEM AO CHAT
   function appendMessage(text, role) {
     const message = document.createElement('div');
     message.className = role === 'bot' ? 'bot-message' : 'user-message';
@@ -38,29 +38,21 @@ document.addEventListener("DOMContentLoaded", function () {
     chatBox.scrollTop = chatBox.scrollHeight;
   }
 
-  // FETCH GPT-4 RESPONSE
+  // ENVIA PARA BACKEND
   async function fetchGPTResponse(prompt) {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    const response = await fetch("/api/chat", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer YOUR_API_KEY_HERE"  // 🔐 Coloca aqui tua API Key da OpenAI
+        "Content-Type": "application/json"
       },
-      body: JSON.stringify({
-        model: "gpt-4",
-        messages: [
-          { role: "system", content: "You are a helpful and friendly health assistant called OwlCore AI." },
-          { role: "user", content: prompt }
-        ],
-        temperature: 0.7
-      })
+      body: JSON.stringify({ message: prompt })
     });
 
     const data = await response.json();
-    return data.choices?.[0]?.message?.content || "Sorry, I couldn’t process that.";
+    return data.choices?.[0]?.message?.content || "⚠️ Erro ao obter resposta.";
   }
 
-  // ENVIO DE MENSAGEM COM GPT-4
+  // BOTÃO ENVIAR
   if (sendBtn) {
     sendBtn.addEventListener('click', async () => {
       const userText = inputField.value.trim();
@@ -72,12 +64,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
       try {
         const botReply = await fetchGPTResponse(userText);
-        // Remove "Typing..."
         const typingMsg = chatBox.querySelector('.bot-message:last-child');
         if (typingMsg) typingMsg.remove();
         appendMessage(botReply, 'bot');
       } catch (err) {
-        appendMessage("⚠️ Error fetching GPT response.", 'bot');
+        appendMessage("❌ Erro ao contactar o GPT.", 'bot');
         console.error(err);
       }
     });
@@ -99,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
   }
 
-  // 🔓 Desbloqueio de voz para iOS
+  // iOS: desbloqueia leitura por voz
   document.addEventListener('click', () => {
     const silent = new SpeechSynthesisUtterance('');
     window.speechSynthesis.speak(silent);
