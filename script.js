@@ -9,14 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const genderInput = document.querySelector('.user-gender');
   let isSpeaking = false;
 
-  // DARK MODE
-  if (darkModeToggle) {
-    darkModeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-    });
-  }
-
-  // READ ALOUD (com carregamento de voz garantido)
+  // 🔊 Espera vozes estarem disponíveis
   async function getVoicesAsync() {
     return new Promise((resolve) => {
       let voices = speechSynthesis.getVoices();
@@ -31,6 +24,14 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // 🌙 Dark Mode
+  if (darkModeToggle) {
+    darkModeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+  }
+
+  // 🔊 Leitura em voz alta
   if (readAloudBtn) {
     readAloudBtn.addEventListener('click', async () => {
       if (isSpeaking) {
@@ -68,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // EMOJI por gênero
+  // 👤 Emoji conforme gênero
   function getUserEmoji() {
     const gender = (genderInput?.value || '').toLowerCase();
     if (gender.includes("male")) return "👨";
@@ -76,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return "👤";
   }
 
-  // MENSAGEM no chat
+  // 💬 Adiciona mensagem ao chat
   function appendMessage(text, role) {
     const message = document.createElement('div');
     message.className = role === 'bot' ? 'bot-message' : 'user-message';
@@ -95,13 +96,11 @@ document.addEventListener("DOMContentLoaded", function () {
     chatBox.scrollTop = chatBox.scrollHeight;
   }
 
-  // ENVIA MENSAGEM PARA GPT
+  // 🤖 Envia para backend com nome
   async function fetchGPTResponse(prompt, name) {
     const response = await fetch("/api/chat", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message: prompt, name: name || "amigo" })
     });
 
@@ -109,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return data.choices?.[0]?.message?.content || "⚠️ GPT error.";
   }
 
-  // BOTÃO ENVIAR
+  // 📤 Botão de envio
   if (sendBtn) {
     sendBtn.addEventListener('click', async () => {
       const userText = inputField.value.trim();
@@ -119,7 +118,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
       appendMessage(userText, 'user');
       inputField.value = '';
-
       appendMessage("Typing...", 'bot');
 
       try {
@@ -134,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // MICROFONE
+  // 🎤 Microfone (Chrome)
   if (micBtn && 'webkitSpeechRecognition' in window) {
     const recognition = new webkitSpeechRecognition();
     recognition.lang = 'en-US';
@@ -150,11 +148,9 @@ document.addEventListener("DOMContentLoaded", function () {
     };
   }
 
-  // iOS UNLOCK AUDIO
+  // 🔓 Desbloqueia áudio no iOS
   document.addEventListener('click', () => {
     const silent = new SpeechSynthesisUtterance('');
-    window.speechSynthesis.speak(silent);
+    speechSynthesis.speak(silent);
   }, { once: true });
 });
-
-
