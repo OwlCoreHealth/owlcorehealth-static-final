@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const micBtn = document.querySelector('.mic-btn');
   const inputField = document.querySelector('.chat-input');
   const chatBox = document.querySelector('.chat-box');
+  const nameInput = document.querySelector('.user-name');
+  const genderInput = document.querySelector('.user-gender');
   let isSpeaking = false;
 
   // DARK MODE
@@ -15,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // READ ALOUD TOGGLE (male voice US/Portuguese)
+  // READ ALOUD TOGGLE
   if (readAloudBtn) {
     readAloudBtn.addEventListener('click', () => {
       if (isSpeaking) {
@@ -30,12 +32,14 @@ document.addEventListener("DOMContentLoaded", function () {
         const utterance = new SpeechSynthesisUtterance(lastText);
 
         const voices = window.speechSynthesis.getVoices();
-        const preferredVoices = voices.filter(v =>
-          (v.lang === 'en-US' && v.name.toLowerCase().includes('male')) ||
-          (v.lang === 'pt-PT' && v.name.toLowerCase().includes('male'))
-        );
+        const preferredVoiceNames = [
+          'Microsoft David', 'Google US English Male', 'Ricardo', 'Daniel'
+        ];
+        const voice = voices.find(v => preferredVoiceNames.includes(v.name)) ||
+                      voices.find(v => v.lang === 'en-US') || null;
 
-        utterance.voice = preferredVoices[0] || voices.find(v => v.lang === 'en-US') || null;
+        utterance.voice = voice;
+        utterance.lang = voice?.lang || 'en-US';
         utterance.onend = () => { isSpeaking = false; };
         isSpeaking = true;
         window.speechSynthesis.cancel();
@@ -44,7 +48,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // ADD MESSAGE TO CHAT WITH STYLE
+  // EMOJI BASED ON GENDER
+  function getUserEmoji() {
+    const gender = (genderInput?.value || '').toLowerCase();
+    if (gender.includes("male")) return "👨";
+    if (gender.includes("female")) return "👩";
+    return "👤";
+  }
+
+  // ADD MESSAGE TO CHAT
   function appendMessage(text, role) {
     const message = document.createElement('div');
     message.className = role === 'bot' ? 'bot-message' : 'user-message';
@@ -55,36 +67,43 @@ document.addEventListener("DOMContentLoaded", function () {
     message.style.borderRadius = "10px";
     message.style.backgroundColor = role === 'bot' ? "#f3f4f6" : "#dbeafe";
     message.style.maxWidth = "95%";
-    message.textContent = text;
+
+    const emoji = role === 'bot' ? "🦉" : getUserEmoji();
+    message.textContent = emoji + " " + text;
+
     chatBox.appendChild(message);
     chatBox.scrollTop = chatBox.scrollHeight;
   }
 
-  // FETCH FROM GPT
-  async function fetchGPTResponse(prompt) {
+  // FETCH GPT FROM BACKEND
+  async function fetchGPTResponse(prompt, name) {
     const response = await fetch("/api/chat", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ message: prompt })
+      body: JSON.stringify({ message: prompt, name: name || "amigo" })
     });
 
     const data = await response.json();
     return data.choices?.[0]?.message?.content || "⚠️ GPT error.";
   }
 
-  // SEND BUTTON HANDLER
+  // SEND BUTTON
   if (sendBtn) {
     sendBtn.addEventListener('click', async () => {
       const userText = inputField.value.trim();
       if (!userText) return;
+
+      const userName = nameInput?.value?.trim() || "amigo";
+
       appendMessage(userText, 'user');
       inputField.value = '';
 
       appendMessage("Typing...", 'bot');
+
       try {
-        const botReply = await fetchGPTResponse(userText);
+        const botReply = await fetchGPTResponse(userText, userName);
         const typingMsg = chatBox.querySelector('.bot-message:last-child');
         if (typingMsg) typingMsg.remove();
         appendMessage(botReply, 'bot');
@@ -95,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // MICROPHONE (CHROME ONLY)
+  // MICROPHONE
   if (micBtn && 'webkitSpeechRecognition' in window) {
     const recognition = new webkitSpeechRecognition();
     recognition.lang = 'en-US';
@@ -111,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
   }
 
-  // ENABLE AUDIO ON FIRST CLICK (iOS fix)
+  // iOS AUDIO INIT
   document.addEventListener('click', () => {
     const silent = new SpeechSynthesisUtterance('');
     window.speechSynthesis.speak(silent);
