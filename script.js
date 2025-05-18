@@ -70,22 +70,26 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function appendMessage(text, role) {
-    const message = document.createElement('div');
-    message.className = role === 'bot' ? 'bot-message' : 'user-message';
-    message.style.whiteSpace = "pre-wrap";
-    message.style.lineHeight = "1.6";
-    message.style.padding = "12px";
-    message.style.marginBottom = "10px";
-    message.style.borderRadius = "10px";
-    message.style.backgroundColor = role === 'bot' ? "#f3f4f6" : "#dbeafe";
-    message.style.maxWidth = "95%";
+  const message = document.createElement('div');
+  message.className = role === 'bot' ? 'bot-message' : 'user-message';
+  message.style.whiteSpace = "pre-wrap";
+  message.style.lineHeight = "1.6";
+  message.style.padding = "12px";
+  message.style.marginBottom = "10px";
+  message.style.borderRadius = "10px";
+  message.style.backgroundColor = role === 'bot' ? "#f3f4f6" : "#dbeafe";
+  message.style.maxWidth = "95%";
 
-    const emoji = role === 'bot' ? "🦉" : getEmojiFromName(userName);
-    message.textContent = emoji + " " + text;
-    chatBox.appendChild(message);
+  const emoji = role === 'bot' ? "🦉" : getEmojiFromName(userName);
+  message.textContent = emoji + " " + text;
+  chatBox.appendChild(message);
 
-if (role === 'bot') {
-  message.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // ✅ Rolar até o início da nova resposta do bot
+  if (role === 'bot') {
+    setTimeout(() => {
+      message.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100); // Pequeno delay para garantir renderização
+  }
 }
 
   async function fetchGPTResponse(prompt, name) {
