@@ -101,6 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   async function fetchGPTResponse(prompt, name) {
+  try {
     const response = await fetch("/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -108,30 +109,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     const data = await response.json();
-    return data.choices?.[0]?.message?.content || "⚠️ GPT error.";
-  }
 
-  if (sendBtn) {
-  sendBtn.addEventListener('click', async () => {
-    const userText = inputField.value.trim();
-    if (!userText) return;
-
-    userName = nameInput?.value?.trim() || "amigo";
-    appendMessage(userText, 'user');
-    inputField.value = '';
-    appendMessage("Typing...", 'bot');
-
-    try {
-      const botReply = await fetchGPTResponse(userText, userName);
-      const typingMsg = chatBox.querySelector('.bot-message:last-child');
-      if (typingMsg) typingMsg.remove();
-      appendMessage(botReply, 'bot');
-      renderFollowUpQuestions(botReply); // 👉 ADICIONADO AQUI
-    } catch (err) {
-      appendMessage("❌ GPT communication error.", 'bot');
-      console.error(err);
+    if (data.choices && data.choices[0] && data.choices[0].message) {
+      return data.choices[0].message.content;
+    } else if (data.message) {
+      return data.message; // resposta de erro vinda do backend
+    } else {
+      throw new Error("Empty response from GPT");
     }
-  });
+  } catch (error) {
+    console.error("GPT fetch error:", error);
+    throw error;
+  }
 }
 
   if (micBtn && 'webkitSpeechRecognition' in window) {
