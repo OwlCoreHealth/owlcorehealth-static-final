@@ -8,12 +8,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const nameInput = document.querySelector('.user-name');
   const genderInput = document.querySelector('.user-gender');
   let isSpeaking = false;
-  let availableVoices = [];
-
-  // Carrega vozes assim que disponíveis
-  window.speechSynthesis.onvoiceschanged = () => {
-    availableVoices = window.speechSynthesis.getVoices();
-  };
 
   // DARK MODE
   if (darkModeToggle) {
@@ -22,9 +16,23 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // READ ALOUD TOGGLE (com vozes fixadas)
+  // READ ALOUD (com carregamento de voz garantido)
+  async function getVoicesAsync() {
+    return new Promise((resolve) => {
+      let voices = speechSynthesis.getVoices();
+      if (voices.length) {
+        resolve(voices);
+      } else {
+        speechSynthesis.onvoiceschanged = () => {
+          voices = speechSynthesis.getVoices();
+          resolve(voices);
+        };
+      }
+    });
+  }
+
   if (readAloudBtn) {
-    readAloudBtn.addEventListener('click', () => {
+    readAloudBtn.addEventListener('click', async () => {
       if (isSpeaking) {
         window.speechSynthesis.cancel();
         isSpeaking = false;
@@ -36,25 +44,31 @@ document.addEventListener("DOMContentLoaded", function () {
         const lastText = botMessages[botMessages.length - 1].textContent;
         const utterance = new SpeechSynthesisUtterance(lastText);
 
+        const voices = await getVoicesAsync();
         const preferredVoiceNames = [
           'Microsoft David', 'Google US English Male', 'Ricardo', 'Daniel'
         ];
-        const voice = availableVoices.find(v => preferredVoiceNames.includes(v.name)) ||
-                      availableVoices.find(v => v.lang === 'en-US') ||
-                      availableVoices[0] || null;
+        const voice = voices.find(v => preferredVoiceNames.includes(v.name)) ||
+                      voices.find(v => v.lang === 'en-US') ||
+                      voices[0] || null;
+
+        if (!voice) {
+          alert("❌ Nenhuma voz disponível para leitura.");
+          return;
+        }
 
         utterance.voice = voice;
-        utterance.lang = voice?.lang || 'en-US';
+        utterance.lang = voice.lang;
         utterance.onend = () => { isSpeaking = false; };
         isSpeaking = true;
 
-        window.speechSynthesis.cancel();
-        window.speechSynthesis.speak(utterance);
+        speechSynthesis.cancel();
+        speechSynthesis.speak(utterance);
       }
     });
   }
 
-  // Escolhe emoji com base no sexo
+  // EMOJI por gênero
   function getUserEmoji() {
     const gender = (genderInput?.value || '').toLowerCase();
     if (gender.includes("male")) return "👨";
@@ -62,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return "👤";
   }
 
-  // Adiciona mensagem ao chat com estilo
+  // MENSAGEM no chat
   function appendMessage(text, role) {
     const message = document.createElement('div');
     message.className = role === 'bot' ? 'bot-message' : 'user-message';
@@ -81,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
     chatBox.scrollTop = chatBox.scrollHeight;
   }
 
-  // Envia mensagem ao backend
+  // ENVIA MENSAGEM PARA GPT
   async function fetchGPTResponse(prompt, name) {
     const response = await fetch("/api/chat", {
       method: "POST",
@@ -95,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return data.choices?.[0]?.message?.content || "⚠️ GPT error.";
   }
 
-  // Ao clicar em enviar
+  // BOTÃO ENVIAR
   if (sendBtn) {
     sendBtn.addEventListener('click', async () => {
       const userText = inputField.value.trim();
@@ -120,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Microfone (somente Chrome)
+  // MICROFONE
   if (micBtn && 'webkitSpeechRecognition' in window) {
     const recognition = new webkitSpeechRecognition();
     recognition.lang = 'en-US';
@@ -136,10 +150,11 @@ document.addEventListener("DOMContentLoaded", function () {
     };
   }
 
-  // iOS: desbloqueia leitura por clique
+  // iOS UNLOCK AUDIO
   document.addEventListener('click', () => {
     const silent = new SpeechSynthesisUtterance('');
     window.speechSynthesis.speak(silent);
   }, { once: true });
 });
+
 
