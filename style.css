@@ -168,3 +168,28 @@ input:focus, input:valid {
     align-items: center;
   }
 }
+.follow-up-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 1rem;
+  padding-left: 10px;
+}
+
+.follow-up-buttons .follow-up-btn {
+  background-color: #f3f0ff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: left;
+  width: fit-content;
+  max-width: 90%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.follow-up-buttons .follow-up-btn:hover {
+  background-color: #e2dbf8;
+}
