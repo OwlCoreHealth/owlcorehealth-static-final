@@ -1,77 +1,71 @@
 
 body {
-  background-color: #f7f4fa;
   font-family: Arial, sans-serif;
   margin: 0;
-  padding: 20px;
+  padding: 0;
+  background: #f7f4fa;
   color: #333;
 }
 .container {
-  max-width: 700px;
+  max-width: 600px;
   margin: auto;
   background: #fff;
-  padding: 24px;
+  padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 0 12px rgba(140, 101, 183, 0.3);
-}
-.avatar {
-  display: block;
-  margin: 0 auto 12px;
-  width: 120px;
-}
-h1 {
+  box-shadow: 0 0 15px rgba(140, 101, 183, 0.2);
   text-align: center;
-  color: #402c73;
+}
+.owl-image {
+  width: 120px;
+  margin-bottom: 10px;
 }
 .subtitle {
-  text-align: center;
-  font-style: italic;
+  margin-top: -10px;
   margin-bottom: 20px;
+  font-size: 0.95em;
+  color: #666;
 }
-.form .row {
-  display: flex;
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 10px;
   margin-bottom: 10px;
 }
 input, textarea, button {
-  font-size: 16px;
   padding: 10px;
-  border-radius: 8px;
   border: 1px solid #ccc;
-  width: 100%;
-}
-button {
-  background: #dbc4f0;
-  font-weight: bold;
-  cursor: pointer;
-}
-#subscribe {
-  margin-top: 10px;
-}
-#response {
-  margin-top: 20px;
-  background: #eee;
-  padding: 10px;
-  border-radius: 8px;
-  min-height: 60px;
-}
-.chat-controls {
-  display: flex;
-  gap: 10px;
-  margin-top: 16px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  font-size: 1em;
 }
 textarea {
   width: 100%;
   height: 60px;
+}
+#chatBox {
+  margin-top: 20px;
+  background: #eee;
+  padding: 10px;
+  border-radius: 8px;
+  height: 150px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}
+.chat-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.options {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
   margin-top: 10px;
 }
-.footer {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
+.dark-mode {
+  background: #222;
+  color: #f0f0f0;
 }
-.skip {
-  text-align: center;
-  font-size: 14px;
-  margin-top: 8px;
+.dark-mode .container {
+  background: #2f2f2f;
 }

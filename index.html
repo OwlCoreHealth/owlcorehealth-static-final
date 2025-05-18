@@ -3,41 +3,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OwlCoreHealth AI</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <img src="owl-doctor.png" alt="Owl Doctor" class="avatar"/>
+    <img src="owl-doctor.png" alt="OwlCoreHealth AI" class="owl-image" />
     <h1>Welcome to OwlCoreHealth AI</h1>
-    <p class="subtitle">Your personal health & wellness assistant.</p>
+    <p class="subtitle">Your personal assistant for health and wellness.</p>
 
-    <div class="form">
-      <div class="row">
-        <input type="text" id="name" placeholder="Name" />
-        <input type="text" id="age" placeholder="Age" />
-      </div>
-      <div class="row">
-        <input type="text" id="sex" placeholder="Sex" />
-        <input type="text" id="weight" placeholder="Weight" />
-      </div>
-      <button id="subscribe">Subscribe</button>
-      <input type="email" id="email" placeholder="Email (optional)" />
-      <p class="skip">Continue without subscribing</p>
+    <div class="form-grid">
+      <input type="text" placeholder="Name" id="name">
+      <input type="text" placeholder="Age" id="age">
+      <input type="text" placeholder="Sex" id="sex">
+      <input type="text" placeholder="Weight" id="weight">
     </div>
 
-    <div class="chat-controls">
-      <button id="send">Send</button>
-      <button id="voice"><span role="img">🎙️</span></button>
-    </div>
+    <button id="subscribeBtn">Subscribe</button>
+    <input type="email" placeholder="Email (optional)" id="email">
+    <p id="skip">Continue without subscribing</p>
 
+    <div class="chat-row">
+      <button id="sendBtn">Send</button>
+      <button id="micBtn">🎤</button>
+    </div>
     <textarea id="userInput" placeholder="Type your message..."></textarea>
-    <div id="response"></div>
+    <div id="chatBox"></div>
 
-    <div class="footer">
-      <button id="darkMode"><span role="img">🌙</span> Dark Mode</button>
-      <button id="readAloud"><span role="img">🔊</span> Read Aloud</button>
+    <div class="options">
+      <button id="darkModeToggle">🌙 Dark Mode</button>
+      <button id="readAloudToggle">🔊 Read Aloud</button>
     </div>
   </div>
 
