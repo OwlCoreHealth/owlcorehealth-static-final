@@ -14,19 +14,26 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // READ ALOUD
+  // READ ALOUD (com suporte a mobile)
   if (readAloudBtn) {
     readAloudBtn.addEventListener('click', () => {
-      const messages = chatBox.querySelectorAll('.bot-message');
-      if (messages.length > 0) {
-        const lastText = messages[messages.length - 1].textContent;
+      const botMessages = document.querySelectorAll('.chat-box .bot-message');
+      if (botMessages.length > 0) {
+        const lastText = botMessages[botMessages.length - 1].textContent;
         const utterance = new SpeechSynthesisUtterance(lastText);
-        speechSynthesis.speak(utterance);
+
+        // Carregar vozes (fix para mobile)
+        const voices = window.speechSynthesis.getVoices();
+        utterance.voice = voices[0] || null;
+
+        // Cancelar fala anterior e executar nova
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(utterance);
       }
     });
   }
 
-  // APPEND MESSAGE
+  // FUNÇÃO PARA INSERIR MENSAGENS
   function appendMessage(text, role) {
     const message = document.createElement('div');
     message.className = role === 'bot' ? 'bot-message' : 'user-message';
@@ -35,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
     chatBox.scrollTop = chatBox.scrollHeight;
   }
 
-  // SEND BUTTON
+  // ENVIO DE MENSAGEM
   if (sendBtn) {
     sendBtn.addEventListener('click', () => {
       const userText = inputField.value.trim();
@@ -48,15 +55,17 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // MICROPHONE
+  // MICROFONE
   if (micBtn && 'webkitSpeechRecognition' in window) {
     const recognition = new webkitSpeechRecognition();
     recognition.lang = 'en-US';
     recognition.continuous = false;
     recognition.interimResults = false;
+
     micBtn.addEventListener('click', () => {
       recognition.start();
     });
+
     recognition.onresult = function (event) {
       inputField.value = event.results[0][0].transcript;
     };
