@@ -5,12 +5,17 @@ export default async function handler(req, res) {
       return res.status(405).json({ error: "Método não permitido. Use POST." });
     }
 
-    const buffers = [];
-    for await (const chunk of req) {
-      buffers.push(chunk);
+    let body = {};
+    if (req.body && req.body.message) {
+      body = req.body;
+    } else {
+      const buffers = [];
+      for await (const chunk of req) {
+        buffers.push(chunk);
+      }
+      const rawBody = Buffer.concat(buffers).toString();
+      body = JSON.parse(rawBody);
     }
-    const rawBody = Buffer.concat(buffers).toString();
-    const body = JSON.parse(rawBody);
 
     const message = body.message;
     const userName = (body.name || "amigo").trim();
@@ -19,12 +24,14 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Mensagem não enviada." });
     }
 
-    const ptIndicators = [' você ', ' estou ', ' gostaria ', ' suplemento ', ' saúde ', ' problema ', ' posso ', ' obrigado', ' obrigada'];
+    console.log("Mensagem recebida:", message);
+
+    const ptIndicators = [' você ', ' estou ', ' gostaria ', 'suplemento', ' saúde', ' problema ', ' posso ', ' obrigado', ' obrigada'];
     const isPortuguese = /[ãõçáéíóúâêôà]/i.test(message) || ptIndicators.some(word => message.toLowerCase().includes(word));
 
     const systemPrompt = isPortuguese
       ? `Você é OwlCore AI, um assistente de saúde simpático e profissional. Responda exclusivamente em português do Brasil com clareza, empatia e trate o usuário pelo nome "${userName}".`
-      : `You are OwlCore AI, a helpful and professional health assistant. Always reply in U.S. English and use the user's name: "${userName}".`;
+      : `You are OwlCore AI, a helpful and professional health assistant. Always reply in U.S. English. Address the user by name: "${userName}".`;
 
     const openaiRes = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
@@ -45,11 +52,13 @@ export default async function handler(req, res) {
     const data = await openaiRes.json();
 
     if (openaiRes.status !== 200) {
+      console.error("Erro da OpenAI:", data);
       return res.status(500).json({ error: "Erro ao chamar a OpenAI", details: data });
     }
 
     res.status(200).json(data);
   } catch (err) {
+    console.error("Erro inesperado:", err);
     res.status(500).json({ error: "Erro interno no servidor", details: err.message });
   }
 }

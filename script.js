@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function () {
   const darkModeToggle = document.querySelector('.dark-mode-toggle');
   const readAloudBtn = document.querySelector('.read-aloud');

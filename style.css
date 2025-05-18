@@ -116,18 +116,15 @@ input {
   color: #444;
 }
 
-
 button,
 .footer span {
   cursor: pointer;
 }
 
-/* Form field filled state */
 input:focus, input:valid {
   background-color: #f0f3ff;
 }
 
-/* Discrete footer buttons */
 .footer span {
   background-color: #eee;
   padding: 6px 10px;
@@ -138,7 +135,7 @@ input:focus, input:valid {
 .footer span:hover {
   background-color: #d4b8f0;
 }
-/* Responsividade para telemóvel */
+
 @media (max-width: 600px) {
   .container {
     padding: 1rem;
