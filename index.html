@@ -1,39 +1,46 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>OwlCoreHealth AI</title>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
-    <img src="owl-doctor.png" alt="Owl Doctor" class="owl-img"/>
+    <img src="owl-doctor.png" alt="Owl Doctor" class="avatar"/>
     <h1>Welcome to OwlCoreHealth AI</h1>
-    <div class="form-row">
-      <input type="text" id="name" placeholder="Name"/>
-      <input type="text" id="sex" placeholder="Sex"/>
+    <p class="subtitle">Your personal health & wellness assistant.</p>
+
+    <div class="form">
+      <div class="row">
+        <input type="text" id="name" placeholder="Name" />
+        <input type="text" id="age" placeholder="Age" />
+      </div>
+      <div class="row">
+        <input type="text" id="sex" placeholder="Sex" />
+        <input type="text" id="weight" placeholder="Weight" />
+      </div>
+      <button id="subscribe">Subscribe</button>
+      <input type="email" id="email" placeholder="Email (optional)" />
+      <p class="skip">Continue without subscribing</p>
     </div>
-    <div class="form-row">
-      <input type="number" id="age" placeholder="Age"/>
-      <input type="text" id="weight" placeholder="Weight"/>
-    </div>
-    <button onclick="subscribe()" class="button">Subscribe</button>
-    <input type="email" id="email" placeholder="Your email (optional)" class="email-input"/>
-    <p class="skip" onclick="continueWithoutSubscribing()">Continue without subscribing</p>
 
     <div class="chat-controls">
-      <button onclick="sendMessage()" class="button">Send</button>
-      <button onclick="startVoiceInput()" class="button">🎙️</button>
+      <button id="send">Send</button>
+      <button id="voice"><span role="img">🎙️</span></button>
     </div>
-    <textarea id="userInput" placeholder="Type your message here..."></textarea>
-    <div id="response" class="response-box"></div>
 
-    <div class="options">
-      <button onclick="toggleDarkMode()" class="button small">🌙 Dark Mode</button>
-      <button onclick="readAloud()" class="button small">🔊 Read Aloud</button>
+    <textarea id="userInput" placeholder="Type your message..."></textarea>
+    <div id="response"></div>
+
+    <div class="footer">
+      <button id="darkMode"><span role="img">🌙</span> Dark Mode</button>
+      <button id="readAloud"><span role="img">🔊</span> Read Aloud</button>
     </div>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>

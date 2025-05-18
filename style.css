@@ -1,77 +1,77 @@
 
 body {
-  font-family: Arial, sans-serif;
   background-color: #f7f4fa;
+  font-family: Arial, sans-serif;
   margin: 0;
-  padding: 0;
+  padding: 20px;
+  color: #333;
 }
 .container {
-  width: 95%;
-  max-width: 860px;
-  margin: 20px auto;
-  background: white;
-  padding: 20px;
+  max-width: 700px;
+  margin: auto;
+  background: #fff;
+  padding: 24px;
   border-radius: 12px;
-  box-shadow: 0 0 15px rgba(140, 101, 183, 0.2);
-  text-align: center;
+  box-shadow: 0 0 12px rgba(140, 101, 183, 0.3);
 }
-h1 {
-  color: #6a4ea2;
-}
-.owl-img {
+.avatar {
   display: block;
-  margin: 0 auto;
+  margin: 0 auto 12px;
   width: 120px;
 }
-input, textarea {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 16px;
+h1 {
+  text-align: center;
+  color: #402c73;
 }
-.form-row {
+.subtitle {
+  text-align: center;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+.form .row {
   display: flex;
   gap: 10px;
+  margin-bottom: 10px;
 }
-.form-row input {
-  flex: 1;
-}
-.button {
-  background-color: #d7c4eb;
-  border: none;
-  padding: 10px 20px;
-  margin: 10px 5px;
-  border-radius: 8px;
-  cursor: pointer;
+input, textarea, button {
   font-size: 16px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 100%;
 }
-.button.small {
-  font-size: 14px;
-  padding: 8px 12px;
+button {
+  background: #dbc4f0;
+  font-weight: bold;
+  cursor: pointer;
 }
-.email-input {
+#subscribe {
   margin-top: 10px;
 }
-.skip {
-  cursor: pointer;
-  color: #666;
-  font-size: 14px;
-}
-.response-box {
+#response {
   margin-top: 20px;
-  min-height: 120px;
+  background: #eee;
   padding: 10px;
-  background-color: #f1eef5;
   border-radius: 8px;
-  white-space: pre-wrap;
-  text-align: left;
+  min-height: 60px;
 }
 .chat-controls {
   display: flex;
-  justify-content: space-between;
+  gap: 10px;
+  margin-top: 16px;
 }
 textarea {
+  width: 100%;
   height: 60px;
+  margin-top: 10px;
+}
+.footer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.skip {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 8px;
 }
