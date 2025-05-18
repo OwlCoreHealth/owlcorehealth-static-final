@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function renderFollowUpQuestions(botMessage) {
-  const questionRegex = /Here are 3 related questions:\s*1\.\s*(.+?)\s*2\.\s*(.+?)\s*3\.\s*(.+)/i;
+  const questionRegex = /Here are 3 related questions:\s*1[.)-]?\s*(.*?)\s*2[.)-]?\s*(.*?)\s*3[.)-]?\s*(.*)/i;
   const match = botMessage.match(questionRegex);
 
   if (match) {
