@@ -155,3 +155,31 @@ document.addEventListener("DOMContentLoaded", function () {
     speechSynthesis.speak(silent);
   }, { once: true });
 });
+
+function renderFollowUpQuestions(botMessage) {
+  const questionRegex = /Here are 3 related questions:\s*1\.\s*(.+?)\s*2\.\s*(.+?)\s*3\.\s*(.+)/i;
+  const match = botMessage.match(questionRegex);
+
+  if (match) {
+    const [, q1, q2, q3] = match;
+    const suggestionsContainer = document.createElement("div");
+    suggestionsContainer.className = "follow-up-buttons";
+
+    [q1, q2, q3].forEach(question => {
+      const btn = document.createElement("button");
+      btn.textContent = question.trim();
+      btn.className = "follow-up-btn";
+      btn.onclick = () => sendMessageWithSuggestion(question.trim());
+      suggestionsContainer.appendChild(btn);
+    });
+
+    chatBox.appendChild(suggestionsContainer);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
+}
+
+function sendMessageWithSuggestion(text) {
+  inputField.value = text;
+  sendBtn.click();
+}
+
