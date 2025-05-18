@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OwlCoreHealth AI</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="chat-box" id="chatContainer">
+    <img src="owl-doctor.png" alt="Owl Doctor" class="owl-img"/>
+    <h2>Welcome to OwlCoreHealth AI</h2>
+    <p>Your digital wellness assistant. Please enter your info:</p>
+    <input id="name" placeholder="Name" />
+    <input id="sex" placeholder="Sex" />
+    <input id="age" placeholder="Age" />
+    <input id="weight" placeholder="Weight" />
+    <button onclick="alert('Subscribed and continuing...')">Subscribe and continue</button>
+    <input id="email" type="email" placeholder="you@example.com"/>
+    <button onclick="alert('Continuing without subscribing...')">Continue without subscribing</button>
+    <p style="margin-top:20px;">Type your concern:</p>
+    <div class="chat-row">
+      <input id="userInput" placeholder="Type a message..." />
+      <button onclick="sendToGPT()">Send</button>
+    </div>
+    <button onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
+    <button onclick="readLastResponse()">🔊 Read Aloud</button>
+    <div id="response"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
