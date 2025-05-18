@@ -112,26 +112,27 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   if (sendBtn) {
-    sendBtn.addEventListener('click', async () => {
-      const userText = inputField.value.trim();
-      if (!userText) return;
+  sendBtn.addEventListener('click', async () => {
+    const userText = inputField.value.trim();
+    if (!userText) return;
 
-      userName = nameInput?.value?.trim() || "amigo";
-      appendMessage(userText, 'user');
-      inputField.value = '';
-      appendMessage("Typing...", 'bot');
+    userName = nameInput?.value?.trim() || "amigo";
+    appendMessage(userText, 'user');
+    inputField.value = '';
+    appendMessage("Typing...", 'bot');
 
-      try {
-        const botReply = await fetchGPTResponse(userText, userName);
-        const typingMsg = chatBox.querySelector('.bot-message:last-child');
-        if (typingMsg) typingMsg.remove();
-        appendMessage(botReply, 'bot');
-      } catch (err) {
-        appendMessage("❌ GPT communication error.", 'bot');
-        console.error(err);
-      }
-    });
-  }
+    try {
+      const botReply = await fetchGPTResponse(userText, userName);
+      const typingMsg = chatBox.querySelector('.bot-message:last-child');
+      if (typingMsg) typingMsg.remove();
+      appendMessage(botReply, 'bot');
+      renderFollowUpQuestions(botReply); // 👉 ADICIONADO AQUI
+    } catch (err) {
+      appendMessage("❌ GPT communication error.", 'bot');
+      console.error(err);
+    }
+  });
+}
 
   if (micBtn && 'webkitSpeechRecognition' in window) {
     const recognition = new webkitSpeechRecognition();
