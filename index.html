@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OwlCoreHealth AI</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -13,30 +13,32 @@
     <h1>Welcome to OwlCoreHealth AI</h1>
     <p class="subtitle">Your personal assistant for health and wellness.</p>
 
-    <div class="form-grid">
-      <input type="text" id="name" placeholder="Name" />
-      <input type="text" id="age" placeholder="Age" />
-      <input type="text" id="sex" placeholder="Sex" />
-      <input type="text" id="weight" placeholder="Weight" />
-    </div>
+    <form class="form">
+      <div class="form-row">
+        <input type="text" placeholder="Name" />
+        <input type="text" placeholder="Age" />
+      </div>
+      <div class="form-row">
+        <input type="text" placeholder="Sex" />
+        <input type="text" placeholder="Weight" />
+      </div>
+      <input type="email" placeholder="Email (optional)" class="full-input" />
+      <button class="subscribe-btn">Subscribe</button>
+      <p class="continue-link">Continue without subscribing</p>
+    </form>
 
-    <button onclick="subscribe()" class="subscribe-btn">Subscribe</button>
-    <input type="email" id="email" placeholder="Email (optional)" />
-    <p class="skip" onclick="continueWithout()">Continue without subscribing</p>
-
-    <div class="input-group">
-      <button onclick="sendMessage()" class="send-btn">Send</button>
-      <button onclick="startListening()" class="mic-btn">🎤</button>
+    <div class="chat-box">
+      <div class="input-row">
+        <input type="text" placeholder="Type your message..." />
+        <button class="send-btn">Send</button>
+        <button class="mic-btn">🎤</button>
+      </div>
     </div>
-    <textarea id="userInput" placeholder="Type your message..."></textarea>
-    <div id="response"></div>
 
     <div class="footer">
-      <button onclick="toggleDarkMode()">🌙 Dark Mode</button>
-      <button onclick="readAloud()">🔊 Read Aloud</button>
+      <span>🌙 Dark Mode</span>
+      <span>🔊 Read Aloud</span>
     </div>
   </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
