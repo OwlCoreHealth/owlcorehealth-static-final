@@ -138,3 +138,36 @@ input:focus, input:valid {
 .footer span:hover {
   background-color: #d4b8f0;
 }
+/* Responsividade para telemóvel */
+@media (max-width: 600px) {
+  .container {
+    padding: 1rem;
+    margin: 1rem;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .chat-box {
+    min-height: 180px;
+    max-height: 220px;
+  }
+
+  .input-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .send-btn,
+  .mic-btn {
+    width: 100%;
+  }
+
+  .footer {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+  }
+}
