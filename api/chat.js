@@ -4,14 +4,12 @@ export default async function handler(req, res) {
       return res.status(405).json({ error: "Método não permitido. Use POST." });
     }
 
-    // Garante que o corpo JSON foi recebido corretamente
+    // Lê corretamente o corpo JSON mesmo se req.body estiver vazio
     let message = null;
 
-    // Em Vercel edge functions recentes pode ser necessário usar req.body diretamente
     if (req.body && req.body.message) {
       message = req.body.message;
     } else {
-      // fallback: tenta fazer o parse manual
       const buffers = [];
       for await (const chunk of req) {
         buffers.push(chunk);
@@ -27,6 +25,14 @@ export default async function handler(req, res) {
 
     console.log("Mensagem recebida:", message);
 
+    // Detecta se a mensagem contém sinais de português
+    const isPortuguese = /[ãõçáéíóúâêôà]/i.test(message) || / você | estou | gostaria | saúde | suplemento | problema | posso | bom /i.test(message);
+
+    // Cria o prompt dinâmico com base no idioma
+    const systemPrompt = isPortuguese
+      ? "Você é um assistente de saúde amigável e profissional chamado OwlCore AI. Responda com clareza, usando o português do Brasil e uma linguagem acessível e confiável."
+      : "You are OwlCore AI, a helpful and professional health assistant. Answer clearly in American English with accurate, friendly tone.";
+
     const openaiRes = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -36,7 +42,7 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         model: "gpt-4",
         messages: [
-          { role: "system", content: "You are OwlCore AI, a helpful health assistant." },
+          { role: "system", content: systemPrompt },
           { role: "user", content: message }
         ],
         temperature: 0.7
@@ -56,3 +62,4 @@ export default async function handler(req, res) {
     res.status(500).json({ error: "Erro interno no servidor", details: err.message });
   }
 }
+
