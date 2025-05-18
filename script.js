@@ -17,16 +17,14 @@ document.addEventListener("DOMContentLoaded", function () {
     return "👤";
   }
 
-  async function getVoicesAsync() {
-    return new Promise((resolve) => {
+  async function getVoicesSafe() {
+    return new Promise(resolve => {
       let voices = speechSynthesis.getVoices();
-      if (voices.length) resolve(voices);
-      else {
-        speechSynthesis.onvoiceschanged = () => {
-          voices = speechSynthesis.getVoices();
-          resolve(voices);
-        };
-      }
+      if (voices.length) return resolve(voices);
+      speechSynthesis.onvoiceschanged = () => {
+        voices = speechSynthesis.getVoices();
+        resolve(voices);
+      };
     });
   }
 
@@ -37,49 +35,42 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   if (readAloudBtn) {
-  readAloudBtn.addEventListener('click', async () => {
-    if (isSpeaking) {
-      speechSynthesis.cancel();
-      isSpeaking = false;
-      return;
-    }
-
-    const botMessages = document.querySelectorAll('.chat-box .bot-message');
-    if (!botMessages.length) return;
-
-    const lastText = botMessages[botMessages.length - 1].textContent;
-    const utterance = new SpeechSynthesisUtterance(lastText);
-
-    const voices = await new Promise(resolve => {
-      let voicesList = speechSynthesis.getVoices();
-      if (voicesList.length) resolve(voicesList);
-      else {
-        speechSynthesis.onvoiceschanged = () => resolve(speechSynthesis.getVoices());
+    readAloudBtn.addEventListener('click', async () => {
+      if (isSpeaking) {
+        speechSynthesis.cancel();
+        isSpeaking = false;
+        return;
       }
+
+      const botMessages = document.querySelectorAll('.chat-box .bot-message');
+      if (!botMessages.length) return;
+
+      const lastText = botMessages[botMessages.length - 1].textContent;
+      const utterance = new SpeechSynthesisUtterance(lastText);
+
+      const voices = await getVoicesSafe();
+      if (!voices || !voices.length) {
+        alert("Nenhuma voz disponível neste dispositivo.");
+        return;
+      }
+
+      const preferredVoice = voices.find(v =>
+        v.lang === 'en-US' &&
+        (v.name.toLowerCase().includes("david") ||
+         v.name.toLowerCase().includes("male") ||
+         v.name.toLowerCase().includes("ricardo") ||
+         v.name.toLowerCase().includes("daniel"))
+      ) || voices.find(v => v.lang === 'en-US') || voices[0];
+
+      utterance.voice = preferredVoice;
+      utterance.lang = preferredVoice.lang || 'en-US';
+      utterance.onend = () => { isSpeaking = false; };
+      isSpeaking = true;
+
+      speechSynthesis.cancel();
+      speechSynthesis.speak(utterance);
     });
-
-    const preferredVoice = voices.find(v =>
-      v.lang === 'en-US' &&
-      (v.name.toLowerCase().includes("david") ||
-       v.name.toLowerCase().includes("male") ||
-       v.name.toLowerCase().includes("ricardo") ||
-       v.name.toLowerCase().includes("daniel"))
-    ) || voices.find(v => v.lang === 'en-US') || voices[0];
-
-    if (!preferredVoice) {
-      alert("No voice found.");
-      return;
-    }
-
-    utterance.voice = preferredVoice;
-    utterance.lang = preferredVoice.lang;
-    utterance.onend = () => { isSpeaking = false; };
-
-    isSpeaking = true;
-    speechSynthesis.cancel();
-    speechSynthesis.speak(utterance);
-  });
-}
+  }
 
   function appendMessage(text, role) {
     const message = document.createElement('div');
@@ -146,6 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
   }
 
+  // Ativa o áudio no iOS ao primeiro clique
   document.addEventListener('click', () => {
     const silent = new SpeechSynthesisUtterance('');
     speechSynthesis.speak(silent);
