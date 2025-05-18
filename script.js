@@ -14,26 +14,22 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // READ ALOUD (com suporte a mobile)
+  // READ ALOUD
   if (readAloudBtn) {
     readAloudBtn.addEventListener('click', () => {
       const botMessages = document.querySelectorAll('.chat-box .bot-message');
       if (botMessages.length > 0) {
         const lastText = botMessages[botMessages.length - 1].textContent;
         const utterance = new SpeechSynthesisUtterance(lastText);
-
-        // Carregar vozes (fix para mobile)
         const voices = window.speechSynthesis.getVoices();
         utterance.voice = voices[0] || null;
-
-        // Cancelar fala anterior e executar nova
         window.speechSynthesis.cancel();
         window.speechSynthesis.speak(utterance);
       }
     });
   }
 
-  // FUNÇÃO PARA INSERIR MENSAGENS
+  // INSERIR MENSAGEM NO CHAT
   function appendMessage(text, role) {
     const message = document.createElement('div');
     message.className = role === 'bot' ? 'bot-message' : 'user-message';
@@ -42,16 +38,48 @@ document.addEventListener("DOMContentLoaded", function () {
     chatBox.scrollTop = chatBox.scrollHeight;
   }
 
-  // ENVIO DE MENSAGEM
+  // FETCH GPT-4 RESPONSE
+  async function fetchGPTResponse(prompt) {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer YOUR_API_KEY_HERE"  // 🔐 Coloca aqui tua API Key da OpenAI
+      },
+      body: JSON.stringify({
+        model: "gpt-4",
+        messages: [
+          { role: "system", content: "You are a helpful and friendly health assistant called OwlCore AI." },
+          { role: "user", content: prompt }
+        ],
+        temperature: 0.7
+      })
+    });
+
+    const data = await response.json();
+    return data.choices?.[0]?.message?.content || "Sorry, I couldn’t process that.";
+  }
+
+  // ENVIO DE MENSAGEM COM GPT-4
   if (sendBtn) {
-    sendBtn.addEventListener('click', () => {
+    sendBtn.addEventListener('click', async () => {
       const userText = inputField.value.trim();
       if (!userText) return;
       appendMessage(userText, 'user');
       inputField.value = '';
-      setTimeout(() => {
-        appendMessage("This is a simulated response from OwlCore AI.", 'bot');
-      }, 500);
+
+      appendMessage("Typing...", 'bot');
+
+      try {
+        const botReply = await fetchGPTResponse(userText);
+        // Remove "Typing..."
+        const typingMsg = chatBox.querySelector('.bot-message:last-child');
+        if (typingMsg) typingMsg.remove();
+        appendMessage(botReply, 'bot');
+      } catch (err) {
+        appendMessage("⚠️ Error fetching GPT response.", 'bot');
+        console.error(err);
+      }
     });
   }
 
@@ -70,4 +98,10 @@ document.addEventListener("DOMContentLoaded", function () {
       inputField.value = event.results[0][0].transcript;
     };
   }
+
+  // 🔓 Desbloqueio de voz para iOS
+  document.addEventListener('click', () => {
+    const silent = new SpeechSynthesisUtterance('');
+    window.speechSynthesis.speak(silent);
+  }, { once: true });
 });
