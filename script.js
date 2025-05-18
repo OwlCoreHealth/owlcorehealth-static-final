@@ -26,3 +26,27 @@ function subscribe() {
 function continueWithout() {
   alert("Continuing without subscription.");
 }
+
+
+// DARK MODE TOGGLE
+document.addEventListener("DOMContentLoaded", function () {
+  const darkToggle = document.querySelector('.footer span:nth-child(1)');
+  if (darkToggle) {
+    darkToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+  }
+
+  // READ ALOUD FUNCTIONALITY
+  const readBtn = document.querySelector('.footer span:nth-child(2)');
+  if (readBtn) {
+    readBtn.addEventListener('click', () => {
+      const botMessages = document.querySelectorAll('.chat-box .bot-message');
+      if (botMessages.length) {
+        const lastMsg = botMessages[botMessages.length - 1].textContent;
+        const utterance = new SpeechSynthesisUtterance(lastMsg);
+        speechSynthesis.speak(utterance);
+      }
+    });
+  }
+});
