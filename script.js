@@ -35,42 +35,53 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   if (readAloudBtn) {
-    readAloudBtn.addEventListener('click', async () => {
-      if (isSpeaking) {
-        speechSynthesis.cancel();
-        isSpeaking = false;
-        return;
-      }
+  readAloudBtn.addEventListener('click', async () => {
+    if (isSpeaking) {
+      speechSynthesis.cancel();
+      isSpeaking = false;
+      return;
+    }
 
-      const botMessages = document.querySelectorAll('.chat-box .bot-message');
-      if (!botMessages.length) return;
+    const botMessages = document.querySelectorAll('.chat-box .bot-message');
+    if (!botMessages.length) return;
 
-      const lastText = botMessages[botMessages.length - 1].textContent;
-      const utterance = new SpeechSynthesisUtterance(lastText);
+    const lastText = botMessages[botMessages.length - 1].textContent;
+    const utterance = new SpeechSynthesisUtterance(lastText);
 
-      const voices = await getVoicesSafe();
-      if (!voices || !voices.length) {
-        alert("Nenhuma voz disponível neste dispositivo.");
-        return;
-      }
+    const voices = await new Promise(resolve => {
+      let all = speechSynthesis.getVoices();
+      if (all.length) return resolve(all);
+      speechSynthesis.onvoiceschanged = () => resolve(speechSynthesis.getVoices());
+    });
 
-      const preferredVoice = voices.find(v =>
+    // DETECTA SE A MENSAGEM ESTÁ EM PORTUGUÊS
+    const isPortuguese = /[ãõçáéíóúâêôà]|\\b(você|saúde|obrigado|como|problema)\\b/i.test(lastText);
+
+    let preferredVoice = null;
+
+    if (isPortuguese) {
+      utterance.lang = "pt-BR";
+      preferredVoice = voices.find(v => v.lang === "pt-BR" && v.name.toLowerCase().includes("luciana"));
+    } else {
+      utterance.lang = "en-US";
+      preferredVoice = voices.find(v =>
         v.lang === 'en-US' &&
         (v.name.toLowerCase().includes("david") ||
          v.name.toLowerCase().includes("male") ||
          v.name.toLowerCase().includes("ricardo") ||
          v.name.toLowerCase().includes("daniel"))
-      ) || voices.find(v => v.lang === 'en-US') || voices[0];
+      );
+    }
 
-      utterance.voice = preferredVoice;
-      utterance.lang = preferredVoice.lang || 'en-US';
-      utterance.onend = () => { isSpeaking = false; };
-      isSpeaking = true;
+    utterance.voice = preferredVoice || voices.find(v => v.lang === utterance.lang) || voices[0];
 
-      speechSynthesis.cancel();
-      speechSynthesis.speak(utterance);
-    });
-  }
+    utterance.onend = () => { isSpeaking = false; };
+    isSpeaking = true;
+
+    speechSynthesis.cancel();
+    speechSynthesis.speak(utterance);
+  });
+}
 
   function appendMessage(text, role) {
     const message = document.createElement('div');
