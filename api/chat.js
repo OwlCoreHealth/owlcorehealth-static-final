@@ -19,7 +19,9 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Mensagem não enviada." });
     }
 
-    const isPortuguese = /[ãõçáéíóúâêôà]|\\b(você|obrigado|saúde|problema|como posso)\\b/i.test(message);
+    const ptIndicators = ['você', 'obrigado', 'saúde', 'problema', 'como posso', 'estou', 'tenho', 'dor', 'digestão', 'sentindo'];
+const cleanMessage = message.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+const isPortuguese = /[ãõçáéíóúâêôà]/i.test(message) || ptIndicators.some(term => cleanMessage.includes(term));
 
     const systemPrompt = isPortuguese
   ? `Você é OwlCoreHealth AI, um assistente virtual de saúde simpático, empático e altamente confiável, criado pela equipe OwlCore Wellness Research Group. Fale com o usuário chamado "${userName}" de forma gentil, clara e baseada em ciência. Evite jargões médicos e nunca faça diagnósticos. No fim de cada resposta, escreva exatamente neste formato:
