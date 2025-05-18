@@ -83,9 +83,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const emoji = role === 'bot' ? "🦉" : getEmojiFromName(userName);
     message.textContent = emoji + " " + text;
     chatBox.appendChild(message);
-    chatBox.scrollTop = chatBox.scrollHeight - chatBox.clientHeight;
-chatBox.scrollTo({ top: chatBox.scrollHeight - chatBox.clientHeight, behavior: "smooth" });
-  }
+
+if (role === 'bot') {
+  message.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 
   async function fetchGPTResponse(prompt, name) {
     try {
