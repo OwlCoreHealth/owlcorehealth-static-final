@@ -35,53 +35,39 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   if (readAloudBtn) {
-  readAloudBtn.addEventListener('click', async () => {
-    if (isSpeaking) {
+    readAloudBtn.addEventListener('click', async () => {
+      if (isSpeaking) {
+        speechSynthesis.cancel();
+        isSpeaking = false;
+        return;
+      }
+
+      const botMessages = document.querySelectorAll('.chat-box .bot-message');
+      if (!botMessages.length) return;
+
+      const lastText = botMessages[botMessages.length - 1].textContent.replace(/^🦉\s*/, '');
+      const utterance = new SpeechSynthesisUtterance(lastText);
+
+      const voices = await getVoicesSafe();
+
+      const isPortuguese = /[ãõçáéíóúâêôà]|(você|saúde|problema|como|obrigado)/i.test(lastText);
+
+      utterance.lang = isPortuguese ? "pt-BR" : "en-US";
+
+      utterance.voice = voices.find(v =>
+        v.lang === utterance.lang &&
+        ((utterance.lang === "pt-BR" && v.name.toLowerCase().includes("luciana")) ||
+         (utterance.lang === "en-US" && (v.name.toLowerCase().includes("david") || v.name.toLowerCase().includes("male")))
+        )
+      ) || voices.find(v => v.lang === utterance.lang) || voices[0];
+
+      utterance.onend = () => { isSpeaking = false; };
+      isSpeaking = true;
+
       speechSynthesis.cancel();
-      isSpeaking = false;
-      return;
-    }
-
-    const botMessages = document.querySelectorAll('.chat-box .bot-message');
-    if (!botMessages.length) return;
-
-    const lastText = botMessages[botMessages.length - 1].textContent;
-    const utterance = new SpeechSynthesisUtterance(lastText);
-
-    const voices = await new Promise(resolve => {
-      let all = speechSynthesis.getVoices();
-      if (all.length) return resolve(all);
-      speechSynthesis.onvoiceschanged = () => resolve(speechSynthesis.getVoices());
+      speechSynthesis.speak(utterance);
     });
-
-    // DETECTA SE A MENSAGEM ESTÁ EM PORTUGUÊS
-    const isPortuguese = /[ãõçáéíóúâêôà]|\\b(você|saúde|obrigado|como|problema)\\b/i.test(lastText);
-
-    let preferredVoice = null;
-
-    if (isPortuguese) {
-      utterance.lang = "pt-BR";
-      preferredVoice = voices.find(v => v.lang === "pt-BR" && v.name.toLowerCase().includes("luciana"));
-    } else {
-      utterance.lang = "en-US";
-      preferredVoice = voices.find(v =>
-        v.lang === 'en-US' &&
-        (v.name.toLowerCase().includes("david") ||
-         v.name.toLowerCase().includes("male") ||
-         v.name.toLowerCase().includes("ricardo") ||
-         v.name.toLowerCase().includes("daniel"))
-      );
-    }
-
-    utterance.voice = preferredVoice || voices.find(v => v.lang === utterance.lang) || voices[0];
-
-    utterance.onend = () => { isSpeaking = false; };
-    isSpeaking = true;
-
-    speechSynthesis.cancel();
-    speechSynthesis.speak(utterance);
-  });
-}
+  }
 
   function appendMessage(text, role) {
     const message = document.createElement('div');
@@ -101,27 +87,49 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   async function fetchGPTResponse(prompt, name) {
-  try {
-    const response = await fetch("/api/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: prompt, name: name || "amigo" })
-    });
+    try {
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: prompt, name: name || "amigo" })
+      });
 
-    const data = await response.json();
+      const data = await response.json();
 
-    if (data.choices && data.choices[0] && data.choices[0].message) {
-      return data.choices[0].message.content;
-    } else if (data.message) {
-      return data.message; // resposta de erro vinda do backend
-    } else {
-      throw new Error("Empty response from GPT");
+      if (data.choices && data.choices[0] && data.choices[0].message) {
+        return data.choices[0].message.content;
+      } else if (data.message) {
+        return data.message;
+      } else {
+        throw new Error("Empty GPT response.");
+      }
+    } catch (err) {
+      console.error("GPT fetch error:", err);
+      throw err;
     }
-  } catch (error) {
-    console.error("GPT fetch error:", error);
-    throw error;
   }
-}
+
+  if (sendBtn) {
+    sendBtn.addEventListener('click', async () => {
+      const userText = inputField.value.trim();
+      if (!userText) return;
+
+      userName = nameInput?.value?.trim() || "amigo";
+      appendMessage(userText, 'user');
+      inputField.value = '';
+      appendMessage("Typing...", 'bot');
+
+      try {
+        const botReply = await fetchGPTResponse(userText, userName);
+        const typingMsg = chatBox.querySelector('.bot-message:last-child');
+        if (typingMsg) typingMsg.remove();
+        appendMessage(botReply, 'bot');
+        renderFollowUpQuestions(botReply);
+      } catch (err) {
+        appendMessage("❌ GPT communication error.", 'bot');
+      }
+    });
+  }
 
   if (micBtn && 'webkitSpeechRecognition' in window) {
     const recognition = new webkitSpeechRecognition();
@@ -138,37 +146,34 @@ document.addEventListener("DOMContentLoaded", function () {
     };
   }
 
-  // Ativa o áudio no iOS ao primeiro clique
   document.addEventListener('click', () => {
     const silent = new SpeechSynthesisUtterance('');
     speechSynthesis.speak(silent);
   }, { once: true });
-});
 
-function renderFollowUpQuestions(botMessage) {
-  const questionRegex = /Here are 3 related questions:\s*1[.)-]?\s*(.*?)\s*2[.)-]?\s*(.*?)\s*3[.)-]?\s*(.*)/i;
-  const match = botMessage.match(questionRegex);
+  function renderFollowUpQuestions(botMessage) {
+    const match = botMessage.match(/Here are 3 related questions:\s*1[.)-]?\s*(.*?)\s*2[.)-]?\s*(.*?)\s*3[.)-]?\s*(.*)/i);
 
-  if (match) {
-    const [, q1, q2, q3] = match;
-    const suggestionsContainer = document.createElement("div");
-    suggestionsContainer.className = "follow-up-buttons";
+    if (match) {
+      const [, q1, q2, q3] = match;
+      const suggestionsContainer = document.createElement("div");
+      suggestionsContainer.className = "follow-up-buttons";
 
-    [q1, q2, q3].forEach(question => {
-      const btn = document.createElement("button");
-      btn.textContent = question.trim();
-      btn.className = "follow-up-btn";
-      btn.onclick = () => sendMessageWithSuggestion(question.trim());
-      suggestionsContainer.appendChild(btn);
-    });
+      [q1, q2, q3].forEach(question => {
+        const btn = document.createElement("button");
+        btn.textContent = question.trim();
+        btn.className = "follow-up-btn";
+        btn.onclick = () => sendMessageWithSuggestion(question.trim());
+        suggestionsContainer.appendChild(btn);
+      });
 
-    chatBox.appendChild(suggestionsContainer);
-    chatBox.scrollTop = chatBox.scrollHeight;
+      chatBox.appendChild(suggestionsContainer);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
   }
-}
 
-function sendMessageWithSuggestion(text) {
-  inputField.value = text;
-  sendBtn.click();
-}
-
+  function sendMessageWithSuggestion(text) {
+    inputField.value = text;
+    sendBtn.click();
+  }
+});
