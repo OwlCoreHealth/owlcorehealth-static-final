@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function () {
   const darkModeToggle = document.querySelector('.dark-mode-toggle');
   const readAloudBtn = document.querySelector('.read-aloud');
@@ -9,6 +8,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const nameInput = document.querySelector('.user-name');
   const genderInput = document.querySelector('.user-gender');
   let isSpeaking = false;
+  let availableVoices = [];
+
+  // Carrega vozes assim que disponíveis
+  window.speechSynthesis.onvoiceschanged = () => {
+    availableVoices = window.speechSynthesis.getVoices();
+  };
 
   // DARK MODE
   if (darkModeToggle) {
@@ -17,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // READ ALOUD TOGGLE
+  // READ ALOUD TOGGLE (com vozes fixadas)
   if (readAloudBtn) {
     readAloudBtn.addEventListener('click', () => {
       if (isSpeaking) {
@@ -31,24 +36,25 @@ document.addEventListener("DOMContentLoaded", function () {
         const lastText = botMessages[botMessages.length - 1].textContent;
         const utterance = new SpeechSynthesisUtterance(lastText);
 
-        const voices = window.speechSynthesis.getVoices();
         const preferredVoiceNames = [
           'Microsoft David', 'Google US English Male', 'Ricardo', 'Daniel'
         ];
-        const voice = voices.find(v => preferredVoiceNames.includes(v.name)) ||
-                      voices.find(v => v.lang === 'en-US') || null;
+        const voice = availableVoices.find(v => preferredVoiceNames.includes(v.name)) ||
+                      availableVoices.find(v => v.lang === 'en-US') ||
+                      availableVoices[0] || null;
 
         utterance.voice = voice;
         utterance.lang = voice?.lang || 'en-US';
         utterance.onend = () => { isSpeaking = false; };
         isSpeaking = true;
+
         window.speechSynthesis.cancel();
         window.speechSynthesis.speak(utterance);
       }
     });
   }
 
-  // EMOJI BASED ON GENDER
+  // Escolhe emoji com base no sexo
   function getUserEmoji() {
     const gender = (genderInput?.value || '').toLowerCase();
     if (gender.includes("male")) return "👨";
@@ -56,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return "👤";
   }
 
-  // ADD MESSAGE TO CHAT
+  // Adiciona mensagem ao chat com estilo
   function appendMessage(text, role) {
     const message = document.createElement('div');
     message.className = role === 'bot' ? 'bot-message' : 'user-message';
@@ -75,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
     chatBox.scrollTop = chatBox.scrollHeight;
   }
 
-  // FETCH GPT FROM BACKEND
+  // Envia mensagem ao backend
   async function fetchGPTResponse(prompt, name) {
     const response = await fetch("/api/chat", {
       method: "POST",
@@ -89,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return data.choices?.[0]?.message?.content || "⚠️ GPT error.";
   }
 
-  // SEND BUTTON
+  // Ao clicar em enviar
   if (sendBtn) {
     sendBtn.addEventListener('click', async () => {
       const userText = inputField.value.trim();
@@ -114,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // MICROPHONE
+  // Microfone (somente Chrome)
   if (micBtn && 'webkitSpeechRecognition' in window) {
     const recognition = new webkitSpeechRecognition();
     recognition.lang = 'en-US';
@@ -130,9 +136,10 @@ document.addEventListener("DOMContentLoaded", function () {
     };
   }
 
-  // iOS AUDIO INIT
+  // iOS: desbloqueia leitura por clique
   document.addEventListener('click', () => {
     const silent = new SpeechSynthesisUtterance('');
     window.speechSynthesis.speak(silent);
   }, { once: true });
 });
+
