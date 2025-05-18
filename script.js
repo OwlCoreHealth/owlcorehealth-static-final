@@ -35,39 +35,36 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   if (readAloudBtn) {
-    readAloudBtn.addEventListener('click', async () => {
-      if (isSpeaking) {
-        speechSynthesis.cancel();
-        isSpeaking = false;
-        return;
-      }
-
-      const botMessages = document.querySelectorAll('.chat-box .bot-message');
-      if (!botMessages.length) return;
-
-      const lastText = botMessages[botMessages.length - 1].textContent.replace(/^🦉\s*/, '');
-      const utterance = new SpeechSynthesisUtterance(lastText);
-
-      const voices = await getVoicesSafe();
-
-      const isPortuguese = /[ãõçáéíóúâêôà]|(você|saúde|problema|como|obrigado)/i.test(lastText);
-
-      utterance.lang = isPortuguese ? "pt-BR" : "en-US";
-
-      utterance.voice = voices.find(v =>
-        v.lang === utterance.lang &&
-        ((utterance.lang === "pt-BR" && v.name.toLowerCase().includes("luciana")) ||
-         (utterance.lang === "en-US" && (v.name.toLowerCase().includes("david") || v.name.toLowerCase().includes("male")))
-        )
-      ) || voices.find(v => v.lang === utterance.lang) || voices[0];
-
-      utterance.onend = () => { isSpeaking = false; };
-      isSpeaking = true;
-
+  readAloudBtn.addEventListener('click', async () => {
+    if (isSpeaking) {
       speechSynthesis.cancel();
-      speechSynthesis.speak(utterance);
-    });
-  }
+      isSpeaking = false;
+      return;
+    }
+
+    const botMessages = document.querySelectorAll('.chat-box .bot-message');
+    if (!botMessages.length) return;
+
+    const lastText = botMessages[botMessages.length - 1].textContent.replace(/^🦉\s*/, '');
+    const utterance = new SpeechSynthesisUtterance(lastText);
+
+    const voices = await getVoicesSafe();
+
+    // ✅ Detecta se é português com segurança
+    const isPortuguese = /[ãõçáéíóúâêôà]|(você|saude|problema|obrigado|como|tenho|sentindo)/i.test(lastText);
+
+    utterance.lang = isPortuguese ? "pt-BR" : "en-US";
+
+    // ✅ Escolhe voz genérica compatível com Android/iOS/Desktop
+    utterance.voice = voices.find(v => v.lang === utterance.lang) || voices[0];
+
+    utterance.onend = () => { isSpeaking = false; };
+    isSpeaking = true;
+
+    speechSynthesis.cancel();
+    speechSynthesis.speak(utterance);
+  });
+}
 
   function appendMessage(text, role) {
   const message = document.createElement('div');
