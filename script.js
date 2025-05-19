@@ -192,12 +192,11 @@ document.addEventListener("DOMContentLoaded", function () {
       const data = { name, email, gender, age };
 
       try {
-        await fetch("https://script.google.com/macros/s/AKfycbw7KDyhCxI459o2bxbcUaHcb_td7FFrJSSJF59Wp8DkuQVD4ajL9JZ-nhqa6iQiEO-s-g/exec
-", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data)
-        });
+       await fetch("https://script.google.com/macros/s/AKfycbw7KDyhCxI459o2bxbcUaHcb_td7FFrJSSJF59Wp8DkuQVD4ajL9JZ-nhqa6iQiEO-s-g/exec", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(data)
+});
         alert("✔️ Subscrição enviada com sucesso!");
       } catch (err) {
         alert("❌ Erro ao enviar subscrição.");
