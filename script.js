@@ -182,27 +182,32 @@ document.addEventListener("DOMContentLoaded", function () {
   // ✅ BLOCO FINAL ADICIONADO: Envia dados para o Google Sheets
   const subscribeBtn = document.querySelector('.subscribe-btn');
 
-  if (subscribeBtn) {
-    subscribeBtn.addEventListener('click', async () => {
-      const name = document.querySelector('.user-name')?.value.trim() || "";
-      const email = document.querySelector('.email-input')?.value.trim() || "";
-      const gender = document.querySelector('.gender-input')?.value.trim() || "";
-      const age = document.querySelector('.age-input')?.value.trim() || "";
+if (subscribeBtn) {
+  subscribeBtn.addEventListener('click', async () => {
+    subscribeBtn.disabled = true; // ✅ Evita múltiplos envios
 
-      const data = { name, email, gender, age };
+    const name = document.querySelector('.user-name')?.value.trim() || "";
+    const email = document.querySelector('.email-input')?.value.trim() || "";
+    const gender = document.querySelector('.gender-input')?.value.trim() || "";
+    const age = document.querySelector('.age-input')?.value.trim() || "";
 
-      try {
-       await fetch("https://script.google.com/macros/s/AKfycbw7KDyhCxI459o2bxbcUaHcb_td7FFrJSSJF59Wp8DkuQVD4ajL9JZ-nhqa6iQiEO-s-g/exec", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(data)
-});
-        alert("✔️ Subscrição enviada com sucesso!");
-      } catch (err) {
-        alert("❌ Erro ao enviar subscrição.");
-        console.error(err);
-      }
-    });
-  }
+    const data = { name, email, gender, age };
+
+    try {
+      await fetch("https://script.google.com/macros/s/AKfycbw7KDyhCxI459o2bxbcUaHcb_td7FFrJSSJF59Wp8DkuQVD4ajL9JZ-nhqa6iQiEO-s-g/exec", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+      alert("✔️ Subscrição enviada com sucesso!");
+    } catch (err) {
+      alert("❌ Erro ao enviar subscrição.");
+      console.error(err);
+    } finally {
+      subscribeBtn.disabled = false; // ✅ Reativa o botão
+    }
+  });
+}
+  
 });
 
