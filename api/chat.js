@@ -19,6 +19,9 @@ export default async function handler(req, res) {
     const sex = (body.sex || "").toString().trim().toLowerCase();
     const weight = parseFloat(body.weight);
 
+    // 🪵 DEBUG: imprime os dados recebidos no log do Vercel
+    console.log("📥 Dados recebidos:", { message, userName, age, sex, weight });
+
     // ✅ Verifica se o formulário foi preenchido corretamente
     const hasFormData =
       userName.length > 0 &&
