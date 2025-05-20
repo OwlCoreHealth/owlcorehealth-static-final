@@ -4,6 +4,7 @@ export default async function handler(req, res) {
       return res.status(405).json({ error: "Método não permitido. Use POST." });
     }
 
+    // 🔄 Recebe e processa o corpo da requisição
     const buffers = [];
     for await (const chunk of req) {
       buffers.push(chunk);
@@ -11,23 +12,30 @@ export default async function handler(req, res) {
     const rawBody = Buffer.concat(buffers).toString();
     const body = JSON.parse(rawBody);
 
-    const message = body.message;
-    const userName = (body.name || "friend").trim();
+    // 🔎 Campos recebidos do formulário
+    const message = (body.message || "").toString().trim();
+    const userName = (body.name || "").toString().trim();
+    const age = parseInt(body.age);
+    const sex = (body.sex || "").toString().trim().toLowerCase();
+    const weight = parseFloat(body.weight);
 
-    // ✅ Verifica se o formulário foi realmente preenchido
+    // ✅ Verifica se o formulário foi preenchido corretamente
     const hasFormData =
-      !!body.name && !!body.age && !!body.sex && !!body.weight;
+      userName.length > 0 &&
+      !isNaN(age) &&
+      sex.length > 0 &&
+      !isNaN(weight);
 
     if (!message) {
       return res.status(400).json({ error: "Mensagem não enviada." });
     }
 
-    // ✅ Detecção de idioma
+    // ✅ Detecção de idioma aprimorada
     const ptIndicators = ['você', 'obrigado', 'saúde', 'problema', 'como posso', 'estou', 'tenho', 'dor', 'digestão', 'sentindo'];
     const cleanMessage = message.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-    const isPortuguese = /[ãõçáéíóúâêôà]/i.test(message) || ptIndicators.some(term => cleanMessage.includes(term));
+    const isPortuguese = ptIndicators.some(term => cleanMessage.includes(term)) || /[ãõçáéíóúâêôà]/i.test(cleanMessage);
 
-    // ✅ Prompts PT e EN — adaptados com base na presença de formulário
+    // ✅ Prompts PT e EN com verificação do formulário
     const systemPrompt = isPortuguese
       ? hasFormData
         ? `Você é OwlCoreHealth AI — um assistente virtual de saúde sarcástico, direto e baseado em ciência, conhecido como “A Coruja Braba”. Mistura gênio arrogante com treinador militar e ajudante espirituoso. Fale com o usuário "${userName}" em português com confiança e provocação. Use 🦉 no fim de cada resposta.
@@ -45,11 +53,13 @@ Só recomende um produto se o usuário pedir. Use sempre o nome dele. Finalize c
         ? `You are OwlCoreHealth AI — a sarcastic, intelligent, and brutally honest health assistant known as “The Savage Owl.” Speak to "${userName}" in English. Start with a fun stat about people their age/weight/sex. Educate, provoke, and end with 3 questions. Only recommend products if they ask. End with: “Or do you have another question?” 🦉`
         : `You are OwlCoreHealth AI — a sarcastic health assistant called “The Savage Owl.” The user didn’t fill out the form. Open with: “Too lazy to fill out your info? Or is that how you deal with your health too?” 🦉`;
 
+    // ✅ Mensagens enviadas para o modelo
     const messages = [
       { role: "system", content: systemPrompt },
       { role: "user", content: message }
     ];
 
+    // ✅ Chamada à OpenAI
     const openaiRes = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
