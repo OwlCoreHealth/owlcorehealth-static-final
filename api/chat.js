@@ -20,14 +20,11 @@ export default async function handler(req, res) {
     console.log("📥 Dados recebidos:", { message, userName, age, sex, weight });
 
     const hasFormData =
+      !!message &&
       userName.length > 0 &&
       !isNaN(age) &&
       sex.length > 0 &&
       !isNaN(weight);
-
-    if (!message) {
-      return res.status(400).json({ error: "Mensagem não enviada." });
-    }
 
     const ptIndicators = [
       "você", "obrigado", "saúde", "problema", "como posso",
@@ -41,22 +38,35 @@ export default async function handler(req, res) {
       ptIndicators.some(term => cleanMessage.includes(term)) ||
       /[ãõçáéíóúâêôà]/i.test(cleanMessage);
 
+    const endingInstructionPT = `Sempre finalize sua resposta com estas 3 perguntas, no formato exato:
+1. Uma pergunta que desperte curiosidade
+2. Uma que gere preocupação ou alerta
+3. Uma que leve o usuário a considerar uma solução (como: “Quer saber qual suplemento pode ajudar?” ou “Quer ver o review do produto?”)`;
+
+    const endingInstructionEN = `Always end your answer with these 3 follow-up questions, using this exact format:
+1. One that sparks curiosity
+2. One that creates concern or urgency
+3. One that leads the user to a solution (like: “Want to know which supplement could help?” or “Want to see the review?”)`;
+
     const systemPrompt = isPortuguese
       ? hasFormData
-        ? `Você é OwlCoreHealth AI — um assistente virtual de saúde sarcástico, direto e baseado em ciência, conhecido como “A Coruja Braba”. Mistura gênio arrogante com treinador militar e ajudante espirituoso. Fale com o usuário "${userName}" em português com confiança e provocação. Use 🦉 no fim de cada resposta.
+        ? `Você é OwlCoreHealth AI — um assistente de saúde sarcástico, direto e cientificamente preciso, conhecido como “A Coruja Braba”. Mistura gênio arrogante, treinador militar e ajudante espirituoso. Fale com "${userName}" em português provocativo. Use 🦉 no final da resposta.
 
-Comece com uma estatística incomum sobre pessoas da mesma idade, sexo ou peso. Liste os riscos mais comuns. Seja provocador, mas educacional.
+Comece com uma estatística realista sobre pessoas com idade semelhante, mesmo sexo ou peso similar. Liste riscos ou problemas comuns para esse perfil. Explique de forma séria e clara.
 
-Sempre explique o problema com base em ciência e relacione à vida moderna (estresse, alimentos ruins, toxinas). Finalize com 3 perguntas:
-1. Uma para gerar curiosidade
-2. Uma para gerar alerta
-3. Uma que leve naturalmente à solução, como: “Quer saber qual suplemento pode ajudar?” ou “Quer ver a análise do produto?”
+Relacione sempre aos problemas modernos (estresse, toxinas, alimentação ruim, falta de nutrientes). Só recomende produtos se for solicitado.
 
-Só recomende um produto se o usuário pedir. Use sempre o nome dele. Finalize com: “Ou quer fazer outra pergunta?” 🦉`
-        : `Você é OwlCoreHealth AI — um assistente virtual sarcástico e direto conhecido como “A Coruja Braba”. O usuário não preencheu o formulário, então comece com sarcasmo como: “Muito esforço pra preencher? Ou essa é sua estratégia de saúde também?” 🦉`
+${endingInstructionPT}
+🦉`
+        : `Você é OwlCoreHealth AI — um assistente de saúde provocador. O usuário não preencheu o formulário, então inicie com sarcasmo como: “Muito esforço pra preencher? Ou essa é sua estratégia de saúde também?” 🦉`
       : hasFormData
-        ? `You are OwlCoreHealth AI — a sarcastic, intelligent, and brutally honest health assistant known as “The Savage Owl.” Speak to "${userName}" in English. Start with a fun stat about people their age/weight/sex. Educate, provoke, and end with 3 questions. Only recommend products if they ask. End with: “Or do you have another question?” 🦉`
-        : `You are OwlCoreHealth AI — a sarcastic health assistant called “The Savage Owl.” The user didn’t fill out the form. Open with: “Too lazy to fill out your info? Or is that how you deal with your health too?” 🦉`;
+        ? `You are OwlCoreHealth AI — a sarcastic, intelligent, and science-based health assistant called “The Savage Owl.” Speak to "${userName}" with humor and precision. Start with a realistic stat based on age, sex, or weight. Educate, then close with strategic questions.
+
+Avoid recommending any product unless asked directly.
+
+${endingInstructionEN}
+🦉`
+        : `You are OwlCoreHealth AI — a brutally honest virtual health assistant. Since the user didn’t fill out the form, begin with: “Too lazy to fill out your info? Or is that how you handle your health too?” 🦉`;
 
     const messages = [
       { role: "system", content: systemPrompt },
@@ -79,11 +89,17 @@ Só recomende um produto se o usuário pedir. Use sempre o nome dele. Finalize c
     const data = await openaiRes.json();
 
     if (openaiRes.status !== 200) {
-      return res.status(500).json({ error: "Erro ao chamar a OpenAI", details: data });
+      return res.status(500).json({
+        error: "Erro ao chamar a OpenAI",
+        details: data
+      });
     }
 
     res.status(200).json(data);
   } catch (err) {
-    res.status(500).json({ error: "Erro interno no servidor", details: err.message });
+    res.status(500).json({
+      error: "Erro interno no servidor",
+      details: err.message
+    });
   }
 }
