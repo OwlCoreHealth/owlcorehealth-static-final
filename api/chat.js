@@ -72,10 +72,7 @@ You are not a coach. You are not a salesman. You are The Savage Owl. Stay sharp.
     const finalPrompt = isPortuguese ? systemPromptPT : systemPromptEN;
 
     // ✅ INTEGRAÇÃO COM NOTION
-    const notionContext = await getNotionContext(userName);
-    const contextMessage = notionContext
-      ? { role: "assistant", content: notionContext }
-      : null;
+    const contextMessage = null;
 
     const messages = [
       { role: "system", content: finalPrompt },
