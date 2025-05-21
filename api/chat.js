@@ -190,10 +190,20 @@ Or do you have another question? 🦉`;
 
     const data = await openaiRes.json();
 
-    if (openaiRes.status !== 200) {
-      return res.status(500).json({ error: "Erro ao chamar a OpenAI", details: data });
-    }
+if (!openaiRes.ok) {
+  console.error("❌ OpenAI API error:", {
+    status: openaiRes.status,
+    statusText: openaiRes.statusText,
+    error: data?.error || data
+  });
 
+  return res.status(500).json({
+    error: "Erro ao chamar a OpenAI",
+    status: openaiRes.status,
+    statusText: openaiRes.statusText,
+    details: data?.error || data
+  });
+}
     // Marcar sintoma como processado
     if (!sessionMemory.sintomasProcessados.includes(sessionMemory.sintomaAtual)) {
       sessionMemory.sintomasProcessados.push(sessionMemory.sintomaAtual);
