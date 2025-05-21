@@ -1,6 +1,6 @@
-import { getSymptomContext } from "./notion.js";
+// Etapa FINAL - OwlCoreHealth AI com GPT livre + contexto dinâmico do Notion
+import { getSymptomContext } from "./notion";
 
-// === MEMÓRIA DE SESSÃO ===
 let sessionMemory = {
   sintomasDetectados: [],
   sintomasProcessados: [],
@@ -12,76 +12,18 @@ let sessionMemory = {
   idioma: "pt"
 };
 
-// === FUNÇÕES AUXILIARES ===
-function generateIntroWithStats(name, age, sex, weight) {
-  const sexoText = sex === "feminino" ? "mulheres" : "homens";
-  const stats = [
-    { stat: 28, desc: "relatam ansiedade constante" },
-    { stat: 31, desc: "sofrem com digestão lenta" },
-    { stat: 20, desc: "não usam qualquer suplemento" }
-  ];
-  const line = stats.map(s => `${s.stat}% ${sexoText} com ${age} anos ${s.desc}`).join(", ");
-  return `${name}, existem milhares de pessoas com esse nome. Sabia que ${line}? Coincidência ou padrão? Vamos descobrir.`;
-}
-
-function generateIntroWithStatsEN(name, age, sex, weight) {
-  const sexoText = sex === "female" ? "women" : "men";
-  const stats = [
-    { stat: 28, desc: "report constant anxiety" },
-    { stat: 31, desc: "struggle with slow digestion" },
-    { stat: 20, desc: "avoid any supplementation" }
-  ];
-  const line = stats.map(s => `${s.stat}% of ${sexoText} aged ${age} ${s.desc}`).join(", ");
-  return `${name}, did you know there are thousands of people with your name? Interestingly, ${line}. Coincidence or pattern? Let’s find out.`;
-}
-
-function gerarAvisoGravidadePT(gravidade) {
-  if (gravidade >= 5) return "⚠️ Isso é sério. Você pode estar ignorando algo que exige atenção médica urgente.";
-  if (gravidade === 4) return "⚠️ Esse sintoma merece atenção e cuidado. Vamos entender o porquê.";
-  if (gravidade === 3) return "Esse sintoma não é tão leve quanto parece. Melhor investigarmos juntos.";
-  return "";
-}
-
-function gerarAvisoGravidadeEN(gravidade) {
-  if (gravidade >= 5) return "⚠️ This might be serious. It may need urgent medical attention.";
-  if (gravidade === 4) return "⚠️ This symptom deserves real attention. Let’s understand why.";
-  if (gravidade === 3) return "This might not be so mild. Let’s dive into it.";
-  return "";
-}
-
-function combineContexts(contexts, lang) {
-  const base = contexts.map(c => (lang === "pt" ? c.base_pt : c.base_en)).join(" ");
-  const perguntas = contexts.slice(0, 3);
-  return {
-    base: base.trim(),
-    pergunta1: lang === "pt" ? perguntas[0]?.pergunta1_pt : perguntas[0]?.pergunta1_en,
-    pergunta2: lang === "pt" ? perguntas[1]?.pergunta2_pt : perguntas[1]?.pergunta2_en,
-    pergunta3: lang === "pt" ? perguntas[2]?.pergunta3_pt : perguntas[2]?.pergunta3_en,
-    sintomas: contexts.map(c => c.sintoma),
-    gravidade: Math.max(...contexts.map(c => c.gravidade || 1)),
-    suplemento: contexts[0]?.suplemento || "",
-    link: contexts[0]?.url || "",
-    chamada: lang === "pt" ? contexts[0]?.link_pt : contexts[0]?.link_en
-  };
-}
-
-function selecionarProximoSintoma() {
-  const naoProcessados = sessionMemory.sintomasDetectados.filter(
-    sint => !sessionMemory.sintomasProcessados.includes(sint)
-  );
-  return naoProcessados.length > 0 ? naoProcessados[0] : null;
-}
-
-// === HANDLER PRINCIPAL ===
 export default async function handler(req, res) {
   try {
     if (req.method !== "POST") {
-      return res.status(405).json({ error: "Use POST." });
+      return res.status(405).json({ error: "Method not allowed. Use POST." });
     }
 
     const buffers = [];
-    for await (const chunk of req) buffers.push(chunk);
-    const body = JSON.parse(Buffer.concat(buffers).toString());
+    for await (const chunk of req) {
+      buffers.push(chunk);
+    }
+    const rawBody = Buffer.concat(buffers).toString();
+    const body = JSON.parse(rawBody);
 
     const message = (body.message || "").toString().trim();
     const userName = (body.name || "").toString().trim();
@@ -90,53 +32,32 @@ export default async function handler(req, res) {
     const weight = parseFloat(body.weight);
 
     const hasFormData = userName && !isNaN(age) && sex && !isNaN(weight);
-    if (!message) return res.status(400).json({ error: "Mensagem vazia." });
+    if (!message) {
+      return res.status(400).json({ error: "Mensagem não enviada." });
+    }
 
-    const isPortuguese = /[ãõçáéíóúâêôà]/i.test(message) || [' você ', ' saúde ', ' problema ', ' estou '].some(w => message.toLowerCase().includes(w));
+    const ptIndicators = [' você ', ' estou ', ' gostaria ', 'suplemento', ' saúde', ' problema ', ' posso ', ' obrigado', ' obrigada'];
+    const isPortuguese = /[\u00e3\u00f5\u00e7\u00e1\u00e9\u00ed\u00f3\u00fa\u00e2\u00ea\u00f4\u00e0]/i.test(message) || ptIndicators.some(word => message.toLowerCase().includes(word));
+
     sessionMemory.nome = userName;
     sessionMemory.idioma = isPortuguese ? "pt" : "en";
     sessionMemory.respostasUsuario.push(message);
 
     const contextos = await getSymptomContext(message);
-    const contexto = combineContexts(contextos, isPortuguese ? "pt" : "en");
 
-    if (contexto.sintomas.length > 0) {
-      sessionMemory.sintomasDetectados.push(...contexto.sintomas.filter(s => !sessionMemory.sintomasDetectados.includes(s)));
+    let contextBlock = "";
+    if (contextos && contextos.length > 0) {
+      const ctx = contextos[0];
+      const base = isPortuguese ? ctx.base_pt : ctx.base_en;
+      contextBlock = `\n\n[Relevant Scientific Insight]\n${base}`;
     }
 
-    sessionMemory.sintomaAtual = selecionarProximoSintoma();
-
-    if (!sessionMemory.sintomaAtual) {
-      const msg = isPortuguese
-        ? "Já falamos sobre todos os sintomas detectados. Quer perguntar outra coisa?"
-        : "We've already discussed all detected symptoms. Want to ask something else?";
-      return res.status(200).json({ choices: [{ message: { content: msg } }] });
-    }
-
-    const intro = hasFormData
-      ? (isPortuguese
-          ? generateIntroWithStats(userName, age, sex, weight)
-          : generateIntroWithStatsEN(userName, age, sex, weight))
-      : (isPortuguese
-          ? "Sem seu nome, idade ou peso, posso te dar conselhos… tão úteis quanto ler a sorte no biscoito da sorte."
-          : "Without your name, age, or weight, my advice is as useful as reading fortune cookies.");
-
-    const alerta = isPortuguese
-      ? gerarAvisoGravidadePT(contexto.gravidade)
-      : gerarAvisoGravidadeEN(contexto.gravidade);
-
-    const pergunta1 = contexto.pergunta1 || (isPortuguese ? "Você já sentiu isso antes?" : "Have you felt this before?");
-    const pergunta2 = contexto.pergunta2 || (isPortuguese ? "Ignorar isso pode piorar. Quer saber como?" : "Ignoring this could get worse. Want to know why?");
-    const pergunta3 = contexto.pergunta3 || (isPortuguese ? "Quer saber qual suplemento pode ajudar?" : "Want to know which supplement could help?");
-
-    sessionMemory.perguntasJaFeitas.push(sessionMemory.sintomaAtual);
-
-    const finalPrompt = isPortuguese
-      ? `Você é OwlCoreHealth AI, assistente de saúde provocador e direto. Usuário: "${userName}".\n${intro}\n${alerta}\n\nBaseado no sintoma: "${sessionMemory.sintomaAtual}", aqui vai:\n${contexto.base}\n\nHere are 3 related questions:\n1. ${pergunta1}\n2. ${pergunta2}\n3. ${pergunta3}\n\nOu quer fazer outra pergunta? 🦉`
-      : `You are OwlCoreHealth AI, a savage virtual health assistant. User: "${userName}".\n${intro}\n${alerta}\n\nBased on the symptom: "${sessionMemory.sintomaAtual}", here’s a breakdown:\n${contexto.base}\n\nHere are 3 related questions:\n1. ${pergunta1}\n2. ${pergunta2}\n3. ${pergunta3}\n\nOr do you have another question? 🦉`;
+    const systemPrompt = isPortuguese
+      ? `Você é OwlCoreHealth AI, um assistente de saúde sarcástico, direto e cientificamente preciso. Sempre fale em PT-BR. Trate o usuário pelo nome: ${userName || "amigo"}. Se dados forem fornecidos (nome, idade, sexo, peso), use isso para personalizar. Evite suposições sem base. Seja claro, provocador e informativo.${contextBlock}`
+      : `You are OwlCoreHealth AI, a sarcastic, direct, and scientifically sharp health assistant. Always speak in US English. Address the user by name: ${userName || "friend"}. If profile data (name, age, sex, weight) is provided, use it to personalize. Avoid unsupported assumptions. Be clear, provoking, and informative.${contextBlock}`;
 
     const messages = [
-      { role: "system", content: finalPrompt },
+      { role: "system", content: systemPrompt },
       { role: "user", content: message }
     ];
 
@@ -147,7 +68,7 @@ export default async function handler(req, res) {
         "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
       },
       body: JSON.stringify({
-        model: "gpt-4o", // usar gpt-4o otimizado
+        model: "gpt-4o",
         messages,
         temperature: 0.7
       })
@@ -156,17 +77,21 @@ export default async function handler(req, res) {
     const data = await openaiRes.json();
 
     if (!openaiRes.ok) {
-      console.error("❌ GPT error:", data);
-      return res.status(500).json({ error: "GPT error", details: data });
-    }
-
-    if (!sessionMemory.sintomasProcessados.includes(sessionMemory.sintomaAtual)) {
-      sessionMemory.sintomasProcessados.push(sessionMemory.sintomaAtual);
+      console.error("❌ OpenAI API error:", {
+        status: openaiRes.status,
+        statusText: openaiRes.statusText,
+        error: data?.error || data
+      });
+      return res.status(500).json({
+        error: "Erro ao chamar a OpenAI",
+        status: openaiRes.status,
+        statusText: openaiRes.statusText,
+        details: data?.error || data
+      });
     }
 
     res.status(200).json(data);
   } catch (err) {
-    console.error("Erro interno:", err);
-    res.status(500).json({ error: "Erro interno", details: err.message });
+    res.status(500).json({ error: "Erro interno no servidor", details: err.message });
   }
 }
