@@ -176,17 +176,17 @@ Or do you have another question? 🦉`;
       { role: "user", content: message }
     ];
     const openaiRes = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: "gpt-4",
-        messages,
-        temperature: 0.7
-      })
-    });
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
+  },
+  body: JSON.stringify({
+    model: "gpt-4o", // ← novo modelo super otimizadão
+    messages,
+    temperature: 0.7
+  })
+});
 
     const data = await openaiRes.json();
 
