@@ -1,4 +1,4 @@
-import { getSymptomContext } from "./notion";
+import { getSymptomContext } from "./notion.js";
 
 // === MEMÓRIA DE SESSÃO ===
 let sessionMemory = {
