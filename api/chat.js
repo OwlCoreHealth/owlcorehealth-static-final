@@ -1,5 +1,5 @@
 // === ETAPA 1: MEMÓRIA PERSISTENTE E CONTROLE DE FLUXO ===
-import { getSymptomContext } from "./notion";
+import { getSymptomContext } from "./notion.js";
 
 let sessionMemory = {
   sintomasDetectados: [],
