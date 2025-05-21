@@ -182,7 +182,7 @@ Or do you have another question? 🦉`;
     "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
   },
   body: JSON.stringify({
-    model: "gpt-4o", // ← novo modelo super otimizadão
+    model: "gpt-3.5-turbo", // ← novo modelo super otimizadão
     messages,
     temperature: 0.7
   })
