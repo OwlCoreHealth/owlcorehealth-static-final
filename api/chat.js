@@ -130,11 +130,64 @@ export default async function handler(req, res) {
       }
       // ... (outros blocos podem ser adicionados se necessário)
     };
-    let corpo = "";
-let idioma = sessionMemory.idioma || (isPortuguese ? "pt" : "en");
+   let corpo = "";
+const idioma = sessionMemory.idioma || (isPortuguese ? "pt" : "en");
 const nomeUser = sessionMemory.nome || (hasForm ? userName : "");
+const chave = sintoma || categoria;
+const etapa = sessionMemory.contadorPerguntas[chave] || 1;
+const incluirSuplemento = etapa >= 3;
+
+const followupEtapas = {
+  pt: [
+    [
+      "Quer entender os riscos se isso for ignorado?",
+      "Deseja ver dados reais de quem passou por isso?",
+      "Quer saber quais nutrientes combatem isso?"
+    ],
+    [
+      "Quer saber o que pode acontecer se você não tratar esse sintoma?",
+      "Deseja ver estatísticas sobre como esse problema afeta outras pessoas?",
+      "Gostaria de ver os principais nutrientes que ajudam nisso?"
+    ],
+    [
+      "Posso mostrar estudos sobre esse sintoma em casos reais.",
+      "Quer saber quais alimentos agravam esse sintoma?",
+      "Quer ver os micronutrientes que reduzem esse tipo de inflamação?"
+    ],
+    [
+      "Quer que eu mostre o suplemento ideal para isso?",
+      "Deseja ver a avaliação completa do produto?",
+      "Quer continuar tirando dúvidas sobre esse sintoma?"
+    ]
+  ],
+  en: [
+    [
+      "Want to know the risks of ignoring this?",
+      "Interested in real-world data on this symptom?",
+      "Want to discover which nutrients help fight this?"
+    ],
+    [
+      "Want to understand what can happen if you don’t treat this?",
+      "Would you like to see stats on how this issue affects others?",
+      "Want to know the key nutrients that help manage this?"
+    ],
+    [
+      "I can show real-world research about this symptom.",
+      "Want to know which foods may worsen the condition?",
+      "Curious about the vitamins that fight this inflammation?"
+    ],
+    [
+      "Want me to show the best supplement for this?",
+      "Want to read the full product review?",
+      "Prefer to keep asking about this symptom?"
+    ]
+  ]
+};
 
 if (contexto) {
+  sessionMemory.sintomaAtual = contexto.sintoma;
+  sessionMemory.categoriaAtual = "";
+
   const alerta = contexto.gravidade >= 4
     ? (idioma === "pt"
       ? "⚠️ Esse sintoma é sério. Se não cuidar, pode escalar para algo bem pior."
@@ -161,37 +214,14 @@ if (contexto) {
       ? "\n\nSe quiser, posso te mostrar o suplemento ideal para esse caso. Só dizer. 😉"
       : "\n\nIf you're ready, I can show you the ideal supplement for this case. Just ask. 😉";
   }
+
 } else {
   const bloco = blocos[categoria] || blocos["energia"];
   const texto = bloco[idioma][Math.min(etapa - 1, bloco[idioma].length - 1)];
 
   corpo = `\n\n${texto}`;
-
-  followups = gerarFollowupsUnicos(
-    etapa < 5
-      ? idioma === "pt"
-        ? [
-            "Quer entender os riscos se isso for ignorado?",
-            "Deseja ver dados reais de quem passou por isso?",
-            "Quer saber quais nutrientes combatem isso?"
-          ]
-        : [
-            "Want to know the risks of ignoring this?",
-            "Interested in real-world data on this symptom?",
-            "Want to discover which nutrients help fight this?"
-          ]
-      : idioma === "pt"
-        ? [
-            "Quer que eu mostre o suplemento ideal para isso?",
-            "Deseja ver a avaliação completa do produto?",
-            "Quer continuar tirando dúvidas sobre esse sintoma?"
-          ]
-        : [
-            "Want me to show the best supplement for this?",
-            "Want to read the full product review?",
-            "Prefer to keep asking about this symptom?"
-          ]
-  );
+  const etapaIndex = Math.min(etapa - 1, 3);
+  followups = gerarFollowupsUnicos(followupEtapas[idioma][etapaIndex]);
 
   corpo += `\n\n${idioma === "pt"
     ? "Escolha uma das opções abaixo para continuarmos:"
