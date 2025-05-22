@@ -134,7 +134,7 @@ export default async function handler(req, res) {
 const idioma = sessionMemory.idioma || (isPortuguese ? "pt" : "en");
 const nomeUser = sessionMemory.nome || (hasForm ? userName : "");
 const chave = sessionMemory.sintomaAtual || sessionMemory.categoriaAtual || sintoma || categoria;
-const etapa = sessionMemory.contadorPerguntas[chave] || 1;
+etapa = sessionMemory.contadorPerguntas[chave] || 1;
 const incluirSuplemento = etapa >= 3;
 
 const followupEtapas = {
