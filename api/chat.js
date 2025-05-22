@@ -81,22 +81,17 @@ if (contexto) {
     sessionMemory.sintomasDetectados.push(contexto.sintoma);
   }
 
-  const alerta = contexto.gravidade >= 4
-    ? (isPortuguese
-      ? "⚠️ Esse sintoma é sério. Se não cuidar, pode escalar para algo bem pior."
-      : "⚠️ This is a serious symptom. Ignoring it could make things worse.")
-    : "";
+  const alerta = contexto.gravidade && contexto.gravidade >= 4
+  ? (isPortuguese
+    ? "⚠️ Esse sintoma é sério. Se não cuidar, pode escalar para algo bem pior."
+    : "⚠️ This is a serious symptom. Ignoring it could make things worse.")
+  : "";
 
-  const base = (isPortuguese ? contexto.base_pt : contexto.base_en) || "";
-  const p1 = (isPortuguese ? contexto.pergunta1_pt : contexto.pergunta1_en) || "";
-  const p2 = (isPortuguese ? contexto.pergunta2_pt : contexto.pergunta2_en) || "";
-  const p3 = (isPortuguese ? contexto.pergunta3_pt : contexto.pergunta3_en) || "";
-
-  followups = [
-    `${isPortuguese ? "Quer entender" : "Want to know"} ${p1.toLowerCase()}?`,
-    `${isPortuguese ? "Deseja ver como isso impacta" : "Curious how this affects"} ${p2.toLowerCase()}?`,
-    `${isPortuguese ? "Posso explicar soluções práticas sobre" : "I can explain real solutions for"} ${p3.toLowerCase()}`
-  ];
+followups = [
+  `${isPortuguese ? "Quer entender" : "Want to know"} ${p1}?`,
+  `${isPortuguese ? "Deseja ver como isso impacta" : "Curious how this affects"} ${p2}?`,
+  `${isPortuguese ? "Posso explicar soluções práticas sobre" : "I can explain real solutions for"} ${p3}`
+];
 
   prompt += `\n\n${alerta}\n\n${isPortuguese ? "Base científica:" : "Scientific insight:"}\n${base}\n\n${
     isPortuguese ? "Vamos aprofundar com 3 ideias práticas:" : "Let's explore 3 practical angles:"
