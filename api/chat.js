@@ -55,8 +55,17 @@ export default async function handler(req, res) {
     let followups = [];
     let prompt = `${intro}\n\nYou are OwlCoreHealth AI 🦉 — a hybrid personality: smart, science-backed, sarcastic when needed, but always delivering useful answers. Never ask vague follow-up questions. Always give clear explanations, risks, and next steps. Guide the user toward solutions.`;
 
-    const contextos = await getSymptomContext(message);
-    const contexto = contextos?.[0];
+    let contexto = null;
+let contextos = [];
+
+if (message && message.trim().length > 1) {
+  try {
+    contextos = await getSymptomContext(message.trim());
+    contexto = contextos?.[0] || null;
+  } catch (error) {
+    console.error("Erro ao consultar o Notion:", error.message);
+  }
+}
     let categoria = sessionMemory.categoriaAtual || "";
     let sintoma = sessionMemory.sintomaAtual || "";
 
