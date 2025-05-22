@@ -140,19 +140,25 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: "GPT communication failed", details: errorData });
     }
 
-    const data = await openaiRes.json();
-    const reply = data.choices?.[0]?.message?.content || "I'm not sure how to answer that.";
+   const data = await openaiRes.json();
 
-    return res.status(200).json({
-      choices: [
-        {
-          message: {
-            content: reply,
-            followups
-          }
-        }
-      ]
-    });
+let reply = data.choices?.[0]?.message?.content || "I'm not sure how to answer that.";
+
+// ✅ Adiciona o `intro` no topo se o formulário não tiver sido preenchido
+if (!hasForm && intro) {
+  reply = `${intro}\n\n${reply}`;
+}
+
+return res.status(200).json({
+  choices: [
+    {
+      message: {
+        content: reply,
+        followups
+      }
+    }
+  ]
+});
 
   } catch (err) {
     console.error("Internal server error:", err.message);
