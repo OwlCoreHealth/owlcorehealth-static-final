@@ -98,9 +98,32 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: "GPT communication failed", details: errorData });
     }
 
-    const data = await openaiRes.json();
+        const data = await openaiRes.json();
+    const reply = data.choices?.[0]?.message?.content || "I'm not sure how to answer that.";
 
-    return res.status(200).json(data);
+    let followups = [];
+
+    if (contexto) {
+      const p1 = idioma === "pt" ? contexto.pergunta1_pt : contexto.pergunta1_en;
+      const p2 = idioma === "pt" ? contexto.pergunta2_pt : contexto.pergunta2_en;
+      const p3 = idioma === "pt" ? contexto.pergunta3_pt : contexto.pergunta3_en;
+      followups = [p1, p2, p3];
+    } else {
+      followups = idioma === "pt"
+        ? ["Quais sintomas te preocupam mais?", "Quer tentar uma solução natural?", "Posso mostrar um produto que ajuda nisso?"]
+        : ["What symptoms concern you most?", "Would you try a natural solution?", "Want to see a product that helps with this?"];
+    }
+
+    return res.status(200).json({
+      choices: [
+        {
+          message: {
+            content: reply,
+            followups
+          }
+        }
+      ]
+    });
 
   } catch (err) {
     console.error("Internal server error:", err.message);
