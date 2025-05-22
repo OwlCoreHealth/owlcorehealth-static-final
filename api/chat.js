@@ -82,7 +82,7 @@ export default async function handler(req, res) {
       sessionMemory.categoriaAtual = categoria;
     }
 
-    const chave = sintoma || categoria;
+   chave = sintoma || categoria;
     sessionMemory.contadorPerguntas[chave] = (sessionMemory.contadorPerguntas[chave] || 0) + 1;
     const etapa = sessionMemory.contadorPerguntas[chave];
 
