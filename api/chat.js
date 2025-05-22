@@ -23,13 +23,12 @@ export default async function handler(req, res) {
     }
 
     const isPortuguese = /[ãõçáéíóú]| você|dor|tenho|problema|saúde/i.test(message);
-    const idioma = isPortuguese ? "pt" : "en";
-
     const userName = name?.trim() || "";
     const userAge = parseInt(age);
     const userSex = (sex || "").toLowerCase();
     const userWeight = parseFloat(weight);
     const hasForm = userName && !isNaN(userAge) && userSex && !isNaN(userWeight);
+    const idioma = isPortuguese ? "pt" : "en";
 
     sessionMemory.nome = userName;
     sessionMemory.idioma = idioma;
@@ -44,7 +43,7 @@ export default async function handler(req, res) {
         : "Skipping the form? Bold move. Let’s see how that works out.",
       idioma === "pt"
         ? "Você ignora sua saúde assim também? Posso tentar adivinhar seu perfil com superpoderes… ou não."
-        : "Do you ignore your health like this too? I could guess with superpowers… or not.",
+        : "Do you ignore your health like this too? I could guess with superpowers… or not."
     ];
 
     const intro = hasForm
@@ -53,8 +52,9 @@ export default async function handler(req, res) {
         : `${userName}, 28% of people aged ${userAge} report anxiety, 31% struggle with digestion, and 20% don’t take supplements. You’re ahead of the curve.`
       : frasesSarcasticas[Math.floor(Math.random() * frasesSarcasticas.length)];
 
+    let contexto = null;
     const contextos = await getSymptomContext(message);
-    const contexto = contextos?.[0] || null;
+    if (contextos.length) contexto = contextos[0];
 
     let sintoma = sessionMemory.sintomaAtual || "";
     let categoria = sessionMemory.categoriaAtual || "";
@@ -113,10 +113,10 @@ export default async function handler(req, res) {
       ]
     };
 
-    const idiomaEtapas = followupEtapas[idioma];
-    const etapaIndex = Math.min(etapa - 1, idiomaEtapas.length - 1);
     let followups = [];
     let corpo = "";
+    const idiomaEtapas = followupEtapas[idioma];
+    const etapaIndex = Math.min(etapa - 1, idiomaEtapas.length - 1);
 
     if (contexto) {
       const base = idioma === "pt" ? contexto.base_pt : contexto.base_en;
@@ -125,6 +125,7 @@ export default async function handler(req, res) {
       const pergunta3 = idioma === "pt" ? contexto.pergunta3_pt : contexto.pergunta3_en;
 
       followups = [pergunta1, pergunta2, pergunta3];
+
       corpo = `\n\n${idioma === "pt" ? "Base científica:" : "Scientific insight:"}\n${base}\n\n${
         idioma === "pt" ? "Vamos aprofundar com 3 ideias:" : "Let’s explore 3 ideas:"
       }\n1. ${followups[0]}\n2. ${followups[1]}\n3. ${followups[2]}`;
@@ -160,7 +161,6 @@ export default async function handler(req, res) {
 
     const data = await openaiRes.json();
     const reply = data.choices?.[0]?.message?.content || "Resposta não encontrada.";
-
     return res.status(200).json({
       choices: [{ message: { content: reply, followups } }]
     });
@@ -170,4 +170,3 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: "Server error", details: err.message });
   }
 }
-
