@@ -57,6 +57,7 @@ const frasesSarcasticas = [
   "Me ajudar a te ajudar? Preencher o formulário seria um bom começo 😉"
 ];
 
+// ✅ DECLARAÇÃO ÚNICA DE `intro`
 const intro = hasForm
   ? (
     isPortuguese
@@ -65,6 +66,7 @@ const intro = hasForm
   )
   : frasesSarcasticas[Math.floor(Math.random() * frasesSarcasticas.length)];
 
+// Bloco base do prompt
 let prompt = `${intro}\n\nYou are OwlCoreHealth AI 🦉 — a hybrid personality: smart, science-backed, sarcastic when needed, but always delivering useful answers. Never ask vague follow-up questions. Always give clear explanations, risks, and next steps. Guide the user toward solutions.`;
 
 // 🧠 Contador de rodadas por sintoma
@@ -82,16 +84,21 @@ if (contexto) {
   }
 
   const alerta = contexto && contexto.gravidade >= 4
-  ? (isPortuguese
-    ? "⚠️ Esse sintoma é sério. Se não cuidar, pode escalar para algo bem pior."
-    : "⚠️ This is a serious symptom. Ignoring it could make things worse.")
-  : "";
+    ? (isPortuguese
+      ? "⚠️ Esse sintoma é sério. Se não cuidar, pode escalar para algo bem pior."
+      : "⚠️ This is a serious symptom. Ignoring it could make things worse.")
+    : "";
 
-followups = [
-  `${isPortuguese ? "Quer entender" : "Want to know"} ${p1}?`,
-  `${isPortuguese ? "Deseja ver como isso impacta" : "Curious how this affects"} ${p2}?`,
-  `${isPortuguese ? "Posso explicar soluções práticas sobre" : "I can explain real solutions for"} ${p3}`
-];
+  const base = (isPortuguese ? contexto.base_pt : contexto.base_en) || "";
+  const p1 = (isPortuguese ? contexto.pergunta1_pt : contexto.pergunta1_en) || "";
+  const p2 = (isPortuguese ? contexto.pergunta2_pt : contexto.pergunta2_en) || "";
+  const p3 = (isPortuguese ? contexto.pergunta3_pt : contexto.pergunta3_en) || "";
+
+  followups = [
+    `${isPortuguese ? "Quer entender" : "Want to know"} ${p1}?`,
+    `${isPortuguese ? "Deseja ver como isso impacta" : "Curious how this affects"} ${p2}?`,
+    `${isPortuguese ? "Posso explicar soluções práticas sobre" : "I can explain real solutions for"} ${p3}`
+  ];
 
   prompt += `\n\n${alerta}\n\n${isPortuguese ? "Base científica:" : "Scientific insight:"}\n${base}\n\n${
     isPortuguese ? "Vamos aprofundar com 3 ideias práticas:" : "Let's explore 3 practical angles:"
