@@ -81,7 +81,7 @@ if (contexto) {
     sessionMemory.sintomasDetectados.push(contexto.sintoma);
   }
 
-  const alerta = contexto.gravidade && contexto.gravidade >= 4
+  const alerta = contexto && contexto.gravidade >= 4
   ? (isPortuguese
     ? "⚠️ Esse sintoma é sério. Se não cuidar, pode escalar para algo bem pior."
     : "⚠️ This is a serious symptom. Ignoring it could make things worse.")
