@@ -51,6 +51,8 @@ export default async function handler(req, res) {
         : "You are talking to OwlCoreHealth AI 🦉, your trusted personal health assistant."
     }\n\n`;
 
+    let followups = [];
+
     if (contexto) {
       if (!sessionMemory.sintomasDetectados.includes(contexto.sintoma)) {
         sessionMemory.sintomasDetectados.push(contexto.sintoma);
@@ -66,11 +68,16 @@ export default async function handler(req, res) {
       const p1 = idioma === "pt" ? contexto.pergunta1_pt : contexto.pergunta1_en;
       const p2 = idioma === "pt" ? contexto.pergunta2_pt : contexto.pergunta2_en;
       const p3 = idioma === "pt" ? contexto.pergunta3_pt : contexto.pergunta3_en;
+      followups = [p1, p2, p3];
 
       prompt += `${alerta}\n\n${idioma === "pt" ? "Base científica:" : "Scientific insight:"}\n${base}\n\n${
         idioma === "pt" ? "Aqui vão 3 perguntas para você pensar:" : "Here are 3 follow-up questions:"
       }\n1. ${p1}\n2. ${p2}\n3. ${p3}\n\n${idioma === "pt" ? "Ou quer fazer outra pergunta?" : "Or do you have another question?"} 🦉`;
     } else {
+      followups = idioma === "pt"
+        ? ["Quais sintomas te preocupam mais?", "Quer tentar uma solução natural?", "Posso mostrar um produto que ajuda nisso?"]
+        : ["What symptoms concern you most?", "Would you try a natural solution?", "Want to see a product that helps with this?"];
+
       prompt += idioma === "pt"
         ? "Vou considerar sua pergunta e tentar te ajudar com o melhor conhecimento possível."
         : "I’ll consider your question and do my best to assist you with useful insight.";
@@ -98,21 +105,8 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: "GPT communication failed", details: errorData });
     }
 
-        const data = await openaiRes.json();
+    const data = await openaiRes.json();
     const reply = data.choices?.[0]?.message?.content || "I'm not sure how to answer that.";
-
-    let followups = [];
-
-    if (contexto) {
-      const p1 = idioma === "pt" ? contexto.pergunta1_pt : contexto.pergunta1_en;
-      const p2 = idioma === "pt" ? contexto.pergunta2_pt : contexto.pergunta2_en;
-      const p3 = idioma === "pt" ? contexto.pergunta3_pt : contexto.pergunta3_en;
-      followups = [p1, p2, p3];
-    } else {
-      followups = idioma === "pt"
-        ? ["Quais sintomas te preocupam mais?", "Quer tentar uma solução natural?", "Posso mostrar um produto que ajuda nisso?"]
-        : ["What symptoms concern you most?", "Would you try a natural solution?", "Want to see a product that helps with this?"];
-    }
 
     return res.status(200).json({
       choices: [
