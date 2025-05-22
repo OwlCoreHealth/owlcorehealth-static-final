@@ -53,9 +53,15 @@ export default async function handler(req, res) {
       : frasesSarcasticas[Math.floor(Math.random() * frasesSarcasticas.length)];
 
     let contexto = null;
-    const contextos = await getSymptomContext(message);
-    if (contextos.length) contexto = contextos[0];
+let contextos = [];
 
+try {
+  contextos = await getSymptomContext(message);
+  if (contextos.length) contexto = contextos[0];
+} catch (err) {
+  console.warn("🔔 Falha ao consultar Notion. Usando fallback por categoria.", err.message);
+  contextos = [];
+}
     let sintoma = sessionMemory.sintomaAtual || "";
     let categoria = sessionMemory.categoriaAtual || "";
 
