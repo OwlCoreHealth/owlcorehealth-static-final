@@ -119,33 +119,38 @@ try {
       ]
     };
 
-    let followups = [];
-    let corpo = "";
-    const idiomaEtapas = followupEtapas[idioma];
-    const etapaIndex = Math.min(etapa - 1, idiomaEtapas.length - 1);
+   let followups = [];
+let corpo = "";
+const idiomaEtapas = followupEtapas[idioma];
+const etapaIndex = Math.min(etapa - 1, idiomaEtapas.length - 1);
 
-    if (contexto) {
-      const base = idioma === "pt" ? contexto.base_pt : contexto.base_en;
-      const pergunta1 = idioma === "pt" ? contexto.pergunta1_pt : contexto.pergunta1_en;
-      const pergunta2 = idioma === "pt" ? contexto.pergunta2_pt : contexto.pergunta2_en;
-      const pergunta3 = idioma === "pt" ? contexto.pergunta3_pt : contexto.pergunta3_en;
+if (contexto) {
+  const base = idioma === "pt" ? contexto.base_pt : contexto.base_en;
+  const pergunta1 = idioma === "pt" ? contexto.pergunta1_pt : contexto.pergunta1_en;
+  const pergunta2 = idioma === "pt" ? contexto.pergunta2_pt : contexto.pergunta2_en;
+  const pergunta3 = idioma === "pt" ? contexto.pergunta3_pt : contexto.pergunta3_en;
 
-      followups = [pergunta1, pergunta2, pergunta3];
+  followups = [pergunta1, pergunta2, pergunta3].filter(Boolean);
 
-      corpo = `\n\n${idioma === "pt" ? "Base científica:" : "Scientific insight:"}\n${base}\n\n${
-        idioma === "pt" ? "Vamos aprofundar com 3 ideias:" : "Let’s explore 3 ideas:"
-      }\n1. ${followups[0]}\n2. ${followups[1]}\n3. ${followups[2]}`;
+  corpo = `\n\n${hasForm ? (idioma === "pt" ? `Vamos focar nisso, ${userName}.` : `Let’s focus on that, ${userName}.`) : ""}\n\n${idioma === "pt" ? "Base científica:" : "Scientific insight:"}\n${base}\n\n${
+    idioma === "pt" ? "Vamos aprofundar com 3 ideias:" : "Let’s explore 3 ideas:"
+  }\n1. ${followups[0]}\n2. ${followups[1]}\n3. ${followups[2]}`;
 
-      if (incluirSuplemento) {
-        corpo += idioma === "pt"
-          ? `\n\nSe quiser, posso te mostrar o suplemento ideal para esse caso. 😉`
-          : `\n\nIf you want, I can show you the ideal supplement for this. 😉`;
-      }
-    } else {
-      const bloco = blocos[categoria] || blocos["energia"];
-      corpo = `\n\n${bloco[idioma][etapaIndex] || bloco[idioma][0]}`;
-      followups = idiomaEtapas[etapaIndex];
-    }
+  if (incluirSuplemento) {
+    corpo += idioma === "pt"
+      ? `\n\nSe quiser, posso te mostrar o suplemento ideal para esse caso. 😉`
+      : `\n\nIf you want, I can show you the ideal supplement for this. 😉`;
+  }
+
+} else {
+  const bloco = blocos[categoria] || blocos["energia"];
+  corpo = `\n\n${hasForm ? (idioma === "pt" ? `Vamos focar nisso, ${userName}.` : `Let’s focus on that, ${userName}.`) : ""}\n\n${bloco[idioma][etapaIndex] || bloco[idioma][0]}`;
+  followups = idiomaEtapas[etapaIndex] || [];
+
+  corpo += `\n\n${idioma === "pt"
+    ? "Escolha uma das opções abaixo para continuarmos:"
+    : "Choose one of the options below to continue:"}\n1. ${followups[0]}\n2. ${followups[1]}\n3. ${followups[2]}`;
+}
 
     const prompt = `${intro}\n\nYou are OwlCoreHealth AI 🦉 — a hybrid personality: smart, science-backed, sarcastic when needed, but always delivering useful answers.\n${corpo}`;
 
