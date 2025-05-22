@@ -133,7 +133,7 @@ export default async function handler(req, res) {
    let corpo = "";
 const idioma = sessionMemory.idioma || (isPortuguese ? "pt" : "en");
 const nomeUser = sessionMemory.nome || (hasForm ? userName : "");
-const chave = sintoma || categoria;
+const chave = sessionMemory.sintomaAtual || sessionMemory.categoriaAtual || sintoma || categoria;
 const etapa = sessionMemory.contadorPerguntas[chave] || 1;
 const incluirSuplemento = etapa >= 3;
 
