@@ -130,12 +130,12 @@ export default async function handler(req, res) {
       }
       // ... (outros blocos podem ser adicionados se necessário)
     };
-   let corpo = "";
-const idioma = sessionMemory.idioma || (isPortuguese ? "pt" : "en");
+   corpo = "";
+idioma = sessionMemory.idioma || (isPortuguese ? "pt" : "en");
 const nomeUser = sessionMemory.nome || (hasForm ? userName : "");
-const chave = sessionMemory.sintomaAtual || sessionMemory.categoriaAtual || sintoma || categoria;
+chave = sintoma || categoria;
 etapa = sessionMemory.contadorPerguntas[chave] || 1;
-const incluirSuplemento = etapa >= 3;
+incluirSuplemento = etapa >= 3;
 
 const followupEtapas = {
   pt: [
