@@ -1,12 +1,12 @@
-// 🔁 chat.js completo com funil progressivo e compatibilidade total sem alterar nada além do necessário
-
 import { getSymptomContext } from "./notion.js";
 
 let sessionMemory = {
   sintomasDetectados: [],
   respostasUsuario: [],
   nome: "",
-  idioma: "pt"
+  idioma: "pt",
+  sintomaAtual: null,
+  contadorPerguntas: {}
 };
 
 export default async function handler(req, res) {
@@ -16,6 +16,7 @@ export default async function handler(req, res) {
     }
 
     const { message, name, age, sex, weight } = req.body;
+
     if (!message || message.trim().length === 0) {
       return res.status(400).json({ error: "No message provided." });
     }
@@ -25,6 +26,7 @@ export default async function handler(req, res) {
     const userAge = parseInt(age);
     const userSex = (sex || "").toLowerCase();
     const userWeight = parseFloat(weight);
+
     const hasForm = userName && !isNaN(userAge) && userSex && !isNaN(userWeight);
 
     sessionMemory.nome = userName;
@@ -51,20 +53,18 @@ export default async function handler(req, res) {
       )
       : frasesSarcasticas[Math.floor(Math.random() * frasesSarcasticas.length)];
 
-    // Funil progressivo com rodadas
-    sessionMemory.sintomaAtual = contexto?.sintoma || null;
-    sessionMemory.contadorPerguntas = sessionMemory.contadorPerguntas || {};
-    if (contexto?.sintoma) {
-      sessionMemory.contadorPerguntas[contexto.sintoma] = (sessionMemory.contadorPerguntas[contexto.sintoma] || 0) + 1;
-    }
-
-    const rodadas = sessionMemory.contadorPerguntas[contexto?.sintoma || ""] || 0;
-    const incluirSuplemento = rodadas >= 3;
-
     let followups = [];
-    let prompt = `${intro}\n\nYou are OwlCoreHealth AI 🦉 — a hybrid personality: smart, honest, and scientific. Guide the user through progressively deeper health knowledge. Avoid repetition. Always add new insight each round.`;
+    let prompt = `${intro}\n\nYou are OwlCoreHealth AI 🦉 — a hybrid personality: smart, science-backed, sarcastic when needed, but always delivering useful answers. Never ask vague follow-up questions. Always give clear explanations, risks, and next steps. Guide the user toward solutions.`;
+
+    const emoji = userSex === "feminino" || userSex === "female" ? "👩" : "👨";
+    const idioma = isPortuguese ? "pt" : "en";
 
     if (contexto) {
+      sessionMemory.sintomaAtual = contexto.sintoma;
+      sessionMemory.contadorPerguntas[contexto.sintoma] = (sessionMemory.contadorPerguntas[contexto.sintoma] || 0) + 1;
+      const etapa = sessionMemory.contadorPerguntas[contexto.sintoma];
+      const incluirSuplemento = etapa >= 3;
+
       if (!sessionMemory.sintomasDetectados.includes(contexto.sintoma)) {
         sessionMemory.sintomasDetectados.push(contexto.sintoma);
       }
@@ -80,53 +80,156 @@ export default async function handler(req, res) {
       const p2 = (isPortuguese ? contexto.pergunta2_pt : contexto.pergunta2_en) || "";
       const p3 = (isPortuguese ? contexto.pergunta3_pt : contexto.pergunta3_en) || "";
 
-      if (rodadas === 1) {
-        prompt += `\n\n${alerta}\n\n${isPortuguese ? "Base científica:" : "Scientific insight:"}\n${base}`;
-        followups = [p1, p2, p3];
-      } else if (rodadas === 2) {
+      followups = [
+        `${isPortuguese ? "Quer entender" : "Want to know"} ${p1}?`,
+        `${isPortuguese ? "Deseja ver como isso impacta" : "Curious how this affects"} ${p2}?`,
+        `${isPortuguese ? "Posso explicar soluções práticas sobre" : "I can explain real solutions for"} ${p3}`
+      ];
+
+      prompt += `\n\n${alerta}\n\n${isPortuguese ? "Base científica:" : "Scientific insight:"}\n${base}\n\n${
+        isPortuguese ? "Vamos aprofundar com 3 ideias práticas:" : "Let's explore 3 practical angles:"
+      }\n1. ${followups[0]}\n2. ${followups[1]}\n3. ${followups[2]}`;
+
+      if (incluirSuplemento) {
         prompt += isPortuguese
-          ? `\n\nSabia que esse sintoma está relacionado a riscos como ${contexto.risco_pt}?`
-          : `\n\nDid you know this symptom is linked to risks like ${contexto.risco_en}?`;
-        followups = [
-          isPortuguese ? "Quer saber como evitar esses riscos?" : "Want to know how to avoid these risks?",
-          isPortuguese ? "Deseja saber o que pode agravar esse quadro?" : "Want to know what can worsen this?",
-          isPortuguese ? "Posso mostrar os impactos de ignorar isso." : "I can show you what happens if this is ignored."
-        ];
-      } else if (rodadas === 3) {
-        prompt += isPortuguese
-          ? "\n\nEstudos mostram que muitas pessoas ignoram esse sintoma e desenvolvem complicações. Quer entender melhor?"
-          : "\n\nStudies show many ignore this and later develop complications. Want to explore that?";
-        followups = [
-          isPortuguese ? "Deseja ver os dados sobre isso?" : "Want to see data on this?",
-          isPortuguese ? "Quer exemplos reais de pacientes?" : "Want real patient examples?",
-          isPortuguese ? "Posso mostrar o que a ciência encontrou." : "I can show what science found."
-        ];
-      } else if (rodadas === 4) {
-        prompt += isPortuguese
-          ? "\n\nNutrientes como vitamina C, zinco e probióticos podem ajudar neste quadro."
-          : "\n\nNutrients like vitamin C, zinc, and probiotics may support improvement here.";
-        followups = [
-          isPortuguese ? "Quer saber quais alimentos ajudam nisso?" : "Want to know which foods help with this?",
-          isPortuguese ? "Deseja ver hábitos naturais eficazes?" : "Want to see natural strategies?",
-          isPortuguese ? "Posso recomendar ajustes alimentares úteis." : "I can suggest helpful dietary tips."
-        ];
-      } else {
-        prompt += isPortuguese
-          ? "\n\nSe quiser, posso indicar um suplemento ideal para lidar com esse sintoma. Só pedir."
-          : "\n\nIf you’d like, I can recommend the ideal supplement for this symptom. Just ask.";
-        followups = [
-          isPortuguese ? "Quer conhecer já o produto?" : "Want to see the product now?",
-          isPortuguese ? "Quer saber qual suplemento ajuda com isso?" : "Want to know which supplement helps?",
-          isPortuguese ? "Deseja continuar com mais dicas naturais?" : "Want more natural advice instead?"
-        ];
+          ? "\n\nSe quiser, posso te mostrar o suplemento ideal para esse caso. Só dizer. 😉"
+          : "\n\nIf you're ready, I can show you the ideal supplement for this case. Just ask. 😉";
       }
+
     } else {
-      prompt += isPortuguese
-        ? "\n\nNão encontrei dados científicos sobre isso. Quer tentar outro sintoma ou especificar melhor?"
-        : "\n\nI couldn’t find scientific data on that yet. Want to try a different symptom or be more specific?";
-      followups = isPortuguese
-        ? ["Pode me dizer outro sintoma?", "Quer tentar algo mais comum?", "Deseja ver uma lista de temas?"]
-        : ["Can you describe another symptom?", "Want to try something more common?", "Want to see a list of topics?"];
+      const msg = message.toLowerCase();
+      let categoria = "";
+
+      if (/energia|fadiga|cansaço|exausto|metabolismo/.test(msg)) {
+        categoria = "energia";
+      } else if (/dor|inflamação|dores|inchaço|artrite/.test(msg)) {
+        categoria = "dor";
+      } else if (/gengiva|dente|boca|hálito|dentário/.test(msg)) {
+        categoria = "boca";
+      } else if (/sono|dormir|insônia|pineal|desintox/.test(msg)) {
+        categoria = "sono";
+      } else if (/intestino|digest|prisão|gases|barriga/.test(msg)) {
+        categoria = "intestino";
+      } else {
+        categoria = "outro";
+      }
+
+      sessionMemory.contadorPerguntas[categoria] = (sessionMemory.contadorPerguntas[categoria] || 0) + 1;
+      const etapa = sessionMemory.contadorPerguntas[categoria];
+
+      const textos = {
+        energia: {
+          pt: [
+            "Falta de energia pode indicar má alimentação, sedentarismo ou deficiência de nutrientes como B12 e ferro.",
+            "Ignorar a fadiga pode levar a exaustão crônica, depressão e distúrbios metabólicos.",
+            "Estudos mostram que mais de 40% dos adultos com fadiga persistente apresentam desequilíbrios hormonais e baixa absorção nutricional.",
+            "Nutrientes como magnésio, coenzima Q10 e vitamina D são essenciais para restaurar os níveis de energia.",
+            "Quer conhecer um suplemento específico para esse tipo de fadiga?"
+          ],
+          en: [
+            "Low energy may stem from poor diet, inactivity, or nutrient deficiencies like B12 and iron.",
+            "Ignoring fatigue can lead to chronic exhaustion, depression, and metabolic issues.",
+            "Studies show over 40% of adults with persistent fatigue suffer from hormonal imbalances and nutrient malabsorption.",
+            "Nutrients like magnesium, CoQ10, and vitamin D are essential to restore energy levels.",
+            "Would you like to see a supplement designed to fight this type of fatigue?"
+          ]
+        },
+        dor: {
+          pt: [
+            "Dores frequentes podem indicar inflamação crônica ou desgaste nas articulações.",
+            "Se ignoradas, essas dores podem evoluir para doenças autoimunes e comprometimento da mobilidade.",
+            "Mais de 35% das pessoas que ignoram inflamações desenvolvem doenças como artrite e fibromialgia.",
+            "Nutrientes anti-inflamatórios como cúrcuma, moringa e ômega-3 ajudam a aliviar essas dores.",
+            "Quer conhecer uma fórmula com esses compostos naturais?"
+          ],
+          en: [
+            "Persistent pain may signal chronic inflammation or joint deterioration.",
+            "Left untreated, it can lead to autoimmune disorders and reduced mobility.",
+            "35% of people ignoring inflammation end up with conditions like arthritis and fibromyalgia.",
+            "Anti-inflammatory nutrients like turmeric, moringa, and omega-3 help relieve pain.",
+            "Want to see a formula with these natural compounds?"
+          ]
+        },
+        boca: {
+          pt: [
+            "Sangramento nas gengivas pode ser sinal de desequilíbrio bacteriano na boca.",
+            "Ignorar isso pode levar a periodontite, perda dentária e até riscos cardíacos.",
+            "Estudos mostram que doenças gengivais aumentam em 30% o risco de infarto.",
+            "Probióticos orais como o Streptococcus salivarius K12 ajudam a restaurar a flora oral.",
+            "Quer que eu te mostre uma solução com probióticos específicos para isso?"
+          ],
+          en: [
+            "Bleeding gums may signal bacterial imbalance in your mouth.",
+            "Ignoring it can lead to periodontitis, tooth loss, and even heart risks.",
+            "Studies show gum disease increases heart attack risk by 30%.",
+            "Oral probiotics like Streptococcus salivarius K12 restore oral microbiome.",
+            "Want me to show a probiotic formula that targets this issue?"
+          ]
+        },
+        sono: {
+          pt: [
+            "Dificuldades para dormir estão ligadas ao estresse e desregulação da melatonina.",
+            "Se ignorado, o distúrbio do sono pode afetar hormônios, imunidade e memória.",
+            "Estudos mostram que a má qualidade do sono aumenta em 50% o risco de depressão.",
+            "Nutrientes como triptofano, magnésio, L-teanina e extrato de camomila ajudam a regular o sono.",
+            "Deseja conhecer um suplemento que contém todos esses compostos?"
+          ],
+          en: [
+            "Trouble sleeping often stems from stress and melatonin imbalance.",
+            "Untreated, it can affect hormones, immunity, and cognitive function.",
+            "Poor sleep quality increases depression risk by 50%, studies show.",
+            "Nutrients like tryptophan, magnesium, L-theanine, and chamomile extract help.",
+            "Want to see a natural supplement with these ingredients?"
+          ]
+        },
+        intestino: {
+          pt: [
+            "Problemas intestinais podem surgir do desequilíbrio da microbiota.",
+            "Se não corrigido, isso afeta imunidade, pele e até o humor.",
+            "Cerca de 70% das pessoas com disbiose relatam sintomas como ansiedade, acne e alergias.",
+            "Probióticos, fibras e enzimas digestivas são essenciais para restaurar o equilíbrio intestinal.",
+            "Quer conhecer uma fórmula ideal para isso?"
+          ],
+          en: [
+            "Gut issues may arise from microbiome imbalance.",
+            "If left untreated, it affects immunity, skin, and mood.",
+            "70% of those with dysbiosis report symptoms like anxiety, acne, and allergies.",
+            "Probiotics, fiber, and digestive enzymes help restore gut health.",
+            "Want to explore a formula designed for this?"
+          ]
+        }
+      };
+
+      const grupo = textos[categoria] || textos["energia"];
+      const etapaTexto = grupo[isPortuguese ? "pt" : "en"][Math.min(sessionMemory.contadorPerguntas[categoria] - 1, 4)];
+
+      followups = sessionMemory.contadorPerguntas[categoria] < 5
+        ? isPortuguese
+          ? [
+              "Quer entender os riscos se isso for ignorado?",
+              "Deseja ver dados reais de quem passou por isso?",
+              "Quer saber quais nutrientes combatem isso?"
+            ]
+          : [
+              "Want to know the risks of ignoring this?",
+              "Interested in real-world data on this symptom?",
+              "Want to discover which nutrients help fight this?"
+            ]
+        : isPortuguese
+          ? [
+              "Quer que eu mostre o suplemento ideal para isso?",
+              "Deseja ver a avaliação completa do produto?",
+              "Quer continuar tirando dúvidas sobre esse sintoma?"
+            ]
+          : [
+              "Want me to show the best supplement for this?",
+              "Want to read the full product review?",
+              "Prefer to keep asking about this symptom?"
+            ];
+
+      prompt += `\n\n${etapaTexto}\n\n${
+        isPortuguese ? "Escolha uma das opções abaixo para continuarmos:" : "Choose one of the options below to continue:"
+      }\n1. ${followups[0]}\n2. ${followups[1]}\n3. ${followups[2]}`;
     }
 
     const openaiRes = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -168,6 +271,7 @@ export default async function handler(req, res) {
         }
       ]
     });
+
   } catch (err) {
     console.error("Internal server error:", err.message);
     return res.status(500).json({ error: "Server error", details: err.message });
