@@ -1,11 +1,4 @@
 import { getSymptomContext } from "./notion.js";
-import { Configuration, OpenAIApi } from "openai";
-
-const openai = new OpenAIApi(
-  new Configuration({
-    apiKey: process.env.OPENAI_API_KEY
-  })
-);
 
 let sessionMemory = {
   sintomasDetectados: [],
@@ -47,14 +40,16 @@ export default async function handler(req, res) {
         : `${userName}, did you know 28% of women aged ${userAge} report anxiety, 31% struggle with digestion, and 20% don’t use any supplements? Coincidence or pattern? Let's explore.`
       : isPortuguese
         ? "Sem seu nome, idade ou peso, posso te dar conselhos… tão úteis quanto ler a sorte no biscoito da sorte."
-        : "Without your name, age or weight, my advice is as useful as a fortune cookie."
+        : "Without your name, age or weight, my advice is as useful as a fortune cookie.";
 
     const emoji = userSex === "feminino" || userSex === "female" ? "👩" : "👨";
     const idioma = isPortuguese ? "pt" : "en";
 
-    let prompt = `${intro}\n\n${idioma === "pt"
-      ? "Você está conversando com o OwlCoreHealth AI 🦉, seu assistente de saúde confiável."
-      : "You are talking to OwlCoreHealth AI 🦉, your trusted personal health assistant."}\n\n`;
+    let prompt = `${intro}\n\n${
+      idioma === "pt"
+        ? "Você está conversando com o OwlCoreHealth AI 🦉, seu assistente de saúde confiável."
+        : "You are talking to OwlCoreHealth AI 🦉, your trusted personal health assistant."
+    }\n\n`;
 
     if (contexto) {
       if (!sessionMemory.sintomasDetectados.includes(contexto.sintoma)) {
@@ -81,29 +76,34 @@ export default async function handler(req, res) {
         : "I’ll consider your question and do my best to assist you with useful insight.";
     }
 
-    const chatCompletion = await openai.createChatCompletion({
-      model: "gpt-4o",
-      temperature: 0.7,
-      messages: [
-        { role: "system", content: prompt },
-        { role: "user", content: message }
-      ]
+    const openaiRes = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: "gpt-4o",
+        temperature: 0.7,
+        messages: [
+          { role: "system", content: prompt },
+          { role: "user", content: message }
+        ]
+      })
     });
 
-    const reply = chatCompletion.data.choices[0].message.content;
+    if (!openaiRes.ok) {
+      const errorData = await openaiRes.json();
+      console.error("GPT error:", errorData);
+      return res.status(500).json({ error: "GPT communication failed", details: errorData });
+    }
 
-    return res.status(200).json({
-      choices: [
-        {
-          message: {
-            content: reply
-          }
-        }
-      ]
-    });
+    const data = await openaiRes.json();
+
+    return res.status(200).json(data);
 
   } catch (err) {
-    console.error("GPT ERROR:", err);
-    return res.status(500).json({ error: "GPT communication failed", details: err.message });
+    console.error("Internal server error:", err.message);
+    return res.status(500).json({ error: "Server error", details: err.message });
   }
 }
