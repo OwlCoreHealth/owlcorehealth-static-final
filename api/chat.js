@@ -47,7 +47,7 @@ export default async function handler(req, res) {
 
     let followups = [];
 
-// 🧠 Variações sarcásticas se o formulário estiver vazio
+// Variações engraçadas para quando o formulário não é preenchido
 const frasesSarcasticas = [
   "Sem seu nome, idade ou peso, posso te dar conselhos… tão úteis quanto ler a sorte no biscoito da sorte.",
   "Sem dados, minha precisão é tão boa quanto um horóscopo de revista.",
@@ -65,10 +65,9 @@ const intro = hasForm
   )
   : frasesSarcasticas[Math.floor(Math.random() * frasesSarcasticas.length)];
 
-// 🧠 Prompt híbrido com lógica progressiva
-let prompt = `${intro}\n\nYou are OwlCoreHealth AI 🦉 — a hybrid personality: smart, science-backed, sarcastic when needed, but always delivering useful answers. Never ask vague follow-up questions. Instead, offer clear explanations, risks, and next steps. Guide the user toward a solution, not just curiosity.`;
+let prompt = `${intro}\n\nYou are OwlCoreHealth AI 🦉 — a hybrid personality: smart, science-backed, sarcastic when needed, but always delivering useful answers. Never ask vague follow-up questions. Always give clear explanations, risks, and next steps. Guide the user toward solutions.`;
 
-// ✅ Atualiza memória da sessão por sintoma
+// 🧠 Contador de rodadas por sintoma
 sessionMemory.sintomaAtual = contexto?.sintoma || null;
 sessionMemory.contadorPerguntas = sessionMemory.contadorPerguntas || {};
 if (contexto?.sintoma) {
@@ -88,10 +87,10 @@ if (contexto) {
       : "⚠️ This is a serious symptom. Ignoring it could make things worse.")
     : "";
 
-  const base = isPortuguese ? contexto.base_pt : contexto.base_en;
-  const p1 = isPortuguese ? contexto.pergunta1_pt : contexto.pergunta1_en;
-  const p2 = isPortuguese ? contexto.pergunta2_pt : contexto.pergunta2_en;
-  const p3 = isPortuguese ? contexto.pergunta3_pt : contexto.pergunta3_en;
+  const base = (isPortuguese ? contexto.base_pt : contexto.base_en) || "";
+  const p1 = (isPortuguese ? contexto.pergunta1_pt : contexto.pergunta1_en) || "";
+  const p2 = (isPortuguese ? contexto.pergunta2_pt : contexto.pergunta2_en) || "";
+  const p3 = (isPortuguese ? contexto.pergunta3_pt : contexto.pergunta3_en) || "";
 
   followups = [
     `${isPortuguese ? "Quer entender" : "Want to know"} ${p1.toLowerCase()}?`,
@@ -99,9 +98,7 @@ if (contexto) {
     `${isPortuguese ? "Posso explicar soluções práticas sobre" : "I can explain real solutions for"} ${p3.toLowerCase()}`
   ];
 
-  prompt += `\n\n${alerta}\n\n${
-    isPortuguese ? "Base científica:" : "Scientific insight:"
-  }\n${base}\n\n${
+  prompt += `\n\n${alerta}\n\n${isPortuguese ? "Base científica:" : "Scientific insight:"}\n${base}\n\n${
     isPortuguese ? "Vamos aprofundar com 3 ideias práticas:" : "Let's explore 3 practical angles:"
   }\n1. ${followups[0]}\n2. ${followups[1]}\n3. ${followups[2]}`;
 
@@ -124,11 +121,9 @@ if (contexto) {
         "Want to see natural strategies to relieve it now?"
       ];
 
-  prompt += `\n\n${
-    isPortuguese
-      ? "Ainda não detectei um sintoma claro, mas posso te orientar com conhecimento de verdade. Vamos começar:"
-      : "I didn’t detect a clear symptom yet, but I’ll guide you with real insight. Let’s start:"
-  }\n1. ${followups[0]}\n2. ${followups[1]}\n3. ${followups[2]}`;
+  prompt += `\n\n${isPortuguese
+    ? "Ainda não detectei um sintoma claro, mas posso te orientar com conhecimento de verdade. Vamos começar:"
+    : "I didn’t detect a clear symptom yet, but I’ll guide you with real insight. Let’s start:"}\n1. ${followups[0]}\n2. ${followups[1]}\n3. ${followups[2]}`;
 }
     const openaiRes = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
