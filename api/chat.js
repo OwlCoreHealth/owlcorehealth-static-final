@@ -46,7 +46,16 @@ export default async function handler(req, res) {
     const idioma = isPortuguese ? "pt" : "en";
 
     let followups = [];
-let prompt = `${intro}\n\nYou are OwlCoreHealth AI 🦉 — a hybrid personality: sharp, humorous, brutally honest when needed, but always backed by science and logic. Use empathy when appropriate, but never shy away from sarcasm when the situation calls for it.`;
+let prompt = `${intro}\n\nYou are OwlCoreHealth AI 🦉 — a hybrid personality: sharp, honest, a bit sarcastic when needed, but always deeply informative. You are here to explain, educate, and slowly guide the user toward the best health choice — not rush them.`;
+
+// ✅ Atualiza memória da sessão por sintoma
+sessionMemory.sintomaAtual = contexto?.sintoma || null;
+sessionMemory.contadorPerguntas = sessionMemory.contadorPerguntas || {};
+if (contexto?.sintoma) {
+  sessionMemory.contadorPerguntas[contexto.sintoma] = (sessionMemory.contadorPerguntas[contexto.sintoma] || 0) + 1;
+}
+const rodadas = sessionMemory.contadorPerguntas[contexto?.sintoma || ""] || 0;
+const incluirSuplemento = rodadas >= 4;
 
 if (contexto) {
   if (!sessionMemory.sintomasDetectados.includes(contexto.sintoma)) {
@@ -55,8 +64,8 @@ if (contexto) {
 
   const alerta = contexto.gravidade >= 4
     ? (idioma === "pt"
-      ? "⚠️ Esse sintoma é sério. Hora de parar de ignorar e agir com inteligência."
-      : "⚠️ This symptom is serious. Time to stop ignoring and act smart.")
+      ? "⚠️ Esse sintoma é sério. Hora de agir com inteligência."
+      : "⚠️ This symptom is serious. Time to act smart.")
     : "";
 
   const base = idioma === "pt" ? contexto.base_pt : contexto.base_en;
@@ -69,18 +78,25 @@ if (contexto) {
     idioma === "pt" ? "Base científica:" : "Scientific insight:"
   }\n${base}\n\n${
     idioma === "pt"
-      ? "Agora, pense nessas perguntas:"
-      : "Now, think about these:"
+      ? "Agora pense nessas perguntas:"
+      : "Now consider these:"
   }\n1. ${p1}\n2. ${p2}\n3. ${p3}`;
+
+  if (incluirSuplemento) {
+    prompt += idioma === "pt"
+      ? "\n\nSe quiser, posso te mostrar um suplemento que ajuda diretamente com isso. Só pedir. 😉"
+      : "\n\nIf you want, I can show you a supplement that helps with this directly. Just ask. 😉";
+  }
+
 } else {
   followups = idioma === "pt"
-    ? ["Você tem mesmo um sintoma ou só está curioso?", "Quer uma solução de verdade ou só reclamar?", "Posso te mostrar o suplemento ideal — se estiver pronto."]
-    : ["Are you here for real help or just curious?", "Want a real solution or just want to vent?", "I can show you the ideal supplement — if you're ready."];
+    ? ["Você sente algum sintoma específico?", "Algo tem atrapalhado sua energia ou digestão?", "Quer entender o que pode estar por trás disso?"]
+    : ["Do you feel any specific symptoms?", "Something affecting your energy or digestion?", "Want to understand what might be behind it?"];
 
   prompt += `\n\n${
     idioma === "pt"
-      ? "Não encontrei um sintoma exato ainda, mas posso te ajudar com uma visão afiada, prática e provocadora. Vamos lá:"
-      : "Didn't detect a clear symptom yet, but here's a sharp, honest take to guide you anyway:"
+      ? "Ainda não detectei um sintoma claro, mas posso te guiar com base em ciência e boas perguntas. Vamos lá:"
+      : "I haven’t detected a specific symptom yet, but I can guide you with science and smart questions. Let's go:"
   }`;
 }
 
