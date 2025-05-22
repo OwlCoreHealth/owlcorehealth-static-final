@@ -131,73 +131,74 @@ export default async function handler(req, res) {
       // ... (outros blocos podem ser adicionados se necessário)
     };
     let corpo = "";
-    let idioma = isPortuguese ? "pt" : "en";
+let idioma = sessionMemory.idioma || (isPortuguese ? "pt" : "en");
+const nomeUser = sessionMemory.nome || (hasForm ? userName : "");
 
-    if (contexto) {
-      const alerta = contexto.gravidade >= 4
-        ? (isPortuguese
-          ? "⚠️ Esse sintoma é sério. Se não cuidar, pode escalar para algo bem pior."
-          : "⚠️ This is a serious symptom. Ignoring it could make things worse.")
-        : "";
+if (contexto) {
+  const alerta = contexto.gravidade >= 4
+    ? (idioma === "pt"
+      ? "⚠️ Esse sintoma é sério. Se não cuidar, pode escalar para algo bem pior."
+      : "⚠️ This is a serious symptom. Ignoring it could make things worse.")
+    : "";
 
-      const base = isPortuguese ? contexto.base_pt : contexto.base_en;
-      const p1 = isPortuguese ? contexto.pergunta1_pt : contexto.pergunta1_en;
-      const p2 = isPortuguese ? contexto.pergunta2_pt : contexto.pergunta2_en;
-      const p3 = isPortuguese ? contexto.pergunta3_pt : contexto.pergunta3_en;
+  const base = idioma === "pt" ? contexto.base_pt : contexto.base_en;
+  const p1 = idioma === "pt" ? contexto.pergunta1_pt : contexto.pergunta1_en;
+  const p2 = idioma === "pt" ? contexto.pergunta2_pt : contexto.pergunta2_en;
+  const p3 = idioma === "pt" ? contexto.pergunta3_pt : contexto.pergunta3_en;
 
-      followups = gerarFollowupsUnicos([
-        `${isPortuguese ? "Quer entender" : "Want to know"} ${p1}?`,
-        `${isPortuguese ? "Deseja ver como isso impacta" : "Curious how this affects"} ${p2}?`,
-        `${isPortuguese ? "Posso explicar soluções práticas sobre" : "I can explain real solutions for"} ${p3}`
-      ]);
+  followups = gerarFollowupsUnicos([
+    `${idioma === "pt" ? "Quer entender" : "Want to know"} ${p1}?`,
+    `${idioma === "pt" ? "Deseja ver como isso impacta" : "Curious how this affects"} ${p2}?`,
+    `${idioma === "pt" ? "Posso explicar soluções práticas sobre" : "I can explain real solutions for"} ${p3}`
+  ]);
 
-      corpo = `\n\n${alerta}\n\n${isPortuguese ? "Base científica:" : "Scientific insight:"}\n${base}\n\n${
-        isPortuguese ? "Vamos aprofundar com 3 ideias práticas:" : "Let's explore 3 practical angles:"
-      }\n1. ${followups[0]}\n2. ${followups[1]}\n3. ${followups[2]}`;
+  corpo = `\n\n${nomeUser ? (idioma === "pt" ? `Vamos focar nisso, ${nomeUser}.` : `Let's focus on that, ${nomeUser}.`) : ""}\n\n${alerta}\n\n${idioma === "pt" ? "Base científica:" : "Scientific insight:"}\n${base}\n\n${
+    idioma === "pt" ? "Vamos aprofundar com 3 ideias práticas:" : "Let's explore 3 practical angles:"
+  }\n1. ${followups[0]}\n2. ${followups[1]}\n3. ${followups[2]}`;
 
-      if (incluirSuplemento) {
-        corpo += isPortuguese
-          ? "\n\nSe quiser, posso te mostrar o suplemento ideal para esse caso. Só dizer. 😉"
-          : "\n\nIf you're ready, I can show you the ideal supplement for this case. Just ask. 😉";
-      }
-    } else {
-      const bloco = blocos[categoria] || blocos["energia"];
-      const texto = bloco[idioma][Math.min(etapa - 1, bloco[idioma].length - 1)];
+  if (incluirSuplemento) {
+    corpo += idioma === "pt"
+      ? "\n\nSe quiser, posso te mostrar o suplemento ideal para esse caso. Só dizer. 😉"
+      : "\n\nIf you're ready, I can show you the ideal supplement for this case. Just ask. 😉";
+  }
+} else {
+  const bloco = blocos[categoria] || blocos["energia"];
+  const texto = bloco[idioma][Math.min(etapa - 1, bloco[idioma].length - 1)];
 
-      corpo = `\n\n${texto}`;
+  corpo = `\n\n${texto}`;
 
-      followups = gerarFollowupsUnicos(
-        etapa < 5
-          ? isPortuguese
-            ? [
-                "Quer entender os riscos se isso for ignorado?",
-                "Deseja ver dados reais de quem passou por isso?",
-                "Quer saber quais nutrientes combatem isso?"
-              ]
-            : [
-                "Want to know the risks of ignoring this?",
-                "Interested in real-world data on this symptom?",
-                "Want to discover which nutrients help fight this?"
-              ]
-          : isPortuguese
-            ? [
-                "Quer que eu mostre o suplemento ideal para isso?",
-                "Deseja ver a avaliação completa do produto?",
-                "Quer continuar tirando dúvidas sobre esse sintoma?"
-              ]
-            : [
-                "Want me to show the best supplement for this?",
-                "Want to read the full product review?",
-                "Prefer to keep asking about this symptom?"
-              ]
-      );
+  followups = gerarFollowupsUnicos(
+    etapa < 5
+      ? idioma === "pt"
+        ? [
+            "Quer entender os riscos se isso for ignorado?",
+            "Deseja ver dados reais de quem passou por isso?",
+            "Quer saber quais nutrientes combatem isso?"
+          ]
+        : [
+            "Want to know the risks of ignoring this?",
+            "Interested in real-world data on this symptom?",
+            "Want to discover which nutrients help fight this?"
+          ]
+      : idioma === "pt"
+        ? [
+            "Quer que eu mostre o suplemento ideal para isso?",
+            "Deseja ver a avaliação completa do produto?",
+            "Quer continuar tirando dúvidas sobre esse sintoma?"
+          ]
+        : [
+            "Want me to show the best supplement for this?",
+            "Want to read the full product review?",
+            "Prefer to keep asking about this symptom?"
+          ]
+  );
 
-      corpo += `\n\n${isPortuguese
-        ? "Escolha uma das opções abaixo para continuarmos:"
-        : "Choose one of the options below to continue:"}\n1. ${followups[0]}\n2. ${followups[1]}\n3. ${followups[2]}`;
-    }
+  corpo += `\n\n${idioma === "pt"
+    ? "Escolha uma das opções abaixo para continuarmos:"
+    : "Choose one of the options below to continue:"}\n1. ${followups[0]}\n2. ${followups[1]}\n3. ${followups[2]}`;
+}
 
-    prompt += corpo;
+prompt += corpo;
     const openaiRes = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
