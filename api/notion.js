@@ -8,7 +8,7 @@ function extractKeywords(text) {
   const stopwords = ["de", "do", "da", "com", "sem", "tenho", "estou", "e", "a", "o", "as", "os", "na", "no"];
   return text
     .toLowerCase()
-    .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // remove acentos
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
     .split(/\W+/)
     .filter(word => word.length > 3 && !stopwords.includes(word));
 }
@@ -17,20 +17,21 @@ function extractKeywords(text) {
 export async function getSymptomContext(userMessage) {
   try {
     const keywords = extractKeywords(userMessage);
+    console.log("🔎 Palavras extraídas:", keywords);
 
     if (!keywords.length) return [];
 
     const response = await notion.databases.query({
-  database_id: databaseId,
-  filter: {
-    or: keywords.map(word => ({
-      property: "Palavras-chave",
-      rich_text: {
-        contains: word
+      database_id: databaseId,
+      filter: {
+        or: keywords.map(word => ({
+          property: "Palavras-chave",
+          rich_text: { contains: word }
+        }))
       }
-    }))
-  }
-});
+    });
+
+    console.log("📥 Dados brutos recebidos:", response.results.length);
 
     if (!response.results.length) return [];
 
@@ -58,10 +59,12 @@ export async function getSymptomContext(userMessage) {
     });
 
   } catch (error) {
-    console.error("Erro ao consultar o Notion:", error.message);
+    console.error("❌ Erro ao consultar o Notion:", error.message);
     return [];
   }
 }
+
+// 🔁 Testar com sintoma real
 const userMessage = "inchaço abdominal";
 
 getSymptomContext(userMessage).then(response => {
@@ -69,6 +72,6 @@ getSymptomContext(userMessage).then(response => {
     console.log("⚠️ Nenhum resultado encontrado para:", userMessage);
   } else {
     console.log("✅ Resultado da consulta ao Notion:");
-    console.log(JSON.stringify(response, null, 2)); // Visualização estruturada
+    console.log(JSON.stringify(response, null, 2));
   }
 });
