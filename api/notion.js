@@ -63,10 +63,12 @@ export async function getSymptomContext(userMessage) {
     return [];
   }
 }
-
 // 🔁 Testar com sintoma real
 const userMessage = "cansaço";
+console.log("🚀 Iniciando consulta para:", userMessage);
+
 getSymptomContext(userMessage).then(response => {
+  console.log("🔎 Consulta finalizada. Resultado bruto:", response);
   if (response.length === 0) {
     console.log("⚠️ Nenhum resultado encontrado para:", userMessage);
   } else {
@@ -75,3 +77,4 @@ getSymptomContext(userMessage).then(response => {
 }).catch(error => {
   console.error("❌ Erro ao consultar o Notion:", error);
 });
+
