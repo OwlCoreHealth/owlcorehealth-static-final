@@ -1,11 +1,15 @@
 import { Client } from "@notionhq/client";
 
-// ✅ Substitua por sua chave de API do Notion
+// 🟢 Sua chave de integração do Notion
 const notion = new Client({ auth: "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" });
+
+// 🟢 ID da sua base de dados
 const databaseId = "1faa050ee113805e8f1bd34a11ce013f";
 
-// 🔍 Função que consulta a base do Notion com base na mensagem do usuário
+// 🔍 Consulta a base do Notion por palavra-chave na coluna "Palavras-chave"
 async function getSymptomContext(userMessage) {
+  console.log("🚀 Iniciando consulta com:", userMessage);
+
   try {
     const response = await notion.databases.query({
       database_id: databaseId,
@@ -16,6 +20,8 @@ async function getSymptomContext(userMessage) {
         }
       }
     });
+
+    console.log("📥 Resultados encontrados:", response.results.length);
 
     if (!response.results.length) {
       console.log("⚠️ Nenhum resultado encontrado para:", userMessage);
@@ -44,13 +50,14 @@ async function getSymptomContext(userMessage) {
       url: p["Link do Review"]?.url || ""
     };
 
-    console.log("✅ Resultado da consulta ao Notion:", resultado);
+    console.log("✅ Resultado da consulta ao Notion:");
+    console.log(JSON.stringify(resultado, null, 2));
 
   } catch (error) {
     console.error("❌ Erro ao consultar o Notion:", error.message);
   }
 }
 
-// 🔁 Executar consulta com uma mensagem de exemplo
+// 🔁 Executar o teste com o termo "inchaço"
 const userMessage = "inchaço";
 getSymptomContext(userMessage);
