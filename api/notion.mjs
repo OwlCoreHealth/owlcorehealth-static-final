@@ -1,29 +1,26 @@
 import { Client } from "@notionhq/client";
 
-// 🟢 Sua chave de integração do Notion
+// ✅ Autenticação com a chave da API
 const notion = new Client({ auth: "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" });
+
+// ✅ ID da base de dados Notion
 const databaseId = "1faa050ee113805e8f1bd34a11ce013f";
 
-// 🔍 Função para extrair palavras úteis da frase
+// ✅ Função para extrair palavras-chave da mensagem
 function extractKeywords(text) {
   const stopwords = ["de", "do", "da", "com", "sem", "tenho", "estou", "e", "a", "o", "as", "os", "na", "no"];
   return text
     .toLowerCase()
-    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // remove acentos
     .split(/\W+/)
     .filter(word => word.length > 3 && !stopwords.includes(word));
 }
 
-// 🔍 Consulta a base de dados do Notion
-async function getSymptomContext(userMessage) {
+// ✅ Função de consulta ao Notion
+export async function getSymptomContext(userMessage) {
   try {
     const keywords = extractKeywords(userMessage);
-    console.log("🔎 Palavras extraídas:", keywords);
-
-    if (!keywords.length) {
-      console.log("⚠️ Nenhuma palavra válida para consulta.");
-      return [];
-    }
+    if (!keywords.length) return [];
 
     const response = await notion.databases.query({
       database_id: databaseId,
@@ -36,8 +33,6 @@ async function getSymptomContext(userMessage) {
         }))
       }
     });
-
-    console.log(`📥 Resultados encontrados: ${response.results.length}`);
 
     if (!response.results.length) return [];
 
@@ -65,23 +60,18 @@ async function getSymptomContext(userMessage) {
     });
 
   } catch (error) {
-    console.error("❌ Erro ao consultar o Notion:", error.message);
+    console.error("❌ Erro ao consultar o Notion:", error);
     return [];
   }
 }
 
-// 🧪 Teste direto
+// 🔁 Teste local (você pode mudar a mensagem para outros sintomas)
 const userMessage = "inchaço abdominal";
-
 getSymptomContext(userMessage).then(response => {
-  console.log("🔎 Dados retornados:", response); // Primeiro log simples
-
+  console.log("🔎 Dados retornados:", response);
   if (!response || response.length === 0) {
     console.log("⚠️ Nenhum resultado encontrado para:", userMessage);
   } else {
-    console.log("✅ Resultado da consulta ao Notion:");
-    console.log(JSON.stringify(response, null, 2)); // <- Isso exibe TUDO formatado!
+    console.log("✅ Resultado da consulta ao Notion:", response);
   }
-}).catch(error => {
-  console.error("❌ Erro ao consultar o Notion:", error);
 });
