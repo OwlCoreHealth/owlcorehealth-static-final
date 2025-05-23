@@ -1,12 +1,14 @@
+
 import { Client } from "@notionhq/client";
 
-// ✅ Autenticação com a chave da API
-const notion = new Client({ auth: "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" });
+// ✅ Autenticação com chave direta (teste)
+const notion = new Client({
+  auth: "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"
+});
 
-// ✅ ID da base de dados Notion
 const databaseId = "1faa050ee113805e8f1bd34a11ce013f";
 
-// ✅ Função para extrair palavras-chave da mensagem
+// 🔍 Extração de palavras-chave
 function extractKeywords(text) {
   const stopwords = ["de", "do", "da", "com", "sem", "tenho", "estou", "e", "a", "o", "as", "os", "na", "no"];
   return text
@@ -16,23 +18,31 @@ function extractKeywords(text) {
     .filter(word => word.length > 3 && !stopwords.includes(word));
 }
 
-// ✅ Função de consulta ao Notion
+// 🔍 Função principal
 export async function getSymptomContext(userMessage) {
   try {
     const keywords = extractKeywords(userMessage);
+    console.log("🧠 Palavras-chave extraídas:", keywords);
+
     if (!keywords.length) return [];
+
+    const filter = {
+      or: keywords.map(word => ({
+        property: "Palavras-chave",
+        rich_text: {
+          contains: word
+        }
+      }))
+    };
+
+    console.log("📦 Filtro enviado ao Notion:", JSON.stringify(filter, null, 2));
 
     const response = await notion.databases.query({
       database_id: databaseId,
-      filter: {
-        or: keywords.map(word => ({
-          property: "Palavras-chave",
-          rich_text: {
-            contains: word
-          }
-        }))
-      }
+      filter
     });
+
+    console.log("📨 Resposta bruta do Notion:", JSON.stringify(response, null, 2));
 
     if (!response.results.length) return [];
 
@@ -65,13 +75,14 @@ export async function getSymptomContext(userMessage) {
   }
 }
 
-// 🔁 Teste local (você pode mudar a mensagem para outros sintomas)
+// 🔁 Executar
 const userMessage = "inchaço abdominal";
+
 getSymptomContext(userMessage).then(response => {
-  console.log("🔎 Dados retornados:", response);
+  console.log("🔎 Resultado final:", response);
   if (!response || response.length === 0) {
-    console.log("⚠️ Nenhum resultado encontrado para:", userMessage);
+    console.log("⚠️ Nenhum resultado encontrado.");
   } else {
-    console.log("✅ Resultado da consulta ao Notion:", response);
+    console.log("✅ Resultado encontrado!");
   }
 });
