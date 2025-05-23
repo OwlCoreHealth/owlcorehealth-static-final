@@ -62,3 +62,10 @@ export async function getSymptomContext(userMessage) {
     return [];
   }
 }
+const userMessage = "inchaço abdominal"; // Mensagem de teste do usuário
+
+getSymptomContext(userMessage).then(response => {
+  console.log("Resultado da consulta ao Notion:", response);
+}).catch(error => {
+  console.error("Erro:", error);
+});
