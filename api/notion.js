@@ -21,7 +21,15 @@ export async function getSymptomContext(userMessage) {
     if (!keywords.length) return [];
 
     const response = await notion.databases.query({
-  database_id: databaseId
+  database_id: databaseId,
+  filter: {
+    or: keywords.map(word => ({
+      property: "Palavras-chave",
+      rich_text: {
+        contains: word
+      }
+    }))
+  }
 });
 
     if (!response.results.length) return [];
