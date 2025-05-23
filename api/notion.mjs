@@ -74,12 +74,13 @@ async function getSymptomContext(userMessage) {
 const userMessage = "inchaço abdominal";
 
 getSymptomContext(userMessage).then(response => {
-  console.log("🔎 Dados retornados:", response);
+  console.log("🔎 Dados retornados:", response); // Primeiro log simples
+
   if (!response || response.length === 0) {
     console.log("⚠️ Nenhum resultado encontrado para:", userMessage);
   } else {
     console.log("✅ Resultado da consulta ao Notion:");
-    console.log(JSON.stringify(response, null, 2));
+    console.log(JSON.stringify(response, null, 2)); // <- Isso exibe TUDO formatado!
   }
 }).catch(error => {
   console.error("❌ Erro ao consultar o Notion:", error);
