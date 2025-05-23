@@ -68,8 +68,6 @@ getSymptomContext(userMessage).then(response => {
   if (response.length === 0) {
     console.log("⚠️ Nenhum resultado encontrado para:", userMessage);
   } else {
-    console.log("✅ Resultado da consulta ao Notion:", response);
+    console.log("✅ Resultado da consulta ao Notion:", JSON.stringify(response, null, 2));
   }
-}).catch(error => {
-  console.error("❌ Erro ao consultar o Notion:", error);
 });
