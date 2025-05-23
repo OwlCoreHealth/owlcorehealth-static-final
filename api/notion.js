@@ -65,8 +65,7 @@ export async function getSymptomContext(userMessage) {
 }
 
 // 🔁 Testar com sintoma real
-const userMessage = "fadiga";
-
+const userMessage = "cansaço";
 getSymptomContext(userMessage).then(response => {
   if (response.length === 0) {
     console.log("⚠️ Nenhum resultado encontrado para:", userMessage);
