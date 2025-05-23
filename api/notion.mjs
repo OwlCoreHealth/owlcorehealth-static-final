@@ -58,6 +58,15 @@ async function getSymptomContext(userMessage) {
   }
 }
 
-// 🔁 Executar o teste com o termo "inchaço"
-const userMessage = "inchaço";
-getSymptomContext(userMessage);
+const userMessage = "inchaço abdominal";
+
+getSymptomContext(userMessage).then(response => {
+  console.log("🔎 Dados retornados:", response); // <- Novo log
+  if (!response || response.length === 0) {
+    console.log("⚠️ Nenhum resultado encontrado para:", userMessage);
+  } else {
+    console.log("✅ Resultado da consulta ao Notion:", response);
+  }
+}).catch(error => {
+  console.error("❌ Erro ao consultar o Notion:", error);
+});
