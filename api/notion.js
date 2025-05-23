@@ -65,7 +65,7 @@ export async function getSymptomContext(userMessage) {
 }
 
 // 🔁 Testar com sintoma real
-const userMessage = "inchaço abdominal";
+const userMessage = "fadiga";
 
 getSymptomContext(userMessage).then(response => {
   if (response.length === 0) {
