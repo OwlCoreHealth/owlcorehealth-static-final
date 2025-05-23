@@ -1,3 +1,4 @@
+console.log("🟢 ESTE É O ARQUIVO notion.mjs SENDO EXECUTADO");
 
 import { Client } from "@notionhq/client";
 
