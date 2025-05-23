@@ -2,26 +2,46 @@ import { Client } from "@notionhq/client";
 
 // 🟢 Sua chave de integração do Notion
 const notion = new Client({ auth: "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" });
-
-// 🟢 ID da sua base de dados
 const databaseId = "1faa050ee113805e8f1bd34a11ce013f";
 
-// Consulta a base de sintomas com base na mensagem do usuário
-export async function getSymptomContext(userMessage) {
+// 🔍 Função para extrair palavras úteis da frase
+function extractKeywords(text) {
+  const stopwords = ["de", "do", "da", "com", "sem", "tenho", "estou", "e", "a", "o", "as", "os", "na", "no"];
+  return text
+    .toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .split(/\W+/)
+    .filter(word => word.length > 3 && !stopwords.includes(word));
+}
+
+// 🔍 Consulta a base de dados do Notion
+async function getSymptomContext(userMessage) {
   try {
+    const keywords = extractKeywords(userMessage);
+    console.log("🔎 Palavras extraídas:", keywords);
+
+    if (!keywords.length) {
+      console.log("⚠️ Nenhuma palavra válida para consulta.");
+      return [];
+    }
+
     const response = await notion.databases.query({
       database_id: databaseId,
       filter: {
-        property: "Palavras-chave",
-        rich_text: {
-          contains: userMessage.toLowerCase()
-        }
+        or: keywords.map(word => ({
+          property: "Palavras-chave",
+          rich_text: {
+            contains: word
+          }
+        }))
       }
     });
 
+    console.log(`📥 Resultados encontrados: ${response.results.length}`);
+
     if (!response.results.length) return [];
 
-    const results = response.results.map(page => {
+    return response.results.map(page => {
       const p = page.properties;
       return {
         sintoma: p["Sintoma / Questão"]?.title?.[0]?.plain_text || "",
@@ -39,11 +59,10 @@ export async function getSymptomContext(userMessage) {
         base_en: p["Resposta Científica Base EN"]?.rich_text?.[0]?.plain_text || "",
         link_pt: p["Chamada do Link PT"]?.rich_text?.[0]?.plain_text || "",
         link_en: p["Chamada do Link EN"]?.rich_text?.[0]?.plain_text || "",
-        url: p["Link do Review"]?.url || ""
+        url: p["Link do Review"]?.url || "",
+        gravidade: Number(p["Gravidade"]?.number || 1)
       };
     });
-
-    return results;
 
   } catch (error) {
     console.error("❌ Erro ao consultar o Notion:", error.message);
@@ -51,7 +70,7 @@ export async function getSymptomContext(userMessage) {
   }
 }
 
-// 🔁 Rodar teste direto
+// 🧪 Teste direto
 const userMessage = "inchaço abdominal";
 
 getSymptomContext(userMessage).then(response => {
@@ -59,7 +78,8 @@ getSymptomContext(userMessage).then(response => {
   if (!response || response.length === 0) {
     console.log("⚠️ Nenhum resultado encontrado para:", userMessage);
   } else {
-    console.log("✅ Resultado da consulta ao Notion:", response);
+    console.log("✅ Resultado da consulta ao Notion:");
+    console.log(JSON.stringify(response, null, 2));
   }
 }).catch(error => {
   console.error("❌ Erro ao consultar o Notion:", error);
