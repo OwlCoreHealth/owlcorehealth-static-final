@@ -1,4 +1,4 @@
-import { getSymptomContext } from "./notion.js";
+import { getSymptomContext } from "./notion.mjs";
 
 let sessionMemory = {
   sintomasDetectados: [],
