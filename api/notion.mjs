@@ -38,14 +38,13 @@ export async function getSymptomContext(userMessage) {
 
     console.log("📦 Filtro enviado ao Notion:", JSON.stringify(filter, null, 2));
 
-    const response = await notion.databases.query({
-      database_id: databaseId,
-      filter
-    });
+const response = await notion.databases.query({
+  database_id: "1fda050e-e113-804a-a5e9-dd1b01e31066" // Insira o ID do banco de dados diretamente
+});
 
-    console.log("📨 Resposta bruta do Notion:", JSON.stringify(response, null, 2));
+console.log("📨 Resposta do Notion:", JSON.stringify(response, null, 2));
 
-    if (!response.results.length) return [];
+if (!response.results.length) return [];
 
     return response.results.map(page => {
       const p = page.properties;
