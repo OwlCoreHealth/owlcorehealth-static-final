@@ -11,6 +11,7 @@ const notion = new Client({
 const databaseId = "1fda050ee113804aa5e9dd1b01e31066"; // Substitua com o seu ID real
 
 // 🔍 Função de extração de palavras-chave
+// Função de extração de palavras-chave
 function extractKeywords(text) {
   const stopwords = [
     "the", "and", "for", "with", "from", "that", "this", "you", "your", "in", "to", "is", "it", "on", "a", "of", "as", "at", "by", "be", "are", "have", "was", "were", "not", "but", "or", "an", "we", "they", "he", "she", "it", "I"
@@ -20,7 +21,13 @@ function extractKeywords(text) {
     .toLowerCase()
     .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Remove acentos
     .split(/\W+/) // Divide o texto por não-palavras
-    .filter(word => word.length > 3 && !stopwords.includes(word) && /^[a-zA-Z]+$/.test(word)); // Filtra palavras válidas (apenas letras)
+    .filter(word => word.length > 3 && !stopwords.includes(word) && /^[a-zA-Z]+$/.test(word)); // Filtra palavras válidas
+}
+
+// Testando a função com uma mensagem
+const userMessage = "Headache and fatigue are common symptoms that can affect daily life.";
+const keywords = extractKeywords(userMessage);
+console.log("🧠 Palavras-chave extraídas:", keywords);
 }
 
 // 🔍 Função principal para consultar o Notion com as palavras-chave extraídas
