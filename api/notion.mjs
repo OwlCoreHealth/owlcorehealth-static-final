@@ -7,7 +7,7 @@ const notion = new Client({
   auth: "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"
 });
 
-const databaseId = "1faa050ee113805e8f1bd34a11ce013f";
+const databaseId = "1fda050ee113804aa5e9dd1b01e31066";
 
 // 🔍 Extração de palavras-chave
 function extractKeywords(text) {
