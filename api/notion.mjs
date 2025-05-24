@@ -11,12 +11,14 @@ const databaseId = "1fda050ee113804aa5e9dd1b01e31066";
 
 // 🔍 Extração de palavras-chave
 function extractKeywords(text) {
-  const stopwords = ["de", "do", "da", "com", "sem", "tenho", "estou", "e", "a", "o", "as", "os", "na", "no"];
+  const stopwords = [
+    "the", "and", "for", "with", "from", "that", "this", "you", "your", "in", "to", "is", "it", "on", "a", "of", "as", "at", "by", "be", "are", "have", "was", "were", "not", "but", "or", "an", "we", "they", "he", "she", "it", "I"
+  ];
   return text
     .toLowerCase()
-    .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // remove acentos
-    .split(/\W+/)
-    .filter(word => word.length > 3 && !stopwords.includes(word));
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Remove diacritical marks (accents)
+    .split(/\W+/) // Split the text by non-word characters
+    .filter(word => word.length > 3 && !stopwords.includes(word) && /^[a-zA-Z]+$/.test(word)); // Only keep valid words (letters)
 }
 
 // 🔍 Função principal
@@ -39,7 +41,7 @@ export async function getSymptomContext(userMessage) {
     console.log("📦 Filtro enviado ao Notion:", JSON.stringify(filter, null, 2));
 
 const response = await notion.databases.query({
-  database_id: "1fda050e-e113-804a-a5e9-dd1b01e31066" // Insira o ID do banco de dados diretamente
+  database_id: databaseId // Use a constante databaseId
 });
 
 console.log("📨 Resposta do Notion:", JSON.stringify(response, null, 2));
