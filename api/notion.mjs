@@ -7,47 +7,56 @@ const notion = new Client({
   auth: "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"
 });
 
-const databaseId = "1fda050ee113804aa5e9dd1b01e31066";
+// Definir o ID do banco de dados do Notion
+const databaseId = "1fda050ee113804aa5e9dd1b01e31066"; // Substitua com o seu ID real
 
-// 🔍 Extração de palavras-chave
+// 🔍 Função de extração de palavras-chave
 function extractKeywords(text) {
   const stopwords = [
     "the", "and", "for", "with", "from", "that", "this", "you", "your", "in", "to", "is", "it", "on", "a", "of", "as", "at", "by", "be", "are", "have", "was", "were", "not", "but", "or", "an", "we", "they", "he", "she", "it", "I"
   ];
+
   return text
     .toLowerCase()
-    .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Remove diacritical marks (accents)
-    .split(/\W+/) // Split the text by non-word characters
-    .filter(word => word.length > 3 && !stopwords.includes(word) && /^[a-zA-Z]+$/.test(word)); // Only keep valid words (letters)
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Remove acentos
+    .split(/\W+/) // Divide o texto por não-palavras
+    .filter(word => word.length > 3 && !stopwords.includes(word) && /^[a-zA-Z]+$/.test(word)); // Filtra palavras válidas (apenas letras)
 }
 
-// 🔍 Função principal
+// 🔍 Função principal para consultar o Notion com as palavras-chave extraídas
 export async function getSymptomContext(userMessage) {
   try {
+    // Extração das palavras-chave da mensagem do usuário
     const keywords = extractKeywords(userMessage);
     console.log("🧠 Palavras-chave extraídas:", keywords);
 
+    // Se não houver palavras-chave extraídas, retornar um array vazio
     if (!keywords.length) return [];
 
+    // Criar o filtro para a consulta no Notion com as palavras-chave extraídas
     const filter = {
       or: keywords.map(word => ({
-        property: "Palavras-chave",
+        property: "Palavras-chave", // Nome da propriedade no banco de dados do Notion
         rich_text: {
-          contains: word
+          contains: word // Verificar se cada palavra-chave está no campo "Palavras-chave"
         }
       }))
     };
 
     console.log("📦 Filtro enviado ao Notion:", JSON.stringify(filter, null, 2));
 
-const response = await notion.databases.query({
-  database_id: databaseId // Use a constante databaseId
-});
+    // Consulta ao banco de dados do Notion
+    const response = await notion.databases.query({
+      database_id: databaseId // ID do banco de dados
+    });
 
-console.log("📨 Resposta do Notion:", JSON.stringify(response, null, 2));
+    // Exibir a resposta bruta do Notion
+    console.log("📨 Resposta do Notion:", JSON.stringify(response, null, 2));
 
-if (!response.results.length) return [];
+    // Se não houver resultados, retornar um array vazio
+    if (!response.results.length) return [];
 
+    // Mapeando os resultados e retornando as informações relevantes
     return response.results.map(page => {
       const p = page.properties;
       return {
@@ -72,14 +81,13 @@ if (!response.results.length) return [];
     });
 
   } catch (error) {
-    console.error("❌ Erro ao consultar o Notion:", error);
-    return [];
+    console.error("❌ Erro ao consultar o Notion:", error); // Exibe o erro no console
+    return []; // Retorna um array vazio em caso de erro
   }
 }
 
-// 🔁 Executar
-const userMessage = "inchaço abdominal";
-
+// 🔁 Testando a função com uma mensagem
+const userMessage = "Headache and fatigue are common symptoms that can affect daily life.";
 getSymptomContext(userMessage).then(response => {
   console.log("🔎 Resultado final:", response);
   if (!response || response.length === 0) {
