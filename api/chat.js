@@ -155,12 +155,12 @@ symptomContext.followupQuestions = uniqueQuestions;
   selectedQuestion: !!selectedQuestion
 };
 
-      console.log("Tentando obter resposta do GPT-4o mini...");
-      gptResponse = await callGPT4oMini(
-        "Responda ao usuário de forma personalizada, seguindo a fase do funil",
-        gptContext,
-        userInput
-      );
+     console.log("Tentando obter resposta do GPT-4o mini...");
+const gptResponse = await callGPT4oMini(
+  "Responda ao usuário de forma personalizada, seguindo a fase do funil",
+  { ...gptContext, selectedQuestion: !!selectedQuestion },
+  userInput
+);
       console.log("Resposta do GPT obtida:", gptResponse ? "Sim" : "Não");
     } catch (gptError) {
       console.error("Erro ao chamar GPT-4o mini:", gptError);
