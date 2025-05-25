@@ -120,9 +120,12 @@ export default async function handler(req, res) {
     const symptomContext = await getSymptomContext(userInput, userName);
     
     // Atualizar a memória da sessão com o sintoma detectado
-    if (symptomContext.sintoma) {
-      sessionMemory.sintomaAtual = symptomContext.sintoma;
-    }
+    // Se houver novo sintoma, atualiza; senão, mantém o anterior
+if (symptomContext.sintoma) {
+  sessionMemory.sintomaAtual = symptomContext.sintoma;
+} else if (!symptomContext.sintoma && sessionMemory.sintomaAtual) {
+  symptomContext.sintoma = sessionMemory.sintomaAtual;
+}
     
     // Determinar a fase atual do funil (incrementar a cada interação, máximo 6)
     const currentFunnelPhase = Math.min(sessionMemory.funnelPhase || 1, 6);
