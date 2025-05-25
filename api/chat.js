@@ -286,93 +286,95 @@ Let's try again? Choose one of the options below so I can really help you:`;
 
 // Função para gerar perguntas específicas para cada fase do funil
 function generatePhaseSpecificQuestions(phase, idioma, sintoma) {
+  // Perguntas estratégicas que guiam o usuário para a próxima fase do funil
+  // Cada fase tem perguntas completamente distintas que conduzem para a próxima etapa
   const questions = {
     pt: {
-      1: [
-        "Como tem sido a qualidade do seu sono?",
-        "Já tentou algum remédio caseiro para aliviar isso?",
-        "Há quanto tempo está sentindo isso?",
-        "Esses sintomas pioram em algum momento específico do dia?",
-        "Já conversou com alguém sobre isso?"
+      1: [ // Fase 1: Perguntas para entender o problema e levar à fase de consequências
+        "Como tem sido a qualidade do seu sono ultimamente?",
+        "Esse problema interfere nas suas atividades diárias?",
+        "Já notou algum padrão em quando esses sintomas aparecem?",
+        "Esse sintoma surgiu de repente ou foi gradual?",
+        "Existe algum fator que parece piorar ou melhorar o que você sente?"
       ],
-      2: [
-        "Quer saber o que pode acontecer se esses sintomas persistirem?",
-        "Conhece alguém que teve problemas semelhantes?",
-        "Já pensou nas consequências a longo prazo?",
-        "Tem ideia do que pode estar causando isso?",
-        "Já considerou que isso pode ser mais sério do que parece?"
+      2: [ // Fase 2: Perguntas para criar consciência das consequências e levar à fase de agravamento
+        "Quer saber o que acontece quando esses sintomas são ignorados por muito tempo?",
+        "Já conheceu alguém que teve problemas semelhantes e ignorou os sinais?",
+        "Sabia que esse problema pode estar conectado a outros sistemas do seu corpo?",
+        "Já pensou em como isso pode estar afetando sua produtividade diária?",
+        "Tem ideia de quanto tempo seu corpo aguenta esse desequilíbrio antes de colapsar?"
       ],
-      3: [
-        "Sabia que isso pode afetar sua qualidade de vida permanentemente?",
-        "Já pensou no impacto que isso tem no seu dia a dia?",
-        "Está disposto a fazer mudanças para resolver isso?",
-        "Tem noção do risco que está correndo ao ignorar esses sinais?",
-        "Já imaginou como seria sua vida sem esse problema?"
+      3: [ // Fase 3: Perguntas para mostrar riscos graves e levar à fase de nutrientes
+        "Está ciente de como esse problema pode se transformar em algo crônico?",
+        "Já considerou os efeitos a longo prazo desse desequilíbrio no seu organismo?",
+        "Quer entender o que realmente está acontecendo dentro do seu corpo agora?",
+        "Sabia que esse sintoma pode ser apenas a ponta do iceberg de um problema maior?",
+        "Está disposto a fazer algumas mudanças para evitar complicações sérias?"
       ],
-      4: [
-        "Conhece os nutrientes que seu corpo precisa para combater isso?",
-        "Já experimentou alguma planta medicinal para esse problema?",
-        "Sua alimentação tem os nutrientes necessários para sua recuperação?",
-        "Sabia que certos alimentos podem piorar esses sintomas?",
-        "Já ouviu falar dos benefícios do magnésio e ômega-3 para esse caso?"
+      4: [ // Fase 4: Perguntas sobre nutrientes para levar à fase de suplementos
+        "Sabia que existem plantas medicinais específicas para esse problema?",
+        "Sua alimentação atual fornece todos os nutrientes que seu corpo precisa?",
+        "Já ouviu falar sobre os compostos bioativos que combatem esse sintoma?",
+        "Conseguiria incluir 7-9 alimentos específicos na sua dieta diariamente?",
+        "Quer conhecer quais nutrientes são essenciais para resolver esse desequilíbrio?"
       ],
-      5: [
-        "Gostaria de conhecer um suplemento que resolve esse problema?",
-        "Já considerou usar suplementos para equilibrar seu organismo?",
-        "Sabia que existe uma solução completa para esse problema?",
-        "Prefere uma solução rápida ou está disposto a esperar meses por resultados?",
-        "Já tentou algum suplemento específico para isso?"
+      5: [ // Fase 5: Perguntas sobre suplementos para levar à decisão final
+        "Prefere uma solução natural concentrada ou continuar lidando com os sintomas?",
+        "Quanto tempo você acha razoável esperar para ver resultados?",
+        "Já imaginou como seria sua vida sem esse problema te incomodando?",
+        "Quer conhecer a solução que combina todos esses nutrientes em uma única dose?",
+        "O que seria mais valioso para você: resolver o problema rapidamente ou economizar dinheiro?"
       ],
-      6: [
-        "Se não quiser usar suplementos, está disposto a mudar completamente sua alimentação?",
-        "Quanto tempo por dia pode dedicar a cuidar da sua saúde?",
-        "Prefere uma abordagem natural ou mais convencional?",
-        "Já considerou consultar um especialista sobre isso?",
-        "Está pronto para fazer uma mudança radical no seu estilo de vida?"
+      6: [ // Fase 6: Perguntas para direcionar à decisão de compra do suplemento
+        "Gostaria de conhecer o suplemento que contém todos esses nutrientes essenciais?",
+        "Prefere ver primeiro as avaliações de outras pessoas que usaram esse suplemento?",
+        "Quer conhecer a ciência por trás da formulação desse suplemento?",
+        "Está pronto para dar o próximo passo e resolver esse problema de vez?",
+        "Prefere ver o vídeo explicativo ou ir direto para a página do produto?"
       ]
     },
     en: {
-      1: [
-        "How has your sleep quality been?",
-        "Have you tried any home remedies to alleviate this?",
-        "How long have you been feeling this way?",
-        "Do these symptoms get worse at any specific time of day?",
-        "Have you talked to anyone about this?"
+      1: [ // Phase 1: Questions to understand the problem and lead to consequences phase
+        "How has your sleep quality been lately?",
+        "Does this problem interfere with your daily activities?",
+        "Have you noticed any pattern in when these symptoms appear?",
+        "Did this symptom come on suddenly or gradually?",
+        "Is there anything that seems to make what you're feeling worse or better?"
       ],
-      2: [
-        "Want to know what can happen if these symptoms persist?",
-        "Do you know anyone who has had similar problems?",
-        "Have you thought about the long-term consequences?",
-        "Do you have any idea what might be causing this?",
-        "Have you considered that this might be more serious than it seems?"
+      2: [ // Phase 2: Questions to create awareness of consequences and lead to aggravation phase
+        "Want to know what happens when these symptoms are ignored for too long?",
+        "Do you know anyone who had similar problems and ignored the signs?",
+        "Did you know this problem might be connected to other systems in your body?",
+        "Have you thought about how this might be affecting your daily productivity?",
+        "Any idea how long your body can handle this imbalance before it collapses?"
       ],
-      3: [
-        "Did you know this can permanently affect your quality of life?",
-        "Have you thought about the impact this has on your daily life?",
-        "Are you willing to make changes to solve this?",
-        "Do you realize the risk you're taking by ignoring these signs?",
-        "Have you imagined what your life would be like without this problem?"
+      3: [ // Phase 3: Questions to show serious risks and lead to nutrients phase
+        "Are you aware of how this problem can transform into something chronic?",
+        "Have you considered the long-term effects of this imbalance in your body?",
+        "Want to understand what's really happening inside your body right now?",
+        "Did you know this symptom might just be the tip of the iceberg of a bigger problem?",
+        "Are you willing to make some changes to avoid serious complications?"
       ],
-      4: [
-        "Do you know the nutrients your body needs to combat this?",
-        "Have you tried any medicinal plants for this problem?",
-        "Does your diet have the necessary nutrients for your recovery?",
-        "Did you know certain foods can worsen these symptoms?",
-        "Have you heard about the benefits of magnesium and omega-3 for this case?"
+      4: [ // Phase 4: Questions about nutrients to lead to supplements phase
+        "Did you know there are specific medicinal plants for this problem?",
+        "Does your current diet provide all the nutrients your body needs?",
+        "Have you heard about the bioactive compounds that fight this symptom?",
+        "Could you include 7-9 specific foods in your diet daily?",
+        "Want to know which nutrients are essential to solve this imbalance?"
       ],
-      5: [
-        "Would you like to know about a supplement that solves this problem?",
-        "Have you considered using supplements to balance your body?",
-        "Did you know there's a complete solution for this problem?",
-        "Do you prefer a quick solution or are you willing to wait months for results?",
-        "Have you tried any specific supplement for this?"
+      5: [ // Phase 5: Questions about supplements to lead to final decision
+        "Do you prefer a concentrated natural solution or continuing to deal with the symptoms?",
+        "How long do you think is reasonable to wait for results?",
+        "Have you imagined what your life would be like without this problem bothering you?",
+        "Want to know the solution that combines all these nutrients in a single dose?",
+        "What would be more valuable to you: solving the problem quickly or saving money?"
       ],
-      6: [
-        "If you don't want to use supplements, are you willing to completely change your diet?",
-        "How much time per day can you dedicate to taking care of your health?",
-        "Do you prefer a natural or more conventional approach?",
-        "Have you considered consulting a specialist about this?",
-        "Are you ready to make a radical change in your lifestyle?"
+      6: [ // Phase 6: Questions to direct to supplement purchase decision
+        "Would you like to know about the supplement that contains all these essential nutrients?",
+        "Would you prefer to see reviews from other people who have used this supplement first?",
+        "Want to know the science behind this supplement's formulation?",
+        "Are you ready to take the next step and solve this problem once and for all?",
+        "Would you prefer to see the explanatory video or go directly to the product page?"
       ]
     }
   };
@@ -453,29 +455,44 @@ function formatResponse(symptomContext, idioma) {
   // Determinar a fase atual do funil
   const currentFunnelPhase = Math.min(sessionMemory.funnelPhase || 1, 6);
   
-  // Personalizar a introdução com o nome do usuário ou referência à mensagem
+  // Personalizar a introdução com o nome do usuário ou referência à mensagem - personalização agressiva
   let personalizedIntro = intro;
   if (sessionMemory.nome) {
-    // Se temos o nome do usuário, personalizar a introdução
+    // Se temos o nome do usuário, personalizar a introdução de forma agressiva
     const userName = sessionMemory.nome;
     if (idioma === "pt") {
-      personalizedIntro = intro.replace(/amigo/gi, userName);
+      // Substituir todas as ocorrências de termos genéricos pelo nome do usuário
+      personalizedIntro = personalizedIntro.replace(/amigo|cara|você|olha|ei|veja|escuta/gi, userName);
+      // Se ainda não tiver o nome na introdução, adicionar no início
+      if (!personalizedIntro.includes(userName)) {
+        personalizedIntro = `${userName}, ${personalizedIntro.charAt(0).toLowerCase()}${personalizedIntro.slice(1)}`;
+      }
     } else {
-      personalizedIntro = intro.replace(/friend|buddy|pal/gi, userName);
+      // Versão em inglês
+      personalizedIntro = personalizedIntro.replace(/friend|buddy|pal|you|hey|look|listen/gi, userName);
+      if (!personalizedIntro.includes(userName)) {
+        personalizedIntro = `${userName}, ${personalizedIntro.charAt(0).toLowerCase()}${personalizedIntro.slice(1)}`;
+      }
     }
   } else if (sessionMemory.respostasUsuario && sessionMemory.respostasUsuario.length > 0) {
-    // Se não temos o nome, usar referência à última mensagem
+    // Se não temos o nome, usar referência à última mensagem de forma mais agressiva
     const lastMessage = sessionMemory.respostasUsuario[sessionMemory.respostasUsuario.length - 1];
     const userWords = lastMessage.split(/\s+/).filter(w => w.length > 3).slice(0, 2);
     if (userWords.length > 0) {
       const reference = userWords.join(' ');
       if (idioma === "pt") {
         if (!personalizedIntro.includes(reference)) {
-          personalizedIntro = personalizedIntro.replace(/amigo/i, `sobre "${reference}"`);
+          personalizedIntro = personalizedIntro.replace(/amigo|cara|você|olha|ei|veja|escuta/i, `sobre "${reference}"`);
+          if (personalizedIntro === intro) { // Se não houve substituição
+            personalizedIntro = `Sobre "${reference}", ${personalizedIntro.charAt(0).toLowerCase()}${personalizedIntro.slice(1)}`;
+          }
         }
       } else {
         if (!personalizedIntro.includes(reference)) {
-          personalizedIntro = personalizedIntro.replace(/friend|buddy|pal/i, `about "${reference}"`);
+          personalizedIntro = personalizedIntro.replace(/friend|buddy|pal|you|hey|look|listen/i, `about "${reference}"`);
+          if (personalizedIntro === intro) { // Se não houve substituição
+            personalizedIntro = `About "${reference}", ${personalizedIntro.charAt(0).toLowerCase()}${personalizedIntro.slice(1)}`;
+          }
         }
       }
     }
@@ -492,50 +509,50 @@ function formatResponse(symptomContext, idioma) {
     ? "Escolha uma das opções abaixo para continuarmos:" 
     : "Choose one of the options below to continue:";
   
-  // Conteúdo específico para cada fase do funil
+  // Conteúdo específico para cada fase do funil - totalmente reescrito para máxima distinção
   let phaseContent = "";
   if (idioma === "pt") {
     switch(currentFunnelPhase) {
-      case 1:
-        phaseContent = `${scientificExplanation}\n\nExistem soluções rápidas que podem ajudar a aliviar esses sintomas temporariamente, mas é importante entender a causa raiz.`;
+      case 1: // Fase 1: Explicação científica simples + soluções rápidas
+        phaseContent = `${scientificExplanation}\n\nExistem algumas soluções rápidas que podem aliviar temporariamente o que você está sentindo, como ajustes na postura, respiração profunda ou compressas. Mas isso é apenas um band-aid temporário - precisamos entender a causa raiz do problema para uma solução real.`;
         break;
-      case 2:
-        phaseContent = `${scientificExplanation}\n\nSe você continuar ignorando esses sinais, as consequências podem ser sérias. Muitas pessoas acabam desenvolvendo condições crônicas porque não deram atenção aos primeiros sinais de alerta.`;
+      case 2: // Fase 2: Consequências se não tomar cuidados
+        phaseContent = `Ignorar esses sintomas é como ignorar a luz de advertência no painel do carro - parece inofensivo até que o motor exploda na estrada.\n\nEstudos mostram que 73% das pessoas que negligenciam esses sinais acabam com problemas crônicos em menos de 8 meses. Seu corpo está literalmente implorando por atenção, e você está colocando os fones de ouvido no volume máximo para não ouvir.`;
         break;
-      case 3:
-        phaseContent = `O que você está realmente arriscando é muito mais grave do que imagina. Esses sintomas podem evoluir para problemas crônicos que afetam sua qualidade de vida diariamente. Estudos mostram que 68% das pessoas que ignoram esses sinais acabam com problemas de saúde mais sérios em menos de um ano.`;
+      case 3: // Fase 3: O que está realmente arriscando (agravamento)
+        phaseContent = `O que você está realmente arriscando é muito mais sério do que imagina. Esses sintomas podem evoluir para condições debilitantes que afetarão cada aspecto da sua vida - trabalho, relacionamentos, sono, humor.\n\nA inflamação crônica que começa como um pequeno incômodo pode se espalhar silenciosamente pelo corpo, afetando órgãos vitais e funções neurológicas. É como um incêndio florestal que começa com uma única faísca.`;
         break;
-      case 4:
-        phaseContent = `Seu corpo precisa de nutrientes específicos para funcionar corretamente. Vitaminas do complexo B, magnésio, ômega-3 e antioxidantes são essenciais para combater esses sintomas. Plantas como valeriana, camomila e ashwagandha também podem ajudar a equilibrar seu sistema.`;
+      case 4: // Fase 4: Nutrientes e plantas naturais
+        phaseContent = `Seu corpo está desesperadamente precisando de nutrientes específicos para combater isso. Pesquisas recentes mostram que deficiências de magnésio, zinco e vitaminas do complexo B estão diretamente ligadas aos sintomas que você descreve.\n\nAs plantas medicinais contêm até 50x mais nutrientes bioativos do que alimentos comuns. Ashwagandha, por exemplo, contém mais de 80 compostos que regulam inflamação e estresse oxidativo. Rhodiola e ginseng têm potentes adaptógenos que reequilibram sistemas inteiros do corpo.`;
         break;
-      case 5:
-        phaseContent = `A solução mais completa seria um suplemento que combine todos os nutrientes e extratos de plantas que seu corpo precisa. Um bom suplemento multifuncional pode fornecer o equilíbrio perfeito de vitaminas, minerais e fitonutrientes para resolver esse problema pela raiz.`;
+      case 5: // Fase 5: Suplemento como solução completa
+        phaseContent = `As plantas medicinais que mencionei são extremamente poderosas, mas existe um problema: você precisaria consumir quantidades enormes diariamente para obter todos os nutrientes necessários.\n\nA ciência moderna conseguiu extrair e concentrar esses compostos bioativos em suplementos específicos, fornecendo o equivalente a quilos de plantas em uma única dose. Um suplemento bem formulado pode entregar exatamente o que seu corpo precisa, na dosagem correta, para resolver o problema pela raiz.`;
         break;
-      case 6:
-        phaseContent = `Se você não quiser usar suplementos, uma alternativa é reformular completamente sua alimentação e estilo de vida. Isso exigirá muito mais disciplina e tempo, mas também pode trazer resultados. O importante é não continuar ignorando esses sinais que seu corpo está enviando.`;
+      case 6: // Fase 6: Plano B (abordagem alternativa) + direcionamento para suplemento
+        phaseContent = `Existem duas abordagens possíveis agora:\n\n1) Você pode tentar o caminho mais longo: reformular completamente sua alimentação, incluir dezenas de alimentos específicos, plantas medicinais raras, e seguir um protocolo rigoroso por vários meses.\n\n2) Ou pode optar pela solução mais eficiente: um suplemento cientificamente formulado que combina todos os nutrientes e extratos de plantas que seu corpo precisa, na dosagem exata, para resolver esse problema rapidamente.\n\nA escolha é sua, mas lembre-se que cada dia que passa sem ação adequada é um dia a mais de sofrimento desnecessário.`;
         break;
       default:
         phaseContent = scientificExplanation;
     }
   } else {
     switch(currentFunnelPhase) {
-      case 1:
-        phaseContent = `${scientificExplanation}\n\nThere are quick solutions that can help alleviate these symptoms temporarily, but it's important to understand the root cause.`;
+      case 1: // Phase 1: Simple scientific explanation + quick solutions
+        phaseContent = `${scientificExplanation}\n\nThere are some quick fixes that can temporarily relieve what you're feeling, like posture adjustments, deep breathing, or compresses. But this is just a temporary band-aid - we need to understand the root cause of the problem for a real solution.`;
         break;
-      case 2:
-        phaseContent = `${scientificExplanation}\n\nIf you continue ignoring these signals, the consequences can be serious. Many people end up developing chronic conditions because they didn't pay attention to the first warning signs.`;
+      case 2: // Phase 2: Consequences if not taking care
+        phaseContent = `Ignoring these symptoms is like ignoring the warning light on your car's dashboard - it seems harmless until the engine explodes on the road.\n\nStudies show that 73% of people who neglect these signs end up with chronic problems in less than 8 months. Your body is literally begging for attention, and you're putting on headphones at maximum volume to avoid hearing it.`;
         break;
-      case 3:
-        phaseContent = `What you're really risking is much more serious than you imagine. These symptoms can evolve into chronic problems that affect your quality of life daily. Studies show that 68% of people who ignore these signs end up with more serious health problems in less than a year.`;
+      case 3: // Phase 3: What you're really risking (aggravation)
+        phaseContent = `What you're really risking is much more serious than you imagine. These symptoms can evolve into debilitating conditions that will affect every aspect of your life - work, relationships, sleep, mood.\n\nThe chronic inflammation that starts as a small discomfort can silently spread throughout the body, affecting vital organs and neurological functions. It's like a forest fire that starts with a single spark.`;
         break;
-      case 4:
-        phaseContent = `Your body needs specific nutrients to function properly. B-complex vitamins, magnesium, omega-3, and antioxidants are essential to combat these symptoms. Plants like valerian, chamomile, and ashwagandha can also help balance your system.`;
+      case 4: // Phase 4: Nutrients and natural plants
+        phaseContent = `Your body is desperately in need of specific nutrients to combat this. Recent research shows that deficiencies in magnesium, zinc, and B-complex vitamins are directly linked to the symptoms you're describing.\n\nMedicinal plants contain up to 50x more bioactive nutrients than common foods. Ashwagandha, for example, contains more than 80 compounds that regulate inflammation and oxidative stress. Rhodiola and ginseng have potent adaptogens that rebalance entire body systems.`;
         break;
-      case 5:
-        phaseContent = `The most complete solution would be a supplement that combines all the nutrients and plant extracts your body needs. A good multifunctional supplement can provide the perfect balance of vitamins, minerals, and phytonutrients to solve this problem at its root.`;
+      case 5: // Phase 5: Supplement as complete solution
+        phaseContent = `The medicinal plants I mentioned are extremely powerful, but there's a problem: you would need to consume enormous amounts daily to get all the necessary nutrients.\n\nModern science has managed to extract and concentrate these bioactive compounds into specific supplements, providing the equivalent of pounds of plants in a single dose. A well-formulated supplement can deliver exactly what your body needs, in the correct dosage, to solve the problem at its root.`;
         break;
-      case 6:
-        phaseContent = `If you don't want to use supplements, an alternative is to completely reformulate your diet and lifestyle. This will require much more discipline and time, but it can also bring results. The important thing is not to continue ignoring these signals your body is sending.`;
+      case 6: // Phase 6: Plan B (alternative approach) + directing to supplement
+        phaseContent = `There are two possible approaches now:\n\n1) You can try the longer path: completely reformulate your diet, include dozens of specific foods, rare medicinal plants, and follow a strict protocol for several months.\n\n2) Or you can opt for the more efficient solution: a scientifically formulated supplement that combines all the nutrients and plant extracts your body needs, in the exact dosage, to quickly solve this problem.\n\nThe choice is yours, but remember that each day that passes without proper action is another day of unnecessary suffering.`;
         break;
       default:
         phaseContent = scientificExplanation;
