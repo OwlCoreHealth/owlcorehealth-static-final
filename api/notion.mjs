@@ -1,4 +1,5 @@
-import { Client } from "@notionhq/client";
+// Convertendo para CommonJS para compatibilidade
+const { Client } = require("@notionhq/client");
 
 // ✅ Prompt Owl Savage - Personalidade e Funil (Internal reference, not sent to LLM)
 const OWL_SAVAGE_PROMPT = `
@@ -1013,7 +1014,7 @@ function selectRandomQuestions(questions, count) {
 }
 
 // ✅ Função principal para obter contexto e resposta (ATUALIZADA)
-export async function getSymptomContext(userMessage, userName, userAge, userWeight, funnelPhase = 1, previousSymptom = null, previousQuestions = []) {
+async function getSymptomContext(userMessage, userName, userAge, userWeight, funnelPhase = 1, previousSymptom = null, previousQuestions = []) {
   try {
     // Detectar idioma da mensagem
     const language = detectLanguage(userMessage);
@@ -1021,17 +1022,65 @@ export async function getSymptomContext(userMessage, userName, userAge, userWeig
     // Verificando se o formulário foi preenchido
     const hasForm = userName && userName.trim() !== ""; // Verifica se o nome foi fornecido
     
-    // Identificar sintoma
+    // Identificar sintoma - MELHORADO PARA DETECTAR MAIS VARIAÇÕES
     let sintomaKey = "unknown";
     const lowerMessage = userMessage.toLowerCase();
     
-    if (lowerMessage.includes("stomach") || lowerMessage.includes("estômago") || lowerMessage.includes("estomago") || lowerMessage.includes("barriga")) {
+    // Melhorada a detecção de dores de estômago
+    if (lowerMessage.includes("stomach") || 
+        lowerMessage.includes("estômago") || 
+        lowerMessage.includes("estomago") || 
+        lowerMessage.includes("barriga") ||
+        lowerMessage.includes("digestiv") ||
+        lowerMessage.includes("gastrite") ||
+        lowerMessage.includes("gastritis") ||
+        lowerMessage.includes("refluxo") ||
+        lowerMessage.includes("reflux") ||
+        lowerMessage.includes("azia") ||
+        lowerMessage.includes("heartburn")) {
       sintomaKey = "stomach_pain";
-    } else if (lowerMessage.includes("headache") || lowerMessage.includes("dor de cabeça") || lowerMessage.includes("dores de cabeça") || lowerMessage.includes("cabeça")) {
+    } 
+    // Melhorada a detecção de dores de cabeça
+    else if (lowerMessage.includes("headache") || 
+             lowerMessage.includes("dor de cabeça") || 
+             lowerMessage.includes("dores de cabeça") || 
+             lowerMessage.includes("dor na cabeça") ||
+             lowerMessage.includes("dor de cabeca") ||
+             lowerMessage.includes("dores de cabeca") ||
+             lowerMessage.includes("cabeça") ||
+             lowerMessage.includes("cabeca") ||
+             lowerMessage.includes("enxaqueca") ||
+             lowerMessage.includes("migraine") ||
+             lowerMessage.includes("cefaleia") ||
+             lowerMessage.includes("cephalgia")) {
       sintomaKey = "headache";
-    } else if (lowerMessage.includes("fatigue") || lowerMessage.includes("cansaço") || lowerMessage.includes("fadiga") || lowerMessage.includes("energia")) {
+    } 
+    // Melhorada a detecção de fadiga
+    else if (lowerMessage.includes("fatigue") || 
+             lowerMessage.includes("cansaço") || 
+             lowerMessage.includes("cansaco") ||
+             lowerMessage.includes("fadiga") || 
+             lowerMessage.includes("energia") ||
+             lowerMessage.includes("energy") ||
+             lowerMessage.includes("exaustão") ||
+             lowerMessage.includes("exhaustion") ||
+             lowerMessage.includes("sem força") ||
+             lowerMessage.includes("fraqueza") ||
+             lowerMessage.includes("weakness")) {
       sintomaKey = "fatigue";
-    } else if (lowerMessage.includes("back pain") || lowerMessage.includes("dor nas costas") || lowerMessage.includes("dores nas costas") || lowerMessage.includes("lombar")) {
+    } 
+    // Melhorada a detecção de dores nas costas
+    else if (lowerMessage.includes("back pain") || 
+             lowerMessage.includes("dor nas costas") || 
+             lowerMessage.includes("dores nas costas") || 
+             lowerMessage.includes("lombar") ||
+             lowerMessage.includes("coluna") ||
+             lowerMessage.includes("spine") ||
+             lowerMessage.includes("vertebra") ||
+             lowerMessage.includes("vértebra") ||
+             lowerMessage.includes("costas doem") ||
+             lowerMessage.includes("dor na coluna") ||
+             lowerMessage.includes("dores na coluna")) {
       sintomaKey = "back_pain";
     }
     
@@ -1071,3 +1120,8 @@ export async function getSymptomContext(userMessage, userName, userAge, userWeig
     };
   }
 }
+
+// Exportar usando CommonJS para compatibilidade
+module.exports = {
+  getSymptomContext
+};
