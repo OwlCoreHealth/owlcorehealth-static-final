@@ -98,6 +98,12 @@ export async function getSymptomContext(userMessage, userName) {
       });
     }
 
+    // Garantir que ao acessar dados do Notion não tentaremos acessar valores undefined
+    const base_pt = response.results[0].properties["Resposta Científica Base PT"]?.rich_text?.[0]?.plain_text || "Sem dados disponíveis.";
+    const base_en = response.results[0].properties["Resposta Científica Base EN"]?.rich_text?.[0]?.plain_text || "No data available.";
+
+    corpo += `\n\nBase científica (PT): ${base_pt}\nBase científica (EN): ${base_en}`;
+
     return corpo;
 
   } catch (error) {
