@@ -64,8 +64,7 @@ export default async function handler(req, res) {
     let sintoma = sessionMemory.sintomaAtual || "";
     let categoria = sessionMemory.categoriaAtual || "";
 
-    console.log("🔎 Sintoma Detectado: ", sintoma); // Verificando sintoma detectado
-
+    // Verificando se encontramos um sintoma válido ou se devemos usar categorias predefinidas
     if (contexto) {
       sintoma = contexto.sintoma;
       sessionMemory.sintomaAtual = sintoma;
@@ -81,31 +80,10 @@ export default async function handler(req, res) {
       sessionMemory.categoriaAtual = categoria;
     }
 
-    console.log("🔎 Categoria Detectada: ", categoria); // Verificando a categoria detectada
-
     const chave = sintoma || categoria;
     sessionMemory.contadorPerguntas[chave] = (sessionMemory.contadorPerguntas[chave] || 0) + 1;
     const etapa = sessionMemory.contadorPerguntas[chave];
     const incluirSuplemento = etapa >= 3;
-
-    const blocos = {
-      intestino: {
-        pt: [
-          "Dores intestinais podem ser sinal de microbiota desequilibrada, má digestão ou intolerâncias alimentares.",
-          "Ignorar esses sintomas pode levar à má absorção de nutrientes, enfraquecimento da imunidade e até distúrbios crônicos.",
-          "Estudos mostram que mais de 70% dos pacientes com intestino desregulado também relatam ansiedade.",
-          "Probióticos, fibras solúveis e enzimas digestivas podem ajudar a restaurar o equilíbrio intestinal.",
-          "Deseja conhecer um suplemento ideal para restaurar sua saúde intestinal?"
-        ],
-        en: [
-          "Intestinal pain can signal an imbalanced microbiome, poor digestion, or food intolerance.",
-          "Ignoring these signs can result in poor nutrient absorption, low immunity, and chronic inflammation.",
-          "Over 70% of people with gut dysbiosis report chronic anxiety or fatigue.",
-          "Probiotics, soluble fibers and digestive enzymes can help rebalance the gut.",
-          "Want to discover a top supplement to restore your gut health?"
-        ]
-      }
-    };
 
     // Perguntas de follow-up predefinidas para cada categoria de sintoma
     const followupEtapas = {
