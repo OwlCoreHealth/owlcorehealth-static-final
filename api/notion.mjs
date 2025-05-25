@@ -1,4 +1,4 @@
-// Versão ultra simplificada para evitar timeouts
+// Versão adaptada para GPT-3.5 gratuito
 // ES Modules format
 
 // Introduções sarcásticas simplificadas
