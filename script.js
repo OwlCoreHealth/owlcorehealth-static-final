@@ -204,3 +204,22 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+// Função para lidar com cliques nas perguntas sugeridas
+function handleQuestionClick(element) {
+  const question = decodeURIComponent(element.getAttribute('data-question'));
+  
+  // Adicionar a pergunta ao campo de entrada
+  document.querySelector('.chat-input').value = question;
+  
+  // Opcional: enviar automaticamente a pergunta
+  document.querySelector('.send-btn').click();
+}
+
+// Ao adicionar mensagens do bot à chat-box, use innerHTML em vez de textContent
+// Exemplo:
+function addBotMessage(message) {
+  const messageElement = document.createElement('div');
+  messageElement.className = 'bot-message';
+  messageElement.innerHTML = message; // Use innerHTML em vez de textContent
+  document.querySelector('.chat-box').appendChild(messageElement);
+}
