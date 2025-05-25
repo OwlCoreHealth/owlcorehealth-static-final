@@ -40,8 +40,9 @@ function detectLanguage(message) {
 }
 
 // Função principal para consulta ao Notion
-export async function getSymptomContext(userMessage, userName) {
+export async function getSymptomContext(userMessage, userName, userAge, userSex, userWeight) {
   try {
+    // Frases de abertura sarcástica quando o formulário não for preenchido
     const frasesSarcasticas = [
       "Sem seu nome, idade ou peso, posso te dar conselhos… tão úteis quanto ler a sorte no biscoito da sorte.",
       "Ignorar o formulário? Estratégia ousada. Vamos ver no que dá.",
@@ -107,13 +108,25 @@ export async function getSymptomContext(userMessage, userName) {
       ]
     };
 
-    const sintomaKey = userMessage.toLowerCase().includes("back pain") ? "back_pain" :
-                        userMessage.toLowerCase().includes("headache") ? "headache" :
-                        userMessage.toLowerCase().includes("fatigue") ? "fatigue" :
-                        userMessage.toLowerCase().includes("stomach") ? "stomach_pain" : "unknown";
+    // Detectando o sintoma
+    let sintomaKey = "";
+    if (userMessage.toLowerCase().includes("stomach") || userMessage.toLowerCase().includes("pain")) {
+      sintomaKey = "stomach_pain";
+    } else if (userMessage.toLowerCase().includes("headache")) {
+      sintomaKey = "headache";
+    } else if (userMessage.toLowerCase().includes("fatigue")) {
+      sintomaKey = "fatigue";
+    } else if (userMessage.toLowerCase().includes("back pain")) {
+      sintomaKey = "back_pain";
+    } else {
+      sintomaKey = "unknown"; // Sintoma não identificado
+    }
 
+    // Preparando a resposta
     let corpo = `${intro} Vamos explorar o que pode estar acontecendo com você:\n\n`;
 
+    // Adicionando perguntas clicáveis
+    corpo += `### Let’s Explore 3 Ideas:\n`;
     followupEtapas[sintomaKey].forEach((question, index) => {
       corpo += `<a href="/next-step?question=${index + 1}">${index + 1}. ${question}</a>\n`; // Link clicável para cada pergunta
     });
@@ -129,8 +142,11 @@ export async function getSymptomContext(userMessage, userName) {
 // Testando a função
 const userMessage = "I have pain in the back";
 const userName = "João";  // Substitua pelo nome do usuário real
+const userAge = 28;       // Substitua pela idade real
+const userSex = "Male";   // Substitua pelo sexo real
+const userWeight = 75;    // Substitua pelo peso real
 
-getSymptomContext(userMessage, userName).then(response => {
+getSymptomContext(userMessage, userName, userAge, userSex, userWeight).then(response => {
   console.log("🔎 Resultado final:", response);
   if (!response || response.length === 0) {
     console.log("⚠️ Nenhum resultado encontrado.");
