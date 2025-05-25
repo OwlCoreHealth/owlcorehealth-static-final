@@ -19,10 +19,29 @@ function extractKeywords(text) {
     .filter(word => word.length > 3 && !stopwords.includes(word) && /^[a-zA-Z]+$/.test(word)); // Filtra palavras válidas
 }
 
+// Função para detectar o idioma da mensagem
+function detectLanguage(message) {
+  const portugueseWords = ["é", "você", "tem", "dores", "sintoma"];
+  const englishWords = ["is", "you", "have", "pain", "symptom"];
+  
+  const messageLower = message.toLowerCase();
+  let portugueseCount = 0;
+  let englishCount = 0;
+  
+  portugueseWords.forEach(word => {
+    if (messageLower.includes(word)) portugueseCount++;
+  });
+  
+  englishWords.forEach(word => {
+    if (messageLower.includes(word)) englishCount++;
+  });
+
+  return portugueseCount > englishCount ? "pt" : "en";
+}
+
 // Função principal para consulta ao Notion
 export async function getSymptomContext(userMessage, userName) {
   try {
-    // Frases de abertura sarcástica quando o formulário não for preenchido
     const frasesSarcasticas = [
       "Sem seu nome, idade ou peso, posso te dar conselhos… tão úteis quanto ler a sorte no biscoito da sorte.",
       "Ignorar o formulário? Estratégia ousada. Vamos ver no que dá.",
@@ -80,39 +99,24 @@ export async function getSymptomContext(userMessage, userName) {
         "Você tem se sentado corretamente? A postura inadequada pode causar dor nas costas.",
         "Você tem feito exercícios para fortalecer a região lombar?",
         "Está sentindo dor constante ou intermitente?"
+      ],
+      unknown: [  // Para sintoma não identificado
+        "Você pode descrever um pouco mais sobre o sintoma que está sentindo?",
+        "Está relacionado a algum tipo de atividade física ou dieta?",
+        "Você já teve esse sintoma antes?"
       ]
     };
 
-    const sintomasMap = {
-      "stomach pain": "stomach_pain",
-      "headache": "headache",
-      "fatigue": "fatigue",
-      "back pain": "back_pain"
-    };
+    const sintomaKey = userMessage.toLowerCase().includes("back pain") ? "back_pain" :
+                        userMessage.toLowerCase().includes("headache") ? "headache" :
+                        userMessage.toLowerCase().includes("fatigue") ? "fatigue" :
+                        userMessage.toLowerCase().includes("stomach") ? "stomach_pain" : "unknown";
 
-    // Detectando qual sintoma foi mencionado
-    let sintomaKey = "";
-    if (userMessage.toLowerCase().includes("stomach") || userMessage.toLowerCase().includes("pain")) {
-      sintomaKey = "stomach_pain";
-    } else if (userMessage.toLowerCase().includes("headache")) {
-      sintomaKey = "headache";
-    } else if (userMessage.toLowerCase().includes("fatigue")) {
-      sintomaKey = "fatigue";
-    } else if (userMessage.toLowerCase().includes("back pain")) {
-      sintomaKey = "back_pain";
-    }
+    let corpo = `${intro} Vamos explorar o que pode estar acontecendo com você:\n\n`;
 
-    // Usando o sintoma detectado para escolher as perguntas apropriadas
-    let corpo = "";
-    if (sintomaKey && followupEtapas[sintomaKey]) {
-      corpo = `${intro} Vamos dar uma olhada no que pode estar causando sua dor de ${sintomaKey.replace("_", " ")}:\n\n`;
-
-      // Adicionando perguntas clicáveis
-      corpo += `### Let’s Explore 3 Ideas:\n`;
-      followupEtapas[sintomaKey].forEach((question, index) => {
-        corpo += `<a href="/next-step?question=${index + 1}">${index + 1}. ${question}</a>\n`; // Link clicável para cada pergunta
-      });
-    }
+    followupEtapas[sintomaKey].forEach((question, index) => {
+      corpo += `<a href="/next-step?question=${index + 1}">${index + 1}. ${question}</a>\n`; // Link clicável para cada pergunta
+    });
 
     return corpo;
 
