@@ -1,4 +1,4 @@
-// chat.js - Versão final com exportação padrão para Vercel
+// chat.js - Versão final com validação robusta para Vercel
 // Integração com GPT-4o mini e progressão de funil
 import { getSymptomContext } from './notion.mjs';
 import fetch from 'node-fetch';
@@ -583,24 +583,72 @@ export default async function handler(req, res) {
   try {
     // Verificar se é uma requisição POST
     if (req.method !== 'POST') {
-      return res.status(405).json({ error: 'Method not allowed' });
+      return res.status(405).json({ 
+        error: 'Method not allowed', 
+        message: 'Only POST requests are accepted'
+      });
     }
     
-    // Extrair dados da requisição
-    const { userInput, userName, userAge, userWeight } = req.body;
+    // Extrair dados da requisição com validação robusta
+    let userInput, userName, userAge, userWeight;
     
-    // Validar entrada
-    if (!userInput) {
-      return res.status(400).json({ error: 'User input is required' });
+    try {
+      // Verificar se o corpo da requisição existe
+      if (!req.body) {
+        throw new Error('Request body is missing');
+      }
+      
+      // Tentar extrair os dados com validação de tipo
+      const body = req.body;
+      
+      // Validar userInput (obrigatório)
+      if (!body.userInput) {
+        throw new Error('userInput is required');
+      }
+      userInput = String(body.userInput);
+      
+      // Validar dados opcionais
+      userName = body.userName ? String(body.userName) : "";
+      userAge = body.userAge ? parseInt(body.userAge, 10) || null : null;
+      userWeight = body.userWeight ? parseFloat(body.userWeight) || null : null;
+      
+      console.log("✅ Dados da requisição validados com sucesso");
+    } catch (validationError) {
+      console.error("❌ Erro de validação:", validationError);
+      return res.status(400).json({ 
+        error: 'Bad Request', 
+        message: validationError.message || 'Invalid request data',
+        details: 'The request must include at least "userInput" field'
+      });
     }
     
     // Processar a entrada do usuário
-    const response = await processUserInput(userInput, userName, userAge, userWeight);
-    
-    // Retornar a resposta
-    return res.status(200).json({ response });
-  } catch (error) {
-    console.error('Error processing request:', error);
-    return res.status(500).json({ error: 'Internal server error' });
+    try {
+      console.log("🔄 Processando entrada do usuário:", userInput);
+      const response = await processUserInput(userInput, userName, userAge, userWeight);
+      
+      // Retornar a resposta
+      return res.status(200).json({ 
+        response,
+        success: true,
+        funnelPhase: sessionMemory.funnelPhase,
+        language: sessionMemory.idioma,
+        symptom: sessionMemory.sintomaAtual
+      });
+    } catch (processingError) {
+      console.error("❌ Erro ao processar entrada:", processingError);
+      return res.status(500).json({ 
+        error: 'Processing Error', 
+        message: 'Error processing user input',
+        details: processingError.message
+      });
+    }
+  } catch (generalError) {
+    console.error('❌ Erro geral:', generalError);
+    return res.status(500).json({ 
+      error: 'Internal Server Error', 
+      message: 'An unexpected error occurred',
+      details: generalError.message
+    });
   }
 }
