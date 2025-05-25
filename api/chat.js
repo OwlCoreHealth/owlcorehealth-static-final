@@ -64,6 +64,8 @@ export default async function handler(req, res) {
     let sintoma = sessionMemory.sintomaAtual || "";
     let categoria = sessionMemory.categoriaAtual || "";
 
+    console.log("🔎 Sintoma Detectado: ", sintoma); // Verificando sintoma detectado
+
     if (contexto) {
       sintoma = contexto.sintoma;
       sessionMemory.sintomaAtual = sintoma;
@@ -78,6 +80,8 @@ export default async function handler(req, res) {
       else categoria = "energia";
       sessionMemory.categoriaAtual = categoria;
     }
+
+    console.log("🔎 Categoria Detectada: ", categoria); // Verificando a categoria detectada
 
     const chave = sintoma || categoria;
     sessionMemory.contadorPerguntas[chave] = (sessionMemory.contadorPerguntas[chave] || 0) + 1;
@@ -103,7 +107,7 @@ export default async function handler(req, res) {
       }
     };
 
-    // Definindo as perguntas de follow-up
+    // Perguntas de follow-up predefinidas para cada categoria de sintoma
     const followupEtapas = {
       stomach_pain: [
         "Você tem comido alimentos picantes recentemente?",
@@ -121,12 +125,14 @@ export default async function handler(req, res) {
     let followups = [];
     let corpo = `${intro}\n\n`; // Incluindo a frase inicial aqui
 
-    // Preenchendo as perguntas com base no sintoma detectado
+    // Verificando se o sintoma tem perguntas de follow-up associadas
     if (followupEtapas[sintoma]) {
       followupEtapas[sintoma].forEach((question, index) => {
         followups.push(question); // Garantir que as perguntas sejam armazenadas corretamente
         corpo += `<a href="/next-step?question=${index + 1}">${index + 1}. ${question}</a>\n`; // Gerar o link clicável para cada pergunta
       });
+    } else {
+      corpo += "<a href='/next-step?question=1'>1. Nenhum sintoma identificado</a>\n";
     }
 
     corpo += `\n\n${idioma === "pt" ? "Escolha uma das opções abaixo para continuarmos:" : "Choose one of the options below to continue:"}\n1. ${followups[0]}\n2. ${followups[1]}\n3. ${followups[2]}`;
