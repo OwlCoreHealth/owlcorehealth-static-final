@@ -284,108 +284,102 @@ Let's try again? Choose one of the options below so I can really help you:`;
   }
 }
 
-// Função para gerar perguntas específicas para cada fase do funil
+// Função para gerar perguntas provocativas e direcionadas por fase do funil
 function generatePhaseSpecificQuestions(phase, idioma, sintoma) {
-  // Perguntas estratégicas que guiam o usuário para a próxima fase do funil
-  // Cada fase tem perguntas completamente distintas que conduzem para a próxima etapa
   const questions = {
     pt: {
-      1: [ // Fase 1: Perguntas para entender o problema e levar à fase de consequências
-        "Como tem sido a qualidade do seu sono ultimamente?",
-        "Esse problema interfere nas suas atividades diárias?",
-        "Já notou algum padrão em quando esses sintomas aparecem?",
-        "Esse sintoma surgiu de repente ou foi gradual?",
-        "Existe algum fator que parece piorar ou melhorar o que você sente?"
+      1: [
+        "Quer saber quais os primeiros sinais ignorados pelas pessoas com esse sintoma?",
+        "Gostaria de entender por que seu corpo está dando esse alerta agora?",
+        "Quer ver 3 estratégias rápidas que aliviam esse sintoma em minutos?",
+        "Quer descobrir o que pode estar causando esse desconforto sem você perceber?",
+        "Sabe como identificar se esse sintoma é pontual ou um sinal de algo mais grave?"
       ],
-      2: [ // Fase 2: Perguntas para criar consciência das consequências e levar à fase de agravamento
-        "Quer saber o que acontece quando esses sintomas são ignorados por muito tempo?",
-        "Já conheceu alguém que teve problemas semelhantes e ignorou os sinais?",
-        "Sabia que esse problema pode estar conectado a outros sistemas do seu corpo?",
-        "Já pensou em como isso pode estar afetando sua produtividade diária?",
-        "Tem ideia de quanto tempo seu corpo aguenta esse desequilíbrio antes de colapsar?"
+      2: [
+        "Quer saber o que pode acontecer se esse sintoma for ignorado por semanas?",
+        "Gostaria de conhecer os riscos ocultos por trás desse sintoma?",
+        "Quer ver dados reais de pessoas que ignoraram esse problema e pagaram caro?",
+        "Sabia que mais de 40% dos casos evoluem para condições crônicas?",
+        "Quer entender como esse sintoma pode afetar seus órgãos a longo prazo?"
       ],
-      3: [ // Fase 3: Perguntas para mostrar riscos graves e levar à fase de nutrientes
-        "Está ciente de como esse problema pode se transformar em algo crônico?",
-        "Já considerou os efeitos a longo prazo desse desequilíbrio no seu organismo?",
-        "Quer entender o que realmente está acontecendo dentro do seu corpo agora?",
-        "Sabia que esse sintoma pode ser apenas a ponta do iceberg de um problema maior?",
-        "Está disposto a fazer algumas mudanças para evitar complicações sérias?"
+      3: [
+        "Quer ver as doenças mais comuns associadas a esse sintoma?",
+        "Sabia que 82% dos casos ignorados evoluem para algo mais grave?",
+        "Quer saber o impacto desse sintoma na sua energia, sono e foco?",
+        "Gostaria de entender como esse sintoma interfere no seu metabolismo?",
+        "Quer ver as estatísticas alarmantes sobre esse problema?"
       ],
-      4: [ // Fase 4: Perguntas sobre nutrientes para levar à fase de suplementos
-        "Sabia que existem plantas medicinais específicas para esse problema?",
-        "Sua alimentação atual fornece todos os nutrientes que seu corpo precisa?",
-        "Já ouviu falar sobre os compostos bioativos que combatem esse sintoma?",
-        "Conseguiria incluir 7-9 alimentos específicos na sua dieta diariamente?",
-        "Quer conhecer quais nutrientes são essenciais para resolver esse desequilíbrio?"
+      4: [
+        "Quer saber quais alimentos já não têm mais os nutrientes que seu corpo precisa?",
+        "Gostaria de conhecer as plantas medicinais mais eficazes para aliviar isso?",
+        "Quer ver os compostos bioativos que atuam diretamente nesse sintoma?",
+        "Sabia que certas plantas têm 50x mais nutrientes do que alimentos comuns?",
+        "Quer saber como incluir essas plantas na sua rotina de forma simples?"
       ],
-      5: [ // Fase 5: Perguntas sobre suplementos para levar à decisão final
-        "Prefere uma solução natural concentrada ou continuar lidando com os sintomas?",
-        "Quanto tempo você acha razoável esperar para ver resultados?",
-        "Já imaginou como seria sua vida sem esse problema te incomodando?",
-        "Quer conhecer a solução que combina todos esses nutrientes em uma única dose?",
-        "O que seria mais valioso para você: resolver o problema rapidamente ou economizar dinheiro?"
+      5: [
+        "Quer ver como um suplemento pode combinar tudo isso em uma única dose eficaz?",
+        "Gostaria de conhecer os resultados reais de quem usou essa solução natural?",
+        "Quer ver como esse suplemento atua diretamente no seu sintoma?",
+        "Prefere uma solução pronta ou continuar tentando resolver sozinho?",
+        "Quer saber por que essa fórmula é diferente das outras no mercado?"
       ],
-      6: [ // Fase 6: Perguntas para direcionar à decisão de compra do suplemento
-        "Gostaria de conhecer o suplemento que contém todos esses nutrientes essenciais?",
-        "Prefere ver primeiro as avaliações de outras pessoas que usaram esse suplemento?",
-        "Quer conhecer a ciência por trás da formulação desse suplemento?",
-        "Está pronto para dar o próximo passo e resolver esse problema de vez?",
-        "Prefere ver o vídeo explicativo ou ir direto para a página do produto?"
+      6: [
+        "Quer ver o vídeo explicativo dessa solução completa?",
+        "Gostaria de ler as avaliações reais de quem usou esse suplemento?",
+        "Quer conhecer agora a página com todos os detalhes dessa fórmula?",
+        "Deseja ver como funciona o protocolo completo com esse suplemento?",
+        "Quer dar o próximo passo para resolver isso de vez?"
       ]
     },
     en: {
-      1: [ // Phase 1: Questions to understand the problem and lead to consequences phase
-        "How has your sleep quality been lately?",
-        "Does this problem interfere with your daily activities?",
-        "Have you noticed any pattern in when these symptoms appear?",
-        "Did this symptom come on suddenly or gradually?",
-        "Is there anything that seems to make what you're feeling worse or better?"
+      1: [
+        "Want to know the first warning signs most people ignore with this symptom?",
+        "Curious why your body is sending this signal now?",
+        "Want to see 3 quick strategies that relieve this symptom within minutes?",
+        "Do you know what could be silently causing this discomfort?",
+        "Want to learn how to tell if this is a one-time issue or something deeper?"
       ],
-      2: [ // Phase 2: Questions to create awareness of consequences and lead to aggravation phase
-        "Want to know what happens when these symptoms are ignored for too long?",
-        "Do you know anyone who had similar problems and ignored the signs?",
-        "Did you know this problem might be connected to other systems in your body?",
-        "Have you thought about how this might be affecting your daily productivity?",
-        "Any idea how long your body can handle this imbalance before it collapses?"
+      2: [
+        "Want to know what happens if this symptom goes untreated for weeks?",
+        "Would you like to see the hidden risks behind this issue?",
+        "Want real data on people who ignored this and paid the price?",
+        "Did you know over 40% of these cases evolve into chronic conditions?",
+        "Want to understand how this could affect your organs over time?"
       ],
-      3: [ // Phase 3: Questions to show serious risks and lead to nutrients phase
-        "Are you aware of how this problem can transform into something chronic?",
-        "Have you considered the long-term effects of this imbalance in your body?",
-        "Want to understand what's really happening inside your body right now?",
-        "Did you know this symptom might just be the tip of the iceberg of a bigger problem?",
-        "Are you willing to make some changes to avoid serious complications?"
+      3: [
+        "Want to know the most common diseases linked to this symptom?",
+        "Did you know 82% of ignored cases become more serious?",
+        "Want to see how this affects your energy, sleep, and focus?",
+        "Curious how this symptom interferes with your metabolism?",
+        "Want to see alarming stats about this issue?"
       ],
-      4: [ // Phase 4: Questions about nutrients to lead to supplements phase
-        "Did you know there are specific medicinal plants for this problem?",
-        "Does your current diet provide all the nutrients your body needs?",
-        "Have you heard about the bioactive compounds that fight this symptom?",
-        "Could you include 7-9 specific foods in your diet daily?",
-        "Want to know which nutrients are essential to solve this imbalance?"
+      4: [
+        "Want to know which foods no longer have the nutrients your body needs?",
+        "Interested in learning about the most powerful medicinal plants for this?",
+        "Want to discover the bioactive compounds that target this symptom?",
+        "Did you know some plants have 50x more nutrients than regular foods?",
+        "Want to see how to easily include these plants in your routine?"
       ],
-      5: [ // Phase 5: Questions about supplements to lead to final decision
-        "Do you prefer a concentrated natural solution or continuing to deal with the symptoms?",
-        "How long do you think is reasonable to wait for results?",
-        "Have you imagined what your life would be like without this problem bothering you?",
-        "Want to know the solution that combines all these nutrients in a single dose?",
-        "What would be more valuable to you: solving the problem quickly or saving money?"
+      5: [
+        "Want to see how one supplement can combine everything in a single dose?",
+        "Curious about real results from people who used this natural solution?",
+        "Want to learn how this formula targets your symptom directly?",
+        "Would you rather use a ready-made solution or keep struggling alone?",
+        "Want to know why this product stands out in the market?"
       ],
-      6: [ // Phase 6: Questions to direct to supplement purchase decision
-        "Would you like to know about the supplement that contains all these essential nutrients?",
-        "Would you prefer to see reviews from other people who have used this supplement first?",
-        "Want to know the science behind this supplement's formulation?",
-        "Are you ready to take the next step and solve this problem once and for all?",
-        "Would you prefer to see the explanatory video or go directly to the product page?"
+      6: [
+        "Want to watch the video explaining this complete solution?",
+        "Prefer reading reviews from people who already used this supplement?",
+        "Want to explore the page with all the details about this formula?",
+        "Want to follow the full protocol with this solution now?",
+        "Ready to take the next step and fix this once and for all?"
       ]
     }
   };
-  
-  // Selecionar as perguntas para a fase e idioma corretos
+
   const phaseQuestions = questions[idioma][phase] || questions[idioma][1];
-  
-  // Embaralhar as perguntas para variedade
   return shuffleArray([...phaseQuestions]);
 }
-
 // Função auxiliar para embaralhar array
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
