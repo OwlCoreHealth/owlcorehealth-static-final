@@ -60,7 +60,9 @@ async function callGPT4oMini(prompt, context, userMessage) {
           },
           {
             role: "user",
-            content: userMessage
+            content: context.selectedQuestion
+  ? `🧠 Pergunta selecionada do sistema: ${userMessage}`
+  : userMessage
           }
         ],
         temperature: 0.7,
@@ -127,42 +129,28 @@ export default async function handler(req, res) {
     console.log(`Fase atual do funil: ${currentFunnelPhase}`);
     
     // Garantir que as perguntas não se repitam
-    if (symptomContext.followupQuestions && symptomContext.followupQuestions.length > 0) {
-      // Filtrar perguntas já utilizadas
-      const uniqueQuestions = symptomContext.followupQuestions.filter(question => 
-        !sessionMemory.usedQuestions || !sessionMemory.usedQuestions.includes(question)
-      );
-      
-      // Se não houver perguntas únicas suficientes, gerar novas perguntas específicas para a fase atual
-      if (uniqueQuestions.length < 3) {
-        const phaseSpecificQuestions = generatePhaseSpecificQuestions(currentFunnelPhase, idioma, symptomContext.sintoma);
-        
-        // Filtrar apenas as perguntas específicas que ainda não foram usadas
-        const newUniqueQuestions = phaseSpecificQuestions.filter(question => 
-          !sessionMemory.usedQuestions || !sessionMemory.usedQuestions.includes(question)
-        );
-        
-        // Adicionar novas perguntas únicas até completar 3 ou esgotar as opções
-        while (uniqueQuestions.length < 3 && newUniqueQuestions.length > 0) {
-          const newQuestion = newUniqueQuestions.shift();
-          uniqueQuestions.push(newQuestion);
-        }
-      }
-      
-      // Limitar a 3 perguntas
-      symptomContext.followupQuestions = uniqueQuestions.slice(0, 3);
-    }
+// Forçar uso das perguntas novas e provocativas do funil
+const phaseSpecificQuestions = generatePhaseSpecificQuestions(currentFunnelPhase, idioma, symptomContext.sintoma);
+
+// Filtrar perguntas ainda não usadas
+const uniqueQuestions = phaseSpecificQuestions.filter(q =>
+  !sessionMemory.usedQuestions.includes(q)
+).slice(0, 3);
+
+// Atualizar o contexto com as novas perguntas
+symptomContext.followupQuestions = uniqueQuestions;
     
     // Tentar obter resposta do GPT-4o mini
     let gptResponse = null;
     try {
       // Preparar contexto para o GPT
       const gptContext = {
-        userName: userName,
-        symptom: symptomContext.sintoma || "sintomas gerais",
-        language: idioma,
-        funnelPhase: currentFunnelPhase
-      };
+  userName: userName,
+  symptom: symptomContext.sintoma || "sintomas gerais",
+  language: idioma,
+  funnelPhase: currentFunnelPhase,
+  selectedQuestion: !!selectedQuestion
+};
 
       console.log("Tentando obter resposta do GPT-4o mini...");
       gptResponse = await callGPT4oMini(
