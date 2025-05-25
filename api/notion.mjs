@@ -17,9 +17,10 @@ function extractKeywords(text) {
   ];
 
   return text
-    .toLowerCase()
-    .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Remove acentos
-    .split(/\W+/) // Divide o texto por não-palavras
+    .toLowerCase() // Converte para minúsculas
+    .normalize("NFD") // Remove acentos
+    .replace(/[\u0300-\u036f]/g, "") // Remove os acentos
+    .split(/\s+/) // Divide por espaços em vez de não-palavras
     .filter(word => word.length > 3 && !stopwords.includes(word) && /^[a-zA-Z]+$/.test(word)); // Filtra palavras válidas
 }
 
