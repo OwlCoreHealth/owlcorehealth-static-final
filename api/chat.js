@@ -1,14 +1,15 @@
 import { getSymptomContext } from "./notion.mjs"; 
 
+// Memória de sessão para manter contexto e progressão do funil
 let sessionMemory = {
   sintomasDetectados: [],
   respostasUsuario: [],
   nome: "",
   idioma: "pt",
   sintomaAtual: null,
-  categoriaAtual: null,
-  contadorPerguntas: {},
-  ultimasPerguntas: []
+  funnelPhase: 1,
+  ultimasPerguntas: [],
+  lastSelectedQuestion: ""
 };
 
 export default async function handler(req, res) {
@@ -25,30 +26,63 @@ export default async function handler(req, res) {
     // Usar a pergunta selecionada se disponível, caso contrário usar a mensagem do usuário
     const userInput = selectedQuestion || message;
     
-    // Detectar idioma
-    const isPortuguese = /[ãõçáéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
-    const idioma = isPortuguese ? "pt" : "en";
+    // Detectar idioma na primeira mensagem e manter consistente
+    if (sessionMemory.respostasUsuario.length === 0) {
+      const isPortuguese = /[ãõçáéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
+      sessionMemory.idioma = isPortuguese ? "pt" : "en";
+    }
     
-    const userName = name?.trim() || "";
-    const userAge = parseInt(age);
+    const userName = name?.trim() || sessionMemory.nome || "";
+    const userAge = parseInt(age) || null;
     const userSex = (sex || "").toLowerCase();
-    const userWeight = parseFloat(weight);
-    const hasForm = userName && !isNaN(userAge) && userSex && !isNaN(userWeight);
-
+    const userWeight = parseFloat(weight) || null;
+    
+    // Atualizar memória da sessão
     sessionMemory.nome = userName;
-    sessionMemory.idioma = idioma;
     sessionMemory.respostasUsuario.push(userInput);
+    
+    // Verificar se a pergunta selecionada indica avanço no funil
+    if (selectedQuestion) {
+      sessionMemory.lastSelectedQuestion = selectedQuestion;
+      
+      // Avançar fase do funil com base na pergunta selecionada
+      if (shouldAdvanceFunnel(selectedQuestion)) {
+        sessionMemory.funnelPhase = Math.min(sessionMemory.funnelPhase + 1, 4);
+      }
+    }
+    
+    // Forçar avanço do funil após várias interações
+    if (sessionMemory.respostasUsuario.length > 3 && sessionMemory.funnelPhase < 2) {
+      sessionMemory.funnelPhase = 2;
+    }
+    if (sessionMemory.respostasUsuario.length > 5 && sessionMemory.funnelPhase < 3) {
+      sessionMemory.funnelPhase = 3;
+    }
+    if (sessionMemory.respostasUsuario.length > 7 && sessionMemory.funnelPhase < 4) {
+      sessionMemory.funnelPhase = 4;
+    }
 
-    // Obter contexto do sintoma do Notion com dados do usuário para personalização
-    const symptomContext = await getSymptomContext(userInput, userName, userAge, userWeight);
+    // Obter contexto do sintoma com a fase atual do funil
+    const symptomContext = await getSymptomContext(
+      userInput, 
+      userName, 
+      userAge, 
+      userWeight, 
+      sessionMemory.funnelPhase
+    );
     
     // Atualizar a memória da sessão com o sintoma detectado
     if (symptomContext.sintoma) {
       sessionMemory.sintomaAtual = symptomContext.sintoma;
     }
 
-    // Construir a resposta formatada com explicação científica e perguntas clicáveis
-    let responseContent = formatResponse(symptomContext, idioma, { name: userName, age: userAge, weight: userWeight });
+    // Construir a resposta formatada com explicação e perguntas clicáveis
+    let responseContent = formatResponse(symptomContext, sessionMemory.idioma, { 
+      name: userName, 
+      age: userAge, 
+      weight: userWeight,
+      funnelPhase: sessionMemory.funnelPhase
+    });
     
     // Armazenar as últimas perguntas para referência futura
     sessionMemory.ultimasPerguntas = symptomContext.followupQuestions;
@@ -69,103 +103,101 @@ export default async function handler(req, res) {
   }
 }
 
-// Função para formatar a resposta com explicação científica e perguntas clicáveis no estilo Owl Savage
+// Função para verificar se deve avançar no funil com base na pergunta selecionada
+function shouldAdvanceFunnel(question) {
+  const lowerQuestion = question.toLowerCase();
+  
+  // Palavras-chave que indicam interesse em avançar no funil
+  const advancementKeywords = [
+    "plant", "planta", "natural", "supplement", "suplemento", 
+    "nutrient", "nutriente", "solution", "solução", "option", "opção",
+    "risk", "risco", "danger", "perigo", "worse", "pior",
+    "try", "experimentar", "know", "conhecer", "learn", "aprender"
+  ];
+  
+  // Verificar se a pergunta contém palavras-chave de avanço
+  return advancementKeywords.some(keyword => lowerQuestion.includes(keyword));
+}
+
+// Função para formatar a resposta com explicação e perguntas clicáveis
 function formatResponse(symptomContext, idioma, userData) {
   const { intro, scientificExplanation, followupQuestions } = symptomContext;
-  const { name, age, weight } = userData || {};
-  const hasUserData = name && age && weight;
+  const { name, funnelPhase } = userData || {};
   
-  // Título da seção científica com tom provocador
-  const scientificTitle = idioma === "pt" ? 
-    "### A verdade que você precisa ouvir:" : 
-    "### The truth you need to hear:";
+  // Títulos adaptados à fase do funil e idioma
+  let titleSection, questionsTitle;
   
-  // Título da seção de perguntas com desafio
-  const questionsTitle = idioma === "pt" ? 
-    "### E agora, o que você vai fazer a respeito?" : 
-    "### And now, what are you going to do about it?";
+  if (idioma === "pt") {
+    // Títulos em português
+    switch(funnelPhase) {
+      case 1:
+        titleSection = "### A verdade que você precisa ouvir:";
+        questionsTitle = "### E agora, o que você vai fazer a respeito?";
+        break;
+      case 2:
+        titleSection = "### O que você está realmente arriscando:";
+        questionsTitle = "### Está pronto para agir ou prefere continuar sofrendo?";
+        break;
+      case 3:
+        titleSection = "### Soluções que realmente funcionam:";
+        questionsTitle = "### Quer saber mais ou vai continuar ignorando?";
+        break;
+      case 4:
+        titleSection = "### A solução que você precisa agora:";
+        questionsTitle = "### Pronto para transformar sua saúde?";
+        break;
+      default:
+        titleSection = "### A verdade que você precisa ouvir:";
+        questionsTitle = "### E agora, o que você vai fazer a respeito?";
+    }
+  } else {
+    // Títulos em inglês
+    switch(funnelPhase) {
+      case 1:
+        titleSection = "### The truth you need to hear:";
+        questionsTitle = "### And now, what are you going to do about it?";
+        break;
+      case 2:
+        titleSection = "### What you're really risking:";
+        questionsTitle = "### Are you ready to act or do you prefer to keep suffering?";
+        break;
+      case 3:
+        titleSection = "### Solutions that actually work:";
+        questionsTitle = "### Want to know more or will you keep ignoring it?";
+        break;
+      case 4:
+        titleSection = "### The solution you need right now:";
+        questionsTitle = "### Ready to transform your health?";
+        break;
+      default:
+        titleSection = "### The truth you need to hear:";
+        questionsTitle = "### And now, what are you going to do about it?";
+    }
+  }
   
-  // Texto de instrução para as perguntas com tom de desafio
+  // Texto de instrução para as perguntas
   const instructionText = idioma === "pt" 
-    ? "Escolha seu próximo passo (se tiver coragem):" 
+    ? "Escolha seu próximo passo (se tiver coragem):"
     : "Choose your next step (if you have the courage):";
   
-  // Construir a resposta formatada com o estilo Owl Savage
-  let response = `${intro}\n\n${scientificTitle}\n${scientificExplanation}\n\n${questionsTitle}\n${instructionText}\n\n`;
+  // Construir a resposta formatada
+  let response = `${intro}\n\n${titleSection}\n${scientificExplanation}\n\n${questionsTitle}\n${instructionText}\n\n`;
   
-  // Adicionar perguntas clicáveis que conduzem ao funil
+  // Adicionar perguntas clicáveis
   followupQuestions.forEach((question, index) => {
     response += `<div class="clickable-question" data-question="${encodeURIComponent(question)}" onclick="handleQuestionClick(this)">
       ${index + 1}. ${question}
     </div>\n`;
   });
   
-  return response;
-}
-
-// Função para gerar estatísticas de funil com base na fase atual
-function getFunnelStatistics(symptom, phase, language) {
-  // Estatísticas para fase de diagnóstico
-  const diagnosisStats = {
-    pt: [
-      "42% das pessoas com seus sintomas estão ignorando um problema potencialmente sério.",
-      "Estudos mostram que 38% dos casos como o seu pioram significativamente em 3 meses.",
-      "Cerca de 45% das pessoas com seu perfil desenvolvem complicações se não tratarem adequadamente."
-    ],
-    en: [
-      "42% of people with your symptoms are ignoring a potentially serious problem.",
-      "Studies show that 38% of cases like yours get significantly worse within 3 months.",
-      "About 45% of people with your profile develop complications if they don't treat properly."
-    ]
-  };
-  
-  // Estatísticas para fase de agravamento
-  const aggravationStats = {
-    pt: [
-      "67% dos problemas ignorados evoluem para condições crônicas que exigem tratamento prolongado.",
-      "Pessoas que adiam o tratamento têm 58% mais chances de desenvolver complicações graves.",
-      "73% dos casos não tratados adequadamente resultam em limitações permanentes da qualidade de vida."
-    ],
-    en: [
-      "67% of ignored problems evolve into chronic conditions requiring prolonged treatment.",
-      "People who delay treatment are 58% more likely to develop serious complications.",
-      "73% of cases not properly treated result in permanent limitations to quality of life."
-    ]
-  };
-  
-  // Estatísticas para fase de solução
-  const solutionStats = {
-    pt: [
-      "Plantas medicinais específicas podem reduzir seus sintomas em até 78% em apenas 30 dias.",
-      "85% das pessoas que usam suplementos naturais adequados relatam melhora significativa.",
-      "Nutrientes específicos podem resolver a causa raiz do seu problema em 92% dos casos."
-    ],
-    en: [
-      "Specific medicinal plants can reduce your symptoms by up to 78% in just 30 days.",
-      "85% of people who use appropriate natural supplements report significant improvement.",
-      "Specific nutrients can solve the root cause of your problem in 92% of cases."
-    ]
-  };
-  
-  // Selecionar conjunto de estatísticas com base na fase
-  let statsSet;
-  switch(phase) {
-    case 1: statsSet = diagnosisStats; break;
-    case 2: statsSet = aggravationStats; break;
-    case 3: statsSet = solutionStats; break;
-    default: statsSet = diagnosisStats;
+  // Adicionar CTA específico na fase 4
+  if (funnelPhase === 4) {
+    const ctaText = idioma === "pt"
+      ? `<div class="supplement-cta">Clique aqui para conhecer o suplemento que já ajudou milhares de pessoas com os mesmos sintomas que você!</div>`
+      : `<div class="supplement-cta">Click here to discover the supplement that has already helped thousands of people with the same symptoms as you!</div>`;
+    
+    response += `\n${ctaText}`;
   }
   
-  // Retornar uma estatística aleatória
-  return statsSet[language][Math.floor(Math.random() * statsSet[language].length)];
-}
-
-// Função para avançar no funil com base no histórico de conversa
-function determineFunnelPhase(sessionMemory) {
-  const messageCount = sessionMemory.respostasUsuario.length;
-  
-  // Lógica simples de progressão do funil baseada no número de interações
-  if (messageCount <= 2) return 1; // Fase de diagnóstico
-  if (messageCount <= 4) return 2; // Fase de agravamento
-  return 3; // Fase de solução/suplemento
+  return response;
 }
