@@ -1,13 +1,3 @@
-console.log("🟢 ESTE É O ARQUIVO notion.mjs SENDO EXECUTADO");
-
-import { Client } from "@notionhq/client";
-
-// ✅ Autenticação com chave direta (teste)
-const notion = new Client({
-  auth: "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"
-});
-
-// Definir o ID do banco de dados do Notion
 const databaseId = "1fda050ee113804aa5e9dd1b01e31066"; // Substitua com o seu ID real
 
 // Função de extração de palavras-chave
@@ -26,19 +16,15 @@ function extractKeywords(text) {
 const userMessage = "Headache and fatigue are common symptoms that can affect daily life.";
 const keywords = extractKeywords(userMessage);
 console.log("🧠 Palavras-chave extraídas:", keywords);
-}
 
-// 🔍 Função principal para consultar o Notion com as palavras-chave extraídas
+// 🔍 Função principal para consulta ao Notion (início)
 export async function getSymptomContext(userMessage) {
   try {
-    // Extração das palavras-chave da mensagem do usuário
     const keywords = extractKeywords(userMessage);
     console.log("🧠 Palavras-chave extraídas:", keywords);
 
-    // Se não houver palavras-chave extraídas, retornar um array vazio
     if (!keywords.length) return [];
 
-    // Criar o filtro para a consulta no Notion com as palavras-chave extraídas
     const filter = {
       or: keywords.map(word => ({
         property: "Palavras-chave", // Nome da propriedade no banco de dados do Notion
@@ -55,13 +41,10 @@ export async function getSymptomContext(userMessage) {
       database_id: databaseId // ID do banco de dados
     });
 
-    // Exibir a resposta bruta do Notion
     console.log("📨 Resposta do Notion:", JSON.stringify(response, null, 2));
 
-    // Se não houver resultados, retornar um array vazio
     if (!response.results.length) return [];
 
-    // Mapeando os resultados e retornando as informações relevantes
     return response.results.map(page => {
       const p = page.properties;
       return {
@@ -90,6 +73,7 @@ export async function getSymptomContext(userMessage) {
     return []; // Retorna um array vazio em caso de erro
   }
 }
+
 
 // 🔁 Testando a função com uma mensagem
 const userMessage = "Headache and fatigue are common symptoms that can affect daily life.";
