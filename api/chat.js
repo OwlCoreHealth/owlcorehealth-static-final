@@ -15,8 +15,20 @@ function determineFunnelPhase(sessionMemory) {
   const currentPhase = sessionMemory.funnelPhase || 1;
   
   // Verificar palavras-chave na última mensagem do usuário para possível avanço
-  const lastUserMessage = sessionMemory.respostasUsuario[sessionMemory.respostasUsuario.length - 1] || "";
-  const lowerMessage = lastUserMessage.toLowerCase();
+  // Garantir que lastUserMessage seja uma string antes de chamar toLowerCase()
+  let lastUserMessage = "";
+  if (sessionMemory.respostasUsuario.length > 0) {
+    const lastItem = sessionMemory.respostasUsuario[sessionMemory.respostasUsuario.length - 1];
+    // Verificar se é uma string ou um objeto
+    if (typeof lastItem === 'string') {
+      lastUserMessage = lastItem;
+    } else if (lastItem && typeof lastItem === 'object') {
+      // Se for um objeto, tentar extrair a mensagem de propriedades comuns
+      lastUserMessage = lastItem.text || lastItem.message || lastItem.content || lastItem.input || "";
+    }
+  }
+  
+  const lowerMessage = String(lastUserMessage).toLowerCase();
   
   // Palavras-chave que podem acelerar o avanço no funil
   const phase2Keywords = ["consequência", "consequencia", "risco", "piorar", "consequence", "risk", "worsen"];
@@ -156,13 +168,19 @@ ${formattedQuestions}`;
 // Função principal para processar a mensagem do usuário
 async function processMessage(userMessage, sessionMemory = {}) {
   try {
+    // Garantir que userMessage seja uma string
+    const messageText = typeof userMessage === 'string' ? userMessage : 
+                        (userMessage && typeof userMessage === 'object') ? 
+                        (userMessage.text || userMessage.message || userMessage.content || userMessage.input || String(userMessage)) : 
+                        String(userMessage);
+    
     // Inicializar a memória da sessão se não existir
     if (!sessionMemory.respostasUsuario) {
       sessionMemory.respostasUsuario = [];
     }
     
-    // Adicionar a mensagem atual à memória
-    sessionMemory.respostasUsuario.push(userMessage);
+    // Adicionar a mensagem atual à memória (como string)
+    sessionMemory.respostasUsuario.push(messageText);
     
     // Extrair dados do usuário da memória da sessão
     const userName = sessionMemory.userName || "";
@@ -183,7 +201,7 @@ async function processMessage(userMessage, sessionMemory = {}) {
     
     // Obter o contexto do sintoma
     const symptomContext = await getSymptomContext(
-      userMessage, 
+      messageText, 
       userName, 
       userAge, 
       userWeight, 
