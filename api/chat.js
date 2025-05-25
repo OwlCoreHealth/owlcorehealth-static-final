@@ -1,7 +1,7 @@
-// ES Modules format - Ultra Simplified Version
+// ES Modules format - Adaptado para GPT-3.5 gratuito
 import { getSymptomContext } from './notion.mjs';
 
-// Função principal para processar a mensagem do usuário - versão ultra simplificada
+// Função principal para processar a mensagem do usuário - versão adaptada para GPT-3.5
 async function processMessage(userMessage, sessionMemory = {}) {
   try {
     console.log("🔄 Iniciando processamento da mensagem...");
@@ -52,7 +52,7 @@ async function processMessage(userMessage, sessionMemory = {}) {
     // Manter o sintoma anterior para continuidade
     const previousSymptom = sessionMemory.sintomaAtual || null;
     
-    // Obter o contexto do sintoma - versão ultra simplificada
+    // Obter o contexto do sintoma - versão adaptada para GPT-3.5
     const symptomContext = getSymptomContext(
       messageText, 
       userName, 
@@ -77,7 +77,7 @@ async function processMessage(userMessage, sessionMemory = {}) {
       sessionMemory.previouslySelectedQuestions = sessionMemory.previouslySelectedQuestions.slice(-20);
     }
     
-    // Formatar a resposta - versão ultra simplificada
+    // Formatar a resposta - versão adaptada para GPT-3.5
     const { intro, scientificExplanation, followupQuestions } = symptomContext;
     const language = symptomContext.language || "en";
     
