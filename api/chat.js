@@ -19,7 +19,7 @@ let sessionMemory = {
 // Configuração da API OpenAI
 // IMPORTANTE: Use variáveis de ambiente para maior segurança
 // const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-const OPENAI_API_KEY = "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"; // Substitua pela sua chave API
+const OPENAI_API_KEY = "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"; // Substitua pela sua chave API
 const GPT_MODEL = "gpt-4o-mini"; // Modelo GPT-4o mini
 
 // Conteúdo de fallback rico para cada fase do funil e sintoma
