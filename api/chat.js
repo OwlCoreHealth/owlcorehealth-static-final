@@ -104,7 +104,7 @@ export default async function handler(req, res) {
       }
     };
 
-    // Definição de perguntas clicáveis para cada sintoma
+    // Perguntas de follow-up
     const followupEtapas = {
       stomach_pain: [
         "Você tem comido alimentos picantes recentemente?",
@@ -115,13 +115,17 @@ export default async function handler(req, res) {
 
     let followups = [];
     let corpo = `Aqui está o que você pode tentar para aliviar suas dores:\n\n`;
-    followupEtapas["stomach_pain"].forEach((question, index) => {
-      corpo += `<a href="/next-step?question=${index + 1}">${index + 1}. ${question}</a>\n`; // Gerar o link clicável para cada pergunta
-    });
+
+    // Preenchendo as perguntas com base no sintoma detectado
+    if (followupEtapas[sintoma]) {
+      followupEtapas[sintoma].forEach((question, index) => {
+        corpo += `<a href="/next-step?question=${index + 1}">${index + 1}. ${question}</a>\n`;
+      });
+    }
 
     corpo += `\n\n${idioma === "pt" ? "Escolha uma das opções abaixo para continuarmos:" : "Choose one of the options below to continue:"}\n1. ${followups[0]}\n2. ${followups[1]}\n3. ${followups[2]}`;
 
-    // Envio da resposta para o frontend
+    // Enviar a resposta para o frontend com as perguntas clicáveis
     return res.status(200).json({
       choices: [{ message: { content: corpo, followups } }]
     });
