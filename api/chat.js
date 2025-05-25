@@ -154,8 +154,8 @@ function formatResponse(symptomContext, funnelPhase) {
     // Formatar as perguntas de follow-up como elementos clicáveis
     const formattedQuestions = followupQuestions.map((question, index) => {
       return `<div class="clickable-question" data-question="${encodeURIComponent(question)}" onclick="handleQuestionClick(this)">
-        ${index + 1}. ${question}
-      </div>`;
+      ${index + 1}. ${question}
+    </div>`;
     }).join('\n');
     
     // Montar a resposta completa
