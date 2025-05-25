@@ -11,6 +11,7 @@ const notion = new Client({
 const databaseId = "1fda050ee113804aa5e9dd1b01e31066"; // Substitua com o seu ID real
 
 // 🔍 Função de extração de palavras-chave
+// Função de extração de palavras-chave
 function extractKeywords(text) {
   const stopwords = [
     "the", "and", "for", "with", "from", "that", "this", "you", "your", "in", "to", "is", "it", "on", "a", "of", "as", "at", "by", "be", "are", "have", "was", "were", "not", "but", "or", "an", "we", "they", "he", "she", "it", "I"
@@ -18,9 +19,7 @@ function extractKeywords(text) {
 
   return text
     .toLowerCase() // Converte para minúsculas
-    .normalize("NFD") // Remove acentos
-    .replace(/[\u0300-\u036f]/g, "") // Remove os acentos
-    .split(/\s+/) // Divide por espaços em vez de não-palavras
+    .split(/\W+/) // Divide o texto por não-palavras (como espaços, pontuação)
     .filter(word => word.length > 3 && !stopwords.includes(word) && /^[a-zA-Z]+$/.test(word)); // Filtra palavras válidas
 }
 
