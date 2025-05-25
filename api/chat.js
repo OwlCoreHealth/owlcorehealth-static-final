@@ -1,182 +1,154 @@
-// ES Modules format - Adaptado para GPT-3.5 gratuito
-import { getSymptomContext } from './notion.mjs';
+import { getSymptomContext } from "./notion.mjs"; 
 
-// Função principal para processar a mensagem do usuário - versão adaptada para GPT-3.5
-async function processMessage(userMessage, sessionMemory = {}) {
+let sessionMemory = {
+  sintomasDetectados: [],
+  respostasUsuario: [],
+  nome: "",
+  idioma: "pt",
+  sintomaAtual: null,
+  categoriaAtual: null,
+  contadorPerguntas: {},
+  ultimasPerguntas: []
+};
+
+export default async function handler(req, res) {
   try {
-    console.log("🔄 Iniciando processamento da mensagem...");
-    
-    // Garantir que userMessage seja uma string
-    const messageText = typeof userMessage === 'string' ? userMessage : 
-                        (userMessage && typeof userMessage === 'object') ? 
-                        (userMessage.text || userMessage.message || userMessage.content || userMessage.input || String(userMessage)) : 
-                        String(userMessage);
-    
-    // Inicializar a memória da sessão se não existir
-    if (!sessionMemory.respostasUsuario) {
-      sessionMemory.respostasUsuario = [];
+    if (req.method !== "POST") {
+      return res.status(405).json({ error: "Method not allowed. Use POST." });
     }
-    
-    // Adicionar a mensagem atual à memória (como string)
-    sessionMemory.respostasUsuario.push(messageText);
-    
-    // Extrair dados do usuário da memória da sessão
-    const userName = sessionMemory.userName || "";
-    const userAge = sessionMemory.userAge || "";
-    const userWeight = sessionMemory.userWeight || "";
-    
-    // Rastrear perguntas já selecionadas para evitar repetição
-    if (!sessionMemory.previouslySelectedQuestions) {
-      sessionMemory.previouslySelectedQuestions = [];
+
+    const { message, name, age, sex, weight, selectedQuestion } = req.body;
+    if (!message && !selectedQuestion) {
+      return res.status(400).json({ error: "No message or selected question provided." });
     }
+
+    // Usar a pergunta selecionada se disponível, caso contrário usar a mensagem do usuário
+    const userInput = selectedQuestion || message;
     
-    // Determinar a fase atual do funil - simplificado
-    const numInteractions = sessionMemory.respostasUsuario.length;
-    let funnelPhase = sessionMemory.funnelPhase || 1;
+    // Detectar idioma
+    const isPortuguese = /[ãõçáéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
+    const idioma = isPortuguese ? "pt" : "en";
     
-    // Progressão simplificada do funil baseada apenas no número de interações
-    if (numInteractions >= 10) {
-      funnelPhase = 6; // Plano B
-    } else if (numInteractions >= 8) {
-      funnelPhase = 5; // Suplemento
-    } else if (numInteractions >= 6) {
-      funnelPhase = 4; // Nutrientes e Plantas
-    } else if (numInteractions >= 4) {
-      funnelPhase = 3; // Agravamento
-    } else if (numInteractions >= 2) {
-      funnelPhase = 2; // Consequências
+    const userName = name?.trim() || "";
+    const userAge = parseInt(age);
+    const userSex = (sex || "").toLowerCase();
+    const userWeight = parseFloat(weight);
+    const hasForm = userName && !isNaN(userAge) && userSex && !isNaN(userWeight);
+
+    sessionMemory.nome = userName;
+    sessionMemory.idioma = idioma;
+    sessionMemory.respostasUsuario.push(userInput);
+
+    // Obter contexto do sintoma do Notion
+    const symptomContext = await getSymptomContext(userInput, userName);
+    
+    // Atualizar a memória da sessão com o sintoma detectado
+    if (symptomContext.sintoma) {
+      sessionMemory.sintomaAtual = symptomContext.sintoma;
     }
-    
-    sessionMemory.funnelPhase = funnelPhase;
-    
-    // Manter o sintoma anterior para continuidade
-    const previousSymptom = sessionMemory.sintomaAtual || null;
-    
-    // Obter o contexto do sintoma - versão adaptada para GPT-3.5
-    const symptomContext = getSymptomContext(
-      messageText, 
-      userName, 
-      userAge, 
-      userWeight, 
-      funnelPhase,
-      previousSymptom,
-      sessionMemory.previouslySelectedQuestions
-    );
-    
-    // Atualizar o sintoma atual na memória
-    sessionMemory.sintomaAtual = symptomContext.sintoma;
-    
-    // Adicionar as novas perguntas à lista de perguntas já usadas
-    sessionMemory.previouslySelectedQuestions = [
-      ...sessionMemory.previouslySelectedQuestions,
-      ...symptomContext.followupQuestions
-    ];
-    
-    // Limitar o tamanho da lista de perguntas anteriores
-    if (sessionMemory.previouslySelectedQuestions.length > 20) {
-      sessionMemory.previouslySelectedQuestions = sessionMemory.previouslySelectedQuestions.slice(-20);
-    }
-    
-    // Formatar a resposta - versão adaptada para GPT-3.5
-    const { intro, scientificExplanation, followupQuestions } = symptomContext;
-    const language = symptomContext.language || "en";
-    
-    // Títulos para cada fase do funil
-    const phaseTitles = {
-      1: {
-        pt: "O que está realmente acontecendo:",
-        en: "What's really happening:"
-      },
-      2: {
-        pt: "Consequências se não tratado:",
-        en: "Consequences if untreated:"
-      },
-      3: {
-        pt: "O que você está realmente arriscando:",
-        en: "What you're really risking:"
-      },
-      4: {
-        pt: "Nutrientes e plantas que podem ajudar:",
-        en: "Nutrients and plants that can help:"
-      },
-      5: {
-        pt: "A solução completa para seu problema:",
-        en: "The complete solution for your problem:"
-      },
-      6: {
-        pt: "Pense bem sobre isso:",
-        en: "Think carefully about this:"
-      }
-    };
-    
-    // Obter o título apropriado para a fase atual
-    const title = phaseTitles[funnelPhase]?.[language] || phaseTitles[1][language];
-    
-    // Texto de fechamento para cada fase
-    const closingText = {
-      1: {
-        pt: "Estas dicas ajudam, mas quer saber mais?",
-        en: "These tips help, but want to know more?"
-      },
-      2: {
-        pt: "Está pronto para levar isso a sério?",
-        en: "Are you ready to take this seriously?"
-      },
-      3: {
-        pt: "Está pronto para agir ou prefere continuar sofrendo?",
-        en: "Are you ready to act or prefer to keep suffering?"
-      },
-      4: {
-        pt: "Quer uma solução mais completa e eficaz?",
-        en: "Want a more complete and effective solution?"
-      },
-      5: {
-        pt: "Pronto para transformar sua saúde de uma vez por todas?",
-        en: "Ready to transform your health once and for all?"
-      },
-      6: {
-        pt: "A decisão final é sua:",
-        en: "The final decision is yours:"
-      }
-    };
-    
-    // Obter o texto de fechamento apropriado para a fase atual
-    const closing = closingText[funnelPhase]?.[language] || closingText[1][language];
-    
-    // Formatar as perguntas de follow-up como elementos clicáveis
-    const formattedQuestions = followupQuestions.map((question, index) => {
-      return `<div class="clickable-question" data-question="${encodeURIComponent(question)}" onclick="handleQuestionClick(this)">
-      ${index + 1}. ${question}
-    </div>`;
-    }).join('\n');
-    
-    // Montar a resposta completa
-    const response = `${intro}
 
-### ${title}
-${scientificExplanation}
-
-### ${closing}
-Escolha seu próximo passo (se tiver coragem):
-
-${formattedQuestions}`;
-
-    console.log("✅ Processamento concluído com sucesso!");
-    // Retornar a resposta e a memória atualizada
-    return {
-      response,
-      sessionMemory
-    };
+    // Construir a resposta formatada com explicação científica e perguntas clicáveis
+    let responseContent = formatResponse(symptomContext, idioma);
     
-  } catch (error) {
-    console.error("❌ Erro ao processar mensagem:", error);
-    // Retornar uma resposta de erro amigável
-    return {
-      response: `Desculpe, ocorreu um erro ao processar sua mensagem. Por favor, tente novamente com uma pergunta mais simples.`,
-      sessionMemory
-    };
+    // Armazenar as últimas perguntas para referência futura
+    sessionMemory.ultimasPerguntas = symptomContext.followupQuestions;
+
+    // Enviar a resposta para o frontend
+    return res.status(200).json({
+      choices: [{ 
+        message: { 
+          content: responseContent,
+          followupQuestions: symptomContext.followupQuestions 
+        } 
+      }]
+    });
+
+  } catch (err) {
+    console.error("Internal server error:", err.message);
+    return res.status(500).json({ error: "Server error", details: err.message });
   }
 }
 
-// Exportar usando default export (função principal)
-export default processMessage;
+// Função para formatar a resposta com explicação científica e perguntas clicáveis
+function formatResponse(symptomContext, idioma) {
+  const { intro, scientificExplanation, followupQuestions } = symptomContext;
+  
+  // Título da seção científica
+  const scientificTitle = idioma === "pt" ? "### Análise Científica:" : "### Scientific Analysis:";
+  
+  // Título da seção de perguntas
+  const questionsTitle = idioma === "pt" ? "### Vamos explorar mais:" : "### Let's explore further:";
+  
+  // Texto de instrução para as perguntas
+  const instructionText = idioma === "pt" 
+    ? "Clique em uma das opções abaixo para continuarmos:" 
+    : "Click on one of the options below to continue:";
+  
+  // Construir a resposta formatada
+  let response = `${intro}\n\n${scientificTitle}\n${scientificExplanation}\n\n${questionsTitle}\n${instructionText}\n\n`;
+  
+  // Adicionar perguntas clicáveis
+  followupQuestions.forEach((question, index) => {
+    // Criar um data attribute com a pergunta codificada para ser capturada pelo JavaScript do frontend
+    response += `<div class="clickable-question" data-question="${encodeURIComponent(question)}" onclick="handleQuestionClick(this)">
+      ${index + 1}. ${question}
+    </div>\n`;
+  });
+  
+  return response;
+}
+
+// Adicione este script ao seu HTML ou como um arquivo JavaScript separado
+/*
+<script>
+  function handleQuestionClick(element) {
+    const question = decodeURIComponent(element.getAttribute('data-question'));
+    
+    // Adicionar a pergunta selecionada ao campo de entrada
+    document.getElementById('message-input').value = question;
+    
+    // Ou enviar diretamente para o backend
+    fetch('/api/chat', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        selectedQuestion: question,
+        name: sessionStorage.getItem('userName') || '',
+        age: sessionStorage.getItem('userAge') || '',
+        sex: sessionStorage.getItem('userSex') || '',
+        weight: sessionStorage.getItem('userWeight') || ''
+      }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Processar a resposta e atualizar a interface
+      displayBotResponse(data.choices[0].message.content);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  }
+  
+  // Função para estilizar as perguntas clicáveis
+  document.addEventListener('DOMContentLoaded', function() {
+    const style = document.createElement('style');
+    style.textContent = `
+      .clickable-question {
+        padding: 10px 15px;
+        margin: 5px 0;
+        background-color: #f0f7ff;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+      
+      .clickable-question:hover {
+        background-color: #d0e5ff;
+      }
+    `;
+    document.head.appendChild(style);
+  });
+</script>
+*/
