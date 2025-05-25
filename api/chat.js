@@ -1,5 +1,5 @@
 // chat.js - Integração com GPT-4o mini e progressão de funil
-// Versão com fallback robusto e correção de idioma
+// Versão com fallback robusto e correção de idioma - Compatível com UTF-8
 import { getSymptomContext } from './notion.mjs';
 import fetch from 'node-fetch';
 
@@ -19,7 +19,7 @@ let sessionMemory = {
 // Configuração da API OpenAI
 // IMPORTANTE: Use variáveis de ambiente para maior segurança
 // const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-const OPENAI_API_KEY = "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"; // Substitua pela sua chave API
+const OPENAI_API_KEY = "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"; // Substitua pela sua chave API
 const GPT_MODEL = "gpt-4o-mini"; // Modelo GPT-4o mini
 
 // Conteúdo de fallback rico para cada fase do funil e sintoma
@@ -81,11 +81,11 @@ const fallbackContent = {
   2: {
     headache: {
       pt: [
-        "Ignorar dores de cabeça recorrentes pode ter consequências sérias. Quando você constantemente mascara a dor com analgésicos sem tratar a causa raiz, seu cérebro pode desenvolver um fenômeno chamado "sensibilização central", onde o limiar de dor diminui e a intensidade aumenta.\n\nEstudos mostram que 45% das pessoas que ignoram dores de cabeça frequentes desenvolvem condições crônicas em 6-12 meses. Além disso, o uso excessivo de analgésicos pode causar "dor de cabeça por uso excessivo de medicação", um ciclo vicioso difícil de quebrar.",
+        "Ignorar dores de cabeça recorrentes pode ter consequências sérias. Quando você constantemente mascara a dor com analgésicos sem tratar a causa raiz, seu cérebro pode desenvolver um fenômeno chamado 'sensibilizacao central', onde o limiar de dor diminui e a intensidade aumenta.\n\nEstudos mostram que 45% das pessoas que ignoram dores de cabeça frequentes desenvolvem condições crônicas em 6-12 meses. Além disso, o uso excessivo de analgésicos pode causar 'dor de cabeça por uso excessivo de medicação', um ciclo vicioso difícil de quebrar.",
         "Continuar ignorando essas dores de cabeça pode transformar um problema ocasional em uma condição crônica debilitante. A exposição repetida à dor altera os circuitos neurais, tornando seu cérebro mais sensível a estímulos que normalmente não causariam desconforto.\n\nCerca de 40% das pessoas com dores de cabeça não tratadas relatam impacto significativo na qualidade de vida, incluindo problemas de concentração, irritabilidade e até mesmo depressão. O custo de ignorar esses sinais agora pode ser muito maior no futuro."
       ],
       en: [
-        "Ignoring recurring headaches can have serious consequences. When you constantly mask the pain with painkillers without treating the root cause, your brain can develop a phenomenon called "central sensitization," where the pain threshold decreases and intensity increases.\n\nStudies show that 45% of people who ignore frequent headaches develop chronic conditions within 6-12 months. Additionally, excessive use of painkillers can cause "medication overuse headache," a vicious cycle that's difficult to break.",
+        "Ignoring recurring headaches can have serious consequences. When you constantly mask the pain with painkillers without treating the root cause, your brain can develop a phenomenon called 'central sensitization,' where the pain threshold decreases and intensity increases.\n\nStudies show that 45% of people who ignore frequent headaches develop chronic conditions within 6-12 months. Additionally, excessive use of painkillers can cause 'medication overuse headache,' a vicious cycle that's difficult to break.",
         "Continuing to ignore these headaches can transform an occasional problem into a debilitating chronic condition. Repeated exposure to pain alters neural circuits, making your brain more sensitive to stimuli that wouldn't normally cause discomfort.\n\nAbout 40% of people with untreated headaches report significant impact on quality of life, including concentration problems, irritability, and even depression. The cost of ignoring these signals now may be much greater in the future."
       ]
     },
