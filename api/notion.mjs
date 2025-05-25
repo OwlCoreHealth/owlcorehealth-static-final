@@ -22,13 +22,18 @@ function extractKeywords(text) {
 // Função principal para consulta ao Notion
 export async function getSymptomContext(userMessage, userName) {
   try {
+    // Frases de abertura sarcástica quando o formulário não for preenchido
     const frasesSarcasticas = [
       "Sem seu nome, idade ou peso, posso te dar conselhos… tão úteis quanto ler a sorte no biscoito da sorte.",
       "Ignorar o formulário? Estratégia ousada. Vamos ver no que dá.",
       "Você ignora sua saúde assim também? Posso tentar adivinhar seu perfil com superpoderes… ou não."
     ];
 
-    const intro = `${userName}, vamos focar nisso.`;
+    // Verificando se o formulário foi preenchido
+    const hasForm = userName && userName.trim() !== ""; // Verifica se o nome foi fornecido
+    const intro = hasForm
+      ? `${userName}, vamos focar nisso.`
+      : frasesSarcasticas[Math.floor(Math.random() * frasesSarcasticas.length)]; // Escolhe uma frase sarcástica aleatória
 
     const keywords = extractKeywords(userMessage);
     console.log("🧠 Palavras-chave extraídas:", keywords);
@@ -54,8 +59,7 @@ export async function getSymptomContext(userMessage, userName) {
 
     if (!response.results.length) return [];
 
-    // Agora vamos definir a lógica de respostas
-    let corpo = "";
+    // Perguntas de follow-up baseadas no sintoma detectado
     const followupEtapas = {
       stomach_pain: [
         "Você tem comido alimentos picantes recentemente?",
@@ -99,17 +103,12 @@ export async function getSymptomContext(userMessage, userName) {
     }
 
     // Usando o sintoma detectado para escolher as perguntas apropriadas
+    let corpo = "";
     if (sintomaKey && followupEtapas[sintomaKey]) {
       corpo = `${intro} Vamos dar uma olhada no que pode estar causando sua dor de ${sintomaKey.replace("_", " ")}:\n\n`;
 
-      // Explicação científica para dor nas costas (como exemplo)
-      if (sintomaKey === "back_pain") {
-        corpo += `### Scientific Insight:\nBack pain is a common affliction and can stem from various causes like muscle strain, poor posture, or even something more serious like a herniated disc. Stress and lifestyle choices can also play a significant role.\n`;
-      }
-
-      corpo += `### Let’s Explore 3 Ideas:\n`;
-
       // Adicionando perguntas clicáveis
+      corpo += `### Let’s Explore 3 Ideas:\n`;
       followupEtapas[sintomaKey].forEach((question, index) => {
         corpo += `<a href="/next-step?question=${index + 1}">${index + 1}. ${question}</a>\n`; // Link clicável para cada pergunta
       });
