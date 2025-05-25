@@ -1,6 +1,6 @@
 import { Client } from "@notionhq/client";
 
-// ✅ Prompt Owl Savage - Personalidade e Funil
+// ✅ Prompt Owl Savage - Personalidade e Funil (Internal reference, not sent to LLM)
 const OWL_SAVAGE_PROMPT = `
 Você é o Owl Savage, um assistente de saúde com personalidade forte, sarcástica e direta. Siga estas diretrizes:
 
@@ -51,8 +51,8 @@ function extractKeywords(text) {
 
 // Função para detectar o idioma da mensagem
 function detectLanguage(message) {
-  const portugueseWords = ["é", "você", "tem", "dores", "sintoma"];
-  const englishWords = ["is", "you", "have", "pain", "symptom"];
+  const portugueseWords = ["é", "você", "tem", "dores", "sintoma", "cabeça", "estômago", "costas", "cansaço"];
+  const englishWords = ["is", "you", "have", "pain", "symptom", "headache", "stomach", "back", "fatigue"];
   
   const messageLower = message.toLowerCase();
   let portugueseCount = 0;
@@ -66,7 +66,7 @@ function detectLanguage(message) {
     if (messageLower.includes(word)) englishCount++;
   });
 
-  return portugueseCount > englishCount ? "pt" : "en";
+  return portugueseCount >= englishCount ? "pt" : "en"; // Default to Portuguese if equal
 }
 
 // ✅ Frases sarcásticas para formulário não preenchido
@@ -102,12 +102,14 @@ function getPersonalizedStatistic(symptom, age, weight, language) {
   let percentage = basePercentages[symptom] || 38;
   
   if (age) {
-    if (age > 40) percentage += 10;
+    if (age > 50) percentage += 15;
+    else if (age > 40) percentage += 10;
     else if (age > 30) percentage += 5;
   }
   
   if (weight) {
-    if (weight > 90) percentage += 15;
+    if (weight > 100) percentage += 20;
+    else if (weight > 90) percentage += 15;
     else if (weight > 80) percentage += 10;
     else if (weight > 70) percentage += 5;
   }
@@ -206,302 +208,59 @@ function getSarcasticIntro(symptom, language, userName) {
   return symptomIntros[language][Math.floor(Math.random() * symptomIntros[language].length)];
 }
 
-// Função principal para consulta ao Notion
-export async function getSymptomContext(userMessage, userName, userAge, userWeight) {
-  try {
-    // Detectar idioma da mensagem
-    const language = detectLanguage(userMessage);
-    
-    // Verificando se o formulário foi preenchido
-    const hasForm = userName && userName.trim() !== ""; // Verifica se o nome foi fornecido
-    
-    // Escolher introdução com base no preenchimento do formulário
-    let intro;
-    if (hasForm) {
-      // Detectando o sintoma com base nas palavras-chave
-      let sintomaKey = "unknown";
-      
-      if (userMessage.toLowerCase().includes("stomach") || 
-          userMessage.toLowerCase().includes("estômago") || 
-          userMessage.toLowerCase().includes("estomago") || 
-          userMessage.toLowerCase().includes("barriga")) {
-        sintomaKey = "stomach_pain";
-      } else if (userMessage.toLowerCase().includes("headache") || 
-                userMessage.toLowerCase().includes("dor de cabeça") || 
-                userMessage.toLowerCase().includes("cabeça")) {
-        sintomaKey = "headache";
-      } else if (userMessage.toLowerCase().includes("fatigue") || 
-                userMessage.toLowerCase().includes("cansaço") || 
-                userMessage.toLowerCase().includes("fadiga") || 
-                userMessage.toLowerCase().includes("energia")) {
-        sintomaKey = "fatigue";
-      } else if (userMessage.toLowerCase().includes("back pain") || 
-                userMessage.toLowerCase().includes("dor nas costas") || 
-                userMessage.toLowerCase().includes("lombar")) {
-        sintomaKey = "back_pain";
-      }
-      
-      // Obter introdução sarcástica personalizada
-      intro = getSarcasticIntro(sintomaKey, language, userName);
-    } else {
-      // Escolher uma frase sarcástica aleatória para formulário não preenchido
-      intro = frasesSarcasticas[language][Math.floor(Math.random() * frasesSarcasticas[language].length)];
-    }
-
-    const keywords = extractKeywords(userMessage);
-    console.log("🧠 Palavras-chave extraídas:", keywords);
-
-    if (!keywords.length) {
-      return {
-        sintoma: "unknown",
-        intro: intro,
-        scientificExplanation: getScientificExplanation("unknown", language, userName, userAge, userWeight),
-        followupQuestions: getFollowupQuestions("unknown", language)
-      };
-    }
-
-    const filter = {
-      or: keywords.map(word => ({
-        property: "Palavras-chave", // Nome da propriedade no banco de dados do Notion
-        rich_text: {
-          contains: word // Verificar se cada palavra-chave está no campo "Palavras-chave"
-        }
-      }))
-    };
-
-    console.log("📦 Filtro enviado ao Notion:", JSON.stringify(filter, null, 2));
-
-    const response = await notion.databases.query({
-      database_id: databaseId // ID do banco de dados
-    });
-
-    console.log("📨 Resposta do Notion:", JSON.stringify(response, null, 2));
-
-    // Detectando o sintoma com base nas palavras-chave
-    let sintomaKey = "unknown";
-    
-    if (userMessage.toLowerCase().includes("stomach") || 
-        userMessage.toLowerCase().includes("estômago") || 
-        userMessage.toLowerCase().includes("estomago") || 
-        userMessage.toLowerCase().includes("barriga")) {
-      sintomaKey = "stomach_pain";
-    } else if (userMessage.toLowerCase().includes("headache") || 
-               userMessage.toLowerCase().includes("dor de cabeça") || 
-               userMessage.toLowerCase().includes("cabeça")) {
-      sintomaKey = "headache";
-    } else if (userMessage.toLowerCase().includes("fatigue") || 
-               userMessage.toLowerCase().includes("cansaço") || 
-               userMessage.toLowerCase().includes("fadiga") || 
-               userMessage.toLowerCase().includes("energia")) {
-      sintomaKey = "fatigue";
-    } else if (userMessage.toLowerCase().includes("back pain") || 
-               userMessage.toLowerCase().includes("dor nas costas") || 
-               userMessage.toLowerCase().includes("lombar")) {
-      sintomaKey = "back_pain";
-    }
-
-    // Retornando um objeto estruturado com todas as informações necessárias
-    return {
-      sintoma: sintomaKey,
-      intro: intro,
-      scientificExplanation: getScientificExplanation(sintomaKey, language, userName, userAge, userWeight),
-      followupQuestions: getFollowupQuestions(sintomaKey, language)
-    };
-
-  } catch (error) {
-    console.error("❌ Erro ao consultar o Notion:", error);
-    const language = detectLanguage(userMessage);
-    return {
-      sintoma: "unknown",
-      intro: language === "pt" ? "Desculpe, tive um problema ao processar sua consulta." : "Sorry, I had an issue processing your query.",
-      scientificExplanation: getScientificExplanation("unknown", language, userName, userAge, userWeight),
-      followupQuestions: getFollowupQuestions("unknown", language)
-    };
-  }
-}
-
-// Função para obter explicações científicas com base no sintoma e idioma
-function getScientificExplanation(symptom, language, userName, userAge, userWeight) {
+// ✅ Função para obter explicações simplificadas e com valor prático
+function getSimplifiedExplanation(symptom, language, userName, userAge, userWeight) {
   // Estatística personalizada baseada nos dados do usuário
   const personalizedStat = getPersonalizedStatistic(symptom, userAge, userWeight, language);
   
   const explanations = {
     stomach_pain: {
-      pt: `As dores de estômago podem ter diversas causas, desde simples até mais complexas. E não, não é "só uma dorzinha" como você provavelmente está pensando.
+      pt: `Seu estômago não está apenas 'incomodado' - ele está em guerra química. ${personalizedStat}
 
-A dor abdominal é processada através de nociceptores (receptores de dor) que enviam sinais ao cérebro via nervos aferentes. Estes sinais são interpretados pelo córtex somatossensorial, resultando na sensação de dor que você experimenta.
+65% dos problemas digestivos são causados por bactérias que fermentam alimentos mal digeridos. Um truque que gastroenterologistas usam: mastigar cada bocado 20 vezes reduz problemas digestivos em até 40%. Mas você vai continuar comendo como se seu estômago fosse indestrutível, certo?`,
+      en: `Your stomach isn't just 'bothered' - it's in chemical warfare. ${personalizedStat}
 
-${personalizedStat}
-
-Causas comuns que você provavelmente está ignorando:
-
-1. **Gastrite ou Inflamação Gástrica**: Ocorre quando o revestimento do estômago se inflama, geralmente devido à infecção por H. pylori ou uso prolongado de anti-inflamatórios. A inflamação ativa os nociceptores da mucosa gástrica. E sim, aquela "pequena" dose diária de anti-inflamatório que você toma pode estar destruindo seu estômago.
-
-2. **Refluxo Gastroesofágico**: Acontece quando o ácido estomacal retorna ao esôfago, irritando seu revestimento. O esfíncter esofágico inferior (EEI) normalmente impede esse refluxo, mas pode enfraquecer devido a diversos fatores. Aquela pizza às 23h? Está literalmente queimando seu esôfago enquanto você dorme.
-
-3. **Síndrome do Intestino Irritável**: Condição funcional que afeta o movimento intestinal e a sensibilidade visceral. Estudos mostram uma desregulação do eixo cérebro-intestino, com hipersensibilidade dos nervos entéricos. Seu intestino está literalmente em guerra, e você está ignorando os sinais de fumaça.
-
-4. **Estresse e Ansiedade**: O eixo hipotálamo-pituitária-adrenal (HPA) ativa-se durante o estresse, liberando cortisol e adrenalina, que podem alterar a motilidade gastrointestinal e aumentar a sensibilidade à dor. Seu estilo de vida caótico está transformando seu estômago em uma zona de guerra bioquímica.`,
-      
-      en: `Stomach pain can have various causes, ranging from simple to more complex. And no, it's not "just a little pain" as you're probably thinking.
-
-Abdominal pain is processed through nociceptors (pain receptors) that send signals to the brain via afferent nerves. These signals are interpreted by the somatosensory cortex, resulting in the pain sensation you experience.
-
-${personalizedStat}
-
-Common causes you're probably ignoring:
-
-1. **Gastritis or Gastric Inflammation**: Occurs when the stomach lining becomes inflamed, usually due to H. pylori infection or prolonged use of anti-inflammatory drugs. The inflammation activates nociceptors in the gastric mucosa. And yes, that "small" daily dose of anti-inflammatory you take might be destroying your stomach.
-
-2. **Gastroesophageal Reflux**: Happens when stomach acid flows back into the esophagus, irritating its lining. The lower esophageal sphincter (LES) normally prevents this reflux but can weaken due to various factors. That pizza at 11 PM? It's literally burning your esophagus while you sleep.
-
-3. **Irritable Bowel Syndrome**: A functional condition affecting intestinal movement and visceral sensitivity. Studies show a dysregulation of the brain-gut axis, with hypersensitivity of enteric nerves. Your intestine is literally at war, and you're ignoring the smoke signals.
-
-4. **Stress and Anxiety**: The hypothalamic-pituitary-adrenal (HPA) axis activates during stress, releasing cortisol and adrenaline, which can alter gastrointestinal motility and increase pain sensitivity. Your chaotic lifestyle is turning your stomach into a biochemical war zone.`
+65% of digestive problems are caused by bacteria fermenting poorly digested food. A trick gastroenterologists use: chewing each bite 20 times reduces digestive issues by up to 40%. But you'll keep eating like your stomach is indestructible, right?`
     },
-    
     headache: {
-      pt: `As dores de cabeça são uma das queixas mais comuns e podem ter diversas origens neurológicas e vasculares. E não, não é "normal" ter dor de cabeça regularmente, por mais que você tente se convencer disso.
+      pt: `Sua cabeça não está apenas doendo - é um alarme de incêndio tocando a todo volume. ${personalizedStat}
 
-A dor de cabeça ocorre quando receptores de dor nas estruturas sensíveis da cabeça são ativados. Estes incluem vasos sanguíneos, músculos, nervos e tecidos que envolvem o cérebro. Curiosamente, o próprio tecido cerebral não possui receptores de dor.
+78% das pessoas com dores de cabeça frequentes têm desidratação crônica sem perceber. O truque que neurologistas não compartilham: beber 250ml de água com uma pitada de sal pode parar uma dor de cabeça em 30 minutos, pois restaura o equilíbrio eletrolítico do cérebro. Mas você vai continuar tomando analgésicos como se fossem balas, não é?`,
+      en: `Your head isn't just hurting - it's a fire alarm blaring at full volume. ${personalizedStat}
 
-${personalizedStat}
-
-Tipos comuns que você está provavelmente subestimando:
-
-1. **Enxaqueca**: Caracterizada por dor pulsátil, geralmente unilateral, e frequentemente acompanhada de náusea e sensibilidade à luz. Estudos neurofisiológicos mostram que a enxaqueca envolve a ativação do sistema trigeminovascular, com liberação de neuropeptídeos inflamatórios como o peptídeo relacionado ao gene da calcitonina (CGRP). Não é "só uma dor de cabeça" - é seu cérebro literalmente em pânico.
-
-2. **Cefaleia Tensional**: A mais comum, caracterizada por dor em pressão bilateral. Está associada à contração prolongada dos músculos pericranianos e cervicais, com sensibilização dos nociceptores periféricos e centrais. Seu estilo de vida estressante está transformando seus músculos em cordas de violão desafinadas.
-
-3. **Cefaleia em Salvas**: Extremamente dolorosa, ocorre em períodos ou "salvas". Envolve ativação do nervo trigêmeo e do hipotálamo, com dilatação dos vasos sanguíneos da região orbital. Pessoas descrevem como "um ferro quente sendo inserido no olho". Ainda acha que sua dor é "só um incômodo"?
-
-4. **Cefaleia por Uso Excessivo de Medicamentos**: Paradoxalmente, o uso frequente de analgésicos pode levar a dores de cabeça crônicas, através de mecanismos de sensibilização central e alterações nos receptores de dor. Sim, aquele remédio que você toma como se fosse água está potencialmente piorando seu problema.`,
-      
-      en: `Headaches are one of the most common complaints and can have various neurological and vascular origins. And no, it's not "normal" to have headaches regularly, no matter how much you try to convince yourself.
-
-Headache occurs when pain receptors in the head's sensitive structures are activated. These include blood vessels, muscles, nerves, and tissues surrounding the brain. Interestingly, brain tissue itself doesn't have pain receptors.
-
-${personalizedStat}
-
-Common types you're probably underestimating:
-
-1. **Migraine**: Characterized by pulsating pain, usually unilateral, and often accompanied by nausea and light sensitivity. Neurophysiological studies show that migraine involves activation of the trigeminovascular system, with the release of inflammatory neuropeptides such as calcitonin gene-related peptide (CGRP). It's not "just a headache" - it's your brain literally in panic mode.
-
-2. **Tension Headache**: The most common type, characterized by bilateral pressure pain. It's associated with prolonged contraction of pericranial and cervical muscles, with sensitization of peripheral and central nociceptors. Your stressful lifestyle is turning your muscles into out-of-tune violin strings.
-
-3. **Cluster Headache**: Extremely painful, occurring in periods or "clusters." It involves activation of the trigeminal nerve and hypothalamus, with dilation of blood vessels in the orbital region. People describe it as "a hot poker being inserted into the eye." Still think your pain is "just a nuisance"?
-
-4. **Medication Overuse Headache**: Paradoxically, frequent use of painkillers can lead to chronic headaches, through mechanisms of central sensitization and changes in pain receptors. Yes, that medicine you take like water is potentially making your problem worse.`
+78% of people with frequent headaches have chronic dehydration without realizing it. The trick neurologists don't share: drinking 250ml of water with a pinch of salt can stop a headache in 30 minutes, as it restores the brain's electrolyte balance. But you'll keep popping painkillers like candy, won't you?`
     },
-    
     fatigue: {
-      pt: `A fadiga é uma sensação complexa de cansaço que vai além do simples desgaste físico. E não, não é "normal" precisar de 5 cafés para funcionar ou dormir 8 horas e acordar cansado.
+      pt: `Seu corpo não está 'cansado' - ele está em colapso energético. ${personalizedStat}
 
-A fadiga envolve múltiplos sistemas fisiológicos e é regulada por uma interação complexa entre o sistema nervoso central, o sistema endócrino e o sistema imunológico.
+65% das pessoas com fadiga constante têm deficiência de magnésio, mineral essencial para produção de energia. Um hack que poucos conhecem: comer 2 bananas e um punhado de amêndoas fornece mais energia sustentável que uma lata de energético, sem a queda depois. Mas você vai continuar se entupindo de cafeína e açúcar, certo?`,
+      en: `Your body isn't 'tired' - it's in energy collapse. ${personalizedStat}
 
-${personalizedStat}
-
-Causas biológicas que você está ignorando:
-
-1. **Depleção Energética Celular**: A fadiga frequentemente resulta de alterações no metabolismo energético celular. As mitocôndrias, "usinas de energia" das células, podem ter sua função comprometida por diversos fatores, reduzindo a produção de ATP (adenosina trifosfato), a principal molécula energética do corpo. Suas células estão literalmente sem combustível, e você acha que mais um café vai resolver?
-
-2. **Desregulação do Eixo HPA**: O eixo hipotálamo-pituitária-adrenal regula nossa resposta ao estresse e os níveis de cortisol. O estresse crônico pode levar à desregulação deste eixo, resultando em fadiga persistente e alterações no ciclo sono-vigília. Seu corpo está em modo de emergência permanente, e você ainda se pergunta por que está cansado?
-
-3. **Inflamação Sistêmica**: Citocinas pró-inflamatórias como IL-6, TNF-alfa e IL-1beta podem induzir comportamento de doença, que inclui fadiga como sintoma protetor. Este mecanismo evolutivo conserva energia durante infecções ou lesões. Seu corpo está literalmente em guerra interna, e você está ignorando as sirenes de alerta.
-
-4. **Desequilíbrios Hormonais**: Alterações nos níveis de hormônios como tireoidianos, cortisol, melatonina e hormônios sexuais podem afetar significativamente os níveis de energia. Por exemplo, o hipotireoidismo reduz o metabolismo basal, resultando em fadiga. Sua orquestra hormonal está desafinada, e você acha que é só "falta de motivação"?`,
-      
-      en: `Fatigue is a complex sensation of tiredness that goes beyond simple physical wear. And no, it's not "normal" to need 5 coffees to function or to sleep 8 hours and wake up tired.
-
-Fatigue involves multiple physiological systems and is regulated by a complex interaction between the central nervous system, the endocrine system, and the immune system.
-
-${personalizedStat}
-
-Biological causes you're ignoring:
-
-1. **Cellular Energy Depletion**: Fatigue often results from alterations in cellular energy metabolism. Mitochondria, the cell's "power plants," can have their function compromised by various factors, reducing the production of ATP (adenosine triphosphate), the body's main energy molecule. Your cells are literally out of fuel, and you think another coffee will solve it?
-
-2. **HPA Axis Dysregulation**: The hypothalamic-pituitary-adrenal axis regulates our stress response and cortisol levels. Chronic stress can lead to dysregulation of this axis, resulting in persistent fatigue and alterations in the sleep-wake cycle. Your body is in permanent emergency mode, and you still wonder why you're tired?
-
-3. **Systemic Inflammation**: Pro-inflammatory cytokines such as IL-6, TNF-alpha, and IL-1beta can induce sickness behavior, which includes fatigue as a protective symptom. This evolutionary mechanism conserves energy during infections or injuries. Your body is literally in internal warfare, and you're ignoring the alert sirens.
-
-4. **Hormonal Imbalances**: Changes in hormone levels such as thyroid hormones, cortisol, melatonin, and sex hormones can significantly affect energy levels. For example, hypothyroidism reduces basal metabolism, resulting in fatigue. Your hormonal orchestra is out of tune, and you think it's just "lack of motivation"?`
+65% of people with constant fatigue are deficient in magnesium, an essential mineral for energy production. A hack few know: eating 2 bananas and a handful of almonds provides more sustainable energy than an energy drink can, without the crash afterwards. But you'll keep loading up on caffeine and sugar, right?`
     },
-    
     back_pain: {
-      pt: `A dor nas costas, especialmente na região lombar, é uma das queixas mais comuns e pode ter origens complexas. E não, não é "normal" sentir dor nas costas regularmente, por mais que você tente normalizar isso.
+      pt: `Sua coluna não está apenas 'doendo' - ela está gritando por socorro. ${personalizedStat}
 
-A dor lombar envolve uma interação entre estruturas anatômicas, processos inflamatórios e mecanismos neurais de processamento da dor.
+68% das pessoas com dor nas costas têm músculos abdominais fracos que não conseguem suportar a coluna adequadamente. Um truque que poucos conhecem: deitar no chão 10 minutos por dia com os joelhos dobrados pode aliviar a pressão nos discos da coluna e reduzir a dor em até 30%. Mas você provavelmente vai ignorar esse conselho e continuar sofrendo, não é?`,
+      en: `Your spine isn't just 'aching' - it's screaming for help. ${personalizedStat}
 
-${personalizedStat}
-
-Causas que você está provavelmente subestimando:
-
-1. **Disfunção Musculoesquelética**: A coluna vertebral é sustentada por músculos, ligamentos e tendões. Desequilíbrios na força muscular, especialmente no core (músculos abdominais e paravertebrais), podem levar a sobrecarga e microlesões nas estruturas de suporte, ativando nociceptores locais. Seu estilo de vida sedentário está transformando sua coluna em uma torre instável prestes a desabar.
-
-2. **Alterações Discais**: Os discos intervertebrais funcionam como amortecedores entre as vértebras. Com o tempo ou devido a traumas, podem ocorrer protrusões ou hérnias discais, onde o núcleo pulposo pressiona raízes nervosas, causando dor radicular (ciática). Seus discos estão literalmente sendo esmagados enquanto você ignora os sinais.
-
-3. **Sensibilização Central**: Em casos crônicos, ocorre um fenômeno chamado sensibilização central, onde o sistema nervoso se torna hipersensível, amplificando sinais de dor mesmo após a resolução da lesão inicial. Neurotransmissores como substância P e glutamato estão envolvidos neste processo. Seu sistema nervoso está em modo de alarme constante, e você acha que é "só uma dorzinha"?
-
-4. **Componente Psicossocial**: Estudos mostram que fatores como estresse, ansiedade e depressão podem amplificar a percepção da dor lombar através da modulação descendente da dor, envolvendo áreas cerebrais como a substância cinzenta periaquedutal e o locus coeruleus. Sua mente está literalmente amplificando sua dor, e você continua ignorando a conexão mente-corpo.`,
-      
-      en: `Back pain, especially in the lumbar region, is one of the most common complaints and can have complex origins. And no, it's not "normal" to regularly feel back pain, no matter how much you try to normalize it.
-
-Lumbar pain involves an interaction between anatomical structures, inflammatory processes, and neural mechanisms of pain processing.
-
-${personalizedStat}
-
-Causes you're probably underestimating:
-
-1. **Musculoskeletal Dysfunction**: The spine is supported by muscles, ligaments, and tendons. Imbalances in muscle strength, especially in the core (abdominal and paravertebral muscles), can lead to overload and microinjuries in supporting structures, activating local nociceptors. Your sedentary lifestyle is turning your spine into an unstable tower about to collapse.
-
-2. **Disc Changes**: Intervertebral discs function as cushions between vertebrae. Over time or due to trauma, disc protrusions or herniations can occur, where the nucleus pulposus presses on nerve roots, causing radicular pain (sciatica). Your discs are literally being crushed while you ignore the signs.
-
-3. **Central Sensitization**: In chronic cases, a phenomenon called central sensitization occurs, where the nervous system becomes hypersensitive, amplifying pain signals even after resolution of the initial injury. Neurotransmitters such as substance P and glutamate are involved in this process. Your nervous system is in constant alarm mode, and you think it's "just a little pain"?
-
-4. **Psychosocial Component**: Studies show that factors such as stress, anxiety, and depression can amplify the perception of back pain through descending pain modulation, involving brain areas such as the periaqueductal gray matter and locus coeruleus. Your mind is literally amplifying your pain, and you continue to ignore the mind-body connection.`
+68% of people with back pain have weak abdominal muscles that can't properly support the spine. A trick few know: lying on the floor for 10 minutes a day with your knees bent can relieve pressure on the spinal discs and reduce pain by up to 30%. But you'll probably ignore this advice and keep suffering, won't you?`
     },
-    
     unknown: {
-      pt: `Quando os sintomas não são específicos, é importante considerar uma abordagem científica abrangente. E não, sintomas persistentes não são "só coisa da sua cabeça" como você provavelmente está tentando se convencer.
+      pt: `Seu corpo não está 'estranho' - ele está enviando sinais de SOS que você ignora. ${personalizedStat}
 
-Os sintomas são sinais de que algo pode estar fora do equilíbrio no organismo. Do ponto de vista científico, eles representam:
+73% dos sintomas vagos escondem deficiências nutricionais ou inflamação crônica. Um fato que médicos esquecem de mencionar: manter um diário de sintomas por 1 semana pode revelar padrões que identificam a causa em 50% dos casos. Mas você prefere continuar na escuridão, certo?`,
+      en: `Your body isn't 'weird' - it's sending SOS signals you ignore. ${personalizedStat}
 
-${personalizedStat}
-
-Mecanismos que você está ignorando:
-
-1. **Mecanismos de Alerta**: O corpo possui sistemas sofisticados de detecção de alterações internas e externas. Receptores especializados (nociceptores, mecanorreceptores, quimiorreceptores) captam estímulos potencialmente prejudiciais e os transformam em sinais elétricos. Seu corpo está literalmente gritando por atenção, e você está com os fones de ouvido no máximo.
-
-2. **Integração Neural**: Estes sinais são processados pelo sistema nervoso central, especialmente pelo tálamo e córtex somatossensorial, que interpretam a natureza, localização e intensidade do estímulo. Seu cérebro está tentando decifrar um código de emergência, e você está ignorando a mensagem.
-
-3. **Resposta Inflamatória**: Muitos sintomas estão associados à inflamação, um mecanismo protetor que envolve a liberação de mediadores como histamina, prostaglandinas e citocinas. Estes mediadores podem ativar receptores de dor e causar outros sintomas como inchaço e calor local. Seu corpo está literalmente em chamas por dentro, e você está tratando como uma fogueira controlada.
-
-4. **Eixo Psiconeuroendocrinoimunológico**: Existe uma comunicação bidirecional entre o sistema nervoso, endócrino e imunológico. Fatores psicológicos como estresse e ansiedade podem influenciar processos fisiológicos através deste eixo, alterando a percepção e manifestação de sintomas. Sua mente e corpo estão em uma guerra civil, e você está fingindo que é apenas um pequeno desentendimento.`,
-      
-      en: `When symptoms are not specific, it's important to consider a comprehensive scientific approach. And no, persistent symptoms are not "just in your head" as you're probably trying to convince yourself.
-
-Symptoms are signs that something may be out of balance in the organism. From a scientific perspective, they represent:
-
-${personalizedStat}
-
-Mechanisms you're ignoring:
-
-1. **Alert Mechanisms**: The body has sophisticated systems for detecting internal and external changes. Specialized receptors (nociceptors, mechanoreceptors, chemoreceptors) capture potentially harmful stimuli and transform them into electrical signals. Your body is literally screaming for attention, and you have your headphones on max volume.
-
-2. **Neural Integration**: These signals are processed by the central nervous system, especially by the thalamus and somatosensory cortex, which interpret the nature, location, and intensity of the stimulus. Your brain is trying to decipher an emergency code, and you're ignoring the message.
-
-3. **Inflammatory Response**: Many symptoms are associated with inflammation, a protective mechanism involving the release of mediators such as histamine, prostaglandins, and cytokines. These mediators can activate pain receptors and cause other symptoms such as swelling and local heat. Your body is literally on fire inside, and you're treating it like a controlled bonfire.
-
-4. **Psychoneuroendocrinoimmunological Axis**: There is bidirectional communication between the nervous, endocrine, and immune systems. Psychological factors such as stress and anxiety can influence physiological processes through this axis, altering the perception and manifestation of symptoms. Your mind and body are in a civil war, and you're pretending it's just a small disagreement.`
+73% of vague symptoms hide nutritional deficiencies or chronic inflammation. A fact doctors forget to mention: keeping a symptom diary for 1 week can reveal patterns that identify the cause in 50% of cases. But you prefer to stay in the dark, right?`
     }
   };
   
   return explanations[symptom][language] || explanations.unknown[language];
 }
 
-// Função para obter perguntas de follow-up com base no sintoma e idioma
-function getFollowupQuestions(symptom, language) {
+// ✅ Função para obter perguntas de follow-up por fase do funil
+function getFollowupQuestions(symptom, language, funnelPhase) {
   // Fase 1: Diagnóstico provocador
   const phase1Questions = {
     stomach_pain: {
@@ -694,24 +453,138 @@ function getFollowupQuestions(symptom, language) {
     }
   };
   
-  // Escolher aleatoriamente uma fase do funil para as perguntas
-  const phases = [phase1Questions, phase2Questions, phase3Questions];
-  const selectedPhase = phases[Math.floor(Math.random() * phases.length)];
+  // Fase 4: Sugestão de suplemento
+  const phase4Questions = {
+    stomach_pain: {
+      pt: [
+        "Quer conhecer o suplemento que 87% dos nossos clientes usam para resolver problemas digestivos?",
+        "Pronto para experimentar a solução natural que pode acabar com suas dores de estômago?",
+        "Quer ver como este suplemento específico pode transformar sua saúde digestiva?"
+      ],
+      en: [
+        "Want to know the supplement that 87% of our clients use to solve digestive problems?",
+        "Ready to try the natural solution that can end your stomach pains?",
+        "Want to see how this specific supplement can transform your digestive health?"
+      ]
+    },
+    headache: {
+      pt: [
+        "Quer conhecer o suplemento que ajudou 91% dos nossos clientes a reduzir dores de cabeça?",
+        "Pronto para experimentar a solução natural que pode acabar com suas enxaquecas?",
+        "Quer ver como este suplemento específico pode melhorar sua saúde neurológica?"
+      ],
+      en: [
+        "Want to know the supplement that helped 91% of our clients reduce headaches?",
+        "Ready to try the natural solution that can end your migraines?",
+        "Want to see how this specific supplement can improve your neurological health?"
+      ]
+    },
+    fatigue: {
+      pt: [
+        "Quer conhecer o suplemento que 82% dos nossos clientes usam para ter mais energia?",
+        "Pronto para experimentar a solução natural que pode acabar com sua fadiga crônica?",
+        "Quer ver como este suplemento específico pode revitalizar seu corpo e mente?"
+      ],
+      en: [
+        "Want to know the supplement that 82% of our clients use to have more energy?",
+        "Ready to try the natural solution that can end your chronic fatigue?",
+        "Want to see how this specific supplement can revitalize your body and mind?"
+      ]
+    },
+    back_pain: {
+      pt: [
+        "Quer conhecer o suplemento que 79% dos nossos clientes usam para aliviar dores nas costas?",
+        "Pronto para experimentar a solução natural que pode fortalecer sua coluna?",
+        "Quer ver como este suplemento específico pode melhorar sua saúde musculoesquelética?"
+      ],
+      en: [
+        "Want to know the supplement that 79% of our clients use to relieve back pain?",
+        "Ready to try the natural solution that can strengthen your spine?",
+        "Want to see how this specific supplement can improve your musculoskeletal health?"
+      ]
+    },
+    unknown: {
+      pt: [
+        "Quer conhecer o suplemento que 88% dos nossos clientes usam para restaurar o equilíbrio geral?",
+        "Pronto para experimentar a solução natural que pode resolver a causa raiz dos seus sintomas?",
+        "Quer ver como este suplemento específico pode transformar sua saúde de forma abrangente?"
+      ],
+      en: [
+        "Want to know the supplement that 88% of our clients use to restore overall balance?",
+        "Ready to try the natural solution that can solve the root cause of your symptoms?",
+        "Want to see how this specific supplement can comprehensively transform your health?"
+      ]
+    }
+  };
   
-  return selectedPhase[symptom][language] || selectedPhase.unknown[language];
+  // Escolher perguntas com base na fase do funil
+  let questionsSet;
+  switch(funnelPhase) {
+    case 1: questionsSet = phase1Questions; break;
+    case 2: questionsSet = phase2Questions; break;
+    case 3: questionsSet = phase3Questions; break;
+    case 4: questionsSet = phase4Questions; break;
+    default: questionsSet = phase1Questions;
+  }
+  
+  return questionsSet[symptom][language] || questionsSet.unknown[language];
 }
 
-// Testando a função
-// const userMessage = "I have stomach pain"; // Altere conforme necessário
-// const userName = "João";  // Substitua pelo nome do usuário real
-// const userAge = 35;
-// const userWeight = 80;
+// ✅ Função principal para obter contexto e resposta
+export async function getSymptomContext(userMessage, userName, userAge, userWeight, funnelPhase = 1) {
+  try {
+    // Detectar idioma da mensagem
+    const language = detectLanguage(userMessage);
+    
+    // Verificando se o formulário foi preenchido
+    const hasForm = userName && userName.trim() !== ""; // Verifica se o nome foi fornecido
+    
+    // Identificar sintoma
+    let sintomaKey = "unknown";
+    const lowerMessage = userMessage.toLowerCase();
+    
+    if (lowerMessage.includes("stomach") || lowerMessage.includes("estômago") || lowerMessage.includes("estomago") || lowerMessage.includes("barriga")) {
+      sintomaKey = "stomach_pain";
+    } else if (lowerMessage.includes("headache") || lowerMessage.includes("dor de cabeça") || lowerMessage.includes("dores de cabeça") || lowerMessage.includes("cabeça")) {
+      sintomaKey = "headache";
+    } else if (lowerMessage.includes("fatigue") || lowerMessage.includes("cansaço") || lowerMessage.includes("fadiga") || lowerMessage.includes("energia")) {
+      sintomaKey = "fatigue";
+    } else if (lowerMessage.includes("back pain") || lowerMessage.includes("dor nas costas") || lowerMessage.includes("dores nas costas") || lowerMessage.includes("lombar")) {
+      sintomaKey = "back_pain";
+    }
+    
+    // Escolher introdução com base no preenchimento do formulário
+    let intro;
+    if (hasForm) {
+      intro = getSarcasticIntro(sintomaKey, language, userName);
+    } else {
+      intro = frasesSarcasticas[language][Math.floor(Math.random() * frasesSarcasticas[language].length)];
+    }
 
-// getSymptomContext(userMessage, userName, userAge, userWeight).then(response => {
-//   console.log("🔎 Resultado final:", response);
-//   if (!response) {
-//     console.log("⚠️ Nenhum resultado encontrado.");
-//   } else {
-//     console.log("✅ Resultado encontrado!");
-//   }
-// });
+    // Obter explicação simplificada e perguntas de follow-up para a fase atual
+    const explanation = getSimplifiedExplanation(sintomaKey, language, userName, userAge, userWeight);
+    const questions = getFollowupQuestions(sintomaKey, language, funnelPhase);
+
+    // Retornando um objeto estruturado com todas as informações necessárias
+    return {
+      sintoma: sintomaKey,
+      intro: intro,
+      scientificExplanation: explanation,
+      followupQuestions: questions
+    };
+
+  } catch (error) {
+    console.error("❌ Erro ao gerar contexto:", error);
+    const language = detectLanguage(userMessage);
+    return {
+      sintoma: "unknown",
+      intro: language === "pt" ? "Desculpe, tive um problema ao processar sua consulta." : "Sorry, I had an issue processing your query.",
+      scientificExplanation: getSimplifiedExplanation("unknown", language, userName, userAge, userWeight),
+      followupQuestions: getFollowupQuestions("unknown", language, 1)
+    };
+  }
+}
+
+// Nota: A consulta ao Notion foi removida temporariamente para focar na lógica do prompt e funil.
+// A integração com o Notion pode ser adicionada posteriormente para buscar dados específicos de suplementos.
+
