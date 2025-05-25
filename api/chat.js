@@ -137,7 +137,7 @@ const fallbackContent = {
   2: {
     headache: {
       pt: [
-        "Ignorar dores de cabeça recorrentes pode ter consequências sérias. Quando você constantemente mascara a dor com analgésicos sem tratar a causa raiz, seu cérebro pode desenvolver um fenômeno chamado 'sensibilização central', onde o limiar de dor diminui e a intensidade aumenta.\n\nEstudos mostram que 45% das pessoas que ignoram dores de cabeça frequentes desenvolvem condições crônicas em 6-12 meses. Além disso, o uso excessivo de analgésicos pode causar 'dor de cabeça por uso excessivo de medicação', um ciclo vicioso difícil de quebrar.",
+        "Ignorar dores de cabeça recorrentes pode ter consequências sérias. Quando você constantemente mascara a dor com analgésicos sem tratar a causa raiz, seu cérebro pode desenvolver um fenômeno chamado 'sensibilizacao central', onde o limiar de dor diminui e a intensidade aumenta.\n\nEstudos mostram que 45% das pessoas que ignoram dores de cabeça frequentes desenvolvem condições crônicas em 6-12 meses. Além disso, o uso excessivo de analgésicos pode causar 'dor de cabeça por uso excessivo de medicação', um ciclo vicioso difícil de quebrar.",
         "Continuar ignorando essas dores de cabeça pode transformar um problema ocasional em uma condição crônica debilitante. A exposição repetida à dor altera os circuitos neurais, tornando seu cérebro mais sensível a estímulos que normalmente não causariam desconforto.\n\nCerca de 40% das pessoas com dores de cabeça não tratadas relatam impacto significativo na qualidade de vida, incluindo problemas de concentração, irritabilidade e até mesmo depressão. O custo de ignorar esses sinais agora pode ser muito maior no futuro."
       ],
       en: [
@@ -589,7 +589,7 @@ export default async function handler(req, res) {
       });
     }
     
-    // Extrair dados da requisição com validação robusta
+    // Extrair dados da requisição com validação super robusta
     let userInput, userName, userAge, userWeight;
     
     try {
@@ -598,27 +598,61 @@ export default async function handler(req, res) {
         throw new Error('Request body is missing');
       }
       
-      // Tentar extrair os dados com validação de tipo
+      // Tentar extrair os dados com validação de tipo e múltiplos formatos
       const body = req.body;
       
-      // Validar userInput (obrigatório)
-      if (!body.userInput) {
-        throw new Error('userInput is required');
+      // Verificar diferentes formatos possíveis para userInput
+      if (body.userInput) {
+        // Formato padrão: { userInput: "texto" }
+        userInput = String(body.userInput);
+      } else if (body.message) {
+        // Formato alternativo: { message: "texto" }
+        userInput = String(body.message);
+      } else if (body.text) {
+        // Formato alternativo: { text: "texto" }
+        userInput = String(body.text);
+      } else if (body.input) {
+        // Formato alternativo: { input: "texto" }
+        userInput = String(body.input);
+      } else if (body.query) {
+        // Formato alternativo: { query: "texto" }
+        userInput = String(body.query);
+      } else if (typeof body === 'string') {
+        // Formato raw: "texto"
+        userInput = body;
+      } else if (Object.keys(body).length === 1 && typeof Object.values(body)[0] === 'string') {
+        // Formato com chave única desconhecida: { algumaChave: "texto" }
+        userInput = String(Object.values(body)[0]);
+      } else {
+        // Nenhum formato reconhecido
+        throw new Error('userInput is required in request body');
       }
-      userInput = String(body.userInput);
       
-      // Validar dados opcionais
-      userName = body.userName ? String(body.userName) : "";
-      userAge = body.userAge ? parseInt(body.userAge, 10) || null : null;
-      userWeight = body.userWeight ? parseFloat(body.userWeight) || null : null;
+      // Validar dados opcionais com tolerância a diferentes formatos
+      userName = body.userName || body.name || body.user || "";
+      if (userName && typeof userName !== 'string') userName = String(userName);
       
-      console.log("✅ Dados da requisição validados com sucesso");
+      userAge = body.userAge || body.age || null;
+      if (userAge) userAge = parseInt(userAge, 10) || null;
+      
+      userWeight = body.userWeight || body.weight || null;
+      if (userWeight) userWeight = parseFloat(userWeight) || null;
+      
+      console.log("✅ Dados da requisição validados com sucesso:", { userInput, userName });
     } catch (validationError) {
       console.error("❌ Erro de validação:", validationError);
       return res.status(400).json({ 
         error: 'Bad Request', 
         message: validationError.message || 'Invalid request data',
-        details: 'The request must include at least "userInput" field'
+        details: 'A requisição deve incluir pelo menos um campo de texto (userInput, message, text, input, query)',
+        acceptedFormats: {
+          format1: { userInput: "texto da mensagem" },
+          format2: { message: "texto da mensagem" },
+          format3: { text: "texto da mensagem" },
+          format4: { input: "texto da mensagem" },
+          format5: { query: "texto da mensagem" },
+          format6: "texto da mensagem (raw)"
+        }
       });
     }
     
