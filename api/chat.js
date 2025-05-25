@@ -22,6 +22,7 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "No message provided." });
     }
 
+    // Detectar idioma
     const isPortuguese = /[ãõçáéíóú]| você|dor|tenho|problema|saúde/i.test(message);
     const userName = name?.trim() || "";
     const userAge = parseInt(age);
@@ -89,6 +90,25 @@ export default async function handler(req, res) {
     const etapa = sessionMemory.contadorPerguntas[chave];
     const incluirSuplemento = etapa >= 3;
 
+    // Filtro de palavras-chave para o Notion, ajustado com base no idioma
+    const palavrasChave = {
+      pt: ["dores", "estomago"],
+      en: ["pain", "stomach"]
+    };
+
+    const filter = {
+      or: palavrasChave[idioma].map(word => ({
+        property: "Palavras-chave",
+        rich_text: {
+          contains: word
+        }
+      }))
+    };
+
+    let followups = [];
+    let corpo = `${intro}\n\n`;
+
+    // Verificando se o sintoma tem perguntas de follow-up associadas
     const followupEtapas = {
       stomach_pain: [
         "Você tem comido alimentos picantes recentemente?",
@@ -102,10 +122,7 @@ export default async function handler(req, res) {
       ]
     };
 
-    let followups = [];
-    let corpo = `${intro}\n\n`;
-
-    // Verificando se o sintoma tem perguntas de follow-up associadas
+    // Ajustando o follow-up com base no sintoma
     if (followupEtapas[sintoma]) {
       followupEtapas[sintoma].forEach((question, index) => {
         followups.push(question); // Garantir que as perguntas sejam armazenadas corretamente
