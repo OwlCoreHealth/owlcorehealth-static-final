@@ -73,15 +73,3 @@ export async function getSymptomContext(userMessage) {
     return []; // Retorna um array vazio em caso de erro
   }
 }
-
-
-// 🔁 Testando a função com uma mensagem
-const userMessage = "Headache and fatigue are common symptoms that can affect daily life.";
-getSymptomContext(userMessage).then(response => {
-  console.log("🔎 Resultado final:", response);
-  if (!response || response.length === 0) {
-    console.log("⚠️ Nenhum resultado encontrado.");
-  } else {
-    console.log("✅ Resultado encontrado!");
-  }
-});
