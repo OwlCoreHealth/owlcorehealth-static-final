@@ -215,3 +215,21 @@ button,
     align-items: center;
   }
 }
+.clickable-question {
+  padding: 10px 15px;
+  margin: 8px 0;
+  background-color: #f0f7ff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid #d0e5ff;
+  display: block;
+}
+
+.clickable-question:hover {
+  background-color: #d0e5ff;
+  border-color: #a0c5ff;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
