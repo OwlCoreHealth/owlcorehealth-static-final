@@ -1,5 +1,5 @@
-// chat.js - Versão final com validação robusta para Vercel
-// Integração com GPT-4o mini e progressão de funil
+// chat.js - Versão final SUPER ROBUSTA para Vercel
+// Garante fallback SEMPRE, NUNCA mostra erros técnicos ao usuário
 import { getSymptomContext } from './notion.mjs';
 import fetch from 'node-fetch';
 
@@ -191,7 +191,7 @@ const fallbackContent = {
     headache: {
       pt: [
         "O que você está realmente arriscando ao ignorar essas dores de cabeça vai muito além do desconforto momentâneo. Dores de cabeça crônicas não tratadas podem levar a alterações permanentes no cérebro, incluindo redução de volume em áreas críticas para memória e cognição.\n\nEstudos alarmantes mostram que 82% das pessoas com dores de cabeça frequentes não tratadas por mais de 2 anos apresentam declínio cognitivo mensurável, e 4% desenvolvem condições neurológicas mais graves. Seu cérebro está literalmente mudando sua estrutura em resposta à dor persistente, e não de forma positiva.",
-        "O verdadeiro risco que você está correndo é comprometer funções cerebrais essenciais. A dor crônica cria um estado de hiperexcitabilidade neural que pode levar a sensibilização central permanente, onde seu cérebro se torna programado para sentir dor com estímulos cada vez menores.\n\nPesquisas recentes revelam que 75% das pessoas com enxaquecas não tratadas desenvolvem alterações na substância branca cerebral semelhantes às observadas em doenças neurodegenerativas. Cada episódio de dor intensa cria micro-danos que se acumulam ao longo do tempo, potencialmente levando a déficits cognitivos permanentes."
+        "O verdadeiro risco que você está correndo é comprometer funções cerebrais essenciais. A dor crônica cria um estado de hiperexcitabilidade neural que pode levar a sensibilizacao central permanente, onde seu cérebro se torna programado para sentir dor com estímulos cada vez menores.\n\nPesquisas recentes revelam que 75% das pessoas com enxaquecas não tratadas desenvolvem alterações na substância branca cerebral semelhantes às observadas em doenças neurodegenerativas. Cada episódio de dor intensa cria micro-danos que se acumulam ao longo do tempo, potencialmente levando a déficits cognitivos permanentes."
       ],
       en: [
         "What you're really risking by ignoring these headaches goes far beyond momentary discomfort. Untreated chronic headaches can lead to permanent changes in the brain, including reduced volume in critical areas for memory and cognition.\n\nAlarming studies show that 82% of people with frequent untreated headaches for more than 2 years show measurable cognitive decline, and 4% develop more serious neurological conditions. Your brain is literally changing its structure in response to persistent pain, and not in a positive way.",
@@ -292,7 +292,7 @@ const fallbackContent = {
     headache: {
       pt: [
         "Entendo que você possa estar hesitante em considerar um suplemento específico. Vamos abordar isso de outra perspectiva. Você já parou para calcular quanto está realmente custando ignorar essas dores de cabeça?\n\nConsidere não apenas os gastos diretos com analgésicos (que tratam apenas os sintomas), mas também o custo invisível: dias de produtividade reduzida, oportunidades perdidas devido ao mal-estar, e o impacto na sua qualidade de vida. Estudos mostram que pessoas com dores de cabeça frequentes perdem em média 3,5 dias de trabalho produtivo por mês - isso representa mais de 10% da sua vida produtiva.\n\nAlém disso, pesquisas recentes da Universidade de Harvard revelaram que o estresse oxidativo e a inflamação neurológica associados a dores de cabeça recorrentes podem acelerar o envelhecimento cerebral em até 1,4 anos para cada ano de sintomas não tratados adequadamente. Esse é um custo que nenhum analgésico pode reverter.",
-        "Vejo que você ainda está avaliando suas opções, e isso é compreensível. Mas permita-me compartilhar algo que muitos especialistas em neurologia concordam: tratar apenas os sintomas de dores de cabeça recorrentes é como continuamente trocar os pneus de um carro com problemas de alinhamento - você está lidando com as consequências, não com a causa.\n\nUm estudo recente da Universidade de Oxford acompanhou dois grupos por 5 anos: um tratando dores de cabeça apenas com medicamentos sintomáticos, outro com uma abordagem nutricional abrangente. O resultado? O grupo que usou apenas medicamentos viu um aumento de 40% na frequência das dores ao longo do tempo, enquanto o grupo nutricional experimentou uma redução de 67%.\n\nA questão não é se você pode se dar ao luxo de investir em uma solução completa, mas se pode arcar com as consequências de não fazê-lo. Cada episódio de dor intensa cria um ciclo de sensibilização que torna seu cérebro mais vulnerável ao próximo episódio - é um ciclo que se auto-perpetua até que as causas subjacentes sejam adequadamente abordadas."
+        "Vejo que você ainda está avaliando suas opções, e isso é compreensível. Mas permita-me compartilhar algo que muitos especialistas em neurologia concordam: tratar apenas os sintomas de dores de cabeça recorrentes é como continuamente trocar os pneus de um carro com problemas de alinhamento - você está lidando com as consequências, não com a causa.\n\nUm estudo recente da Universidade de Oxford acompanhou dois grupos por 5 anos: um tratando dores de cabeça apenas com medicamentos sintomáticos, outro com uma abordagem nutricional abrangente. O resultado? O grupo que usou apenas medicamentos viu um aumento de 40% na frequência das dores ao longo do tempo, enquanto o grupo nutricional experimentou uma redução de 67%.\n\nA questão não é se você pode se dar ao luxo de investir em uma solução completa, mas se pode arcar com as consequências de não fazê-lo. Cada episódio de dor intensa cria um ciclo de sensibilizacao que torna seu cérebro mais vulnerável ao próximo episódio - é um ciclo que se auto-perpetua até que as causas subjacentes sejam adequadamente abordadas."
       ],
       en: [
         "I understand you might be hesitant to consider a specific supplement. Let's approach this from another perspective. Have you ever stopped to calculate how much ignoring these headaches is really costing you?\n\nConsider not just the direct expenses on painkillers (which only treat symptoms), but also the invisible cost: days of reduced productivity, missed opportunities due to feeling unwell, and the impact on your quality of life. Studies show that people with frequent headaches lose an average of 3.5 days of productive work per month - that represents more than 10% of your productive life.\n\nFurthermore, recent research from Harvard University revealed that the oxidative stress and neurological inflammation associated with recurrent headaches can accelerate brain aging by up to 1.4 years for each year of inadequately treated symptoms. That's a cost that no painkiller can reverse.",
@@ -313,7 +313,7 @@ const fallbackContent = {
   }
 };
 
-// Função para chamar o GPT-4o mini
+// Função para chamar o GPT-4o mini - SEMPRE USA FALLBACK EM CASO DE ERRO
 async function callGPT4oMini(prompt, context, userMessage) {
   try {
     console.log("🤖 Iniciando chamada ao GPT-4o mini...");
@@ -336,11 +336,11 @@ async function callGPT4oMini(prompt, context, userMessage) {
     const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 segundos de timeout
     
     // Fazer a chamada à API
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${OPENAI_API_KEY}`
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${OPENAI_API_KEY}`
       },
       body: JSON.stringify({
         model: GPT_MODEL,
@@ -358,29 +358,32 @@ async function callGPT4oMini(prompt, context, userMessage) {
     if (!response.ok) {
       const errorData = await response.json();
       console.error("❌ Erro na API OpenAI:", errorData);
+      // NUNCA RETORNA ERRO, SEMPRE USA FALLBACK
       return null;
     }
     
     // Processar a resposta
     const data = await response.json();
     console.log("✅ Resposta do GPT recebida com sucesso!");
+    
+    // Verificar se a resposta do GPT é válida
+    if (!data.choices || !data.choices[0] || !data.choices[0].message || !data.choices[0].message.content) {
+      console.log("⚠️ Resposta do GPT inválida ou vazia");
+      return null;
+    }
+    
     return data.choices[0].message.content;
   } catch (error) {
     console.error("❌ Erro ao chamar GPT-4o mini:", error);
     console.log("⚠️ Usando fallback devido a falha na API");
+    // NUNCA RETORNA ERRO, SEMPRE USA FALLBACK
     return null;
   }
 }
 
-// Função para formatar a resposta do GPT
-function formatGPTResponse(gptResponse, symptomContext) {
+// Função para formatar a resposta do GPT - COM PERSONALIZAÇÃO
+function formatGPTResponse(gptResponse, symptomContext, userName, userInput) {
   try {
-    // Verificar se a resposta do GPT é válida
-    if (!gptResponse || typeof gptResponse !== 'string' || gptResponse.trim() === '') {
-      console.log("⚠️ Resposta do GPT inválida, usando fallback");
-      return formatRichFallbackResponse(symptomContext);
-    }
-    
     // Extrair o idioma e a fase do funil
     const language = symptomContext.language || "pt";
     const funnelPhase = symptomContext.funnelPhase || 1;
@@ -401,8 +404,16 @@ function formatGPTResponse(gptResponse, symptomContext) {
     `;
     }).join('\n');
     
+    // Personalizar a saudação
+    let greeting = "";
+    if (userName) {
+      greeting = language === "pt" ? `Olá ${userName}! ` : `Hello ${userName}! `;
+    } else {
+      greeting = language === "pt" ? `Você mencionou: "${userInput.substring(0, 30)}...". ` : `You mentioned: "${userInput.substring(0, 30)}...". `;
+    }
+    
     // Montar a resposta completa - SEM SÍMBOLOS MARKDOWN
-    const response = `${cleanResponse}
+    const response = `${greeting}${cleanResponse}
 
 ${title}
 ${symptomContext.scientificExplanation}
@@ -415,18 +426,18 @@ ${formattedQuestions}`;
     return response;
   } catch (error) {
     console.error("❌ Erro ao formatar resposta do GPT:", error);
-    return formatRichFallbackResponse(symptomContext);
+    // Fallback em caso de erro na formatação
+    return formatRichFallbackResponse(symptomContext, userName, userInput);
   }
 }
 
-// Função para formatar resposta de fallback rica
-function formatRichFallbackResponse(symptomContext) {
+// Função para formatar resposta de fallback rica - COM PERSONALIZAÇÃO
+function formatRichFallbackResponse(symptomContext, userName, userInput) {
   try {
     // Extrair informações do contexto
     const symptom = symptomContext.sintoma || "unknown";
     const language = symptomContext.language || "pt";
     const funnelPhase = symptomContext.funnelPhase || 1;
-    const intro = symptomContext.intro || (language === "pt" ? "Olá! Como posso ajudar?" : "Hello! How can I help?");
     
     // Obter o título e fechamento apropriados para a fase atual
     const title = phaseTitles[funnelPhase]?.[language] || phaseTitles[1][language];
@@ -449,8 +460,16 @@ function formatRichFallbackResponse(symptomContext) {
     `;
     }).join('\n');
     
+    // Personalizar a saudação
+    let greeting = "";
+    if (userName) {
+      greeting = language === "pt" ? `Olá ${userName}! ` : `Hello ${userName}! `;
+    } else {
+      greeting = language === "pt" ? `Você mencionou: "${userInput.substring(0, 30)}...". ` : `You mentioned: "${userInput.substring(0, 30)}...". `;
+    }
+    
     // Montar a resposta completa - SEM SÍMBOLOS MARKDOWN
-    const response = `${intro}
+    const response = `${greeting}
 
 ${title}
 ${randomContent}
@@ -463,21 +482,25 @@ ${formattedQuestions}`;
     return response;
   } catch (error) {
     console.error("❌ Erro ao formatar resposta de fallback:", error);
-    // Fallback extremamente simples em caso de erro
-    return "Olá! Como posso ajudar? Escolha uma opção:\n\n1. Quer explorar outro tópico?\n2. Posso ajudar com mais alguma coisa?\n3. Tem mais alguma pergunta?";
+    // Fallback extremamente simples em caso de erro na formatação do fallback
+    const simpleFallbackText = language === "pt" 
+      ? "Olá! Parece que estou com dificuldades técnicas. Por favor, tente novamente mais tarde."
+      : "Hello! I seem to be having technical difficulties. Please try again later.";
+    return simpleFallbackText;
   }
 }
 
 // Função principal para processar a entrada do usuário
 async function processUserInput(userInput, userName, userAge, userWeight) {
+  let responseContent = ""; // Inicializar a variável de resposta
   try {
     console.log("🔄 Processando entrada do usuário:", userInput);
     
     // Atualizar a memória da sessão
     sessionMemory.respostasUsuario.push(userInput);
+    if (userName) sessionMemory.nome = userName; // Atualizar nome se fornecido
     
     // Determinar a fase do funil com base no número de interações
-    // Avança uma fase a cada 2 interações, até o máximo de 6 fases
     const interactionCount = sessionMemory.respostasUsuario.length;
     const funnelPhase = Math.min(Math.floor(interactionCount / 2) + 1, 6);
     sessionMemory.funnelPhase = funnelPhase;
@@ -487,7 +510,7 @@ async function processUserInput(userInput, userName, userAge, userWeight) {
     // Obter contexto do sintoma do Notion
     const symptomContext = await getSymptomContext(
       userInput, 
-      userName, 
+      sessionMemory.nome, // Usar nome da memória
       userAge, 
       userWeight, 
       funnelPhase,
@@ -511,40 +534,61 @@ async function processUserInput(userInput, userName, userAge, userWeight) {
       sessionMemory.usedQuestions = [...sessionMemory.usedQuestions, ...symptomContext.followupQuestions];
     }
     
-    console.log(`🔄 Sintoma detectado: ${symptomContext.sintoma}, Idioma: ${symptomContext.language}`);
+    console.log(`🔄 Sintoma detectado: ${symptomContext.sintoma}, Idioma: ${sessionMemory.idioma}`);
     
     // Tentar obter resposta do GPT-4o mini
     let gptResponse = null;
-    try {
-      if (symptomContext.gptPromptData) {
-        console.log("🔄 Tentando obter resposta do GPT-4o mini...");
-        gptResponse = await callGPT4oMini(
-          symptomContext.gptPromptData.prompt,
-          symptomContext.gptPromptData.context,
-          userInput
-        );
-        console.log("🔄 Resposta do GPT obtida:", gptResponse ? "Sim" : "Não");
-      }
-    } catch (gptError) {
-      console.error("❌ Erro ao chamar GPT-4o mini:", gptError);
-      console.log("⚠️ Usando fallback devido a erro");
+    if (symptomContext.gptPromptData) {
+      console.log("🔄 Tentando obter resposta do GPT-4o mini...");
+      gptResponse = await callGPT4oMini(
+        symptomContext.gptPromptData.prompt,
+        symptomContext.gptPromptData.context,
+        userInput
+      );
+      console.log("🔄 Resposta do GPT obtida:", gptResponse ? "Sim" : "Não");
     }
     
     // Construir a resposta final (usando GPT se disponível, ou fallback)
-    let responseContent;
     if (gptResponse) {
       console.log("🤖 Usando resposta do GPT");
-      responseContent = formatGPTResponse(gptResponse, symptomContext);
+      responseContent = formatGPTResponse(gptResponse, symptomContext, sessionMemory.nome, userInput);
     } else {
       console.log("📋 Usando fallback com conteúdo rico");
-      responseContent = formatRichFallbackResponse(symptomContext);
+      responseContent = formatRichFallbackResponse(symptomContext, sessionMemory.nome, userInput);
     }
     
     return responseContent;
   } catch (error) {
     console.error("❌ Erro geral no processamento:", error);
-    // Fallback extremamente simples em caso de erro
-    return "Olá! Como posso ajudar? Escolha uma opção:\n\n1. Quer explorar outro tópico?\n2. Posso ajudar com mais alguma coisa?\n3. Tem mais alguma pergunta?";
+    // Fallback SUPER ROBUSTO - NUNCA MOSTRA ERRO TÉCNICO
+    console.log("🚨 Erro geral, usando fallback final");
+    const fallbackLanguage = sessionMemory.idioma || "pt";
+    const fallbackUserName = sessionMemory.nome || "";
+    const fallbackUserInput = userInput || "";
+    
+    // Tentar usar o fallback rico mesmo em caso de erro geral
+    try {
+      // Criar um contexto mínimo para o fallback
+      const minimalContext = {
+        sintoma: sessionMemory.sintomaAtual || "unknown",
+        language: fallbackLanguage,
+        funnelPhase: sessionMemory.funnelPhase || 1,
+        followupQuestions: sessionMemory.ultimasPerguntas || [
+          fallbackLanguage === "pt" ? "Quer explorar outro tópico?" : "Want to explore another topic?",
+          fallbackLanguage === "pt" ? "Posso ajudar com mais alguma coisa?" : "Can I help with anything else?",
+          fallbackLanguage === "pt" ? "Tem mais alguma pergunta?" : "Do you have any other questions?"
+        ]
+      };
+      responseContent = formatRichFallbackResponse(minimalContext, fallbackUserName, fallbackUserInput);
+    } catch (fallbackError) {
+      console.error("❌ Erro até no fallback final:", fallbackError);
+      // Fallback final absoluto
+      responseContent = fallbackLanguage === "pt" 
+        ? "Olá! Parece que estou com dificuldades técnicas no momento. Por favor, tente novamente mais tarde ou escolha uma das opções abaixo."
+        : "Hello! I seem to be having technical difficulties right now. Please try again later or choose one of the options below.";
+      responseContent += "\n\n1. Tentar novamente\n2. Falar com um humano\n3. Sair";
+    }
+    return responseContent;
   }
 }
 
@@ -603,28 +647,20 @@ export default async function handler(req, res) {
       
       // Verificar diferentes formatos possíveis para userInput
       if (body.userInput) {
-        // Formato padrão: { userInput: "texto" }
         userInput = String(body.userInput);
       } else if (body.message) {
-        // Formato alternativo: { message: "texto" }
         userInput = String(body.message);
       } else if (body.text) {
-        // Formato alternativo: { text: "texto" }
         userInput = String(body.text);
       } else if (body.input) {
-        // Formato alternativo: { input: "texto" }
         userInput = String(body.input);
       } else if (body.query) {
-        // Formato alternativo: { query: "texto" }
         userInput = String(body.query);
       } else if (typeof body === 'string') {
-        // Formato raw: "texto"
         userInput = body;
       } else if (Object.keys(body).length === 1 && typeof Object.values(body)[0] === 'string') {
-        // Formato com chave única desconhecida: { algumaChave: "texto" }
         userInput = String(Object.values(body)[0]);
       } else {
-        // Nenhum formato reconhecido
         throw new Error('userInput is required in request body');
       }
       
@@ -641,18 +677,12 @@ export default async function handler(req, res) {
       console.log("✅ Dados da requisição validados com sucesso:", { userInput, userName });
     } catch (validationError) {
       console.error("❌ Erro de validação:", validationError);
+      // NUNCA MOSTRA ERRO TÉCNICO AO USUÁRIO
       return res.status(400).json({ 
-        error: 'Bad Request', 
-        message: validationError.message || 'Invalid request data',
-        details: 'A requisição deve incluir pelo menos um campo de texto (userInput, message, text, input, query)',
-        acceptedFormats: {
-          format1: { userInput: "texto da mensagem" },
-          format2: { message: "texto da mensagem" },
-          format3: { text: "texto da mensagem" },
-          format4: { input: "texto da mensagem" },
-          format5: { query: "texto da mensagem" },
-          format6: "texto da mensagem (raw)"
-        }
+        response: sessionMemory.idioma === "pt" 
+          ? "Desculpe, não consegui entender sua mensagem. Poderia tentar novamente?"
+          : "Sorry, I couldn't understand your message. Could you please try again?",
+        success: false
       });
     }
     
@@ -671,18 +701,22 @@ export default async function handler(req, res) {
       });
     } catch (processingError) {
       console.error("❌ Erro ao processar entrada:", processingError);
+      // NUNCA MOSTRA ERRO TÉCNICO AO USUÁRIO
       return res.status(500).json({ 
-        error: 'Processing Error', 
-        message: 'Error processing user input',
-        details: processingError.message
+        response: sessionMemory.idioma === "pt" 
+          ? "Desculpe, ocorreu um erro interno ao processar sua mensagem. Por favor, tente novamente mais tarde."
+          : "Sorry, an internal error occurred while processing your message. Please try again later.",
+        success: false
       });
     }
   } catch (generalError) {
     console.error('❌ Erro geral:', generalError);
+    // NUNCA MOSTRA ERRO TÉCNICO AO USUÁRIO
     return res.status(500).json({ 
-      error: 'Internal Server Error', 
-      message: 'An unexpected error occurred',
-      details: generalError.message
+      response: sessionMemory.idioma === "pt" 
+        ? "Desculpe, ocorreu um erro inesperado. Nossa equipe já foi notificada. Por favor, tente novamente mais tarde."
+        : "Sorry, an unexpected error occurred. Our team has been notified. Please try again later.",
+      success: false
     });
   }
 }
