@@ -10,7 +10,6 @@ const notion = new Client({
 // Definir o ID do banco de dados do Notion
 const databaseId = "1fda050ee113804aa5e9dd1b01e31066"; // Substitua com o seu ID real
 
-// 🔍 Função de extração de palavras-chave
 // Função de extração de palavras-chave
 function extractKeywords(text) {
   const stopwords = [
