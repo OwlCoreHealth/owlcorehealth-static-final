@@ -1,212 +1,250 @@
-import { getSymptomContext } from "./notion.mjs"; 
+import { getSymptomContext } from './notion.mjs';
 
-// Memória de sessão para manter contexto e progressão do funil
+// Memória de sessão para manter contexto entre interações
 let sessionMemory = {
-  sintomasDetectados: [],
-  respostasUsuario: [],
-  nome: "",
-  idioma: "pt",
+  userName: "",
+  userAge: "",
+  userWeight: "",
+  userSex: "",
   sintomaAtual: null,
   funnelPhase: 1,
-  ultimasPerguntas: [],
-  lastSelectedQuestion: "",
-  previouslySelectedQuestions: [] // Novo: rastrear perguntas já selecionadas
+  respostasUsuario: [],
+  previousQuestions: []
 };
 
-export default async function handler(req, res) {
+// Função para determinar a fase do funil com base no histórico e palavras-chave
+function determineFunnelPhase(sessionMemory) {
+  // Se não houver histórico, começar na fase 1
+  if (!sessionMemory.respostasUsuario || sessionMemory.respostasUsuario.length === 0) {
+    return 1;
+  }
+  
+  // Número de interações determina fase mínima
+  const interacoes = sessionMemory.respostasUsuario.length;
+  let novaFase = sessionMemory.funnelPhase; // Manter fase atual por padrão
+  
+  // Progressão baseada no número de interações (mais rápida)
+  if (interacoes >= 6) {
+    novaFase = Math.max(novaFase, 5); // Fase 5 (Suplemento) após 6 interações
+  } else if (interacoes >= 4) {
+    novaFase = Math.max(novaFase, 4); // Fase 4 (Nutrientes) após 4 interações
+  } else if (interacoes >= 3) {
+    novaFase = Math.max(novaFase, 3); // Fase 3 (Agravamento) após 3 interações
+  } else if (interacoes >= 2) {
+    novaFase = Math.max(novaFase, 2); // Fase 2 (Consequências) após 2 interações
+  }
+  
+  // Verificar palavras-chave na última resposta do usuário para possível avanço adicional
+  const ultimaResposta = sessionMemory.respostasUsuario[sessionMemory.respostasUsuario.length - 1].toLowerCase();
+  
+  // Palavras que indicam interesse em soluções (avançar para fase 4)
+  if (novaFase < 4 && (
+    ultimaResposta.includes("solução") || 
+    ultimaResposta.includes("solution") ||
+    ultimaResposta.includes("remédio") || 
+    ultimaResposta.includes("remedy") ||
+    ultimaResposta.includes("tratamento") || 
+    ultimaResposta.includes("treatment") ||
+    ultimaResposta.includes("planta") || 
+    ultimaResposta.includes("plant") ||
+    ultimaResposta.includes("natural") ||
+    ultimaResposta.includes("nutriente") || 
+    ultimaResposta.includes("nutrient")
+  )) {
+    novaFase = 4; // Avançar para Fase 4 (Nutrientes)
+  }
+  
+  // Palavras que indicam interesse em produto (avançar para fase 5)
+  if (novaFase < 5 && (
+    ultimaResposta.includes("suplemento") || 
+    ultimaResposta.includes("supplement") ||
+    ultimaResposta.includes("produto") || 
+    ultimaResposta.includes("product") ||
+    ultimaResposta.includes("comprar") || 
+    ultimaResposta.includes("buy") ||
+    ultimaResposta.includes("onde") || 
+    ultimaResposta.includes("where")
+  )) {
+    novaFase = 5; // Avançar para Fase 5 (Suplemento)
+  }
+  
+  // Se o usuário continua após fase 5, ir para plano B
+  if (novaFase === 5 && interacoes > 7) {
+    novaFase = 6; // Plano B
+  }
+  
+  // Chance aleatória de avançar (para evitar estagnação)
+  const chanceAleatoria = Math.random();
+  if (chanceAleatoria < 0.3 && novaFase < 5) { // 30% de chance
+    novaFase += 1;
+  }
+  
+  return Math.min(novaFase, 6); // Máximo fase 6 (Plano B)
+}
+
+// Função para obter título da fase atual
+function getTitleForPhase(phase, language) {
+  const titles = {
+    1: {
+      pt: "A verdade que você precisa ouvir:",
+      en: "The truth you need to hear:"
+    },
+    2: {
+      pt: "Consequências que você está ignorando:",
+      en: "Consequences you're ignoring:"
+    },
+    3: {
+      pt: "O que você está realmente arriscando:",
+      en: "What you're really risking:"
+    },
+    4: {
+      pt: "Soluções que realmente funcionam:",
+      en: "Solutions that actually work:"
+    },
+    5: {
+      pt: "A solução definitiva para seu problema:",
+      en: "The definitive solution to your problem:"
+    },
+    6: {
+      pt: "Pense bem antes de decidir:",
+      en: "Think carefully before deciding:"
+    }
+  };
+  
+  return titles[phase][language] || titles[1][language];
+}
+
+// Função para obter subtítulo da fase atual
+function getSubtitleForPhase(phase, language) {
+  const subtitles = {
+    1: {
+      pt: "E agora, o que você vai fazer a respeito?",
+      en: "And now, what are you going to do about it?"
+    },
+    2: {
+      pt: "Vai continuar ignorando esses sinais?",
+      en: "Will you continue ignoring these signs?"
+    },
+    3: {
+      pt: "Está pronto para agir ou prefere continuar sofrendo?",
+      en: "Are you ready to act or do you prefer to keep suffering?"
+    },
+    4: {
+      pt: "Quer saber mais ou vai continuar ignorando?",
+      en: "Want to know more or will you keep ignoring it?"
+    },
+    5: {
+      pt: "Pronto para resolver seu problema de uma vez por todas?",
+      en: "Ready to solve your problem once and for all?"
+    },
+    6: {
+      pt: "A escolha é sua, mas as consequências também:",
+      en: "The choice is yours, but so are the consequences:"
+    }
+  };
+  
+  return subtitles[phase][language] || subtitles[1][language];
+}
+
+// Função para formatar a resposta final
+function formatResponse(symptomContext, funnelPhase) {
+  const language = symptomContext.intro.includes("dor de cabeça") ? "pt" : "en";
+  const title = getTitleForPhase(funnelPhase, language);
+  const subtitle = getSubtitleForPhase(funnelPhase, language);
+  
+  // Formatar perguntas como elementos clicáveis
+  const formattedQuestions = symptomContext.followupQuestions.map((question, index) => {
+    return `<div class="clickable-question" data-question="${encodeURIComponent(question)}" onclick="handleQuestionClick(this)">
+      ${index + 1}. ${question}
+    </div>`;
+  }).join('\n');
+  
+  // Montar resposta completa
+  return `${symptomContext.intro}
+
+### ${title}
+${symptomContext.scientificExplanation}
+
+### ${subtitle}
+Escolha seu próximo passo (se tiver coragem):
+
+${formattedQuestions}`;
+}
+
+// Função principal para processar mensagens
+export async function processMessage(message, name, age, sex, weight) {
   try {
-    if (req.method !== "POST") {
-      return res.status(405).json({ error: "Method not allowed. Use POST." });
-    }
-
-    const { message, name, age, sex, weight, selectedQuestion } = req.body;
-    if (!message && !selectedQuestion) {
-      return res.status(400).json({ error: "No message or selected question provided." });
-    }
-
-    // Usar a pergunta selecionada se disponível, caso contrário usar a mensagem do usuário
-    const userInput = selectedQuestion || message;
-    
-    // Detectar idioma na primeira mensagem e manter consistente
-    if (sessionMemory.respostasUsuario.length === 0) {
-      const isPortuguese = /[ãõçáéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
-      sessionMemory.idioma = isPortuguese ? "pt" : "en";
+    // Atualizar informações do usuário se fornecidas
+    if (name && name.trim() !== "") {
+      sessionMemory.userName = name;
     }
     
-    const userName = name?.trim() || sessionMemory.nome || "";
-    const userAge = parseInt(age) || null;
-    const userSex = (sex || "").toLowerCase();
-    const userWeight = parseFloat(weight) || null;
-    
-    // Atualizar memória da sessão
-    sessionMemory.nome = userName;
-    sessionMemory.respostasUsuario.push(userInput);
-    
-    // Verificar se a pergunta selecionada indica avanço no funil
-    if (selectedQuestion) {
-      sessionMemory.lastSelectedQuestion = selectedQuestion;
-      
-      // Rastrear perguntas já selecionadas para evitar repetição
-      sessionMemory.previouslySelectedQuestions.push(selectedQuestion);
-      
-      // Avançar fase do funil com base na pergunta selecionada
-      if (shouldAdvanceFunnel(selectedQuestion)) {
-        sessionMemory.funnelPhase = Math.min(sessionMemory.funnelPhase + 1, 4);
-      }
+    if (age && age.trim() !== "") {
+      sessionMemory.userAge = parseInt(age);
     }
     
-    // Forçar avanço do funil após várias interações - CORRIGIDO: mais rápido
-    if (sessionMemory.respostasUsuario.length > 2 && sessionMemory.funnelPhase < 2) {
-      sessionMemory.funnelPhase = 2;
+    if (sex && sex.trim() !== "") {
+      sessionMemory.userSex = sex;
     }
-    if (sessionMemory.respostasUsuario.length > 4 && sessionMemory.funnelPhase < 3) {
-      sessionMemory.funnelPhase = 3;
+    
+    if (weight && weight.trim() !== "") {
+      sessionMemory.userWeight = parseInt(weight);
     }
-    if (sessionMemory.respostasUsuario.length > 6 && sessionMemory.funnelPhase < 4) {
-      sessionMemory.funnelPhase = 4;
-    }
-
-    // Obter contexto do sintoma com a fase atual do funil
+    
+    // Adicionar mensagem ao histórico
+    sessionMemory.respostasUsuario.push(message);
+    
+    // Determinar fase atual do funil
+    const funnelPhase = determineFunnelPhase(sessionMemory);
+    sessionMemory.funnelPhase = funnelPhase;
+    
+    // Obter contexto do sintoma
     const symptomContext = await getSymptomContext(
-      userInput, 
-      userName, 
-      userAge, 
-      userWeight, 
-      sessionMemory.funnelPhase,
-      sessionMemory.sintomaAtual, // CORRIGIDO: passar sintoma anterior para manter contexto
-      sessionMemory.previouslySelectedQuestions // CORRIGIDO: passar perguntas já selecionadas
+      message, 
+      sessionMemory.userName, 
+      sessionMemory.userAge, 
+      sessionMemory.userWeight, 
+      funnelPhase,
+      sessionMemory.sintomaAtual,
+      sessionMemory.previousQuestions
     );
     
-    // Atualizar a memória da sessão com o sintoma detectado
-    if (symptomContext.sintoma && symptomContext.sintoma !== "unknown") {
-      sessionMemory.sintomaAtual = symptomContext.sintoma;
-    } else if (sessionMemory.sintomaAtual) {
-      // CORRIGIDO: Manter o sintoma anterior se o atual for "unknown"
-      symptomContext.sintoma = sessionMemory.sintomaAtual;
-    }
-
-    // Construir a resposta formatada com explicação e perguntas clicáveis
-    let responseContent = formatResponse(symptomContext, sessionMemory.idioma, { 
-      name: userName, 
-      age: userAge, 
-      weight: userWeight,
-      funnelPhase: sessionMemory.funnelPhase
-    });
+    // Manter contexto do sintoma para próximas interações
+    sessionMemory.sintomaAtual = symptomContext.sintoma;
     
-    // Armazenar as últimas perguntas para referência futura
-    sessionMemory.ultimasPerguntas = symptomContext.followupQuestions;
-
-    // Enviar a resposta para o frontend
-    return res.status(200).json({
-      choices: [{ 
-        message: { 
-          content: responseContent,
-          followupQuestions: symptomContext.followupQuestions 
-        } 
-      }]
-    });
-
-  } catch (err) {
-    console.error("Internal server error:", err.message);
-    return res.status(500).json({ error: "Server error", details: err.message });
-  }
-}
-
-// Função para verificar se deve avançar no funil com base na pergunta selecionada
-function shouldAdvanceFunnel(question) {
-  const lowerQuestion = question.toLowerCase();
-  
-  // Palavras-chave que indicam interesse em avançar no funil
-  const advancementKeywords = [
-    "plant", "planta", "natural", "supplement", "suplemento", 
-    "nutrient", "nutriente", "solution", "solução", "option", "opção",
-    "risk", "risco", "danger", "perigo", "worse", "pior",
-    "try", "experimentar", "know", "conhecer", "learn", "aprender"
-  ];
-  
-  // CORRIGIDO: Verificação mais sensível para garantir progressão
-  return advancementKeywords.some(keyword => lowerQuestion.includes(keyword)) || Math.random() < 0.3; // 30% de chance de avançar mesmo sem palavras-chave
-}
-
-// Função para formatar a resposta com explicação e perguntas clicáveis
-function formatResponse(symptomContext, idioma, userData) {
-  const { intro, scientificExplanation, followupQuestions } = symptomContext;
-  const { name, funnelPhase } = userData || {};
-  
-  // Títulos adaptados à fase do funil e idioma
-  let titleSection, questionsTitle;
-  
-  if (idioma === "pt") {
-    // Títulos em português
-    switch(funnelPhase) {
-      case 1:
-        titleSection = "### A verdade que você precisa ouvir:";
-        questionsTitle = "### E agora, o que você vai fazer a respeito?";
-        break;
-      case 2:
-        titleSection = "### O que você está realmente arriscando:";
-        questionsTitle = "### Está pronto para agir ou prefere continuar sofrendo?";
-        break;
-      case 3:
-        titleSection = "### Soluções que realmente funcionam:";
-        questionsTitle = "### Quer saber mais ou vai continuar ignorando?";
-        break;
-      case 4:
-        titleSection = "### A solução que você precisa agora:";
-        questionsTitle = "### Pronto para transformar sua saúde?";
-        break;
-      default:
-        titleSection = "### A verdade que você precisa ouvir:";
-        questionsTitle = "### E agora, o que você vai fazer a respeito?";
-    }
-  } else {
-    // Títulos em inglês
-    switch(funnelPhase) {
-      case 1:
-        titleSection = "### The truth you need to hear:";
-        questionsTitle = "### And now, what are you going to do about it?";
-        break;
-      case 2:
-        titleSection = "### What you're really risking:";
-        questionsTitle = "### Are you ready to act or do you prefer to keep suffering?";
-        break;
-      case 3:
-        titleSection = "### Solutions that actually work:";
-        questionsTitle = "### Want to know more or will you keep ignoring it?";
-        break;
-      case 4:
-        titleSection = "### The solution you need right now:";
-        questionsTitle = "### Ready to transform your health?";
-        break;
-      default:
-        titleSection = "### The truth you need to hear:";
-        questionsTitle = "### And now, what are you going to do about it?";
-    }
-  }
-  
-  // Texto de instrução para as perguntas
-  const instructionText = idioma === "pt" 
-    ? "Escolha seu próximo passo (se tiver coragem):"
-    : "Choose your next step (if you have the courage):";
-  
-  // Construir a resposta formatada
-  let response = `${intro}\n\n${titleSection}\n${scientificExplanation}\n\n${questionsTitle}\n${instructionText}\n\n`;
-  
-  // Adicionar perguntas clicáveis
-  followupQuestions.forEach((question, index) => {
-    response += `<div class="clickable-question" data-question="${encodeURIComponent(question)}" onclick="handleQuestionClick(this)">
-      ${index + 1}. ${question}
-    </div>\n`;
-  });
-  
-  // Adicionar CTA específico na fase 4
-  if (funnelPhase === 4) {
-    const ctaText = idioma === "pt"
-      ? `<div class="supplement-cta" onclick="handleSupplementClick()">Clique aqui para conhecer o suplemento que já ajudou milhares de pessoas com os mesmos sintomas que você!</div>`
-      : `<div class="supplement-cta" onclick="handleSupplementClick()">Click here to discover the supplement that has already helped thousands of people with the same symptoms as you!</div>`;
+    // Registrar perguntas para evitar repetição
+    sessionMemory.previousQuestions = [
+      ...sessionMemory.previousQuestions,
+      ...symptomContext.followupQuestions
+    ];
     
-    response += `\n${ctaText}`;
+    // Limitar tamanho do histórico de perguntas
+    if (sessionMemory.previousQuestions.length > 15) {
+      sessionMemory.previousQuestions = sessionMemory.previousQuestions.slice(-15);
+    }
+    
+    // Formatar resposta final
+    const response = formatResponse(symptomContext, funnelPhase);
+    
+    return {
+      choices: [
+        {
+          message: {
+            content: response
+          }
+        }
+      ]
+    };
+  } catch (error) {
+    console.error("Erro ao processar mensagem:", error);
+    return {
+      choices: [
+        {
+          message: {
+            content: "Desculpe, ocorreu um erro ao processar sua mensagem. Por favor, tente novamente."
+          }
+        }
+      ]
+    };
   }
-  
-  return response;
 }
