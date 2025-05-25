@@ -1,4 +1,9 @@
-const databaseId = "1fda050ee113804aa5e9dd1b01e31066"; // Substitua com o seu ID real
+import { Client } from "@notionhq/client";
+
+// ✅ Instanciando o cliente do Notion
+const notion = new Client({
+  auth: "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" // Substitua pela sua chave de autenticação
+});
 
 // Função de extração de palavras-chave
 function extractKeywords(text) {
@@ -12,12 +17,7 @@ function extractKeywords(text) {
     .filter(word => word.length > 3 && !stopwords.includes(word) && /^[a-zA-Z]+$/.test(word)); // Filtra palavras válidas
 }
 
-// Testando a função com uma mensagem
-const userMessage = "Headache and fatigue are common symptoms that can affect daily life.";
-const keywords = extractKeywords(userMessage);
-console.log("🧠 Palavras-chave extraídas:", keywords);
-
-// 🔍 Função principal para consulta ao Notion (início)
+// Função principal para consulta ao Notion
 export async function getSymptomContext(userMessage) {
   try {
     const keywords = extractKeywords(userMessage);
@@ -38,7 +38,7 @@ export async function getSymptomContext(userMessage) {
 
     // Consulta ao banco de dados do Notion
     const response = await notion.databases.query({
-      database_id: databaseId // ID do banco de dados
+      database_id: "1fda050ee113804aa5e9dd1b01e31066" // ID do banco de dados
     });
 
     console.log("📨 Resposta do Notion:", JSON.stringify(response, null, 2));
@@ -73,3 +73,14 @@ export async function getSymptomContext(userMessage) {
     return []; // Retorna um array vazio em caso de erro
   }
 }
+
+// Testando a função
+const userMessage = "Headache and fatigue are common symptoms that can affect daily life.";
+getSymptomContext(userMessage).then(response => {
+  console.log("🔎 Resultado final:", response);
+  if (!response || response.length === 0) {
+    console.log("⚠️ Nenhum resultado encontrado.");
+  } else {
+    console.log("✅ Resultado encontrado!");
+  }
+});
