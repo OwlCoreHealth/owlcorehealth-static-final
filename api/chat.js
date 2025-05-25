@@ -9,7 +9,8 @@ let sessionMemory = {
   sintomaAtual: null,
   funnelPhase: 1,
   ultimasPerguntas: [],
-  lastSelectedQuestion: ""
+  lastSelectedQuestion: "",
+  previouslySelectedQuestions: [] // Novo: rastrear perguntas já selecionadas
 };
 
 export default async function handler(req, res) {
@@ -45,20 +46,23 @@ export default async function handler(req, res) {
     if (selectedQuestion) {
       sessionMemory.lastSelectedQuestion = selectedQuestion;
       
+      // Rastrear perguntas já selecionadas para evitar repetição
+      sessionMemory.previouslySelectedQuestions.push(selectedQuestion);
+      
       // Avançar fase do funil com base na pergunta selecionada
       if (shouldAdvanceFunnel(selectedQuestion)) {
         sessionMemory.funnelPhase = Math.min(sessionMemory.funnelPhase + 1, 4);
       }
     }
     
-    // Forçar avanço do funil após várias interações
-    if (sessionMemory.respostasUsuario.length > 3 && sessionMemory.funnelPhase < 2) {
+    // Forçar avanço do funil após várias interações - CORRIGIDO: mais rápido
+    if (sessionMemory.respostasUsuario.length > 2 && sessionMemory.funnelPhase < 2) {
       sessionMemory.funnelPhase = 2;
     }
-    if (sessionMemory.respostasUsuario.length > 5 && sessionMemory.funnelPhase < 3) {
+    if (sessionMemory.respostasUsuario.length > 4 && sessionMemory.funnelPhase < 3) {
       sessionMemory.funnelPhase = 3;
     }
-    if (sessionMemory.respostasUsuario.length > 7 && sessionMemory.funnelPhase < 4) {
+    if (sessionMemory.respostasUsuario.length > 6 && sessionMemory.funnelPhase < 4) {
       sessionMemory.funnelPhase = 4;
     }
 
@@ -68,12 +72,17 @@ export default async function handler(req, res) {
       userName, 
       userAge, 
       userWeight, 
-      sessionMemory.funnelPhase
+      sessionMemory.funnelPhase,
+      sessionMemory.sintomaAtual, // CORRIGIDO: passar sintoma anterior para manter contexto
+      sessionMemory.previouslySelectedQuestions // CORRIGIDO: passar perguntas já selecionadas
     );
     
     // Atualizar a memória da sessão com o sintoma detectado
-    if (symptomContext.sintoma) {
+    if (symptomContext.sintoma && symptomContext.sintoma !== "unknown") {
       sessionMemory.sintomaAtual = symptomContext.sintoma;
+    } else if (sessionMemory.sintomaAtual) {
+      // CORRIGIDO: Manter o sintoma anterior se o atual for "unknown"
+      symptomContext.sintoma = sessionMemory.sintomaAtual;
     }
 
     // Construir a resposta formatada com explicação e perguntas clicáveis
@@ -115,8 +124,8 @@ function shouldAdvanceFunnel(question) {
     "try", "experimentar", "know", "conhecer", "learn", "aprender"
   ];
   
-  // Verificar se a pergunta contém palavras-chave de avanço
-  return advancementKeywords.some(keyword => lowerQuestion.includes(keyword));
+  // CORRIGIDO: Verificação mais sensível para garantir progressão
+  return advancementKeywords.some(keyword => lowerQuestion.includes(keyword)) || Math.random() < 0.3; // 30% de chance de avançar mesmo sem palavras-chave
 }
 
 // Função para formatar a resposta com explicação e perguntas clicáveis
@@ -193,8 +202,8 @@ function formatResponse(symptomContext, idioma, userData) {
   // Adicionar CTA específico na fase 4
   if (funnelPhase === 4) {
     const ctaText = idioma === "pt"
-      ? `<div class="supplement-cta">Clique aqui para conhecer o suplemento que já ajudou milhares de pessoas com os mesmos sintomas que você!</div>`
-      : `<div class="supplement-cta">Click here to discover the supplement that has already helped thousands of people with the same symptoms as you!</div>`;
+      ? `<div class="supplement-cta" onclick="handleSupplementClick()">Clique aqui para conhecer o suplemento que já ajudou milhares de pessoas com os mesmos sintomas que você!</div>`
+      : `<div class="supplement-cta" onclick="handleSupplementClick()">Click here to discover the supplement that has already helped thousands of people with the same symptoms as you!</div>`;
     
     response += `\n${ctaText}`;
   }
