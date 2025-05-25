@@ -20,20 +20,15 @@ function extractKeywords(text) {
 }
 
 // Função principal para consulta ao Notion
-export async function getSymptomContext(userMessage, userName, userAge, userSex, userWeight) {
+export async function getSymptomContext(userMessage, userName) {
   try {
-    // Frases de abertura sarcástica quando o formulário não for preenchido
     const frasesSarcasticas = [
       "Sem seu nome, idade ou peso, posso te dar conselhos… tão úteis quanto ler a sorte no biscoito da sorte.",
       "Ignorar o formulário? Estratégia ousada. Vamos ver no que dá.",
       "Você ignora sua saúde assim também? Posso tentar adivinhar seu perfil com superpoderes… ou não."
     ];
 
-    // Verificando se o formulário foi preenchido
-    const hasForm = userName && userAge && userSex && userWeight; // Verifica se todos os dados do formulário foram preenchidos
-    const intro = hasForm
-      ? `${userName}, vamos focar nisso.`
-      : frasesSarcasticas[Math.floor(Math.random() * frasesSarcasticas.length)]; // Escolhe uma frase sarcástica aleatória
+    const intro = `${userName}, vamos focar nisso.`;
 
     const keywords = extractKeywords(userMessage);
     console.log("🧠 Palavras-chave extraídas:", keywords);
@@ -59,7 +54,8 @@ export async function getSymptomContext(userMessage, userName, userAge, userSex,
 
     if (!response.results.length) return [];
 
-    // Perguntas de follow-up baseadas no sintoma detectado
+    // Agora vamos definir a lógica de respostas
+    let corpo = "";
     const followupEtapas = {
       stomach_pain: [
         "Você tem comido alimentos picantes recentemente?",
@@ -75,13 +71,19 @@ export async function getSymptomContext(userMessage, userName, userAge, userSex,
         "Você tem se alimentado de forma equilibrada?",
         "Você tem feito exercícios regularmente?",
         "Você tem se sentido mais ansioso ultimamente?"
+      ],
+      back_pain: [
+        "Você tem se sentado corretamente? A postura inadequada pode causar dor nas costas.",
+        "Você tem feito exercícios para fortalecer a região lombar?",
+        "Está sentindo dor constante ou intermitente?"
       ]
     };
 
     const sintomasMap = {
       "stomach pain": "stomach_pain",
       "headache": "headache",
-      "fatigue": "fatigue"
+      "fatigue": "fatigue",
+      "back pain": "back_pain"
     };
 
     // Detectando qual sintoma foi mencionado
@@ -92,12 +94,22 @@ export async function getSymptomContext(userMessage, userName, userAge, userSex,
       sintomaKey = "headache";
     } else if (userMessage.toLowerCase().includes("fatigue")) {
       sintomaKey = "fatigue";
+    } else if (userMessage.toLowerCase().includes("back pain")) {
+      sintomaKey = "back_pain";
     }
 
     // Usando o sintoma detectado para escolher as perguntas apropriadas
-    let corpo = "";
     if (sintomaKey && followupEtapas[sintomaKey]) {
-      corpo = `${intro} Aqui estão algumas perguntas para entender melhor seu sintoma de ${sintomaKey.replace("_", " ")}:\n\n`;
+      corpo = `${intro} Vamos dar uma olhada no que pode estar causando sua dor de ${sintomaKey.replace("_", " ")}:\n\n`;
+
+      // Explicação científica para dor nas costas (como exemplo)
+      if (sintomaKey === "back_pain") {
+        corpo += `### Scientific Insight:\nBack pain is a common affliction and can stem from various causes like muscle strain, poor posture, or even something more serious like a herniated disc. Stress and lifestyle choices can also play a significant role.\n`;
+      }
+
+      corpo += `### Let’s Explore 3 Ideas:\n`;
+
+      // Adicionando perguntas clicáveis
       followupEtapas[sintomaKey].forEach((question, index) => {
         corpo += `<a href="/next-step?question=${index + 1}">${index + 1}. ${question}</a>\n`; // Link clicável para cada pergunta
       });
@@ -112,13 +124,10 @@ export async function getSymptomContext(userMessage, userName, userAge, userSex,
 }
 
 // Testando a função
-const userMessage = "I have stomach pain";
+const userMessage = "I have pain in the back";
 const userName = "João";  // Substitua pelo nome do usuário real
-const userAge = 28;       // Substitua pela idade real
-const userSex = "Male";   // Substitua pelo sexo real
-const userWeight = 75;    // Substitua pelo peso real
 
-getSymptomContext(userMessage, userName, userAge, userSex, userWeight).then(response => {
+getSymptomContext(userMessage, userName).then(response => {
   console.log("🔎 Resultado final:", response);
   if (!response || response.length === 0) {
     console.log("⚠️ Nenhum resultado encontrado.");
