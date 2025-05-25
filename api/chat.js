@@ -1,5 +1,6 @@
-// chat.js - Implementação com progressão de funil e prevenção de repetição de perguntas
-import { getSymptomContext, detectSymptomAndLanguage } from './notion.mjs';
+// chat.js - Integração com GPT-4o mini e progressão de funil
+import { getSymptomContext } from './notion.mjs';
+import fetch from 'node-fetch';
 
 // Memória da sessão para rastrear interações e perguntas já usadas
 let sessionMemory = {
@@ -14,12 +15,65 @@ let sessionMemory = {
   ultimasPerguntas: []
 };
 
+// Configuração da API OpenAI
+const OPENAI_API_KEY = "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"; // Substitua pela sua chave API
+const GPT_MODEL = "gpt-4o-mini"; // Modelo GPT-4o mini
+
+// Função para chamar a API do GPT-4o mini
+async function callGPT4oMini(prompt, context, userMessage) {
+  try {
+    const messages = [
+      {
+        role: "system",
+        content: prompt
+      },
+      {
+        role: "user",
+        content: JSON.stringify({
+          message: userMessage,
+          context: context
+        })
+      }
+    ];
+
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: GPT_MODEL,
+        messages: messages,
+        max_tokens: 1000,
+        temperature: 0.7,
+        timeout: 30 // Timeout em segundos para evitar bloqueios
+      })
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error("Erro na API do OpenAI:", errorData);
+      throw new Error(`Erro na API: ${response.status} ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    return data.choices[0].message.content;
+  } catch (error) {
+    console.error("Erro ao chamar GPT-4o mini:", error);
+    // Retornar null para usar fallback
+    return null;
+  }
+}
+
 export default async function handler(req, res) {
   try {
+    // Verificar método HTTP
     if (req.method !== "POST") {
       return res.status(405).json({ error: "Method not allowed. Use POST." });
     }
 
+    // Extrair dados da requisição
     const { message, name, age, sex, weight, selectedQuestion } = req.body;
     if (!message && !selectedQuestion) {
       return res.status(400).json({ error: "No message or selected question provided." });
@@ -28,27 +82,20 @@ export default async function handler(req, res) {
     // Usar a pergunta selecionada se disponível, caso contrário usar a mensagem do usuário
     const userInput = selectedQuestion || message;
     
-    // Detectar idioma
-    const { language } = detectSymptomAndLanguage(userInput);
-    const idioma = language;
-    
     // Processar dados do usuário
     const userName = name?.trim() || sessionMemory.nome || "";
     const userAge = parseInt(age) || "";
     const userSex = (sex || "").toLowerCase();
     const userWeight = parseFloat(weight) || "";
-    const hasForm = userName && !isNaN(userAge) && userSex && !isNaN(userWeight);
-
+    
     // Atualizar a memória da sessão
     sessionMemory.nome = userName;
-    sessionMemory.idioma = idioma;
     sessionMemory.respostasUsuario.push(userInput);
 
     // Determinar a fase atual do funil baseada no número de interações
     const numInteractions = sessionMemory.respostasUsuario.length;
     
     // Progressão do funil baseada no número de interações
-    // Ajustado para progressão mais gradual
     if (numInteractions >= 12) {
       sessionMemory.funnelPhase = 6; // Plano B
     } else if (numInteractions >= 9) {
@@ -64,7 +111,7 @@ export default async function handler(req, res) {
     }
     
     // Obter contexto do sintoma com a fase do funil atual
-    const symptomContext = getSymptomContext(
+    const symptomContext = await getSymptomContext(
       userInput, 
       userName, 
       userAge, 
@@ -90,12 +137,34 @@ export default async function handler(req, res) {
       sessionMemory.usedQuestions = sessionMemory.usedQuestions.slice(-50);
     }
 
-    // Construir a resposta formatada com base na fase do funil
-    let responseContent = formatResponse(symptomContext, idioma, sessionMemory.funnelPhase, { 
-      name: userName, 
-      age: userAge, 
-      weight: userWeight 
-    });
+    // Tentar obter resposta do GPT-4o mini
+    let gptResponse = null;
+    try {
+      if (symptomContext.gptPromptData) {
+        gptResponse = await callGPT4oMini(
+          symptomContext.gptPromptData.prompt,
+          symptomContext.gptPromptData.context,
+          userInput
+        );
+      }
+    } catch (gptError) {
+      console.error("Erro ao chamar GPT-4o mini:", gptError);
+      // Continuar com fallback
+    }
+
+    // Construir a resposta final (usando GPT se disponível, ou fallback)
+    let responseContent;
+    if (gptResponse) {
+      // Usar a resposta do GPT, mas garantir que as perguntas de follow-up sejam as nossas
+      responseContent = formatGPTResponse(gptResponse, symptomContext);
+    } else {
+      // Usar o fallback com nossa estrutura
+      responseContent = formatResponse(symptomContext, symptomContext.language, sessionMemory.funnelPhase, { 
+        name: userName, 
+        age: userAge, 
+        weight: userWeight 
+      });
+    }
     
     // Armazenar as últimas perguntas para referência futura
     sessionMemory.ultimasPerguntas = symptomContext.followupQuestions;
@@ -116,11 +185,62 @@ export default async function handler(req, res) {
   }
 }
 
-// Função para formatar a resposta com base na fase do funil
+// Função para formatar a resposta do GPT, garantindo que as perguntas de follow-up sejam as nossas
+function formatGPTResponse(gptResponse, symptomContext) {
+  try {
+    // Extrair o conteúdo principal da resposta do GPT
+    let mainContent = gptResponse;
+    
+    // Remover qualquer seção de perguntas que o GPT possa ter gerado
+    const questionSectionMarkers = [
+      "Escolha uma opção:",
+      "Choose an option:",
+      "Escolha seu próximo passo:",
+      "Choose your next step:",
+      "Perguntas:",
+      "Questions:"
+    ];
+    
+    for (const marker of questionSectionMarkers) {
+      const index = mainContent.indexOf(marker);
+      if (index !== -1) {
+        mainContent = mainContent.substring(0, index);
+      }
+    }
+    
+    // Formatar as perguntas de follow-up como elementos clicáveis
+    const formattedQuestions = symptomContext.followupQuestions.map((question, index) => {
+      return `<div class="clickable-question" data-question="${encodeURIComponent(question)}" onclick="handleQuestionClick(this)">
+        ${index + 1}. ${question}
+      </div>`;
+    }).join('\n');
+    
+    // Adicionar título para a seção de perguntas
+    const questionTitle = symptomContext.language === "pt" ? 
+      "Escolha uma opção:" : 
+      "Choose an option:";
+    
+    // Montar a resposta completa
+    return `${mainContent.trim()}
+
+${questionTitle}
+
+${formattedQuestions}`;
+  } catch (error) {
+    console.error("Erro ao formatar resposta do GPT:", error);
+    // Fallback para formatação padrão
+    return formatResponse(symptomContext, symptomContext.language, symptomContext.funnelPhase, {
+      name: sessionMemory.nome,
+      age: "",
+      weight: ""
+    });
+  }
+}
+
+// Função para formatar a resposta com base na fase do funil (fallback)
 function formatResponse(symptomContext, idioma, funnelPhase, userData) {
   const { intro, scientificExplanation, followupQuestions } = symptomContext;
   const { name, age, weight } = userData || {};
-  const hasUserData = name && age && weight;
   
   // Títulos para cada fase do funil
   const phaseTitles = {
@@ -182,15 +302,6 @@ function formatResponse(symptomContext, idioma, funnelPhase, userData) {
   const title = phaseTitles[funnelPhase]?.[idioma] || phaseTitles[1][idioma];
   const closing = closingText[funnelPhase]?.[idioma] || closingText[1][idioma];
   
-  // Personalização baseada nos dados do usuário (se disponíveis)
-  let personalizedIntro = intro;
-  if (hasUserData) {
-    // Adicionar nome do usuário se não estiver já incluído na introdução
-    if (name && !personalizedIntro.includes(name)) {
-      personalizedIntro = personalizedIntro.replace("Olá!", `Olá, ${name}!`).replace("Hello!", `Hello, ${name}!`);
-    }
-  }
-  
   // Formatar as perguntas de follow-up como elementos clicáveis
   const formattedQuestions = followupQuestions.map((question, index) => {
     return `<div class="clickable-question" data-question="${encodeURIComponent(question)}" onclick="handleQuestionClick(this)">
@@ -199,7 +310,7 @@ function formatResponse(symptomContext, idioma, funnelPhase, userData) {
   }).join('\n');
   
   // Montar a resposta completa
-  const response = `${personalizedIntro}
+  const response = `${intro}
 
 ${title}
 ${scientificExplanation}
