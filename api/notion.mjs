@@ -1,5 +1,5 @@
-// Convertendo para CommonJS para compatibilidade
-const { Client } = require("@notionhq/client");
+// ES Modules format
+import { Client } from "@notionhq/client";
 
 // ✅ Prompt Owl Savage - Personalidade e Funil (Internal reference, not sent to LLM)
 const OWL_SAVAGE_PROMPT = `
@@ -1121,7 +1121,5 @@ async function getSymptomContext(userMessage, userName, userAge, userWeight, fun
   }
 }
 
-// Exportar usando CommonJS para compatibilidade
-module.exports = {
-  getSymptomContext
-};
+// Exportar usando ES Modules
+export { getSymptomContext };
