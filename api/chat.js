@@ -46,7 +46,7 @@ export default async function handler(req, res) {
         : "Do you ignore your health like this too? I could guess with superpowers… or not."
     ];
 
-    // Gerar frase inicial dependendo do preenchimento do formulário
+    // Geração da frase inicial dependendo do preenchimento do formulário
     const intro = hasForm
       ? `${userName}, 28% das pessoas com ${userAge} anos relatam ansiedade, 31% têm digestão lenta, e 20% não tomam suplemento. Mas você está aqui. Isso já é um passo acima da média.`
       : frasesSarcasticas[Math.floor(Math.random() * frasesSarcasticas.length)];
@@ -104,13 +104,19 @@ export default async function handler(req, res) {
       }
     };
 
-    // Perguntas de follow-up
+    // Definindo as perguntas de follow-up
     const followupEtapas = {
       stomach_pain: [
         "Você tem comido alimentos picantes recentemente?",
         "Você tem se sentido estressado ultimamente? O estresse pode afetar seu estômago.",
         "Você tem histórico de condições como gastrite ou refluxo?"
+      ],
+      energia: [
+        "Você tem dormido o suficiente?",
+        "Você tem se alimentado de forma equilibrada?",
+        "Você tem praticado exercícios regularmente?"
       ]
+      // Outros sintomas e suas perguntas podem ser adicionados aqui
     };
 
     let followups = [];
@@ -119,7 +125,7 @@ export default async function handler(req, res) {
     // Preenchendo as perguntas com base no sintoma detectado
     if (followupEtapas[sintoma]) {
       followupEtapas[sintoma].forEach((question, index) => {
-        corpo += `<a href="/next-step?question=${index + 1}">${index + 1}. ${question}</a>\n`;
+        corpo += `<a href="/next-step?question=${index + 1}">${index + 1}. ${question}</a>\n`; // Gerar o link clicável para cada pergunta
       });
     }
 
