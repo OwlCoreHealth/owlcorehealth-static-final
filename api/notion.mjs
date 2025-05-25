@@ -5,8 +5,7 @@ const notion = new Client({
   auth: "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" // Substitua pela sua chave de autenticação
 });
 
-// Definir o ID do banco de dados do Notion
-const databaseId = "1fda050ee113804aa5e9dd1b01e31066"; // Substitua com o seu ID real
+const databaseId = "1fda050ee113804aa5e9dd1b01e31066"; // ID do banco de dados
 
 // 🔍 Função de extração de palavras-chave
 function extractKeywords(text) {
@@ -20,9 +19,21 @@ function extractKeywords(text) {
     .filter(word => word.length > 3 && !stopwords.includes(word) && /^[a-zA-Z]+$/.test(word)); // Filtra palavras válidas
 }
 
-// 🔍 Função principal para consulta ao Notion
-export async function getSymptomContext(userMessage) {
+// Função principal para consulta ao Notion
+export async function getSymptomContext(userMessage, userName, userAge, userSex, userWeight) {
   try {
+    const frasesSarcasticas = [
+      "Sem seu nome, idade ou peso, posso te dar conselhos… tão úteis quanto ler a sorte no biscoito da sorte.",
+      "Ignorar o formulário? Estratégia ousada. Vamos ver no que dá.",
+      "Você ignora sua saúde assim também? Posso tentar adivinhar seu perfil com superpoderes… ou não."
+    ];
+
+    const hasForm = userName && userAge && userSex && userWeight; // Verifica se o formulário foi preenchido
+
+    const intro = hasForm
+      ? `${userName}, 28% das pessoas com ${userAge} anos relatam ansiedade, 31% têm digestão lenta, e 20% não tomam suplemento. Mas você está aqui. Isso já é um passo acima da média.`
+      : frasesSarcasticas[Math.floor(Math.random() * frasesSarcasticas.length)];
+
     const keywords = extractKeywords(userMessage);
     console.log("🧠 Palavras-chave extraídas:", keywords);
 
@@ -39,7 +50,6 @@ export async function getSymptomContext(userMessage) {
 
     console.log("📦 Filtro enviado ao Notion:", JSON.stringify(filter, null, 2));
 
-    // Consulta ao banco de dados do Notion
     const response = await notion.databases.query({
       database_id: databaseId // ID do banco de dados
     });
@@ -48,40 +58,51 @@ export async function getSymptomContext(userMessage) {
 
     if (!response.results.length) return [];
 
-    return response.results.map(page => {
-      const p = page.properties;
+    // Perguntas de follow-up
+    const followupEtapas = {
+      pt: [
+        ["Quer entender os riscos se isso for ignorado?", "Deseja ver dados reais de quem passou por isso?", "Quer saber quais nutrientes combatem isso?"],
+        ["Quer saber o que pode acontecer se você não tratar esse sintoma?", "Deseja ver estatísticas sobre como esse problema afeta outras pessoas?", "Quer ver alimentos que agravam isso?"],
+        ["Posso mostrar estudos reais sobre esse sintoma.", "Quer saber os micronutrientes mais eficazes nesse caso?", "Deseja ver alternativas naturais para aliviar isso?"],
+        ["Quer que eu mostre o suplemento ideal para isso?", "Deseja ver a avaliação completa do produto?", "Quer continuar explorando sintomas parecidos?"]
+      ],
+      en: [
+        ["Want to know the risks of ignoring this?", "Interested in real-world data on this symptom?", "Want to discover which nutrients help fight this?"],
+        ["Want to understand what happens if untreated?", "Want to see how others are affected by this issue?", "Want to see foods that make it worse?"],
+        ["I can show real-world studies on this symptom.", "Curious about the most effective nutrients for this?", "Want natural alternatives to ease this now?"],
+        ["Want me to show you the ideal supplement?", "Want to read the full product review?", "Prefer to continue exploring related symptoms?"]
+      ]
+    };
 
-      // Verificação de campos para garantir que não sejam `undefined` antes de acessá-los
-      return {
-        sintoma: p["Sintoma / Questão"]?.title?.[0]?.plain_text || "",
-        categoria: p["Categoria"]?.select?.name || "",
-        risco_pt: p["Riscos Relacionados PT"]?.rich_text?.[0]?.plain_text || "",
-        risco_en: p["Riscos Relacionados EN"]?.rich_text?.[0]?.plain_text || "",
-        pergunta1_pt: p["Pergunta 1 PT (Curiosidade)"]?.rich_text?.[0]?.plain_text || "",
-        pergunta2_pt: p["Pergunta 2 PT (Preocupação)"]?.rich_text?.[0]?.plain_text || "",
-        pergunta3_pt: p["Pergunta 3 PT (Solução)"]?.rich_text?.[0]?.plain_text || "",
-        pergunta1_en: p["Pergunta 1 EN (Curiosidade)"]?.rich_text?.[0]?.plain_text || "",
-        pergunta2_en: p["Pergunta 2 EN (Preocupação)"]?.rich_text?.[0]?.plain_text || "",
-        pergunta3_en: p["Pergunta 3 EN (Solução)"]?.rich_text?.[0]?.plain_text || "",
-        suplemento: p["Suplemento Relacionado"]?.select?.name || "",
-        base_pt: p["Resposta Científica Base PT"]?.rich_text?.[0]?.plain_text || "",
-        base_en: p["Resposta Científica Base EN"]?.rich_text?.[0]?.plain_text || "",
-        link_pt: p["Chamada do Link PT"]?.rich_text?.[0]?.plain_text || "",
-        link_en: p["Chamada do Link EN"]?.rich_text?.[0]?.plain_text || "",
-        url: p["Link do Review"]?.url || "",
-        gravidade: p["Gravidade"]?.number ? Number(p["Gravidade"].number) : 1 // Certifique-se de que "gravidade" seja um número válido
-      };
-    });
+    const idioma = userSex === "Male" ? "en" : "pt"; // Modifique conforme necessário para detectar o idioma (Exemplo: baseado no sexo do usuário)
+
+    let followups = [];
+    let corpo = "";
+    const idiomaEtapas = followupEtapas[idioma];
+    const etapaIndex = Math.min(0, idiomaEtapas.length - 1); // Inicialização da etapa para o primeiro nível
+
+    corpo = `\n\n${hasForm ? (idioma === "pt" ? `Vamos focar nisso, ${userName}.` : `Let’s focus on that, ${userName}.`) : ""}\n\n${
+      idioma === "pt" ? "Base científica:" : "Scientific insight:"
+    }\n${response.results[0].properties["Base Científica Base PT"]?.rich_text?.[0]?.plain_text || "Sem dados disponíveis."}\n\n${
+      idioma === "pt" ? "Vamos aprofundar com 3 ideias:" : "Let’s explore 3 ideas:"
+    }\n1. ${idiomaEtapas[etapaIndex][0]}\n2. ${idiomaEtapas[etapaIndex][1]}\n3. ${idiomaEtapas[etapaIndex][2]}`;
+
+    return corpo;
 
   } catch (error) {
-    console.error("❌ Erro ao consultar o Notion:", error); // Exibe o erro no console
+    console.error("❌ Erro ao consultar o Notion:", error);
     return []; // Retorna um array vazio em caso de erro
   }
 }
 
 // Testando a função
 const userMessage = "Headache and fatigue are common symptoms that can affect daily life.";
-getSymptomContext(userMessage).then(response => {
+const userName = "João";  // Substitua pelo nome do usuário real
+const userAge = 28;       // Substitua pela idade real
+const userSex = "Male";   // Substitua pelo sexo real
+const userWeight = 75;    // Substitua pelo peso real
+
+getSymptomContext(userMessage, userName, userAge, userSex, userWeight).then(response => {
   console.log("🔎 Resultado final:", response);
   if (!response || response.length === 0) {
     console.log("⚠️ Nenhum resultado encontrado.");
