@@ -64,7 +64,9 @@ export default async function handler(req, res) {
     let sintoma = sessionMemory.sintomaAtual || "";
     let categoria = sessionMemory.categoriaAtual || "";
 
-    // Verificando se encontramos um sintoma válido ou se devemos usar categorias predefinidas
+    // Verificando se o sintoma foi corretamente detectado
+    console.log("🔎 Sintoma Detectado: ", sintoma); 
+
     if (contexto) {
       sintoma = contexto.sintoma;
       sessionMemory.sintomaAtual = sintoma;
@@ -80,12 +82,13 @@ export default async function handler(req, res) {
       sessionMemory.categoriaAtual = categoria;
     }
 
+    console.log("🔎 Categoria Detectada: ", categoria); // Verificando a categoria detectada
+
     const chave = sintoma || categoria;
     sessionMemory.contadorPerguntas[chave] = (sessionMemory.contadorPerguntas[chave] || 0) + 1;
     const etapa = sessionMemory.contadorPerguntas[chave];
     const incluirSuplemento = etapa >= 3;
 
-    // Perguntas de follow-up predefinidas para cada categoria de sintoma
     const followupEtapas = {
       stomach_pain: [
         "Você tem comido alimentos picantes recentemente?",
@@ -97,11 +100,10 @@ export default async function handler(req, res) {
         "Você tem se alimentado de forma equilibrada?",
         "Você tem praticado exercícios regularmente?"
       ]
-      // Outros sintomas e suas perguntas podem ser adicionados aqui
     };
 
     let followups = [];
-    let corpo = `${intro}\n\n`; // Incluindo a frase inicial aqui
+    let corpo = `${intro}\n\n`;
 
     // Verificando se o sintoma tem perguntas de follow-up associadas
     if (followupEtapas[sintoma]) {
@@ -110,10 +112,10 @@ export default async function handler(req, res) {
         corpo += `<a href="/next-step?question=${index + 1}">${index + 1}. ${question}</a>\n`; // Gerar o link clicável para cada pergunta
       });
     } else {
-      corpo += "<a href='/next-step?question=1'>1. Nenhum sintoma identificado</a>\n";
+      corpo += "<a href='/next-step?question=1'>1. Nenhum sintoma identificado</a>\n"; // Fallback para sintoma não identificado
     }
 
-    corpo += `\n\n${idioma === "pt" ? "Escolha uma das opções abaixo para continuarmos:" : "Choose one of the options below to continue:"}\n1. ${followups[0]}\n2. ${followups[1]}\n3. ${followups[2]}`;
+    corpo += `\n\n${idioma === "pt" ? "Escolha uma das opções abaixo para continuarmos:" : "Choose one of the options below to continue:"}\n1. ${followups[0] || "Não há opções disponíveis"}\n2. ${followups[1] || "Não há opções disponíveis"}\n3. ${followups[2] || "Não há opções disponíveis"}`;
 
     // Enviar a resposta para o frontend com as perguntas clicáveis
     return res.status(200).json({
