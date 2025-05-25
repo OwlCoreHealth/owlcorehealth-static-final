@@ -46,7 +46,6 @@ export default async function handler(req, res) {
         : "Do you ignore your health like this too? I could guess with superpowers… or not."
     ];
 
-    // Gerar frase inicial dependendo do preenchimento do formulário
     const intro = hasForm
       ? `${userName}, 28% das pessoas com ${userAge} anos relatam ansiedade, 31% têm digestão lenta, e 20% não tomam suplemento. Mas você está aqui. Isso já é um passo acima da média.`
       : frasesSarcasticas[Math.floor(Math.random() * frasesSarcasticas.length)];
