@@ -1,221 +1,717 @@
-// Versão adaptada para GPT-3.5 gratuito
-// ES Modules format
+import { Client } from "@notionhq/client";
 
-// Introduções sarcásticas simplificadas
-const intros = {
-  stomach_pain: {
-    pt: ["Dores de estômago? Aposto que sua dieta é um exemplo de disciplina... só que não."],
-    en: ["Stomach pains? I bet your diet is a model of discipline... not."]
-  },
-  headache: {
-    pt: ["Dor de cabeça de novo? Talvez seja o universo tentando te dizer algo... ou só desidratação mesmo."],
-    en: ["Headache again? Maybe it's the universe trying to tell you something... or just dehydration."]
-  },
-  fatigue: {
-    pt: ["Cansado? Que surpresa. Provavelmente passou a noite maratonando séries inúteis."],
-    en: ["Tired? What a surprise. Probably spent the night binge-watching useless shows."]
-  },
-  back_pain: {
-    pt: ["Dor nas costas? Aposto que sua postura é impecável e você faz alongamentos diários... só que ao contrário."],
-    en: ["Back pain? I bet your posture is impeccable and you do daily stretches... just the opposite."]
-  },
-  unknown: {
-    pt: ["Sintomas vagos? Fascinante como você descreve seu problema da forma menos útil possível."],
-    en: ["Vague symptoms? Fascinating how you describe your problem in the least helpful way possible."]
-  }
+// ✅ Prompt Owl Savage - Personalidade e Funil
+const OWL_SAVAGE_PROMPT = `
+Você é o Owl Savage, um assistente de saúde com personalidade forte, sarcástica e direta. Siga estas diretrizes:
+
+1. PERSONALIDADE:
+   - Use sarcasmo inteligente e humor negro em todas as respostas
+   - Seja provocador mas útil, desafiando o utilizador a agir
+   - Mantenha um tom de "verdade dura" que motiva através do desconforto
+   - Adapte-se ao idioma do utilizador sem perder sua essência provocadora
+   - Use metáforas militares ou de "treinador durão" ocasionalmente
+
+2. ESTRUTURA DE RESPOSTA:
+   - Comece com uma observação sarcástica ou provocadora sobre a situação
+   - Inclua dados científicos reais e estatísticas impactantes (30-50% mais graves do que a realidade)
+   - Termine com um desafio motivacional e 3 perguntas clicáveis que conduzam ao próximo passo do funil
+
+3. FUNIL DE CONVERSÃO:
+   - Fase 1: Diagnóstico provocador (identifique o problema de forma exagerada)
+   - Fase 2: Agravamento (mostre consequências de não agir, use estatísticas alarmantes)
+   - Fase 3: Solução natural (introduza plantas e nutrientes como solução)
+   - Fase 4: Sugestão de suplemento (apresente como a solução óbvia e inteligente)
+
+4. REGRAS ESPECÍFICAS:
+   - Se o utilizador não preencher o formulário, use uma das frases sarcásticas aleatórias sobre "adivinhar com biscoito da sorte"
+   - Se o utilizador preencher o formulário, use sempre o nome dele e mencione estatísticas relacionadas à idade/peso
+   - Varie suas respostas, nunca use o mesmo texto duas vezes
+   - As 3 perguntas finais devem sempre conduzir para o próximo passo do funil, mas parecer que dão liberdade de escolha
+   - Use a informação da tabela do Notion quando relevante, mas mantenha a liberdade de improvisar respostas no estilo Owl Savage
+`;
+
+// ✅ Instanciando o cliente do Notion
+const notion = new Client({
+  auth: "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" // Substitua pela sua chave de autenticação
+});
+
+const databaseId = "1fda050ee113804aa5e9dd1b01e31066"; // ID do banco de dados
+
+// 🔍 Função de extração de palavras-chave
+function extractKeywords(text) {
+  const stopwords = [
+    "the", "and", "for", "with", "from", "that", "this", "you", "your", "in", "to", "is", "it", "on", "a", "of", "as", "at", "by", "be", "are", "have", "was", "were", "not", "but", "or", "an", "we", "they", "he", "she", "it", "I"
+  ];
+
+  return text
+    .toLowerCase() // Converte para minúsculas
+    .split(/\W+/) // Divide o texto por não-palavras (como espaços, pontuação)
+    .filter(word => word.length > 3 && !stopwords.includes(word) && /^[a-zA-Z]+$/.test(word)); // Filtra palavras válidas
+}
+
+// Função para detectar o idioma da mensagem
+function detectLanguage(message) {
+  const portugueseWords = ["é", "você", "tem", "dores", "sintoma"];
+  const englishWords = ["is", "you", "have", "pain", "symptom"];
+  
+  const messageLower = message.toLowerCase();
+  let portugueseCount = 0;
+  let englishCount = 0;
+  
+  portugueseWords.forEach(word => {
+    if (messageLower.includes(word)) portugueseCount++;
+  });
+  
+  englishWords.forEach(word => {
+    if (messageLower.includes(word)) englishCount++;
+  });
+
+  return portugueseCount > englishCount ? "pt" : "en";
+}
+
+// ✅ Frases sarcásticas para formulário não preenchido
+const frasesSarcasticas = {
+  pt: [
+    "Sem seu nome, idade ou peso, posso te dar conselhos… tão úteis quanto ler a sorte no biscoito da sorte.",
+    "Ignorar o formulário? Estratégia ousada. Vamos ver no que dá.",
+    "Você ignora sua saúde assim também? Posso tentar adivinhar seu perfil com superpoderes… ou não.",
+    "Formulário em branco? Claro, vou usar minha bola de cristal para adivinhar seus dados. Spoiler: está quebrada.",
+    "Ah, mais um que acha que pode pular etapas. Fascinante como as pessoas esperam resultados sem fornecer informações básicas."
+  ],
+  en: [
+    "Without your name, age or weight, my advice is about as useful as a fortune cookie.",
+    "Skipping the form? Bold move. Let's see how that works out.",
+    "Do you ignore your health like this too? I could guess with superpowers… or not.",
+    "Blank form? Sure, I'll use my crystal ball to guess your data. Spoiler: it's broken.",
+    "Oh, another one who thinks they can skip steps. Fascinating how people expect results without providing basic information."
+  ]
 };
 
-// Explicações científicas simplificadas
-const explanations = {
-  stomach_pain: {
-    1: { 
-      pt: ["Seu estômago não está apenas 'incomodado' - ele está em guerra química. 65% dos problemas digestivos são causados por bactérias que fermentam alimentos mal digeridos. Dica: Mastigar cada bocado 20 vezes reduz problemas digestivos em até 40%."],
-      en: ["Your stomach isn't just 'bothered' - it's in chemical warfare. 65% of digestive problems are caused by bacteria fermenting poorly digested food. Tip: Chewing each bite 20 times reduces digestive issues by up to 40%."]
-    },
-    2: { 
-      pt: ["Ignorar essa dorzinha chata? Péssima ideia. 55% das gastrites não tratadas evoluem para úlceras. O que seu médico não te diz: a inflamação constante pode levar à má absorção de nutrientes essenciais."],
-      en: ["Ignoring that annoying little pain? Bad idea. 55% of untreated gastritis evolves into ulcers. What your doctor doesn't tell you: constant inflammation can lead to poor absorption of essential nutrients."]
-    },
-    3: { 
-      pt: ["Seu sistema digestivo não está apenas 'irritado' - está em falência progressiva. 82% dos problemas digestivos ignorados por mais de 3 meses causam danos permanentes à mucosa gástrica."],
-      en: ["Your digestive system isn't just 'irritated' - it's in progressive failure. 82% of digestive problems ignored for more than 3 months cause permanent damage to the gastric mucosa."]
-    },
-    4: { 
-      pt: ["Achar que só comida resolve? Ilusão. Seu intestino precisa de mais. Nutrientes como Zinco e Glutamina são cruciais para reparar a parede intestinal, mas 60% das dietas ocidentais são deficientes."],
-      en: ["Thinking food alone will fix it? Illusion. Your gut needs more. Nutrients like Zinc and Glutamine are crucial for repairing the intestinal wall, but 60% of Western diets are deficient."]
-    },
-    5: { 
-      pt: ["Chega de remendos. A solução real combina o melhor da ciência e da natureza. Nosso suplemento foi formulado com ingredientes comprovados para restaurar a saúde digestiva."],
-      en: ["Enough with the patches. The real solution combines the best of science and nature. Our supplement was formulated with proven ingredients to restore digestive health."]
-    },
-    6: { 
-      pt: ["Ok, parece que você ainda não está convencido. Talvez precise de mais dados? 75% das pessoas que adiam a decisão acabam gastando 3x mais em tratamentos médicos depois."],
-      en: ["Okay, it seems you're still not convinced. Maybe you need more data? 75% of people who postpone the decision end up spending 3x more on medical treatments later."]
-    }
-  },
-  headache: {
-    1: { pt: ["Sua cabeça não está apenas doendo - é um alarme de incêndio. 78% das dores de cabeça frequentes são por desidratação crônica. Dica: Beba 2 copos de água AGORA."], en: ["Your head isn't just hurting - it's a fire alarm. 78% of frequent headaches are due to chronic dehydration. Tip: Drink 2 glasses of water NOW."] },
-    2: { pt: ["Achar que é só 'stress'? 60% das enxaquecas não tratadas aumentam o risco de problemas vasculares."], en: ["Thinking it's just 'stress'? 60% of untreated migraines increase the risk of vascular problems."] },
-    3: { pt: ["Essa dorzinha pode ser a ponta do iceberg. 30% das dores de cabeça persistentes sinalizam problemas mais sérios."], en: ["That little pain could be the tip of the iceberg. 30% of persistent headaches signal more serious problems."] },
-    4: { pt: ["Analgésicos são remendos. Seu cérebro precisa de Magnésio e Coenzima Q10 para funcionar sem 'explodir'."], en: ["Painkillers are patches. Your brain needs Magnesium and Coenzyme Q10 to function without 'exploding'."] },
-    5: { pt: ["A solução definitiva? Nosso suplemento ataca a causa raiz. 91% dos usuários relataram redução na frequência e intensidade das dores."], en: ["The definitive solution? Our supplement attacks the root cause. 91% of users reported reduced frequency and intensity of headaches."] },
-    6: { pt: ["Ainda na dúvida? Continuar com analgésicos pode causar 'dor de cabeça de rebote', piorando o problema."], en: ["Still doubting? Continuing with painkillers can cause 'rebound headaches', worsening the problem."] }
-  },
-  fatigue: {
-    1: { pt: ["Seu corpo não está 'cansado' - está em pane seca. 75% da fadiga crônica vem de má alimentação e sono ruim."], en: ["Your body isn't 'tired' - it's running on empty. 75% of chronic fatigue comes from poor diet and bad sleep."] },
-    2: { pt: ["Achar que café resolve? Só mascara o problema. 65% das pessoas com fadiga persistente têm problemas de tireoide ou anemia."], en: ["Thinking coffee solves it? It just masks the problem. 65% of people with persistent fatigue have thyroid problems or anemia."] },
-    3: { pt: ["Essa 'preguiça' pode ser seu corpo desligando. 40% da fadiga extrema está ligada a inflamação crônica silenciosa."], en: ["That 'laziness' could be your body shutting down. 40% of extreme fatigue is linked to silent chronic inflammation."] },
-    4: { pt: ["Energéticos são lixo. Seu corpo precisa de Vitaminas do Complexo B, Ferro e Magnésio para produzir energia real."], en: ["Energy drinks are trash. Your body needs B Vitamins, Iron, and Magnesium to produce real energy."] },
-    5: { pt: ["Quer energia de verdade? Nosso suplemento restaura seus níveis de energia de forma natural e sustentável."], en: ["Want real energy? Our supplement restores your energy levels naturally and sustainably."] },
-    6: { pt: ["Ainda arrastando os pés? A fadiga crônica afeta sua produtividade, humor e relacionamentos."], en: ["Still dragging your feet? Chronic fatigue affects your productivity, mood, and relationships."] }
-  },
-  back_pain: {
-    1: { pt: ["Sua coluna não está apenas 'doendo' - ela está gritando por socorro. 68% das dores nas costas vêm de músculos fracos e má postura."], en: ["Your spine isn't just 'hurting' - it's screaming for help. 68% of back pain comes from weak muscles and poor posture."] },
-    2: { pt: ["Achar que é só 'mau jeito'? 50% das dores lombares não tratadas levam a problemas de disco ou ciática."], en: ["Thinking it's just a 'tweak'? 50% of untreated lower back pain leads to disc problems or sciatica."] },
-    3: { pt: ["Essa dor pode te deixar incapacitado. 35% das dores crônicas nas costas estão ligadas a hérnias de disco."], en: ["This pain can leave you incapacitated. 35% of chronic back pain is linked to herniated discs."] },
-    4: { pt: ["Anti-inflamatórios só mascaram. Seus discos e articulações precisam de Glucosamina, Condroitina e Colágeno."], en: ["Anti-inflammatories just mask it. Your discs and joints need Glucosamine, Chondroitin, and Collagen."] },
-    5: { pt: ["Alívio duradouro? Nosso suplemento fortalece a estrutura da coluna e reduz a inflamação."], en: ["Lasting relief? Our supplement strengthens the spinal structure and reduces inflammation."] },
-    6: { pt: ["Ainda sofrendo em silêncio? Dor nas costas limita sua vida e afeta seu humor."], en: ["Still suffering in silence? Back pain limits your life and affects your mood."] }
-  },
-  unknown: {
-    1: { pt: ["Seu corpo está confuso, e você também. 73% dos sintomas vagos escondem deficiências nutricionais ou inflamação silenciosa."], en: ["Your body is confused, and so are you. 73% of vague symptoms hide nutritional deficiencies or silent inflammation."] },
-    2: { pt: ["Achar que 'não é nada'? 60% dos problemas crônicos começam com sintomas vagos ignorados."], en: ["Thinking it's 'nothing'? 60% of chronic problems start with ignored vague symptoms."] },
-    3: { pt: ["Sintomas gerais são alertas vermelhos. 42% das pessoas com mal-estar persistente têm problemas autoimunes ou hormonais."], en: ["General symptoms are red flags. 42% of people with persistent malaise have autoimmune or hormonal problems."] },
-    4: { pt: ["Seu corpo precisa de um 'reset' nutricional. Vitaminas essenciais como D, B12 e minerais como Magnésio e Zinco são fundamentais."], en: ["Your body needs a nutritional 'reset'. Essential vitamins like D, B12, and minerals like Magnesium and Zinc are fundamental."] },
-    5: { pt: ["Uma abordagem completa? Nosso suplemento ajuda a reequilibrar seu sistema."], en: ["A complete approach? Our supplement helps rebalance your system."] },
-    6: { pt: ["Ainda perdido? Sentir-se mal constantemente não é normal."], en: ["Still lost? Feeling constantly unwell isn't normal."] }
-  }
-};
-
-// Perguntas de follow-up simplificadas
-const followupQuestions = {
-  stomach_pain: {
-    1: {
-      pt: ["Você tem comido como se seu estômago fosse indestrutível?", "Quais alimentos parecem piorar essa dor?", "Com que frequência isso acontece?"],
-      en: ["Have you been eating as if your stomach were indestructible?", "What foods seem to worsen this pain?", "How often does this happen?"]
-    },
-    2: {
-      pt: ["Está ciente que ignorar isso pode levar a úlceras?", "Quanto tempo mais você pretende ignorar esses sintomas?", "Você sabia que o stress pode dobrar a produção de ácido no estômago?"],
-      en: ["Are you aware that ignoring this can lead to ulcers?", "How much longer do you plan to ignore these symptoms?", "Did you know that stress can double stomach acid production?"]
-    },
-    3: {
-      pt: ["Percebe que continuar assim pode causar danos permanentes?", "Está disposto a investigar a causa raiz?", "Você sabia que problemas digestivos crônicos afetam seu humor e energia?"],
-      en: ["Do you realize that continuing like this can cause permanent damage?", "Are you willing to investigate the root cause?", "Did you know that chronic digestive problems affect your mood and energy?"]
-    },
-    4: {
-      pt: ["Interessado em saber quais nutrientes podem reparar seu intestino?", "Quer conhecer plantas medicinais com poder anti-inflamatório?", "Sabia que a combinação certa de nutrientes pode ser mais eficaz que medicamentos?"],
-      en: ["Interested in knowing which nutrients can repair your gut?", "Want to know medicinal plants with anti-inflammatory power?", "Did you know that the right combination of nutrients can be more effective than medications?"]
-    },
-    5: {
-      pt: ["Quer conhecer a fórmula que já ajudou milhares como você?", "Pronto para uma solução que ataca a causa raiz?", "Interessado em ver estudos que comprovam a eficácia?"],
-      en: ["Want to know the formula that has already helped thousands like you?", "Ready for a solution that attacks the root cause?", "Interested in seeing studies that prove the effectiveness?"]
-    },
-    6: {
-      pt: ["Precisa de mais informações sobre como nosso suplemento funciona?", "Quer comparar os riscos de não fazer nada com os benefícios da solução?", "Podemos discutir como este suplemento se encaixa no seu estilo de vida?"],
-      en: ["Need more information on how our supplement works?", "Want to compare the risks of doing nothing with the benefits of the solution?", "Can we discuss how this supplement fits into your lifestyle?"]
-    }
-  },
-  headache: {
-    1: { pt: ["Você bebe água suficiente?", "Seu sono tem sido reparador?", "Quais situações parecem desencadear essa dor?"], en: ["Do you drink enough water?", "Has your sleep been restful?", "What situations seem to trigger this pain?"] },
-    2: { pt: ["Está ciente que analgésicos em excesso pioram a dor?", "Quanto estresse você acumula?", "Sabia que problemas de visão podem causar dores de cabeça?"], en: ["Are you aware that excessive painkillers worsen pain?", "How much stress do you accumulate?", "Did you know vision problems can cause headaches?"] },
-    3: { pt: ["Percebe que ignorar enxaquecas aumenta seu risco cardiovascular?", "Está disposto a investigar gatilhos?", "Você sabia que certas deficiências nutricionais causam dores de cabeça?"], en: ["Do you realize that ignoring migraines increases your cardiovascular risk?", "Are you willing to investigate triggers?", "Did you know certain nutritional deficiencies cause headaches?"] },
-    4: { pt: ["Interessado em saber como o Magnésio pode reduzir suas enxaquecas?", "Quer conhecer plantas que aliviam a dor sem efeitos colaterais?", "Sabia que equilibrar seus neurotransmissores pode ser a chave?"], en: ["Interested in knowing how Magnesium can reduce your migraines?", "Want to know plants that relieve pain without side effects?", "Did you know balancing your neurotransmitters could be the key?"] },
-    5: { pt: ["Quer conhecer a fórmula que ataca a inflamação e a tensão na raiz?", "Pronto para uma solução que previne as dores?", "Interessado em ver como nosso suplemento se compara a outros tratamentos?"], en: ["Want to know the formula that attacks inflammation and tension at the root?", "Ready for a solution that prevents pain?", "Interested in seeing how our supplement compares to other treatments?"] },
-    6: { pt: ["Precisa entender melhor a ciência por trás do nosso suplemento?", "Quer discutir como pequenas mudanças no estilo de vida potencializam o efeito?", "Podemos analisar como este suplemento pode te libertar da dependência de analgésicos?"], en: ["Need to better understand the science behind our supplement?", "Want to discuss how small lifestyle changes enhance the effect?", "Can we analyze how this supplement can free you from painkiller dependency?"] }
-  },
-  fatigue: {
-    1: { pt: ["Sua dieta é combustível ou lixo processado?", "Você dorme o suficiente?", "Quais atividades te deixam esgotado?"], en: ["Is your diet fuel or processed junk?", "Do you sleep enough?", "What activities leave you drained?"] },
-    2: { pt: ["Está ciente que fadiga constante pode ser sinal de anemia ou tireoide?", "Quanto tempo mais vai usar café como muleta?", "Você sabia que a desidratação causa fadiga em 70% dos casos?"], en: ["Are you aware that constant fatigue can signal anemia or thyroid issues?", "How much longer will you use coffee as a crutch?", "Did you know dehydration causes fatigue in 70% of cases?"] },
-    3: { pt: ["Percebe que essa exaustão pode ser inflamação silenciosa?", "Está disposto a investigar a causa?", "Você sabia que a fadiga crônica aumenta o risco de depressão?"], en: ["Do you realize this exhaustion could be silent inflammation?", "Are you willing to investigate the cause?", "Did you know chronic fatigue increases depression risk?"] },
-    4: { pt: ["Interessado em saber quais vitaminas B são essenciais para sua energia?", "Quer conhecer plantas adaptogênicas que combatem o stress?", "Sabia que otimizar suas mitocôndrias pode revolucionar sua disposição?"], en: ["Interested in knowing which B vitamins are essential for your energy?", "Want to know adaptogenic plants that fight stress?", "Did you know optimizing your mitochondria can revolutionize your energy?"] },
-    5: { pt: ["Quer conhecer a fórmula que restaura a energia celular?", "Pronto para uma solução que te dá disposição real?", "Interessado em ver como nosso suplemento melhora o foco?"], en: ["Want to know the formula that restores cellular energy?", "Ready for a solution that gives you real energy?", "Interested in seeing how our supplement improves focus?"] },
-    6: { pt: ["Precisa entender como nosso suplemento otimiza seu metabolismo?", "Quer discutir como combinar o suplemento com hábitos de sono?", "Podemos analisar como recuperar sua energia pode transformar sua vida?"], en: ["Need to understand how our supplement optimizes your metabolism?", "Want to discuss combining the supplement with sleep habits?", "Can we analyze how regaining your energy can transform your life?"] }
-  },
-  back_pain: {
-    1: { pt: ["Você passa o dia sentado?", "Seus sapatos são confortáveis?", "Com que frequência você se alonga?"], en: ["Do you spend the day sitting?", "Are your shoes comfortable?", "How often do you stretch?"] },
-    2: { pt: ["Está ciente que má postura hoje significa dor crônica amanhã?", "Quanto peso extra sua coluna está aguentando?", "Você sabia que músculos abdominais fracos sobrecarregam a lombar?"], en: ["Are you aware that poor posture today means chronic pain tomorrow?", "How much extra weight is your spine enduring?", "Did you know weak abdominal muscles overload the lower back?"] },
-    3: { pt: ["Percebe que essa dor pode evoluir para hérnia de disco?", "Está disposto a fortalecer seu core?", "Você sabia que dor nas costas crônica afeta sua qualidade de vida?"], en: ["Do you realize this pain can evolve into a herniated disc?", "Are you willing to strengthen your core?", "Did you know chronic back pain affects your quality of life?"] },
-    4: { pt: ["Interessado em saber como Glucosamina e Condroitina reparam suas articulações?", "Quer conhecer plantas anti-inflamatórias mais seguras que remédios?", "Sabia que o Colágeno é essencial para a saúde dos seus discos?"], en: ["Interested in knowing how Glucosamine and Chondroitin repair your joints?", "Want to know anti-inflammatory plants safer than medications?", "Did you know Collagen is essential for the health of your discs?"] },
-    5: { pt: ["Quer conhecer a fórmula que fortalece a coluna e alivia a dor?", "Pronto para uma solução que melhora sua mobilidade?", "Interessado em ver como nosso suplemento previne futuras lesões?"], en: ["Want to know the formula that strengthens the spine and relieves pain?", "Ready for a solution that improves your mobility?", "Interested in seeing how our supplement prevents future injuries?"] },
-    6: { pt: ["Precisa entender como nosso suplemento reduz a inflamação articular?", "Quer discutir exercícios simples que potencializam o efeito?", "Podemos analisar como viver sem dor nas costas pode te permitir voltar a fazer o que ama?"], en: ["Need to understand how our supplement reduces joint inflammation?", "Want to discuss simple exercises that enhance the effect?", "Can we analyze how living without back pain can allow you to return to doing what you love?"] }
-  },
-  unknown: {
-    1: { pt: ["Você consegue descrever melhor essa sensação?", "Há quanto tempo você se sente assim?", "Algum outro sintoma específico?"], en: ["Can you better describe this feeling?", "How long have you been feeling this way?", "Any other specific symptoms?"] },
-    2: { pt: ["Está ciente que sintomas vagos podem ser os primeiros sinais de algo sério?", "Quanto tempo vai esperar até que isso se torne um problema real?", "Você sabia que deficiências nutricionais se manifestam de formas variadas?"], en: ["Are you aware that vague symptoms can be the first signs of something serious?", "How long will you wait until this becomes a real problem?", "Did you know nutritional deficiencies manifest in diverse ways?"] },
-    3: { pt: ["Percebe que ignorar seu corpo pode levar a diagnósticos tardios?", "Está disposto a investigar a fundo?", "Você sabia que inflamação crônica silenciosa é a raiz de muitas doenças?"], en: ["Do you realize that ignoring your body can lead to late diagnoses?", "Are you willing to investigate thoroughly?", "Did you know silent chronic inflammation is the root of many diseases?"] },
-    4: { pt: ["Interessado em saber quais vitaminas e minerais são cruciais para o bem-estar?", "Quer conhecer plantas adaptogênicas que ajudam seu corpo?", "Sabia que equilibrar seu microbioma intestinal pode resolver muitos sintomas?"], en: ["Interested in knowing which vitamins and minerals are crucial for well-being?", "Want to know adaptogenic plants that help your body?", "Did you know balancing your gut microbiome can resolve many symptoms?"] },
-    5: { pt: ["Quer conhecer uma fórmula completa que aborda as causas comuns de mal-estar?", "Pronto para uma solução que reequilibra seu sistema?", "Interessado em ver como nosso suplemento melhora energia, sono e humor?"], en: ["Want to know a complete formula that addresses common causes of malaise?", "Ready for a solution that rebalances your system?", "Interested in seeing how our supplement improves energy, sleep, and mood?"] },
-    6: { pt: ["Precisa entender como nosso suplemento combate a inflamação silenciosa?", "Quer discutir como pequenas mudanças na dieta potencializam o efeito?", "Podemos analisar como voltar a se sentir 'normal' pode impactar sua vida?"], en: ["Need to understand how our supplement fights silent inflammation?", "Want to discuss how small dietary changes enhance the effect?", "Can we analyze how feeling 'normal' again can impact your life?"] }
-  }
-};
-
-// Função simplificada para identificar o sintoma principal e o idioma
-function detectSymptomAndLanguage(message) {
-  const lowerMessage = String(message).toLowerCase();
-  let sintomaKey = "unknown";
-  let language = "en"; // Default to English
-
-  // Detectar idioma (simples)
-  if (lowerMessage.includes("dor") || lowerMessage.includes("cabeca") || lowerMessage.includes("estomago") || lowerMessage.includes("costas") || lowerMessage.includes("cansado") || lowerMessage.includes("fadiga")) {
-    language = "pt";
-  }
-
-  // Detectar sintoma (simplificado)
-  if (lowerMessage.includes("stomach") || lowerMessage.includes("digest") || lowerMessage.includes("azia") || lowerMessage.includes("estomago") || lowerMessage.includes("barriga")) {
-    sintomaKey = "stomach_pain";
-  } else if (lowerMessage.includes("head") || lowerMessage.includes("migraine") || lowerMessage.includes("cabeca") || lowerMessage.includes("enxaqueca")) {
-    sintomaKey = "headache";
-  } else if (lowerMessage.includes("tired") || lowerMessage.includes("fatigue") || lowerMessage.includes("cansado") || lowerMessage.includes("fadiga") || lowerMessage.includes("energia")) {
-    sintomaKey = "fatigue";
-  } else if (lowerMessage.includes("back") || lowerMessage.includes("spine") || lowerMessage.includes("costas") || lowerMessage.includes("lombar") || lowerMessage.includes("coluna")) {
-    sintomaKey = "back_pain";
+// ✅ Função para gerar estatísticas personalizadas baseadas nos dados do usuário
+function getPersonalizedStatistic(symptom, age, weight, language) {
+  // Percentagens base
+  const basePercentages = {
+    "stomach_pain": 30,
+    "headache": 35,
+    "fatigue": 40,
+    "back_pain": 45,
+    "unknown": 38
+  };
+  
+  // Ajustar com base na idade e peso
+  let percentage = basePercentages[symptom] || 38;
+  
+  if (age) {
+    if (age > 40) percentage += 10;
+    else if (age > 30) percentage += 5;
   }
   
-  return { sintomaKey, language };
+  if (weight) {
+    if (weight > 90) percentage += 15;
+    else if (weight > 80) percentage += 10;
+    else if (weight > 70) percentage += 5;
+  }
+  
+  // Adicionar aleatoriedade (±5%)
+  percentage += Math.floor(Math.random() * 11) - 5;
+  
+  // Manter entre 25-75%
+  percentage = Math.min(Math.max(percentage, 25), 75);
+  
+  // Frases com estatísticas
+  const statPhrases = {
+    pt: [
+      `${percentage}% das pessoas com seu perfil desenvolvem complicações graves se não tratarem isso adequadamente.`,
+      `Estudos mostram que ${percentage}% dos casos como o seu pioram significativamente em 6 meses sem intervenção.`,
+      `Sabia que ${percentage}% das pessoas com esses sintomas estão ignorando um problema potencialmente sério?`
+    ],
+    en: [
+      `${percentage}% of people with your profile develop serious complications if they don't treat this properly.`,
+      `Studies show that ${percentage}% of cases like yours get significantly worse within 6 months without intervention.`,
+      `Did you know that ${percentage}% of people with these symptoms are ignoring a potentially serious problem?`
+    ]
+  };
+  
+  // Selecionar uma frase aleatória
+  return statPhrases[language][Math.floor(Math.random() * statPhrases[language].length)];
 }
 
-// Função principal exportada - ultra simplificada
-function getSymptomContext(userMessage, userName = "", userAge = "", userWeight = "", funnelPhase = 1, previousSymptom = null, previouslySelectedQuestions = []) {
+// ✅ Introduções sarcásticas para diferentes sintomas
+function getSarcasticIntro(symptom, language, userName) {
+  const intros = {
+    stomach_pain: {
+      pt: [
+        `${userName ? userName + ", " : ""}parece que você acha que dor de estômago é só um 'incômodo passageiro'...`,
+        `Ah, então você ${userName ? ", " + userName : ""} está surpreso que comer como se não houvesse amanhã tenha consequências?`,
+        `${userName ? userName + ", " : ""}vamos encarar a verdade que você tem evitado sobre seu sistema digestivo...`
+      ],
+      en: [
+        `${userName ? userName + ", " : ""}seems like you think stomach pain is just a 'temporary inconvenience'...`,
+        `Oh, so you're ${userName ? ", " + userName : ""} surprised that eating like there's no tomorrow has consequences?`,
+        `${userName ? userName + ", " : ""}let's face the truth you've been avoiding about your digestive system...`
+      ]
+    },
+    headache: {
+      pt: [
+        `${userName ? userName + ", " : ""}outra pessoa que acha que dor de cabeça constante é 'normal'...`,
+        `Fascinante como você ${userName ? ", " + userName : ""} ignora seu cérebro implorando por ajuda...`,
+        `${userName ? userName + ", " : ""}seu cérebro está literalmente gritando por socorro, mas você prefere fingir que está tudo bem?`
+      ],
+      en: [
+        `${userName ? userName + ", " : ""}another person who thinks constant headaches are 'normal'...`,
+        `Fascinating how you ${userName ? ", " + userName : ""} ignore your brain begging for help...`,
+        `${userName ? userName + ", " : ""}your brain is literally screaming for help, but you prefer to pretend everything's fine?`
+      ]
+    },
+    fatigue: {
+      pt: [
+        `${userName ? userName + ", " : ""}então você acha normal precisar de 5 cafés só para funcionar?`,
+        `Ah, ${userName ? userName : "mais um"} que confunde exaustão crônica com 'só um pouco cansado'...`,
+        `${userName ? userName + ", " : ""}seu corpo está em modo de economia de energia e você ainda não percebeu o alerta vermelho?`
+      ],
+      en: [
+        `${userName ? userName + ", " : ""}so you think it's normal to need 5 coffees just to function?`,
+        `Ah, ${userName ? userName : "another one"} who confuses chronic exhaustion with 'just a little tired'...`,
+        `${userName ? userName + ", " : ""}your body is in power-saving mode and you still haven't noticed the red alert?`
+      ]
+    },
+    back_pain: {
+      pt: [
+        `${userName ? userName + ", " : ""}deixe-me adivinhar, você acha que dor nas costas é 'parte normal do envelhecimento'?`,
+        `Interessante como você ${userName ? ", " + userName : ""} prefere viver com dor a fazer algo a respeito...`,
+        `${userName ? userName + ", " : ""}sua coluna está praticamente enviando cartas de despedida para seu cérebro, e você continua ignorando...`
+      ],
+      en: [
+        `${userName ? userName + ", " : ""}let me guess, you think back pain is 'a normal part of aging'?`,
+        `Interesting how you ${userName ? ", " + userName : ""} prefer to live with pain rather than do something about it...`,
+        `${userName ? userName + ", " : ""}your spine is practically sending farewell letters to your brain, and you keep ignoring it...`
+      ]
+    },
+    unknown: {
+      pt: [
+        `${userName ? userName + ", " : ""}mais um caso de 'vou ignorar até virar uma emergência'?`,
+        `Fascinante como você ${userName ? ", " + userName : ""} descreve seus sintomas de forma tão vaga quanto possível...`,
+        `${userName ? userName + ", " : ""}seu corpo está mandando sinais em código morse e você está sem o decodificador?`
+      ],
+      en: [
+        `${userName ? userName + ", " : ""}another case of 'I'll ignore it until it becomes an emergency'?`,
+        `Fascinating how you ${userName ? ", " + userName : ""} describe your symptoms as vaguely as possible...`,
+        `${userName ? userName + ", " : ""}your body is sending signals in morse code and you're without the decoder?`
+      ]
+    }
+  };
+  
+  // Selecionar uma introdução aleatória
+  const symptomIntros = intros[symptom] || intros.unknown;
+  return symptomIntros[language][Math.floor(Math.random() * symptomIntros[language].length)];
+}
+
+// Função principal para consulta ao Notion
+export async function getSymptomContext(userMessage, userName, userAge, userWeight) {
   try {
-    // Garantir que userMessage seja string
-    const messageText = String(userMessage || "");
+    // Detectar idioma da mensagem
+    const language = detectLanguage(userMessage);
     
-    // Detectar sintoma e idioma
-    const { sintomaKey: detectedSymptom, language } = detectSymptomAndLanguage(messageText);
+    // Verificando se o formulário foi preenchido
+    const hasForm = userName && userName.trim() !== ""; // Verifica se o nome foi fornecido
     
-    // Manter o sintoma anterior se o atual for 'unknown' e houver um anterior
-    const sintomaKey = (detectedSymptom === "unknown" && previousSymptom && previousSymptom !== "unknown") ? previousSymptom : detectedSymptom;
+    // Escolher introdução com base no preenchimento do formulário
+    let intro;
+    if (hasForm) {
+      // Detectando o sintoma com base nas palavras-chave
+      let sintomaKey = "unknown";
+      
+      if (userMessage.toLowerCase().includes("stomach") || 
+          userMessage.toLowerCase().includes("estômago") || 
+          userMessage.toLowerCase().includes("estomago") || 
+          userMessage.toLowerCase().includes("barriga")) {
+        sintomaKey = "stomach_pain";
+      } else if (userMessage.toLowerCase().includes("headache") || 
+                userMessage.toLowerCase().includes("dor de cabeça") || 
+                userMessage.toLowerCase().includes("cabeça")) {
+        sintomaKey = "headache";
+      } else if (userMessage.toLowerCase().includes("fatigue") || 
+                userMessage.toLowerCase().includes("cansaço") || 
+                userMessage.toLowerCase().includes("fadiga") || 
+                userMessage.toLowerCase().includes("energia")) {
+        sintomaKey = "fatigue";
+      } else if (userMessage.toLowerCase().includes("back pain") || 
+                userMessage.toLowerCase().includes("dor nas costas") || 
+                userMessage.toLowerCase().includes("lombar")) {
+        sintomaKey = "back_pain";
+      }
+      
+      // Obter introdução sarcástica personalizada
+      intro = getSarcasticIntro(sintomaKey, language, userName);
+    } else {
+      // Escolher uma frase sarcástica aleatória para formulário não preenchido
+      intro = frasesSarcasticas[language][Math.floor(Math.random() * frasesSarcasticas[language].length)];
+    }
+
+    const keywords = extractKeywords(userMessage);
+    console.log("🧠 Palavras-chave extraídas:", keywords);
+
+    if (!keywords.length) {
+      return {
+        sintoma: "unknown",
+        intro: intro,
+        scientificExplanation: getScientificExplanation("unknown", language, userName, userAge, userWeight),
+        followupQuestions: getFollowupQuestions("unknown", language)
+      };
+    }
+
+    const filter = {
+      or: keywords.map(word => ({
+        property: "Palavras-chave", // Nome da propriedade no banco de dados do Notion
+        rich_text: {
+          contains: word // Verificar se cada palavra-chave está no campo "Palavras-chave"
+        }
+      }))
+    };
+
+    console.log("📦 Filtro enviado ao Notion:", JSON.stringify(filter, null, 2));
+
+    const response = await notion.databases.query({
+      database_id: databaseId // ID do banco de dados
+    });
+
+    console.log("📨 Resposta do Notion:", JSON.stringify(response, null, 2));
+
+    // Detectando o sintoma com base nas palavras-chave
+    let sintomaKey = "unknown";
     
-    // Obter introdução sarcástica
-    const introOptions = intros[sintomaKey]?.[language] || intros.unknown[language];
-    const intro = introOptions[0].replace("{userName}", userName || "");
-    
-    // Obter explicação científica simplificada
-    const explanationOptions = explanations[sintomaKey]?.[funnelPhase]?.[language] || explanations.unknown[1][language];
-    const scientificExplanation = explanationOptions[0];
-    
-    // Obter perguntas de follow-up
-    const phaseQuestions = followupQuestions[sintomaKey]?.[funnelPhase]?.[language] || followupQuestions.unknown[1][language];
-    const followupQuestionsList = phaseQuestions.slice(0, 3);
-    
+    if (userMessage.toLowerCase().includes("stomach") || 
+        userMessage.toLowerCase().includes("estômago") || 
+        userMessage.toLowerCase().includes("estomago") || 
+        userMessage.toLowerCase().includes("barriga")) {
+      sintomaKey = "stomach_pain";
+    } else if (userMessage.toLowerCase().includes("headache") || 
+               userMessage.toLowerCase().includes("dor de cabeça") || 
+               userMessage.toLowerCase().includes("cabeça")) {
+      sintomaKey = "headache";
+    } else if (userMessage.toLowerCase().includes("fatigue") || 
+               userMessage.toLowerCase().includes("cansaço") || 
+               userMessage.toLowerCase().includes("fadiga") || 
+               userMessage.toLowerCase().includes("energia")) {
+      sintomaKey = "fatigue";
+    } else if (userMessage.toLowerCase().includes("back pain") || 
+               userMessage.toLowerCase().includes("dor nas costas") || 
+               userMessage.toLowerCase().includes("lombar")) {
+      sintomaKey = "back_pain";
+    }
+
+    // Retornando um objeto estruturado com todas as informações necessárias
     return {
       sintoma: sintomaKey,
-      language: language,
       intro: intro,
-      scientificExplanation: scientificExplanation,
-      followupQuestions: followupQuestionsList
+      scientificExplanation: getScientificExplanation(sintomaKey, language, userName, userAge, userWeight),
+      followupQuestions: getFollowupQuestions(sintomaKey, language)
     };
+
   } catch (error) {
-    // Retornar um contexto de erro padrão
+    console.error("❌ Erro ao consultar o Notion:", error);
+    const language = detectLanguage(userMessage);
     return {
-      sintoma: "error",
-      language: "en",
-      intro: "Oops, something went wrong here.",
-      scientificExplanation: "I couldn't process your request. Please try again with a different question.",
-      followupQuestions: ["Try again with a different question?", "Need help with something else?"]
+      sintoma: "unknown",
+      intro: language === "pt" ? "Desculpe, tive um problema ao processar sua consulta." : "Sorry, I had an issue processing your query.",
+      scientificExplanation: getScientificExplanation("unknown", language, userName, userAge, userWeight),
+      followupQuestions: getFollowupQuestions("unknown", language)
     };
   }
 }
 
-// Exportar a função principal
-export { getSymptomContext };
+// Função para obter explicações científicas com base no sintoma e idioma
+function getScientificExplanation(symptom, language, userName, userAge, userWeight) {
+  // Estatística personalizada baseada nos dados do usuário
+  const personalizedStat = getPersonalizedStatistic(symptom, userAge, userWeight, language);
+  
+  const explanations = {
+    stomach_pain: {
+      pt: `As dores de estômago podem ter diversas causas, desde simples até mais complexas. E não, não é "só uma dorzinha" como você provavelmente está pensando.
+
+A dor abdominal é processada através de nociceptores (receptores de dor) que enviam sinais ao cérebro via nervos aferentes. Estes sinais são interpretados pelo córtex somatossensorial, resultando na sensação de dor que você experimenta.
+
+${personalizedStat}
+
+Causas comuns que você provavelmente está ignorando:
+
+1. **Gastrite ou Inflamação Gástrica**: Ocorre quando o revestimento do estômago se inflama, geralmente devido à infecção por H. pylori ou uso prolongado de anti-inflamatórios. A inflamação ativa os nociceptores da mucosa gástrica. E sim, aquela "pequena" dose diária de anti-inflamatório que você toma pode estar destruindo seu estômago.
+
+2. **Refluxo Gastroesofágico**: Acontece quando o ácido estomacal retorna ao esôfago, irritando seu revestimento. O esfíncter esofágico inferior (EEI) normalmente impede esse refluxo, mas pode enfraquecer devido a diversos fatores. Aquela pizza às 23h? Está literalmente queimando seu esôfago enquanto você dorme.
+
+3. **Síndrome do Intestino Irritável**: Condição funcional que afeta o movimento intestinal e a sensibilidade visceral. Estudos mostram uma desregulação do eixo cérebro-intestino, com hipersensibilidade dos nervos entéricos. Seu intestino está literalmente em guerra, e você está ignorando os sinais de fumaça.
+
+4. **Estresse e Ansiedade**: O eixo hipotálamo-pituitária-adrenal (HPA) ativa-se durante o estresse, liberando cortisol e adrenalina, que podem alterar a motilidade gastrointestinal e aumentar a sensibilidade à dor. Seu estilo de vida caótico está transformando seu estômago em uma zona de guerra bioquímica.`,
+      
+      en: `Stomach pain can have various causes, ranging from simple to more complex. And no, it's not "just a little pain" as you're probably thinking.
+
+Abdominal pain is processed through nociceptors (pain receptors) that send signals to the brain via afferent nerves. These signals are interpreted by the somatosensory cortex, resulting in the pain sensation you experience.
+
+${personalizedStat}
+
+Common causes you're probably ignoring:
+
+1. **Gastritis or Gastric Inflammation**: Occurs when the stomach lining becomes inflamed, usually due to H. pylori infection or prolonged use of anti-inflammatory drugs. The inflammation activates nociceptors in the gastric mucosa. And yes, that "small" daily dose of anti-inflammatory you take might be destroying your stomach.
+
+2. **Gastroesophageal Reflux**: Happens when stomach acid flows back into the esophagus, irritating its lining. The lower esophageal sphincter (LES) normally prevents this reflux but can weaken due to various factors. That pizza at 11 PM? It's literally burning your esophagus while you sleep.
+
+3. **Irritable Bowel Syndrome**: A functional condition affecting intestinal movement and visceral sensitivity. Studies show a dysregulation of the brain-gut axis, with hypersensitivity of enteric nerves. Your intestine is literally at war, and you're ignoring the smoke signals.
+
+4. **Stress and Anxiety**: The hypothalamic-pituitary-adrenal (HPA) axis activates during stress, releasing cortisol and adrenaline, which can alter gastrointestinal motility and increase pain sensitivity. Your chaotic lifestyle is turning your stomach into a biochemical war zone.`
+    },
+    
+    headache: {
+      pt: `As dores de cabeça são uma das queixas mais comuns e podem ter diversas origens neurológicas e vasculares. E não, não é "normal" ter dor de cabeça regularmente, por mais que você tente se convencer disso.
+
+A dor de cabeça ocorre quando receptores de dor nas estruturas sensíveis da cabeça são ativados. Estes incluem vasos sanguíneos, músculos, nervos e tecidos que envolvem o cérebro. Curiosamente, o próprio tecido cerebral não possui receptores de dor.
+
+${personalizedStat}
+
+Tipos comuns que você está provavelmente subestimando:
+
+1. **Enxaqueca**: Caracterizada por dor pulsátil, geralmente unilateral, e frequentemente acompanhada de náusea e sensibilidade à luz. Estudos neurofisiológicos mostram que a enxaqueca envolve a ativação do sistema trigeminovascular, com liberação de neuropeptídeos inflamatórios como o peptídeo relacionado ao gene da calcitonina (CGRP). Não é "só uma dor de cabeça" - é seu cérebro literalmente em pânico.
+
+2. **Cefaleia Tensional**: A mais comum, caracterizada por dor em pressão bilateral. Está associada à contração prolongada dos músculos pericranianos e cervicais, com sensibilização dos nociceptores periféricos e centrais. Seu estilo de vida estressante está transformando seus músculos em cordas de violão desafinadas.
+
+3. **Cefaleia em Salvas**: Extremamente dolorosa, ocorre em períodos ou "salvas". Envolve ativação do nervo trigêmeo e do hipotálamo, com dilatação dos vasos sanguíneos da região orbital. Pessoas descrevem como "um ferro quente sendo inserido no olho". Ainda acha que sua dor é "só um incômodo"?
+
+4. **Cefaleia por Uso Excessivo de Medicamentos**: Paradoxalmente, o uso frequente de analgésicos pode levar a dores de cabeça crônicas, através de mecanismos de sensibilização central e alterações nos receptores de dor. Sim, aquele remédio que você toma como se fosse água está potencialmente piorando seu problema.`,
+      
+      en: `Headaches are one of the most common complaints and can have various neurological and vascular origins. And no, it's not "normal" to have headaches regularly, no matter how much you try to convince yourself.
+
+Headache occurs when pain receptors in the head's sensitive structures are activated. These include blood vessels, muscles, nerves, and tissues surrounding the brain. Interestingly, brain tissue itself doesn't have pain receptors.
+
+${personalizedStat}
+
+Common types you're probably underestimating:
+
+1. **Migraine**: Characterized by pulsating pain, usually unilateral, and often accompanied by nausea and light sensitivity. Neurophysiological studies show that migraine involves activation of the trigeminovascular system, with the release of inflammatory neuropeptides such as calcitonin gene-related peptide (CGRP). It's not "just a headache" - it's your brain literally in panic mode.
+
+2. **Tension Headache**: The most common type, characterized by bilateral pressure pain. It's associated with prolonged contraction of pericranial and cervical muscles, with sensitization of peripheral and central nociceptors. Your stressful lifestyle is turning your muscles into out-of-tune violin strings.
+
+3. **Cluster Headache**: Extremely painful, occurring in periods or "clusters." It involves activation of the trigeminal nerve and hypothalamus, with dilation of blood vessels in the orbital region. People describe it as "a hot poker being inserted into the eye." Still think your pain is "just a nuisance"?
+
+4. **Medication Overuse Headache**: Paradoxically, frequent use of painkillers can lead to chronic headaches, through mechanisms of central sensitization and changes in pain receptors. Yes, that medicine you take like water is potentially making your problem worse.`
+    },
+    
+    fatigue: {
+      pt: `A fadiga é uma sensação complexa de cansaço que vai além do simples desgaste físico. E não, não é "normal" precisar de 5 cafés para funcionar ou dormir 8 horas e acordar cansado.
+
+A fadiga envolve múltiplos sistemas fisiológicos e é regulada por uma interação complexa entre o sistema nervoso central, o sistema endócrino e o sistema imunológico.
+
+${personalizedStat}
+
+Causas biológicas que você está ignorando:
+
+1. **Depleção Energética Celular**: A fadiga frequentemente resulta de alterações no metabolismo energético celular. As mitocôndrias, "usinas de energia" das células, podem ter sua função comprometida por diversos fatores, reduzindo a produção de ATP (adenosina trifosfato), a principal molécula energética do corpo. Suas células estão literalmente sem combustível, e você acha que mais um café vai resolver?
+
+2. **Desregulação do Eixo HPA**: O eixo hipotálamo-pituitária-adrenal regula nossa resposta ao estresse e os níveis de cortisol. O estresse crônico pode levar à desregulação deste eixo, resultando em fadiga persistente e alterações no ciclo sono-vigília. Seu corpo está em modo de emergência permanente, e você ainda se pergunta por que está cansado?
+
+3. **Inflamação Sistêmica**: Citocinas pró-inflamatórias como IL-6, TNF-alfa e IL-1beta podem induzir comportamento de doença, que inclui fadiga como sintoma protetor. Este mecanismo evolutivo conserva energia durante infecções ou lesões. Seu corpo está literalmente em guerra interna, e você está ignorando as sirenes de alerta.
+
+4. **Desequilíbrios Hormonais**: Alterações nos níveis de hormônios como tireoidianos, cortisol, melatonina e hormônios sexuais podem afetar significativamente os níveis de energia. Por exemplo, o hipotireoidismo reduz o metabolismo basal, resultando em fadiga. Sua orquestra hormonal está desafinada, e você acha que é só "falta de motivação"?`,
+      
+      en: `Fatigue is a complex sensation of tiredness that goes beyond simple physical wear. And no, it's not "normal" to need 5 coffees to function or to sleep 8 hours and wake up tired.
+
+Fatigue involves multiple physiological systems and is regulated by a complex interaction between the central nervous system, the endocrine system, and the immune system.
+
+${personalizedStat}
+
+Biological causes you're ignoring:
+
+1. **Cellular Energy Depletion**: Fatigue often results from alterations in cellular energy metabolism. Mitochondria, the cell's "power plants," can have their function compromised by various factors, reducing the production of ATP (adenosine triphosphate), the body's main energy molecule. Your cells are literally out of fuel, and you think another coffee will solve it?
+
+2. **HPA Axis Dysregulation**: The hypothalamic-pituitary-adrenal axis regulates our stress response and cortisol levels. Chronic stress can lead to dysregulation of this axis, resulting in persistent fatigue and alterations in the sleep-wake cycle. Your body is in permanent emergency mode, and you still wonder why you're tired?
+
+3. **Systemic Inflammation**: Pro-inflammatory cytokines such as IL-6, TNF-alpha, and IL-1beta can induce sickness behavior, which includes fatigue as a protective symptom. This evolutionary mechanism conserves energy during infections or injuries. Your body is literally in internal warfare, and you're ignoring the alert sirens.
+
+4. **Hormonal Imbalances**: Changes in hormone levels such as thyroid hormones, cortisol, melatonin, and sex hormones can significantly affect energy levels. For example, hypothyroidism reduces basal metabolism, resulting in fatigue. Your hormonal orchestra is out of tune, and you think it's just "lack of motivation"?`
+    },
+    
+    back_pain: {
+      pt: `A dor nas costas, especialmente na região lombar, é uma das queixas mais comuns e pode ter origens complexas. E não, não é "normal" sentir dor nas costas regularmente, por mais que você tente normalizar isso.
+
+A dor lombar envolve uma interação entre estruturas anatômicas, processos inflamatórios e mecanismos neurais de processamento da dor.
+
+${personalizedStat}
+
+Causas que você está provavelmente subestimando:
+
+1. **Disfunção Musculoesquelética**: A coluna vertebral é sustentada por músculos, ligamentos e tendões. Desequilíbrios na força muscular, especialmente no core (músculos abdominais e paravertebrais), podem levar a sobrecarga e microlesões nas estruturas de suporte, ativando nociceptores locais. Seu estilo de vida sedentário está transformando sua coluna em uma torre instável prestes a desabar.
+
+2. **Alterações Discais**: Os discos intervertebrais funcionam como amortecedores entre as vértebras. Com o tempo ou devido a traumas, podem ocorrer protrusões ou hérnias discais, onde o núcleo pulposo pressiona raízes nervosas, causando dor radicular (ciática). Seus discos estão literalmente sendo esmagados enquanto você ignora os sinais.
+
+3. **Sensibilização Central**: Em casos crônicos, ocorre um fenômeno chamado sensibilização central, onde o sistema nervoso se torna hipersensível, amplificando sinais de dor mesmo após a resolução da lesão inicial. Neurotransmissores como substância P e glutamato estão envolvidos neste processo. Seu sistema nervoso está em modo de alarme constante, e você acha que é "só uma dorzinha"?
+
+4. **Componente Psicossocial**: Estudos mostram que fatores como estresse, ansiedade e depressão podem amplificar a percepção da dor lombar através da modulação descendente da dor, envolvendo áreas cerebrais como a substância cinzenta periaquedutal e o locus coeruleus. Sua mente está literalmente amplificando sua dor, e você continua ignorando a conexão mente-corpo.`,
+      
+      en: `Back pain, especially in the lumbar region, is one of the most common complaints and can have complex origins. And no, it's not "normal" to regularly feel back pain, no matter how much you try to normalize it.
+
+Lumbar pain involves an interaction between anatomical structures, inflammatory processes, and neural mechanisms of pain processing.
+
+${personalizedStat}
+
+Causes you're probably underestimating:
+
+1. **Musculoskeletal Dysfunction**: The spine is supported by muscles, ligaments, and tendons. Imbalances in muscle strength, especially in the core (abdominal and paravertebral muscles), can lead to overload and microinjuries in supporting structures, activating local nociceptors. Your sedentary lifestyle is turning your spine into an unstable tower about to collapse.
+
+2. **Disc Changes**: Intervertebral discs function as cushions between vertebrae. Over time or due to trauma, disc protrusions or herniations can occur, where the nucleus pulposus presses on nerve roots, causing radicular pain (sciatica). Your discs are literally being crushed while you ignore the signs.
+
+3. **Central Sensitization**: In chronic cases, a phenomenon called central sensitization occurs, where the nervous system becomes hypersensitive, amplifying pain signals even after resolution of the initial injury. Neurotransmitters such as substance P and glutamate are involved in this process. Your nervous system is in constant alarm mode, and you think it's "just a little pain"?
+
+4. **Psychosocial Component**: Studies show that factors such as stress, anxiety, and depression can amplify the perception of back pain through descending pain modulation, involving brain areas such as the periaqueductal gray matter and locus coeruleus. Your mind is literally amplifying your pain, and you continue to ignore the mind-body connection.`
+    },
+    
+    unknown: {
+      pt: `Quando os sintomas não são específicos, é importante considerar uma abordagem científica abrangente. E não, sintomas persistentes não são "só coisa da sua cabeça" como você provavelmente está tentando se convencer.
+
+Os sintomas são sinais de que algo pode estar fora do equilíbrio no organismo. Do ponto de vista científico, eles representam:
+
+${personalizedStat}
+
+Mecanismos que você está ignorando:
+
+1. **Mecanismos de Alerta**: O corpo possui sistemas sofisticados de detecção de alterações internas e externas. Receptores especializados (nociceptores, mecanorreceptores, quimiorreceptores) captam estímulos potencialmente prejudiciais e os transformam em sinais elétricos. Seu corpo está literalmente gritando por atenção, e você está com os fones de ouvido no máximo.
+
+2. **Integração Neural**: Estes sinais são processados pelo sistema nervoso central, especialmente pelo tálamo e córtex somatossensorial, que interpretam a natureza, localização e intensidade do estímulo. Seu cérebro está tentando decifrar um código de emergência, e você está ignorando a mensagem.
+
+3. **Resposta Inflamatória**: Muitos sintomas estão associados à inflamação, um mecanismo protetor que envolve a liberação de mediadores como histamina, prostaglandinas e citocinas. Estes mediadores podem ativar receptores de dor e causar outros sintomas como inchaço e calor local. Seu corpo está literalmente em chamas por dentro, e você está tratando como uma fogueira controlada.
+
+4. **Eixo Psiconeuroendocrinoimunológico**: Existe uma comunicação bidirecional entre o sistema nervoso, endócrino e imunológico. Fatores psicológicos como estresse e ansiedade podem influenciar processos fisiológicos através deste eixo, alterando a percepção e manifestação de sintomas. Sua mente e corpo estão em uma guerra civil, e você está fingindo que é apenas um pequeno desentendimento.`,
+      
+      en: `When symptoms are not specific, it's important to consider a comprehensive scientific approach. And no, persistent symptoms are not "just in your head" as you're probably trying to convince yourself.
+
+Symptoms are signs that something may be out of balance in the organism. From a scientific perspective, they represent:
+
+${personalizedStat}
+
+Mechanisms you're ignoring:
+
+1. **Alert Mechanisms**: The body has sophisticated systems for detecting internal and external changes. Specialized receptors (nociceptors, mechanoreceptors, chemoreceptors) capture potentially harmful stimuli and transform them into electrical signals. Your body is literally screaming for attention, and you have your headphones on max volume.
+
+2. **Neural Integration**: These signals are processed by the central nervous system, especially by the thalamus and somatosensory cortex, which interpret the nature, location, and intensity of the stimulus. Your brain is trying to decipher an emergency code, and you're ignoring the message.
+
+3. **Inflammatory Response**: Many symptoms are associated with inflammation, a protective mechanism involving the release of mediators such as histamine, prostaglandins, and cytokines. These mediators can activate pain receptors and cause other symptoms such as swelling and local heat. Your body is literally on fire inside, and you're treating it like a controlled bonfire.
+
+4. **Psychoneuroendocrinoimmunological Axis**: There is bidirectional communication between the nervous, endocrine, and immune systems. Psychological factors such as stress and anxiety can influence physiological processes through this axis, altering the perception and manifestation of symptoms. Your mind and body are in a civil war, and you're pretending it's just a small disagreement.`
+    }
+  };
+  
+  return explanations[symptom][language] || explanations.unknown[language];
+}
+
+// Função para obter perguntas de follow-up com base no sintoma e idioma
+function getFollowupQuestions(symptom, language) {
+  // Fase 1: Diagnóstico provocador
+  const phase1Questions = {
+    stomach_pain: {
+      pt: [
+        "Você tem comido como se seu estômago fosse indestrutível? Vamos falar sobre seus hábitos alimentares.",
+        "Quanto tempo você vai continuar ignorando que seu estômago está em guerra? Vamos avaliar a gravidade.",
+        "Você já tentou alguma solução ou prefere continuar sofrendo? Conte-me suas tentativas."
+      ],
+      en: [
+        "Have you been eating like your stomach is indestructible? Let's talk about your eating habits.",
+        "How long will you continue ignoring that your stomach is at war? Let's assess the severity.",
+        "Have you tried any solutions or do you prefer to keep suffering? Tell me about your attempts."
+      ]
+    },
+    headache: {
+      pt: [
+        "Quanto tempo você vai fingir que essa dor de cabeça é 'normal'? Vamos avaliar a frequência e intensidade.",
+        "Você já identificou os gatilhos ou prefere continuar sendo pego de surpresa? Vamos analisar padrões.",
+        "Quais 'soluções milagrosas' você já tentou que obviamente não funcionaram? Conte-me suas tentativas."
+      ],
+      en: [
+        "How long will you pretend this headache is 'normal'? Let's assess frequency and intensity.",
+        "Have you identified triggers or do you prefer to keep being caught by surprise? Let's analyze patterns.",
+        "What 'miracle solutions' have you already tried that obviously didn't work? Tell me about your attempts."
+      ]
+    },
+    fatigue: {
+      pt: [
+        "Quantos cafés você precisa para funcionar? Vamos falar sobre seus níveis reais de energia.",
+        "Você acha normal acordar cansado depois de dormir? Vamos avaliar a qualidade do seu sono.",
+        "Quanto tempo você vai ignorar que seu corpo está implorando por ajuda? Vamos analisar seus sintomas."
+      ],
+      en: [
+        "How many coffees do you need to function? Let's talk about your real energy levels.",
+        "Do you think it's normal to wake up tired after sleeping? Let's assess your sleep quality.",
+        "How long will you ignore that your body is begging for help? Let's analyze your symptoms."
+      ]
+    },
+    back_pain: {
+      pt: [
+        "Quanto tempo você passa sentado destruindo sua coluna diariamente? Vamos falar sobre sua postura.",
+        "Você já fez algum exercício para fortalecer o core ou prefere que sua coluna continue sofrendo? Vamos avaliar.",
+        "A dor irradia para outras partes do corpo ou você só está esperando isso acontecer? Vamos analisar os sintomas."
+      ],
+      en: [
+        "How much time do you spend sitting destroying your spine daily? Let's talk about your posture.",
+        "Have you done any exercises to strengthen your core or do you prefer your spine to keep suffering? Let's assess.",
+        "Does the pain radiate to other parts of your body or are you just waiting for that to happen? Let's analyze the symptoms."
+      ]
+    },
+    unknown: {
+      pt: [
+        "Você poderia descrever seus sintomas de forma mais clara ou prefere que eu adivinhe? Vamos ser específicos.",
+        "Há quanto tempo você vem ignorando esses sinais do seu corpo? Vamos avaliar a duração.",
+        "Você notou algum padrão ou está esperando que o problema se resolva sozinho? Vamos analisar."
+      ],
+      en: [
+        "Could you describe your symptoms more clearly or do you prefer I guess? Let's be specific.",
+        "How long have you been ignoring these signals from your body? Let's assess the duration.",
+        "Have you noticed any pattern or are you waiting for the problem to resolve itself? Let's analyze."
+      ]
+    }
+  };
+  
+  // Fase 2: Agravamento (consequências de não agir)
+  const phase2Questions = {
+    stomach_pain: {
+      pt: [
+        "Você sabia que 67% dos problemas digestivos ignorados evoluem para condições crônicas? Vamos falar sobre riscos.",
+        "Está ciente que problemas estomacais persistentes podem indicar úlceras ou até câncer? Vamos avaliar sua situação.",
+        "Quanto tempo mais você pretende ignorar esses sintomas antes de agir? Vamos discutir consequências."
+      ],
+      en: [
+        "Did you know that 67% of ignored digestive problems evolve into chronic conditions? Let's talk about risks.",
+        "Are you aware that persistent stomach problems can indicate ulcers or even cancer? Let's assess your situation.",
+        "How much longer do you intend to ignore these symptoms before acting? Let's discuss consequences."
+      ]
+    },
+    headache: {
+      pt: [
+        "Sabia que dores de cabeça recorrentes podem ser sinais precoces de problemas neurológicos graves? Vamos avaliar riscos.",
+        "Está ciente que 58% das enxaquecas não tratadas pioram com o tempo? Vamos falar sobre progressão.",
+        "Quanto tempo mais você vai automedicar em vez de tratar a causa real? Vamos discutir abordagens eficazes."
+      ],
+      en: [
+        "Did you know that recurrent headaches can be early signs of serious neurological problems? Let's assess risks.",
+        "Are you aware that 58% of untreated migraines get worse over time? Let's talk about progression.",
+        "How much longer will you self-medicate instead of treating the real cause? Let's discuss effective approaches."
+      ]
+    },
+    fatigue: {
+      pt: [
+        "Você sabia que fadiga crônica não tratada está associada a um risco 70% maior de doenças cardíacas? Vamos avaliar riscos.",
+        "Está ciente que seu baixo nível de energia pode ser sintoma de deficiências nutricionais graves? Vamos analisar causas.",
+        "Quanto tempo mais você vai normalizar esse cansaço antes de agir? Vamos discutir consequências reais."
+      ],
+      en: [
+        "Did you know that untreated chronic fatigue is associated with a 70% higher risk of heart disease? Let's assess risks.",
+        "Are you aware that your low energy level may be a symptom of serious nutritional deficiencies? Let's analyze causes.",
+        "How much longer will you normalize this tiredness before acting? Let's discuss real consequences."
+      ]
+    },
+    back_pain: {
+      pt: [
+        "Sabia que 62% das dores nas costas não tratadas levam a danos permanentes na coluna? Vamos avaliar seus riscos.",
+        "Está ciente que problemas na coluna podem causar disfunções em órgãos internos? Vamos analisar possíveis complicações.",
+        "Quanto tempo mais você vai ignorar sua coluna antes que seja tarde demais? Vamos discutir intervenções necessárias."
+      ],
+      en: [
+        "Did you know that 62% of untreated back pain leads to permanent spine damage? Let's assess your risks.",
+        "Are you aware that spine problems can cause dysfunction in internal organs? Let's analyze possible complications.",
+        "How much longer will you ignore your spine before it's too late? Let's discuss necessary interventions."
+      ]
+    },
+    unknown: {
+      pt: [
+        "Você sabia que sintomas persistentes ignorados são a principal causa de diagnósticos tardios? Vamos avaliar riscos.",
+        "Está ciente que 73% dos problemas de saúde pioram significativamente quando ignorados? Vamos analisar sua situação.",
+        "Quanto tempo mais você vai esperar antes de levar sua saúde a sério? Vamos discutir próximos passos."
+      ],
+      en: [
+        "Did you know that ignored persistent symptoms are the main cause of late diagnoses? Let's assess risks.",
+        "Are you aware that 73% of health problems worsen significantly when ignored? Let's analyze your situation.",
+        "How much longer will you wait before taking your health seriously? Let's discuss next steps."
+      ]
+    }
+  };
+  
+  // Fase 3: Solução natural (plantas e nutrientes)
+  const phase3Questions = {
+    stomach_pain: {
+      pt: [
+        "Você sabia que certos extratos de plantas podem reduzir inflamação gástrica em até 65%? Vamos falar sobre soluções naturais.",
+        "Já considerou que sua alimentação pode estar faltando nutrientes essenciais para a saúde digestiva? Vamos analisar.",
+        "Gostaria de conhecer um suplemento natural que combate problemas digestivos na raiz? Vamos discutir opções."
+      ],
+      en: [
+        "Did you know that certain plant extracts can reduce gastric inflammation by up to 65%? Let's talk about natural solutions.",
+        "Have you considered that your diet may be lacking essential nutrients for digestive health? Let's analyze.",
+        "Would you like to know about a natural supplement that fights digestive problems at the root? Let's discuss options."
+      ]
+    },
+    headache: {
+      pt: [
+        "Sabia que extratos específicos de plantas podem reduzir a frequência de enxaquecas em até 71%? Vamos falar sobre soluções naturais.",
+        "Já considerou que deficiências de magnésio e outros minerais podem ser a causa das suas dores? Vamos analisar nutrientes.",
+        "Gostaria de conhecer um suplemento que combina plantas medicinais para saúde neurológica? Vamos discutir opções."
+      ],
+      en: [
+        "Did you know that specific plant extracts can reduce migraine frequency by up to 71%? Let's talk about natural solutions.",
+        "Have you considered that magnesium and other mineral deficiencies may be causing your pain? Let's analyze nutrients.",
+        "Would you like to know about a supplement that combines medicinal plants for neurological health? Let's discuss options."
+      ]
+    },
+    fatigue: {
+      pt: [
+        "Você sabia que adaptógenos naturais podem aumentar seus níveis de energia em até 80%? Vamos falar sobre plantas energéticas.",
+        "Já considerou que sua fadiga pode ser resultado de deficiências nutricionais específicas? Vamos analisar sua situação.",
+        "Gostaria de conhecer um suplemento que combina plantas adaptógenas para combater a fadiga? Vamos discutir opções."
+      ],
+      en: [
+        "Did you know that natural adaptogens can increase your energy levels by up to 80%? Let's talk about energetic plants.",
+        "Have you considered that your fatigue may be the result of specific nutritional deficiencies? Let's analyze your situation.",
+        "Would you like to know about a supplement that combines adaptogenic plants to combat fatigue? Let's discuss options."
+      ]
+    },
+    back_pain: {
+      pt: [
+        "Sabia que certos extratos naturais têm potente ação anti-inflamatória para dores musculoesqueléticas? Vamos falar sobre soluções.",
+        "Já considerou que deficiências de cálcio, magnésio e vitamina D podem estar afetando sua coluna? Vamos analisar nutrientes.",
+        "Gostaria de conhecer um suplemento que combina plantas medicinais para saúde musculoesquelética? Vamos discutir opções."
+      ],
+      en: [
+        "Did you know that certain natural extracts have potent anti-inflammatory action for musculoskeletal pain? Let's talk about solutions.",
+        "Have you considered that calcium, magnesium, and vitamin D deficiencies may be affecting your spine? Let's analyze nutrients.",
+        "Would you like to know about a supplement that combines medicinal plants for musculoskeletal health? Let's discuss options."
+      ]
+    },
+    unknown: {
+      pt: [
+        "Você sabia que plantas medicinais específicas podem ajudar a restaurar o equilíbrio do seu corpo? Vamos falar sobre fitoterapia.",
+        "Já considerou que seus sintomas podem estar relacionados a deficiências nutricionais modernas? Vamos analisar possibilidades.",
+        "Gostaria de conhecer um suplemento natural que pode ajudar a resolver a causa raiz dos seus sintomas? Vamos discutir opções."
+      ],
+      en: [
+        "Did you know that specific medicinal plants can help restore your body's balance? Let's talk about phytotherapy.",
+        "Have you considered that your symptoms may be related to modern nutritional deficiencies? Let's analyze possibilities.",
+        "Would you like to know about a natural supplement that can help solve the root cause of your symptoms? Let's discuss options."
+      ]
+    }
+  };
+  
+  // Escolher aleatoriamente uma fase do funil para as perguntas
+  const phases = [phase1Questions, phase2Questions, phase3Questions];
+  const selectedPhase = phases[Math.floor(Math.random() * phases.length)];
+  
+  return selectedPhase[symptom][language] || selectedPhase.unknown[language];
+}
+
+// Testando a função
+// const userMessage = "I have stomach pain"; // Altere conforme necessário
+// const userName = "João";  // Substitua pelo nome do usuário real
+// const userAge = 35;
+// const userWeight = 80;
+
+// getSymptomContext(userMessage, userName, userAge, userWeight).then(response => {
+//   console.log("🔎 Resultado final:", response);
+//   if (!response) {
+//     console.log("⚠️ Nenhum resultado encontrado.");
+//   } else {
+//     console.log("✅ Resultado encontrado!");
+//   }
+// });
