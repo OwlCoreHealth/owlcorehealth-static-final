@@ -72,8 +72,12 @@ document.addEventListener("DOMContentLoaded", function () {
     message.style.backgroundColor = role === 'bot' ? "#f3f4f6" : "#dbeafe";
     message.style.maxWidth = "95%";
 
-    const emoji = role === 'bot' ? "🦉" : getEmojiFromName(userName);
-    message.textContent = emoji + " " + text;
+const emoji = role === 'bot' ? "🦉" : getEmojiFromName(userName);
+if (role === 'bot') {
+  message.innerHTML = emoji + " " + text; // Usar innerHTML para mensagens do bot
+} else {
+  message.textContent = emoji + " " + text; // Manter textContent para mensagens do usuário
+}
     chatBox.appendChild(message);
 
     if (role === 'bot') {
