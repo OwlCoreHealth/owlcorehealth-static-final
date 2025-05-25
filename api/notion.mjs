@@ -127,7 +127,10 @@ export async function getSymptomContext(userMessage, userName) {
 
     // Adicionando explicação científica para "dores de estômago"
     if (sintomaKey === "stomach_pain") {
-      corpo += `### Scientific Insight:\nDores de estômago podem ser causadas por uma variedade de fatores, desde algo tão simples quanto comer demais até condições mais sérias como gastrite, úlceras ou intolerâncias alimentares. Aqui estão algumas sugestões iniciais para lidar com isso:\n\n`;
+      corpo += `### Scientific Insight:\nDores de estômago são uma chatice, não é mesmo? Vamos tentar entender o que pode estar acontecendo com você. Aqui estão algumas possibilidades comuns:\n\n`;
+      corpo += "1. **Indigestão ou Excesso de Gases**: Se você comeu como se não houvesse amanhã ou se sua refeição foi uma verdadeira feira de alimentos gordurosos, seu estômago pode estar reclamando...\n";
+      corpo += "2. **Intolerâncias Alimentares**: Lactose, glúten ou outros ingredientes podem ser os vilões. Se você notar um padrão em relação a certos alimentos, pode ser bom investigá-los mais a fundo...\n";
+      corpo += "3. **Estresse ou Ansiedade**: A mente e o estômago estão mais conectados do que você imagina. Se sua vida está mais tumultuada que novela mexicana, talvez o estresse seja o culpado...\n";
     }
 
     corpo += `### Let’s Explore 3 Ideas:\n`;
