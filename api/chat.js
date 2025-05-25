@@ -1,4 +1,4 @@
-import { getSymptomContext } from './notion.mjs';
+const { getSymptomContext } = require('./notion.mjs');
 
 // Memória de sessão para manter contexto entre interações
 let sessionMemory = {
@@ -172,7 +172,7 @@ ${formattedQuestions}`;
 }
 
 // Função principal para processar mensagens
-export async function processMessage(message, name, age, sex, weight) {
+async function processMessage(message, name, age, sex, weight) {
   try {
     // Atualizar informações do usuário se fornecidas
     if (name && name.trim() !== "") {
@@ -248,3 +248,8 @@ export async function processMessage(message, name, age, sex, weight) {
     };
   }
 }
+
+// Exportar usando CommonJS para compatibilidade
+module.exports = {
+  processMessage
+};
