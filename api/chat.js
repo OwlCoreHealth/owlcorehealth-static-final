@@ -224,5 +224,5 @@ async function processMessage(userMessage, sessionMemory = {}) {
   }
 }
 
-// Exportar usando ES Modules
-export { processMessage };
+// Exportar usando default export (função principal)
+export default processMessage;
