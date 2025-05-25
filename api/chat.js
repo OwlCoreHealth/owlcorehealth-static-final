@@ -11,9 +11,10 @@ let sessionMemory = {
   nome: "",
   idioma: "pt",
   sintomaAtual: null,
-  funnelPhase: 1,
+  categoriaAtual: null,
   contadorPerguntas: {},
   ultimasPerguntas: [],
+  funnelPhase: 1,
   usedQuestions: [] // Rastreia todas as perguntas já usadas para evitar repetição
 };
 
@@ -37,19 +38,18 @@ async function callGPT4oMini(prompt, context, userMessage) {
         messages: [
           {
             role: "system",
-            content: `Você é Owl Savage, um assistente de saúde com personalidade única: sarcástico, direto, provocador e motivador.
+            content: `Você é Owl Savage, um assistente de saúde com personalidade sarcástica, direta e provocadora.
             Você fornece explicações científicas em linguagem acessível e guia os usuários através de um funil de conversão.
             
             Fase atual do funil: ${context.funnelPhase}
             Sintoma relatado: ${context.symptom}
             Idioma: ${context.language}
             Nome do usuário: ${context.userName || 'não fornecido'}
-            Mensagem do usuário: "${userMessage}"
             
             Regras importantes:
-            1. NUNCA use símbolos # ou markdown em suas respostas
-            2. Mantenha o tom sarcástico, provocador mas informativo
-            3. SEMPRE personalize a resposta usando o nome do usuário quando disponível, ou referindo-se à mensagem do usuário
+            1. Mantenha o tom sarcástico e provocador
+            2. SEMPRE personalize a resposta usando o nome do usuário quando disponível
+            3. Mantenha a resposta no idioma ${context.language === 'pt' ? 'português' : 'inglês'}
             4. Siga a estrutura do funil para a fase ${context.funnelPhase}:
                - Fase 1: Explicação científica simples + soluções rápidas
                - Fase 2: Consequências se não tomar cuidados
@@ -57,8 +57,7 @@ async function callGPT4oMini(prompt, context, userMessage) {
                - Fase 4: Nutrientes e plantas naturais
                - Fase 5: Suplemento como solução completa
                - Fase 6: Plano B (abordagem alternativa)
-            5. Não repita perguntas já feitas anteriormente
-            6. Mantenha a resposta no idioma ${context.language === 'pt' ? 'português' : 'inglês'}`
+            5. NUNCA use símbolos # ou markdown em suas respostas`
           },
           {
             role: "user",
@@ -90,82 +89,44 @@ async function callGPT4oMini(prompt, context, userMessage) {
 
 export default async function handler(req, res) {
   try {
-    console.log("✅ Recebendo requisição:", JSON.stringify(req.body).substring(0, 200));
-    
     if (req.method !== "POST") {
       return res.status(405).json({ error: "Method not allowed. Use POST." });
     }
 
-    // Validação robusta de entrada - aceita múltiplos formatos
-    let userInput, userName, userAge, userSex, userWeight;
-    
-    // Extrair dados da requisição com validação robusta
-    const body = req.body;
-    
-    // Extrair mensagem do usuário (aceita múltiplos formatos)
-    userInput = body.selectedQuestion || body.message || body.userInput || body.text || body.input || body.query;
-    
-    // Se não houver mensagem em nenhum formato conhecido, verificar se o body é uma string direta
-    if (!userInput && typeof body === 'string') {
-      userInput = body;
+    const { message, name, age, sex, weight, selectedQuestion } = req.body;
+    if (!message && !selectedQuestion) {
+      return res.status(400).json({ error: "No message or selected question provided." });
     }
+
+    // Usar a pergunta selecionada se disponível, caso contrário usar a mensagem do usuário
+    const userInput = selectedQuestion || message;
     
-    // Se ainda não houver mensagem, verificar se o body tem apenas uma chave e usar seu valor
-    if (!userInput && typeof body === 'object' && Object.keys(body).length === 1) {
-      userInput = Object.values(body)[0];
-    }
-    
-    // Validação final da mensagem
-    if (!userInput || typeof userInput !== 'string') {
-      console.log("❌ Erro de validação: userInput não encontrado ou inválido");
-      return res.status(400).json({ error: "No valid message found in request" });
-    }
-    
-    // Extrair dados do usuário (aceita múltiplos formatos)
-    userName = (body.name || body.userName || body.user || "").trim();
-    userAge = parseInt(body.age || body.userAge || 0);
-    userSex = (body.sex || body.gender || "").toLowerCase();
-    userWeight = parseFloat(body.weight || body.userWeight || 0);
-    
-    const hasForm = userName && !isNaN(userAge) && userSex && !isNaN(userWeight);
-    
-    // Detectar idioma com regex melhorado
-    const isPortuguese = /[ãõçáéíóúê]|(\s|^)(você|dor|tenho|problema|saúde|cabeça|estômago|costas)(\s|$)/i.test(userInput);
+    // Detectar idioma
+    const isPortuguese = /[ãõçáéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
     const idioma = isPortuguese ? "pt" : "en";
     
-    console.log(`✅ Dados da requisição validados com sucesso`);
-    console.log(`✅ Processando entrada do usuário: ${userInput}`);
-    console.log(`✅ Idioma detectado: ${idioma}`);
-    console.log(`✅ Nome do usuário: ${userName || "não fornecido"}`);
-    console.log(`✅ Formulário completo: ${hasForm ? "Sim" : "Não"}`);
+    const userName = name?.trim() || "";
+    const userAge = parseInt(age);
+    const userSex = (sex || "").toLowerCase();
+    const userWeight = parseFloat(weight);
+    const hasForm = userName && !isNaN(userAge) && userSex && !isNaN(userWeight);
 
     sessionMemory.nome = userName;
     sessionMemory.idioma = idioma;
     sessionMemory.respostasUsuario.push(userInput);
 
-    // Determinar a fase atual do funil (incrementar a cada interação, máximo 6)
-    const currentFunnelPhase = Math.min(sessionMemory.funnelPhase || 1, 6);
-    console.log(`Fase atual do funil: ${currentFunnelPhase}`);
-
-    // Obter contexto do sintoma do Notion com prevenção de repetição
-    const symptomContext = await getSymptomContext(
-      userInput, 
-      userName,
-      currentFunnelPhase,
-      sessionMemory.usedQuestions
-    );
+    // Obter contexto do sintoma do Notion
+    const symptomContext = await getSymptomContext(userInput, userName);
     
     // Atualizar a memória da sessão com o sintoma detectado
     if (symptomContext.sintoma) {
       sessionMemory.sintomaAtual = symptomContext.sintoma;
     }
-
-    // Rastrear perguntas usadas para evitar repetição
-    if (symptomContext.followupQuestions && symptomContext.followupQuestions.length > 0) {
-      sessionMemory.ultimasPerguntas = symptomContext.followupQuestions;
-      sessionMemory.usedQuestions = [...sessionMemory.usedQuestions, ...symptomContext.followupQuestions];
-    }
-
+    
+    // Determinar a fase atual do funil (incrementar a cada interação, máximo 6)
+    const currentFunnelPhase = Math.min(sessionMemory.funnelPhase || 1, 6);
+    console.log(`Fase atual do funil: ${currentFunnelPhase}`);
+    
     // Tentar obter resposta do GPT-4o mini
     let gptResponse = null;
     try {
@@ -179,11 +140,11 @@ export default async function handler(req, res) {
 
       console.log("Tentando obter resposta do GPT-4o mini...");
       gptResponse = await callGPT4oMini(
-        "Responda ao usuario de forma personalizada, seguindo a fase do funil e o sintoma detectado",
+        "Responda ao usuário de forma personalizada, seguindo a fase do funil",
         gptContext,
         userInput
       );
-      console.log("Resposta do GPT obtida:", gptResponse ? "Sim" : "Nao");
+      console.log("Resposta do GPT obtida:", gptResponse ? "Sim" : "Não");
     } catch (gptError) {
       console.error("Erro ao chamar GPT-4o mini:", gptError);
       gptResponse = null;
@@ -195,15 +156,18 @@ export default async function handler(req, res) {
       console.log("Usando resposta do GPT");
       responseContent = formatGPTResponse(gptResponse, symptomContext, idioma);
     } else {
-      console.log("Usando fallback com conteudo rico");
+      console.log("Usando fallback com conteúdo rico");
       responseContent = formatResponse(symptomContext, idioma);
+    }
+    
+    // Rastrear perguntas usadas para evitar repetição
+    if (symptomContext.followupQuestions && symptomContext.followupQuestions.length > 0) {
+      sessionMemory.ultimasPerguntas = symptomContext.followupQuestions;
+      sessionMemory.usedQuestions = [...sessionMemory.usedQuestions, ...symptomContext.followupQuestions];
     }
     
     // Incrementar a fase do funil para a próxima interação
     sessionMemory.funnelPhase = Math.min(currentFunnelPhase + 1, 6);
-    
-    // Armazenar as últimas perguntas para referência futura
-    sessionMemory.ultimasPerguntas = symptomContext.followupQuestions;
 
     // Enviar a resposta para o frontend
     return res.status(200).json({
@@ -327,8 +291,8 @@ function formatGPTResponse(gptResponse, symptomContext, idioma) {
 function formatResponse(symptomContext, idioma) {
   const { intro, scientificExplanation, followupQuestions } = symptomContext;
   
-  // Títulos sem usar símbolos # que afetam leitura por áudio
-  const scientificTitle = idioma === "pt" ? "O que está acontecendo:" : "What's happening:";
+  // Título da seção científica - sem usar símbolos # que afetam leitura por áudio
+  const scientificTitle = idioma === "pt" ? "Análise Científica:" : "Scientific Analysis:";
   
   // Título da seção de perguntas
   const questionsTitle = idioma === "pt" ? "Vamos explorar mais:" : "Let's explore further:";
