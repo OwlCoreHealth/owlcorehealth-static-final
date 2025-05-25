@@ -1,4 +1,4 @@
-// chat.js - Versão final com remoção de símbolos Markdown e compatibilidade com áudio
+// chat.js - Versão final com exportação padrão para Vercel
 // Integração com GPT-4o mini e progressão de funil
 import { getSymptomContext } from './notion.mjs';
 import fetch from 'node-fetch';
@@ -469,7 +469,7 @@ ${formattedQuestions}`;
 }
 
 // Função principal para processar a entrada do usuário
-export async function processUserInput(userInput, userName, userAge, userWeight) {
+async function processUserInput(userInput, userName, userAge, userWeight) {
   try {
     console.log("🔄 Processando entrada do usuário:", userInput);
     
@@ -549,7 +549,7 @@ export async function processUserInput(userInput, userName, userAge, userWeight)
 }
 
 // Função para reiniciar a memória da sessão
-export function resetSessionMemory() {
+function resetSessionMemory() {
   sessionMemory = {
     sintomasDetectados: [],
     respostasUsuario: [],
@@ -567,13 +567,40 @@ export function resetSessionMemory() {
 }
 
 // Função para definir o nome do usuário
-export function setUserName(name) {
+function setUserName(name) {
   sessionMemory.nome = name;
   console.log(`🔄 Nome do usuário definido: ${name}`);
   return true;
 }
 
 // Exportar a memória da sessão para debugging
-export function getSessionMemory() {
+function getSessionMemory() {
   return sessionMemory;
+}
+
+// Função handler para API Routes do Vercel
+export default async function handler(req, res) {
+  try {
+    // Verificar se é uma requisição POST
+    if (req.method !== 'POST') {
+      return res.status(405).json({ error: 'Method not allowed' });
+    }
+    
+    // Extrair dados da requisição
+    const { userInput, userName, userAge, userWeight } = req.body;
+    
+    // Validar entrada
+    if (!userInput) {
+      return res.status(400).json({ error: 'User input is required' });
+    }
+    
+    // Processar a entrada do usuário
+    const response = await processUserInput(userInput, userName, userAge, userWeight);
+    
+    // Retornar a resposta
+    return res.status(200).json({ response });
+  } catch (error) {
+    console.error('Error processing request:', error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
 }
