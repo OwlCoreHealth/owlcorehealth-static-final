@@ -1,255 +1,228 @@
-const { getSymptomContext } = require('./notion.mjs');
+// ES Modules format
+import { getSymptomContext } from './notion.mjs';
 
-// Memória de sessão para manter contexto entre interações
-let sessionMemory = {
-  userName: "",
-  userAge: "",
-  userWeight: "",
-  userSex: "",
-  sintomaAtual: null,
-  funnelPhase: 1,
-  respostasUsuario: [],
-  previousQuestions: []
-};
-
-// Função para determinar a fase do funil com base no histórico e palavras-chave
+// Função para determinar a fase do funil com base no histórico de conversa
 function determineFunnelPhase(sessionMemory) {
-  // Se não houver histórico, começar na fase 1
-  if (!sessionMemory.respostasUsuario || sessionMemory.respostasUsuario.length === 0) {
+  // Se não houver memória de sessão, começar na fase 1
+  if (!sessionMemory || !sessionMemory.respostasUsuario) {
     return 1;
   }
   
-  // Número de interações determina fase mínima
-  const interacoes = sessionMemory.respostasUsuario.length;
-  let novaFase = sessionMemory.funnelPhase; // Manter fase atual por padrão
+  // Número de interações
+  const numInteractions = sessionMemory.respostasUsuario.length;
   
-  // Progressão baseada no número de interações (mais rápida)
-  if (interacoes >= 6) {
-    novaFase = Math.max(novaFase, 5); // Fase 5 (Suplemento) após 6 interações
-  } else if (interacoes >= 4) {
-    novaFase = Math.max(novaFase, 4); // Fase 4 (Nutrientes) após 4 interações
-  } else if (interacoes >= 3) {
-    novaFase = Math.max(novaFase, 3); // Fase 3 (Agravamento) após 3 interações
-  } else if (interacoes >= 2) {
-    novaFase = Math.max(novaFase, 2); // Fase 2 (Consequências) após 2 interações
+  // Fase atual (se já estiver definida)
+  const currentPhase = sessionMemory.funnelPhase || 1;
+  
+  // Verificar palavras-chave na última mensagem do usuário para possível avanço
+  const lastUserMessage = sessionMemory.respostasUsuario[sessionMemory.respostasUsuario.length - 1] || "";
+  const lowerMessage = lastUserMessage.toLowerCase();
+  
+  // Palavras-chave que podem acelerar o avanço no funil
+  const phase2Keywords = ["consequência", "consequencia", "risco", "piorar", "consequence", "risk", "worsen"];
+  const phase3Keywords = ["grave", "sério", "serio", "perigo", "serious", "danger", "severe"];
+  const phase4Keywords = ["nutriente", "planta", "natural", "nutrient", "plant", "herb"];
+  const phase5Keywords = ["suplemento", "comprar", "supplement", "buy", "purchase"];
+  
+  // Verificar se há palavras-chave para avançar
+  let shouldAdvance = false;
+  
+  if (currentPhase === 1 && phase2Keywords.some(keyword => lowerMessage.includes(keyword))) {
+    shouldAdvance = true;
+  } else if (currentPhase === 2 && phase3Keywords.some(keyword => lowerMessage.includes(keyword))) {
+    shouldAdvance = true;
+  } else if (currentPhase === 3 && phase4Keywords.some(keyword => lowerMessage.includes(keyword))) {
+    shouldAdvance = true;
+  } else if (currentPhase === 4 && phase5Keywords.some(keyword => lowerMessage.includes(keyword))) {
+    shouldAdvance = true;
   }
   
-  // Verificar palavras-chave na última resposta do usuário para possível avanço adicional
-  const ultimaResposta = sessionMemory.respostasUsuario[sessionMemory.respostasUsuario.length - 1].toLowerCase();
+  // Chance aleatória de avançar (30%) para evitar estagnação
+  const randomAdvance = Math.random() < 0.3;
   
-  // Palavras que indicam interesse em soluções (avançar para fase 4)
-  if (novaFase < 4 && (
-    ultimaResposta.includes("solução") || 
-    ultimaResposta.includes("solution") ||
-    ultimaResposta.includes("remédio") || 
-    ultimaResposta.includes("remedy") ||
-    ultimaResposta.includes("tratamento") || 
-    ultimaResposta.includes("treatment") ||
-    ultimaResposta.includes("planta") || 
-    ultimaResposta.includes("plant") ||
-    ultimaResposta.includes("natural") ||
-    ultimaResposta.includes("nutriente") || 
-    ultimaResposta.includes("nutrient")
-  )) {
-    novaFase = 4; // Avançar para Fase 4 (Nutrientes)
+  // Lógica de progressão do funil
+  if (shouldAdvance || randomAdvance) {
+    // Avançar para a próxima fase
+    return Math.min(currentPhase + 1, 6); // Máximo é fase 6 (Plano B)
+  } else if (numInteractions >= 10) {
+    // Após 10 interações, ir para o Plano B (fase 6)
+    return 6;
+  } else if (numInteractions >= 8) {
+    // Após 8 interações, ir para fase 5 (Suplemento)
+    return 5;
+  } else if (numInteractions >= 6) {
+    // Após 6 interações, ir para fase 4 (Nutrientes e Plantas)
+    return 4;
+  } else if (numInteractions >= 4) {
+    // Após 4 interações, ir para fase 3 (Agravamento)
+    return 3;
+  } else if (numInteractions >= 2) {
+    // Após 2 interações, ir para fase 2 (Consequências)
+    return 2;
   }
   
-  // Palavras que indicam interesse em produto (avançar para fase 5)
-  if (novaFase < 5 && (
-    ultimaResposta.includes("suplemento") || 
-    ultimaResposta.includes("supplement") ||
-    ultimaResposta.includes("produto") || 
-    ultimaResposta.includes("product") ||
-    ultimaResposta.includes("comprar") || 
-    ultimaResposta.includes("buy") ||
-    ultimaResposta.includes("onde") || 
-    ultimaResposta.includes("where")
-  )) {
-    novaFase = 5; // Avançar para Fase 5 (Suplemento)
-  }
-  
-  // Se o usuário continua após fase 5, ir para plano B
-  if (novaFase === 5 && interacoes > 7) {
-    novaFase = 6; // Plano B
-  }
-  
-  // Chance aleatória de avançar (para evitar estagnação)
-  const chanceAleatoria = Math.random();
-  if (chanceAleatoria < 0.3 && novaFase < 5) { // 30% de chance
-    novaFase += 1;
-  }
-  
-  return Math.min(novaFase, 6); // Máximo fase 6 (Plano B)
+  // Caso contrário, manter a fase atual
+  return currentPhase;
 }
 
-// Função para obter título da fase atual
-function getTitleForPhase(phase, language) {
-  const titles = {
+// Função para formatar a resposta com base na fase do funil
+function formatResponse(symptomContext, funnelPhase) {
+  const { sintoma, intro, scientificExplanation, followupQuestions } = symptomContext;
+  const language = intro.includes("você") ? "pt" : "en";
+  
+  // Títulos para cada fase do funil
+  const phaseTitles = {
     1: {
-      pt: "A verdade que você precisa ouvir:",
-      en: "The truth you need to hear:"
+      pt: "O que está realmente acontecendo:",
+      en: "What's really happening:"
     },
     2: {
-      pt: "Consequências que você está ignorando:",
-      en: "Consequences you're ignoring:"
+      pt: "Consequências se não tratado:",
+      en: "Consequences if untreated:"
     },
     3: {
       pt: "O que você está realmente arriscando:",
       en: "What you're really risking:"
     },
     4: {
-      pt: "Soluções que realmente funcionam:",
-      en: "Solutions that actually work:"
+      pt: "Nutrientes e plantas que podem ajudar:",
+      en: "Nutrients and plants that can help:"
     },
     5: {
-      pt: "A solução definitiva para seu problema:",
-      en: "The definitive solution to your problem:"
+      pt: "A solução completa para seu problema:",
+      en: "The complete solution for your problem:"
     },
     6: {
-      pt: "Pense bem antes de decidir:",
-      en: "Think carefully before deciding:"
+      pt: "Pense bem sobre isso:",
+      en: "Think carefully about this:"
     }
   };
   
-  return titles[phase][language] || titles[1][language];
-}
-
-// Função para obter subtítulo da fase atual
-function getSubtitleForPhase(phase, language) {
-  const subtitles = {
+  // Obter o título apropriado para a fase atual
+  const title = phaseTitles[funnelPhase][language];
+  
+  // Texto de fechamento para cada fase
+  const closingText = {
     1: {
-      pt: "E agora, o que você vai fazer a respeito?",
-      en: "And now, what are you going to do about it?"
+      pt: "Estas dicas ajudam, mas quer saber mais?",
+      en: "These tips help, but want to know more?"
     },
     2: {
-      pt: "Vai continuar ignorando esses sinais?",
-      en: "Will you continue ignoring these signs?"
+      pt: "Está pronto para levar isso a sério?",
+      en: "Are you ready to take this seriously?"
     },
     3: {
       pt: "Está pronto para agir ou prefere continuar sofrendo?",
-      en: "Are you ready to act or do you prefer to keep suffering?"
+      en: "Are you ready to act or prefer to keep suffering?"
     },
     4: {
-      pt: "Quer saber mais ou vai continuar ignorando?",
-      en: "Want to know more or will you keep ignoring it?"
+      pt: "Quer uma solução mais completa e eficaz?",
+      en: "Want a more complete and effective solution?"
     },
     5: {
-      pt: "Pronto para resolver seu problema de uma vez por todas?",
-      en: "Ready to solve your problem once and for all?"
+      pt: "Pronto para transformar sua saúde de uma vez por todas?",
+      en: "Ready to transform your health once and for all?"
     },
     6: {
-      pt: "A escolha é sua, mas as consequências também:",
-      en: "The choice is yours, but so are the consequences:"
+      pt: "A decisão final é sua:",
+      en: "The final decision is yours:"
     }
   };
   
-  return subtitles[phase][language] || subtitles[1][language];
-}
-
-// Função para formatar a resposta final
-function formatResponse(symptomContext, funnelPhase) {
-  const language = symptomContext.intro.includes("dor de cabeça") ? "pt" : "en";
-  const title = getTitleForPhase(funnelPhase, language);
-  const subtitle = getSubtitleForPhase(funnelPhase, language);
+  // Obter o texto de fechamento apropriado para a fase atual
+  const closing = closingText[funnelPhase][language];
   
-  // Formatar perguntas como elementos clicáveis
-  const formattedQuestions = symptomContext.followupQuestions.map((question, index) => {
+  // Formatar as perguntas de follow-up como elementos clicáveis
+  const formattedQuestions = followupQuestions.map((question, index) => {
     return `<div class="clickable-question" data-question="${encodeURIComponent(question)}" onclick="handleQuestionClick(this)">
       ${index + 1}. ${question}
     </div>`;
   }).join('\n');
   
-  // Montar resposta completa
-  return `${symptomContext.intro}
+  // Montar a resposta completa
+  const response = `${intro}
 
 ### ${title}
-${symptomContext.scientificExplanation}
+${scientificExplanation}
 
-### ${subtitle}
+### ${closing}
 Escolha seu próximo passo (se tiver coragem):
 
 ${formattedQuestions}`;
+
+  return response;
 }
 
-// Função principal para processar mensagens
-async function processMessage(message, name, age, sex, weight) {
+// Função principal para processar a mensagem do usuário
+async function processMessage(userMessage, sessionMemory = {}) {
   try {
-    // Atualizar informações do usuário se fornecidas
-    if (name && name.trim() !== "") {
-      sessionMemory.userName = name;
+    // Inicializar a memória da sessão se não existir
+    if (!sessionMemory.respostasUsuario) {
+      sessionMemory.respostasUsuario = [];
     }
     
-    if (age && age.trim() !== "") {
-      sessionMemory.userAge = parseInt(age);
+    // Adicionar a mensagem atual à memória
+    sessionMemory.respostasUsuario.push(userMessage);
+    
+    // Extrair dados do usuário da memória da sessão
+    const userName = sessionMemory.userName || "";
+    const userAge = sessionMemory.userAge || "";
+    const userWeight = sessionMemory.userWeight || "";
+    
+    // Rastrear perguntas já selecionadas para evitar repetição
+    if (!sessionMemory.previouslySelectedQuestions) {
+      sessionMemory.previouslySelectedQuestions = [];
     }
     
-    if (sex && sex.trim() !== "") {
-      sessionMemory.userSex = sex;
-    }
-    
-    if (weight && weight.trim() !== "") {
-      sessionMemory.userWeight = parseInt(weight);
-    }
-    
-    // Adicionar mensagem ao histórico
-    sessionMemory.respostasUsuario.push(message);
-    
-    // Determinar fase atual do funil
+    // Determinar a fase atual do funil
     const funnelPhase = determineFunnelPhase(sessionMemory);
     sessionMemory.funnelPhase = funnelPhase;
     
-    // Obter contexto do sintoma
+    // Manter o sintoma anterior para continuidade
+    const previousSymptom = sessionMemory.sintomaAtual || null;
+    
+    // Obter o contexto do sintoma
     const symptomContext = await getSymptomContext(
-      message, 
-      sessionMemory.userName, 
-      sessionMemory.userAge, 
-      sessionMemory.userWeight, 
+      userMessage, 
+      userName, 
+      userAge, 
+      userWeight, 
       funnelPhase,
-      sessionMemory.sintomaAtual,
-      sessionMemory.previousQuestions
+      previousSymptom,
+      sessionMemory.previouslySelectedQuestions
     );
     
-    // Manter contexto do sintoma para próximas interações
+    // Atualizar o sintoma atual na memória
     sessionMemory.sintomaAtual = symptomContext.sintoma;
     
-    // Registrar perguntas para evitar repetição
-    sessionMemory.previousQuestions = [
-      ...sessionMemory.previousQuestions,
+    // Adicionar as novas perguntas à lista de perguntas já usadas
+    sessionMemory.previouslySelectedQuestions = [
+      ...sessionMemory.previouslySelectedQuestions,
       ...symptomContext.followupQuestions
     ];
     
-    // Limitar tamanho do histórico de perguntas
-    if (sessionMemory.previousQuestions.length > 15) {
-      sessionMemory.previousQuestions = sessionMemory.previousQuestions.slice(-15);
+    // Limitar o tamanho da lista de perguntas anteriores para evitar crescimento excessivo
+    if (sessionMemory.previouslySelectedQuestions.length > 20) {
+      sessionMemory.previouslySelectedQuestions = sessionMemory.previouslySelectedQuestions.slice(-20);
     }
     
-    // Formatar resposta final
+    // Formatar a resposta com base na fase do funil
     const response = formatResponse(symptomContext, funnelPhase);
     
+    // Retornar a resposta e a memória atualizada
     return {
-      choices: [
-        {
-          message: {
-            content: response
-          }
-        }
-      ]
+      response,
+      sessionMemory
     };
+    
   } catch (error) {
-    console.error("Erro ao processar mensagem:", error);
+    console.error("❌ Erro ao processar mensagem:", error);
     return {
-      choices: [
-        {
-          message: {
-            content: "Desculpe, ocorreu um erro ao processar sua mensagem. Por favor, tente novamente."
-          }
-        }
-      ]
+      response: "Desculpe, ocorreu um erro ao processar sua mensagem. Por favor, tente novamente.",
+      sessionMemory
     };
   }
 }
 
-// Exportar usando CommonJS para compatibilidade
-module.exports = {
-  processMessage
-};
+// Exportar usando ES Modules
+export { processMessage };
