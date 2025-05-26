@@ -190,15 +190,10 @@ gptResponse = await callGPT4oMini(
       gptResponse = null;
     }
 
-    // Construir a resposta formatada com explicação científica e perguntas clicáveis
-    let responseContent;
-    if (gptResponse) {
-      console.log("Usando resposta do GPT");
-      responseContent = formatGPTResponse(gptResponse, symptomContext, idioma);
-    } else {
-      console.log("Usando fallback com conteúdo rico");
-      responseContent = formatResponse(symptomContext, idioma);
-    }
+    // Sempre usa a estrutura do funil definida em formatResponse()
+console.log("Usando estrutura do funil com scientificExplanation do GPT");
+symptomContext.scientificExplanation = gptResponse || "";
+responseContent = formatResponse(symptomContext, idioma);
     
     // Rastrear perguntas usadas para evitar repetição
     if (symptomContext.followupQuestions && symptomContext.followupQuestions.length > 0) {
