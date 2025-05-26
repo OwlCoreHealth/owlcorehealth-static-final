@@ -1,3 +1,60 @@
+// Mapeamento dos links dos suplementos
+const supplementLinks = {
+  mitolyn: {
+    review: "https://www.naturepharmalab.com/mitolyn/",
+    salesPage: "https://tinyurl.com/5vz22z5u",
+    video: "https://mitolyn.com/science/?affiliate=jpcrb"
+  },
+  primeBiome: {
+    review: "https://www.naturepharmalab.com/prime-biome/",
+    salesPage: "https://7664d9t0x8cr2ldk47n2ecrhi4.hop.clickbank.net",
+    video: "https://hop.clickbank.net/?affiliate=jpcrb&vendor=primebiome&cbpage=tsl&affop=tbl"
+  },
+  prodentim: {
+    review: "https://www.naturepharmalab.com/prodentim/",
+    salesPage: "https://9025cd00580m6o9mzet4-myg53.hop.clickbank.net",
+    video: "https://hop.clickbank.net/?affiliate=jpcrb&vendor=prodentim&cbpage=tsl&affop=1"
+  },
+  moringa: {
+    review: "https://www.naturepharmalab.com/moringa-supplements/",
+    salesPage: "https://6a549c4-6-7k6mfe1djgq0-7rl.hop.clickbank.net",
+    video: "https://hop.clickbank.net/?affiliate=jpcrb&vendor=moringamag&cbpage=videolp"
+  },
+  pinealGuardian: {
+    review: "https://www.naturepharmalab.com/pineal-guardian-review-2025/",
+    salesPage: "https://3b30e3r3x8el2p8cnbsawgro7w.hop.clickbank.net",
+    video: "https://hop.clickbank.net/?affiliate=jpcrb&vendor=pgrdnvip&pid=indexvs&tid="
+  }
+};
+// Função para gerar perguntas de suplemento com base no sintoma
+const supplementQuestions = {
+  mitolyn: [
+    `Quer conhecer o review deste suplemento? [Clique aqui](${supplementLinks.mitolyn.review})`,
+    `Gostaria de ver a página de vendas e saber mais sobre como esse suplemento pode te ajudar? [Clique aqui](${supplementLinks.mitolyn.salesPage})`,
+    `Interessado em um vídeo explicativo sobre o funcionamento do Mitolyn? [Assista aqui](${supplementLinks.mitolyn.video})`
+  ],
+  primeBiome: [
+    `Quer ver o review do Prime Biome? [Clique aqui](${supplementLinks.primeBiome.review})`,
+    `Deseja conferir a página de vendas do Prime Biome? [Clique aqui](${supplementLinks.primeBiome.salesPage})`,
+    `Quer assistir ao vídeo do Prime Biome para entender mais sobre como ele funciona? [Veja aqui](${supplementLinks.primeBiome.video})`
+  ],
+  prodentim: [
+    `Que tal conhecer o review do Prodentim? [Clique aqui](${supplementLinks.prodentim.review})`,
+    `Gostaria de ver a página de vendas do Prodentim? [Clique aqui](${supplementLinks.prodentim.salesPage})`,
+    `Está interessado no vídeo do Prodentim? [Assista aqui](${supplementLinks.prodentim.video})`
+  ],
+  moringa: [
+    `Quer ler o review do Moringa Magic? [Clique aqui](${supplementLinks.moringa.review})`,
+    `Deseja saber mais sobre o Moringa Magic na página de vendas? [Clique aqui](${supplementLinks.moringa.salesPage})`,
+    `Precisa de um vídeo explicativo sobre o Moringa Magic? [Assista aqui](${supplementLinks.moringa.video})`
+  ],
+  pinealGuardian: [
+    `Interessado em ver o review do Pineal Guardian? [Clique aqui](${supplementLinks.pinealGuardian.review})`,
+    `Quer acessar a página de vendas do Pineal Guardian? [Clique aqui](${supplementLinks.pinealGuardian.salesPage})`,
+    `Quer ver o vídeo explicativo do Pineal Guardian? [Assista aqui](${supplementLinks.pinealGuardian.video})`
+  ]
+};
+
 import { getSymptomContext } from "./notion.mjs"; 
 import symptomToSupplementMap from "./data/symptomToSupplementMap.js";
 
@@ -528,20 +585,26 @@ function formatResponse(symptomContext, idioma) {
       case 3: // Fase 3: O que está realmente arriscando (agravamento)
         phaseContent = `${scientificExplanation}\n\nO que você está realmente arriscando é muito mais sério do que imagina. Esses sintomas podem evoluir para condições debilitantes que afetarão cada aspecto da sua vida - trabalho, relacionamentos, sono, humor.\n\nA inflamação crônica que começa como um pequeno incômodo pode se espalhar silenciosamente pelo corpo, afetando órgãos vitais e funções neurológicas. É como um incêndio florestal que começa com uma única faísca.`;
         break;
-      case 4: { // Fase 4: Nutrientes e plantas naturais
+     case 4: { // Fase 4: Nutrientes e plantas naturais
   const matched = getPlantsForSymptom(sessionMemory.sintomaAtual || "");
-  
+
   if (matched && matched.plants && matched.plants.length > 0) {
     const listaPlantas = matched.plants.map(p => `- ${p}`).join("\n");
 
+    // Atualize aqui para incluir os links ao final da explicação
     phaseContent = idioma === "pt"
-      ? `${sessionMemory.nome || "amigo"}, já está claro que seu corpo está pedindo socorro. O problema é que os alimentos hoje estão vazios — cultivados em solos pobres, cheios de químicos, e com 80% menos nutrientes do que tinham há 50 anos.\n\nÉ por isso que cada vez mais pessoas estão recorrendo a plantas medicinais. Elas concentram nutrientes bioativos em níveis que nenhum alimento moderno consegue oferecer.\n\nAs que mais se destacam para seu caso:\n${listaPlantas}\n\nTodas essas plantas têm estudos clínicos comprovando sua eficácia. E a melhor parte? Existe um suplemento cientificamente aprovado e validado pela FDA que combina exatamente esses extratos.`
-      : `Your body is clearly waving a red flag. The problem is: modern food is depleted — grown in nutrient-poor soils, filled with chemicals, and has 80% fewer nutrients than 50 years ago.\n\nThat's why more and more people are turning to medicinal plants. They concentrate bioactive nutrients in levels no modern food can match.\n\nHere are the top ones for your case:\n${listaPlantas}\n\nAll of these have clinical studies confirming their effects. And the best part? There's a science-backed supplement, FDA-validated, that combines exactly these extracts.`;
+      ? `${sessionMemory.nome || "amigo"}, já está claro que seu corpo está pedindo socorro. O problema é que os alimentos hoje estão vazios — cultivados em solos pobres, cheios de químicos, e com 80% menos nutrientes do que tinham há 50 anos.\n\nÉ por isso que cada vez mais pessoas estão recorrendo a plantas medicinais. Elas concentram nutrientes bioativos em níveis que nenhum alimento moderno consegue oferecer.\n\nAs que mais se destacam para seu caso:\n${listaPlantas}\n\nTodas essas plantas têm estudos clínicos comprovando sua eficácia. E a melhor parte? Existe um suplemento cientificamente aprovado e validado pela FDA que combina exatamente esses extratos.\n\nQuer conhecer o review desse suplemento? [Clique aqui para ver o review](https://www.naturepharmalab.com/mitolyn/)\nQuer ver a página de vendas? [Clique aqui para ver a página](https://tinyurl.com/5vz22z5u)\nQuer assistir ao vídeo de vendas? [Clique aqui para assistir ao vídeo](https://mitolyn.com/science/?affiliate=jpcrb)`
+      : `Your body is clearly waving a red flag. The problem is: modern food is depleted — grown in nutrient-poor soils, filled with chemicals, and has 80% fewer nutrients than 50 years ago.\n\nThat's why more and more people are turning to medicinal plants. They concentrate bioactive nutrients in levels no modern food can match.\n\nHere are the top ones for your case:\n${listaPlantas}\n\nAll of these have clinical studies confirming their effects. And the best part? There's a science-backed supplement, FDA-validated, that combines exactly these extracts.\n\nWant to check the review of this supplement? [Click here to view the review](https://www.naturepharmalab.com/mitolyn/)\nWant to see the sales page? [Click here to view the page](https://tinyurl.com/5vz22z5u)\nWant to watch the sales video? [Click here to watch the video](https://mitolyn.com/science/?affiliate=jpcrb)`;
   } else {
-    // fallback quando sintoma não for identificado
+    // Fallback quando o sintoma não for identificado
     phaseContent = idioma === "pt"
       ? `Seu corpo está precisando urgentemente de nutrientes específicos para lidar com isso. O problema? Os alimentos que você consome hoje não entregam nem metade do que seu corpo precisa. Estudos mostram que o nível de magnésio, zinco e vitaminas essenciais nos alimentos caiu drasticamente.\n\nPlantas medicinais como ashwagandha, rhodiola ou ginseng concentram até 50x mais compostos bioativos do que frutas e vegetais comuns. Quer saber como elas podem mudar esse cenário?`
       : `Your body urgently needs specific nutrients to handle this. The issue? The foods you eat today don't deliver even half of what your body truly requires. Studies show that magnesium, zinc, and essential vitamin levels in food have dropped dramatically.\n\nMedicinal plants like ashwagandha, rhodiola, or ginseng contain up to 50x more bioactive compounds than common fruits and vegetables. Want to see how they can shift your health?`;
+
+    // Fallback para os links
+    phaseContent += idioma === "pt"
+      ? `\n\nQuer conhecer o review desse suplemento? [Clique aqui para ver o review](https://www.naturepharmalab.com/mitolyn/)\nQuer ver a página de vendas? [Clique aqui para ver a página](https://tinyurl.com/5vz22z5u)\nQuer assistir ao vídeo de vendas? [Clique aqui para assistir ao vídeo](https://mitolyn.com/science/?affiliate=jpcrb)`
+      : `\n\nWant to check the review of this supplement? [Click here to view the review](https://www.naturepharmalab.com/mitolyn/)\nWant to see the sales page? [Click here to view the page](https://tinyurl.com/5vz22z5u)\nWant to watch the sales video? [Click here to watch the video](https://mitolyn.com/science/?affiliate=jpcrb)`;
   }
 
   break;
