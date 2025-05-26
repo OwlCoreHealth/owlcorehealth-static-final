@@ -133,9 +133,9 @@ const userSex = (sex || "").toLowerCase();
 const userWeight = parseFloat(weight);
     const hasForm = userName && !isNaN(userAge) && userSex && !isNaN(userWeight);
 
-    sessionMemory.nome = userName;
-    sessionMemory.idioma = idioma;
-    sessionMemory.respostasUsuario.push(userInput);
+    sessionMemory.nome = userName && userName.trim().length > 0 ? userName.trim() : null;
+sessionMemory.idioma = idioma;
+sessionMemory.respostasUsuario.push(userInput); 
 
     // Obter contexto do sintoma do Notion
     const symptomContext = await getSymptomContext(userInput, userName);
