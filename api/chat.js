@@ -190,9 +190,9 @@ const userSex = (sex || "").toLowerCase();
 const userWeight = parseFloat(weight);
     const hasForm = userName && !isNaN(userAge) && userSex && !isNaN(userWeight);
 
-    sessionMemory.nome = userName && userName.trim().length > 0 ? userName.trim() : null;
-sessionMemory.idioma = idioma;
-sessionMemory.respostasUsuario.push(userInput); 
+    sessionMemory.nome = userName;
+    sessionMemory.idioma = idioma;
+    sessionMemory.respostasUsuario.push(userInput);
 
     // Obter contexto do sintoma do Notion
     const symptomContext = await getSymptomContext(userInput, userName);
@@ -585,91 +585,20 @@ function formatResponse(symptomContext, idioma) {
       case 3: // Fase 3: O que está realmente arriscando (agravamento)
         phaseContent = `${scientificExplanation}\n\nO que você está realmente arriscando é muito mais sério do que imagina. Esses sintomas podem evoluir para condições debilitantes que afetarão cada aspecto da sua vida - trabalho, relacionamentos, sono, humor.\n\nA inflamação crônica que começa como um pequeno incômodo pode se espalhar silenciosamente pelo corpo, afetando órgãos vitais e funções neurológicas. É como um incêndio florestal que começa com uma única faísca.`;
         break;
-    case 4: { // Fase 4: Nutrientes e plantas naturais
+      case 4: { // Fase 4: Nutrientes e plantas naturais
   const matched = getPlantsForSymptom(sessionMemory.sintomaAtual || "");
-
+  
   if (matched && matched.plants && matched.plants.length > 0) {
     const listaPlantas = matched.plants.map(p => `- ${p}`).join("\n");
-
-    // Verificar qual suplemento foi mapeado para o sintoma
-    const supplement = matched.supplement;
-    const links = supplementLinks[supplement] || {};
 
     phaseContent = idioma === "pt"
       ? `${sessionMemory.nome || "amigo"}, já está claro que seu corpo está pedindo socorro. O problema é que os alimentos hoje estão vazios — cultivados em solos pobres, cheios de químicos, e com 80% menos nutrientes do que tinham há 50 anos.\n\nÉ por isso que cada vez mais pessoas estão recorrendo a plantas medicinais. Elas concentram nutrientes bioativos em níveis que nenhum alimento moderno consegue oferecer.\n\nAs que mais se destacam para seu caso:\n${listaPlantas}\n\nTodas essas plantas têm estudos clínicos comprovando sua eficácia. E a melhor parte? Existe um suplemento cientificamente aprovado e validado pela FDA que combina exatamente esses extratos.`
       : `Your body is clearly waving a red flag. The problem is: modern food is depleted — grown in nutrient-poor soils, filled with chemicals, and has 80% fewer nutrients than 50 years ago.\n\nThat's why more and more people are turning to medicinal plants. They concentrate bioactive nutrients in levels no modern food can match.\n\nHere are the top ones for your case:\n${listaPlantas}\n\nAll of these have clinical studies confirming their effects. And the best part? There's a science-backed supplement, FDA-validated, that combines exactly these extracts.`;
-
-    // Adicionar os links dinâmicos para o suplemento mapeado
-    if (links.review && links.salesPage && links.video) {
-      phaseContent += idioma === "pt"
-        ? `
-        <br>
-        <a href="${links.review}" target="_blank">Quer conhecer o review deste suplemento?</a>
-        <br>
-        <a href="${links.salesPage}" target="_blank">Quer ver a página de vendas?</a>
-        <br>
-        <a href="${links.video}" target="_blank">Quer assistir ao vídeo de vendas?</a>`
-        : `
-        <br>
-        <a href="${links.review}" target="_blank">Want to check the review of this supplement?</a>
-        <br>
-        <a href="${links.salesPage}" target="_blank">Want to see the sales page?</a>
-        <br>
-        <a href="${links.video}" target="_blank">Want to watch the sales video?</a>`;
-    }
   } else {
-    // Fallback quando o sintoma não for identificado
+    // fallback quando sintoma não for identificado
     phaseContent = idioma === "pt"
       ? `Seu corpo está precisando urgentemente de nutrientes específicos para lidar com isso. O problema? Os alimentos que você consome hoje não entregam nem metade do que seu corpo precisa. Estudos mostram que o nível de magnésio, zinco e vitaminas essenciais nos alimentos caiu drasticamente.\n\nPlantas medicinais como ashwagandha, rhodiola ou ginseng concentram até 50x mais compostos bioativos do que frutas e vegetais comuns. Quer saber como elas podem mudar esse cenário?`
       : `Your body urgently needs specific nutrients to handle this. The issue? The foods you eat today don't deliver even half of what your body truly requires. Studies show that magnesium, zinc, and essential vitamin levels in food have dropped dramatically.\n\nMedicinal plants like ashwagandha, rhodiola, or ginseng contain up to 50x more bioactive compounds than common fruits and vegetables. Want to see how they can shift your health?`;
-
-    // Fallback para os links, garantindo que o fallback é dinâmico com o suplemento
-    const fallbackLinks = supplementLinks[matched.supplement] || {};
-    if (fallbackLinks.review && fallbackLinks.salesPage && fallbackLinks.video) {
-      phaseContent += idioma === "pt"
-        ? `
-        <br>
-        <a href="${fallbackLinks.review}" target="_blank">Quer conhecer o review deste suplemento?</a>
-        <br>
-        <a href="${fallbackLinks.salesPage}" target="_blank">Quer ver a página de vendas?</a>
-        <br>
-        <a href="${fallbackLinks.video}" target="_blank">Quer assistir ao vídeo de vendas?</a>`
-        : `
-        <br>
-        <a href="${fallbackLinks.review}" target="_blank">Want to check the review of this supplement?</a>
-        <br>
-        <a href="${fallbackLinks.salesPage}" target="_blank">Want to see the sales page?</a>
-        <br>
-        <a href="${fallbackLinks.video}" target="_blank">Want to watch the sales video?</a>`;
-    }
-  }
-
-  break;
-}
-
-    // Se o suplemento estiver disponível, inclua os links
-    if (supplement) {
-      const links = supplementLinks[supplement];
-      phaseContent = idioma === "pt"
-        ? `${sessionMemory.nome || "amigo"}, já está claro que seu corpo está pedindo socorro... As plantas medicinais são a chave para equilibrar os nutrientes que seu corpo precisa.\n\nAs que mais se destacam para seu caso:\n${listaPlantas}\n\nTodas essas plantas têm estudos clínicos comprovando sua eficácia. E a melhor parte? Existe um suplemento cientificamente aprovado e validado pela FDA que combina exatamente esses extratos.\n\nQuer conhecer o review desse suplemento? [Clique aqui para ver o review](${links.review})\nQuer ver a página de vendas? [Clique aqui para ver a página](${links.salesPage})\nQuer assistir ao vídeo de vendas? [Clique aqui para assistir ao vídeo](${links.video})`
-        : `Your body is clearly waving a red flag... Medicinal plants are the key to balancing the nutrients your body needs.\n\nThe top ones for your case:\n${listaPlantas}\n\nAll of these have clinical studies confirming their effects. And the best part? There's a science-backed supplement, FDA-validated, that combines exactly these extracts.\n\nWant to check the review of this supplement? [Click here to view the review](${links.review})\nWant to see the sales page? [Click here to view the page](${links.salesPage})\nWant to watch the sales video? [Click here to watch the video](${links.video})`;
-    } else {
-      // Fallback se nenhum suplemento for encontrado
-      phaseContent = idioma === "pt"
-        ? `Seu corpo está precisando urgentemente de nutrientes específicos...`
-        : `Your body urgently needs specific nutrients...`;
-    }
-
-  } else {
-    // Fallback quando sintoma não for identificado
-    phaseContent = idioma === "pt"
-      ? `Seu corpo está precisando urgentemente de nutrientes específicos...`
-      : `Your body urgently needs specific nutrients...`;
-
-    // Adicionando links na resposta de fallback
-    phaseContent += idioma === "pt"
-      ? `\n\nQuer conhecer o review desse suplemento? [Clique aqui para ver o review](https://www.naturepharmalab.com/mitolyn/)\nQuer ver a página de vendas? [Clique aqui para ver a página](https://tinyurl.com/5vz22z5u)\nQuer assistir ao vídeo de vendas? [Clique aqui para assistir ao vídeo](https://mitolyn.com/science/?affiliate=jpcrb)`
-      : `\n\nWant to check the review of this supplement? [Click here to view the review](https://www.naturepharmalab.com/mitolyn/)\nWant to see the sales page? [Click here to view the page](https://tinyurl.com/5vz22z5u)\nWant to watch the sales video? [Click here to watch the video](https://mitolyn.com/science/?affiliate=jpcrb)`;
   }
 
   break;
@@ -689,10 +618,10 @@ function formatResponse(symptomContext, idioma) {
         phaseContent = `${scientificExplanation}\n\nThere are some quick fixes that can temporarily relieve what you're feeling, like posture adjustments, deep breathing, or compresses. But this is just a temporary band-aid - we need to understand the root cause of the problem for a real solution.`;
         break;
       case 2: // Phase 2: Consequences if not taking care
-        phaseContent = `${scientificExplanation}\n\nIgnoring these symptoms is like ignoring the warning light on your car's dashboard - it seems harmless until the engine explodes on the road.\n\nStudies show that 73% of people who neglect these signs end up with chronic problems in less than 8 months. Your body is literally begging for attention, and you're putting on headphones at maximum volume to avoid hearing it.`;
+        phaseContent = `Ignoring these symptoms is like ignoring the warning light on your car's dashboard - it seems harmless until the engine explodes on the road.\n\nStudies show that 73% of people who neglect these signs end up with chronic problems in less than 8 months. Your body is literally begging for attention, and you're putting on headphones at maximum volume to avoid hearing it.`;
         break;
       case 3: // Phase 3: What you're really risking (aggravation)
-        phaseContent = `${scientificExplanation}\n\nWhat you're really risking is much more serious than you imagine. These symptoms can evolve into debilitating conditions that will affect every aspect of your life - work, relationships, sleep, mood.\n\nThe chronic inflammation that starts as a small discomfort can silently spread throughout the body, affecting vital organs and neurological functions. It's like a forest fire that starts with a single spark.`;
+        phaseContent = `What you're really risking is much more serious than you imagine. These symptoms can evolve into debilitating conditions that will affect every aspect of your life - work, relationships, sleep, mood.\n\nThe chronic inflammation that starts as a small discomfort can silently spread throughout the body, affecting vital organs and neurological functions. It's like a forest fire that starts with a single spark.`;
         break;
       case 4: // Phase 4: Nutrients and natural plants
         phaseContent = `Your body is desperately in need of specific nutrients to combat this. Recent research shows that deficiencies in magnesium, zinc, and B-complex vitamins are directly linked to the symptoms you're describing.\n\nMedicinal plants contain up to 50x more bioactive nutrients than common foods. Ashwagandha, for example, contains more than 80 compounds that regulate inflammation and oxidative stress. Rhodiola and ginseng have potent adaptogens that rebalance entire body systems.`;
