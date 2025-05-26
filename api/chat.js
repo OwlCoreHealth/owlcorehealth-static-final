@@ -1,4 +1,23 @@
 import { getSymptomContext } from "./notion.mjs"; 
+import symptomToSupplementMap from "./data/symptomToSupplementMap.js";
+
+function getPlantsForSymptom(userInput) {
+  const normalizedInput = userInput.toLowerCase();
+
+  // 1. Tenta match exato
+  if (symptomToSupplementMap[normalizedInput]) {
+    return symptomToSupplementMap[normalizedInput];
+  }
+
+  // 2. Fallback: procura por substring
+  for (const key in symptomToSupplementMap) {
+    if (normalizedInput.includes(key)) {
+      return symptomToSupplementMap[key];
+    }
+  }
+  // 3. Se nada encontrado
+  return null;
+}
 
 // Configuração da API OpenAI
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY || "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"; // Substitua pela sua chave API ou use variável de ambiente
@@ -507,9 +526,24 @@ function formatResponse(symptomContext, idioma) {
       case 3: // Fase 3: O que está realmente arriscando (agravamento)
         phaseContent = `O que você está realmente arriscando é muito mais sério do que imagina. Esses sintomas podem evoluir para condições debilitantes que afetarão cada aspecto da sua vida - trabalho, relacionamentos, sono, humor.\n\nA inflamação crônica que começa como um pequeno incômodo pode se espalhar silenciosamente pelo corpo, afetando órgãos vitais e funções neurológicas. É como um incêndio florestal que começa com uma única faísca.`;
         break;
-      case 4: // Fase 4: Nutrientes e plantas naturais
-        phaseContent = `Seu corpo está desesperadamente precisando de nutrientes específicos para combater isso. Pesquisas recentes mostram que deficiências de magnésio, zinco e vitaminas do complexo B estão diretamente ligadas aos sintomas que você descreve.\n\nAs plantas medicinais contêm até 50x mais nutrientes bioativos do que alimentos comuns. Ashwagandha, por exemplo, contém mais de 80 compostos que regulam inflamação e estresse oxidativo. Rhodiola e ginseng têm potentes adaptógenos que reequilibram sistemas inteiros do corpo.`;
-        break;
+      case 4: { // Fase 4: Nutrientes e plantas naturais
+  const matched = getPlantsForSymptom(sessionMemory.sintomaAtual || "");
+  
+  if (matched && matched.plants && matched.plants.length > 0) {
+    const listaPlantas = matched.plants.map(p => `- ${p}`).join("\n");
+
+    phaseContent = idioma === "pt"
+      ? `João, já está claro que seu corpo está pedindo socorro. O problema é que os alimentos hoje estão vazios — cultivados em solos pobres, cheios de químicos, e com 80% menos nutrientes do que tinham há 50 anos.\n\nÉ por isso que cada vez mais pessoas estão recorrendo a plantas medicinais. Elas concentram nutrientes bioativos em níveis que nenhum alimento moderno consegue oferecer.\n\nAs que mais se destacam para seu caso:\n${listaPlantas}\n\nTodas essas plantas têm estudos clínicos comprovando sua eficácia. E a melhor parte? Existe um suplemento cientificamente aprovado e validado pela FDA que combina exatamente esses extratos.`
+      : `Your body is clearly waving a red flag. The problem is: modern food is depleted — grown in nutrient-poor soils, filled with chemicals, and has 80% fewer nutrients than 50 years ago.\n\nThat's why more and more people are turning to medicinal plants. They concentrate bioactive nutrients in levels no modern food can match.\n\nHere are the top ones for your case:\n${listaPlantas}\n\nAll of these have clinical studies confirming their effects. And the best part? There's a science-backed supplement, FDA-validated, that combines exactly these extracts.`;
+  } else {
+    // fallback quando sintoma não for identificado
+    phaseContent = idioma === "pt"
+      ? `Seu corpo está precisando urgentemente de nutrientes específicos para lidar com isso. O problema? Os alimentos que você consome hoje não entregam nem metade do que seu corpo precisa. Estudos mostram que o nível de magnésio, zinco e vitaminas essenciais nos alimentos caiu drasticamente.\n\nPlantas medicinais como ashwagandha, rhodiola ou ginseng concentram até 50x mais compostos bioativos do que frutas e vegetais comuns. Quer saber como elas podem mudar esse cenário?`
+      : `Your body urgently needs specific nutrients to handle this. The issue? The foods you eat today don't deliver even half of what your body truly requires. Studies show that magnesium, zinc, and essential vitamin levels in food have dropped dramatically.\n\nMedicinal plants like ashwagandha, rhodiola, or ginseng contain up to 50x more bioactive compounds than common fruits and vegetables. Want to see how they can shift your health?`;
+  }
+
+  break;
+}
       case 5: // Fase 5: Suplemento como solução completa
         phaseContent = `As plantas medicinais que mencionei são extremamente poderosas, mas existe um problema: você precisaria consumir quantidades enormes diariamente para obter todos os nutrientes necessários.\n\nA ciência moderna conseguiu extrair e concentrar esses compostos bioativos em suplementos específicos, fornecendo o equivalente a quilos de plantas em uma única dose. Um suplemento bem formulado pode entregar exatamente o que seu corpo precisa, na dosagem correta, para resolver o problema pela raiz.`;
         break;
