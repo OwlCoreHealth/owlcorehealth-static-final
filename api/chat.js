@@ -125,10 +125,12 @@ export default async function handler(req, res) {
     const isPortuguese = /[ãõçáéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
     const idioma = sessionMemory.idioma || (isPortuguese ? "pt" : "en");
     
-    const userName = name?.trim() || "";
-    const userAge = parseInt(age);
-    const userSex = (sex || "").toLowerCase();
-    const userWeight = parseFloat(weight);
+   const userName = name?.trim() || "";
+sessionMemory.nome = userName; // ✅ armazena logo aqui
+
+const userAge = parseInt(age);
+const userSex = (sex || "").toLowerCase();
+const userWeight = parseFloat(weight);
     const hasForm = userName && !isNaN(userAge) && userSex && !isNaN(userWeight);
 
     sessionMemory.nome = userName;
@@ -192,6 +194,7 @@ gptResponse = await callGPT4oMini(
 
     // Sempre usa a estrutura do funil definida em formatResponse()
 console.log("Usando estrutura do funil com scientificExplanation do GPT");
+let responseContent; // ✅ declaração corrigida
 symptomContext.scientificExplanation = gptResponse || "";
 responseContent = formatResponse(symptomContext, idioma);
     
