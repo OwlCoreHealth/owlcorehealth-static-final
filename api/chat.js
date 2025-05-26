@@ -520,10 +520,10 @@ function formatResponse(symptomContext, idioma) {
         phaseContent = `${scientificExplanation}\n\nExistem algumas soluções rápidas que podem aliviar temporariamente o que você está sentindo, como ajustes na postura, respiração profunda ou compressas. Mas isso é apenas um band-aid temporário - precisamos entender a causa raiz do problema para uma solução real.`;
         break;
       case 2: // Fase 2: Consequências se não tomar cuidados
-        phaseContent = `Ignorar esses sintomas é como ignorar a luz de advertência no painel do carro - parece inofensivo até que o motor exploda na estrada.\n\nEstudos mostram que 73% das pessoas que negligenciam esses sinais acabam com problemas crônicos em menos de 8 meses. Seu corpo está literalmente implorando por atenção, e você está colocando os fones de ouvido no volume máximo para não ouvir.`;
+        phaseContent = `${scientificExplanation}\n\nIgnorar esses sintomas é como ignorar a luz de advertência no painel do carro - parece inofensivo até que o motor exploda na estrada.\n\nEstudos mostram que 73% das pessoas que negligenciam esses sinais acabam com problemas crônicos em menos de 8 meses. Seu corpo está literalmente implorando por atenção, e você está colocando os fones de ouvido no volume máximo para não ouvir.`;
         break;
       case 3: // Fase 3: O que está realmente arriscando (agravamento)
-        phaseContent = `O que você está realmente arriscando é muito mais sério do que imagina. Esses sintomas podem evoluir para condições debilitantes que afetarão cada aspecto da sua vida - trabalho, relacionamentos, sono, humor.\n\nA inflamação crônica que começa como um pequeno incômodo pode se espalhar silenciosamente pelo corpo, afetando órgãos vitais e funções neurológicas. É como um incêndio florestal que começa com uma única faísca.`;
+        phaseContent = `${scientificExplanation}\n\nO que você está realmente arriscando é muito mais sério do que imagina. Esses sintomas podem evoluir para condições debilitantes que afetarão cada aspecto da sua vida - trabalho, relacionamentos, sono, humor.\n\nA inflamação crônica que começa como um pequeno incômodo pode se espalhar silenciosamente pelo corpo, afetando órgãos vitais e funções neurológicas. É como um incêndio florestal que começa com uma única faísca.`;
         break;
       case 4: { // Fase 4: Nutrientes e plantas naturais
   const matched = getPlantsForSymptom(sessionMemory.sintomaAtual || "");
@@ -544,10 +544,10 @@ function formatResponse(symptomContext, idioma) {
   break;
 }
       case 5: // Fase 5: Suplemento como solução completa
-        phaseContent = `As plantas medicinais que mencionei são extremamente poderosas, mas existe um problema: você precisaria consumir quantidades enormes diariamente para obter todos os nutrientes necessários.\n\nA ciência moderna conseguiu extrair e concentrar esses compostos bioativos em suplementos específicos, fornecendo o equivalente a quilos de plantas em uma única dose. Um suplemento bem formulado pode entregar exatamente o que seu corpo precisa, na dosagem correta, para resolver o problema pela raiz.`;
+        phaseContent = `${scientificExplanation}\n\nAs plantas medicinais que mencionei são extremamente poderosas, mas existe um problema: você precisaria consumir quantidades enormes diariamente para obter todos os nutrientes necessários.\n\nA ciência moderna conseguiu extrair e concentrar esses compostos bioativos em suplementos específicos, fornecendo o equivalente a quilos de plantas em uma única dose. Um suplemento bem formulado pode entregar exatamente o que seu corpo precisa, na dosagem correta, para resolver o problema pela raiz.`;
         break;
       case 6: // Fase 6: Plano B (abordagem alternativa) + direcionamento para suplemento
-        phaseContent = `Existem duas abordagens possíveis agora:\n\n1) Você pode tentar o caminho mais longo: reformular completamente sua alimentação, incluir dezenas de alimentos específicos, plantas medicinais raras, e seguir um protocolo rigoroso por vários meses.\n\n2) Ou pode optar pela solução mais eficiente: um suplemento cientificamente formulado que combina todos os nutrientes e extratos de plantas que seu corpo precisa, na dosagem exata, para resolver esse problema rapidamente.\n\nA escolha é sua, mas lembre-se que cada dia que passa sem ação adequada é um dia a mais de sofrimento desnecessário.`;
+        phaseContent = `${scientificExplanation}\n\nExistem duas abordagens possíveis agora:\n\n1) Você pode tentar o caminho mais longo: reformular completamente sua alimentação, incluir dezenas de alimentos específicos, plantas medicinais raras, e seguir um protocolo rigoroso por vários meses.\n\n2) Ou pode optar pela solução mais eficiente: um suplemento cientificamente formulado que combina todos os nutrientes e extratos de plantas que seu corpo precisa, na dosagem exata, para resolver esse problema rapidamente.\n\nA escolha é sua, mas lembre-se que cada dia que passa sem ação adequada é um dia a mais de sofrimento desnecessário.`;
         break;
       default:
         phaseContent = scientificExplanation;
