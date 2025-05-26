@@ -150,17 +150,21 @@ if (symptomContext.sintoma) {
     const currentFunnelPhase = Math.min(sessionMemory.funnelPhase || 1, 6);
     console.log(`Fase atual do funil: ${currentFunnelPhase}`);
     
-    // Garantir que as perguntas não se repitam
-// Forçar uso das perguntas novas e provocativas do funil
-const phaseSpecificQuestions = generatePhaseSpecificQuestions(currentFunnelPhase, idioma, symptomContext.sintoma);
+    // 🔁 Geração das 3 perguntas provocativas e controle de repetição
+let phaseSpecificQuestions = generatePhaseSpecificQuestions(currentFunnelPhase, idioma, symptomContext.sintoma);
+let uniqueQuestions = phaseSpecificQuestions.filter(q => !sessionMemory.usedQuestions.includes(q));
 
-// Filtrar perguntas ainda não usadas
-const uniqueQuestions = phaseSpecificQuestions.filter(q =>
-  !sessionMemory.usedQuestions.includes(q)
-).slice(0, 3);
+if (uniqueQuestions.length < 3) {
+  // Se não houver novas suficientes, permitir reembaralhar (mas mantendo pelo menos 1 nova)
+  phaseSpecificQuestions = generatePhaseSpecificQuestions(currentFunnelPhase, idioma, symptomContext.sintoma);
+  uniqueQuestions = phaseSpecificQuestions.slice(0, 3);
+} else {
+  uniqueQuestions = uniqueQuestions.slice(0, 3);
+}
 
-// Atualizar o contexto com as novas perguntas
 symptomContext.followupQuestions = uniqueQuestions;
+sessionMemory.ultimasPerguntas = uniqueQuestions;
+sessionMemory.usedQuestions.push(...uniqueQuestions);
     
     // Tentar obter resposta do GPT-4o mini
     let gptResponse = null;
@@ -175,7 +179,7 @@ symptomContext.followupQuestions = uniqueQuestions;
 };
 
      console.log("Tentando obter resposta do GPT-4o mini...");
-const gptResponse = await callGPT4oMini(
+gptResponse = await callGPT4oMini(
   "Responda ao usuário de forma personalizada, seguindo a fase do funil",
   { ...gptContext, selectedQuestion: !!selectedQuestion },
   userInput
