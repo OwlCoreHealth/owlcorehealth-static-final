@@ -591,28 +591,61 @@ function formatResponse(symptomContext, idioma) {
   if (matched && matched.plants && matched.plants.length > 0) {
     const listaPlantas = matched.plants.map(p => `- ${p}`).join("\n");
 
-    // Definir suplemento com base no sintoma
-    let supplement = "";
-    switch (sessionMemory.sintomaAtual) {
-      case "dores intestinais":
-        supplement = "mitolyn";
-        break;
-      case "problemas intestinais":
-        supplement = "primeBiome";
-        break;
-      case "dor dentária":
-        supplement = "prodentim";
-        break;
-      case "baixa energia":
-        supplement = "moringa";
-        break;
-      case "cansado e estressado":
-        supplement = "pinealGuardian";
-        break;
-      default:
-        supplement = null;
-        break;
+    // Verificar qual suplemento foi mapeado para o sintoma
+    const supplement = matched.supplement;
+    const links = supplementLinks[supplement] || {};
+
+    phaseContent = idioma === "pt"
+      ? `${sessionMemory.nome || "amigo"}, já está claro que seu corpo está pedindo socorro. O problema é que os alimentos hoje estão vazios — cultivados em solos pobres, cheios de químicos, e com 80% menos nutrientes do que tinham há 50 anos.\n\nÉ por isso que cada vez mais pessoas estão recorrendo a plantas medicinais. Elas concentram nutrientes bioativos em níveis que nenhum alimento moderno consegue oferecer.\n\nAs que mais se destacam para seu caso:\n${listaPlantas}\n\nTodas essas plantas têm estudos clínicos comprovando sua eficácia. E a melhor parte? Existe um suplemento cientificamente aprovado e validado pela FDA que combina exatamente esses extratos.`
+      : `Your body is clearly waving a red flag. The problem is: modern food is depleted — grown in nutrient-poor soils, filled with chemicals, and has 80% fewer nutrients than 50 years ago.\n\nThat's why more and more people are turning to medicinal plants. They concentrate bioactive nutrients in levels no modern food can match.\n\nHere are the top ones for your case:\n${listaPlantas}\n\nAll of these have clinical studies confirming their effects. And the best part? There's a science-backed supplement, FDA-validated, that combines exactly these extracts.`;
+
+    // Adicionar os links dinâmicos para o suplemento mapeado
+    if (links.review && links.salesPage && links.video) {
+      phaseContent += idioma === "pt"
+        ? `
+        <br>
+        <a href="${links.review}" target="_blank">Quer conhecer o review deste suplemento?</a>
+        <br>
+        <a href="${links.salesPage}" target="_blank">Quer ver a página de vendas?</a>
+        <br>
+        <a href="${links.video}" target="_blank">Quer assistir ao vídeo de vendas?</a>`
+        : `
+        <br>
+        <a href="${links.review}" target="_blank">Want to check the review of this supplement?</a>
+        <br>
+        <a href="${links.salesPage}" target="_blank">Want to see the sales page?</a>
+        <br>
+        <a href="${links.video}" target="_blank">Want to watch the sales video?</a>`;
     }
+  } else {
+    // Fallback quando o sintoma não for identificado
+    phaseContent = idioma === "pt"
+      ? `Seu corpo está precisando urgentemente de nutrientes específicos para lidar com isso. O problema? Os alimentos que você consome hoje não entregam nem metade do que seu corpo precisa. Estudos mostram que o nível de magnésio, zinco e vitaminas essenciais nos alimentos caiu drasticamente.\n\nPlantas medicinais como ashwagandha, rhodiola ou ginseng concentram até 50x mais compostos bioativos do que frutas e vegetais comuns. Quer saber como elas podem mudar esse cenário?`
+      : `Your body urgently needs specific nutrients to handle this. The issue? The foods you eat today don't deliver even half of what your body truly requires. Studies show that magnesium, zinc, and essential vitamin levels in food have dropped dramatically.\n\nMedicinal plants like ashwagandha, rhodiola, or ginseng contain up to 50x more bioactive compounds than common fruits and vegetables. Want to see how they can shift your health?`;
+
+    // Fallback para os links, garantindo que o fallback é dinâmico com o suplemento
+    const fallbackLinks = supplementLinks[matched.supplement] || {};
+    if (fallbackLinks.review && fallbackLinks.salesPage && fallbackLinks.video) {
+      phaseContent += idioma === "pt"
+        ? `
+        <br>
+        <a href="${fallbackLinks.review}" target="_blank">Quer conhecer o review deste suplemento?</a>
+        <br>
+        <a href="${fallbackLinks.salesPage}" target="_blank">Quer ver a página de vendas?</a>
+        <br>
+        <a href="${fallbackLinks.video}" target="_blank">Quer assistir ao vídeo de vendas?</a>`
+        : `
+        <br>
+        <a href="${fallbackLinks.review}" target="_blank">Want to check the review of this supplement?</a>
+        <br>
+        <a href="${fallbackLinks.salesPage}" target="_blank">Want to see the sales page?</a>
+        <br>
+        <a href="${fallbackLinks.video}" target="_blank">Want to watch the sales video?</a>`;
+    }
+  }
+
+  break;
+}
 
     // Se o suplemento estiver disponível, inclua os links
     if (supplement) {
