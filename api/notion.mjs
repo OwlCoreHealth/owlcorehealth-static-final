@@ -800,7 +800,7 @@ export async function getSymptomContext(userMessage, userName = "", userAge = ""
       try {
         const filter = {
           or: keywords.map(word => ({
-            property: "Palavras-chave",
+            property: "Keywords",
             rich_text: {
               contains: word
             }
