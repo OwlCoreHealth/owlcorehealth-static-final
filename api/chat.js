@@ -133,3 +133,4 @@ function formatHybridResponse(context, gptResponse) {
 
   return response;
 } 
+export { callGPT4oMini };
