@@ -1,4 +1,4 @@
-// notion.mjs (versão ajustada para entregar funnelTexts por fase)
+// notion.mjs (adaptado para colunas em inglês)
 import { Client } from "@notionhq/client";
 
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
@@ -34,7 +34,7 @@ export async function getSymptomContext(input, name, age, weight, funnelPhase, p
 
   return {
     gptPromptData: {
-      prompt: page.properties?.Prompt?.rich_text?.[0]?.plain_text || "",
+      prompt: "You are OwlCoreHealth AI.",
       context: {
         selectedQuestion: null,
         name,
@@ -44,15 +44,37 @@ export async function getSymptomContext(input, name, age, weight, funnelPhase, p
     },
     sintoma: page.properties?.Symptoms?.rich_text?.[0]?.plain_text || previousSymptom,
     funnelPhase,
-    language: page.properties?.Idioma?.select?.name?.toLowerCase() || "en",
+    language: "en",
     funnelTexts: {
-      base: getTexts("base_pt"),
-      gravidade: getTexts("gravidade_pt"),
-      estatisticas: getTexts("estatisticas_pt"),
-      nutrientes: getTexts("nutrientes_pt"),
-      suplemento: getTexts("suplemento_pt"),
-      cta: getTexts("cta_pt")
+      base: [
+        page.properties["Funnel 1 Variation 1"]?.rich_text?.[0]?.plain_text || "",
+        page.properties["Funnel 1 Variation 2"]?.rich_text?.[0]?.plain_text || "",
+        page.properties["Funnel 1 Variation 3"]?.rich_text?.[0]?.plain_text || ""
+      ].filter(Boolean),
+      gravidade: [
+        page.properties["Funnel 2 Variation 1"]?.rich_text?.[0]?.plain_text || "",
+        page.properties["Funnel 2 Variation 2"]?.rich_text?.[0]?.plain_text || "",
+        page.properties["Funnel 2 Variation 3"]?.rich_text?.[0]?.plain_text || ""
+      ].filter(Boolean),
+      estatisticas: [
+        page.properties["Funnel 3 Variation 1"]?.rich_text?.[0]?.plain_text || "",
+        page.properties["Funnel 3 Variation 2"]?.rich_text?.[0]?.plain_text || "",
+        page.properties["Funnel 3 Variation 3"]?.rich_text?.[0]?.plain_text || ""
+      ].filter(Boolean),
+      nutrientes: [
+        page.properties["Funnel 4 Variation 1"]?.rich_text?.[0]?.plain_text || "",
+        page.properties["Funnel 4 Variation 2"]?.rich_text?.[0]?.plain_text || "",
+        page.properties["Funnel 4 Variation 3"]?.rich_text?.[0]?.plain_text || ""
+      ].filter(Boolean),
+      suplemento: [
+        page.properties["Funnel 5 Variation 1"]?.rich_text?.[0]?.plain_text || "",
+        page.properties["Funnel 5 Variation 2"]?.rich_text?.[0]?.plain_text || "",
+        page.properties["Funnel 5 Variation 3"]?.rich_text?.[0]?.plain_text || ""
+      ].filter(Boolean),
+      cta: [
+        page.properties["Links"]?.rich_text?.[0]?.plain_text || ""
+      ].filter(Boolean)
     },
-    followupQuestions: getTexts("perguntas_finais")
+    followupQuestions: []
   };
 }
