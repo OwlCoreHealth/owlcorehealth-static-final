@@ -24,6 +24,7 @@ export async function getSymptomContext(input, name, age, weight, funnelPhase, p
   });
 
   const page = response.results[0];
+console.log("🧪 Todas as propriedades disponíveis:", page.properties);
 
   if (!page) return {};
 
