@@ -122,21 +122,29 @@ export default async function handler(req, res) {
   });
 }
 
+// ✅ Versão ajustada do formatHybridResponse para usar perguntas geradas pelo GPT
 function formatHybridResponse(context, gptResponse) {
-  const { followupQuestions, language } = context;
+  const { language } = context;
   const phaseTitle = language === "pt" ? "Vamos explorar mais:" : "Let's explore further:";
   const instruction = language === "pt"
-    ? "Escolha uma das opções abaixo para continuarmos:"
-    : "Choose one of the options below to continue:";
+    ? "Escolha uma das perguntas abaixo para continuarmos:" 
+    : "Choose one of the questions below to continue:";
 
-  let response = gptResponse?.trim() || "";
+  let responseText = gptResponse?.content?.trim() || gptResponse?.trim() || "";
 
-  if (followupQuestions.length) {
-    response += `\n\n${phaseTitle}\n${instruction}\n\n`;
-    followupQuestions.slice(0, 3).forEach((q, i) => {
-      response += `<div class="clickable-question" data-question="${q}" onclick="handleQuestionClick(this)">${i + 1}. ${q}</div>\n`;
-    });
-  }
+  // ✅ Extrair perguntas geradas no final do texto (últimos parágrafos que terminam com '?')
+  const extractedQuestions = (responseText.match(/[^\n\r]*\?$/gm) || [])
+    .map(q => q.trim())
+    .slice(-3); // pega as 3 últimas
 
-  return response;
+  // ✅ Remover perguntas do texto principal
+  const mainBody = responseText.replace(/[^\n\r]*\?$/gm, '').trim();
+
+  let finalResponse = `${mainBody}\n\n${phaseTitle}\n${instruction}\n\n`;
+
+  extractedQuestions.forEach((q, i) => {
+    finalResponse += `<div class="clickable-question" data-question="${encodeURIComponent(q)}" onclick="handleQuestionClick(this)">${i + 1}. ${q}</div>\n`;
+  });
+
+  return finalResponse;
 }
