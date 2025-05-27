@@ -100,22 +100,3 @@ function formatHybridResponse(context, gptResponse) {
 
   return response;
 } 
-
-// Estilização ajustada (frontal)
-document.addEventListener('DOMContentLoaded', () => {
-  const style = document.createElement('style');
-  style.textContent = `
-    .clickable-question {
-      padding: 8px 12px;
-      margin: 4px 0;
-      background-color: #f5faff;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.95em;
-    }
-    .clickable-question:hover {
-      background-color: #e0f0ff;
-    }
-  `;
-  document.head.appendChild(style);
-});
