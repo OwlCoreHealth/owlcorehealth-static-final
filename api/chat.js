@@ -1,4 +1,4 @@
-// chat.js (corrigido apenas o erro de followupQuestions undefined)
+// chat.js (versão atualizada com correções solicitadas)
 
 import { getSymptomContext } from "./notion.mjs";
 
@@ -68,9 +68,8 @@ async function callGPT4oMini(symptomContext, userMessage) {
   }
 }
 
-// Função auxiliar para gerar 3 perguntas com base na fase atual
 async function generateFollowUpQuestions(context, userInput) {
-  const prompt = `Baseado no seguinte contexto: "${userInput}", gere 3 perguntas curtas e instigantes para levar o usuário à próxima fase do funil (${context.language === "pt" ? "Português" : "English"}). As perguntas devem estar alinhadas ao tema e estimular curiosidade.`;
+  const prompt = `Com base no sintoma \"${context.sintoma}\" e na fase do funil ${context.funnelPhase}, gere 3 perguntas curtas, provocativas e instigantes para conduzir o usuário para a próxima etapa.`;
 
   const response = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
@@ -81,7 +80,7 @@ async function generateFollowUpQuestions(context, userInput) {
     body: JSON.stringify({
       model: GPT_MODEL,
       messages: [
-        { role: "system", content: "Você é um gerador de perguntas persuasivas." },
+        { role: "system", content: "Você gera apenas 3 perguntas persuasivas e relevantes. Nenhuma explicação extra." },
         { role: "user", content: prompt }
       ],
       temperature: 0.7,
@@ -99,7 +98,7 @@ export default async function handler(req, res) {
 
   const { message, name, age, sex, weight, selectedQuestion } = req.body;
   const userInput = selectedQuestion || message;
-  const isPortuguese = /[ãõçáéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
+  const isPortuguese = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
   const idioma = sessionMemory.idioma || (isPortuguese ? "pt" : "en");
 
   const userName = name?.trim() || "";
@@ -123,12 +122,16 @@ export default async function handler(req, res) {
   if (!context.gptPromptData?.prompt || !context.gptPromptData?.context) {
     console.error("❌ gptPromptData não definido corretamente:", context);
     return res.status(200).json({
-      choices: [{
-        message: {
-          content: "Desculpe, algo falhou ao processar seu sintoma. Tente reformular sua frase.",
-          followupQuestions: []
+      choices: [
+        {
+          message: {
+            content: idioma === "pt"
+              ? "Desculpe, não encontrei informações suficientes. Tente reformular sua frase."
+              : "Sorry, I couldn't find enough information. Please try rephrasing your question.",
+            followupQuestions: []
+          }
         }
-      }]
+      ]
     });
   }
 
@@ -137,16 +140,19 @@ export default async function handler(req, res) {
 
   const gptResponse = await callGPT4oMini(context, userInput);
   const followupQuestions = await generateFollowUpQuestions(context, userInput);
-  const content = formatHybridResponse(context, gptResponse, followupQuestions);
   sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
 
+  const content = formatHybridResponse(context, gptResponse, followupQuestions);
+
   return res.status(200).json({
-    choices: [{
-      message: {
-        content,
-        followupQuestions: followupQuestions || []
+    choices: [
+      {
+        message: {
+          content,
+          followupQuestions: followupQuestions || []
+        }
       }
-    }]
+    ]
   });
 }
 
