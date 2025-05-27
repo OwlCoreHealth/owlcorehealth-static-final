@@ -154,3 +154,38 @@ function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
 }
 
 // generateFollowUpQuestions permanece como está, conectado ao contexto e idioma
+async function generateFollowUpQuestions(context, idioma) {
+  const prompt = idioma === "pt"
+    ? `Com base no sintoma \"${context.sintoma}\" e na fase do funil ${context.funnelPhase}, gere 3 perguntas curtas, provocativas e instigantes para conduzir o usuário para a próxima etapa.`
+    : `Based on the symptom \"${context.sintoma}\" and funnel phase ${context.funnelPhase}, generate 3 short, provocative, and engaging questions to guide the user to the next step.`;
+
+  try {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: GPT_MODEL,
+        messages: [
+          { role: "system", content: "You generate only 3 relevant and persuasive questions. No extra explanation." },
+          { role: "user", content: prompt }
+        ],
+        temperature: 0.7,
+        max_tokens: 300
+      })
+    });
+
+    const data = await response.json();
+    const text = data.choices?.[0]?.message?.content || "";
+    return text.split(/\d+\.\s+/).filter(Boolean).slice(0, 3);
+  } catch (err) {
+    console.warn("❗️Erro ao gerar perguntas com GPT:", err);
+    return [
+      idioma === "pt" ? "Você já tentou mudar sua alimentação ou rotina?" : "Have you tried adjusting your diet or lifestyle?",
+      idioma === "pt" ? "Como você acha que isso está afetando seu dia a dia?" : "How do you think this is affecting your daily life?",
+      idioma === "pt" ? "Está disposto(a) a descobrir uma solução mais eficaz agora?" : "Are you ready to explore a better solution now?"
+    ];
+  }
+}
