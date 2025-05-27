@@ -1,20 +1,15 @@
-// notion.mjs (adaptado para colunas em inglês)
+// notion.mjs (com fallback GPT se o Notion não encontrar)
 import { Client } from "@notionhq/client";
-
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 const databaseId = process.env.NOTION_DATABASE_ID;
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+const GPT_MODEL = "gpt-4o-mini";
 
 export async function getSymptomContext(input, name, age, weight, funnelPhase, previousSymptom, usedQuestions) {
   const filtro = {
     or: [
-      {
-        property: "Keywords",
-        rich_text: { contains: input }
-      },
-      {
-        property: "Symptoms",
-        rich_text: { contains: input }
-      }
+      { property: "Keywords", rich_text: { contains: input } },
+      { property: "Symptoms", rich_text: { contains: input } }
     ]
   };
 
@@ -24,13 +19,36 @@ export async function getSymptomContext(input, name, age, weight, funnelPhase, p
   });
 
   const page = response.results[0];
-if (!page) {
-  console.warn("❗️Nenhuma entrada encontrada no Notion para o input:", input);
-  return {};
-}
-console.log("🧪 Todas as propriedades disponíveis:", page.properties);
 
-  if (!page) return {};
+  if (!page) {
+    console.warn("❗️Nenhuma entrada encontrada no Notion para o input:", input);
+
+    // 🧠 Fallback: pedir ao GPT uma categoria sintomática aproximada
+    const fallbackCategory = await identifySymptomCategoryWithGPT(input);
+
+    // Aqui você pode mapear manualmente as respostas do GPT para categorias conhecidas
+    const categoryMap = {
+      gut: "bloating and skin irritation",
+      metabolism: "belly fat and fatigue",
+      oral: "bad breath and gum problems",
+      brain: "brain fog and anxiety",
+      immunity: "low immunity and sugar imbalance"
+    };
+
+    const fallbackSymptom = categoryMap[fallbackCategory] || "general inflammation";
+
+    return {
+      gptPromptData: {
+        prompt: "You are OwlCoreHealth AI.",
+        context: { selectedQuestion: null, name, age, weight }
+      },
+      sintoma: fallbackSymptom,
+      funnelPhase,
+      language: "en",
+      funnelTexts: {},
+      followupQuestions: []
+    };
+  }
 
   const getTexts = (field) => {
     const raw = page.properties[field]?.rich_text?.[0]?.plain_text || "";
@@ -40,12 +58,7 @@ console.log("🧪 Todas as propriedades disponíveis:", page.properties);
   return {
     gptPromptData: {
       prompt: "You are OwlCoreHealth AI.",
-      context: {
-        selectedQuestion: null,
-        name,
-        age,
-        weight
-      }
+      context: { selectedQuestion: null, name, age, weight }
     },
     sintoma: page.properties?.Symptoms?.rich_text?.[0]?.plain_text || previousSymptom,
     funnelPhase,
@@ -82,4 +95,31 @@ console.log("🧪 Todas as propriedades disponíveis:", page.properties);
     },
     followupQuestions: []
   };
+}
+
+async function identifySymptomCategoryWithGPT(input) {
+  try {
+    const res = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: GPT_MODEL,
+        messages: [
+          { role: "system", content: "Você classifica sintomas em 5 grupos fixos: gut, metabolism, oral, brain, immunity. Dado um sintoma livre, responda apenas com o nome do grupo mais compatível." },
+          { role: "user", content: input }
+        ],
+        temperature: 0,
+        max_tokens: 10
+      })
+    });
+
+    const data = await res.json();
+    return data.choices?.[0]?.message?.content?.trim().toLowerCase();
+  } catch (e) {
+    console.warn("⚠️ Erro no fallback GPT:", e);
+    return "gut"; // fallback padrão seguro
+  }
 }
