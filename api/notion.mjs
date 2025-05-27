@@ -24,6 +24,10 @@ export async function getSymptomContext(input, name, age, weight, funnelPhase, p
   });
 
   const page = response.results[0];
+if (!page) {
+  console.warn("❗️Nenhuma entrada encontrada no Notion para o input:", input);
+  return {};
+}
 console.log("🧪 Todas as propriedades disponíveis:", page.properties);
 
   if (!page) return {};
