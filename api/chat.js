@@ -1,4 +1,4 @@
-// chat.js (corrigido: resposta científica + 3 perguntas clicáveis no final apenas)
+// chat.js (corrigido apenas o erro de followupQuestions undefined)
 
 import { getSymptomContext } from "./notion.mjs";
 
@@ -16,7 +16,6 @@ let sessionMemory = {
   usedQuestions: []
 };
 
-// ✅ Função para chamar o GPT com resposta + 3 perguntas personalizadas
 async function callGPT4oMini(symptomContext, userMessage) {
   try {
     const gptPrompt = symptomContext.gptPromptData?.prompt;
@@ -54,6 +53,7 @@ async function callGPT4oMini(symptomContext, userMessage) {
     });
 
     clearTimeout(timeoutId);
+
     const data = await response.json();
 
     if (data.error) {
@@ -68,9 +68,9 @@ async function callGPT4oMini(symptomContext, userMessage) {
   }
 }
 
-// ✅ Função auxiliar para gerar perguntas com base no contexto e fase do funil
-async function generateFollowUpQuestions(symptom, funnelPhase, idioma) {
-  const prompt = `Você é um assistente de saúde. Gere 3 perguntas curtas e provocadoras sobre "${symptom}" que levem à próxima fase do funil (${funnelPhase + 1}). Apenas perguntas. Responda no idioma: ${idioma}.`;
+// Função auxiliar para gerar 3 perguntas com base na fase atual
+async function generateFollowUpQuestions(context, userInput) {
+  const prompt = `Baseado no seguinte contexto: "${userInput}", gere 3 perguntas curtas e instigantes para levar o usuário à próxima fase do funil (${context.language === "pt" ? "Português" : "English"}). As perguntas devem estar alinhadas ao tema e estimular curiosidade.`;
 
   const response = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
@@ -81,23 +81,17 @@ async function generateFollowUpQuestions(symptom, funnelPhase, idioma) {
     body: JSON.stringify({
       model: GPT_MODEL,
       messages: [
-        { role: "system", content: prompt },
+        { role: "system", content: "Você é um gerador de perguntas persuasivas." },
         { role: "user", content: prompt }
       ],
       temperature: 0.7,
-      max_tokens: 250
+      max_tokens: 300
     })
   });
 
   const data = await response.json();
-  if (data.choices?.[0]?.message?.content) {
-    return data.choices[0].message.content
-      .split(/\d+\.\s+/)
-      .map(q => q.trim())
-      .filter(q => q);
-  } else {
-    return [];
-  }
+  const text = data.choices?.[0]?.message?.content || "";
+  return text.split(/\d+\.\s+/).filter(Boolean).slice(0, 3);
 }
 
 export default async function handler(req, res) {
@@ -129,38 +123,30 @@ export default async function handler(req, res) {
   if (!context.gptPromptData?.prompt || !context.gptPromptData?.context) {
     console.error("❌ gptPromptData não definido corretamente:", context);
     return res.status(200).json({
-      choices: [
-        {
-          message: {
-            content:
-              idioma === "pt"
-                ? "Desculpe, não encontrei informações suficientes. Tente reformular sua frase."
-                : "Sorry, I couldn't find enough information. Please try rephrasing your question.",
-            followupQuestions: []
-          }
+      choices: [{
+        message: {
+          content: "Desculpe, algo falhou ao processar seu sintoma. Tente reformular sua frase.",
+          followupQuestions: []
         }
-      ]
+      }]
     });
   }
 
   if (context.sintoma) sessionMemory.sintomaAtual = context.sintoma;
-  sessionMemory.usedQuestions.push(...context.followupQuestions);
+  sessionMemory.usedQuestions.push(...(context.followupQuestions || []));
 
   const gptResponse = await callGPT4oMini(context, userInput);
-  const followupQuestions = await generateFollowUpQuestions(context.sintoma, sessionMemory.funnelPhase, idioma);
+  const followupQuestions = await generateFollowUpQuestions(context, userInput);
   const content = formatHybridResponse(context, gptResponse, followupQuestions);
-
   sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
 
   return res.status(200).json({
-    choices: [
-      {
-        message: {
-          content,
-          followupQuestions
-        }
+    choices: [{
+      message: {
+        content,
+        followupQuestions: followupQuestions || []
       }
-    ]
+    }]
   });
 }
 
@@ -176,7 +162,7 @@ function formatHybridResponse(context, gptResponse, followupQuestions) {
   if (followupQuestions.length) {
     response += `\n\n${phaseTitle}\n${instruction}\n\n`;
     followupQuestions.slice(0, 3).forEach((q, i) => {
-      response += `<div class="clickable-question" data-question="${encodeURIComponent(q)}" onclick="handleQuestionClick(this)">${i + 1}. ${q}</div>\n`;
+      response += `<div class=\"clickable-question\" data-question=\"${encodeURIComponent(q)}\" onclick=\"handleQuestionClick(this)\">${i + 1}. ${q}</div>\n`;
     });
   }
 
