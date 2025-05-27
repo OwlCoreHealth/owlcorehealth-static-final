@@ -122,7 +122,6 @@ export default async function handler(req, res) {
   });
 }
 
-// Corrigido: resposta normal + só 3 perguntas clicáveis no final
 function formatHybridResponse(context, gptResponse) {
   const { followupQuestions, language } = context;
   const phaseTitle = language === "pt" ? "Vamos explorar mais:" : "Let's explore further:";
@@ -130,14 +129,19 @@ function formatHybridResponse(context, gptResponse) {
     ? "Escolha uma das opções abaixo para continuarmos:"
     : "Choose one of the options below to continue:";
 
-  let response = gptResponse?.trim() || "";
+  // Início: texto explicativo do GPT
+  let response = `${gptResponse?.trim() || ""}`;
 
-  if (followupQuestions.length) {
+  // Final: adiciona apenas 3 perguntas clicáveis
+  const validQuestions = followupQuestions.filter(q => q.length <= 180); // evita textos longos aqui
+
+  if (validQuestions.length) {
     response += `\n\n${phaseTitle}\n${instruction}\n\n`;
-    followupQuestions.slice(0, 3).forEach((q, i) => {
+    validQuestions.slice(0, 3).forEach((q, i) => {
       response += `<div class="clickable-question" data-question="${encodeURIComponent(q)}" onclick="handleQuestionClick(this)">${i + 1}. ${q}</div>\n`;
     });
   }
 
   return response;
 }
+
