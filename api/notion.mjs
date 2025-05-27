@@ -78,13 +78,17 @@ export async function getSymptomContext(message, name = "", age = 0, weight = 0,
     }
 
     const followupQuestions = [];
-    for (let i = 1; i <= 5; i++) {
-      for (let j = 1; j <= 3; j++) {
-        const key = `Symptom ${i} Variation ${j}`;
-        const text = props[key]?.rich_text?.[0]?.plain_text;
-        if (text) followupQuestions.push(text);
-      }
+for (let i = 1; i <= 5; i++) {
+  for (let j = 1; j <= 3; j++) {
+    const key = `Symptom ${i} Variation ${j}`;
+    const text = props[key]?.rich_text?.[0]?.plain_text;
+
+    // ✅ Filtro: só adiciona se for pergunta curta
+    if (text && text.length <= 150 && text.trim().endsWith("?")) {
+      followupQuestions.push(text.trim());
     }
+  }
+}
 
     const gravity = [];
     for (let i = 1; i <= 5; i++) {
