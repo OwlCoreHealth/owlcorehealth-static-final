@@ -1,4 +1,4 @@
-// chat.js (ajustado para perguntas clicáveis geradas por GPT)
+// chat.js (corrigido: resposta científica + 3 perguntas clicáveis no final apenas)
 
 import { getSymptomContext } from "./notion.mjs";
 
@@ -16,6 +16,7 @@ let sessionMemory = {
   usedQuestions: []
 };
 
+// ✅ Função para chamar o GPT com resposta + 3 perguntas personalizadas
 async function callGPT4oMini(symptomContext, userMessage) {
   try {
     const gptPrompt = symptomContext.gptPromptData?.prompt;
@@ -29,19 +30,22 @@ async function callGPT4oMini(symptomContext, userMessage) {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 7000);
 
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${OPENAI_API_KEY}`
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${OPENAI_API_KEY}`
       },
       body: JSON.stringify({
         model: GPT_MODEL,
         messages: [
           { role: "system", content: gptPrompt },
-          { role: "user", content: gptContext.selectedQuestion
-            ? `🧠 Pergunta selecionada do sistema: ${userMessage}`
-            : userMessage }
+          {
+            role: "user",
+            content: gptContext.selectedQuestion
+              ? `🧠 Pergunta selecionada do sistema: ${userMessage}`
+              : userMessage
+          }
         ],
         temperature: 0.7,
         max_tokens: 700
@@ -50,7 +54,6 @@ async function callGPT4oMini(symptomContext, userMessage) {
     });
 
     clearTimeout(timeoutId);
-
     const data = await response.json();
 
     if (data.error) {
@@ -62,6 +65,38 @@ async function callGPT4oMini(symptomContext, userMessage) {
   } catch (error) {
     console.error("Erro ao chamar GPT-4o mini:", error);
     return null;
+  }
+}
+
+// ✅ Função auxiliar para gerar perguntas com base no contexto e fase do funil
+async function generateFollowUpQuestions(symptom, funnelPhase, idioma) {
+  const prompt = `Você é um assistente de saúde. Gere 3 perguntas curtas e provocadoras sobre "${symptom}" que levem à próxima fase do funil (${funnelPhase + 1}). Apenas perguntas. Responda no idioma: ${idioma}.`;
+
+  const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${OPENAI_API_KEY}`
+    },
+    body: JSON.stringify({
+      model: GPT_MODEL,
+      messages: [
+        { role: "system", content: prompt },
+        { role: "user", content: prompt }
+      ],
+      temperature: 0.7,
+      max_tokens: 250
+    })
+  });
+
+  const data = await response.json();
+  if (data.choices?.[0]?.message?.content) {
+    return data.choices[0].message.content
+      .split(/\d+\.\s+/)
+      .map(q => q.trim())
+      .filter(q => q);
+  } else {
+    return [];
   }
 }
 
@@ -80,7 +115,6 @@ export default async function handler(req, res) {
 
   const userAge = parseInt(age);
   const userWeight = parseFloat(weight);
-  const hasForm = userName && !isNaN(userAge) && sex && !isNaN(userWeight);
 
   const context = await getSymptomContext(
     userInput,
@@ -95,74 +129,43 @@ export default async function handler(req, res) {
   if (!context.gptPromptData?.prompt || !context.gptPromptData?.context) {
     console.error("❌ gptPromptData não definido corretamente:", context);
     return res.status(200).json({
-      choices: [{
-        message: {
-          content: idioma === "pt"
-            ? "Desculpe, algo falhou ao processar seu sintoma. Tente reformular sua frase."
-            : "Sorry, something went wrong processing your symptom. Please try rephrasing.",
-          followupQuestions: []
+      choices: [
+        {
+          message: {
+            content:
+              idioma === "pt"
+                ? "Desculpe, não encontrei informações suficientes. Tente reformular sua frase."
+                : "Sorry, I couldn't find enough information. Please try rephrasing your question.",
+            followupQuestions: []
+          }
         }
-      }]
+      ]
     });
   }
 
   if (context.sintoma) sessionMemory.sintomaAtual = context.sintoma;
+  sessionMemory.usedQuestions.push(...context.followupQuestions);
 
   const gptResponse = await callGPT4oMini(context, userInput);
-  const followupQuestions = await generateFollowUpQuestions(context);
+  const followupQuestions = await generateFollowUpQuestions(context.sintoma, sessionMemory.funnelPhase, idioma);
+  const content = formatHybridResponse(context, gptResponse, followupQuestions);
 
-  sessionMemory.usedQuestions.push(...followupQuestions);
   sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
 
-  const content = formatHybridResponse(gptResponse, followupQuestions, idioma);
-
   return res.status(200).json({
-    choices: [{
-      message: {
-        content,
-        followupQuestions
+    choices: [
+      {
+        message: {
+          content,
+          followupQuestions
+        }
       }
-    }]
+    ]
   });
 }
 
-async function generateFollowUpQuestions(context) {
-  const followPrompt = `Com base no problema descrito, crie 3 perguntas curtas e provocadoras para conduzir o usuário à próxima etapa do funil. Fase atual: ${context.gptPromptData?.context.funnelPhase}. Idioma: ${context.language}. Apenas as perguntas, sem explicações.`;
-
-  try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${OPENAI_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: GPT_MODEL,
-        messages: [
-          { role: "system", content: followPrompt },
-          { role: "user", content: context.sintoma }
-        ],
-        temperature: 0.6,
-        max_tokens: 150
-      })
-    });
-
-    const data = await response.json();
-    if (data.choices?.[0]?.message?.content) {
-      return data.choices[0].message.content
-        .split("\n")
-        .filter(line => line.trim())
-        .map(q => q.replace(/^\d+\.\s*/, "").trim())
-        .slice(0, 3);
-    }
-    return [];
-  } catch (err) {
-    console.error("Erro ao gerar perguntas GPT:", err);
-    return [];
-  }
-}
-
-function formatHybridResponse(gptResponse, followupQuestions, language) {
+function formatHybridResponse(context, gptResponse, followupQuestions) {
+  const { language } = context;
   const phaseTitle = language === "pt" ? "Vamos explorar mais:" : "Let's explore further:";
   const instruction = language === "pt"
     ? "Escolha uma das opções abaixo para continuarmos:"
@@ -172,7 +175,7 @@ function formatHybridResponse(gptResponse, followupQuestions, language) {
 
   if (followupQuestions.length) {
     response += `\n\n${phaseTitle}\n${instruction}\n\n`;
-    followupQuestions.forEach((q, i) => {
+    followupQuestions.slice(0, 3).forEach((q, i) => {
       response += `<div class="clickable-question" data-question="${encodeURIComponent(q)}" onclick="handleQuestionClick(this)">${i + 1}. ${q}</div>\n`;
     });
   }
