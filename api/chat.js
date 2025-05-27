@@ -1,4 +1,4 @@
-// ✅ Novo chat.js ajustado para funil com texto livre + 3 perguntas clicáveis (fase atual)
+// chat.js (corrigido: resposta científica + 3 perguntas clicáveis no final apenas)
 
 import { getSymptomContext } from "./notion.mjs";
 
@@ -16,6 +16,7 @@ let sessionMemory = {
   usedQuestions: []
 };
 
+// Função para chamar o GPT-4o mini com contexto correto
 async function callGPT4oMini(symptomContext, userMessage) {
   try {
     const gptPrompt = symptomContext.gptPromptData?.prompt;
@@ -27,24 +28,21 @@ async function callGPT4oMini(symptomContext, userMessage) {
     }
 
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 5000);
+    const timeoutId = setTimeout(() => controller.abort(), 7000);
 
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${OPENAI_API_KEY}`
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${OPENAI_API_KEY}`
       },
       body: JSON.stringify({
         model: GPT_MODEL,
         messages: [
           { role: "system", content: gptPrompt },
-          {
-            role: "user",
-            content: gptContext.selectedQuestion
-              ? `🧠 Pergunta selecionada: ${userMessage}`
-              : userMessage
-          }
+          { role: "user", content: gptContext.selectedQuestion
+            ? `🧠 Pergunta selecionada do sistema: ${userMessage}`
+            : userMessage }
         ],
         temperature: 0.7,
         max_tokens: 700
@@ -53,6 +51,7 @@ async function callGPT4oMini(symptomContext, userMessage) {
     });
 
     clearTimeout(timeoutId);
+
     const data = await response.json();
 
     if (data.error) {
@@ -82,6 +81,7 @@ export default async function handler(req, res) {
 
   const userAge = parseInt(age);
   const userWeight = parseFloat(weight);
+  const hasForm = userName && !isNaN(userAge) && sex && !isNaN(userWeight);
 
   const context = await getSymptomContext(
     userInput,
@@ -96,38 +96,33 @@ export default async function handler(req, res) {
   if (!context.gptPromptData?.prompt || !context.gptPromptData?.context) {
     console.error("❌ gptPromptData não definido corretamente:", context);
     return res.status(200).json({
-      choices: [
-        {
-          message: {
-            content: idioma === "pt"
-              ? "Desculpe, não encontrei informações suficientes. Tente reformular sua frase."
-              : "Sorry, I couldn't find enough information. Please try rephrasing your question.",
-            followupQuestions: []
-          }
+      choices: [{
+        message: {
+          content: "Desculpe, algo falhou ao processar seu sintoma. Tente reformular sua frase.",
+          followupQuestions: []
         }
-      ]
+      }]
     });
   }
 
   if (context.sintoma) sessionMemory.sintomaAtual = context.sintoma;
   sessionMemory.usedQuestions.push(...context.followupQuestions);
 
-  const gptResponse = await callGPT4oMini(context, userInput);
+  const gptResponse = await callGPT4oMini(context, userInput); 
   const content = formatHybridResponse(context, gptResponse);
   sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
 
   return res.status(200).json({
-    choices: [
-      {
-        message: {
-          content,
-          followupQuestions: context.followupQuestions
-        }
+    choices: [{
+      message: {
+        content,
+        followupQuestions: context.followupQuestions
       }
-    ]
+    }]
   });
 }
 
+// Corrigido: resposta normal + só 3 perguntas clicáveis no final
 function formatHybridResponse(context, gptResponse) {
   const { followupQuestions, language } = context;
   const phaseTitle = language === "pt" ? "Vamos explorar mais:" : "Let's explore further:";
@@ -135,11 +130,14 @@ function formatHybridResponse(context, gptResponse) {
     ? "Escolha uma das opções abaixo para continuarmos:"
     : "Choose one of the options below to continue:";
 
-  let response = `${gptResponse?.trim() || ""}\n\n${phaseTitle}\n${instruction}\n\n`;
+  let response = gptResponse?.trim() || "";
 
-  followupQuestions.slice(0, 3).forEach((q, i) => {
-    response += `<div class="clickable-question" data-question="${encodeURIComponent(q)}" onclick="handleQuestionClick(this)">${i + 1}. ${q}</div>\n`;
-  });
+  if (followupQuestions.length) {
+    response += `\n\n${phaseTitle}\n${instruction}\n\n`;
+    followupQuestions.slice(0, 3).forEach((q, i) => {
+      response += `<div class="clickable-question" data-question="${encodeURIComponent(q)}" onclick="handleQuestionClick(this)">${i + 1}. ${q}</div>\n`;
+    });
+  }
 
   return response;
 }
