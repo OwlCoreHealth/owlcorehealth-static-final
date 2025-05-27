@@ -28,7 +28,7 @@ async function callGPT4oMini(symptomContext, userMessage) {
     }
 
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 7000);
+    const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 segundos
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
