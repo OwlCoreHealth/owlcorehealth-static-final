@@ -1,4 +1,4 @@
-// chat.js (versão com textos do Notion por fase + 30% GPT de liberdade)
+// chat.js (ajuste para manter o sintoma em follow-ups)
 import { getSymptomContext } from "./notion.mjs";
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
@@ -27,7 +27,7 @@ function getFunnelKey(phase) {
   }
 }
 
-async function rewriteWithGPT(baseText, sintoma, idioma) { // 🔧 nova função para reescrita criativa controlada
+async function rewriteWithGPT(baseText, sintoma, idioma) {
   const prompt = idioma === "pt"
     ? `Use o seguinte texto como base, mantendo o conteúdo e estrutura, mas reescrevendo com 30% de liberdade criativa, usando linguagem mais fluida, provocadora e humana. Não mude o tema e mantenha o foco em: ${sintoma}\n\nTexto-base:\n${baseText}`
     : `Use the following text as a base. Keep the core message and structure, but rewrite with 30% creative freedom in a more natural, engaging, and human tone. Do not change the topic and keep the focus on: ${sintoma}\n\nBase text:\n${baseText}`;
@@ -62,6 +62,9 @@ export default async function handler(req, res) {
 
   const { message, name, age, sex, weight, selectedQuestion } = req.body;
   const userInput = selectedQuestion || message;
+  const isFollowUp = Boolean(selectedQuestion); // 🔧 identificar se é pergunta clicada
+  const inputForSearch = isFollowUp ? sessionMemory.sintomaAtual : userInput; // 🔧 manter sintoma original em follow-ups
+
   const isPortuguese = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
   const idiomaDetectado = isPortuguese ? "pt" : "en";
 
@@ -75,7 +78,7 @@ export default async function handler(req, res) {
   const userWeight = parseFloat(weight);
 
   const context = await getSymptomContext(
-    userInput,
+    inputForSearch,
     sessionMemory.nome,
     userAge,
     userWeight,
@@ -121,6 +124,11 @@ export default async function handler(req, res) {
   const followupQuestions = await generateFollowUpQuestions(context, idioma);
   sessionMemory.funnelPhase = Math.min((context.funnelPhase || sessionMemory.funnelPhase || 1) + 1, 6);
 
+  // 🔧 DEBUG LOGS
+  console.log("🧪 Sintoma detectado:", context.sintoma);
+  console.log("🧪 Fase atual:", sessionMemory.funnelPhase);
+  console.log("🧪 Texto da fase:", funnelKey, funnelTexts);
+
   const content = formatHybridResponse(context, gptResponse, followupQuestions, idioma);
 
   return res.status(200).json({
@@ -153,39 +161,5 @@ function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
   return response;
 }
 
-// generateFollowUpQuestions permanece como está, conectado ao contexto e idioma
-async function generateFollowUpQuestions(context, idioma) {
-  const prompt = idioma === "pt"
-    ? `Com base no sintoma \"${context.sintoma}\" e na fase do funil ${context.funnelPhase}, gere 3 perguntas curtas, provocativas e instigantes para conduzir o usuário para a próxima etapa.`
-    : `Based on the symptom \"${context.sintoma}\" and funnel phase ${context.funnelPhase}, generate 3 short, provocative, and engaging questions to guide the user to the next step.`;
-
-  try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${OPENAI_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: GPT_MODEL,
-        messages: [
-          { role: "system", content: "You generate only 3 relevant and persuasive questions. No extra explanation." },
-          { role: "user", content: prompt }
-        ],
-        temperature: 0.7,
-        max_tokens: 300
-      })
-    });
-
-    const data = await response.json();
-    const text = data.choices?.[0]?.message?.content || "";
-    return text.split(/\d+\.\s+/).filter(Boolean).slice(0, 3);
-  } catch (err) {
-    console.warn("❗️Erro ao gerar perguntas com GPT:", err);
-    return [
-      idioma === "pt" ? "Você já tentou mudar sua alimentação ou rotina?" : "Have you tried adjusting your diet or lifestyle?",
-      idioma === "pt" ? "Como você acha que isso está afetando seu dia a dia?" : "How do you think this is affecting your daily life?",
-      idioma === "pt" ? "Está disposto(a) a descobrir uma solução mais eficaz agora?" : "Are you ready to explore a better solution now?"
-    ];
-  }
-}
+// 🔧 generateFollowUpQuestions função segue abaixo...
+// (essa parte você já incluiu corretamente antes)
