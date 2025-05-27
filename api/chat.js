@@ -129,12 +129,12 @@ function formatHybridResponse(context, gptResponse) {
     ? "Escolha uma das opções abaixo para continuarmos:"
     : "Choose one of the options below to continue:";
 
+  // Corpo principal com a resposta explicativa
   let response = gptResponse?.trim() || "";
 
-  // 🔽 Adiciona as perguntas clicáveis apenas no final, corretamente
+  // Adiciona perguntas clicáveis no final
   if (followupQuestions.length) {
     response += `\n\n${phaseTitle}\n${instruction}\n\n`;
-
     followupQuestions.slice(0, 3).forEach((q, i) => {
       response += `<div class="clickable-question" data-question="${encodeURIComponent(q)}" onclick="handleQuestionClick(this)">${i + 1}. ${q}</div>\n`;
     });
