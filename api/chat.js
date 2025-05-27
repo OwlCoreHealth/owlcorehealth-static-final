@@ -16,32 +16,65 @@ let sessionMemory = {
   usedQuestions: []
 };
 
-async function callGPT(prompt, context, userMessage) {
+// Função para chamar o GPT-4o mini com contexto correto
+async function callGPT4oMini(symptomContext, userMessage) {
   try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
+    console.log("Iniciando chamada ao GPT-4o mini...");
+
+    const gptPrompt = symptomContext.gptPromptData?.prompt;
+    const gptContext = symptomContext.gptPromptData?.context;
+
+    if (!gptPrompt || !gptContext) {
+      console.error("❌ Erro: prompt ou contexto não definido no symptomContext.gptPromptData");
+      return null;
+    }
+
+    // Adicionar timeout para evitar bloqueios longos
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 segundos
+
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${OPENAI_API_KEY}`
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${OPENAI_API_KEY}`
       },
       body: JSON.stringify({
         model: GPT_MODEL,
         messages: [
-          { role: "system", content: context.prompt },
-          { role: "user", content: userMessage }
+          {
+            role: "system",
+            content: gptPrompt
+          },
+          {
+            role: "user",
+            content: gptContext.selectedQuestion
+              ? `🧠 Pergunta selecionada do sistema: ${userMessage}`
+              : userMessage
+          }
         ],
         temperature: 0.7,
         max_tokens: 700
-      })
+      }),
+      signal: controller.signal
     });
+
+    clearTimeout(timeoutId);
+
     const data = await response.json();
-    return data.choices?.[0]?.message?.content || null;
-  } catch (err) {
-    console.error("Erro GPT:", err);
+
+    if (data.error) {
+      console.error("Erro na API do GPT:", data.error);
+      return null;
+    }
+
+    console.log("Resposta do GPT recebida com sucesso!");
+    return data.choices[0].message.content;
+  } catch (error) {
+    console.error("Erro ao chamar GPT-4o mini:", error);
     return null;
   }
 }
-
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Método não permitido" });
 
