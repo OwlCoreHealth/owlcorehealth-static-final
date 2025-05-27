@@ -129,19 +129,16 @@ function formatHybridResponse(context, gptResponse) {
     ? "Escolha uma das opções abaixo para continuarmos:"
     : "Choose one of the options below to continue:";
 
-  // Início: texto explicativo do GPT
-  let response = `${gptResponse?.trim() || ""}`;
+  let response = gptResponse?.trim() || "";
 
-  // Final: adiciona apenas 3 perguntas clicáveis
-  const validQuestions = followupQuestions.filter(q => q.length <= 180); // evita textos longos aqui
-
-  if (validQuestions.length) {
+  // Adicionar perguntas clicáveis somente no final da resposta
+  const perguntas = followupQuestions.slice(0, 3);
+  if (perguntas.length > 0) {
     response += `\n\n${phaseTitle}\n${instruction}\n\n`;
-    validQuestions.slice(0, 3).forEach((q, i) => {
+    perguntas.forEach((q, i) => {
       response += `<div class="clickable-question" data-question="${encodeURIComponent(q)}" onclick="handleQuestionClick(this)">${i + 1}. ${q}</div>\n`;
     });
   }
 
   return response;
 }
-
