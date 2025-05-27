@@ -1,4 +1,4 @@
-// chat.js (corrigido novamente: resposta + 3 perguntas clicáveis no final)
+// chat.js (corrigido apenas o erro de followupQuestions undefined)
 
 import { getSymptomContext } from "./notion.mjs";
 
@@ -29,19 +29,22 @@ async function callGPT4oMini(symptomContext, userMessage) {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 7000);
 
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${OPENAI_API_KEY}`
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${OPENAI_API_KEY}`
       },
       body: JSON.stringify({
         model: GPT_MODEL,
         messages: [
           { role: "system", content: gptPrompt },
-          { role: "user", content: gptContext.selectedQuestion
-            ? `🧠 Pergunta selecionada do sistema: ${userMessage}`
-            : userMessage }
+          {
+            role: "user",
+            content: gptContext.selectedQuestion
+              ? `🧠 Pergunta selecionada do sistema: ${userMessage}`
+              : userMessage
+          }
         ],
         temperature: 0.7,
         max_tokens: 700
@@ -50,6 +53,7 @@ async function callGPT4oMini(symptomContext, userMessage) {
     });
 
     clearTimeout(timeoutId);
+
     const data = await response.json();
 
     if (data.error) {
@@ -62,6 +66,32 @@ async function callGPT4oMini(symptomContext, userMessage) {
     console.error("Erro ao chamar GPT-4o mini:", error);
     return null;
   }
+}
+
+// Função auxiliar para gerar 3 perguntas com base na fase atual
+async function generateFollowUpQuestions(context, userInput) {
+  const prompt = `Baseado no seguinte contexto: "${userInput}", gere 3 perguntas curtas e instigantes para levar o usuário à próxima fase do funil (${context.language === "pt" ? "Português" : "English"}). As perguntas devem estar alinhadas ao tema e estimular curiosidade.`;
+
+  const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${OPENAI_API_KEY}`
+    },
+    body: JSON.stringify({
+      model: GPT_MODEL,
+      messages: [
+        { role: "system", content: "Você é um gerador de perguntas persuasivas." },
+        { role: "user", content: prompt }
+      ],
+      temperature: 0.7,
+      max_tokens: 300
+    })
+  });
+
+  const data = await response.json();
+  const text = data.choices?.[0]?.message?.content || "";
+  return text.split(/\d+\.\s+/).filter(Boolean).slice(0, 3);
 }
 
 export default async function handler(req, res) {
@@ -105,23 +135,23 @@ export default async function handler(req, res) {
   if (context.sintoma) sessionMemory.sintomaAtual = context.sintoma;
   sessionMemory.usedQuestions.push(...(context.followupQuestions || []));
 
-  const gptResponse = await callGPT4oMini(context, userInput); 
-  const content = formatHybridResponse(context, gptResponse);
+  const gptResponse = await callGPT4oMini(context, userInput);
+  const followupQuestions = await generateFollowUpQuestions(context, userInput);
+  const content = formatHybridResponse(context, gptResponse, followupQuestions);
   sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
 
   return res.status(200).json({
     choices: [{
       message: {
         content,
-        followupQuestions: context.followupQuestions || []
+        followupQuestions: followupQuestions || []
       }
     }]
   });
 }
 
-// ✅ Mantém texto normal e 3 perguntas clicáveis no final
-function formatHybridResponse(context, gptResponse) {
-  const { followupQuestions, language } = context;
+function formatHybridResponse(context, gptResponse, followupQuestions) {
+  const { language } = context;
   const phaseTitle = language === "pt" ? "Vamos explorar mais:" : "Let's explore further:";
   const instruction = language === "pt"
     ? "Escolha uma das opções abaixo para continuarmos:"
@@ -129,10 +159,10 @@ function formatHybridResponse(context, gptResponse) {
 
   let response = gptResponse?.trim() || "";
 
-  if ((followupQuestions || []).length > 0) {
+  if (followupQuestions.length) {
     response += `\n\n${phaseTitle}\n${instruction}\n\n`;
     followupQuestions.slice(0, 3).forEach((q, i) => {
-      response += `<div class="clickable-question" data-question="${encodeURIComponent(q)}" onclick="handleQuestionClick(this)">${i + 1}. ${q}</div>\n`;
+      response += `<div class=\"clickable-question\" data-question=\"${encodeURIComponent(q)}\" onclick=\"handleQuestionClick(this)\">${i + 1}. ${q}</div>\n`;
     });
   }
 
