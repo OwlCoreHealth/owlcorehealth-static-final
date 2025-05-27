@@ -1,34 +1,9 @@
-// notion.mjs - Versão atualizada com prompt completo e funil estruturado
-
 import { Client } from "@notionhq/client";
 
-// Detectar idioma com base na mensagem
+// Função auxiliar para detectar idioma
 function detectLanguage(message) {
   const ptMatch = /[ãõçáéíóú]| você|dor|tenho|problema|saúde/i.test(message);
   return ptMatch ? "pt" : "en";
-}
-
-// Prompt base completo
-const OWL_SAVAGE_PROMPT = `
-Você é o OwlCoreHealth AI, um assistente digital de saúde com personalidade inteligente, provocadora, empática e confiável. Sua missão é ajudar o usuário a compreender sintomas, causas, riscos e soluções naturais com base em ciência, sempre conduzindo de forma humanizada e estratégica para possíveis soluções com plantas naturais — sem nunca parecer um vendedor direto.
-
-(Resumo adaptado aqui... substitua pelo prompt completo, se preferir)
-`;
-
-// Construir o prompt com contexto para o GPT
-function buildGPTPrompt(sintoma, idioma, nome, idade, peso, mensagem, fase, usedQuestions) {
-  return {
-    prompt: OWL_SAVAGE_PROMPT,
-    context: {
-      userName: nome || "amigo",
-      userAge: idade,
-      userWeight: peso,
-      language: idioma,
-      funnelPhase: fase,
-      selectedQuestion: false,
-      usedQuestions
-    }
-  };
 }
 
 const notion = new Client({
@@ -41,61 +16,84 @@ export async function getSymptomContext(message, name = "", age = 0, weight = 0,
   try {
     const language = detectLanguage(message);
 
+    const keywords = message.toLowerCase().split(/[^a-zA-Z0-9]+/).filter(k => k.length > 3);
+
+    const filter = {
+      or: keywords.slice(0, 8).map(k => ({
+        property: "Keywords",
+        rich_text: {
+          contains: k
+        }
+      }))
+    };
+
     const query = await notion.databases.query({
       database_id: databaseId,
-      filter: {
-        or: [
-          { property: "Keywords", rich_text: { contains: message } },
-          { property: "Symptom", rich_text: { contains: message } }
-        ]
-      }
+      filter
     });
 
-    let sintoma = "unknown";
-    let funnelContent = {}, followupQuestions = [], gravity = [], links = {};
-
-    if (query.results.length > 0) {
-      const props = query.results[0].properties;
-      sintoma = props["Symptom"]?.rich_text?.[0]?.plain_text || "unknown";
-
-      for (let i = 1; i <= 6; i++) {
-        const varKeys = [`Funnel ${i} Variation 1`, `Funnel ${i} Variation 2`, `Funnel ${i} Variation 3`];
-        funnelContent[`funnel${i}`] = varKeys.map(k => props[k]?.rich_text?.[0]?.plain_text || null).filter(Boolean);
-      }
-
-      for (let i = 1; i <= 5; i++) {
-        for (let j = 1; j <= 3; j++) {
-          const key = `Symptom ${i} Variation ${j}`;
-          const text = props[key]?.rich_text?.[0]?.plain_text;
-          if (text) followupQuestions.push(text);
+    if (!query.results.length) {
+      return {
+        sintoma: "unknown",
+        language,
+        funnelContent: {},
+        followupQuestions: [],
+        gravity: [],
+        links: {},
+        gptPromptData: {
+          prompt: `Você é o OwlCoreHealth AI. O usuário relatou: ${message}. Fase do funil: ${funnelPhase}. Idioma: ${language}`,
+          context: {
+            userName: name || (language === "pt" ? "amigo" : "friend"),
+            userAge: age,
+            userWeight: weight,
+            language,
+            funnelPhase,
+            selectedQuestion: false
+          }
         }
-      }
-
-      for (let i = 1; i <= 5; i++) {
-        const gkey = `Gravity ${i}`;
-        const gtext = props[gkey]?.rich_text?.[0]?.plain_text;
-        if (gtext) gravity.push(gtext);
-      }
-
-      const linkText = props["Links"]?.rich_text?.[0]?.plain_text || "";
-      const linkParts = linkText.split("click here");
-      links = {
-        review: linkParts[0]?.split("Review")?.[1]?.trim() || "",
-        video: linkParts[2]?.trim() || "",
-        product: linkParts[1]?.split("Product")?.[1]?.trim() || ""
       };
     }
 
-    const { prompt, context: promptContext } = buildGPTPrompt(
-      sintoma,
-      language,
-      name || "amigo",
-      age,
-      weight,
-      message,
-      funnelPhase,
-      usedQuestions
-    );
+    const page = query.results[0];
+    const props = page.properties;
+
+    const sintoma = props["Symptom"]?.title?.[0]?.plain_text || "unknown";
+
+    const funnelContent = {};
+    for (let i = 1; i <= 6; i++) {
+      funnelContent[`funnel${i}`] = [];
+      for (let j = 1; j <= 3; j++) {
+        const key = `Funnel ${i} Variation ${j}`;
+        const val = props[key]?.rich_text?.[0]?.plain_text;
+        if (val) funnelContent[`funnel${i}`].push(val);
+      }
+    }
+
+    const followupQuestions = [];
+    for (let i = 1; i <= 5; i++) {
+      for (let j = 1; j <= 3; j++) {
+        const key = `Symptom ${i} Variation ${j}`;
+        const val = props[key]?.rich_text?.[0]?.plain_text;
+        if (val) followupQuestions.push(val);
+      }
+    }
+
+    const gravity = [];
+    for (let i = 1; i <= 5; i++) {
+      const key = `Gravity ${i}`;
+      const val = props[key]?.rich_text?.[0]?.plain_text;
+      if (val) gravity.push(val);
+    }
+
+    const linkText = props["Links"]?.rich_text?.[0]?.plain_text || "";
+    const linkParts = linkText.split("click here");
+    const links = {
+      review: linkParts[0]?.split("Review")?.[1]?.trim() || "",
+      video: linkParts[2]?.trim() || "",
+      product: linkParts[1]?.split("Product")?.[1]?.trim() || ""
+    };
+
+    const prompt = `Você é o OwlCoreHealth AI. O usuário relatou: ${message}. Fase do funil: ${funnelPhase}. Idioma: ${language}`;
 
     return {
       sintoma,
@@ -106,22 +104,19 @@ export async function getSymptomContext(message, name = "", age = 0, weight = 0,
       links,
       gptPromptData: {
         prompt,
-        context: promptContext
+        context: {
+          userName: name || (language === "pt" ? "amigo" : "friend"),
+          userAge: age,
+          userWeight: weight,
+          language,
+          funnelPhase,
+          selectedQuestion: false
+        }
       }
     };
   } catch (err) {
     console.error("Erro ao buscar contexto no Notion:", err);
     const language = detectLanguage(message);
-    const { prompt, context: promptContext } = buildGPTPrompt(
-      "unknown",
-      language,
-      name,
-      age,
-      weight,
-      message,
-      funnelPhase,
-      usedQuestions
-    );
     return {
       sintoma: "unknown",
       language,
@@ -130,8 +125,15 @@ export async function getSymptomContext(message, name = "", age = 0, weight = 0,
       gravity: [],
       links: {},
       gptPromptData: {
-        prompt,
-        context: promptContext
+        prompt: `Você é o OwlCoreHealth AI. O usuário relatou: ${message}. Fase do funil: ${funnelPhase}. Idioma: ${language}`,
+        context: {
+          userName: name || (language === "pt" ? "amigo" : "friend"),
+          userAge: age,
+          userWeight: weight,
+          language,
+          funnelPhase,
+          selectedQuestion: false
+        }
       }
     };
   }
