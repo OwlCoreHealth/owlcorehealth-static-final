@@ -131,11 +131,11 @@ function formatHybridResponse(context, gptResponse) {
 
   let response = gptResponse?.trim() || "";
 
-  // Adicionar perguntas clicáveis somente no final da resposta
-  const perguntas = followupQuestions.slice(0, 3);
-  if (perguntas.length > 0) {
+  // 🔽 Adiciona as perguntas clicáveis apenas no final, corretamente
+  if (followupQuestions.length) {
     response += `\n\n${phaseTitle}\n${instruction}\n\n`;
-    perguntas.forEach((q, i) => {
+
+    followupQuestions.slice(0, 3).forEach((q, i) => {
       response += `<div class="clickable-question" data-question="${encodeURIComponent(q)}" onclick="handleQuestionClick(this)">${i + 1}. ${q}</div>\n`;
     });
   }
