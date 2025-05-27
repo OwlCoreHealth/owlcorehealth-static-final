@@ -1,4 +1,4 @@
-// chat.js (corrigido apenas o erro de followupQuestions undefined)
+// chat.js (com controle de fase + follow-up coerente e respeitando funil)
 
 import { getSymptomContext } from "./notion.mjs";
 
@@ -16,15 +16,29 @@ let sessionMemory = {
   usedQuestions: []
 };
 
+// 🔧 Função GPT com controle de fase + contexto coerente
 async function callGPT4oMini(symptomContext, userMessage) {
   try {
     const gptPrompt = symptomContext.gptPromptData?.prompt;
     const gptContext = symptomContext.gptPromptData?.context;
+    const funnelPhase = gptContext?.funnelPhase || 1;
+    const sintoma = symptomContext.sintoma || "";
 
     if (!gptPrompt || !gptContext) {
       console.error("❌ Erro: prompt ou contexto não definido no symptomContext.gptPromptData");
       return null;
     }
+
+    const phaseInstructions = {
+      1: "Explique o problema de forma científica, simples e útil. Ofereça 2-3 soluções rápidas.",
+      2: "Mostre o que pode acontecer se o sintoma for ignorado. Use estatísticas moderadas.",
+      3: "Fale sobre os riscos sérios. Use linguagem mais forte e estatísticas alarmantes.",
+      4: "Fale sobre nutrientes e plantas medicinais que ajudam nesse sintoma.",
+      5: "Apresente a solução completa com base nas fases anteriores. Não cite o nome do suplemento ainda.",
+      6: "Se o usuário ainda não se interessar, apresente um plano B com novos argumentos."
+    };
+
+    const finalPrompt = `${gptPrompt}\n\nFase do funil: ${funnelPhase}\nSintoma: ${sintoma}\n\n${phaseInstructions[funnelPhase]}`;
 
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 7000);
@@ -38,11 +52,11 @@ async function callGPT4oMini(symptomContext, userMessage) {
       body: JSON.stringify({
         model: GPT_MODEL,
         messages: [
-          { role: "system", content: gptPrompt },
+          { role: "system", content: finalPrompt },
           {
             role: "user",
             content: gptContext.selectedQuestion
-              ? `🧠 Pergunta selecionada do sistema: ${userMessage}`
+              ? `🧠 Pergunta selecionada: ${userMessage}`
               : userMessage
           }
         ],
@@ -53,7 +67,6 @@ async function callGPT4oMini(symptomContext, userMessage) {
     });
 
     clearTimeout(timeoutId);
-
     const data = await response.json();
 
     if (data.error) {
@@ -66,32 +79,6 @@ async function callGPT4oMini(symptomContext, userMessage) {
     console.error("Erro ao chamar GPT-4o mini:", error);
     return null;
   }
-}
-
-// Função auxiliar para gerar 3 perguntas com base na fase atual
-async function generateFollowUpQuestions(context, userInput) {
-  const prompt = `Baseado no seguinte contexto: "${userInput}", gere 3 perguntas curtas e instigantes para levar o usuário à próxima fase do funil (${context.language === "pt" ? "Português" : "English"}). As perguntas devem estar alinhadas ao tema e estimular curiosidade.`;
-
-  const response = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${OPENAI_API_KEY}`
-    },
-    body: JSON.stringify({
-      model: GPT_MODEL,
-      messages: [
-        { role: "system", content: "Você é um gerador de perguntas persuasivas." },
-        { role: "user", content: prompt }
-      ],
-      temperature: 0.7,
-      max_tokens: 300
-    })
-  });
-
-  const data = await response.json();
-  const text = data.choices?.[0]?.message?.content || "";
-  return text.split(/\d+\.\s+/).filter(Boolean).slice(0, 3);
 }
 
 export default async function handler(req, res) {
@@ -123,12 +110,16 @@ export default async function handler(req, res) {
   if (!context.gptPromptData?.prompt || !context.gptPromptData?.context) {
     console.error("❌ gptPromptData não definido corretamente:", context);
     return res.status(200).json({
-      choices: [{
-        message: {
-          content: "Desculpe, algo falhou ao processar seu sintoma. Tente reformular sua frase.",
-          followupQuestions: []
+      choices: [
+        {
+          message: {
+            content: idioma === "pt"
+              ? "Desculpe, não encontrei informações suficientes. Tente reformular sua frase."
+              : "Sorry, I couldn't find enough information. Please try rephrasing your question.",
+            followupQuestions: []
+          }
         }
-      }]
+      ]
     });
   }
 
@@ -136,22 +127,23 @@ export default async function handler(req, res) {
   sessionMemory.usedQuestions.push(...(context.followupQuestions || []));
 
   const gptResponse = await callGPT4oMini(context, userInput);
-  const followupQuestions = await generateFollowUpQuestions(context, userInput);
-  const content = formatHybridResponse(context, gptResponse, followupQuestions);
+  const content = formatHybridResponse(context, gptResponse);
   sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
 
   return res.status(200).json({
-    choices: [{
-      message: {
-        content,
-        followupQuestions: followupQuestions || []
+    choices: [
+      {
+        message: {
+          content,
+          followupQuestions: context.followupQuestions || []
+        }
       }
-    }]
+    ]
   });
 }
 
-function formatHybridResponse(context, gptResponse, followupQuestions) {
-  const { language } = context;
+function formatHybridResponse(context, gptResponse) {
+  const { followupQuestions, language } = context;
   const phaseTitle = language === "pt" ? "Vamos explorar mais:" : "Let's explore further:";
   const instruction = language === "pt"
     ? "Escolha uma das opções abaixo para continuarmos:"
@@ -159,10 +151,10 @@ function formatHybridResponse(context, gptResponse, followupQuestions) {
 
   let response = gptResponse?.trim() || "";
 
-  if (followupQuestions.length) {
+  if (followupQuestions?.length) {
     response += `\n\n${phaseTitle}\n${instruction}\n\n`;
     followupQuestions.slice(0, 3).forEach((q, i) => {
-      response += `<div class=\"clickable-question\" data-question=\"${encodeURIComponent(q)}\" onclick=\"handleQuestionClick(this)\">${i + 1}. ${q}</div>\n`;
+      response += `<div class="clickable-question" data-question="${encodeURIComponent(q)}" onclick="handleQuestionClick(this)">${i + 1}. ${q}</div>\n`;
     });
   }
 
