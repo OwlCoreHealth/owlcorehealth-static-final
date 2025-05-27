@@ -93,14 +93,27 @@ export default async function handler(req, res) {
   const hasForm = userName && !isNaN(userAge) && sex && !isNaN(userWeight);
 
   const context = await getSymptomContext(
-    userInput,
-    userName,
-    userAge,
-    userWeight,
-    sessionMemory.funnelPhase,
-    sessionMemory.sintomaAtual,
-    sessionMemory.usedQuestions
-  );
+  userInput,
+  userName,
+  userAge,
+  userWeight,
+  sessionMemory.funnelPhase,
+  sessionMemory.sintomaAtual,
+  sessionMemory.usedQuestions
+);
+
+// 🚨 ADICIONE ESTA VERIFICAÇÃO LOGO ABAIXO
+if (!context.gptPromptData?.prompt || !context.gptPromptData?.context) {
+  console.error("❌ gptPromptData não definido corretamente:", context);
+  return res.status(200).json({
+    choices: [{
+      message: {
+        content: "Desculpe, algo falhou ao processar seu sintoma. Tente reformular sua frase.",
+        followupQuestions: []
+      }
+    }]
+  });
+}
 
   if (context.sintoma) sessionMemory.sintomaAtual = context.sintoma;
   sessionMemory.usedQuestions.push(...context.followupQuestions);
