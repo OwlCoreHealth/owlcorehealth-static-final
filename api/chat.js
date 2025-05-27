@@ -29,9 +29,8 @@ async function callGPT4oMini(symptomContext, userMessage) {
       return null;
     }
 
-    // Adicionar timeout para evitar bloqueios longos
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 segundos
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -75,6 +74,7 @@ async function callGPT4oMini(symptomContext, userMessage) {
     return null;
   }
 }
+
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Método não permitido" });
 
@@ -83,42 +83,41 @@ export default async function handler(req, res) {
   const isPortuguese = /[ãõçáéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
   const idioma = sessionMemory.idioma || (isPortuguese ? "pt" : "en");
 
-  const userName = name?.trim() || "";
+  const userName = name?.trim() || "amigo";
   sessionMemory.nome = userName;
   sessionMemory.idioma = idioma;
   sessionMemory.respostasUsuario.push(userInput);
 
   const userAge = parseInt(age);
   const userWeight = parseFloat(weight);
-  const hasForm = userName && !isNaN(userAge) && sex && !isNaN(userWeight);
+  const hasForm = userName !== "amigo" && !isNaN(userAge) && sex && !isNaN(userWeight);
 
   const context = await getSymptomContext(
-  userInput,
-  userName,
-  userAge,
-  userWeight,
-  sessionMemory.funnelPhase,
-  sessionMemory.sintomaAtual,
-  sessionMemory.usedQuestions
-);
+    userInput,
+    userName,
+    userAge,
+    userWeight,
+    sessionMemory.funnelPhase,
+    sessionMemory.sintomaAtual,
+    sessionMemory.usedQuestions
+  );
 
-// 🚨 ADICIONE ESTA VERIFICAÇÃO LOGO ABAIXO
-if (!context.gptPromptData?.prompt || !context.gptPromptData?.context) {
-  console.error("❌ gptPromptData não definido corretamente:", context);
-  return res.status(200).json({
-    choices: [{
-      message: {
-        content: "Desculpe, algo falhou ao processar seu sintoma. Tente reformular sua frase.",
-        followupQuestions: []
-      }
-    }]
-  });
-}
+  if (!context.gptPromptData?.prompt || !context.gptPromptData?.context) {
+    console.error("❌ gptPromptData não definido corretamente:", context);
+    return res.status(200).json({
+      choices: [{
+        message: {
+          content: idioma === "pt" ? "Desculpe, algo falhou ao processar seu sintoma. Tente reformular sua frase." : "Sorry, something went wrong processing your symptom. Try rephrasing it.",
+          followupQuestions: []
+        }
+      }]
+    });
+  }
 
   if (context.sintoma) sessionMemory.sintomaAtual = context.sintoma;
   sessionMemory.usedQuestions.push(...context.followupQuestions);
 
-  const gptResponse = await callGPT4oMini(context, userInput); 
+  const gptResponse = await callGPT4oMini(context, userInput);
   const content = formatHybridResponse(context, gptResponse);
   sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
 
@@ -133,16 +132,20 @@ if (!context.gptPromptData?.prompt || !context.gptPromptData?.context) {
 }
 
 function formatHybridResponse(context, gptResponse) {
-  const { intro, scientificExplanation, followupQuestions, language } = context;
+  const { funnelContent, followupQuestions, language, funnelPhase } = context;
+  const phaseKey = `funnel${funnelPhase}`;
+  const funnelOptions = funnelContent?.[phaseKey] || [];
+  const funnelText = funnelOptions.length > 0 ? funnelOptions[Math.floor(Math.random() * funnelOptions.length)] : "";
+
   const phaseTitle = language === "pt" ? "Vamos explorar mais:" : "Let's explore further:";
   const instruction = language === "pt"
     ? "Escolha uma das opções abaixo para continuarmos:"
     : "Choose one of the options below to continue:";
 
-  let response = `${intro}\n\n${scientificExplanation}\n\n${phaseTitle}\n${instruction}\n\n`;
+  let response = `${funnelText}\n\n${phaseTitle}\n${instruction}\n\n`;
   followupQuestions.forEach((q, i) => {
     response += `<div class="clickable-question" data-question="${encodeURIComponent(q)}" onclick="handleQuestionClick(this)">${i + 1}. ${q}</div>\n`;
   });
 
   return response;
-} 
+}
