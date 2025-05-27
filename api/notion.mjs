@@ -1,10 +1,6 @@
-import { Client } from "@notionhq/client";
+// notion.mjs - Atualizado com prompt dinâmico limpo e suporte total ao funil
 
-// Função auxiliar para detectar idioma
-function detectLanguage(message) {
-  const ptMatch = /[ãõçáéíóú]| você|dor|tenho|problema|saúde/i.test(message);
-  return ptMatch ? "pt" : "en";
-}
+import { Client } from "@notionhq/client";
 
 const notion = new Client({
   auth: "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"
@@ -12,24 +8,29 @@ const notion = new Client({
 
 const databaseId = "1fda050ee113804aa5e9dd1b01e31066";
 
+function detectLanguage(message) {
+  const ptMatch = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|saúde/i.test(message);
+  return ptMatch ? "pt" : "en";
+}
+
 export async function getSymptomContext(message, name = "", age = 0, weight = 0, funnelPhase = 1, previousSymptom = null, usedQuestions = []) {
   try {
     const language = detectLanguage(message);
 
-    const keywords = message.toLowerCase().split(/[^a-zA-Z0-9]+/).filter(k => k.length > 3);
-
-    const filter = {
-      or: keywords.slice(0, 8).map(k => ({
-        property: "Keywords",
-        rich_text: {
-          contains: k
-        }
-      }))
-    };
-
     const query = await notion.databases.query({
       database_id: databaseId,
-      filter
+      filter: {
+        or: [
+          {
+            property: "Keywords",
+            rich_text: { contains: message }
+          },
+          {
+            property: "Symptom",
+            rich_text: { contains: message }
+          }
+        ]
+      }
     });
 
     if (!query.results.length) {
@@ -41,9 +42,9 @@ export async function getSymptomContext(message, name = "", age = 0, weight = 0,
         gravity: [],
         links: {},
         gptPromptData: {
-          prompt: `Você é o OwlCoreHealth AI. O usuário relatou: ${message}. Fase do funil: ${funnelPhase}. Idioma: ${language}`,
+          prompt: "",
           context: {
-            userName: name || (language === "pt" ? "amigo" : "friend"),
+            userName: name,
             userAge: age,
             userWeight: weight,
             language,
@@ -56,33 +57,30 @@ export async function getSymptomContext(message, name = "", age = 0, weight = 0,
 
     const page = query.results[0];
     const props = page.properties;
-
-    const sintoma = props["Symptom"]?.title?.[0]?.plain_text || "unknown";
+    const sintoma = props["Symptom"]?.rich_text?.[0]?.plain_text || "unknown";
 
     const funnelContent = {};
     for (let i = 1; i <= 6; i++) {
-      funnelContent[`funnel${i}`] = [];
-      for (let j = 1; j <= 3; j++) {
-        const key = `Funnel ${i} Variation ${j}`;
-        const val = props[key]?.rich_text?.[0]?.plain_text;
-        if (val) funnelContent[`funnel${i}`].push(val);
-      }
+      const varKeys = [`Funnel ${i} Variation 1`, `Funnel ${i} Variation 2`, `Funnel ${i} Variation 3`];
+      funnelContent[`funnel${i}`] = varKeys
+        .map(k => props[k]?.rich_text?.[0]?.plain_text || null)
+        .filter(Boolean);
     }
 
     const followupQuestions = [];
     for (let i = 1; i <= 5; i++) {
       for (let j = 1; j <= 3; j++) {
         const key = `Symptom ${i} Variation ${j}`;
-        const val = props[key]?.rich_text?.[0]?.plain_text;
-        if (val) followupQuestions.push(val);
+        const text = props[key]?.rich_text?.[0]?.plain_text;
+        if (text) followupQuestions.push(text);
       }
     }
 
     const gravity = [];
     for (let i = 1; i <= 5; i++) {
-      const key = `Gravity ${i}`;
-      const val = props[key]?.rich_text?.[0]?.plain_text;
-      if (val) gravity.push(val);
+      const gkey = `Gravity ${i}`;
+      const gtext = props[gkey]?.rich_text?.[0]?.plain_text;
+      if (gtext) gravity.push(gtext);
     }
 
     const linkText = props["Links"]?.rich_text?.[0]?.plain_text || "";
@@ -93,12 +91,15 @@ export async function getSymptomContext(message, name = "", age = 0, weight = 0,
       product: linkParts[1]?.split("Product")?.[1]?.trim() || ""
     };
 
-    const prompt = `Você é o OwlCoreHealth AI. O usuário relatou: ${message}. Fase do funil: ${funnelPhase}. Idioma: ${language}`;
+    const available = funnelContent[`funnel${funnelPhase}`] || [];
+    const selectedContent = available[Math.floor(Math.random() * available.length)] || "";
+
+    const prompt = `OwlCoreHealth AI responde na fase ${funnelPhase} do funil. Sintoma detectado: ${sintoma}. Mensagem original: \"${message}\".`;
 
     return {
       sintoma,
       language,
-      funnelContent,
+      funnelContent: selectedContent ? { current: selectedContent } : {},
       followupQuestions,
       gravity,
       links,
@@ -125,9 +126,9 @@ export async function getSymptomContext(message, name = "", age = 0, weight = 0,
       gravity: [],
       links: {},
       gptPromptData: {
-        prompt: `Você é o OwlCoreHealth AI. O usuário relatou: ${message}. Fase do funil: ${funnelPhase}. Idioma: ${language}`,
+        prompt: "",
         context: {
-          userName: name || (language === "pt" ? "amigo" : "friend"),
+          userName: name,
           userAge: age,
           userWeight: weight,
           language,
