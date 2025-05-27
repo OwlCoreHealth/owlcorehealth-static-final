@@ -1,4 +1,4 @@
-// chat.js (com controle de fase + follow-up coerente e respeitando funil)
+// chat.js (versão estável com controle de fase + perguntas finais restauradas)
 
 import { getSymptomContext } from "./notion.mjs";
 
@@ -16,29 +16,15 @@ let sessionMemory = {
   usedQuestions: []
 };
 
-// 🔧 Função GPT com controle de fase + contexto coerente
 async function callGPT4oMini(symptomContext, userMessage) {
   try {
     const gptPrompt = symptomContext.gptPromptData?.prompt;
     const gptContext = symptomContext.gptPromptData?.context;
-    const funnelPhase = gptContext?.funnelPhase || 1;
-    const sintoma = symptomContext.sintoma || "";
 
     if (!gptPrompt || !gptContext) {
       console.error("❌ Erro: prompt ou contexto não definido no symptomContext.gptPromptData");
       return null;
     }
-
-    const phaseInstructions = {
-      1: "Explique o problema de forma científica, simples e útil. Ofereça 2-3 soluções rápidas.",
-      2: "Mostre o que pode acontecer se o sintoma for ignorado. Use estatísticas moderadas.",
-      3: "Fale sobre os riscos sérios. Use linguagem mais forte e estatísticas alarmantes.",
-      4: "Fale sobre nutrientes e plantas medicinais que ajudam nesse sintoma.",
-      5: "Apresente a solução completa com base nas fases anteriores. Não cite o nome do suplemento ainda.",
-      6: "Se o usuário ainda não se interessar, apresente um plano B com novos argumentos."
-    };
-
-    const finalPrompt = `${gptPrompt}\n\nFase do funil: ${funnelPhase}\nSintoma: ${sintoma}\n\n${phaseInstructions[funnelPhase]}`;
 
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 7000);
@@ -52,11 +38,11 @@ async function callGPT4oMini(symptomContext, userMessage) {
       body: JSON.stringify({
         model: GPT_MODEL,
         messages: [
-          { role: "system", content: finalPrompt },
+          { role: "system", content: gptPrompt },
           {
             role: "user",
             content: gptContext.selectedQuestion
-              ? `🧠 Pergunta selecionada: ${userMessage}`
+              ? `🧠 Pergunta selecionada do sistema: ${userMessage}`
               : userMessage
           }
         ],
@@ -127,15 +113,15 @@ export default async function handler(req, res) {
   sessionMemory.usedQuestions.push(...(context.followupQuestions || []));
 
   const gptResponse = await callGPT4oMini(context, userInput);
-  const content = formatHybridResponse(context, gptResponse);
   sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
+  const content = formatHybridResponse(context, gptResponse);
 
   return res.status(200).json({
     choices: [
       {
         message: {
           content,
-          followupQuestions: context.followupQuestions || []
+          followupQuestions: context.followupQuestions
         }
       }
     ]
