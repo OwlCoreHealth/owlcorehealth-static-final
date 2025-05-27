@@ -1,8 +1,10 @@
-// ✅ notion.mjs - robusto, com fallback e filtro por palavras-chave
+// notion.mjs - Versão final (GPT gera perguntas, Notion envia apenas dados do funil)
+
 import { Client } from "@notionhq/client";
 
+// Detectar idioma com base na mensagem
 function detectLanguage(message) {
-  const ptMatch = /[ãõçáéíóú]| você|dor|tenho|problema|saúde/i.test(message);
+  const ptMatch = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|saúde/i.test(message);
   return ptMatch ? "pt" : "en";
 }
 
@@ -16,47 +18,37 @@ export async function getSymptomContext(message, name = "", age = 0, weight = 0,
   try {
     const language = detectLanguage(message);
 
-    const keywords = message
-      .toLowerCase()
-      .split(/[^a-zA-ZÀ-ÿ]+/)
-      .filter(w => w.length > 3);
-
-    const filter = {
-      or: keywords.map(word => ({
-        property: "Keywords",
-        rich_text: {
-          contains: word
-        }
-      }))
-    };
-
     const query = await notion.databases.query({
       database_id: databaseId,
-      filter
+      filter: {
+        or: [
+          {
+            property: "Keywords",
+            rich_text: {
+              contains: message
+            }
+          },
+          {
+            property: "Symptom",
+            rich_text: {
+              contains: message
+            }
+          }
+        ]
+      }
     });
 
     if (!query.results.length) {
       return {
         sintoma: "unknown",
         language,
-        funnelContent: {
-          funnel1: [
-            language === "pt"
-              ? "Você mencionou algo que parece relacionado à digestão ou desconforto abdominal. Mesmo que não esteja exatamente na nossa base, posso te explicar o que isso pode significar e como resolver."
-              : "You mentioned something that seems related to digestion or abdominal discomfort. Even if it's not exactly in our database, I can explain what this might mean and how to address it."
-          ]
-        },
-        followupQuestions: [
-          language === "pt" ? "Quer saber se isso pode piorar?" : "Want to know if this could get worse?",
-          language === "pt" ? "Posso te explicar as causas mais comuns?" : "Can I explain the most common causes?",
-          language === "pt" ? "Deseja saber o que fazer agora?" : "Want to know what to do next?"
-        ],
+        funnelContent: {},
         gravity: [],
         links: {},
         gptPromptData: {
-          prompt: `Você é o OwlCoreHealth AI. O usuário relatou: ${message}. O sintoma exato não foi encontrado na base, mas ele parece relacionado a digestão. Fase: ${funnelPhase}.`,
+          prompt: `Você é o OwlCoreHealth AI. O usuário relatou: ${message}. Fase do funil: ${funnelPhase}. Idioma: ${language}`,
           context: {
-            userName: name || "amigo",
+            userName: name,
             userAge: age,
             userWeight: weight,
             language,
@@ -69,6 +61,7 @@ export async function getSymptomContext(message, name = "", age = 0, weight = 0,
 
     const page = query.results[0];
     const props = page.properties;
+
     const sintoma = props["Symptom"]?.rich_text?.[0]?.plain_text || "unknown";
 
     const funnelContent = {};
@@ -76,19 +69,6 @@ export async function getSymptomContext(message, name = "", age = 0, weight = 0,
       const varKeys = [`Funnel ${i} Variation 1`, `Funnel ${i} Variation 2`, `Funnel ${i} Variation 3`];
       funnelContent[`funnel${i}`] = varKeys.map(k => props[k]?.rich_text?.[0]?.plain_text || null).filter(Boolean);
     }
-
-    const followupQuestions = [];
-for (let i = 1; i <= 5; i++) {
-  for (let j = 1; j <= 3; j++) {
-    const key = `Symptom ${i} Variation ${j}`;
-    const text = props[key]?.rich_text?.[0]?.plain_text;
-
-    // ✅ Filtro: só adiciona se for pergunta curta
-    if (text && text.length <= 150 && text.trim().endsWith("?")) {
-      followupQuestions.push(text.trim());
-    }
-  }
-}
 
     const gravity = [];
     for (let i = 1; i <= 5; i++) {
@@ -105,19 +85,18 @@ for (let i = 1; i <= 5; i++) {
       product: linkParts[1]?.split("Product")?.[1]?.trim() || ""
     };
 
-    const prompt = `Você é o OwlCoreHealth AI. O usuário relatou: ${message}. Sintoma detectado: ${sintoma}. Fase do funil: ${funnelPhase}. Idioma: ${language}`;
+    const prompt = `Você é o OwlCoreHealth AI. O usuário relatou: ${message}. Fase do funil: ${funnelPhase}. Idioma: ${language}. Responda de forma explicativa, empática, e siga o funil de fases.`;
 
     return {
       sintoma,
       language,
       funnelContent,
-      followupQuestions,
       gravity,
       links,
       gptPromptData: {
         prompt,
         context: {
-          userName: name || "amigo",
+          userName: name,
           userAge: age,
           userWeight: weight,
           language,
@@ -133,13 +112,12 @@ for (let i = 1; i <= 5; i++) {
       sintoma: "unknown",
       language,
       funnelContent: {},
-      followupQuestions: [],
       gravity: [],
       links: {},
       gptPromptData: {
-        prompt: "",
+        prompt: `Você é o OwlCoreHealth AI. O usuário relatou: ${message}. Fase do funil: ${funnelPhase}. Idioma: ${language}`,
         context: {
-          userName: name || "amigo",
+          userName: name,
           userAge: age,
           userWeight: weight,
           language,
