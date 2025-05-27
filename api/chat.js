@@ -1,4 +1,4 @@
-// chat.js (atualizado para integração total com tabela Notion e funil híbrido)
+// chat.js (atualizado para exibir explicação + perguntas clicáveis separadas)
 
 import { getSymptomContext } from "./notion.mjs";
 
@@ -41,16 +41,10 @@ async function callGPT4oMini(symptomContext, userMessage) {
       body: JSON.stringify({
         model: GPT_MODEL,
         messages: [
-          {
-            role: "system",
-            content: gptPrompt
-          },
-          {
-            role: "user",
-            content: gptContext.selectedQuestion
-              ? `🧠 Pergunta selecionada do sistema: ${userMessage}`
-              : userMessage
-          }
+          { role: "system", content: gptPrompt },
+          { role: "user", content: gptContext.selectedQuestion
+            ? `🧠 Pergunta selecionada do sistema: ${userMessage}`
+            : userMessage }
         ],
         temperature: 0.7,
         max_tokens: 700
@@ -59,7 +53,6 @@ async function callGPT4oMini(symptomContext, userMessage) {
     });
 
     clearTimeout(timeoutId);
-
     const data = await response.json();
 
     if (data.error) {
@@ -83,14 +76,14 @@ export default async function handler(req, res) {
   const isPortuguese = /[ãõçáéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
   const idioma = sessionMemory.idioma || (isPortuguese ? "pt" : "en");
 
-  const userName = name?.trim() || "amigo";
+  const userName = name?.trim() || "";
   sessionMemory.nome = userName;
   sessionMemory.idioma = idioma;
   sessionMemory.respostasUsuario.push(userInput);
 
   const userAge = parseInt(age);
   const userWeight = parseFloat(weight);
-  const hasForm = userName !== "amigo" && !isNaN(userAge) && sex && !isNaN(userWeight);
+  const hasForm = userName && !isNaN(userAge) && sex && !isNaN(userWeight);
 
   const context = await getSymptomContext(
     userInput,
@@ -107,7 +100,7 @@ export default async function handler(req, res) {
     return res.status(200).json({
       choices: [{
         message: {
-          content: idioma === "pt" ? "Desculpe, algo falhou ao processar seu sintoma. Tente reformular sua frase." : "Sorry, something went wrong processing your symptom. Try rephrasing it.",
+          content: "Desculpe, algo falhou ao processar seu sintoma. Tente reformular sua frase.",
           followupQuestions: []
         }
       }]
@@ -132,17 +125,14 @@ export default async function handler(req, res) {
 }
 
 function formatHybridResponse(context, gptResponse) {
-  const { funnelContent, followupQuestions, language, funnelPhase } = context;
-  const phaseKey = `funnel${funnelPhase}`;
-  const funnelOptions = funnelContent?.[phaseKey] || [];
-  const funnelText = funnelOptions.length > 0 ? funnelOptions[Math.floor(Math.random() * funnelOptions.length)] : "";
+  const { followupQuestions, language } = context;
 
   const phaseTitle = language === "pt" ? "Vamos explorar mais:" : "Let's explore further:";
   const instruction = language === "pt"
     ? "Escolha uma das opções abaixo para continuarmos:"
     : "Choose one of the options below to continue:";
 
-  let response = `${funnelText}\n\n${phaseTitle}\n${instruction}\n\n`;
+  let response = `${gptResponse?.trim() || ""}\n\n${phaseTitle}\n${instruction}\n\n`;
   followupQuestions.forEach((q, i) => {
     response += `<div class="clickable-question" data-question="${encodeURIComponent(q)}" onclick="handleQuestionClick(this)">${i + 1}. ${q}</div>\n`;
   });
