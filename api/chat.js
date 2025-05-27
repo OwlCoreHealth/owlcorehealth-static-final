@@ -1,5 +1,4 @@
-// chat.js (versão atualizada com correções solicitadas)
-
+// chat.js (versão ajustada com correções solicitadas)
 import { getSymptomContext } from "./notion.mjs";
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
@@ -68,29 +67,43 @@ async function callGPT4oMini(symptomContext, userMessage) {
   }
 }
 
+// 🔧 modificado aqui – fallback incluso e uso da fase do funil
 async function generateFollowUpQuestions(context, userInput) {
-  const prompt = `Com base no sintoma \"${context.sintoma}\" e na fase do funil ${context.funnelPhase}, gere 3 perguntas curtas, provocativas e instigantes para conduzir o usuário para a próxima etapa.`;
+  const prompt = `Com base no sintoma "${context.sintoma}" e na fase do funil ${context.funnelPhase}, gere 3 perguntas curtas, provocativas e instigantes para conduzir o usuário para a próxima etapa.`;
 
-  const response = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${OPENAI_API_KEY}`
-    },
-    body: JSON.stringify({
-      model: GPT_MODEL,
-      messages: [
-        { role: "system", content: "Você gera apenas 3 perguntas persuasivas e relevantes. Nenhuma explicação extra." },
-        { role: "user", content: prompt }
-      ],
-      temperature: 0.7,
-      max_tokens: 300
-    })
-  });
+  try {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: GPT_MODEL,
+        messages: [
+          { role: "system", content: "Você gera apenas 3 perguntas persuasivas e relevantes. Nenhuma explicação extra." },
+          { role: "user", content: prompt }
+        ],
+        temperature: 0.7,
+        max_tokens: 300
+      })
+    });
 
-  const data = await response.json();
-  const text = data.choices?.[0]?.message?.content || "";
-  return text.split(/\d+\.\s+/).filter(Boolean).slice(0, 3);
+    const data = await response.json();
+    const text = data.choices?.[0]?.message?.content || "";
+    const questions = text.split(/\d+\.\s+/).filter(Boolean).slice(0, 3);
+
+    if (questions.length < 3) throw new Error("GPT returned insufficient followups");
+    return questions;
+  } catch {
+    // 🔁 fallback inteligente baseado no sintoma
+    const sintoma = context.sintoma || "esse sintoma";
+    return [
+      `O que você já tentou para aliviar ${sintoma}?`,
+      `Esse ${sintoma} aparece em momentos específicos ou é constante?`,
+      `Se tivesse que dar uma nota de 0 a 10 para o incômodo com ${sintoma}, qual seria?`
+    ];
+  }
 }
 
 export default async function handler(req, res) {
@@ -135,12 +148,20 @@ export default async function handler(req, res) {
     });
   }
 
-  if (context.sintoma) sessionMemory.sintomaAtual = context.sintoma;
+  // 🔧 modificado aqui – bloqueio de mudança de sintoma antes da fase 6
+  if (context.sintoma && sessionMemory.funnelPhase < 6) {
+    sessionMemory.sintomaAtual = sessionMemory.sintomaAtual || context.sintoma;
+  } else if (context.sintoma && sessionMemory.funnelPhase >= 6) {
+    sessionMemory.sintomaAtual = context.sintoma;
+  }
+
   sessionMemory.usedQuestions.push(...(context.followupQuestions || []));
 
   const gptResponse = await callGPT4oMini(context, userInput);
   const followupQuestions = await generateFollowUpQuestions(context, userInput);
-  sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
+
+  // 🔧 modificado aqui – controle correto da fase do funil
+  sessionMemory.funnelPhase = Math.min((context.funnelPhase || sessionMemory.funnelPhase || 1) + 1, 6);
 
   const content = formatHybridResponse(context, gptResponse, followupQuestions);
 
@@ -168,7 +189,7 @@ function formatHybridResponse(context, gptResponse, followupQuestions) {
   if (followupQuestions.length) {
     response += `\n\n${phaseTitle}\n${instruction}\n\n`;
     followupQuestions.slice(0, 3).forEach((q, i) => {
-      response += `<div class=\"clickable-question\" data-question=\"${encodeURIComponent(q)}\" onclick=\"handleQuestionClick(this)\">${i + 1}. ${q}</div>\n`;
+      response += `<div class="clickable-question" data-question="${encodeURIComponent(q)}" onclick="handleQuestionClick(this)">${i + 1}. ${q}</div>\n`;
     });
   }
 
