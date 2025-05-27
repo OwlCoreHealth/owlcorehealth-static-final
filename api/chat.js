@@ -105,7 +105,7 @@ export default async function handler(req, res) {
   if (context.sintoma) sessionMemory.sintomaAtual = context.sintoma;
   sessionMemory.usedQuestions.push(...context.followupQuestions);
 
-  const gptResponse = await callGPT(context.prompt, context.context, userInput);
+  const gptResponse = await callGPT4oMini(context, userInput); 
   const content = formatHybridResponse(context, gptResponse);
   sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
 
