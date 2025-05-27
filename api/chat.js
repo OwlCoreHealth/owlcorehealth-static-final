@@ -1,4 +1,4 @@
-// chat.js (corrigido: resposta científica + 3 perguntas clicáveis no final apenas)
+// chat.js (ajustado para perguntas clicáveis geradas por GPT)
 
 import { getSymptomContext } from "./notion.mjs";
 
@@ -16,7 +16,6 @@ let sessionMemory = {
   usedQuestions: []
 };
 
-// Função para chamar o GPT-4o mini com contexto correto
 async function callGPT4oMini(symptomContext, userMessage) {
   try {
     const gptPrompt = symptomContext.gptPromptData?.prompt;
@@ -28,7 +27,7 @@ async function callGPT4oMini(symptomContext, userMessage) {
     }
 
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 segundos
+    const timeoutId = setTimeout(() => controller.abort(), 7000);
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -98,7 +97,9 @@ export default async function handler(req, res) {
     return res.status(200).json({
       choices: [{
         message: {
-          content: "Desculpe, algo falhou ao processar seu sintoma. Tente reformular sua frase.",
+          content: idioma === "pt"
+            ? "Desculpe, algo falhou ao processar seu sintoma. Tente reformular sua frase."
+            : "Sorry, something went wrong processing your symptom. Please try rephrasing.",
           followupQuestions: []
         }
       }]
@@ -106,45 +107,75 @@ export default async function handler(req, res) {
   }
 
   if (context.sintoma) sessionMemory.sintomaAtual = context.sintoma;
-  sessionMemory.usedQuestions.push(...context.followupQuestions);
 
-  const gptResponse = await callGPT4oMini(context, userInput); 
-  const content = formatHybridResponse(context, gptResponse);
+  const gptResponse = await callGPT4oMini(context, userInput);
+  const followupQuestions = await generateFollowUpQuestions(context);
+
+  sessionMemory.usedQuestions.push(...followupQuestions);
   sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
+
+  const content = formatHybridResponse(gptResponse, followupQuestions, idioma);
 
   return res.status(200).json({
     choices: [{
       message: {
         content,
-        followupQuestions: context.followupQuestions
+        followupQuestions
       }
     }]
   });
 }
 
-// ✅ Versão ajustada do formatHybridResponse para usar perguntas geradas pelo GPT
-function formatHybridResponse(context, gptResponse) {
-  const { language } = context;
+async function generateFollowUpQuestions(context) {
+  const followPrompt = `Com base no problema descrito, crie 3 perguntas curtas e provocadoras para conduzir o usuário à próxima etapa do funil. Fase atual: ${context.gptPromptData?.context.funnelPhase}. Idioma: ${context.language}. Apenas as perguntas, sem explicações.`;
+
+  try {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: GPT_MODEL,
+        messages: [
+          { role: "system", content: followPrompt },
+          { role: "user", content: context.sintoma }
+        ],
+        temperature: 0.6,
+        max_tokens: 150
+      })
+    });
+
+    const data = await response.json();
+    if (data.choices?.[0]?.message?.content) {
+      return data.choices[0].message.content
+        .split("\n")
+        .filter(line => line.trim())
+        .map(q => q.replace(/^\d+\.\s*/, "").trim())
+        .slice(0, 3);
+    }
+    return [];
+  } catch (err) {
+    console.error("Erro ao gerar perguntas GPT:", err);
+    return [];
+  }
+}
+
+function formatHybridResponse(gptResponse, followupQuestions, language) {
   const phaseTitle = language === "pt" ? "Vamos explorar mais:" : "Let's explore further:";
   const instruction = language === "pt"
-    ? "Escolha uma das perguntas abaixo para continuarmos:" 
-    : "Choose one of the questions below to continue:";
+    ? "Escolha uma das opções abaixo para continuarmos:"
+    : "Choose one of the options below to continue:";
 
-  let responseText = gptResponse?.content?.trim() || gptResponse?.trim() || "";
+  let response = gptResponse?.trim() || "";
 
-  // ✅ Extrair perguntas geradas no final do texto (últimos parágrafos que terminam com '?')
-  const extractedQuestions = (responseText.match(/[^\n\r]*\?$/gm) || [])
-    .map(q => q.trim())
-    .slice(-3); // pega as 3 últimas
+  if (followupQuestions.length) {
+    response += `\n\n${phaseTitle}\n${instruction}\n\n`;
+    followupQuestions.forEach((q, i) => {
+      response += `<div class="clickable-question" data-question="${encodeURIComponent(q)}" onclick="handleQuestionClick(this)">${i + 1}. ${q}</div>\n`;
+    });
+  }
 
-  // ✅ Remover perguntas do texto principal
-  const mainBody = responseText.replace(/[^\n\r]*\?$/gm, '').trim();
-
-  let finalResponse = `${mainBody}\n\n${phaseTitle}\n${instruction}\n\n`;
-
-  extractedQuestions.forEach((q, i) => {
-    finalResponse += `<div class="clickable-question" data-question="${encodeURIComponent(q)}" onclick="handleQuestionClick(this)">${i + 1}. ${q}</div>\n`;
-  });
-
-  return finalResponse;
+  return response;
 }
