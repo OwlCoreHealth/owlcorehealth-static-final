@@ -1,4 +1,4 @@
-// chat.js (atualizado para exibir explicação + perguntas clicáveis separadas)
+// chat.js (corrigido: resposta científica + 3 perguntas clicáveis no final apenas)
 
 import { getSymptomContext } from "./notion.mjs";
 
@@ -19,8 +19,6 @@ let sessionMemory = {
 // Função para chamar o GPT-4o mini com contexto correto
 async function callGPT4oMini(symptomContext, userMessage) {
   try {
-    console.log("Iniciando chamada ao GPT-4o mini...");
-
     const gptPrompt = symptomContext.gptPromptData?.prompt;
     const gptContext = symptomContext.gptPromptData?.context;
 
@@ -30,7 +28,7 @@ async function callGPT4oMini(symptomContext, userMessage) {
     }
 
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 5000);
+    const timeoutId = setTimeout(() => controller.abort(), 7000);
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -53,6 +51,7 @@ async function callGPT4oMini(symptomContext, userMessage) {
     });
 
     clearTimeout(timeoutId);
+
     const data = await response.json();
 
     if (data.error) {
@@ -60,7 +59,6 @@ async function callGPT4oMini(symptomContext, userMessage) {
       return null;
     }
 
-    console.log("Resposta do GPT recebida com sucesso!");
     return data.choices[0].message.content;
   } catch (error) {
     console.error("Erro ao chamar GPT-4o mini:", error);
@@ -110,7 +108,7 @@ export default async function handler(req, res) {
   if (context.sintoma) sessionMemory.sintomaAtual = context.sintoma;
   sessionMemory.usedQuestions.push(...context.followupQuestions);
 
-  const gptResponse = await callGPT4oMini(context, userInput);
+  const gptResponse = await callGPT4oMini(context, userInput); 
   const content = formatHybridResponse(context, gptResponse);
   sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
 
@@ -124,18 +122,22 @@ export default async function handler(req, res) {
   });
 }
 
+// Corrigido: resposta normal + só 3 perguntas clicáveis no final
 function formatHybridResponse(context, gptResponse) {
   const { followupQuestions, language } = context;
-
   const phaseTitle = language === "pt" ? "Vamos explorar mais:" : "Let's explore further:";
   const instruction = language === "pt"
     ? "Escolha uma das opções abaixo para continuarmos:"
     : "Choose one of the options below to continue:";
 
-  let response = `${gptResponse?.trim() || ""}\n\n${phaseTitle}\n${instruction}\n\n`;
-  followupQuestions.forEach((q, i) => {
-    response += `<div class="clickable-question" data-question="${encodeURIComponent(q)}" onclick="handleQuestionClick(this)">${i + 1}. ${q}</div>\n`;
-  });
+  let response = gptResponse?.trim() || "";
+
+  if (followupQuestions.length) {
+    response += `\n\n${phaseTitle}\n${instruction}\n\n`;
+    followupQuestions.slice(0, 3).forEach((q, i) => {
+      response += `<div class="clickable-question" data-question="${encodeURIComponent(q)}" onclick="handleQuestionClick(this)">${i + 1}. ${q}</div>\n`;
+    });
+  }
 
   return response;
 }
