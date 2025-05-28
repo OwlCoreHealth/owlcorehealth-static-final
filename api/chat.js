@@ -27,11 +27,10 @@ function getFunnelKey(phase) {
   }
 }
 
-// Função rewriteWithGPT adaptada para traduzir se idioma for pt
-async function rewriteWithGPT(baseText, sintoma, idioma, funnelPhase) {
+async function rewriteWithGPT(baseText, sintoma, idioma, funnelPhase, categoria) {
   const prompt = idioma === "pt"
-  ? `You are a fluent Brazilian Portuguese health assistant. Translate and adapt the following English text fully to Brazilian Portuguese, making it natural, engaging, and human. Do not leave any part untranslated. Use a provocative and clear tone focused on: ${sintoma}\n\nBase text:\n${baseText}`
-  : `Use the following text as a base. Keep the core message and structure, but rewrite with 30% creative freedom in a more natural, engaging, and human tone. Do not change the topic and keep the focus on: ${sintoma}\n\nBase text:\n${baseText}`;
+    ? `Use o seguinte texto como base, mantendo o conteúdo e estrutura, mas reescrevendo com 30% de liberdade criativa, usando linguagem mais fluida, provocadora e humana. Mantenha o foco exclusivamente no sintoma: ${sintoma} e na categoria: ${categoria}. Não aborde outros temas. Não mude o tema e mantenha o foco em: ${sintoma}\n\nTexto-base:\n${baseText}`
+    : `Use the following text as a base. Keep the core message and structure, but rewrite with 30% creative freedom in a more natural, engaging, and human tone. Keep the focus exclusively on the symptom: ${sintoma} and category: ${categoria}. Do not address other topics. Do not change the topic and keep the focus on: ${sintoma}\n\nBase text:\n${baseText}`;
 
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -41,14 +40,11 @@ async function rewriteWithGPT(baseText, sintoma, idioma, funnelPhase) {
         Authorization: `Bearer ${OPENAI_API_KEY}`
       },
       body: JSON.stringify({
-  model: GPT_MODEL,
-  messages: [
-    { role: "system", content: "You are a helpful assistant who translates and rewrites text." },
-    { role: "user", content: prompt }
-  ],
-  temperature: 0.55,
-  max_tokens: 600
-})
+        model: GPT_MODEL,
+        messages: [{ role: "system", content: prompt }],
+        temperature: 0.65,
+        max_tokens: 600
+      })
     });
 
     const data = await response.json();
