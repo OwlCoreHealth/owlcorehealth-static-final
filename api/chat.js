@@ -392,4 +392,22 @@ export default async function handler(req, res) {
       );
 
   const followupQuestions = await generateFollowUpQuestions(
-    { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.f
+    { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
+    idioma
+  );
+
+  // Atualiza a fase do funil com segurança
+  sessionMemory.funnelPhase = Math.min((context.funnelPhase || sessionMemory.funnelPhase || 1) + 1, 6);
+
+  // Debug logs
+  console.log("🧪 Sintoma detectado:", context.sintoma);
+  console.log("🧪 Categoria atual:", sessionMemory.categoriaAtual);
+  console.log("🧪 Fase atual:", sessionMemory.funnelPhase);
+  console.log("🧪 Texto da fase:", funnelKey, funnelTexts);
+
+  const content = formatHybridResponse(context, gptResponse, followupQuestions, idioma);
+
+  return res.status(200).json({
+    choices: [{ message: { content, followupQuestions: followupQuestions || [] } }]
+  });
+}
