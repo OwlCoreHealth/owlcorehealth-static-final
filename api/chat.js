@@ -369,14 +369,15 @@ export default async function handler(req, res) {
 
   const baseText = funnelTexts[Math.floor(Math.random() * funnelTexts.length)];
 
-  const gptResponse = baseText
-    ? await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, idioma, sessionMemory.funnelPhase)
-    : await rewriteWithGPT(
-        `Explain clearly about the symptom ${sessionMemory.sintomaAtual} in phase ${sessionMemory.funnelPhase}, focusing on phase key ${funnelKey}`,
-        sessionMemory.sintomaAtual,
-        idioma,
-        sessionMemory.funnelPhase
-      );
+ const gptResponse = baseText
+  ? await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, idioma, sessionMemory.funnelPhase, sessionMemory.categoriaAtual)
+  : await rewriteWithGPT(
+      `Explain clearly about the symptom ${sessionMemory.sintomaAtual} in phase ${sessionMemory.funnelPhase}, focusing on phase key ${funnelKey}`,
+      sessionMemory.sintomaAtual,
+      idioma,
+      sessionMemory.funnelPhase,
+      sessionMemory.categoriaAtual
+    );
 
   const followupQuestions = await generateFollowUpQuestions(
     { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
