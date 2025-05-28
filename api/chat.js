@@ -1,7 +1,5 @@
-// chat.js (com correções para controle de sintoma, categoria, funil e fallback contextual)
-
 import { getSymptomContext } from "./notion.mjs";
-import { fallbackTextsBySymptom } from "./fallbackTextsBySymptom.js";
+import { fallbackTextsBySymptom, fallbackTextsByCategory } from "./fallbackTextsBySymptom.js";
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const GPT_MODEL = "gpt-4o-mini";
@@ -43,9 +41,7 @@ async function rewriteWithGPT(baseText, sintoma, idioma) {
       },
       body: JSON.stringify({
         model: GPT_MODEL,
-        messages: [
-          { role: "system", content: prompt }
-        ],
+        messages: [{ role: "system", content: prompt }],
         temperature: 0.65,
         max_tokens: 600
       })
@@ -87,38 +83,37 @@ async function generateFollowUpQuestions(context, idioma) {
     return text.split(/\d+\.\s+/).filter(Boolean).slice(0, 3);
   } catch (err) {
     console.warn("❗️Erro ao gerar perguntas com GPT:", err);
-    return [
-      idioma === "pt" ? "Você já tentou mudar sua alimentação ou rotina?" : "Have you tried adjusting your diet or lifestyle?",
-      idioma === "pt" ? "Como você acha que isso está afetando seu dia a dia?" : "How do you think this is affecting your daily life?",
-      idioma === "pt" ? "Está disposto(a) a descobrir uma solução mais eficaz agora?" : "Are you ready to explore a better solution now?"
-    ];
+    return idioma === "pt"
+      ? [
+          "Você já tentou mudar sua alimentação ou rotina?",
+          "Como você acha que isso está afetando seu dia a dia?",
+          "Está disposto(a) a descobrir uma solução mais eficaz agora?"
+        ]
+      : [
+          "Have you tried adjusting your diet or lifestyle?",
+          "How do you think this is affecting your daily life?",
+          "Are you ready to explore a better solution now?"
+        ];
   }
 }
 
-// 🔧 Define aqui seus textos de fallback por categoria para garantir que o funil tenha conteúdo mesmo sem Notion
-const fallbackTextsByCategory = {
-  gut: {
-    base: [
-      "Feeling bloated and uncomfortable after meals is not normal — it’s a sign your gut may be struggling. Poor digestion can lead to chronic constipation, skin irritations, and even lowered immunity."
-    ],
-    gravidade: [
-      "If left untreated, gut issues can evolve into IBS, chronic inflammation, or autoimmune disorders. Your body warns you before things get worse."
-    ],
-    estatisticas: [
-      "Over 60% of people with digestive issues also suffer from skin conditions like acne or eczema. Nearly 1 in 3 adults experience recurring bloating due to microbiome imbalances."
-    ],
-    nutrientes: [
-      "Ginger, peppermint, and natural probiotics are proven to calm digestive distress and reduce bloating."
-    ],
-    suplemento: [
-      "What if a natural, plant-based formula could restore your gut, reduce inflammation, and support your skin health — all at once?"
-    ],
-    cta: [
-      "Want to see the full review of this natural solution? 👉 click here\nSee the product page 👉 click here\nWatch the video 👉 click here"
-    ]
+function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
+  const phaseTitle = idioma === "pt" ? "Vamos explorar mais:" : "Let's explore further:";
+  const instruction = idioma === "pt"
+    ? "Escolha uma das opções abaixo para continuarmos:"
+    : "Choose one of the options below to continue:";
+
+  let response = gptResponse?.trim() || "";
+
+  if (followupQuestions.length) {
+    response += `\n\n${phaseTitle}\n${instruction}\n\n`;
+    followupQuestions.slice(0, 3).forEach((q, i) => {
+      response += `<div class="clickable-question" data-question="${encodeURIComponent(q)}" onclick="handleQuestionClick(this)">${i + 1}. ${q}</div>\n`;
+    });
   }
-  // Adicione outras categorias aqui conforme necessário...
-};
+
+  return response;
+}
 
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Método não permitido" });
@@ -128,10 +123,12 @@ export default async function handler(req, res) {
   const isFollowUp = Boolean(selectedQuestion);
   const inputForSearch = isFollowUp ? sessionMemory.sintomaAtual : userInput;
 
+  // Detecta idioma do input e mantém idioma da sessão
   const isPortuguese = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
   const idiomaDetectado = isPortuguese ? "pt" : "en";
   sessionMemory.idioma = sessionMemory.respostasUsuario.length === 0 ? idiomaDetectado : sessionMemory.idioma;
   const idioma = sessionMemory.idioma;
+
   sessionMemory.nome = name?.trim() || "";
   sessionMemory.respostasUsuario.push(userInput);
 
@@ -148,61 +145,48 @@ export default async function handler(req, res) {
     sessionMemory.usedQuestions
   );
 
-  // 🔧 Controle rígido do sintomaAtual e categoriaAtual para evitar desvios
-  if (context.sintoma && !sessionMemory.sintomaAtual) {
-    sessionMemory.sintomaAtual = context.sintoma;
-  }
-  if (context.categoria && !sessionMemory.categoriaAtual) {
-    sessionMemory.categoriaAtual = context.categoria;
-  }
+  // Mantém sintoma e categoria para contexto coerente
+  if (context.sintoma && !sessionMemory.sintomaAtual) sessionMemory.sintomaAtual = context.sintoma;
+  if (context.categoria && !sessionMemory.categoriaAtual) sessionMemory.categoriaAtual = context.categoria;
 
-  // 🔧 Fallback se Notion não retornar textos ou estiver vazio
+  // Se não achar textos na tabela, usa fallback por sintoma ou categoria
   if (!context.funnelTexts || Object.keys(context.funnelTexts).length === 0) {
-    console.error("❌ funnelTexts não definido corretamente:", context);
-    if (context.sintoma) {
-      // Tenta texto fallback
-      const fallbackTexts = fallbackTextsBySymptom[sessionMemory.sintomaAtual?.toLowerCase()] || {};
-      const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
-      const fallbackPhaseTexts = fallbackTexts[funnelKey] || [];
+    const fallbackTexts = fallbackTextsBySymptom[sessionMemory.sintomaAtual?.toLowerCase()] || {};
+    const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
+    let fallbackPhaseTexts = fallbackTexts[funnelKey] || [];
 
-      const baseText = fallbackPhaseTexts.length > 0
-        ? fallbackPhaseTexts[Math.floor(Math.random() * fallbackPhaseTexts.length)]
-        : `Sorry, no fallback text for category ${sessionMemory.categoriaAtual} and phase ${funnelKey}`;
+    if (fallbackPhaseTexts.length === 0 && sessionMemory.categoriaAtual) {
+      fallbackPhaseTexts = fallbackTextsByCategory[sessionMemory.categoriaAtual]?.[funnelKey] || [];
+    }
 
-      const fallbackResponse = await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, idioma);
+    if (fallbackPhaseTexts.length === 0) {
+      const noContentMsg = idioma === "pt"
+        ? "Desculpe, não encontrei informações suficientes para essa fase. Tente reformular sua frase."
+        : "Sorry, I couldn't find enough information for this step. Please try rephrasing your input.";
+
       const fallbackQuestions = await generateFollowUpQuestions(context, idioma);
 
-      const content = formatHybridResponse(context, fallbackResponse, fallbackQuestions, idioma);
+      const content = formatHybridResponse(context, noContentMsg, fallbackQuestions, idioma);
       return res.status(200).json({
-        choices: [
-          {
-            message: {
-              content,
-              followupQuestions: fallbackQuestions || []
-            }
-          }
-        ]
+        choices: [{ message: { content, followupQuestions: fallbackQuestions || [] } }]
       });
     }
 
+    const baseText = fallbackPhaseTexts[Math.floor(Math.random() * fallbackPhaseTexts.length)];
+    const fallbackResponse = await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, idioma);
+    const fallbackQuestions = await generateFollowUpQuestions(context, idioma);
+
+    const content = formatHybridResponse(context, fallbackResponse, fallbackQuestions, idioma);
     return res.status(200).json({
-      choices: [
-        {
-          message: {
-            content: idioma === "pt"
-              ? "Desculpe, não encontrei informações suficientes para essa fase. Tente reformular sua frase."
-              : "Sorry, I couldn't find enough information for this step. Please try rephrasing your input.",
-            followupQuestions: []
-          }
-        }
-      ]
+      choices: [{ message: { content, followupQuestions: fallbackQuestions || [] } }]
     });
   }
 
+  // Textos oficiais do Notion
   const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
   let funnelTexts = context.funnelTexts?.[funnelKey] || [];
 
-  // 🔧 Se não achar textos, tentar fallback por categoria
+  // Se não achar textos, tenta fallback por categoria
   if (!funnelTexts.length && sessionMemory.categoriaAtual) {
     funnelTexts = fallbackTextsByCategory[sessionMemory.categoriaAtual]?.[funnelKey] || [];
   }
@@ -227,7 +211,7 @@ export default async function handler(req, res) {
   // Atualiza a fase do funil com segurança
   sessionMemory.funnelPhase = Math.min((context.funnelPhase || sessionMemory.funnelPhase || 1) + 1, 6);
 
-  // Logs para debug
+  // Debug logs
   console.log("🧪 Sintoma detectado:", context.sintoma);
   console.log("🧪 Categoria atual:", sessionMemory.categoriaAtual);
   console.log("🧪 Fase atual:", sessionMemory.funnelPhase);
@@ -236,31 +220,6 @@ export default async function handler(req, res) {
   const content = formatHybridResponse(context, gptResponse, followupQuestions, idioma);
 
   return res.status(200).json({
-    choices: [
-      {
-        message: {
-          content,
-          followupQuestions: followupQuestions || []
-        }
-      }
-    ]
+    choices: [{ message: { content, followupQuestions: followupQuestions || [] } }]
   });
-}
-
-function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
-  const phaseTitle = idioma === "pt" ? "Vamos explorar mais:" : "Let's explore further:";
-  const instruction = idioma === "pt"
-    ? "Escolha uma das opções abaixo para continuarmos:"
-    : "Choose one of the options below to continue:";
-
-  let response = gptResponse?.trim() || "";
-
-  if (followupQuestions.length) {
-    response += `\n\n${phaseTitle}\n${instruction}\n\n`;
-    followupQuestions.slice(0, 3).forEach((q, i) => {
-      response += `<div class="clickable-question" data-question="${encodeURIComponent(q)}" onclick="handleQuestionClick(this)">${i + 1}. ${q}</div>\n`;
-    });
-  }
-
-  return response;
 }
