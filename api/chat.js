@@ -55,12 +55,11 @@ async function rewriteWithGPT(baseText, sintoma, idioma) {
   }
 }
 
-// Função para gerar perguntas finais distintas e evitar repetições
-async function generateDistinctFollowUpQuestions(context, idioma) {
-  const allPrevQuestions = sessionMemory.usedQuestions || [];
+// Função CORRETA para gerar perguntas finais, previne erro ReferenceError
+async function generateFollowUpQuestions(context, idioma) {
   const prompt = idioma === "pt"
-    ? `Com base no sintoma "${context.sintoma}" e na fase ${context.funnelPhase}, gere 5 perguntas curtas, provocativas e variadas, que despertem curiosidade, medo e solução. Evite perguntas já feitas: ${allPrevQuestions.join("; ")}. Retorne apenas as 3 perguntas mais impactantes, sem explicações.`
-    : `Based on the symptom "${context.sintoma}" and funnel phase ${context.funnelPhase}, generate 5 short, provocative, varied questions that invoke curiosity, fear, and solution. Avoid previously asked questions: ${allPrevQuestions.join("; ")}. Return only the top 3 most impactful questions, no explanations.`;
+    ? `Com base no sintoma "${context.sintoma}" e na fase do funil ${context.funnelPhase}, gere 3 perguntas curtas, provocativas e instigantes para conduzir o usuário para a próxima etapa.`
+    : `Based on the symptom "${context.sintoma}" and funnel phase ${context.funnelPhase}, generate 3 short, provocative, and engaging questions to guide the user to the next step.`;
 
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -72,24 +71,19 @@ async function generateDistinctFollowUpQuestions(context, idioma) {
       body: JSON.stringify({
         model: GPT_MODEL,
         messages: [
-          { role: "system", content: "You are an empathetic, provocative health assistant." },
+          { role: "system", content: "You generate only 3 relevant and persuasive questions. No extra explanation." },
           { role: "user", content: prompt }
         ],
-        temperature: 0.75,
+        temperature: 0.7,
         max_tokens: 300
       })
     });
 
     const data = await response.json();
     const text = data.choices?.[0]?.message?.content || "";
-    // Limpa, remove perguntas repetidas e retorna só 3
-    const questions = text.split(/\d+\.\s+/).filter(q => q && !allPrevQuestions.includes(q.trim())).slice(0, 3);
-
-    // Atualiza memória para evitar repetições
-    sessionMemory.usedQuestions.push(...questions);
-    return questions;
+    return text.split(/\d+\.\s+/).filter(Boolean).slice(0, 3);
   } catch (err) {
-    console.warn("Erro ao gerar perguntas com GPT:", err);
+    console.warn("❗️Erro ao gerar perguntas com GPT:", err);
     return idioma === "pt"
       ? [
           "Você já tentou mudar sua alimentação ou rotina?",
@@ -103,23 +97,6 @@ async function generateDistinctFollowUpQuestions(context, idioma) {
         ];
   }
 }
-
-// Exemplo de ajuste na Fase 1 para explicação científica e soluções rápidas
-function getScientificExplanation(sintoma, idioma) {
-  const explanationsPT = {
-    "tooth sensitivity": `Sensibilidade dentária ocorre quando o esmalte protetor do dente desgasta-se ou a gengiva retraída expõe a dentina, onde estão os nervos sensíveis. Causas comuns incluem escovação agressiva, alimentos ácidos e retração gengival. Para aliviar, evite alimentos muito frios/quentes, use cremes dessensibilizantes e mantenha boa higiene oral.`,
-    // ... outros sintomas
-  };
-  const explanationsEN = {
-    "tooth sensitivity": `Tooth sensitivity happens when the protective enamel wears down or gum recession exposes the dentin containing sensitive nerves. Common causes include aggressive brushing, acidic foods, and gum recession. To ease discomfort, avoid very hot/cold foods, use desensitizing toothpaste, and maintain good oral hygiene.`,
-    // ... other symptoms
-  };
-  return idioma === "pt" ? explanationsPT[sintoma] || "" : explanationsEN[sintoma] || "";
-}
-
-// Código no handler para substituir chamada atual de generateFollowUpQuestions por generateDistinctFollowUpQuestions
-// E para incluir a explicação científica com 2-3 soluções práticas no texto base da fase 1 (base)
-
 
 function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
   const phaseTitle = idioma === "pt" ? "Vamos explorar mais:" : "Let's explore further:";
@@ -139,81 +116,18 @@ function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
   return response;
 }
 
-// Função nova: identifica sintoma no input do usuário comparando com lista do fallback
-async function identifySymptom(userInput, symptomsList, idioma) {
-  const promptPT = `
-Você é um assistente que identifica o sintoma mais próximo de uma lista dada, a partir do texto do usuário. 
-A lista de sintomas é:
-${symptomsList.join(", ")}
-
-Dado o texto do usuário:
-"${userInput}"
-
-Responda apenas com o sintoma da lista que melhor corresponde ao texto do usuário. Use exatamente o texto da lista. Se não reconhecer, responda "unknown".
-  `;
-
-  const promptEN = `
-You are an assistant that identifies the closest symptom from a given list, based on the user's text.
-The list of symptoms is:
-${symptomsList.join(", ")}
-
-Given the user's input:
-"${userInput}"
-
-Answer only with the symptom from the list that best matches the user's text. Use the exact text from the list. If no match, respond "unknown".
-  `;
-
-  const prompt = idioma === "pt" ? promptPT : promptEN;
-
-  try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${OPENAI_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: GPT_MODEL,
-        messages: [
-          { role: "system", content: "You are a precise symptom matcher." },
-          { role: "user", content: prompt }
-        ],
-        temperature: 0,
-        max_tokens: 20
-      })
-    });
-
-    const data = await response.json();
-    const match = data.choices?.[0]?.message?.content.trim() || "unknown";
-    return match.toLowerCase();
-  } catch (e) {
-    console.error("Erro ao identificar sintoma:", e);
-    return "unknown";
-  }
-}
-
-// Handler principal do bot
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Método não permitido" });
 
   const { message, name, age, sex, weight, selectedQuestion } = req.body;
   const userInput = selectedQuestion || message;
   const isFollowUp = Boolean(selectedQuestion);
+  const inputForSearch = isFollowUp ? sessionMemory.sintomaAtual : userInput;
 
-  // Detecta idioma do input
   const isPortuguese = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
   const idiomaDetectado = isPortuguese ? "pt" : "en";
   sessionMemory.idioma = sessionMemory.respostasUsuario.length === 0 ? idiomaDetectado : sessionMemory.idioma;
   const idioma = sessionMemory.idioma;
-
-  // Prepara lista de sintomas para identificação
-  const allSymptoms = Object.keys(fallbackTextsBySymptom);
-
-  // Identifica o sintoma mais próximo do input usando GPT
-  const identifiedSymptom = await identifySymptom(userInput, allSymptoms, idioma);
-
-  // Atualiza sintomaAtual para a busca, ou usa o texto do usuário se não identificar
-  sessionMemory.sintomaAtual = identifiedSymptom === "unknown" ? userInput.toLowerCase() : identifiedSymptom;
 
   sessionMemory.nome = name?.trim() || "";
   sessionMemory.respostasUsuario.push(userInput);
@@ -221,9 +135,8 @@ export default async function handler(req, res) {
   const userAge = parseInt(age);
   const userWeight = parseFloat(weight);
 
-  // Busca contexto do sintoma identificado no Notion
   let context = await getSymptomContext(
-    sessionMemory.sintomaAtual,
+    inputForSearch,
     sessionMemory.nome,
     userAge,
     userWeight,
@@ -232,11 +145,9 @@ export default async function handler(req, res) {
     sessionMemory.usedQuestions
   );
 
-  // Mantém sintoma e categoria para contexto coerente
   if (context.sintoma && !sessionMemory.sintomaAtual) sessionMemory.sintomaAtual = context.sintoma;
   if (context.categoria && !sessionMemory.categoriaAtual) sessionMemory.categoriaAtual = context.categoria;
 
-  // Se não achar textos na tabela, usa fallback por sintoma ou categoria
   if (!context.funnelTexts || Object.keys(context.funnelTexts).length === 0) {
     const fallbackTexts = fallbackTextsBySymptom[sessionMemory.sintomaAtual?.toLowerCase()] || {};
     const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
@@ -269,17 +180,14 @@ export default async function handler(req, res) {
     });
   }
 
-  // Textos oficiais do Notion
   const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
   let funnelTexts = context.funnelTexts?.[funnelKey] || [];
 
-  // Tenta fallback pelo sintoma
   if (!funnelTexts.length) {
     const fallbackTexts = fallbackTextsBySymptom[sessionMemory.sintomaAtual?.toLowerCase().trim()] || {};
     funnelTexts = fallbackTexts[funnelKey] || [];
   }
 
-  // (Opcional) fallback genérico
   if (!funnelTexts.length) {
     funnelTexts = [
       idioma === "pt"
@@ -303,10 +211,8 @@ export default async function handler(req, res) {
     idioma
   );
 
-  // Atualiza a fase do funil com segurança
   sessionMemory.funnelPhase = Math.min((context.funnelPhase || sessionMemory.funnelPhase || 1) + 1, 6);
 
-  // Debug logs
   console.log("🧪 Sintoma detectado:", context.sintoma);
   console.log("🧪 Categoria atual:", sessionMemory.categoriaAtual);
   console.log("🧪 Fase atual:", sessionMemory.funnelPhase);
