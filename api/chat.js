@@ -55,7 +55,30 @@ async function rewriteWithGPT(baseText, sintoma, idioma, funnelPhase, categoria)
   }
 }
 
-// Geração de perguntas finais
+async function generateFreeTextWithGPT(prompt) {
+  try {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: GPT_MODEL,
+        messages: [{ role: "system", content: prompt }],
+        temperature: 0.7,
+        max_tokens: 700
+      })
+    });
+
+    const data = await response.json();
+    return data.choices?.[0]?.message?.content?.trim() || "";
+  } catch (e) {
+    console.error("Erro ao gerar texto livre com GPT:", e);
+    return "";
+  }
+}
+
 async function generateFollowUpQuestions(context, idioma) {
   const usedQuestions = sessionMemory.usedQuestions || [];
   const symptom = context.sintoma || "symptom";
@@ -121,6 +144,7 @@ Return only the 3 numbered questions.
 
     if (questions.length < 3) {
       const fallback = idioma === "pt" ? fallbackPT : fallbackEN;
+      // Adiciona perguntas de fallback que ainda não foram usadas
       for (const fq of fallback) {
         if (questions.length >= 3) break;
         if (!sessionMemory.usedQuestions.includes(fq)) {
@@ -134,6 +158,7 @@ Return only the 3 numbered questions.
 
   } catch (err) {
     console.warn("❗️Erro ao gerar perguntas com GPT:", err);
+    // fallback direto sem usar GPT
     return idioma === "pt"
       ? [
           "Você já tentou mudar sua alimentação ou rotina?",
@@ -166,7 +191,7 @@ function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
   return response;
 }
 
-// Identificação primária do sintoma (exata)
+// Função nova: identifica sintoma no input do usuário comparando com lista do fallback
 async function identifySymptom(userInput, symptomsList, idioma) {
   const promptPT = `
 Você é um assistente que identifica o sintoma mais próximo de uma lista dada, a partir do texto do usuário. 
@@ -219,83 +244,28 @@ Answer only with the symptom from the list that best matches the user's text. Us
   }
 }
 
-// Fallback semântico para sintoma similar
-async function identifyClosestKnownSymptom(userInput, symptomsList, idioma) {
-  const promptPT = `
-Você é um assistente que associa a uma lista de sintomas conhecidos o texto do usuário que pode estar descrito de forma vaga ou diferente.
-A lista de sintomas é:
-${symptomsList.join(", ")}
-
-Dado o texto do usuário:
-"${userInput}"
-
-Responda apenas com o sintoma da lista que é semanticamente mais próximo do texto do usuário. Use exatamente o texto da lista. Se não conseguir associar, responda "unknown".
-  `;
-
-  const promptEN = `
-You are an assistant that associates to a list of known symptoms the user's input text that might be vague or described differently.
-The list of symptoms is:
-${symptomsList.join(", ")}
-
-Given the user's input:
-"${userInput}"
-
-Answer only with the symptom from the list that is semantically closest to the user's text. Use the exact text from the list. If you can't associate, respond "unknown".
-  `;
-
-  const prompt = idioma === "pt" ? promptPT : promptEN;
-
-  try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${OPENAI_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: GPT_MODEL,
-        messages: [
-          { role: "system", content: "You are a semantic symptom matcher for fallback." },
-          { role: "user", content: prompt }
-        ],
-        temperature: 0,
-        max_tokens: 20
-      })
-    });
-
-    const data = await response.json();
-    const match = data.choices?.[0]?.message?.content.trim() || "unknown";
-    return match.toLowerCase();
-  } catch (e) {
-    console.error("Erro ao identificar sintoma fallback:", e);
-    return "unknown";
-  }
-}
-
+// Handler principal do bot
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Método não permitido" });
 
   const { message, name, age, sex, weight, selectedQuestion } = req.body;
   const userInput = selectedQuestion || message;
+  const isFollowUp = Boolean(selectedQuestion);
 
-  // Detecta idioma do usuário
+  // Detecta idioma do input
   const isPortuguese = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
   const idiomaDetectado = isPortuguese ? "pt" : "en";
   sessionMemory.idioma = sessionMemory.respostasUsuario.length === 0 ? idiomaDetectado : sessionMemory.idioma;
   const idioma = sessionMemory.idioma;
 
+  // Prepara lista de sintomas para identificação
   const allSymptoms = Object.keys(fallbackTextsBySymptom);
 
-  // Primeiro tenta identificar sintoma exato
-  let identifiedSymptom = await identifySymptom(userInput, allSymptoms, idioma);
+  // Identifica o sintoma mais próximo do input usando GPT
+  const identifiedSymptom = await identifySymptom(userInput, allSymptoms, idioma);
 
-  // Se não achar, tenta fallback semântico para sintoma próximo
-  if (identifiedSymptom === "unknown") {
-    const fallbackSymptom = await identifyClosestKnownSymptom(userInput, allSymptoms, idioma);
-    sessionMemory.sintomaAtual = fallbackSymptom !== "unknown" ? fallbackSymptom : userInput.toLowerCase();
-  } else {
-    sessionMemory.sintomaAtual = identifiedSymptom;
-  }
+  // Atualiza sintomaAtual para a busca, ou usa o texto do usuário se não identificar
+  sessionMemory.sintomaAtual = identifiedSymptom === "unknown" ? userInput.toLowerCase() : identifiedSymptom;
 
   sessionMemory.nome = name?.trim() || "";
   sessionMemory.respostasUsuario.push(userInput);
@@ -303,7 +273,7 @@ export default async function handler(req, res) {
   const userAge = parseInt(age);
   const userWeight = parseFloat(weight);
 
-  // Busca contexto da tabela Notion
+  // Busca contexto do sintoma identificado no Notion
   let context = await getSymptomContext(
     sessionMemory.sintomaAtual,
     sessionMemory.nome,
@@ -314,45 +284,42 @@ export default async function handler(req, res) {
     sessionMemory.usedQuestions
   );
 
+  // Mantém sintoma e categoria para contexto coerente
   if (context.sintoma && !sessionMemory.sintomaAtual) sessionMemory.sintomaAtual = context.sintoma;
   if (context.categoria && !sessionMemory.categoriaAtual) sessionMemory.categoriaAtual = context.categoria;
 
+  // Se não achar textos na tabela, usa fallback por sintoma
   if (!context.funnelTexts || Object.keys(context.funnelTexts).length === 0) {
-  // fallback: gerar texto livre com GPT para manter funil
-  const freeTextPrompt = idioma === "pt"
-    ? `Você é um assistente de saúde. Explique detalhadamente e de forma humana o sintoma "${sessionMemory.sintomaAtual}" considerando a categoria "${sessionMemory.categoriaAtual}". Forneça informações úteis e conduza o usuário no funil, mesmo sem textos específicos na base.`
-    : `You are a health assistant. Explain in detail and humanly the symptom "${sessionMemory.sintomaAtual}" considering the category "${sessionMemory.categoriaAtual}". Provide useful information and guide the user through the funnel even if no specific texts are available in the database.`;
+    // fallback: gerar texto livre com GPT para manter funil
+    const freeTextPrompt = idioma === "pt"
+      ? `Você é um assistente de saúde. Explique detalhadamente e de forma humana o sintoma "${sessionMemory.sintomaAtual}" considerando a categoria "${sessionMemory.categoriaAtual}". Forneça informações úteis e conduza o usuário no funil, mesmo sem textos específicos na base.`
+      : `You are a health assistant. Explain in detail and humanly the symptom "${sessionMemory.sintomaAtual}" considering the category "${sessionMemory.categoriaAtual}". Provide useful information and guide the user through the funnel even if no specific texts are available in the database.`;
 
-  const freeTextResponse = await rewriteWithGPT(freeTextPrompt, sessionMemory.sintomaAtual, idioma, sessionMemory.funnelPhase, sessionMemory.categoriaAtual);
+    const freeTextResponse = await generateFreeTextWithGPT(freeTextPrompt);
 
-  const followupQuestions = await generateFollowUpQuestions({ sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase }, idioma);
+    const followupQuestions = await generateFollowUpQuestions(
+      { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
+      idioma
+    );
 
-  const content = formatHybridResponse(context, freeTextResponse, followupQuestions, idioma);
+    const content = formatHybridResponse(context, freeTextResponse, followupQuestions, idioma);
 
-  return res.status(200).json({
-    choices: [{ message: { content, followupQuestions: followupQuestions || [] } }]
-  });
-}
-
-    const baseText = fallbackPhaseTexts[Math.floor(Math.random() * fallbackPhaseTexts.length)];
-    const fallbackResponse = await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, idioma, sessionMemory.funnelPhase);
-    const fallbackQuestions = await generateFollowUpQuestions(context, idioma);
-
-    const content = formatHybridResponse(context, fallbackResponse, fallbackQuestions, idioma);
     return res.status(200).json({
-      choices: [{ message: { content, followupQuestions: fallbackQuestions || [] } }]
+      choices: [{ message: { content, followupQuestions: followupQuestions || [] } }]
     });
   }
 
-  // Busca texto da fase atual na tabela
+  // Textos oficiais do Notion
   const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
   let funnelTexts = context.funnelTexts?.[funnelKey] || [];
 
+  // Tenta fallback pelo sintoma
   if (!funnelTexts.length) {
     const fallbackTexts = fallbackTextsBySymptom[sessionMemory.sintomaAtual?.toLowerCase().trim()] || {};
     funnelTexts = fallbackTexts[funnelKey] || [];
   }
 
+  // (Opcional) fallback genérico
   if (!funnelTexts.length) {
     funnelTexts = [
       idioma === "pt"
@@ -363,23 +330,25 @@ export default async function handler(req, res) {
 
   const baseText = funnelTexts[Math.floor(Math.random() * funnelTexts.length)];
 
- const gptResponse = baseText
-  ? await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, idioma, sessionMemory.funnelPhase, sessionMemory.categoriaAtual)
-  : await rewriteWithGPT(
-      `Explain clearly about the symptom ${sessionMemory.sintomaAtual} in phase ${sessionMemory.funnelPhase}, focusing on phase key ${funnelKey}`,
-      sessionMemory.sintomaAtual,
-      idioma,
-      sessionMemory.funnelPhase,
-      sessionMemory.categoriaAtual
-    );
+  const gptResponse = baseText
+    ? await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, idioma, sessionMemory.funnelPhase, sessionMemory.categoriaAtual)
+    : await rewriteWithGPT(
+        `Explain clearly about the symptom ${sessionMemory.sintomaAtual} in phase ${sessionMemory.funnelPhase}, focusing on phase key ${funnelKey}`,
+        sessionMemory.sintomaAtual,
+        idioma,
+        sessionMemory.funnelPhase,
+        sessionMemory.categoriaAtual
+      );
 
   const followupQuestions = await generateFollowUpQuestions(
     { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
     idioma
   );
 
+  // Atualiza a fase do funil com segurança
   sessionMemory.funnelPhase = Math.min((context.funnelPhase || sessionMemory.funnelPhase || 1) + 1, 6);
 
+  // Debug logs
   console.log("🧪 Sintoma detectado:", context.sintoma);
   console.log("🧪 Categoria atual:", sessionMemory.categoriaAtual);
   console.log("🧪 Fase atual:", sessionMemory.funnelPhase);
