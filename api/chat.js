@@ -1,6 +1,7 @@
 // chat.js (com correções para controle de sintoma, categoria, funil e fallback contextual)
 
 import { getSymptomContext } from "./notion.mjs";
+import { fallbackTextsBySymptom } from "./fallbackTextsBySymptom.js";
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const GPT_MODEL = "gpt-4o-mini";
@@ -160,7 +161,7 @@ export default async function handler(req, res) {
     console.error("❌ funnelTexts não definido corretamente:", context);
     if (context.sintoma) {
       // Tenta texto fallback
-      const fallbackTexts = fallbackTextsByCategory[sessionMemory.categoriaAtual] || {};
+      const fallbackTexts = fallbackTextsBySymptom[sessionMemory.sintomaAtual?.toLowerCase()] || {};
       const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
       const fallbackPhaseTexts = fallbackTexts[funnelKey] || [];
 
