@@ -350,7 +350,7 @@ export default async function handler(req, res) {
     }
 
     const baseText = fallbackPhaseTexts[Math.floor(Math.random() * fallbackPhaseTexts.length)];
-    // Alteração: passa funnelPhase para reescrita contextualizada
+    // Passa funnelPhase para reescrita contextualizada
     const fallbackResponse = await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, idioma, sessionMemory.funnelPhase);
     const fallbackQuestions = await generateFollowUpQuestions(context, idioma);
 
@@ -381,10 +381,15 @@ export default async function handler(req, res) {
 
   const baseText = funnelTexts[Math.floor(Math.random() * funnelTexts.length)];
 
-  // Alteração: passa funnelPhase para reescrita contextualizada
+  // Passa funnelPhase para reescrita contextualizada
   const gptResponse = baseText
     ? await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, idioma, sessionMemory.funnelPhase)
     : await rewriteWithGPT(
         `Explain clearly about the symptom ${sessionMemory.sintomaAtual} in phase ${sessionMemory.funnelPhase}, focusing on phase key ${funnelKey}`,
         sessionMemory.sintomaAtual,
         idioma,
+        sessionMemory.funnelPhase
+      );
+
+  const followupQuestions = await generateFollowUpQuestions(
+    { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.f
