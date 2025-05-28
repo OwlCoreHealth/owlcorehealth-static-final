@@ -139,63 +139,51 @@ export default async function handler(req, res) {
   const userWeight = parseFloat(weight);
 
   let context = await getSymptomContext(
-  inputForSearch,
-  sessionMemory.nome,
-  userAge,
-  userWeight,
-  sessionMemory.funnelPhase,
-  sessionMemory.sintomaAtual,
-  sessionMemory.usedQuestions
-);
+    inputForSearch,
+    sessionMemory.nome,
+    userAge,
+    userWeight,
+    sessionMemory.funnelPhase,
+    sessionMemory.sintomaAtual,
+    sessionMemory.usedQuestions
+  );
 
-// 🔧 Controle rígido do sintomaAtual e categoriaAtual para evitar desvios
-if (context.sintoma && !sessionMemory.sintomaAtual) {
-  sessionMemory.sintomaAtual = context.sintoma;
-}
-if (context.categoria && !sessionMemory.categoriaAtual) {
-  sessionMemory.categoriaAtual = context.categoria;
-}
-
-// 🔧 Atualizar fase do funil garantindo limite máximo 6
-sessionMemory.funnelPhase = Math.min((context.funnelPhase || sessionMemory.funnelPhase || 1) + 1, 6);
-
-// 🔧 Puxar textos da tabela ou fallback baseado no sintoma e fase
-const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
-let funnelTexts = context.funnelTexts?.[funnelKey] || [];
-
-if (!funnelTexts.length && sessionMemory.categoriaAtual) {
-  funnelTexts = fallbackTextsBySymptom[sessionMemory.sintomaAtual?.toLowerCase()]?.[funnelKey] || [];
-  if (funnelTexts.length === 0) {
-    funnelTexts = fallbackTextsByCategory[sessionMemory.categoriaAtual]?.[funnelKey] || [];
+  // 🔧 Controle rígido do sintomaAtual e categoriaAtual para evitar desvios
+  if (context.sintoma && !sessionMemory.sintomaAtual) {
+    sessionMemory.sintomaAtual = context.sintoma;
   }
-}
+  if (context.categoria && !sessionMemory.categoriaAtual) {
+    sessionMemory.categoriaAtual = context.categoria;
+  }
 
-// 🔧 Escolher texto base aleatório para variedade
-const baseText = funnelTexts.length > 0
-  ? funnelTexts[Math.floor(Math.random() * funnelTexts.length)]
-  : (idioma === "pt"
-    ? "Desculpe, não encontrei conteúdo adequado para essa etapa."
-    : "Sorry, I couldn't find suitable content for this step.");
+  // 🔧 Fallback se Notion não retornar textos ou estiver vazio
+  if (!context.funnelTexts || Object.keys(context.funnelTexts).length === 0) {
+    console.error("❌ funnelTexts não definido corretamente:", context);
+    if (context.sintoma) {
+      // Tenta texto fallback
+      const fallbackTexts = fallbackTextsBySymptom[sessionMemory.sintomaAtual?.toLowerCase()] || {};
+      const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
+      const fallbackPhaseTexts = fallbackTexts[funnelKey] || [];
 
-// 🔧 Reescrever texto com até 30% de liberdade criativa, mantendo foco no sintoma
-const gptResponse = await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, idioma);
+      const baseText = fallbackPhaseTexts.length > 0
+        ? fallbackPhaseTexts[Math.floor(Math.random() * fallbackPhaseTexts.length)]
+        : `Sorry, no fallback text for category ${sessionMemory.categoriaAtual} and phase ${funnelKey}`;
 
-// 🔧 Gerar perguntas finais baseadas no sintoma e fase do funil
-const followupQuestions = await generateFollowUpQuestions(context, idioma);
+      const fallbackResponse = await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, idioma);
+      const fallbackQuestions = await generateFollowUpQuestions(context, idioma);
 
-// 🔧 Preparar e enviar resposta final (texto + perguntas)
-const content = formatHybridResponse(context, gptResponse, followupQuestions, idioma);
-
-return res.status(200).json({
-  choices: [
-    {
-      message: {
-        content,
-        followupQuestions: followupQuestions || []
-      }
+      const content = formatHybridResponse(context, fallbackResponse, fallbackQuestions, idioma);
+      return res.status(200).json({
+        choices: [
+          {
+            message: {
+              content,
+              followupQuestions: fallbackQuestions || []
+            }
+          }
+        ]
+      });
     }
-  ]
-});
 
     return res.status(200).json({
       choices: [
