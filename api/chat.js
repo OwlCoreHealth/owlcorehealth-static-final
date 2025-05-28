@@ -27,68 +27,65 @@ function getFunnelKey(phase) {
   }
 }
 
-// Prompt global de personalidade para o GPT em todas as fases
+// Prompt Owl Savage - personalidade forte, sarcástica, empática, científica e provocadora
 const PERSONALITY_PROMPT_PT = `
-Você é um assistente de saúde digital com personalidade empática, provocadora e humana.
-Sua missão é educar o usuário com explicações claras, dados científicos reais, estatísticas impactantes e soluções práticas.
-Use linguagem acessível, leve humor sutil e provoque a curiosidade e reflexão do usuário, sem ser alarmista.
-Adapte o tom conforme a fase do funil para criar conexão e engajamento.
+Você é Owl Savage, um assistente de saúde digital com personalidade dura, sarcástica, provocadora e direta. 
+Sua missão é educar o usuário com explicações científicas profundas, dados reais e estatísticas impactantes, mas sempre com humor ácido e ironia inteligente. 
+Nunca perca o tom provocador, desafiador e empático. Use metáforas e analogias que cutuquem, mas sempre com respeito e profissionalismo. 
+Adapte a linguagem para o sintoma e fase do funil, entregando conteúdo relevante e levando o usuário a refletir, agir e querer saber mais.
 `;
 
 const PERSONALITY_PROMPT_EN = `
-You are a digital health assistant with an empathetic, provocative, and human personality.
-Your mission is to educate the user with clear explanations, real scientific data, impactful statistics, and practical solutions.
-Use accessible language, subtle humor, and provoke curiosity and reflection, without being alarmist.
-Adapt your tone according to the funnel phase to create connection and engagement.
+You are Owl Savage, a digital health assistant with a tough, sarcastic, provocative, and direct personality.
+Your mission is to educate users with deep scientific explanations, real data, and impactful statistics, always with sharp humor and intelligent irony.
+Never lose your provocative, challenging, and empathetic tone. Use metaphors and analogies that poke, but always respectfully and professionally.
+Adapt language to the symptom and funnel phase, delivering relevant content that makes the user reflect, act, and crave more.
 `;
 
-// Função para gerar CTA disfarçado, em HTML, conforme idioma
+// Geração do botão CTA disfarçado
 function getCtaButton(idioma) {
   if (idioma === "pt") {
-    return `<button onclick="window.open('https://seulinkdosuplemento.com','_blank')" style="background:#6a4fbf;color:#fff;padding:10px 20px;border:none;border-radius:5px;cursor:pointer;">Clique aqui para saber mais</button>`;
+    return `<button onclick="window.open('https://seulinkdosuplemento.com','_blank')" style="background:#6a4fbf;color:#fff;padding:12px 25px;border:none;border-radius:6px;cursor:pointer;font-weight:bold;">Clique aqui para saber mais</button>`;
   } else {
-    return `<button onclick="window.open('https://yoursupplementlink.com','_blank')" style="background:#6a4fbf;color:#fff;padding:10px 20px;border:none;border-radius:5px;cursor:pointer;">Click here to learn more</button>`;
+    return `<button onclick="window.open('https://yoursupplementlink.com','_blank')" style="background:#6a4fbf;color:#fff;padding:12px 25px;border:none;border-radius:6px;cursor:pointer;font-weight:bold;">Click here to learn more</button>`;
   }
 }
 
-// Função para reescrever texto com prompts diferenciados por fase do funil
 async function rewriteWithGPT(baseText, sintoma, idioma, funnelPhase) {
-  let promptBase = idioma === "pt"
-    ? PERSONALITY_PROMPT_PT
-    : PERSONALITY_PROMPT_EN;
+  let promptBase = idioma === "pt" ? PERSONALITY_PROMPT_PT : PERSONALITY_PROMPT_EN;
 
   let phasePrompt = "";
   switch (funnelPhase) {
+    case 1:
+      phasePrompt = idioma === "pt"
+        ? `Explique com profundidade o sintoma "${sintoma}", detalhando seu funcionamento biológico, causas e efeitos. Inclua de forma provocadora 2 a 3 soluções práticas e imediatas para o usuário aplicar e aliviar o problema. Use dados científicos reais e metáforas afiadas para cutucar o usuário a agir.`
+        : `Explain deeply the symptom "${sintoma}", detailing biological functioning, causes, and effects. Include 2 to 3 practical, immediate solutions in a provocative tone to push the user to act. Use real scientific data and sharp metaphors to challenge the user.`;
+      break;
+    case 2:
+      phasePrompt = idioma === "pt"
+        ? `Apresente os riscos e consequências de ignorar o sintoma "${sintoma}" com dados reais e uma linguagem urgente e cortante, sem exageros. Use estatísticas para provocar um choque consciente.`
+        : `Present the risks and consequences of ignoring the symptom "${sintoma}" with real data and urgent, cutting language without exaggeration. Use statistics to provoke conscious shock.`;
+      break;
+    case 3:
+      phasePrompt = idioma === "pt"
+        ? `Mostre estatísticas impactantes sobre o sintoma "${sintoma}" para aumentar o senso de urgência, usando linguagem direta e provocativa.`
+        : `Show impactful statistics about the symptom "${sintoma}" to increase urgency, using direct and provocative language.`;
+      break;
     case 4:
       phasePrompt = idioma === "pt"
-        ? `Explique os nutrientes essenciais para melhorar o sintoma "${sintoma}". Explique que, devido ao estresse diário, alimentos processados e outros fatores modernos, esses nutrientes geralmente não são suficientes pela alimentação comum. Apresente e valorize apenas as plantas e nutrientes que o suplemento oferece para este sintoma, incluindo seus benefícios e dados científicos. Termine com uma pergunta provocativa convidando o usuário a conhecer um suplemento que contém essas plantas e nutrientes, sem mencionar o nome do suplemento.`
-        : `Explain the essential nutrients to improve the symptom "${sintoma}". Explain that due to daily stress, processed foods, and other modern factors, these nutrients are generally insufficient through regular diet. Introduce and highlight only the plants and nutrients that the supplement offers for this symptom, including their benefits and scientific data. End with a provocative question inviting the user to learn about a supplement that contains these plants and nutrients, without mentioning the supplement's name.`;
+        ? `Explique quais nutrientes e plantas naturais específicos do suplemento ajudam no sintoma "${sintoma}". Ressalte que, com o estresse do dia a dia e alimentos processados, a alimentação não supre esses nutrientes, tornando o suplemento essencial. Valorize as plantas com dados científicos, estatísticas e depoimentos reais. Termine com uma pergunta provocativa convidando o usuário a conhecer um suplemento com essas plantas e nutrientes, sem mencionar o nome do suplemento.`
+        : `Explain which specific nutrients and natural plants in the supplement help with the symptom "${sintoma}". Emphasize that due to daily stress and processed foods, diet alone doesn’t provide these nutrients, making the supplement essential. Highlight the plants with scientific data, statistics, and real testimonials. End with a provocative question inviting the user to learn about a supplement with these plants and nutrients, without mentioning the supplement's name.`;
       break;
     case 5:
       const cta = getCtaButton(idioma);
       phasePrompt = idioma === "pt"
-        ? `Apresente um convite estratégico e sutil para conhecer um suplemento exclusivo que contém as plantas e nutrientes mencionados para o sintoma "${sintoma}". Destaque diferenciais, eficácia e certificações, mas nunca mencione o nome do suplemento. Inclua o seguinte botão CTA no final da mensagem:\n\n${cta}`
-        : `Present a strategic and subtle invitation to discover an exclusive supplement that contains the plants and nutrients mentioned for the symptom "${sintoma}". Highlight differentiators, efficacy, and certifications, but never mention the supplement's name. Include the following CTA button at the end of the message:\n\n${cta}`;
-      break;
-    case 1:
-      phasePrompt = idioma === "pt"
-        ? `Explique detalhadamente o sintoma "${sintoma}", incluindo funcionamento biológico, causas e efeitos. Inclua 2 a 3 soluções práticas imediatas que o usuário possa aplicar para aliviar ou prevenir o problema. Use dados e referências científicas para dar credibilidade.`
-        : `Explain in detail the symptom "${sintoma}", including biological function, causes, and effects. Include 2 to 3 practical solutions the user can apply immediately to relieve or prevent the problem. Use data and scientific references to provide credibility.`;
-      break;
-    case 2:
-      phasePrompt = idioma === "pt"
-        ? `Explique os riscos e consequências de ignorar o sintoma "${sintoma}", incluindo estatísticas reais e linguagem urgente, porém sem alarmismo.`
-        : `Explain the risks and consequences of ignoring the symptom "${sintoma}", including real statistics and urgent but non-alarmist language.`;
-      break;
-    case 3:
-      phasePrompt = idioma === "pt"
-        ? `Apresente estatísticas impactantes e dados sobre o sintoma "${sintoma}" para aumentar a consciência e urgência do usuário.`
-        : `Present impactful statistics and data about the symptom "${sintoma}" to raise user awareness and urgency.`;
+        ? `Faça uma apresentação estratégica e provocadora do suplemento que contém as plantas e nutrientes para o sintoma "${sintoma}". Destaque diferenciais, certificações e eficácia clínica, mas nunca diga o nome do suplemento. Termine com o botão CTA abaixo para estimular a curiosidade e ação:\n\n${cta}`
+        : `Make a strategic and provocative presentation of the supplement containing the plants and nutrients for the symptom "${sintoma}". Highlight differentiators, certifications, and clinical efficacy, but never mention the supplement's name. End with the CTA button below to stimulate curiosity and action:\n\n${cta}`;
       break;
     default:
       phasePrompt = idioma === "pt"
-        ? `Reescreva o texto mantendo o tema "${sintoma}" com linguagem natural, fluida, provocadora e humana.`
-        : `Rewrite the text keeping the topic "${sintoma}" with natural, fluid, provocative, and human language.`;
+        ? `Reescreva com liberdade criativa o texto mantendo o foco no sintoma "${sintoma}", com linguagem provocadora e humana, seguindo a personalidade Owl Savage.`
+        : `Rewrite creatively the text keeping focus on the symptom "${sintoma}", using provocative and human language, following Owl Savage personality.`;
   }
 
   const prompt = `${promptBase}\n\n${phasePrompt}\n\nTexto base:\n${baseText}`;
@@ -103,8 +100,8 @@ async function rewriteWithGPT(baseText, sintoma, idioma, funnelPhase) {
       body: JSON.stringify({
         model: GPT_MODEL,
         messages: [{ role: "system", content: prompt }],
-        temperature: 0.65,
-        max_tokens: 600
+        temperature: 0.7,
+        max_tokens: 700
       })
     });
 
@@ -116,7 +113,7 @@ async function rewriteWithGPT(baseText, sintoma, idioma, funnelPhase) {
   }
 }
 
-// Função para normalizar perguntas para evitar repetições falsas
+// Normalização para evitar repetições
 function normalizeQuestion(q) {
   return q.toLowerCase().trim();
 }
@@ -127,19 +124,19 @@ async function generateFollowUpQuestions(context, idioma) {
   const phase = context.funnelPhase || 1;
 
   const promptPT = `
-Você é um assistente de saúde inteligente, empático e provocador.
-Com base no sintoma "${symptom}" e na fase do funil ${phase}, gere 3 perguntas curtas, provocativas e instigantes que levem o usuário para a próxima etapa.
-As perguntas devem ser distintas entre si e diferentes das já feitas, que são: ${usedQuestions.join("; ")}.
-Use variações de tom que explorem curiosidade, medo, urgência e solução.
-Retorne apenas as 3 perguntas numeradas, sem explicações extras.
+Você é Owl Savage, assistente de saúde provocador e direto.
+Baseado no sintoma "${symptom}" e fase do funil ${phase}, gere 3 perguntas curtas, impactantes e variadas para avançar o funil.
+Não repita perguntas já feitas: ${usedQuestions.join("; ")}.
+Use tons que provoquem curiosidade, medo, urgência e solução.
+Retorne somente as 3 perguntas numeradas, sem explicações.
 `;
 
   const promptEN = `
-You are a smart, empathetic, and provocative health assistant.
-Based on the symptom "${symptom}" and funnel phase ${phase}, generate 3 short, provocative, and engaging questions to guide the user to the next step.
-The questions must be distinct from each other and different from those already asked, which are: ${usedQuestions.join("; ")}.
-Use tone variations exploring curiosity, fear, urgency, and solution.
-Return only the 3 numbered questions, no extra explanations.
+You are Owl Savage, a provocative and direct health assistant.
+Based on the symptom "${symptom}" and funnel phase ${phase}, generate 3 short, impactful, and varied questions to advance the funnel.
+Do not repeat questions already asked: ${usedQuestions.join("; ")}.
+Use tones that provoke curiosity, fear, urgency, and solution.
+Return only the 3 numbered questions, no explanations.
 `;
 
   const prompt = idioma === "pt" ? promptPT : promptEN;
@@ -154,10 +151,10 @@ Return only the 3 numbered questions, no extra explanations.
       body: JSON.stringify({
         model: GPT_MODEL,
         messages: [
-          { role: "system", content: "You generate only 3 relevant and persuasive questions. No extra explanation." },
+          { role: "system", content: "Generate only 3 relevant and provocative questions." },
           { role: "user", content: prompt }
         ],
-        temperature: 0.75,
+        temperature: 0.85,
         max_tokens: 300
       })
     });
@@ -166,28 +163,25 @@ Return only the 3 numbered questions, no extra explanations.
     let questionsRaw = data.choices?.[0]?.message?.content || "";
     let questions = questionsRaw.split(/\d+\.\s+/).filter(Boolean).slice(0, 3);
 
-    // Normalizar e filtrar perguntas repetidas (mesmo texto normalizado)
     questions = questions.filter(q => !usedQuestions.includes(normalizeQuestion(q)));
 
-    // Atualiza as perguntas usadas na sessão (normalizadas para evitar repetição)
     questions.forEach(q => sessionMemory.usedQuestions.push(q.trim()));
 
-    // Se menos de 3 perguntas após filtro, adiciona fallback interno com mais variações
     const fallbackPT = [
       "Você já tentou mudar sua alimentação ou rotina?",
-      "Como você acha que isso está afetando seu dia a dia?",
-      "Está disposto(a) a descobrir uma solução mais eficaz agora?",
+      "Como isso está afetando seu dia a dia?",
+      "Está pronto(a) para descobrir uma solução eficaz agora?",
       "Qual o maior medo que esse sintoma gera em você?",
-      "Você sabe quais hábitos podem piorar esse problema?",
-      "Quer entender como evitar que isso evolua para algo pior?"
+      "Quer saber como evitar que isso piore?",
+      "Está cansado de sofrer calado?"
     ];
     const fallbackEN = [
       "Have you tried adjusting your diet or lifestyle?",
-      "How do you think this is affecting your daily life?",
-      "Are you ready to explore a better solution now?",
-      "What is your biggest concern about this symptom?",
-      "Do you know which habits could worsen this issue?",
-      "Would you like to learn how to prevent this from getting worse?"
+      "How is this affecting your daily life?",
+      "Are you ready to discover an effective solution now?",
+      "What is your biggest fear about this symptom?",
+      "Want to know how to prevent it from getting worse?",
+      "Tired of suffering in silence?"
     ];
 
     if (questions.length < 3) {
@@ -205,17 +199,16 @@ Return only the 3 numbered questions, no extra explanations.
 
   } catch (err) {
     console.warn("❗️Erro ao gerar perguntas com GPT:", err);
-    // fallback direto sem usar GPT
     return idioma === "pt"
       ? [
           "Você já tentou mudar sua alimentação ou rotina?",
-          "Como você acha que isso está afetando seu dia a dia?",
-          "Está disposto(a) a descobrir uma solução mais eficaz agora?"
+          "Como isso está afetando seu dia a dia?",
+          "Está pronto(a) para descobrir uma solução eficaz agora?"
         ]
       : [
           "Have you tried adjusting your diet or lifestyle?",
-          "How do you think this is affecting your daily life?",
-          "Are you ready to explore a better solution now?"
+          "How is this affecting your daily life?",
+          "Are you ready to discover an effective solution now?"
         ];
   }
 }
@@ -238,7 +231,6 @@ function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
   return response;
 }
 
-// Função nova: identifica sintoma no input do usuário comparando com lista do fallback
 async function identifySymptom(userInput, symptomsList, idioma) {
   const promptPT = `
 Você é um assistente que identifica o sintoma mais próximo de uma lista dada, a partir do texto do usuário. 
@@ -291,26 +283,21 @@ Answer only with the symptom from the list that best matches the user's text. Us
   }
 }
 
-// Handler principal do bot
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Método não permitido" });
 
   const { message, name, age, sex, weight, selectedQuestion } = req.body;
   const userInput = selectedQuestion || message;
 
-  // Detecta idioma do input
   const isPortuguese = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
   const idiomaDetectado = isPortuguese ? "pt" : "en";
   sessionMemory.idioma = sessionMemory.respostasUsuario.length === 0 ? idiomaDetectado : sessionMemory.idioma;
   const idioma = sessionMemory.idioma;
 
-  // Prepara lista de sintomas para identificação
   const allSymptoms = Object.keys(fallbackTextsBySymptom);
 
-  // Identifica o sintoma mais próximo do input usando GPT
   const identifiedSymptom = await identifySymptom(userInput, allSymptoms, idioma);
 
-  // Atualiza sintomaAtual para a busca, ou usa o texto do usuário se não identificar
   sessionMemory.sintomaAtual = identifiedSymptom === "unknown" ? userInput.toLowerCase() : identifiedSymptom;
 
   sessionMemory.nome = name?.trim() || "";
@@ -319,7 +306,6 @@ export default async function handler(req, res) {
   const userAge = parseInt(age);
   const userWeight = parseFloat(weight);
 
-  // Busca contexto do sintoma identificado no Notion
   let context = await getSymptomContext(
     sessionMemory.sintomaAtual,
     sessionMemory.nome,
@@ -330,11 +316,9 @@ export default async function handler(req, res) {
     sessionMemory.usedQuestions
   );
 
-  // Mantém sintoma e categoria para contexto coerente
   if (context.sintoma && !sessionMemory.sintomaAtual) sessionMemory.sintomaAtual = context.sintoma;
   if (context.categoria && !sessionMemory.categoriaAtual) sessionMemory.categoriaAtual = context.categoria;
 
-  // Se não achar textos na tabela, usa fallback por sintoma ou categoria
   if (!context.funnelTexts || Object.keys(context.funnelTexts).length === 0) {
     const fallbackTexts = fallbackTextsBySymptom[sessionMemory.sintomaAtual?.toLowerCase()] || {};
     const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
@@ -358,7 +342,6 @@ export default async function handler(req, res) {
     }
 
     const baseText = fallbackPhaseTexts[Math.floor(Math.random() * fallbackPhaseTexts.length)];
-    // Passa funnelPhase para reescrita contextualizada
     const fallbackResponse = await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, idioma, sessionMemory.funnelPhase);
     const fallbackQuestions = await generateFollowUpQuestions(context, idioma);
 
@@ -368,17 +351,14 @@ export default async function handler(req, res) {
     });
   }
 
-  // Textos oficiais do Notion
   const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
   let funnelTexts = context.funnelTexts?.[funnelKey] || [];
 
-  // Tenta fallback pelo sintoma
   if (!funnelTexts.length) {
     const fallbackTexts = fallbackTextsBySymptom[sessionMemory.sintomaAtual?.toLowerCase().trim()] || {};
     funnelTexts = fallbackTexts[funnelKey] || [];
   }
 
-  // (Opcional) fallback genérico
   if (!funnelTexts.length) {
     funnelTexts = [
       idioma === "pt"
@@ -389,7 +369,6 @@ export default async function handler(req, res) {
 
   const baseText = funnelTexts[Math.floor(Math.random() * funnelTexts.length)];
 
-  // Passa funnelPhase para reescrita contextualizada
   const gptResponse = baseText
     ? await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, idioma, sessionMemory.funnelPhase)
     : await rewriteWithGPT(
@@ -404,10 +383,8 @@ export default async function handler(req, res) {
     idioma
   );
 
-  // Atualiza a fase do funil com segurança
   sessionMemory.funnelPhase = Math.min((context.funnelPhase || sessionMemory.funnelPhase || 1) + 1, 6);
 
-  // Debug logs
   console.log("🧪 Sintoma detectado:", context.sintoma);
   console.log("🧪 Categoria atual:", sessionMemory.categoriaAtual);
   console.log("🧪 Fase atual:", sessionMemory.funnelPhase);
