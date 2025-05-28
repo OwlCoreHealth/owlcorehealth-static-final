@@ -55,28 +55,12 @@ async function rewriteWithGPT(baseText, sintoma, idioma) {
   }
 }
 
-async function generateFollowUpQuestions(context, idioma) {
-  const usedQuestions = sessionMemory.usedQuestions || [];
-  const symptom = context.sintoma || "symptom";
-  const phase = context.funnelPhase || 1;
-
-  const promptPT = `
-Você é um assistente de saúde inteligente e provocador. Com base no sintoma "${symptom}" e na fase do funil ${phase}, gere 3 perguntas curtas, provocativas e instigantes que levem o usuário para a próxima etapa. 
-Evite repetir estas perguntas já feitas: ${usedQuestions.join("; ")}.
-As perguntas devem ser distintas, relacionadas ao sintoma e fase, e ter gancho forte de curiosidade, dor, emergência ou solução.
-
-Retorne apenas as 3 perguntas numeradas.
-`;
-
-  const promptEN = `
-You are a smart and provocative health assistant. Based on the symptom "${symptom}" and funnel phase ${phase}, generate 3 short, provocative, and engaging questions to guide the user to the next step.
-Avoid repeating these previously asked questions: ${usedQuestions.join("; ")}.
-Questions must be distinct, related to the symptom and phase, with strong hooks around curiosity, pain, urgency or solution.
-
-Return only the 3 numbered questions.
-`;
-
-  const prompt = idioma === "pt" ? promptPT : promptEN;
+// Função para gerar perguntas finais distintas e evitar repetições
+async function generateDistinctFollowUpQuestions(context, idioma) {
+  const allPrevQuestions = sessionMemory.usedQuestions || [];
+  const prompt = idioma === "pt"
+    ? `Com base no sintoma "${context.sintoma}" e na fase ${context.funnelPhase}, gere 5 perguntas curtas, provocativas e variadas, que despertem curiosidade, medo e solução. Evite perguntas já feitas: ${allPrevQuestions.join("; ")}. Retorne apenas as 3 perguntas mais impactantes, sem explicações.`
+    : `Based on the symptom "${context.sintoma}" and funnel phase ${context.funnelPhase}, generate 5 short, provocative, varied questions that invoke curiosity, fear, and solution. Avoid previously asked questions: ${allPrevQuestions.join("; ")}. Return only the top 3 most impactful questions, no explanations.`;
 
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -88,7 +72,7 @@ Return only the 3 numbered questions.
       body: JSON.stringify({
         model: GPT_MODEL,
         messages: [
-          { role: "system", content: "You generate only 3 relevant and persuasive questions. No extra explanation." },
+          { role: "system", content: "You are an empathetic, provocative health assistant." },
           { role: "user", content: prompt }
         ],
         temperature: 0.75,
@@ -97,44 +81,15 @@ Return only the 3 numbered questions.
     });
 
     const data = await response.json();
-    let questionsRaw = data.choices?.[0]?.message?.content || "";
-    let questions = questionsRaw.split(/\d+\.\s+/).filter(Boolean).slice(0, 3);
+    const text = data.choices?.[0]?.message?.content || "";
+    // Limpa, remove perguntas repetidas e retorna só 3
+    const questions = text.split(/\d+\.\s+/).filter(q => q && !allPrevQuestions.includes(q.trim())).slice(0, 3);
 
-    // Filtrar perguntas repetidas (exato match)
-    questions = questions.filter(q => !usedQuestions.includes(q));
-
-    // Atualiza as perguntas usadas na sessão
+    // Atualiza memória para evitar repetições
     sessionMemory.usedQuestions.push(...questions);
-
-    // Se menos de 3 perguntas após filtro, adiciona fallback interno
-    const fallbackPT = [
-      "Você já tentou mudar sua alimentação ou rotina?",
-      "Como você acha que isso está afetando seu dia a dia?",
-      "Está disposto(a) a descobrir uma solução mais eficaz agora?"
-    ];
-    const fallbackEN = [
-      "Have you tried adjusting your diet or lifestyle?",
-      "How do you think this is affecting your daily life?",
-      "Are you ready to explore a better solution now?"
-    ];
-
-    if (questions.length < 3) {
-      const fallback = idioma === "pt" ? fallbackPT : fallbackEN;
-      // Adiciona perguntas de fallback que ainda não foram usadas
-      for (const fq of fallback) {
-        if (questions.length >= 3) break;
-        if (!sessionMemory.usedQuestions.includes(fq)) {
-          questions.push(fq);
-          sessionMemory.usedQuestions.push(fq);
-        }
-      }
-    }
-
-    return questions.slice(0, 3);
-
+    return questions;
   } catch (err) {
-    console.warn("❗️Erro ao gerar perguntas com GPT:", err);
-    // fallback direto sem usar GPT
+    console.warn("Erro ao gerar perguntas com GPT:", err);
     return idioma === "pt"
       ? [
           "Você já tentou mudar sua alimentação ou rotina?",
@@ -148,6 +103,22 @@ Return only the 3 numbered questions.
         ];
   }
 }
+
+// Exemplo de ajuste na Fase 1 para explicação científica e soluções rápidas
+function getScientificExplanation(sintoma, idioma) {
+  const explanationsPT = {
+    "tooth sensitivity": `Sensibilidade dentária ocorre quando o esmalte protetor do dente desgasta-se ou a gengiva retraída expõe a dentina, onde estão os nervos sensíveis. Causas comuns incluem escovação agressiva, alimentos ácidos e retração gengival. Para aliviar, evite alimentos muito frios/quentes, use cremes dessensibilizantes e mantenha boa higiene oral.`,
+    // ... outros sintomas
+  };
+  const explanationsEN = {
+    "tooth sensitivity": `Tooth sensitivity happens when the protective enamel wears down or gum recession exposes the dentin containing sensitive nerves. Common causes include aggressive brushing, acidic foods, and gum recession. To ease discomfort, avoid very hot/cold foods, use desensitizing toothpaste, and maintain good oral hygiene.`,
+    // ... other symptoms
+  };
+  return idioma === "pt" ? explanationsPT[sintoma] || "" : explanationsEN[sintoma] || "";
+}
+
+// Código no handler para substituir chamada atual de generateFollowUpQuestions por generateDistinctFollowUpQuestions
+// E para incluir a explicação científica com 2-3 soluções práticas no texto base da fase 1 (base)
 
 function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
   const phaseTitle = idioma === "pt" ? "Vamos explorar mais:" : "Let's explore further:";
