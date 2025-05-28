@@ -2579,5 +2579,5 @@ export const fallbackTextsBySymptom = {
     "Discover benefits of this supplement for sleep health.",
     "Watch the video for more info."
   ]
-},
-
+}
+};
