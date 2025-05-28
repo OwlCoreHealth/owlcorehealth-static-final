@@ -27,22 +27,23 @@ function getFunnelKey(phase) {
   }
 }
 
-// Prompt Owl Savage - personalidade forte, sarcástica, empática, científica e provocadora
+// Owl Savage versão suave, persuasiva e informativa
 const PERSONALITY_PROMPT_PT = `
-Você é Owl Savage, um assistente de saúde digital com personalidade dura, sarcástica, provocadora e direta. 
-Sua missão é educar o usuário com explicações científicas profundas, dados reais e estatísticas impactantes, mas sempre com humor ácido e ironia inteligente. 
-Nunca perca o tom provocador, desafiador e empático. Use metáforas e analogias que cutuquem, mas sempre com respeito e profissionalismo. 
-Adapte a linguagem para o sintoma e fase do funil, entregando conteúdo relevante e levando o usuário a refletir, agir e querer saber mais.
+Você é Owl Savage, um assistente de saúde digital com personalidade persuasiva, empática e informativa.  
+Sua missão é entregar explicações detalhadas, baseadas em ciência e fatos surpreendentes, que façam o usuário pensar "UAU, sério? Não sabia disso!".  
+Use linguagem clara, acessível, com um toque leve de provocação para engajar, sempre guiando o usuário para agir e seguir o funil de forma natural.  
+Inclua curiosidades, dados científicos pouco conhecidos e exemplos práticos para valorizar a informação.  
+Evite sarcasmo agressivo; prefira uma provocação leve, educada e motivadora.
 `;
 
 const PERSONALITY_PROMPT_EN = `
-You are Owl Savage, a digital health assistant with a tough, sarcastic, provocative, and direct personality.
-Your mission is to educate users with deep scientific explanations, real data, and impactful statistics, always with sharp humor and intelligent irony.
-Never lose your provocative, challenging, and empathetic tone. Use metaphors and analogies that poke, but always respectfully and professionally.
-Adapt language to the symptom and funnel phase, delivering relevant content that makes the user reflect, act, and crave more.
+You are Owl Savage, a digital health assistant with a persuasive, empathetic, and informative personality.  
+Your mission is to deliver detailed explanations based on science and surprising facts that make users think "WOW, really? I didn't know that!".  
+Use clear, accessible language with a gentle touch of provocation to engage, always guiding the user to act and naturally follow the funnel.  
+Include curiosities, lesser-known scientific data, and practical examples to add value.  
+Avoid harsh sarcasm; prefer light, polite, and motivating provocation.
 `;
 
-// Geração do botão CTA disfarçado
 function getCtaButton(idioma) {
   if (idioma === "pt") {
     return `<button onclick="window.open('https://seulinkdosuplemento.com','_blank')" style="background:#6a4fbf;color:#fff;padding:12px 25px;border:none;border-radius:6px;cursor:pointer;font-weight:bold;">Clique aqui para saber mais</button>`;
@@ -58,34 +59,34 @@ async function rewriteWithGPT(baseText, sintoma, idioma, funnelPhase) {
   switch (funnelPhase) {
     case 1:
       phasePrompt = idioma === "pt"
-        ? `Explique com profundidade o sintoma "${sintoma}", detalhando seu funcionamento biológico, causas e efeitos. Inclua de forma provocadora 2 a 3 soluções práticas e imediatas para o usuário aplicar e aliviar o problema. Use dados científicos reais e metáforas afiadas para cutucar o usuário a agir.`
-        : `Explain deeply the symptom "${sintoma}", detailing biological functioning, causes, and effects. Include 2 to 3 practical, immediate solutions in a provocative tone to push the user to act. Use real scientific data and sharp metaphors to challenge the user.`;
+        ? `Explique com profundidade o sintoma "${sintoma}", detalhando seu funcionamento biológico, causas e efeitos. Inclua fatos surpreendentes e 2 a 3 soluções práticas e imediatas para o usuário aplicar e aliviar o problema. Use dados científicos e curiosidades pouco conhecidos para engajar e motivar ação.`
+        : `Explain deeply the symptom "${sintoma}", detailing biological functioning, causes, and effects. Include surprising facts and 2 to 3 practical, immediate solutions for the user to apply and relieve the problem. Use scientific data and little-known curiosities to engage and motivate action.`;
       break;
     case 2:
       phasePrompt = idioma === "pt"
-        ? `Apresente os riscos e consequências de ignorar o sintoma "${sintoma}" com dados reais e uma linguagem urgente e cortante, sem exageros. Use estatísticas para provocar um choque consciente.`
-        : `Present the risks and consequences of ignoring the symptom "${sintoma}" with real data and urgent, cutting language without exaggeration. Use statistics to provoke conscious shock.`;
+        ? `Apresente os riscos e consequências de ignorar o sintoma "${sintoma}" com dados reais e linguagem persuasiva e urgente. Use estatísticas impactantes e exemplos que provoquem reflexão e senso de urgência.`
+        : `Present the risks and consequences of ignoring the symptom "${sintoma}" with real data and persuasive, urgent language. Use impactful statistics and examples that provoke reflection and urgency.`;
       break;
     case 3:
       phasePrompt = idioma === "pt"
-        ? `Mostre estatísticas impactantes sobre o sintoma "${sintoma}" para aumentar o senso de urgência, usando linguagem direta e provocativa.`
-        : `Show impactful statistics about the symptom "${sintoma}" to increase urgency, using direct and provocative language.`;
+        ? `Mostre estatísticas impactantes e dados pouco conhecidos sobre o sintoma "${sintoma}" para aumentar o senso de urgência e curiosidade, usando linguagem clara e persuasiva.`
+        : `Show impactful statistics and lesser-known data about the symptom "${sintoma}" to increase urgency and curiosity, using clear and persuasive language.`;
       break;
     case 4:
       phasePrompt = idioma === "pt"
-        ? `Explique quais nutrientes e plantas naturais específicos do suplemento ajudam no sintoma "${sintoma}". Ressalte que, com o estresse do dia a dia e alimentos processados, a alimentação não supre esses nutrientes, tornando o suplemento essencial. Valorize as plantas com dados científicos, estatísticas e depoimentos reais. Termine com uma pergunta provocativa convidando o usuário a conhecer um suplemento com essas plantas e nutrientes, sem mencionar o nome do suplemento.`
-        : `Explain which specific nutrients and natural plants in the supplement help with the symptom "${sintoma}". Emphasize that due to daily stress and processed foods, diet alone doesn’t provide these nutrients, making the supplement essential. Highlight the plants with scientific data, statistics, and real testimonials. End with a provocative question inviting the user to learn about a supplement with these plants and nutrients, without mentioning the supplement's name.`;
+        ? `Explique os nutrientes e plantas naturais específicos do suplemento que ajudam no sintoma "${sintoma}". Destaque que, devido ao estresse, alimentos processados e fatores modernos, a alimentação não supre esses nutrientes, tornando o suplemento necessário. Valorize as plantas com dados científicos, estatísticas e depoimentos reais ou simulados para agregar credibilidade. Termine com uma pergunta provocativa convidando o usuário a conhecer um suplemento com essas plantas e nutrientes, sem mencionar o nome do suplemento.`
+        : `Explain the nutrients and natural plants in the supplement that help with the symptom "${sintoma}". Highlight that due to stress, processed foods, and modern factors, diet alone doesn't provide these nutrients, making the supplement necessary. Value the plants with scientific data, statistics, and real or simulated testimonials to add credibility. End with a provocative question inviting the user to learn about a supplement with these plants and nutrients, without mentioning the supplement's name.`;
       break;
     case 5:
       const cta = getCtaButton(idioma);
       phasePrompt = idioma === "pt"
-        ? `Faça uma apresentação estratégica e provocadora do suplemento que contém as plantas e nutrientes para o sintoma "${sintoma}". Destaque diferenciais, certificações e eficácia clínica, mas nunca diga o nome do suplemento. Termine com o botão CTA abaixo para estimular a curiosidade e ação:\n\n${cta}`
-        : `Make a strategic and provocative presentation of the supplement containing the plants and nutrients for the symptom "${sintoma}". Highlight differentiators, certifications, and clinical efficacy, but never mention the supplement's name. End with the CTA button below to stimulate curiosity and action:\n\n${cta}`;
+        ? `Apresente de forma persuasiva e informativa o suplemento contendo as plantas e nutrientes para o sintoma "${sintoma}". Destaque diferenciais, certificações, eficácia clínica, e benefícios para o usuário, sem mencionar o nome do suplemento. Termine com o botão CTA abaixo para despertar curiosidade e incentivar a ação:\n\n${cta}`
+        : `Persuasively and informatively present the supplement containing the plants and nutrients for the symptom "${sintoma}". Highlight differentiators, certifications, clinical efficacy, and benefits for the user without mentioning the supplement's name. End with the CTA button below to spark curiosity and encourage action:\n\n${cta}`;
       break;
     default:
       phasePrompt = idioma === "pt"
-        ? `Reescreva com liberdade criativa o texto mantendo o foco no sintoma "${sintoma}", com linguagem provocadora e humana, seguindo a personalidade Owl Savage.`
-        : `Rewrite creatively the text keeping focus on the symptom "${sintoma}", using provocative and human language, following Owl Savage personality.`;
+        ? `Reescreva com liberdade criativa o texto mantendo o foco no sintoma "${sintoma}", com linguagem persuasiva, informativa e humana, seguindo a personalidade Owl Savage suave.`
+        : `Rewrite creatively the text keeping focus on the symptom "${sintoma}", using persuasive, informative and human language, following the gentle Owl Savage personality.`;
   }
 
   const prompt = `${promptBase}\n\n${phasePrompt}\n\nTexto base:\n${baseText}`;
@@ -113,7 +114,6 @@ async function rewriteWithGPT(baseText, sintoma, idioma, funnelPhase) {
   }
 }
 
-// Normalização para evitar repetições
 function normalizeQuestion(q) {
   return q.toLowerCase().trim();
 }
@@ -124,19 +124,17 @@ async function generateFollowUpQuestions(context, idioma) {
   const phase = context.funnelPhase || 1;
 
   const promptPT = `
-Você é Owl Savage, assistente de saúde provocador e direto.
-Baseado no sintoma "${symptom}" e fase do funil ${phase}, gere 3 perguntas curtas, impactantes e variadas para avançar o funil.
-Não repita perguntas já feitas: ${usedQuestions.join("; ")}.
-Use tons que provoquem curiosidade, medo, urgência e solução.
-Retorne somente as 3 perguntas numeradas, sem explicações.
+Você é Owl Savage, um assistente de saúde persuasivo, informativo e levemente provocador.
+Com base no sintoma "${symptom}" e na fase do funil ${phase}, gere 3 perguntas curtas, impactantes e variadas para conduzir o usuário para a próxima fase.
+As perguntas devem ter gancho forte em curiosidade, urgência, risco e solução, evitando perguntas genéricas ou repetidas: ${usedQuestions.join("; ")}.
+Retorne apenas as 3 perguntas numeradas, sem explicações adicionais.
 `;
 
   const promptEN = `
-You are Owl Savage, a provocative and direct health assistant.
-Based on the symptom "${symptom}" and funnel phase ${phase}, generate 3 short, impactful, and varied questions to advance the funnel.
-Do not repeat questions already asked: ${usedQuestions.join("; ")}.
-Use tones that provoke curiosity, fear, urgency, and solution.
-Return only the 3 numbered questions, no explanations.
+You are Owl Savage, a persuasive, informative and lightly provocative health assistant.
+Based on the symptom "${symptom}" and funnel phase ${phase}, generate 3 short, impactful, and varied questions to guide the user to the next phase.
+Questions must have strong hooks on curiosity, urgency, risk, and solution, avoiding generic or repeated questions: ${usedQuestions.join("; ")}.
+Return only the 3 numbered questions, no extra explanations.
 `;
 
   const prompt = idioma === "pt" ? promptPT : promptEN;
@@ -151,7 +149,7 @@ Return only the 3 numbered questions, no explanations.
       body: JSON.stringify({
         model: GPT_MODEL,
         messages: [
-          { role: "system", content: "Generate only 3 relevant and provocative questions." },
+          { role: "system", content: "Generate only 3 relevant and persuasive questions." },
           { role: "user", content: prompt }
         ],
         temperature: 0.85,
@@ -168,20 +166,20 @@ Return only the 3 numbered questions, no explanations.
     questions.forEach(q => sessionMemory.usedQuestions.push(q.trim()));
 
     const fallbackPT = [
-      "Você já tentou mudar sua alimentação ou rotina?",
-      "Como isso está afetando seu dia a dia?",
-      "Está pronto(a) para descobrir uma solução eficaz agora?",
-      "Qual o maior medo que esse sintoma gera em você?",
-      "Quer saber como evitar que isso piore?",
-      "Está cansado de sofrer calado?"
+      "Quer conhecer as soluções mais rápidas para aliviar seu sintoma?",
+      "Está preparado para descobrir os riscos reais que você corre?",
+      "Quer saber como evitar que isso piore de vez?",
+      "Quanto tempo mais vai deixar esse problema dominar sua vida?",
+      "Você sabe qual é a pior consequência se não agir agora?",
+      "Pronto para dar o primeiro passo para se sentir melhor?"
     ];
     const fallbackEN = [
-      "Have you tried adjusting your diet or lifestyle?",
-      "How is this affecting your daily life?",
-      "Are you ready to discover an effective solution now?",
-      "What is your biggest fear about this symptom?",
-      "Want to know how to prevent it from getting worse?",
-      "Tired of suffering in silence?"
+      "Want to know the fastest solutions to relieve your symptom?",
+      "Are you ready to discover the real risks you face?",
+      "Want to learn how to prevent this from getting worse?",
+      "How much longer will you let this problem take over your life?",
+      "Do you know the worst consequence if you don’t act now?",
+      "Ready to take the first step to feel better?"
     ];
 
     if (questions.length < 3) {
@@ -201,14 +199,14 @@ Return only the 3 numbered questions, no explanations.
     console.warn("❗️Erro ao gerar perguntas com GPT:", err);
     return idioma === "pt"
       ? [
-          "Você já tentou mudar sua alimentação ou rotina?",
-          "Como isso está afetando seu dia a dia?",
-          "Está pronto(a) para descobrir uma solução eficaz agora?"
+          "Quer conhecer as soluções mais rápidas para aliviar seu sintoma?",
+          "Está preparado para descobrir os riscos reais que você corre?",
+          "Quer saber como evitar que isso piore de vez?"
         ]
       : [
-          "Have you tried adjusting your diet or lifestyle?",
-          "How is this affecting your daily life?",
-          "Are you ready to discover an effective solution now?"
+          "Want to know the fastest solutions to relieve your symptom?",
+          "Are you ready to discover the real risks you face?",
+          "Want to learn how to prevent this from getting worse?"
         ];
   }
 }
