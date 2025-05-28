@@ -27,10 +27,62 @@ function getFunnelKey(phase) {
   }
 }
 
-async function rewriteWithGPT(baseText, sintoma, idioma) {
-  const prompt = idioma === "pt"
-    ? `Use o seguinte texto como base, mantendo o conteúdo e estrutura, mas reescrevendo com 30% de liberdade criativa, usando linguagem mais fluida, provocadora e humana. Não mude o tema e mantenha o foco em: ${sintoma}\n\nTexto-base:\n${baseText}`
-    : `Use the following text as a base. Keep the core message and structure, but rewrite with 30% creative freedom in a more natural, engaging, and human tone. Do not change the topic and keep the focus on: ${sintoma}\n\nBase text:\n${baseText}`;
+// Prompt global de personalidade para o GPT em todas as fases
+const PERSONALITY_PROMPT_PT = `
+Você é um assistente de saúde digital com personalidade empática, provocadora e humana.
+Sua missão é educar o usuário com explicações claras, dados científicos reais, estatísticas impactantes e soluções práticas.
+Use linguagem acessível, leve humor sutil e provoque a curiosidade e reflexão do usuário, sem ser alarmista.
+Adapte o tom conforme a fase do funil para criar conexão e engajamento.
+`;
+
+const PERSONALITY_PROMPT_EN = `
+You are a digital health assistant with an empathetic, provocative, and human personality.
+Your mission is to educate the user with clear explanations, real scientific data, impactful statistics, and practical solutions.
+Use accessible language, subtle humor, and provoke curiosity and reflection, without being alarmist.
+Adapt your tone according to the funnel phase to create connection and engagement.
+`;
+
+// Função para reescrever texto com prompts diferenciados por fase do funil
+async function rewriteWithGPT(baseText, sintoma, idioma, funnelPhase) {
+  let promptBase = idioma === "pt"
+    ? PERSONALITY_PROMPT_PT
+    : PERSONALITY_PROMPT_EN;
+
+  // Ajuste do prompt por fase do funil
+  let phasePrompt = "";
+  switch (funnelPhase) {
+    case 1: // Explicação científica + soluções práticas
+      phasePrompt = idioma === "pt"
+        ? `Explique detalhadamente o sintoma "${sintoma}", incluindo funcionamento biológico, causas e efeitos. Inclua 2 a 3 soluções práticas imediatas que o usuário possa aplicar para aliviar ou prevenir o problema. Use dados e referências científicas para dar credibilidade.`
+        : `Explain in detail the symptom "${sintoma}", including biological function, causes, and effects. Include 2 to 3 practical solutions the user can apply immediately to relieve or prevent the problem. Use data and scientific references to provide credibility.`;
+      break;
+    case 2: // Riscos e consequências
+      phasePrompt = idioma === "pt"
+        ? `Explique os riscos e consequências de ignorar o sintoma "${sintoma}", incluindo estatísticas reais e linguagem urgente, porém sem alarmismo.`
+        : `Explain the risks and consequences of ignoring the symptom "${sintoma}", including real statistics and urgent but non-alarmist language.`;
+      break;
+    case 3: // Estatísticas impactantes
+      phasePrompt = idioma === "pt"
+        ? `Apresente estatísticas impactantes e dados sobre o sintoma "${sintoma}" para aumentar a consciência e urgência do usuário.`
+        : `Present impactful statistics and data about the symptom "${sintoma}" to raise user awareness and urgency.`;
+      break;
+    case 4: // Nutrientes e plantas naturais
+      phasePrompt = idioma === "pt"
+        ? `Liste as plantas naturais específicas ligadas ao suplemento para o sintoma "${sintoma}". Explique seus mecanismos de ação, benefícios e inclua referências científicas e depoimentos que valorizem essas plantas.`
+        : `List the specific natural plants linked to the supplement for the symptom "${sintoma}". Explain their mechanisms of action, benefits, and include scientific references and testimonials that highlight these plants.`;
+      break;
+    case 5: // Apresentação sutil do suplemento + CTA
+      phasePrompt = idioma === "pt"
+        ? `Apresente o suplemento relacionado ao sintoma "${sintoma}" de forma discreta e estratégica. Inclua dados de eficácia, certificações e diferenciais importantes, criando senso de urgência e exclusividade. Não mencione o nome do suplemento diretamente. Desperte a curiosidade para que o usuário peça mais informações.`
+        : `Present the supplement related to the symptom "${sintoma}" discreetly and strategically. Include efficacy data, certifications, and important differentials, creating a sense of urgency and exclusivity. Do not mention the supplement's name directly. Arouse curiosity so the user asks for more information.`;
+      break;
+    default:
+      phasePrompt = idioma === "pt"
+        ? `Reescreva o texto mantendo o tema "${sintoma}" com linguagem natural, fluida, provocadora e humana.`
+        : `Rewrite the text keeping the topic "${sintoma}" with natural, fluid, provocative, and human language.`;
+  }
+
+  const prompt = `${promptBase}\n\n${phasePrompt}\n\nTexto base:\n${baseText}`;
 
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -55,25 +107,30 @@ async function rewriteWithGPT(baseText, sintoma, idioma) {
   }
 }
 
+// Função para normalizar perguntas para evitar repetições falsas
+function normalizeQuestion(q) {
+  return q.toLowerCase().trim();
+}
+
 async function generateFollowUpQuestions(context, idioma) {
-  const usedQuestions = sessionMemory.usedQuestions || [];
+  const usedQuestions = sessionMemory.usedQuestions.map(normalizeQuestion) || [];
   const symptom = context.sintoma || "symptom";
   const phase = context.funnelPhase || 1;
 
   const promptPT = `
-Você é um assistente de saúde inteligente e provocador. Com base no sintoma "${symptom}" e na fase do funil ${phase}, gere 3 perguntas curtas, provocativas e instigantes que levem o usuário para a próxima etapa. 
-Evite repetir estas perguntas já feitas: ${usedQuestions.join("; ")}.
-As perguntas devem ser distintas, relacionadas ao sintoma e fase, e ter gancho forte de curiosidade, dor, emergência ou solução.
-
-Retorne apenas as 3 perguntas numeradas.
+Você é um assistente de saúde inteligente, empático e provocador.
+Com base no sintoma "${symptom}" e na fase do funil ${phase}, gere 3 perguntas curtas, provocativas e instigantes que levem o usuário para a próxima etapa.
+As perguntas devem ser distintas entre si e diferentes das já feitas, que são: ${usedQuestions.join("; ")}.
+Use variações de tom que explorem curiosidade, medo, urgência e solução.
+Retorne apenas as 3 perguntas numeradas, sem explicações extras.
 `;
 
   const promptEN = `
-You are a smart and provocative health assistant. Based on the symptom "${symptom}" and funnel phase ${phase}, generate 3 short, provocative, and engaging questions to guide the user to the next step.
-Avoid repeating these previously asked questions: ${usedQuestions.join("; ")}.
-Questions must be distinct, related to the symptom and phase, with strong hooks around curiosity, pain, urgency or solution.
-
-Return only the 3 numbered questions.
+You are a smart, empathetic, and provocative health assistant.
+Based on the symptom "${symptom}" and funnel phase ${phase}, generate 3 short, provocative, and engaging questions to guide the user to the next step.
+The questions must be distinct from each other and different from those already asked, which are: ${usedQuestions.join("; ")}.
+Use tone variations exploring curiosity, fear, urgency, and solution.
+Return only the 3 numbered questions, no extra explanations.
 `;
 
   const prompt = idioma === "pt" ? promptPT : promptEN;
@@ -100,30 +157,35 @@ Return only the 3 numbered questions.
     let questionsRaw = data.choices?.[0]?.message?.content || "";
     let questions = questionsRaw.split(/\d+\.\s+/).filter(Boolean).slice(0, 3);
 
-    // Filtrar perguntas repetidas (exato match)
-    questions = questions.filter(q => !usedQuestions.includes(q));
+    // Normalizar e filtrar perguntas repetidas (mesmo texto normalizado)
+    questions = questions.filter(q => !usedQuestions.includes(normalizeQuestion(q)));
 
-    // Atualiza as perguntas usadas na sessão
-    sessionMemory.usedQuestions.push(...questions);
+    // Atualiza as perguntas usadas na sessão (normalizadas para evitar repetição)
+    questions.forEach(q => sessionMemory.usedQuestions.push(q.trim()));
 
-    // Se menos de 3 perguntas após filtro, adiciona fallback interno
+    // Se menos de 3 perguntas após filtro, adiciona fallback interno com mais variações
     const fallbackPT = [
       "Você já tentou mudar sua alimentação ou rotina?",
       "Como você acha que isso está afetando seu dia a dia?",
-      "Está disposto(a) a descobrir uma solução mais eficaz agora?"
+      "Está disposto(a) a descobrir uma solução mais eficaz agora?",
+      "Qual o maior medo que esse sintoma gera em você?",
+      "Você sabe quais hábitos podem piorar esse problema?",
+      "Quer entender como evitar que isso evolua para algo pior?"
     ];
     const fallbackEN = [
       "Have you tried adjusting your diet or lifestyle?",
       "How do you think this is affecting your daily life?",
-      "Are you ready to explore a better solution now?"
+      "Are you ready to explore a better solution now?",
+      "What is your biggest concern about this symptom?",
+      "Do you know which habits could worsen this issue?",
+      "Would you like to learn how to prevent this from getting worse?"
     ];
 
     if (questions.length < 3) {
       const fallback = idioma === "pt" ? fallbackPT : fallbackEN;
-      // Adiciona perguntas de fallback que ainda não foram usadas
       for (const fq of fallback) {
         if (questions.length >= 3) break;
-        if (!sessionMemory.usedQuestions.includes(fq)) {
+        if (!sessionMemory.usedQuestions.some(uq => normalizeQuestion(uq) === normalizeQuestion(fq))) {
           questions.push(fq);
           sessionMemory.usedQuestions.push(fq);
         }
@@ -288,7 +350,8 @@ export default async function handler(req, res) {
     }
 
     const baseText = fallbackPhaseTexts[Math.floor(Math.random() * fallbackPhaseTexts.length)];
-    const fallbackResponse = await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, idioma);
+    // Alteração: passa funnelPhase para reescrita contextualizada
+    const fallbackResponse = await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, idioma, sessionMemory.funnelPhase);
     const fallbackQuestions = await generateFollowUpQuestions(context, idioma);
 
     const content = formatHybridResponse(context, fallbackResponse, fallbackQuestions, idioma);
@@ -318,31 +381,10 @@ export default async function handler(req, res) {
 
   const baseText = funnelTexts[Math.floor(Math.random() * funnelTexts.length)];
 
+  // Alteração: passa funnelPhase para reescrita contextualizada
   const gptResponse = baseText
-    ? await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, idioma)
+    ? await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, idioma, sessionMemory.funnelPhase)
     : await rewriteWithGPT(
         `Explain clearly about the symptom ${sessionMemory.sintomaAtual} in phase ${sessionMemory.funnelPhase}, focusing on phase key ${funnelKey}`,
         sessionMemory.sintomaAtual,
-        idioma
-      );
-
-  const followupQuestions = await generateFollowUpQuestions(
-    { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
-    idioma
-  );
-
-  // Atualiza a fase do funil com segurança
-  sessionMemory.funnelPhase = Math.min((context.funnelPhase || sessionMemory.funnelPhase || 1) + 1, 6);
-
-  // Debug logs
-  console.log("🧪 Sintoma detectado:", context.sintoma);
-  console.log("🧪 Categoria atual:", sessionMemory.categoriaAtual);
-  console.log("🧪 Fase atual:", sessionMemory.funnelPhase);
-  console.log("🧪 Texto da fase:", funnelKey, funnelTexts);
-
-  const content = formatHybridResponse(context, gptResponse, followupQuestions, idioma);
-
-  return res.status(200).json({
-    choices: [{ message: { content, followupQuestions: followupQuestions || [] } }]
-  });
-}
+        idioma,
