@@ -120,6 +120,7 @@ function getScientificExplanation(sintoma, idioma) {
 // Código no handler para substituir chamada atual de generateFollowUpQuestions por generateDistinctFollowUpQuestions
 // E para incluir a explicação científica com 2-3 soluções práticas no texto base da fase 1 (base)
 
+
 function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
   const phaseTitle = idioma === "pt" ? "Vamos explorar mais:" : "Let's explore further:";
   const instruction = idioma === "pt"
