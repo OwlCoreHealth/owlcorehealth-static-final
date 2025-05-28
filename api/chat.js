@@ -186,14 +186,22 @@ export default async function handler(req, res) {
   const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
   let funnelTexts = context.funnelTexts?.[funnelKey] || [];
 
-  // Se não achar textos, tenta fallback por categoria
-  if (!funnelTexts.length && sessionMemory.categoriaAtual) {
-    funnelTexts = fallbackTextsByCategory[sessionMemory.categoriaAtual]?.[funnelKey] || [];
-  }
+// Tenta fallback pelo sintoma
+if (!funnelTexts.length) {
+  const fallbackTexts = fallbackTextsBySymptom[sessionMemory.sintomaAtual?.toLowerCase().trim()] || {};
+  funnelTexts = fallbackTexts[funnelKey] || [];
+}
 
-  const baseText = funnelTexts.length > 0
-    ? funnelTexts[Math.floor(Math.random() * funnelTexts.length)]
-    : null;
+// (Opcional) fallback genérico
+if (!funnelTexts.length) {
+  funnelTexts = [
+    idioma === "pt"
+      ? "Desculpe, ainda não temos conteúdo para esse sintoma e etapa. Tente outro sintoma ou reformule sua pergunta."
+      : "Sorry, we don’t have content for this symptom and phase yet. Please try another symptom or rephrase your query."
+  ];
+}
+
+const baseText = funnelTexts[Math.floor(Math.random() * funnelTexts.length)];
 
   const gptResponse = baseText
     ? await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, idioma)
