@@ -317,24 +317,22 @@ export default async function handler(req, res) {
   if (context.sintoma && !sessionMemory.sintomaAtual) sessionMemory.sintomaAtual = context.sintoma;
   if (context.categoria && !sessionMemory.categoriaAtual) sessionMemory.categoriaAtual = context.categoria;
 
-  // Caso não encontre texto na tabela, usa fallback local
   if (!context.funnelTexts || Object.keys(context.funnelTexts).length === 0) {
-    const fallbackTexts = fallbackTextsBySymptom[sessionMemory.sintomaAtual?.toLowerCase()] || {};
-    const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
-    let fallbackPhaseTexts = fallbackTexts[funnelKey] || [];
+  // fallback: gerar texto livre com GPT para manter funil
+  const freeTextPrompt = idioma === "pt"
+    ? `Você é um assistente de saúde. Explique detalhadamente e de forma humana o sintoma "${sessionMemory.sintomaAtual}" considerando a categoria "${sessionMemory.categoriaAtual}". Forneça informações úteis e conduza o usuário no funil, mesmo sem textos específicos na base.`
+    : `You are a health assistant. Explain in detail and humanly the symptom "${sessionMemory.sintomaAtual}" considering the category "${sessionMemory.categoriaAtual}". Provide useful information and guide the user through the funnel even if no specific texts are available in the database.`;
 
-    if (fallbackPhaseTexts.length === 0) {
-      const noContentMsg = idioma === "pt"
-        ? "Desculpe, não encontrei informações suficientes para essa fase. Tente reformular sua frase."
-        : "Sorry, I couldn't find enough information for this step. Please try rephrasing your input.";
+  const freeTextResponse = await rewriteWithGPT(freeTextPrompt, sessionMemory.sintomaAtual, idioma, sessionMemory.funnelPhase, sessionMemory.categoriaAtual);
 
-      const fallbackQuestions = await generateFollowUpQuestions(context, idioma);
+  const followupQuestions = await generateFollowUpQuestions({ sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase }, idioma);
 
-      const content = formatHybridResponse(context, noContentMsg, fallbackQuestions, idioma);
-      return res.status(200).json({
-        choices: [{ message: { content, followupQuestions: fallbackQuestions || [] } }]
-      });
-    }
+  const content = formatHybridResponse(context, freeTextResponse, followupQuestions, idioma);
+
+  return res.status(200).json({
+    choices: [{ message: { content, followupQuestions: followupQuestions || [] } }]
+  });
+}
 
     const baseText = fallbackPhaseTexts[Math.floor(Math.random() * fallbackPhaseTexts.length)];
     const fallbackResponse = await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, idioma, sessionMemory.funnelPhase);
