@@ -56,9 +56,27 @@ async function rewriteWithGPT(baseText, sintoma, idioma) {
 }
 
 async function generateFollowUpQuestions(context, idioma) {
-  const prompt = idioma === "pt"
-    ? `Com base no sintoma \"${context.sintoma}\" e na fase do funil ${context.funnelPhase}, gere 3 perguntas curtas, provocativas e instigantes para conduzir o usuário para a próxima etapa.`
-    : `Based on the symptom \"${context.sintoma}\" and funnel phase ${context.funnelPhase}, generate 3 short, provocative, and engaging questions to guide the user to the next step.`;
+  const usedQuestions = sessionMemory.usedQuestions || [];
+  const symptom = context.sintoma || "symptom";
+  const phase = context.funnelPhase || 1;
+
+  const promptPT = `
+Você é um assistente de saúde inteligente e provocador. Com base no sintoma "${symptom}" e na fase do funil ${phase}, gere 3 perguntas curtas, provocativas e instigantes que levem o usuário para a próxima etapa. 
+Evite repetir estas perguntas já feitas: ${usedQuestions.join("; ")}.
+As perguntas devem ser distintas, relacionadas ao sintoma e fase, e ter gancho forte de curiosidade, dor, emergência ou solução.
+
+Retorne apenas as 3 perguntas numeradas.
+`;
+
+  const promptEN = `
+You are a smart and provocative health assistant. Based on the symptom "${symptom}" and funnel phase ${phase}, generate 3 short, provocative, and engaging questions to guide the user to the next step.
+Avoid repeating these previously asked questions: ${usedQuestions.join("; ")}.
+Questions must be distinct, related to the symptom and phase, with strong hooks around curiosity, pain, urgency or solution.
+
+Return only the 3 numbered questions.
+`;
+
+  const prompt = idioma === "pt" ? promptPT : promptEN;
 
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -73,16 +91,50 @@ async function generateFollowUpQuestions(context, idioma) {
           { role: "system", content: "You generate only 3 relevant and persuasive questions. No extra explanation." },
           { role: "user", content: prompt }
         ],
-        temperature: 0.7,
+        temperature: 0.75,
         max_tokens: 300
       })
     });
 
     const data = await response.json();
-    const text = data.choices?.[0]?.message?.content || "";
-    return text.split(/\d+\.\s+/).filter(Boolean).slice(0, 3);
+    let questionsRaw = data.choices?.[0]?.message?.content || "";
+    let questions = questionsRaw.split(/\d+\.\s+/).filter(Boolean).slice(0, 3);
+
+    // Filtrar perguntas repetidas (exato match)
+    questions = questions.filter(q => !usedQuestions.includes(q));
+
+    // Atualiza as perguntas usadas na sessão
+    sessionMemory.usedQuestions.push(...questions);
+
+    // Se menos de 3 perguntas após filtro, adiciona fallback interno
+    const fallbackPT = [
+      "Você já tentou mudar sua alimentação ou rotina?",
+      "Como você acha que isso está afetando seu dia a dia?",
+      "Está disposto(a) a descobrir uma solução mais eficaz agora?"
+    ];
+    const fallbackEN = [
+      "Have you tried adjusting your diet or lifestyle?",
+      "How do you think this is affecting your daily life?",
+      "Are you ready to explore a better solution now?"
+    ];
+
+    if (questions.length < 3) {
+      const fallback = idioma === "pt" ? fallbackPT : fallbackEN;
+      // Adiciona perguntas de fallback que ainda não foram usadas
+      for (const fq of fallback) {
+        if (questions.length >= 3) break;
+        if (!sessionMemory.usedQuestions.includes(fq)) {
+          questions.push(fq);
+          sessionMemory.usedQuestions.push(fq);
+        }
+      }
+    }
+
+    return questions.slice(0, 3);
+
   } catch (err) {
     console.warn("❗️Erro ao gerar perguntas com GPT:", err);
+    // fallback direto sem usar GPT
     return idioma === "pt"
       ? [
           "Você já tentou mudar sua alimentação ou rotina?",
