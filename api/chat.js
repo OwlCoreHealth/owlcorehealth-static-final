@@ -1,5 +1,5 @@
 import { getSymptomContext } from "./notion.mjs";
-import { fallbackTextsBySymptom, fallbackTextsByCategory } from "./fallbackTextsBySymptom.js";
+import { fallbackTextsBySymptom } from "./fallbackTextsBySymptom.js";
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const GPT_MODEL = "gpt-4o-mini";
