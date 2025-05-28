@@ -660,7 +660,7 @@ export const fallbackTextsBySymptom = {
     "Discover how this supplement supports energy and weight management.",
     "Watch the video for product info."
   ]
-}
+},
 
 // PRIME BIOME - sintomas completos
 
