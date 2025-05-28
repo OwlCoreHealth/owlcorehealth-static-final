@@ -42,39 +42,48 @@ Use accessible language, subtle humor, and provoke curiosity and reflection, wit
 Adapt your tone according to the funnel phase to create connection and engagement.
 `;
 
+// Função para gerar CTA disfarçado, em HTML, conforme idioma
+function getCtaButton(idioma) {
+  if (idioma === "pt") {
+    return `<button onclick="window.open('https://seulinkdosuplemento.com','_blank')" style="background:#6a4fbf;color:#fff;padding:10px 20px;border:none;border-radius:5px;cursor:pointer;">Clique aqui para saber mais</button>`;
+  } else {
+    return `<button onclick="window.open('https://yoursupplementlink.com','_blank')" style="background:#6a4fbf;color:#fff;padding:10px 20px;border:none;border-radius:5px;cursor:pointer;">Click here to learn more</button>`;
+  }
+}
+
 // Função para reescrever texto com prompts diferenciados por fase do funil
 async function rewriteWithGPT(baseText, sintoma, idioma, funnelPhase) {
   let promptBase = idioma === "pt"
     ? PERSONALITY_PROMPT_PT
     : PERSONALITY_PROMPT_EN;
 
-  // Ajuste do prompt por fase do funil
   let phasePrompt = "";
   switch (funnelPhase) {
-    case 1: // Explicação científica + soluções práticas
+    case 4:
+      phasePrompt = idioma === "pt"
+        ? `Explique os nutrientes essenciais para melhorar o sintoma "${sintoma}". Explique que, devido ao estresse diário, alimentos processados e outros fatores modernos, esses nutrientes geralmente não são suficientes pela alimentação comum. Apresente e valorize apenas as plantas e nutrientes que o suplemento oferece para este sintoma, incluindo seus benefícios e dados científicos. Termine com uma pergunta provocativa convidando o usuário a conhecer um suplemento que contém essas plantas e nutrientes, sem mencionar o nome do suplemento.`
+        : `Explain the essential nutrients to improve the symptom "${sintoma}". Explain that due to daily stress, processed foods, and other modern factors, these nutrients are generally insufficient through regular diet. Introduce and highlight only the plants and nutrients that the supplement offers for this symptom, including their benefits and scientific data. End with a provocative question inviting the user to learn about a supplement that contains these plants and nutrients, without mentioning the supplement's name.`;
+      break;
+    case 5:
+      const cta = getCtaButton(idioma);
+      phasePrompt = idioma === "pt"
+        ? `Apresente um convite estratégico e sutil para conhecer um suplemento exclusivo que contém as plantas e nutrientes mencionados para o sintoma "${sintoma}". Destaque diferenciais, eficácia e certificações, mas nunca mencione o nome do suplemento. Inclua o seguinte botão CTA no final da mensagem:\n\n${cta}`
+        : `Present a strategic and subtle invitation to discover an exclusive supplement that contains the plants and nutrients mentioned for the symptom "${sintoma}". Highlight differentiators, efficacy, and certifications, but never mention the supplement's name. Include the following CTA button at the end of the message:\n\n${cta}`;
+      break;
+    case 1:
       phasePrompt = idioma === "pt"
         ? `Explique detalhadamente o sintoma "${sintoma}", incluindo funcionamento biológico, causas e efeitos. Inclua 2 a 3 soluções práticas imediatas que o usuário possa aplicar para aliviar ou prevenir o problema. Use dados e referências científicas para dar credibilidade.`
         : `Explain in detail the symptom "${sintoma}", including biological function, causes, and effects. Include 2 to 3 practical solutions the user can apply immediately to relieve or prevent the problem. Use data and scientific references to provide credibility.`;
       break;
-    case 2: // Riscos e consequências
+    case 2:
       phasePrompt = idioma === "pt"
         ? `Explique os riscos e consequências de ignorar o sintoma "${sintoma}", incluindo estatísticas reais e linguagem urgente, porém sem alarmismo.`
         : `Explain the risks and consequences of ignoring the symptom "${sintoma}", including real statistics and urgent but non-alarmist language.`;
       break;
-    case 3: // Estatísticas impactantes
+    case 3:
       phasePrompt = idioma === "pt"
         ? `Apresente estatísticas impactantes e dados sobre o sintoma "${sintoma}" para aumentar a consciência e urgência do usuário.`
         : `Present impactful statistics and data about the symptom "${sintoma}" to raise user awareness and urgency.`;
-      break;
-    case 4: // Nutrientes e plantas naturais
-      phasePrompt = idioma === "pt"
-        ? `Liste as plantas naturais específicas ligadas ao suplemento para o sintoma "${sintoma}". Explique seus mecanismos de ação, benefícios e inclua referências científicas e depoimentos que valorizem essas plantas.`
-        : `List the specific natural plants linked to the supplement for the symptom "${sintoma}". Explain their mechanisms of action, benefits, and include scientific references and testimonials that highlight these plants.`;
-      break;
-    case 5: // Apresentação sutil do suplemento + CTA
-      phasePrompt = idioma === "pt"
-        ? `Apresente o suplemento relacionado ao sintoma "${sintoma}" de forma discreta e estratégica. Inclua dados de eficácia, certificações e diferenciais importantes, criando senso de urgência e exclusividade. Não mencione o nome do suplemento diretamente. Desperte a curiosidade para que o usuário peça mais informações.`
-        : `Present the supplement related to the symptom "${sintoma}" discreetly and strategically. Include efficacy data, certifications, and important differentials, creating a sense of urgency and exclusivity. Do not mention the supplement's name directly. Arouse curiosity so the user asks for more information.`;
       break;
     default:
       phasePrompt = idioma === "pt"
@@ -288,7 +297,6 @@ export default async function handler(req, res) {
 
   const { message, name, age, sex, weight, selectedQuestion } = req.body;
   const userInput = selectedQuestion || message;
-  const isFollowUp = Boolean(selectedQuestion);
 
   // Detecta idioma do input
   const isPortuguese = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
