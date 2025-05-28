@@ -1,4 +1,5 @@
-// chat.js (com fallback corrigido e lógica do funil respeitada)
+// chat.js (com correções para controle de sintoma, categoria, funil e fallback contextual)
+
 import { getSymptomContext } from "./notion.mjs";
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
@@ -93,6 +94,31 @@ async function generateFollowUpQuestions(context, idioma) {
   }
 }
 
+// 🔧 Define aqui seus textos de fallback por categoria para garantir que o funil tenha conteúdo mesmo sem Notion
+const fallbackTextsByCategory = {
+  gut: {
+    base: [
+      "Feeling bloated and uncomfortable after meals is not normal — it’s a sign your gut may be struggling. Poor digestion can lead to chronic constipation, skin irritations, and even lowered immunity."
+    ],
+    gravidade: [
+      "If left untreated, gut issues can evolve into IBS, chronic inflammation, or autoimmune disorders. Your body warns you before things get worse."
+    ],
+    estatisticas: [
+      "Over 60% of people with digestive issues also suffer from skin conditions like acne or eczema. Nearly 1 in 3 adults experience recurring bloating due to microbiome imbalances."
+    ],
+    nutrientes: [
+      "Ginger, peppermint, and natural probiotics are proven to calm digestive distress and reduce bloating."
+    ],
+    suplemento: [
+      "What if a natural, plant-based formula could restore your gut, reduce inflammation, and support your skin health — all at once?"
+    ],
+    cta: [
+      "Want to see the full review of this natural solution? 👉 click here\nSee the product page 👉 click here\nWatch the video 👉 click here"
+    ]
+  }
+  // Adicione outras categorias aqui conforme necessário...
+};
+
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Método não permitido" });
 
@@ -111,7 +137,7 @@ export default async function handler(req, res) {
   const userAge = parseInt(age);
   const userWeight = parseFloat(weight);
 
-  const context = await getSymptomContext(
+  let context = await getSymptomContext(
     inputForSearch,
     sessionMemory.nome,
     userAge,
@@ -121,23 +147,43 @@ export default async function handler(req, res) {
     sessionMemory.usedQuestions
   );
 
+  // 🔧 Controle rígido do sintomaAtual e categoriaAtual para evitar desvios
+  if (context.sintoma && !sessionMemory.sintomaAtual) {
+    sessionMemory.sintomaAtual = context.sintoma;
+  }
+  if (context.categoria && !sessionMemory.categoriaAtual) {
+    sessionMemory.categoriaAtual = context.categoria;
+  }
+
+  // 🔧 Fallback se Notion não retornar textos ou estiver vazio
   if (!context.funnelTexts || Object.keys(context.funnelTexts).length === 0) {
     console.error("❌ funnelTexts não definido corretamente:", context);
     if (context.sintoma) {
-      const fallbackResponse = await rewriteWithGPT(
-        `Let's talk about your symptom: ${context.sintoma}. Here's what you should know...`,
-        context.sintoma,
-        idioma
-      );
+      // Tenta texto fallback
+      const fallbackTexts = fallbackTextsByCategory[sessionMemory.categoriaAtual] || {};
+      const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
+      const fallbackPhaseTexts = fallbackTexts[funnelKey] || [];
+
+      const baseText = fallbackPhaseTexts.length > 0
+        ? fallbackPhaseTexts[Math.floor(Math.random() * fallbackPhaseTexts.length)]
+        : `Sorry, no fallback text for category ${sessionMemory.categoriaAtual} and phase ${funnelKey}`;
+
+      const fallbackResponse = await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, idioma);
       const fallbackQuestions = await generateFollowUpQuestions(context, idioma);
 
       const content = formatHybridResponse(context, fallbackResponse, fallbackQuestions, idioma);
       return res.status(200).json({
         choices: [
-          { message: { content, followupQuestions: fallbackQuestions || [] } }
+          {
+            message: {
+              content,
+              followupQuestions: fallbackQuestions || []
+            }
+          }
         ]
       });
     }
+
     return res.status(200).json({
       choices: [
         {
@@ -152,28 +198,37 @@ export default async function handler(req, res) {
     });
   }
 
-  if (context.sintoma && sessionMemory.funnelPhase < 6) {
-    sessionMemory.sintomaAtual = sessionMemory.sintomaAtual || context.sintoma;
-  } else if (context.sintoma && sessionMemory.funnelPhase >= 6) {
-    sessionMemory.sintomaAtual = context.sintoma;
+  const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
+  let funnelTexts = context.funnelTexts?.[funnelKey] || [];
+
+  // 🔧 Se não achar textos, tentar fallback por categoria
+  if (!funnelTexts.length && sessionMemory.categoriaAtual) {
+    funnelTexts = fallbackTextsByCategory[sessionMemory.categoriaAtual]?.[funnelKey] || [];
   }
 
-  sessionMemory.usedQuestions.push(...(context.followupQuestions || []));
-
-  const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
-  const funnelTexts = context.funnelTexts?.[funnelKey] || [];
   const baseText = funnelTexts.length > 0
     ? funnelTexts[Math.floor(Math.random() * funnelTexts.length)]
     : null;
 
   const gptResponse = baseText
     ? await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, idioma)
-    : "We couldn't find the right content for this step.";
+    : await rewriteWithGPT(
+        `Explain clearly about the symptom ${sessionMemory.sintomaAtual} in phase ${sessionMemory.funnelPhase}, focusing on phase key ${funnelKey}`,
+        sessionMemory.sintomaAtual,
+        idioma
+      );
 
-  const followupQuestions = await generateFollowUpQuestions(context, idioma);
+  const followupQuestions = await generateFollowUpQuestions(
+    { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
+    idioma
+  );
+
+  // Atualiza a fase do funil com segurança
   sessionMemory.funnelPhase = Math.min((context.funnelPhase || sessionMemory.funnelPhase || 1) + 1, 6);
 
+  // Logs para debug
   console.log("🧪 Sintoma detectado:", context.sintoma);
+  console.log("🧪 Categoria atual:", sessionMemory.categoriaAtual);
   console.log("🧪 Fase atual:", sessionMemory.funnelPhase);
   console.log("🧪 Texto da fase:", funnelKey, funnelTexts);
 
@@ -202,7 +257,7 @@ function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
   if (followupQuestions.length) {
     response += `\n\n${phaseTitle}\n${instruction}\n\n`;
     followupQuestions.slice(0, 3).forEach((q, i) => {
-      response += `<div class=\"clickable-question\" data-question=\"${encodeURIComponent(q)}\" onclick=\"handleQuestionClick(this)\">${i + 1}. ${q}</div>\n`;
+      response += `<div class="clickable-question" data-question="${encodeURIComponent(q)}" onclick="handleQuestionClick(this)">${i + 1}. ${q}</div>\n`;
     });
   }
 
