@@ -132,7 +132,6 @@
       }
     }
 
-    /* ✅ Animação da mão escrevendo */
     @keyframes write {
       0% { transform: translateX(0); }
       50% { transform: translateX(5px); }
@@ -147,17 +146,21 @@
 <body>
   <div class="wrapper">
     <div class="card">
-      <!-- ✅ Substituído por SVG -->
-      <svg id="owlCharacter" class="owl-image" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+      <!-- SVG Dr. Owl definitivo -->
+      <svg id="owlCharacter" class="owl-image" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
         <g id="owl-body">
-          <circle cx="250" cy="250" r="200" fill="white" stroke="black" stroke-width="4" />
-        </g>
-        <g id="owl-eyes">
-          <circle cx="200" cy="200" r="20" fill="black" />
-          <circle cx="300" cy="200" r="20" fill="black" />
+          <ellipse cx="150" cy="120" rx="40" ry="50" stroke="#2f2c63" stroke-width="2" fill="none" />
+          <circle cx="135" cy="110" r="5" fill="#2f2c63" />
+          <circle cx="165" cy="110" r="5" fill="#2f2c63" />
+          <circle cx="135" cy="110" r="10" stroke="#2f2c63" stroke-width="2" fill="none" />
+          <circle cx="165" cy="110" r="10" stroke="#2f2c63" stroke-width="2" fill="none" />
+          <path d="M140,135 Q150,140 160,135" stroke="#2f2c63" stroke-width="2" fill="none" />
         </g>
         <g id="owl-hand-writing">
-          <rect x="220" y="320" width="60" height="20" fill="black" />
+          <path d="M120,160 Q150,180 180,160" stroke="#2f2c63" stroke-width="2" fill="none" />
+        </g>
+        <g id="desk">
+          <rect x="80" y="165" width="140" height="10" rx="2" ry="2" fill="none" stroke="#2f2c63" stroke-width="2"/>
         </g>
       </svg>
 
@@ -180,12 +183,10 @@
     </div>
   </div>
 
-  <!-- ✅ JS de ativação da animação -->
   <script>
     function setTypingState(isTyping) {
       const hand = document.getElementById("owl-hand-writing");
       if (!hand) return;
-
       if (isTyping) {
         hand.classList.add("animate-writing");
       } else {
