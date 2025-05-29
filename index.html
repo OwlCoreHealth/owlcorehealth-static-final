@@ -188,18 +188,14 @@
     async function sendMessage(message, selectedQuestion = null) {
   if (!message.trim() && !selectedQuestion) return;
 
-  const payload = {
-    message,
-    name: "",
-    age: "",
-    sex: "",
-    weight: "",
-    selectedQuestion
-  };
+  const payload = { message, name: "", age: "", sex: "", weight: "", selectedQuestion };
 
   try {
-    // Mostrar mensagem de "digitando"
-    responseDiv.textContent = "Dr. Owl is typing...";
+    // Se for a primeira mensagem, limpa para mostrar "digitando", 
+    // ou pode manter tudo se quiser preservar histórico desde sempre
+    // Aqui vamos manter o histórico, então adicionamos o "digitando" como nova linha
+    responseDiv.insertAdjacentHTML('beforeend', `<div class="typing-indicator">Dr. Owl is typing...</div>`);
+    responseDiv.scrollTop = responseDiv.scrollHeight;
 
     const res = await fetch('/api/chat', {
       method: 'POST',
@@ -209,9 +205,14 @@
 
     const data = await res.json();
 
+    // Remove o indicador de digitando
+    const typing = responseDiv.querySelector('.typing-indicator');
+    if (typing) typing.remove();
+
     if (data.choices && data.choices.length > 0) {
       const content = data.choices[0].message.content;
-      responseDiv.innerHTML = content;
+      responseDiv.insertAdjacentHTML('beforeend', `<div class="bot-message">${content}</div>`);
+      responseDiv.scrollTop = responseDiv.scrollHeight;
       input.value = '';
     }
   } catch (err) {
