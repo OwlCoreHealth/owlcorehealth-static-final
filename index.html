@@ -294,34 +294,41 @@
 
     // Implementação do reconhecimento de voz
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (SpeechRecognition) {
-      const recognition = new SpeechRecognition();
-      recognition.lang = 'pt-BR';  // Ajuste o idioma conforme desejar
-      recognition.interimResults = false;
-      recognition.maxAlternatives = 1;
+if (SpeechRecognition) {
+  const recognition = new SpeechRecognition();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
 
-      micButton.addEventListener('click', () => {
-        recognition.start();
-      });
+  // Variável para controlar idioma da sessão (você pode atualizar esta variável conforme necessário)
+  let currentLang = 'pt-BR'; // padrão português, ajuste conforme seu fluxo
 
-      recognition.addEventListener('result', (event) => {
-        const transcript = event.results[0][0].transcript;
-        input.value = transcript;
-        sendMessage(transcript);
-      });
+  function updateRecognitionLang(lang) {
+    recognition.lang = lang;
+  }
 
-      recognition.addEventListener('speechend', () => {
-        recognition.stop();
-      });
+  micButton.addEventListener('click', () => {
+    updateRecognitionLang(currentLang);
+    recognition.start();
+  });
 
-      recognition.addEventListener('error', (event) => {
-        alert('Erro no reconhecimento de voz: ' + event.error);
-      });
-    } else {
-      micButton.addEventListener('click', () => {
-        alert('Reconhecimento de voz não suportado neste navegador.');
-      });
-    }
+  recognition.addEventListener('result', (event) => {
+    const transcript = event.results[0][0].transcript;
+    input.value = transcript;
+    sendMessage(transcript);
+  });
+
+  recognition.addEventListener('speechend', () => {
+    recognition.stop();
+  });
+
+  recognition.addEventListener('error', (event) => {
+    alert('Erro no reconhecimento de voz: ' + event.error);
+  });
+} else {
+  micButton.addEventListener('click', () => {
+    alert('Reconhecimento de voz não suportado neste navegador.');
+  });
+}
 
     async function sendMessage(message, selectedQuestion = null) {
       if (!message.trim() && !selectedQuestion) return;
