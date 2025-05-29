@@ -186,36 +186,39 @@
     const readAloudButton = document.querySelector('.read-aloud');
 
     async function sendMessage(message, selectedQuestion = null) {
-      if (!message.trim() && !selectedQuestion) return;
+  if (!message.trim() && !selectedQuestion) return;
 
-      const payload = {
-        message,
-        name: "",
-        age: "",
-        sex: "",
-        weight: "",
-        selectedQuestion
-      };
+  const payload = {
+    message,
+    name: "",
+    age: "",
+    sex: "",
+    weight: "",
+    selectedQuestion
+  };
 
-      try {
-        const res = await fetch('/api/chat', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
+  try {
+    // Mostrar mensagem de "digitando"
+    responseDiv.textContent = "Dr. Owl is typing...";
 
-        const data = await res.json();
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
 
-        if (data.choices && data.choices.length > 0) {
-          const content = data.choices[0].message.content;
-          responseDiv.innerHTML = content;
-          input.value = '';
-        }
-      } catch (err) {
-        responseDiv.textContent = "Error communicating with server.";
-        console.error(err);
-      }
+    const data = await res.json();
+
+    if (data.choices && data.choices.length > 0) {
+      const content = data.choices[0].message.content;
+      responseDiv.innerHTML = content;
+      input.value = '';
     }
+  } catch (err) {
+    responseDiv.textContent = "Error communicating with server.";
+    console.error(err);
+  }
+}
 
     sendButton.addEventListener('click', () => {
       sendMessage(input.value);
