@@ -36,8 +36,8 @@
       align-items: center;
     }
 
-    svg#owlCharacter {
-      height: 100px;
+    .owl-image {
+      height: 160px;
       margin-bottom: 24px;
     }
 
@@ -136,30 +136,7 @@
 <body>
   <div class="wrapper">
     <div class="card">
-      <!-- SVG Dr. Owl com IDs para animar -->
-      <svg id="owlCharacter" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-        <g id="desk">
-          <rect x="30" y="150" width="140" height="10" fill="#2f2c63" rx="2" />
-        </g>
-        <g id="body">
-          <ellipse cx="100" cy="120" rx="35" ry="30" fill="#ffffff" stroke="#2f2c63" stroke-width="2"/>
-          <circle cx="100" cy="90" r="30" fill="#ffffff" stroke="#2f2c63" stroke-width="2"/>
-        </g>
-        <g id="eyes">
-          <circle cx="90" cy="85" r="5" fill="#2f2c63" />
-          <circle cx="110" cy="85" r="5" fill="#2f2c63" />
-        </g>
-        <g id="stethoscope">
-          <circle cx="100" cy="105" r="5" stroke="#2f2c63" stroke-width="2" fill="none" />
-          <line x1="100" y1="110" x2="100" y2="120" stroke="#2f2c63" stroke-width="2"/>
-        </g>
-        <g id="wing-writing">
-          <path d="M80,130 Q70,135 80,140" stroke="#2f2c63" stroke-width="3" fill="none"/>
-        </g>
-        <g id="paper">
-          <rect x="85" y="155" width="30" height="10" fill="#F6F6FB" stroke="#2f2c63" stroke-width="1"/>
-        </g>
-      </svg>
+      <img id="owlCharacter" class="owl-image" src="https://raw.githubusercontent.com/OwlCoreHealth/owlcorehealth-static-final/main/api/owl-doctor.png" alt="Dr. Owl" />
 
       <h1>Welcome to Dr. Owl’s AI Office</h1>
       <h2>Where Science Meets Personal Care</h2>
