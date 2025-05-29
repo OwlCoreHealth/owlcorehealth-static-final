@@ -145,19 +145,68 @@
     .bot-message {
       margin-top: 12px;
       padding: 12px;
-      background-color: #e2dffd;
       border-radius: 12px;
       white-space: pre-wrap;
       text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background-color: transparent;
     }
+
+    /* Logo do Dr. Owl em HTML+CSS puro */
+    .bot-logo {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #2f2c63 60%, #fff 60%);
+      border-radius: 8px;
+      position: relative;
+    }
+
+    /* Olhos (óculos) */
+    .bot-logo::before, .bot-logo::after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      width: 10px;
+      height: 10px;
+      border: 2px solid #2f2c63;
+      border-radius: 50%;
+      background: white;
+    }
+
+    .bot-logo::before {
+      left: 8px;
+    }
+
+    .bot-logo::after {
+      right: 8px;
+    }
+
+    /* Bico (triângulo) */
+    .bot-logo div {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 10px solid #2f2c63;
+      border-radius: 2px;
+    }
+
     .user-message {
       margin-top: 12px;
       padding: 12px;
-      background-color: #cde8ff;
       border-radius: 12px;
       white-space: pre-wrap;
       text-align: right;
+      background-color: transparent;
     }
+
     .typing-indicator {
       font-style: italic;
       color: #999;
@@ -208,10 +257,16 @@
     const sendButton = document.querySelector('.send-button');
     const readAloudButton = document.querySelector('.read-aloud');
 
+    const botLogoHTML = `
+      <div class="bot-logo">
+        <div></div>
+      </div>
+    `;
+
     async function sendMessage(message, selectedQuestion = null) {
       if (!message.trim() && !selectedQuestion) return;
 
-      // Mostra a mensagem do usuário
+      // Mostrar a mensagem do usuário
       if (message.trim()) {
         responseDiv.insertAdjacentHTML('beforeend', `<div class="user-message">${message.trim()}</div>`);
         responseDiv.scrollTop = responseDiv.scrollHeight;
@@ -245,7 +300,12 @@
 
         if (data.choices && data.choices.length > 0) {
           const content = data.choices[0].message.content;
-          responseDiv.insertAdjacentHTML('beforeend', `<div class="bot-message">${content}</div>`);
+          responseDiv.insertAdjacentHTML('beforeend', `
+            <div class="bot-message">
+              ${botLogoHTML}
+              <div>${content}</div>
+            </div>
+          `);
           responseDiv.scrollTop = responseDiv.scrollHeight;
           input.value = '';
         }
@@ -278,7 +338,12 @@
     });
 
     // Inicializar com mensagem de boas-vindas, opcional:
-    responseDiv.innerHTML = `<div class="bot-message">Hello! How can I assist you today?</div>`;
+    responseDiv.innerHTML = `
+      <div class="bot-message">
+        ${botLogoHTML}
+        <div>Hello! How can I assist you today?</div>
+      </div>
+    `;
   </script>
 </body>
 </html>
