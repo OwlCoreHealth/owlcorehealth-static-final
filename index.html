@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dr. Owl’s AI Office</title>
   <style>
     html, body {
@@ -26,8 +26,8 @@
       border-radius: 24px;
       padding: 32px 24px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-      width: 108vw;
-      height: 84vh;
+      width: 95vw;
+      height: 85vh;
       max-width: 1020px;
       box-sizing: border-box;
       display: flex;
@@ -37,7 +37,7 @@
     }
 
     .owl-image {
-      height: 100px;
+      height: 140px;
       margin-bottom: 24px;
     }
 
@@ -136,19 +136,9 @@
 <body>
   <div class="wrapper">
     <div class="card">
-      
-      <!-- ✅ SVG embutido do Dr. Owl -->
-      <svg class="owl-image" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-        <g id="owl-body" stroke="#2f2c63" stroke-width="2" fill="none">
-          <ellipse cx="60" cy="40" rx="20" ry="25"/>
-          <ellipse cx="60" cy="80" rx="25" ry="30"/>
-          <circle cx="50" cy="35" r="4" fill="#2f2c63"/>
-          <circle cx="70" cy="35" r="4" fill="#2f2c63"/>
-          <path d="M 50 35 Q 60 45 70 35" stroke="#2f2c63" fill="none"/>
-          <path d="M50 100 Q60 95 70 100" stroke="#2f2c63"/>
-          <rect x="30" y="105" width="60" height="5" rx="2" fill="none" stroke="#2f2c63"/>
-        </g>
-      </svg>
+      <!-- ✅ Imagem aprovada em base64 -->
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXgAAAF4CAMAAAD3Vk5PAAAAflBMVEX///8AAADd3d2bm5vt7e3Z2dnX19fT09Pz8/P8/Pz5+fn39/fv7+/h4eHV1dW0tLS9vb2cnJzPz8/r6+uJiYlISEjb29urq6uCgoLw8PDMzMyoqKh7e3sXFxeRkZF0dHQ2NjbCwsJoaGi8vLwTExNTU1NcXFw9PT2UlJRGRkZHR0dXV1drC1EjAAAHxklEQVR4nO2da3uiOhCGJZUZRZImNCmJ5iR5mZPm+f//C+2lppAR3u8MLuq99NVco3eRAsLwDpAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB8MvGH5dSvVn43Xsqt/Ytt1Sbb1Wcz++WsMwr/FqhyVTLKo7xal9x+f3r2eN2trJ2j+PL/b0+rEJ/jr0qz+yExS3cUXU7ddbrcY/fyvo7Gqfvpycncn+4R7d0ZLhvvuvYszvfu2QfeJW3d0+p+MR9g7k3TVqzWrWLdqbtF67RNqslc+uZH30+RPKsVv+fFRJQZ6/E8GV5u+5gY9a3c8xCPVdxE2cOea7t4kO9sf8mz3cYkW1zU3sjJ8mz52W2kP0R8KZVZnkvoPvBRcYeTvi4c5Jqg3zrn48J5aGxT83ZTe9TVyi5M2UVU0SpU2EfAjqR+KPs2s+NLaS8fl+MTvU9EmrfL9w5dRXkU+nYNnrM/p4kVk8ZifKWHqJZMbYX1NjRZhVL1P3Wr9byoyWtaE6t5R3D7/9Kzccnb6sVzRW4UXaHkNDZGtS6yNmdbIj2v0tZzNzXZBbdj11+mKXkl2oTX/Vb9UjNmsWl9g67ZcWu1GXKNelajWsyG70EXavjTnGcC8M7O1zTfI6+u7vHtJvz6+x/vhXwU2Wd3Sx3rGePhwdr59wqxuuysKJdMvOdp+XqxY8nbeyOrNzIr4dyYP1L++S3B55plb0T9FQnq1GN7FbzMKkZbXcHbrtyJcGWzwbqr0eqv5bXvXrczKby4KtL06U74JK4kaKYe4fbLIU0M9cV63nXL2s+fG4uVuK7pOG6TMa7wUwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPxL/wAnKuKeoS3AYgAAAABJRU5ErkJggg==" 
+        alt="Dr. Owl" class="owl-image" />
 
       <h1>Welcome to Dr. Owl’s AI Office</h1>
       <h2>Where Science Meets Personal Care</h2>
@@ -156,7 +146,7 @@
       <div class="response">Hello! How can I assist you today?</div>
 
       <div class="input-row">
-        <input type="text" placeholder="Type your message..." />
+        <input type="text" placeholder="Type your message...">
         <button class="icon" aria-label="Microphone" onclick="alert('Voice input activated')">🎤</button>
       </div>
 
