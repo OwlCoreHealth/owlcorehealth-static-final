@@ -327,7 +327,11 @@
               <div>${content}</div>
             </div>
           `);
-          responseDiv.scrollTop = responseDiv.scrollHeight;
+          const messages = responseDiv.querySelectorAll('.bot-message');
+          const lastMessage = messages[messages.length - 1];
+          if (lastMessage) {
+            lastMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
           input.value = '';
         }
       } catch (err) {
