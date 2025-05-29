@@ -1,181 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dr. Owl AI Office</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr. Owl’s AI Office</title>
   <style>
     body {
       margin: 0;
       background-color: #F8F7FF;
-      font-family: Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
     }
 
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      min-height: 100vh;
-      width: 100vw;
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 20px;
+    .card {
+      background: white;
+      border-radius: 24px;
+      padding: 32px 24px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+      width: 100%;
+      max-width: 360px;
+      text-align: center;
     }
 
     .owl-image {
-      width: 180px;
-      margin-top: 20px;
+      height: 100px;
+      margin-bottom: 24px;
     }
 
-    .title, .subtitle {
-      text-align: center;
-      margin: 10px;
+    h1 {
+      font-size: 20px;
+      margin: 0;
+      color: #2f2c63;
     }
 
-    .title {
-      font-size: 24px;
-      font-weight: bold;
+    h2 {
+      font-size: 14px;
+      font-weight: normal;
+      margin-top: 8px;
+      margin-bottom: 24px;
+      color: #666;
     }
 
-    .subtitle {
-      font-size: 16px;
-      color: #555;
+    .response {
+      background-color: #F6F6FB;
+      border-radius: 12px;
+      padding: 16px;
+      font-size: 15px;
+      margin-bottom: 16px;
+      color: #333;
     }
 
-    .chat-box {
-      margin-top: 20px;
-      width: 100%;
-    }
-
-    .chat-entry {
+    .input-row {
       display: flex;
       align-items: center;
-      gap: 10px;
-      width: 100%;
-      margin-top: 10px;
-    }
-
-    .chat-entry input {
-      flex: 1;
-      padding: 10px;
       border: 1px solid #ccc;
-      border-radius: 20px;
+      border-radius: 12px;
+      padding: 4px 12px;
+      background-color: white;
     }
 
-    .chat-entry button {
-      padding: 10px 20px;
-      background-color: #7F3FBF;
-      color: white;
+    .input-row input {
+      flex: 1;
       border: none;
-      border-radius: 20px;
-      cursor: pointer;
+      font-size: 14px;
+      padding: 12px 8px;
+      outline: none;
     }
 
-    .icon-button {
+    .input-row button.icon {
       background: none;
       border: none;
-      cursor: pointer;
       font-size: 18px;
+      cursor: pointer;
+      color: #444;
     }
 
-    #subscription-form {
-      display: none;
-      margin-top: 20px;
+    .send-button {
+      margin-top: 16px;
+      background-color: #2f2c63;
+      color: white;
+      border: none;
+      border-radius: 12px;
       width: 100%;
-      background: #fff;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 14px;
+      font-size: 16px;
+      cursor: pointer;
     }
 
-    #subscription-form input, #subscription-form select {
-      width: 100%;
-      margin-bottom: 10px;
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+    .read-aloud {
+      margin-top: 16px;
+      font-size: 14px;
+      color: #2f2c63;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .read-aloud span {
+      font-size: 16px;
     }
   </style>
 </head>
 <body>
-  <div class="container" id="phase1">
+  <div class="card">
     <img src="owl-doctor.png" alt="Dr. Owl" class="owl-image" />
-    <h1 class="title">Welcome to Dr. Owl’s AI Office</h1>
-    <h2 class="subtitle">Where Science Meets Personal Care</h2>
+    <h1>Welcome to Dr. Owl’s AI Office</h1>
+    <h2>Where Science Meets Personal Care</h2>
 
-    <div class="chat-box">
-      <div class="chat-entry">
-        <button class="icon-button" onclick="startVoiceInput()">🎤</button>
-        <input type="text" id="userInput" placeholder="Type your message..." />
-        <button onclick="sendMessage()">Send</button>
-        <button class="icon-button" onclick="readAloud()">🔊</button>
-      </div>
+    <div class="response">Hello! How can I assist you today?</div>
+
+    <div class="input-row">
+      <input type="text" placeholder="Type your message...">
+      <button class="icon" aria-label="Microphone">🎤</button>
     </div>
 
-    <form id="subscription-form">
-      <input type="text" id="name" placeholder="Your Name" />
-      <input type="email" id="email" placeholder="Your Email" />
-      <select id="gender">
-        <option value="">Select Gender</option>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-        <option value="other">Other</option>
-      </select>
-      <input type="number" id="age" placeholder="Your Age" />
-      <button type="button" onclick="submitSubscription()">Subscribe</button>
-    </form>
+    <button class="send-button">Send</button>
+
+    <div class="read-aloud">
+      <span>🔊</span>
+      <span>Read Aloud</span>
+    </div>
   </div>
-
-  <script>
-    let firstMessageSent = false;
-
-    function sendMessage() {
-      const input = document.getElementById('userInput');
-      const message = input.value.trim();
-      if (!message) return;
-      input.value = "";
-
-      if (!firstMessageSent) {
-        document.getElementById('subscription-form').style.display = 'block';
-        firstMessageSent = true;
-      }
-
-      // Aqui você chama sua função de chat.js futuramente
-    }
-
-    function submitSubscription() {
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const gender = document.getElementById('gender').value;
-      const age = document.getElementById('age').value;
-
-      fetch('/api/subscribe', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, gender, age })
-      })
-      .then(res => res.json())
-      .then(data => {
-        if (data.success) {
-          alert("Subscription successful ✅");
-          document.getElementById('subscription-form').style.display = 'none';
-        } else {
-          alert("Subscription failed ❌");
-        }
-      })
-      .catch(() => alert("Error submitting subscription"));
-    }
-
-    function startVoiceInput() {
-      // Placeholder para futuro reconhecimento de voz
-      alert("Voice input coming soon!");
-    }
-
-    function readAloud() {
-      // Placeholder para leitura em voz alta
-      alert("Read aloud feature coming soon!");
-    }
-  </script>
 </body>
 </html>
