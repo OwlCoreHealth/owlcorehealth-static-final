@@ -3,241 +3,179 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OwlCoreHealth AI</title>
+  <title>Dr. Owl AI Office</title>
   <style>
-    body, html {
+    body {
       margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fff;
-      height: 100vh;
-      overflow: hidden;
+      background-color: #F8F7FF;
+      font-family: Arial, sans-serif;
     }
 
-    .hidden {
-      display: none;
-    }
-
-    .fade-transition {
-      transition: opacity 0.4s ease;
-      opacity: 1;
-    }
-
-    .layout {
+    .container {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      height: 100vh;
+      min-height: 100vh;
       width: 100vw;
-      padding: 20px;
-      background-color: #F8F7FF;
-    }
-
-    .owl-image-large {
-      height: 140px;
-      margin-bottom: 20px;
-    }
-
-    .owl-image-small {
-      height: 100px;
-      margin-bottom: 10px;
-    }
-
-    h1 {
-      font-size: 24px;
-      color: #2f2c63;
-      margin-bottom: 8px;
-      text-align: center;
-    }
-
-    h2 {
-      font-size: 16px;
-      font-weight: 400;
-      color: #444;
-      margin-bottom: 24px;
-      text-align: center;
-    }
-
-    .chat-subtext {
-      font-size: 14px;
-      color: #555;
-      margin-top: 8px;
-      margin-bottom: 16px;
-      text-align: center;
-    }
-
-    .chat-window {
-      flex: 1;
-      width: 90vw;
       max-width: 600px;
-      overflow-y: auto;
-      padding: 10px;
-      display: flex;
-      flex-direction: column;
+      margin: 0 auto;
+      padding: 20px;
     }
 
-    .message-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      margin-bottom: 12px;
+    .owl-image {
+      width: 180px;
+      margin-top: 20px;
     }
 
-    .message-text {
-      background-color: #fff;
-      padding: 10px 14px;
-      border-radius: 12px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-      font-size: 15px;
-      color: #333;
-      max-width: 90%;
+    .title, .subtitle {
+      text-align: center;
+      margin: 10px;
     }
 
-    .suggestions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 10px 0 20px;
+    .title {
+      font-size: 24px;
+      font-weight: bold;
     }
 
-    .suggestion-btn {
-      background-color: #E9F6FF;
-      color: #333;
-      border: none;
-      padding: 10px 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 14px;
+    .subtitle {
+      font-size: 16px;
+      color: #555;
     }
 
-    .chat-input-area {
+    .chat-box {
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .chat-entry {
       display: flex;
       align-items: center;
       gap: 10px;
-      width: 90vw;
-      max-width: 600px;
-      padding-top: 10px;
+      width: 100%;
+      margin-top: 10px;
     }
 
-    .chat-input {
+    .chat-entry input {
       flex: 1;
-      padding: 12px;
-      font-size: 16px;
-      border-radius: 8px;
+      padding: 10px;
       border: 1px solid #ccc;
+      border-radius: 20px;
     }
 
-    .chat-button {
-      background-color: #2f2c63;
+    .chat-entry button {
+      padding: 10px 20px;
+      background-color: #7F3FBF;
       color: white;
-      padding: 12px 20px;
       border: none;
-      border-radius: 8px;
+      border-radius: 20px;
       cursor: pointer;
-      font-weight: 600;
     }
 
-    .icon-btn {
-      font-size: 18px;
+    .icon-button {
       background: none;
       border: none;
       cursor: pointer;
-      color: #2f2c63;
+      font-size: 18px;
     }
 
-    .owl.idle img {
-      opacity: 1;
+    #subscription-form {
+      display: none;
+      margin-top: 20px;
+      width: 100%;
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
-    .owl.thinking img {
-      filter: grayscale(1);
-    }
-
-    .owl.writing img {
-      opacity: 0.8;
+    #subscription-form input, #subscription-form select {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
     }
   </style>
 </head>
 <body>
+  <div class="container" id="phase1">
+    <img src="owl-doctor.png" alt="Dr. Owl" class="owl-image" />
+    <h1 class="title">Welcome to Dr. Owl’s AI Office</h1>
+    <h2 class="subtitle">Where Science Meets Personal Care</h2>
 
-<!-- Fase 1 -->
-<div id="layout-fase1" class="layout fade-transition">
-  <div class="owl idle">
-    <img src="owl-doctor.png" alt="Dr. Owl" class="owl-image-large" />
+    <div class="chat-box">
+      <div class="chat-entry">
+        <button class="icon-button" onclick="startVoiceInput()">🎤</button>
+        <input type="text" id="userInput" placeholder="Type your message..." />
+        <button onclick="sendMessage()">Send</button>
+        <button class="icon-button" onclick="readAloud()">🔊</button>
+      </div>
+    </div>
+
+    <form id="subscription-form">
+      <input type="text" id="name" placeholder="Your Name" />
+      <input type="email" id="email" placeholder="Your Email" />
+      <select id="gender">
+        <option value="">Select Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+      <input type="number" id="age" placeholder="Your Age" />
+      <button type="button" onclick="submitSubscription()">Subscribe</button>
+    </form>
   </div>
-  <h1>Welcome to Dr. Owl’s AI Office</h1>
-  <h2>Where Science Meets Personal Care</h2>
-  <div class="chat-input-area">
-    <input type="text" id="user-input-1" placeholder="Type your message..." class="chat-input" />
-    <button class="chat-button" id="start-button">Send</button>
-  </div>
-</div>
 
-<!-- Fase 2 -->
-<div id="layout-fase2" class="layout fade-transition hidden">
-  <div class="owl idle">
-    <img src="owl-doctor.png" alt="Dr. Owl" class="owl-image-small" />
-  </div>
-  <p class="chat-subtext">How can I support your health today?</p>
+  <script>
+    let firstMessageSent = false;
 
-  <div id="chat-window" class="chat-window"></div>
+    function sendMessage() {
+      const input = document.getElementById('userInput');
+      const message = input.value.trim();
+      if (!message) return;
+      input.value = "";
 
-  <div class="suggestions">
-    <button class="suggestion-btn">What causes fatigue?</button>
-    <button class="suggestion-btn">Is this serious?</button>
-    <button class="suggestion-btn">Can I treat it naturally?</button>
-  </div>
+      if (!firstMessageSent) {
+        document.getElementById('subscription-form').style.display = 'block';
+        firstMessageSent = true;
+      }
 
-  <div class="chat-input-area">
-    <button class="icon-btn">🎤</button>
-    <input type="text" class="chat-input" id="user-input-2" placeholder="Type a message..." />
-    <button class="chat-button" id="send-button">Send</button>
-    <button class="icon-btn">🔊</button>
-  </div>
-</div>
+      // Aqui você chama sua função de chat.js futuramente
+    }
 
-<script>
-  const layout1 = document.getElementById("layout-fase1");
-  const layout2 = document.getElementById("layout-fase2");
-  const chatWindow = document.getElementById("chat-window");
+    function submitSubscription() {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const gender = document.getElementById('gender').value;
+      const age = document.getElementById('age').value;
 
-  function setOwlState(state) {
-    const owls = document.querySelectorAll(".owl");
-    owls.forEach(container => container.className = `owl ${state}`);
-  }
+      fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, gender, age })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          alert("Subscription successful ✅");
+          document.getElementById('subscription-form').style.display = 'none';
+        } else {
+          alert("Subscription failed ❌");
+        }
+      })
+      .catch(() => alert("Error submitting subscription"));
+    }
 
-  function transitionToFase2() {
-    layout1.classList.add("hidden");
-    layout2.classList.remove("hidden");
-    setOwlState("thinking");
-    setTimeout(() => setOwlState("idle"), 1000);
-  }
+    function startVoiceInput() {
+      // Placeholder para futuro reconhecimento de voz
+      alert("Voice input coming soon!");
+    }
 
-  document.getElementById("start-button").addEventListener("click", () => {
-    const value = document.getElementById("user-input-1").value.trim();
-    if (!value) return;
-    transitionToFase2();
-    addUserMessage(value);
-  });
-
-  document.getElementById("send-button").addEventListener("click", () => {
-    const value = document.getElementById("user-input-2").value.trim();
-    if (!value) return;
-    setOwlState("writing");
-    addUserMessage(value);
-    document.getElementById("user-input-2").value = "";
-    setTimeout(() => setOwlState("idle"), 1000);
-  });
-
-  function addUserMessage(msg) {
-    const row = document.createElement("div");
-    row.className = "message-row";
-    row.innerHTML = `<div class="message-text">${msg}</div>`;
-    chatWindow.appendChild(row);
-    chatWindow.scrollTop = chatWindow.scrollHeight;
-  }
-</script>
-
+    function readAloud() {
+      // Placeholder para leitura em voz alta
+      alert("Read aloud feature coming soon!");
+    }
+  </script>
 </body>
 </html>
