@@ -154,48 +154,33 @@
       background-color: transparent;
     }
 
-    /* Logo do Dr. Owl em HTML+CSS puro */
-    .bot-logo {
-      flex-shrink: 0;
-      width: 40px;
-      height: 40px;
-      background: linear-gradient(135deg, #2f2c63 60%, #fff 60%);
-      border-radius: 8px;
-      position: relative;
-    }
-
-    /* Olhos (óculos) */
-    .bot-logo::before, .bot-logo::after {
-      content: '';
-      position: absolute;
-      top: 10px;
-      width: 10px;
-      height: 10px;
-      border: 2px solid #2f2c63;
+    .bot-icon {
+      width: 32px;
+      height: 32px;
+      background: #2f2c63;
       border-radius: 50%;
-      background: white;
+      position: relative;
+      box-shadow: inset 4px 4px 0 #fff, inset -4px -4px 0 #fff;
+      margin-right: 12px;
+      flex-shrink: 0;
     }
 
-    .bot-logo::before {
-      left: 8px;
-    }
-
-    .bot-logo::after {
-      right: 8px;
-    }
-
-    /* Bico (triângulo) */
-    .bot-logo div {
+    .bot-icon::before, .bot-icon::after {
+      content: "";
       position: absolute;
-      bottom: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 0;
-      border-left: 6px solid transparent;
-      border-right: 6px solid transparent;
-      border-top: 10px solid #2f2c63;
-      border-radius: 2px;
+      top: 8px;
+      width: 8px;
+      height: 8px;
+      background: #fff;
+      border-radius: 50%;
+    }
+
+    .bot-icon::before {
+      left: 6px;
+    }
+
+    .bot-icon::after {
+      right: 6px;
     }
 
     .user-message {
@@ -257,11 +242,7 @@
     const sendButton = document.querySelector('.send-button');
     const readAloudButton = document.querySelector('.read-aloud');
 
-    const botLogoHTML = `
-      <div class="bot-logo">
-        <div></div>
-      </div>
-    `;
+    const botIconHTML = `<div class="bot-icon"></div>`;
 
     async function sendMessage(message, selectedQuestion = null) {
       if (!message.trim() && !selectedQuestion) return;
@@ -302,7 +283,7 @@
           const content = data.choices[0].message.content;
           responseDiv.insertAdjacentHTML('beforeend', `
             <div class="bot-message">
-              ${botLogoHTML}
+              ${botIconHTML}
               <div>${content}</div>
             </div>
           `);
@@ -340,7 +321,7 @@
     // Inicializar com mensagem de boas-vindas, opcional:
     responseDiv.innerHTML = `
       <div class="bot-message">
-        ${botLogoHTML}
+        ${botIconHTML}
         <div>Hello! How can I assist you today?</div>
       </div>
     `;
