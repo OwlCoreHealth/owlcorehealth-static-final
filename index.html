@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dr. Owl’s AI Office</title>
   <style>
     html, body {
@@ -131,36 +131,22 @@
         border-radius: 0;
       }
     }
-
-    @keyframes write {
-      0% { transform: translateX(0); }
-      50% { transform: translateX(5px); }
-      100% { transform: translateX(0); }
-    }
-
-    #owl-hand-writing.animate-writing {
-      animation: write 0.6s infinite;
-    }
   </style>
 </head>
 <body>
   <div class="wrapper">
     <div class="card">
-      <!-- SVG Dr. Owl definitivo -->
-      <svg id="owlCharacter" class="owl-image" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
-        <g id="owl-body">
-          <ellipse cx="150" cy="120" rx="40" ry="50" stroke="#2f2c63" stroke-width="2" fill="none" />
-          <circle cx="135" cy="110" r="5" fill="#2f2c63" />
-          <circle cx="165" cy="110" r="5" fill="#2f2c63" />
-          <circle cx="135" cy="110" r="10" stroke="#2f2c63" stroke-width="2" fill="none" />
-          <circle cx="165" cy="110" r="10" stroke="#2f2c63" stroke-width="2" fill="none" />
-          <path d="M140,135 Q150,140 160,135" stroke="#2f2c63" stroke-width="2" fill="none" />
-        </g>
-        <g id="owl-hand-writing">
-          <path d="M120,160 Q150,180 180,160" stroke="#2f2c63" stroke-width="2" fill="none" />
-        </g>
-        <g id="desk">
-          <rect x="80" y="165" width="140" height="10" rx="2" ry="2" fill="none" stroke="#2f2c63" stroke-width="2"/>
+      
+      <!-- ✅ SVG embutido do Dr. Owl -->
+      <svg class="owl-image" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <g id="owl-body" stroke="#2f2c63" stroke-width="2" fill="none">
+          <ellipse cx="60" cy="40" rx="20" ry="25"/>
+          <ellipse cx="60" cy="80" rx="25" ry="30"/>
+          <circle cx="50" cy="35" r="4" fill="#2f2c63"/>
+          <circle cx="70" cy="35" r="4" fill="#2f2c63"/>
+          <path d="M 50 35 Q 60 45 70 35" stroke="#2f2c63" fill="none"/>
+          <path d="M50 100 Q60 95 70 100" stroke="#2f2c63"/>
+          <rect x="30" y="105" width="60" height="5" rx="2" fill="none" stroke="#2f2c63"/>
         </g>
       </svg>
 
@@ -170,7 +156,7 @@
       <div class="response">Hello! How can I assist you today?</div>
 
       <div class="input-row">
-        <input type="text" placeholder="Type your message...">
+        <input type="text" placeholder="Type your message..." />
         <button class="icon" aria-label="Microphone" onclick="alert('Voice input activated')">🎤</button>
       </div>
 
@@ -182,22 +168,5 @@
       </div>
     </div>
   </div>
-
-  <script>
-    function setTypingState(isTyping) {
-      const hand = document.getElementById("owl-hand-writing");
-      if (!hand) return;
-      if (isTyping) {
-        hand.classList.add("animate-writing");
-      } else {
-        hand.classList.remove("animate-writing");
-      }
-    }
-
-    document.querySelector('.send-button')?.addEventListener('click', () => {
-      setTypingState(true);
-      setTimeout(() => setTypingState(false), 3000);
-    });
-  </script>
 </body>
 </html>
