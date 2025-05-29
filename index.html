@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dr. Owl’s AI Office</title>
   <style>
     html, body {
@@ -64,6 +64,9 @@
       color: #333;
       width: 100%;
       box-sizing: border-box;
+      overflow-y: auto;
+      max-height: 40vh;
+      white-space: pre-wrap;
     }
 
     .input-row {
@@ -118,10 +121,25 @@
       border-radius: 16px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       cursor: pointer;
+      user-select: none;
     }
 
     .read-aloud span {
       font-size: 18px;
+    }
+
+    .clickable-question {
+      cursor: pointer;
+      color: #2f2c63;
+      margin-top: 8px;
+      padding: 8px;
+      border-radius: 8px;
+      background-color: #e2dffd;
+      user-select: none;
+    }
+
+    .clickable-question:hover {
+      background-color: #bdb2f0;
     }
 
     @media (max-width: 600px) {
@@ -130,6 +148,10 @@
         height: 100vh;
         border-radius: 0;
       }
+
+      .send-button {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -137,7 +159,7 @@
   <div class="wrapper">
     <div class="card">
       <!-- ✅ Imagem aprovada em base64 -->
-      <img src="owl-doctor.png" alt="Dr. Owl" width="150" />
+      <img src="owl-doctor.png" alt="Dr. Owl" width="150" class="owl-image" />
 
       <h1>Welcome to Dr. Owl’s AI Office</h1>
       <h2>Where Science Meets Personal Care</h2>
@@ -145,17 +167,74 @@
       <div class="response">Hello! How can I assist you today?</div>
 
       <div class="input-row">
-        <input type="text" placeholder="Type your message...">
-        <button class="icon" aria-label="Microphone" onclick="alert('Voice input activated')">🎤</button>
+        <input type="text" placeholder="Type your message..." autocomplete="off" />
+        <button class="icon" aria-label="Microphone">🎤</button>
       </div>
 
-      <button class="send-button" onclick="alert('Message sent')">Send</button>
+      <button class="send-button">Send</button>
 
-      <div class="read-aloud" onclick="alert('Reading aloud...')">
+      <div class="read-aloud">
         <span>🔊</span>
         <span>Read Aloud</span>
       </div>
     </div>
   </div>
+
+  <script>
+    const input = document.querySelector('.input-row input');
+    const responseDiv = document.querySelector('.response');
+    const sendButton = document.querySelector('.send-button');
+    const readAloudButton = document.querySelector('.read-aloud');
+
+    async function sendMessage(message, selectedQuestion = null) {
+      if (!message.trim() && !selectedQuestion) return;
+
+      const payload = {
+        message,
+        name: "",
+        age: "",
+        sex: "",
+        weight: "",
+        selectedQuestion
+      };
+
+      try {
+        const res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+
+        if (data.choices && data.choices.length > 0) {
+          const content = data.choices[0].message.content;
+          responseDiv.innerHTML = content;
+          input.value = '';
+        }
+      } catch (err) {
+        responseDiv.textContent = "Error communicating with server.";
+        console.error(err);
+      }
+    }
+
+    sendButton.addEventListener('click', () => {
+      sendMessage(input.value);
+    });
+
+    readAloudButton.addEventListener('click', () => {
+      const textToRead = responseDiv.textContent || responseDiv.innerText;
+      if (!textToRead) return;
+      const utterance = new SpeechSynthesisUtterance(textToRead);
+      speechSynthesis.speak(utterance);
+    });
+
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('clickable-question')) {
+        const question = decodeURIComponent(e.target.getAttribute('data-question'));
+        sendMessage("", question);
+      }
+    });
+  </script>
 </body>
 </html>
