@@ -149,14 +149,9 @@
       white-space: pre-wrap;
       text-align: left;
       display: flex;
-      align-items: flex-start; /* <== ajuste feito aqui */
+      align-items: flex-start;
       gap: 12px;
       background-color: transparent;
-    }
-
-    .bot-message > div {
-      margin-top: 0 !important; /* remove margem superior extra no texto */
-      padding-top: 0 !important;
     }
 
     .owl-icon {
@@ -280,6 +275,7 @@
     const responseDiv = document.querySelector('.response');
     const sendButton = document.querySelector('.send-button');
     const readAloudButton = document.querySelector('.read-aloud');
+    const micButton = document.querySelector('.input-row button.icon');
 
     const botIconHTML = `
       <div class="owl-icon">
@@ -289,10 +285,40 @@
       </div>
     `;
 
+    // Implementação do reconhecimento de voz
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SpeechRecognition) {
+      const recognition = new SpeechRecognition();
+      recognition.lang = 'pt-BR';  // Ajuste o idioma conforme desejar
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      micButton.addEventListener('click', () => {
+        recognition.start();
+      });
+
+      recognition.addEventListener('result', (event) => {
+        const transcript = event.results[0][0].transcript;
+        input.value = transcript;
+        sendMessage(transcript);
+      });
+
+      recognition.addEventListener('speechend', () => {
+        recognition.stop();
+      });
+
+      recognition.addEventListener('error', (event) => {
+        alert('Erro no reconhecimento de voz: ' + event.error);
+      });
+    } else {
+      micButton.addEventListener('click', () => {
+        alert('Reconhecimento de voz não suportado neste navegador.');
+      });
+    }
+
     async function sendMessage(message, selectedQuestion = null) {
       if (!message.trim() && !selectedQuestion) return;
 
-      // Mostrar a mensagem do usuário
       if (message.trim()) {
         responseDiv.insertAdjacentHTML('beforeend', `<div class="user-message">${message.trim()}</div>`);
         responseDiv.scrollTop = responseDiv.scrollHeight;
@@ -308,7 +334,6 @@
       };
 
       try {
-        // Indicador digitando
         responseDiv.insertAdjacentHTML('beforeend', `<div class="typing-indicator">Dr. Owl is typing...</div>`);
         responseDiv.scrollTop = responseDiv.scrollHeight;
 
@@ -320,14 +345,12 @@
 
         const data = await res.json();
 
-        // Remove indicador digitando
         const typing = responseDiv.querySelector('.typing-indicator');
         if (typing) typing.remove();
 
         if (data.choices && data.choices.length > 0) {
           const content = data.choices[0].message.content;
 
-          // Separar explicação e perguntas clicáveis
           const tempDiv = document.createElement('div');
           tempDiv.innerHTML = content;
 
@@ -335,7 +358,6 @@
           questions.forEach(q => q.remove());
           const explanationHTML = tempDiv.innerHTML;
 
-          // Inserir explicação com ícone
           responseDiv.insertAdjacentHTML('beforeend', `
             <div class="bot-message">
               ${botIconHTML}
@@ -343,12 +365,10 @@
             </div>
           `);
 
-          // Inserir perguntas clicáveis sem ícone
           questions.forEach(q => {
             responseDiv.appendChild(q);
           });
 
-          // Rolar para o topo da última mensagem
           const messages = responseDiv.querySelectorAll('.bot-message');
           const lastMessage = messages[messages.length - 1];
           if (lastMessage) {
