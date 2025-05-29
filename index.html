@@ -158,7 +158,6 @@
 <body>
   <div class="wrapper">
     <div class="card">
-      <!-- ✅ Imagem aprovada em base64 -->
       <img src="owl-doctor.png" alt="Dr. Owl" width="150" class="owl-image" />
 
       <h1>Welcome to Dr. Owl’s AI Office</h1>
@@ -223,10 +222,14 @@
     });
 
     readAloudButton.addEventListener('click', () => {
-      const textToRead = responseDiv.textContent || responseDiv.innerText;
-      if (!textToRead) return;
-      const utterance = new SpeechSynthesisUtterance(textToRead);
-      speechSynthesis.speak(utterance);
+      if (speechSynthesis.speaking) {
+        speechSynthesis.cancel();
+      } else {
+        const textToRead = responseDiv.textContent || responseDiv.innerText;
+        if (!textToRead) return;
+        const utterance = new SpeechSynthesisUtterance(textToRead);
+        speechSynthesis.speak(utterance);
+      }
     });
 
     document.addEventListener('click', (e) => {
