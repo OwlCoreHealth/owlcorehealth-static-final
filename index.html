@@ -149,9 +149,14 @@
       white-space: pre-wrap;
       text-align: left;
       display: flex;
-      align-items: center;
+      align-items: flex-start; /* <== ajuste feito aqui */
       gap: 12px;
       background-color: transparent;
+    }
+
+    .bot-message > div {
+      margin-top: 0 !important; /* remove margem superior extra no texto */
+      padding-top: 0 !important;
     }
 
     .owl-icon {
