@@ -321,17 +321,35 @@
 
         if (data.choices && data.choices.length > 0) {
           const content = data.choices[0].message.content;
+
+          // Separar explicação e perguntas clicáveis
+          const tempDiv = document.createElement('div');
+          tempDiv.innerHTML = content;
+
+          const questions = tempDiv.querySelectorAll('.clickable-question');
+          questions.forEach(q => q.remove());
+          const explanationHTML = tempDiv.innerHTML;
+
+          // Inserir explicação com ícone
           responseDiv.insertAdjacentHTML('beforeend', `
             <div class="bot-message">
               ${botIconHTML}
-              <div>${content}</div>
+              <div>${explanationHTML}</div>
             </div>
           `);
+
+          // Inserir perguntas clicáveis sem ícone
+          questions.forEach(q => {
+            responseDiv.appendChild(q);
+          });
+
+          // Rolar para o topo da última mensagem
           const messages = responseDiv.querySelectorAll('.bot-message');
           const lastMessage = messages[messages.length - 1];
           if (lastMessage) {
             lastMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
+
           input.value = '';
         }
       } catch (err) {
