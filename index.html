@@ -408,15 +408,31 @@ if (SpeechRecognition) {
     });
 
     readAloudButton.addEventListener('click', () => {
-      if (speechSynthesis.speaking) {
-        speechSynthesis.cancel();
-      } else {
-        const textToRead = responseDiv.textContent || responseDiv.innerText;
-        if (!textToRead) return;
-        const utterance = new SpeechSynthesisUtterance(textToRead);
-        speechSynthesis.speak(utterance);
-      }
-    });
+  if (speechSynthesis.speaking) {
+    speechSynthesis.cancel();
+  } else {
+    const textToRead = responseDiv.textContent || responseDiv.innerText;
+    if (!textToRead) return;
+
+    const utterance = new SpeechSynthesisUtterance(textToRead);
+
+    const voices = speechSynthesis.getVoices();
+
+    // Tenta selecionar voz masculina preferencialmente em pt ou en
+    const maleVoice = voices.find(voice => 
+      (voice.lang.startsWith('pt') || voice.lang.startsWith('en')) &&
+      /male/i.test(voice.name)
+    );
+
+    if (maleVoice) {
+      utterance.voice = maleVoice;
+    } else if (voices.length > 0) {
+      utterance.voice = voices[0]; // fallback padrão
+    }
+
+    speechSynthesis.speak(utterance);
+  }
+});
 
     document.addEventListener('click', (e) => {
       if (e.target.classList.contains('clickable-question')) {
