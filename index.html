@@ -9,7 +9,7 @@
       margin: 0;
       padding: 0;
       height: 100%;
-      background-color: white;
+      background-color: #F8F7FF;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
 
@@ -19,16 +19,17 @@
       justify-content: center;
       height: 100%;
       width: 100%;
+      background-color: #ffffff;
     }
 
     .card {
-      background: #F8F7FF;
+      background: #ffffff;
       border-radius: 24px;
       padding: 32px 24px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-      width: 95vw;
-      max-width: 600px;
-      height: 95vh;
+      width: 85vw;
+      height: 75vh;
+      max-width: 850px;
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
@@ -139,12 +140,12 @@
 
       <div class="input-row">
         <input type="text" placeholder="Type your message...">
-        <button class="icon" aria-label="Microphone">🎤</button>
+        <button class="icon" aria-label="Microphone" onclick="alert('Voice input activated')">🎤</button>
       </div>
 
-      <button class="send-button">Send</button>
+      <button class="send-button" onclick="alert('Message sent')">Send</button>
 
-      <div class="read-aloud">
+      <div class="read-aloud" onclick="alert('Reading aloud...')">
         <span>🔊</span>
         <span>Read Aloud</span>
       </div>
