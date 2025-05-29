@@ -142,6 +142,29 @@
       background-color: #bdb2f0;
     }
 
+    .bot-message {
+      margin-top: 12px;
+      padding: 12px;
+      background-color: #e2dffd;
+      border-radius: 12px;
+      white-space: pre-wrap;
+      text-align: left;
+    }
+    .user-message {
+      margin-top: 12px;
+      padding: 12px;
+      background-color: #cde8ff;
+      border-radius: 12px;
+      white-space: pre-wrap;
+      text-align: right;
+    }
+    .typing-indicator {
+      font-style: italic;
+      color: #999;
+      margin-top: 12px;
+      padding: 10px;
+    }
+
     @media (max-width: 600px) {
       .card {
         width: 100vw;
@@ -163,7 +186,7 @@
       <h1>Welcome to Dr. Owl’s AI Office</h1>
       <h2>Where Science Meets Personal Care</h2>
 
-      <div class="response">Hello! How can I assist you today?</div>
+      <div class="response"></div>
 
       <div class="input-row">
         <input type="text" placeholder="Type your message..." autocomplete="off" />
@@ -186,40 +209,51 @@
     const readAloudButton = document.querySelector('.read-aloud');
 
     async function sendMessage(message, selectedQuestion = null) {
-  if (!message.trim() && !selectedQuestion) return;
+      if (!message.trim() && !selectedQuestion) return;
 
-  const payload = { message, name: "", age: "", sex: "", weight: "", selectedQuestion };
+      // Mostra a mensagem do usuário
+      if (message.trim()) {
+        responseDiv.insertAdjacentHTML('beforeend', `<div class="user-message">${message.trim()}</div>`);
+        responseDiv.scrollTop = responseDiv.scrollHeight;
+      }
 
-  try {
-    // Se for a primeira mensagem, limpa para mostrar "digitando", 
-    // ou pode manter tudo se quiser preservar histórico desde sempre
-    // Aqui vamos manter o histórico, então adicionamos o "digitando" como nova linha
-    responseDiv.insertAdjacentHTML('beforeend', `<div class="typing-indicator">Dr. Owl is typing...</div>`);
-    responseDiv.scrollTop = responseDiv.scrollHeight;
+      const payload = {
+        message,
+        name: "",
+        age: "",
+        sex: "",
+        weight: "",
+        selectedQuestion
+      };
 
-    const res = await fetch('/api/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
+      try {
+        // Indicador digitando
+        responseDiv.insertAdjacentHTML('beforeend', `<div class="typing-indicator">Dr. Owl is typing...</div>`);
+        responseDiv.scrollTop = responseDiv.scrollHeight;
 
-    const data = await res.json();
+        const res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
 
-    // Remove o indicador de digitando
-    const typing = responseDiv.querySelector('.typing-indicator');
-    if (typing) typing.remove();
+        const data = await res.json();
 
-    if (data.choices && data.choices.length > 0) {
-      const content = data.choices[0].message.content;
-      responseDiv.insertAdjacentHTML('beforeend', `<div class="bot-message">${content}</div>`);
-      responseDiv.scrollTop = responseDiv.scrollHeight;
-      input.value = '';
+        // Remove indicador digitando
+        const typing = responseDiv.querySelector('.typing-indicator');
+        if (typing) typing.remove();
+
+        if (data.choices && data.choices.length > 0) {
+          const content = data.choices[0].message.content;
+          responseDiv.insertAdjacentHTML('beforeend', `<div class="bot-message">${content}</div>`);
+          responseDiv.scrollTop = responseDiv.scrollHeight;
+          input.value = '';
+        }
+      } catch (err) {
+        responseDiv.textContent = "Error communicating with server.";
+        console.error(err);
+      }
     }
-  } catch (err) {
-    responseDiv.textContent = "Error communicating with server.";
-    console.error(err);
-  }
-}
 
     sendButton.addEventListener('click', () => {
       sendMessage(input.value);
@@ -242,6 +276,9 @@
         sendMessage("", question);
       }
     });
+
+    // Inicializar com mensagem de boas-vindas, opcional:
+    responseDiv.innerHTML = `<div class="bot-message">Hello! How can I assist you today?</div>`;
   </script>
 </body>
 </html>
