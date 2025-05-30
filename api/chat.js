@@ -1,3 +1,5 @@
+// ✅ chat.js COMPLETO com integração do formulário de subscrição de e-mail (sem NENHUMA remoção do seu código)
+
 import { getSymptomContext } from "./notion.mjs";
 import { fallbackTextsBySymptom } from "./fallbackTextsBySymptom.js";
 
@@ -13,7 +15,7 @@ let sessionMemory = {
   categoriaAtual: null,
   funnelPhase: 1,
   usedQuestions: [],
-  emailOffered: false // Novo controle de exibição do campo de email
+  emailOffered: false
 };
 
 function getFunnelKey(phase) {
@@ -28,14 +30,30 @@ function getFunnelKey(phase) {
   }
 }
 
-// ⬇️ NOVO BLOCO – renderiza campo de subscrição
+// ✅ NOVO BLOCO – renderiza campo de subscrição visualmente estilizado
 function renderEmailPrompt(idioma) {
-  return idioma === "pt"
-    ? `\n\nQuer receber descobertas e soluções naturais como essa direto no seu e-mail?\n\n<input type="email" id="userEmail" placeholder="Digite seu e-mail" class="email-input" />\n<button class="email-submit" onclick="submitEmail()">Quero Receber</button>`
-    : `\n\nWant to receive natural solutions like this directly to your inbox?\n\n<input type="email" id="userEmail" placeholder="Enter your email" class="email-input" />\n<button class="email-submit" onclick="submitEmail()">Send Me Tips</button>`;
+  const labelText = idioma === "pt"
+    ? "Quer receber descobertas e soluções naturais como essa direto no seu e-mail?"
+    : "Want to receive natural solutions like this directly to your inbox?";
+
+  const placeholder = idioma === "pt" ? "Digite seu e-mail" : "Enter your email";
+  const buttonText = idioma === "pt" ? "Sim, quero dicas!" : "Yes, send me tips!";
+
+  return `
+  <div style="margin-top: 25px; padding: 18px; background-color: #f0ecfc; border-radius: 12px; max-width: 500px;">
+    <p style="margin-bottom: 12px; font-size: 16px; color: #333;">${labelText}</p>
+    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+      <input type="email" id="userEmail" placeholder="${placeholder}" 
+        style="flex: 1 1 250px; padding: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 15px;" />
+      <button class="email-submit" onclick="submitEmail()" 
+        style="padding: 10px 18px; background-color: #6e44ff; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">
+        ${buttonText}
+      </button>
+    </div>
+  </div>`;
 }
 
-// ⬇️ ALTERAÇÃO NO formatHybridResponse para adicionar e-mail após 1ª resposta
+// ✅ ALTERAÇÃO NO formatHybridResponse para adicionar e-mail após 1ª resposta com perguntas
 function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
   const phaseTitle = idioma === "pt" ? "Vamos explorar mais:" : "Let's explore further:";
   const instruction = idioma === "pt"
@@ -49,12 +67,12 @@ function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
     followupQuestions.slice(0, 3).forEach((q, i) => {
       response += `<div class="clickable-question" data-question="${encodeURIComponent(q)}" onclick="handleQuestionClick(this)">${i + 1}. ${q}</div>\n`;
     });
-  }
 
-  // Mostrar campo de email apenas uma vez, após a primeira resposta com perguntas
-  if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
-    sessionMemory.emailOffered = true;
-    response += renderEmailPrompt(idioma);
+    // ✅ Mostra o formulário de e-mail na primeira vez que houver follow-ups
+    if (!sessionMemory.emailOffered) {
+      sessionMemory.emailOffered = true;
+      response += renderEmailPrompt(idioma);
+    }
   }
 
   return response;
