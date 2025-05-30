@@ -12,7 +12,8 @@ let sessionMemory = {
   sintomaAtual: null,
   categoriaAtual: null,
   funnelPhase: 1,
-  usedQuestions: []
+  usedQuestions: [],
+  emailOffered: false // Novo controle de exibição do campo de email
 };
 
 function getFunnelKey(phase) {
@@ -26,6 +27,39 @@ function getFunnelKey(phase) {
     default: return "base";
   }
 }
+
+// ⬇️ NOVO BLOCO – renderiza campo de subscrição
+function renderEmailPrompt(idioma) {
+  return idioma === "pt"
+    ? `\n\nQuer receber descobertas e soluções naturais como essa direto no seu e-mail?\n\n<input type="email" id="userEmail" placeholder="Digite seu e-mail" class="email-input" />\n<button class="email-submit" onclick="submitEmail()">Quero Receber</button>`
+    : `\n\nWant to receive natural solutions like this directly to your inbox?\n\n<input type="email" id="userEmail" placeholder="Enter your email" class="email-input" />\n<button class="email-submit" onclick="submitEmail()">Send Me Tips</button>`;
+}
+
+// ⬇️ ALTERAÇÃO NO formatHybridResponse para adicionar e-mail após 1ª resposta
+function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
+  const phaseTitle = idioma === "pt" ? "Vamos explorar mais:" : "Let's explore further:";
+  const instruction = idioma === "pt"
+    ? "Escolha uma das opções abaixo para continuarmos:"
+    : "Choose one of the options below to continue:";
+
+  let response = gptResponse?.trim() || "";
+
+  if (followupQuestions.length) {
+    response += `\n\n${phaseTitle}\n${instruction}\n\n`;
+    followupQuestions.slice(0, 3).forEach((q, i) => {
+      response += `<div class="clickable-question" data-question="${encodeURIComponent(q)}" onclick="handleQuestionClick(this)">${i + 1}. ${q}</div>\n`;
+    });
+  }
+
+  // Mostrar campo de email apenas uma vez, após a primeira resposta com perguntas
+  if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
+    sessionMemory.emailOffered = true;
+    response += renderEmailPrompt(idioma);
+  }
+
+  return response;
+}
+
 async function classifyUserIntent(userInput, idioma) {
   const prompt = idioma === "pt"
     ? `Você é um classificador de intenção. Receberá mensagens de usuários e deve responder com uma das seguintes intenções:
