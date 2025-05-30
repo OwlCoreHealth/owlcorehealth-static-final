@@ -1,5 +1,6 @@
 import { getSymptomContext } from "./notion.mjs";
 import { fallbackTextsBySymptom } from "./fallbackTextsBySymptom.js";
+import { supplementLinks, getPlantsForSymptom } from "./symptomToSupplementMap.js";
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const GPT_MODEL = "gpt-4o-mini";
@@ -13,7 +14,7 @@ let sessionMemory = {
   categoriaAtual: null,
   funnelPhase: 1,
   usedQuestions: [],
-  emailOffered: false // Novo controle de exibição do campo de email
+  emailOffered: false
 };
 
 function getFunnelKey(phase) {
@@ -28,7 +29,6 @@ function getFunnelKey(phase) {
   }
 }
 
-// ⬇️ NOVA VERSÃO ESTILIZADA – renderiza campo de subscrição com visual mais bonito
 function renderEmailPrompt(idioma) {
   const labelText = idioma === "pt"
     ? "Quer receber descobertas e soluções naturais como essa direto no seu e-mail?"
@@ -65,7 +65,6 @@ function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
       response += `<div class="clickable-question" data-question="${encodeURIComponent(q)}" onclick="handleQuestionClick(this)">${i + 1}. ${q}</div>\n`;
     });
 
-    // ✅ Mostra o formulário de e-mail na primeira vez que houver follow-ups
     if (!sessionMemory.emailOffered) {
       sessionMemory.emailOffered = true;
       response += renderEmailPrompt(idioma);
@@ -74,7 +73,6 @@ function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
 
   return response;
 }
-
 async function classifyUserIntent(userInput, idioma) {
   const prompt = idioma === "pt"
     ? `Você é um classificador de intenção. Receberá mensagens de usuários e deve responder com uma das seguintes intenções:
