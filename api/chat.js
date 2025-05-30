@@ -461,7 +461,7 @@ export default async function handler(req, res) {
   // Atualiza a fase do funil com segurança
   sessionMemory.funnelPhase = Math.min((context.funnelPhase || sessionMemory.funnelPhase || 1) + 1, 6);
 
-  // Debug logs
+   // Debug logs
   console.log("🧪 Sintoma detectado:", context.sintoma);
   console.log("🧪 Categoria atual:", sessionMemory.categoriaAtual);
   console.log("🧪 Fase atual:", sessionMemory.funnelPhase);
@@ -472,4 +472,7 @@ export default async function handler(req, res) {
   return res.status(200).json({
     choices: [{ message: { content, followupQuestions: followupQuestions || [] } }]
   });
-}
+
+} // 🔚 Fim do bloco else (intent === "sintoma")
+
+} // 🔚 Fim da função handler (export default async function handler)
