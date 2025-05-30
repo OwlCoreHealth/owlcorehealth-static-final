@@ -498,6 +498,20 @@ if (SpeechRecognition) {
         <div>Hello! How can I assist you today?</div>
       </div>
     `;
+    // ✅ Mostrar o campo de e-mail após a primeira resposta do bot
+const observer = new MutationObserver(() => {
+  const botMessages = document.querySelectorAll('.response .bot-message');
+  const emailPrompt = document.getElementById("email-prompt");
+
+  if (botMessages.length >= 1 && emailPrompt && emailPrompt.style.display === "none") {
+    emailPrompt.style.display = "block";
+    emailPrompt.scrollIntoView({ behavior: 'smooth' });
+    observer.disconnect(); // só mostra uma vez
+  }
+});
+
+observer.observe(document.querySelector('.response'), { childList: true });
+
   </script>
 
   <!-- ✅ Função para envio de e-mail para Google Sheets -->
