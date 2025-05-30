@@ -69,7 +69,7 @@ function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
     });
 
     // ✅ Mostra o formulário de e-mail na primeira vez que houver follow-ups
-    if (!sessionMemory.emailOffered) {
+    if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
       sessionMemory.emailOffered = true;
       response += renderEmailPrompt(idioma);
     }
@@ -271,24 +271,6 @@ Return only the 3 numbered questions.
           "Are you ready to explore a better solution now?"
         ];
   }
-}
-
-function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
-  const phaseTitle = idioma === "pt" ? "Vamos explorar mais:" : "Let's explore further:";
-  const instruction = idioma === "pt"
-    ? "Escolha uma das opções abaixo para continuarmos:"
-    : "Choose one of the options below to continue:";
-
-  let response = gptResponse?.trim() || "";
-
-  if (followupQuestions.length) {
-    response += `\n\n${phaseTitle}\n${instruction}\n\n`;
-    followupQuestions.slice(0, 3).forEach((q, i) => {
-      response += `<div class="clickable-question" data-question="${encodeURIComponent(q)}" onclick="handleQuestionClick(this)">${i + 1}. ${q}</div>\n`;
-    });
-  }
-
-  return response;
 }
 
 // Função nova: identifica sintoma no input do usuário comparando com lista do fallback
