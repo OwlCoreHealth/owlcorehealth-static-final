@@ -319,12 +319,19 @@
 
       <button class="send-button">Send</button>
 
-      <div class="read-aloud">
+           <div class="read-aloud">
         <span>🔊</span>
         <span>Read Aloud</span>
       </div>
-    </div>
-  </div>
+
+      <!-- ✅ BLOCO DE SUBSCRIÇÃO DE EMAIL -->
+      <div id="email-prompt" style="display: none; margin-top: 24px; text-align: center;">
+        <p style="margin-bottom: 12px; color: #2f2c63;">Want to receive personalized health tips from Dr. Owl?</p>
+        <input type="email" id="userEmail" placeholder="Enter your email" style="padding: 10px; font-size: 14px; border-radius: 8px; border: 1px solid #ccc; width: 70%; max-width: 300px;" />
+        <button onclick="submitEmail()" style="margin-left: 12px; padding: 10px 16px; font-size: 14px; background-color: #2f2c63; color: white; border: none; border-radius: 8px; cursor: pointer;">Subscribe</button>
+      </div>
+    </div> <!-- fecha .card -->
+  </div> <!-- fecha .wrapper -->
 
   <script>
     const input = document.querySelector('.input-row input');
