@@ -335,26 +335,37 @@ export default async function handler(req, res) {
   const isFollowUp = Boolean(selectedQuestion);
   const intent = await classifyUserIntent(userInput, sessionMemory.idioma || "pt");
 
-if (intent !== "sintoma") {
-  const gptResponse = await generateFreeTextWithGPT(
-    sessionMemory.idioma === "pt"
-      ? `Você é o Dr. Owl, um assistente de saúde provocador e inteligente. Um usuário te fez uma pergunta fora do padrão de sintomas, mas que mostra curiosidade ou dúvida. Responda com carisma, humor leve e empatia. No fim, convide o usuário a relatar algum sintoma ou sinal do corpo que esteja incomodando. Pergunta do usuário: "${userInput}"`
-      : `You are Dr. Owl, a clever and insightful health assistant. A user just asked something that shows curiosity or vague doubt. Respond with charm and subtle sarcasm, then invite them to share any body signal or discomfort they're feeling. User's message: "${userInput}"`
-  );
+  let gptResponse; // ✅ Declarado uma vez só aqui
 
-  const content = formatHybridResponse({}, letgptResponse, followupQuestions, sessionMemory.idioma);
+  if (intent !== "sintoma") {
+    gptResponse = await generateFreeTextWithGPT(
+      sessionMemory.idioma === "pt"
+        ? `Você é o Dr. Owl, um assistente de saúde provocador e inteligente. Um usuário te fez uma pergunta fora do padrão de sintomas, mas que mostra curiosidade ou dúvida. Responda com carisma, humor leve e empatia. No fim, convide o usuário a relatar algum sintoma ou sinal do corpo que esteja incomodando. Pergunta do usuário: "${userInput}"`
+        : `You are Dr. Owl, a clever and insightful health assistant. A user just asked something that shows curiosity or vague doubt. Respond with charm and subtle sarcasm, then invite them to share any body signal or discomfort they're feeling. User's message: "${userInput}"`
+    );
 
-// Atualiza a fase do funil com segurança após resposta genérica
-sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
+    const followupQuestions = await generateFollowUpQuestions(
+      { sintoma: "entrada genérica", funnelPhase: 1 },
+      sessionMemory.idioma
+    );
 
-// Registra entrada genérica
-sessionMemory.genericEntry = true;
-sessionMemory.genericMessages = sessionMemory.genericMessages || [];
-sessionMemory.genericMessages.push(userInput);
+    const content = formatHybridResponse({}, gptResponse, followupQuestions, sessionMemory.idioma);
 
-return res.status(200).json({
-  choices: [{ message: { content, followupQuestions } }]
-});
+    // Atualiza a fase do funil com segurança após resposta genérica
+    sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
+
+    // Registra entrada genérica
+    sessionMemory.genericEntry = true;
+    sessionMemory.genericMessages = sessionMemory.genericMessages || [];
+    sessionMemory.genericMessages.push(userInput);
+
+    return res.status(200).json({
+      choices: [{ message: { content, followupQuestions } }]
+    });
+  }
+
+  // ... restante do código para casos com sintomas ...
+}
 
   // Detecta idioma do input
   const isPortuguese = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
