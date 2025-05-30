@@ -128,6 +128,13 @@ if (role === 'bot') {
         const typingMsg = chatBox.querySelector('.bot-message:last-child');
         if (typingMsg) typingMsg.remove();
         appendMessage(botReply, 'bot');
+        // ✅ Mostrar campo de subscrição após a primeira resposta
+const emailPrompt = document.getElementById("email-prompt");
+if (emailPrompt && !emailPrompt.dataset.shown) {
+  emailPrompt.style.display = "block";
+  emailPrompt.dataset.shown = "true";
+}
+
         renderFollowUpButtons(followups);
       } catch (err) {
         appendMessage("❌ GPT communication error.", 'bot');
