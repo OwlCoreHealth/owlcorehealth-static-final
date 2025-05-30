@@ -26,6 +26,54 @@ function getFunnelKey(phase) {
     default: return "base";
   }
 }
+async function classifyUserIntent(userInput, idioma) {
+  const prompt = idioma === "pt"
+    ? `Você é um classificador de intenção. Receberá mensagens de usuários e deve responder com uma das seguintes intenções:
+
+- sintoma
+- saudação
+- curiosidade
+- pergunta funcional
+- dúvida vaga
+- outro
+
+Mensagem do usuário: "${userInput}"
+Resposta (apenas a intenção):`
+    : `You are an intent classifier. You’ll receive a user message and must reply with one of the following labels:
+
+- symptom
+- greeting
+- curiosity
+- functional_question
+- vague_doubt
+- other
+
+User message: "${userInput}"
+Answer (intent only):`;
+
+  try {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: GPT_MODEL,
+        messages: [{ role: "system", content: prompt }],
+        temperature: 0,
+        max_tokens: 10
+      })
+    });
+
+    const data = await response.json();
+    const intent = data.choices?.[0]?.message?.content?.trim().toLowerCase() || "outro";
+    return intent;
+  } catch (e) {
+    console.error("Erro ao classificar intenção:", e);
+    return "outro";
+  }
+}
 
 async function rewriteWithGPT(baseText, sintoma, idioma, funnelPhase, categoria) {
   const prompt = idioma === "pt"
