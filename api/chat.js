@@ -322,38 +322,95 @@ Answer only with the symptom from the list that best matches the user's text. Us
 }
 
 // Handler principal do bot
+// Continuação da função handler
+
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Método não permitido" });
 
   const { message, name, age, sex, weight, selectedQuestion } = req.body;
   const userInput = selectedQuestion || message;
   const isFollowUp = Boolean(selectedQuestion);
-  const intent = await classifyUserIntent(userInput, sessionMemory.idioma || "pt");
 
-if (intent !== "sintoma") {
-  const gptResponse = await generateFreeTextWithGPT(
-    sessionMemory.idioma === "pt"
-      ? `Você é o Dr. Owl, um assistente de saúde provocador e inteligente. Um usuário te fez uma pergunta fora do padrão de sintomas, mas que mostra curiosidade ou dúvida. Responda com carisma, humor leve e empatia. No fim, convide o usuário a relatar algum sintoma ou sinal do corpo que esteja incomodando. Pergunta do usuário: "${userInput}"`
-      : `You are Dr. Owl, a clever and insightful health assistant. A user just asked something that shows curiosity or vague doubt. Respond with charm and subtle sarcasm, then invite them to share any body signal or discomfort they're feeling. User's message: "${userInput}"`
+  // Detectar idioma
+  const isPortuguese = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
+  const idioma = isPortuguese ? "pt" : "en";
+  sessionMemory.idioma = idioma;
+
+  // Classificar intenção (sintoma, dúvida, etc)
+  const intent = await classifyUserIntent(userInput, idioma);
+
+  if (intent !== "sintoma") {
+    const gptResponse = await generateFreeTextWithGPT(
+      idioma === "pt"
+        ? `Você é o Dr. Owl. Um usuário te fez uma pergunta vaga ou curiosa. Responda com empatia e provocação sutil. Estimule o usuário a compartilhar um sintoma real. Mensagem: "${userInput}"`
+        : `You are Dr. Owl. A user asked something vague or curious. Respond with empathy and subtle provocation. Encourage them to share a real symptom. Message: "${userInput}"`
+    );
+
+    const followupQuestions = await generateFollowUpQuestions({ sintoma: "entrada genérica", funnelPhase: 1 }, idioma);
+    const content = formatHybridResponse({}, gptResponse, followupQuestions, idioma);
+
+    sessionMemory.genericEntry = true;
+    sessionMemory.genericMessages = sessionMemory.genericMessages || [];
+    sessionMemory.genericMessages.push(userInput);
+
+    return res.status(200).json({ choices: [{ message: { content, followupQuestions } }] });
+  }
+
+  // Identifica sintoma usando fallback
+  const allSymptoms = Object.keys(fallbackTextsBySymptom);
+  const identifiedSymptom = await identifySymptom(userInput, allSymptoms, idioma);
+  sessionMemory.sintomaAtual = identifiedSymptom === "unknown" ? userInput.toLowerCase() : identifiedSymptom;
+  sessionMemory.nome = name?.trim() || "";
+  sessionMemory.respostasUsuario.push(userInput);
+
+  // Buscar contexto no Notion
+  let context = await getSymptomContext(
+    sessionMemory.sintomaAtual,
+    sessionMemory.nome,
+    parseInt(age),
+    parseFloat(weight),
+    sessionMemory.funnelPhase,
+    sessionMemory.sintomaAtual,
+    sessionMemory.usedQuestions
   );
 
-  const followupQuestions = await generateFollowUpQuestions(
-    { sintoma: "entrada genérica", funnelPhase: 1 },
-    sessionMemory.idioma
-  );
+  // Atualiza categoria e sintoma se vier do Notion
+  if (context.sintoma) sessionMemory.sintomaAtual = context.sintoma;
+  if (context.categoria) sessionMemory.categoriaAtual = context.categoria;
 
-  const content = formatHybridResponse({}, gptResponse, followupQuestions, sessionMemory.idioma);
+  // Se não houver texto na tabela, gerar com GPT
+  if (!context.funnelTexts || Object.keys(context.funnelTexts).length === 0) {
+    const fallbackPrompt = idioma === "pt"
+      ? `Explique detalhadamente o sintoma "${sessionMemory.sintomaAtual}" considerando a categoria "${sessionMemory.categoriaAtual}". Conduza o usuário no funil.`
+      : `Explain the symptom "${sessionMemory.sintomaAtual}" considering the category "${sessionMemory.categoriaAtual}". Guide the user through the funnel.`;
 
-  // Registra entrada genérica
-  sessionMemory.genericEntry = true;
-  sessionMemory.genericMessages = sessionMemory.genericMessages || [];
-  sessionMemory.genericMessages.push(userInput);
+    const fallbackText = await generateFreeTextWithGPT(fallbackPrompt);
+    const followupQuestions = await generateFollowUpQuestions({ sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase }, idioma);
+    const content = formatHybridResponse(context, fallbackText, followupQuestions, idioma);
 
-  return res.status(200).json({
-    choices: [{ message: { content, followupQuestions } }]
-  });
+    return res.status(200).json({ choices: [{ message: { content, followupQuestions } }] });
+  }
+
+  // Puxar textos da fase atual
+  const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
+  let funnelTexts = context.funnelTexts?.[funnelKey] || [];
+  if (!funnelTexts.length) {
+    const fallback = fallbackTextsBySymptom[sessionMemory.sintomaAtual?.toLowerCase().trim()] || {};
+    funnelTexts = fallback[funnelKey] || [];
+  }
+
+  const baseText = funnelTexts[Math.floor(Math.random() * funnelTexts.length)] || "";
+  const gptResponse = await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, idioma, sessionMemory.funnelPhase, sessionMemory.categoriaAtual);
+  const followupQuestions = await generateFollowUpQuestions({ sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase }, idioma);
+
+  // Atualiza fase
+  sessionMemory.funnelPhase = Math.min(sessionMemory.funnelPhase + 1, 6);
+  sessionMemory.genericEntry = false;
+
+  const content = formatHybridResponse(context, gptResponse, followupQuestions, idioma);
+
+  return res.status(200).json({ choices: [{ message: { content, followupQuestions } }] });
 }
-
   // Detecta idioma do input
   const isPortuguese = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
   const idiomaDetectado = isPortuguese ? "pt" : "en";
