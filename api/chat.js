@@ -251,6 +251,31 @@ export default async function handler(req, res) {
   const { message, name, age, sex, weight, selectedQuestion } = req.body;
   const userInput = selectedQuestion || message;
   const isFollowUp = Boolean(selectedQuestion);
+  const intent = await classifyUserIntent(userInput, sessionMemory.idioma || "pt");
+
+if (intent !== "sintoma") {
+  const gptResponse = await generateFreeTextWithGPT(
+    sessionMemory.idioma === "pt"
+      ? `Você é o Dr. Owl, um assistente de saúde provocador e inteligente. Um usuário te fez uma pergunta fora do padrão de sintomas, mas que mostra curiosidade ou dúvida. Responda com carisma, humor leve e empatia. No fim, convide o usuário a relatar algum sintoma ou sinal do corpo que esteja incomodando. Pergunta do usuário: "${userInput}"`
+      : `You are Dr. Owl, a clever and insightful health assistant. A user just asked something that shows curiosity or vague doubt. Respond with charm and subtle sarcasm, then invite them to share any body signal or discomfort they're feeling. User's message: "${userInput}"`
+  );
+
+  const followupQuestions = await generateFollowUpQuestions(
+    { sintoma: "entrada genérica", funnelPhase: 1 },
+    sessionMemory.idioma
+  );
+
+  const content = formatHybridResponse({}, gptResponse, followupQuestions, sessionMemory.idioma);
+
+  // Registra entrada genérica
+  sessionMemory.genericEntry = true;
+  sessionMemory.genericMessages = sessionMemory.genericMessages || [];
+  sessionMemory.genericMessages.push(userInput);
+
+  return res.status(200).json({
+    choices: [{ message: { content, followupQuestions } }]
+  });
+}
 
   // Detecta idioma do input
   const isPortuguese = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
