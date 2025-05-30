@@ -245,80 +245,118 @@ Answer only with the symptom from the list that best matches the user's text. Us
 }
 
 // Handler principal do bot
-// ... início do arquivo permanece igual
-
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Método não permitido" });
 
   const { message, name, age, sex, weight, selectedQuestion } = req.body;
   const userInput = selectedQuestion || message;
+  const isFollowUp = Boolean(selectedQuestion);
 
-  // 🆕 BLOCO NOVO — respostas genéricas com GPT e registro no sessionMemory
-  const genericPrompts = [
-    "olá", "oi", "quem é você", "quem és tu", "quem é tu", "como estás", "como vai",
-    "o que você faz", "o que fazes", "em que podes ajudar", "qual é a tua função",
-    "hi", "hello", "who are you", "what can you do", "how do you work", "how are you"
-  ];
+  // Detecta idioma do input
+  const isPortuguese = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
+  const idiomaDetectado = isPortuguese ? "pt" : "en";
+  sessionMemory.idioma = idiomaDetectado;
+  const idioma = sessionMemory.idioma;
 
-  const isGenericMessage = genericPrompts.some(p =>
-    userInput.toLowerCase().includes(p.toLowerCase())
+  // Prepara lista de sintomas para identificação
+  const allSymptoms = Object.keys(fallbackTextsBySymptom);
+
+  // Identifica o sintoma mais próximo do input usando GPT
+  const identifiedSymptom = await identifySymptom(userInput, allSymptoms, idioma);
+
+  // Atualiza sintomaAtual para a busca, ou usa o texto do usuário se não identificar
+  sessionMemory.sintomaAtual = identifiedSymptom === "unknown" ? userInput.toLowerCase() : identifiedSymptom;
+
+  sessionMemory.nome = name?.trim() || "";
+  sessionMemory.respostasUsuario.push(userInput);
+
+  const userAge = parseInt(age);
+  const userWeight = parseFloat(weight);
+
+  // Busca contexto do sintoma identificado no Notion
+  let context = await getSymptomContext(
+    sessionMemory.sintomaAtual,
+    sessionMemory.nome,
+    userAge,
+    userWeight,
+    sessionMemory.funnelPhase,
+    sessionMemory.sintomaAtual,
+    sessionMemory.usedQuestions
   );
 
-  if (isGenericMessage) {
-    const idioma = sessionMemory.idioma || "pt";
+  // Mantém sintoma e categoria para contexto coerente
+  if (context.sintoma && !sessionMemory.sintomaAtual) sessionMemory.sintomaAtual = context.sintoma;
+  if (context.categoria && !sessionMemory.categoriaAtual) sessionMemory.categoriaAtual = context.categoria;
 
-    const introPrompt = idioma === "pt"
-      ? `Você é o Dr. Owl, um assistente de saúde provocador e inteligente. Um usuário te fez uma pergunta que não contém sintomas, mas expressa curiosidade sobre você ou sobre como funciona o atendimento.
+  // Se não achar textos na tabela, usa fallback por sintoma
+  if (!context.funnelTexts || Object.keys(context.funnelTexts).length === 0) {
+    // fallback: gerar texto livre com GPT para manter funil
+    const freeTextPrompt = idioma === "pt"
+      ? `Você é um assistente de saúde. Explique detalhadamente e de forma humana o sintoma "${sessionMemory.sintomaAtual}" considerando a categoria "${sessionMemory.categoriaAtual}". Forneça informações úteis e conduza o usuário no funil, mesmo sem textos específicos na base.`
+      : `You are a health assistant. Explain in detail and humanly the symptom "${sessionMemory.sintomaAtual}" considering the category "${sessionMemory.categoriaAtual}". Provide useful information and guide the user through the funnel even if no specific texts are available in the database.`;
 
-Responda com carisma, sarcasmo leve e empatia, explicando como você ajuda pessoas a entenderem melhor seus sintomas e decisões de saúde. Ao final, convide o usuário a contar se está sentindo algo específico ou se quer analisar um sinal do corpo que tem incomodado.
+    const freeTextResponse = await generateFreeTextWithGPT(freeTextPrompt);
 
-Pergunta do usuário: "${userInput}"`
-      : `You are Dr. Owl, a clever and slightly sarcastic health assistant. A user asked you a question that doesn’t contain symptoms but shows curiosity about you or how you help.
+    const followupQuestions = await generateFollowUpQuestions(
+      { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
+      idioma
+    );
 
-Reply with charm, light sarcasm, and empathy. Briefly explain how you help people understand their symptoms and health decisions. End with a smart invitation for the user to share any specific symptom or body signal that’s been bothering them.
+    const content = formatHybridResponse(context, freeTextResponse, followupQuestions, idioma);
 
-User’s message: "${userInput}"`;
-
-    try {
-      const response = await fetch("https://api.openai.com/v1/chat/completions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${OPENAI_API_KEY}`
-        },
-        body: JSON.stringify({
-          model: GPT_MODEL,
-          messages: [{ role: "system", content: introPrompt }],
-          temperature: 0.75,
-          max_tokens: 600
-        })
-      });
-
-      const data = await response.json();
-      const gptReply = data.choices?.[0]?.message?.content?.trim() || "Posso te ajudar com saúde, sintomas e estratégias naturais. Qual o sinal que teu corpo anda te mandando?";
-
-      // REGISTRA no sessionMemory
-      sessionMemory.genericEntry = true;
-      sessionMemory.genericMessages = sessionMemory.genericMessages || [];
-      sessionMemory.genericMessages.push(userInput);
-
-      return res.status(200).json({
-        choices: [{ message: { content: gptReply, followupQuestions: [] } }]
-      });
-    } catch (e) {
-      console.error("Erro ao gerar resposta livre inicial:", e);
-
-      sessionMemory.genericEntry = true;
-      sessionMemory.genericMessages = sessionMemory.genericMessages || [];
-      sessionMemory.genericMessages.push(userInput);
-
-      return res.status(200).json({
-        choices: [{ message: { content: idioma === "pt"
-          ? "Sou o Dr. Owl. Posso te ajudar a entender melhor os sinais do teu corpo. Qual sintoma ou desconforto queres explorar hoje?"
-          : "I’m Dr. Owl. I help people understand what their body is trying to say. Is there a symptom or issue you'd like to explore today?", followupQuestions: [] } }]
-      });
-    }
+    return res.status(200).json({
+      choices: [{ message: { content, followupQuestions: followupQuestions || [] } }]
+    });
   }
 
-  // ... resto do código continua exatamente como está
+  // Textos oficiais do Notion
+  const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
+  let funnelTexts = context.funnelTexts?.[funnelKey] || [];
+
+  // Tenta fallback pelo sintoma
+  if (!funnelTexts.length) {
+    const fallbackTexts = fallbackTextsBySymptom[sessionMemory.sintomaAtual?.toLowerCase().trim()] || {};
+    funnelTexts = fallbackTexts[funnelKey] || [];
+  }
+
+  // (Opcional) fallback genérico
+  if (!funnelTexts.length) {
+    funnelTexts = [
+      idioma === "pt"
+        ? "Desculpe, ainda não temos conteúdo para esse sintoma e etapa. Tente outro sintoma ou reformule sua pergunta."
+        : "Sorry, we don’t have content for this symptom and phase yet. Please try another symptom or rephrase your query."
+    ];
+  }
+
+  const baseText = funnelTexts[Math.floor(Math.random() * funnelTexts.length)];
+
+  const gptResponse = baseText
+    ? await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, idioma, sessionMemory.funnelPhase, sessionMemory.categoriaAtual)
+    : await rewriteWithGPT(
+        `Explain clearly about the symptom ${sessionMemory.sintomaAtual} in phase ${sessionMemory.funnelPhase}, focusing on phase key ${funnelKey}`,
+        sessionMemory.sintomaAtual,
+        idioma,
+        sessionMemory.funnelPhase,
+        sessionMemory.categoriaAtual
+      );
+
+  const followupQuestions = await generateFollowUpQuestions(
+    { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
+    idioma
+  );
+
+  // Atualiza a fase do funil com segurança
+  sessionMemory.funnelPhase = Math.min((context.funnelPhase || sessionMemory.funnelPhase || 1) + 1, 6);
+
+  // Debug logs
+  console.log("🧪 Sintoma detectado:", context.sintoma);
+  console.log("🧪 Categoria atual:", sessionMemory.categoriaAtual);
+  console.log("🧪 Fase atual:", sessionMemory.funnelPhase);
+  console.log("🧪 Texto da fase:", funnelKey, funnelTexts);
+
+  const content = formatHybridResponse(context, gptResponse, followupQuestions, idioma);
+
+  return res.status(200).json({
+    choices: [{ message: { content, followupQuestions: followupQuestions || [] } }]
+  });
 }
