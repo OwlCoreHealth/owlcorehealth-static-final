@@ -349,7 +349,13 @@ export default async function handler(req, res) {
       sessionMemory.idioma
     );
 
-    const content = formatHybridResponse({}, gptResponse, followupQuestions, sessionMemory.idioma);
+    let content = formatHybridResponse({}, gptResponse, followupQuestions, sessionMemory.idioma);
+
+// ✅ Mostrar o formulário de subscrição apenas após a 1ª resposta genérica
+if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
+  sessionMemory.emailOffered = true;
+  content += renderEmailPrompt(sessionMemory.idioma);
+}
 
     // Atualiza a fase do funil com segurança após resposta genérica
     sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
