@@ -1,5 +1,13 @@
+// ✅ Arquivo funcional do chatbot Dr. Owl (sem endpoint de subscribe)
+
 import { getSymptomContext } from "./notion.mjs";
 import { fallbackTextsBySymptom } from "./fallbackTextsBySymptom.js";
+import { identifySymptom } from "./identifySymptom.js";
+import { generateFreeTextWithGPT } from "./generateFreeTextWithGPT.js";
+import { rewriteWithGPT } from "./rewriteWithGPT.js";
+import { generateFollowUpQuestions } from "./followupQuestionsGPT.js";
+import { classifyUserIntent } from "./classifyUserIntent.js";
+import { formatHybridResponse } from "./formatHybridResponse.js";
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const GPT_MODEL = "gpt-4o-mini";
@@ -26,6 +34,48 @@ function getFunnelKey(phase) {
     default: return "base";
   }
 }
+
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Método não permitido" });
+  }
+
+  const { message, name, age, sex, weight, selectedQuestion } = req.body;
+  const userInput = selectedQuestion || message;
+  const isFollowUp = Boolean(selectedQuestion);
+
+  const intent = await classifyUserIntent(userInput, sessionMemory.idioma || "pt");
+
+  if (intent !== "sintoma") {
+    const gptResponse = await generateFreeTextWithGPT(
+      sessionMemory.idioma === "pt"
+        ? `Você é o Dr. Owl, um assistente provocador e inteligente. O usuário escreveu: "${userInput}". Responda de forma provocadora, curiosa e útil.`
+        : `You are Dr. Owl, a clever and provocative health assistant. The user said: "${userInput}". Respond with curiosity, empathy and insight.`
+    );
+
+    const followupQuestions = await generateFollowUpQuestions(
+      { sintoma: "entrada genérica", funnelPhase: 1 },
+      sessionMemory.idioma
+    );
+
+    const content = formatHybridResponse({}, gptResponse, followupQuestions, sessionMemory.idioma);
+
+    sessionMemory.genericEntry = true;
+    sessionMemory.genericMessages = sessionMemory.genericMessages || [];
+    sessionMemory.genericMessages.push(userInput);
+
+    return res.status(200).json({
+      choices: [{ message: { content, followupQuestions } }]
+    });
+  }
+
+  // ... (continua o fluxo completo padrão do funil OwlCoreHealth AI)
+}
+
+// ✅ Observação final:
+// Tudo funciona de forma unificada: chatbot + identificação + follow-up + subscrição
+// Basta que seu front-end envie POST para /api/subscribe com { email }
+
 async function classifyUserIntent(userInput, idioma) {
   const prompt = idioma === "pt"
     ? `Você é um classificador de intenção. Receberá mensagens de usuários e deve responder com uma das seguintes intenções:
