@@ -29,10 +29,11 @@ function getFunnelKey(phase) {
 }
 
 // ⬇️ NOVO BLOCO – renderiza campo de subscrição
+// ⬇️ NOVO BLOCO – renderiza campo de subscrição com copy otimizada
 function renderEmailPrompt(idioma) {
   return idioma === "pt"
-    ? `\n\nQuer receber descobertas e soluções naturais como essa direto no seu e-mail?\n\n<input type="email" id="userEmail" placeholder="Digite seu e-mail" class="email-input" />\n<button class="email-submit" onclick="submitEmail()">Quero Receber</button>`
-    : `\n\nWant to receive natural solutions like this directly to your inbox?\n\n<input type="email" id="userEmail" placeholder="Enter your email" class="email-input" />\n<button class="email-submit" onclick="submitEmail()">Send Me Tips</button>`;
+    ? `\n\nQuer receber descobertas como essa — naturais, científicas e que realmente funcionam — direto no seu e-mail?\n\n<input type="email" id="userEmail" placeholder="email@exemplo.com" class="email-input" />\n<button class="email-submit" onclick="submitEmail()">Sim, quero dicas!</button>`
+    : `\n\nWant natural, science-backed discoveries like this sent straight to your inbox?\n\n<input type="email" id="userEmail" placeholder="email@example.com" class="email-input" />\n<button class="email-submit" onclick="submitEmail()">Yes, send me tips!</button>`;
 }
 
 // ⬇️ ALTERAÇÃO NO formatHybridResponse para adicionar e-mail após 1ª resposta
