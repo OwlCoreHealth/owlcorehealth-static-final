@@ -1,525 +1,435 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dr. Owl’s AI Office</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      background-color: #F6F6FC;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    }
+import { getSymptomContext } from "./notion.mjs";
+import { fallbackTextsBySymptom } from "./fallbackTextsBySymptom.js";
 
-    .wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      width: 100%;
-    }
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+const GPT_MODEL = "gpt-4o-mini";
 
-    .card {
-      background: #ffffff;
-      border-radius: 24px;
-      padding: 32px 24px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-      width: 95vw;
-      height: 85vh;
-      max-width: 1020px;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
+let sessionMemory = {
+  sintomasDetectados: [],
+  respostasUsuario: [],
+  nome: "",
+  idioma: "pt",
+  sintomaAtual: null,
+  categoriaAtual: null,
+  funnelPhase: 1,
+  usedQuestions: []
+};
 
-    .owl-image {
-      height: 140px;
-      margin-bottom: 24px;
-    }
-
-    h1 {
-      font-size: 20px;
-      margin: 0;
-      color: #2f2c63;
-    }
-
-    h2 {
-      font-size: 14px;
-      font-weight: normal;
-      margin-top: 8px;
-      margin-bottom: 24px;
-      color: #666;
-    }
-
-    .response {
-      background-color: #F6F6FB;
-      border-radius: 12px;
-      padding: 16px;
-      font-size: 15px;
-      margin-bottom: 16px;
-      color: #333;
-      width: 100%;
-      box-sizing: border-box;
-      overflow-y: auto;
-      max-height: 40vh;
-      white-space: pre-wrap;
-    }
-
-    .input-row {
-      display: flex;
-      align-items: center;
-      border: 1px solid #ccc;
-      border-radius: 12px;
-      padding: 4px 12px;
-      background-color: white;
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    .input-row input {
-      flex: 1;
-      border: none;
-      font-size: 14px;
-      padding: 12px 8px;
-      outline: none;
-    }
-
-    .input-row button.icon {
-      background: none;
-      border: none;
-      font-size: 18px;
-      cursor: pointer;
-      color: #444;
-    }
-
-    .send-button {
-      margin-top: 16px;
-      background-color: #2f2c63;
-      color: white;
-      border: none;
-      border-radius: 12px;
-      width: 33%;
-      padding: 14px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    .read-aloud {
-      margin-top: 24px;
-      font-size: 16px;
-      color: #2f2c63;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 16px 24px;
-      border: 1px solid #ccc;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .read-aloud span {
-      font-size: 18px;
-    }
-
-    .clickable-question {
-      cursor: pointer;
-      color: #2f2c63;
-      margin-top: 8px;
-      padding: 8px;
-      border-radius: 8px;
-      background-color: #e2dffd;
-      user-select: none;
-    }
-
-    .clickable-question:hover {
-      background-color: #bdb2f0;
-    }
-
-    .bot-message {
-  margin-top: 12px;
-  padding: 12px;
-  border-radius: 12px;
-  white-space: pre-wrap;
-  text-align: left;
-  background-color: transparent;
-  overflow: hidden; /* Para conter o float */
-}
-
-.bot-message .owl-icon {
-  float: left;
-  width: 24px; /* Tamanho reduzido */
-  height: 24px;
-  margin-right: 8px;
-  margin-top: 2px; /* Ajuste vertical */
-  background: #2f2c63;
-  border-radius: 50%;
-  position: relative;
-  box-shadow: inset 0 3px 6px rgba(255 255 255 / 0.3);
-}
-
-.bot-message .owl-icon::before,
-.bot-message .owl-icon::after {
-  content: '';
-  position: absolute;
-  top: 10px;
-  width: 10px;
-  height: 14px;
-  background: white;
-  border-radius: 50% / 60%;
-  border: 2px solid #2f2c63;
-}
-
-.bot-message .owl-icon::before {
-  left: 6px;
-  transform: rotate(-10deg);
-}
-
-.bot-message .owl-icon::after {
-  right: 6px;
-  transform: rotate(10deg);
-}
-
-.bot-message .owl-icon .pupil {
-  position: absolute;
-  top: 15px;
-  width: 6px;
-  height: 8px;
-  background: #2f2c63;
-  border-radius: 50%;
-}
-
-.bot-message .owl-icon .pupil.left {
-  left: 10px;
-}
-
-.bot-message .owl-icon .pupil.right {
-  right: 10px;
-}
-
-.bot-message .owl-icon .beak {
-  position: absolute;
-  bottom: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 0;
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-top: 10px solid #e0b85f;
-  border-radius: 1px;
-}
-    .owl-icon {
-      position: relative;
-      background: #2f2c63;
-      border-radius: 50%;
-    }
-
-    .owl-icon::before,
-    .owl-icon::after {
-      content: '';
-      position: absolute;
-      top: 10px;
-      width: 10px;
-      height: 14px;
-      background: white;
-      border-radius: 50% / 60%;
-      border: 2px solid #2f2c63;
-    }
-
-    .owl-icon::before {
-      left: 6px;
-      transform: rotate(-10deg);
-    }
-
-    .owl-icon::after {
-      right: 6px;
-      transform: rotate(10deg);
-    }
-
-    .owl-icon .pupil {
-      position: absolute;
-      top: 15px;
-      width: 6px;
-      height: 8px;
-      background: #2f2c63;
-      border-radius: 50%;
-    }
-
-    .owl-icon .pupil.left {
-      left: 10px;
-    }
-
-    .owl-icon .pupil.right {
-      right: 10px;
-    }
-
-    .owl-icon .beak {
-      position: absolute;
-      bottom: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 0;
-      border-left: 6px solid transparent;
-      border-right: 6px solid transparent;
-      border-top: 10px solid #e0b85f;
-      border-radius: 1px;
-    }
-
-    .user-message {
-      margin-top: 12px;
-      padding: 12px;
-      border-radius: 12px;
-      white-space: pre-wrap;
-      text-align: right;
-      background-color: transparent;
-    }
-
-    .typing-indicator {
-      font-style: italic;
-      color: #999;
-      margin-top: 12px;
-      padding: 10px;
-    }
-
-    @media (max-width: 600px) {
-      .card {
-        width: 100vw;
-        height: 100vh;
-        border-radius: 0;
-      }
-
-      .send-button {
-        width: 100%;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="wrapper">
-    <div class="card">
-      <img src="owl-doctor.png" alt="Dr. Owl" width="150" class="owl-image" />
-
-      <h1>Welcome to Dr. Owl’s AI Office</h1>
-      <h2>Where Science Meets Personal Care</h2>
-
-      <div class="response"></div>
-
-      <div class="input-row">
-        <input type="text" placeholder="Type your message..." autocomplete="off" />
-        <button class="icon" aria-label="Microphone">🎤</button>
-      </div>
-
-      <button class="send-button">Send</button>
-
-      <div class="read-aloud">
-        <span>🔊</span>
-        <span>Read Aloud</span>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    const input = document.querySelector('.input-row input');
-    const responseDiv = document.querySelector('.response');
-    const sendButton = document.querySelector('.send-button');
-    const readAloudButton = document.querySelector('.read-aloud');
-    const micButton = document.querySelector('.input-row button.icon');
-
-    const botIconHTML = `
-      <div class="owl-icon">
-        <div class="pupil left"></div>
-        <div class="pupil right"></div>
-        <div class="beak"></div>
-      </div>
-    `;
-
-    // Implementação do reconhecimento de voz
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-if (SpeechRecognition) {
-  const recognition = new SpeechRecognition();
-  recognition.interimResults = false;
-  recognition.maxAlternatives = 1;
-
-  // Variável para controlar idioma da sessão (você pode atualizar esta variável conforme necessário)
-  let currentLang = 'pt-BR'; // padrão português, ajuste conforme seu fluxo
-
-  function updateRecognitionLang(lang) {
-    recognition.lang = lang;
+function getFunnelKey(phase) {
+  switch (phase) {
+    case 1: return "base";
+    case 2: return "gravidade";
+    case 3: return "estatisticas";
+    case 4: return "nutrientes";
+    case 5: return "suplemento";
+    case 6: return "cta";
+    default: return "base";
   }
-
-  micButton.addEventListener('click', () => {
-    updateRecognitionLang(currentLang);
-    recognition.start();
-  });
-
-  recognition.addEventListener('result', (event) => {
-    const transcript = event.results[0][0].transcript;
-    input.value = transcript;
-    sendMessage(transcript);
-  });
-
-  recognition.addEventListener('speechend', () => {
-    recognition.stop();
-  });
-
-  recognition.addEventListener('error', (event) => {
-    alert('Erro no reconhecimento de voz: ' + event.error);
-  });
-} else {
-  micButton.addEventListener('click', () => {
-    alert('Reconhecimento de voz não suportado neste navegador.');
-  });
 }
+async function classifyUserIntent(userInput, idioma) {
+  const prompt = idioma === "pt"
+    ? `Você é um classificador de intenção. Receberá mensagens de usuários e deve responder com uma das seguintes intenções:
 
-    async function sendMessage(message, selectedQuestion = null) {
-      if (!message.trim() && !selectedQuestion) return;
+- sintoma
+- saudação
+- curiosidade
+- pergunta funcional
+- dúvida vaga
+- outro
 
-      if (message.trim()) {
-        responseDiv.insertAdjacentHTML('beforeend', `<div class="user-message">${message.trim()}</div>`);
-        responseDiv.scrollTop = responseDiv.scrollHeight;
-      }
+Mensagem do usuário: "${userInput}"
+Resposta (apenas a intenção):`
+    : `You are an intent classifier. You’ll receive a user message and must reply with one of the following labels:
 
-      const payload = {
-        message,
-        name: "",
-        age: "",
-        sex: "",
-        weight: "",
-        selectedQuestion
-      };
+- symptom
+- greeting
+- curiosity
+- functional_question
+- vague_doubt
+- other
 
-      try {
-        responseDiv.insertAdjacentHTML('beforeend', `<div class="typing-indicator">Dr. Owl is typing...</div>`);
-        responseDiv.scrollTop = responseDiv.scrollHeight;
+User message: "${userInput}"
+Answer (intent only):`;
 
-        const res = await fetch('/api/chat', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-
-        const data = await res.json();
-
-        const typing = responseDiv.querySelector('.typing-indicator');
-        if (typing) typing.remove();
-
-        if (data.choices && data.choices.length > 0) {
-          const content = data.choices[0].message.content;
-
-          const tempDiv = document.createElement('div');
-          tempDiv.innerHTML = content;
-
-          const questions = tempDiv.querySelectorAll('.clickable-question');
-          questions.forEach(q => q.remove());
-          const explanationHTML = tempDiv.innerHTML;
-
-          responseDiv.insertAdjacentHTML('beforeend', `
-            <div class="bot-message">
-              ${botIconHTML}
-              <div>${explanationHTML}</div>
-            </div>
-          `);
-
-          questions.forEach(q => {
-            responseDiv.appendChild(q);
-          });
-
-          const messages = responseDiv.querySelectorAll('.bot-message');
-          const lastMessage = messages[messages.length - 1];
-          if (lastMessage) {
-            lastMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-
-          input.value = '';
-        }
-      } catch (err) {
-        responseDiv.textContent = "Error communicating with server.";
-        console.error(err);
-      }
-    }
-
-    sendButton.addEventListener('click', () => {
-      sendMessage(input.value);
+  try {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: GPT_MODEL,
+        messages: [{ role: "system", content: prompt }],
+        temperature: 0,
+        max_tokens: 10
+      })
     });
 
-    readAloudButton.addEventListener('click', () => {
-  if (speechSynthesis.speaking) {
-    speechSynthesis.cancel();
-  } else {
-    const textToRead = responseDiv.textContent || responseDiv.innerText;
-    if (!textToRead) return;
+    const data = await response.json();
+    const intent = data.choices?.[0]?.message?.content?.trim().toLowerCase() || "outro";
+    return intent;
+  } catch (e) {
+    console.error("Erro ao classificar intenção:", e);
+    return "outro";
+  }
+}
 
-    const utterance = new SpeechSynthesisUtterance(textToRead);
+async function rewriteWithGPT(baseText, sintoma, idioma, funnelPhase, categoria) {
+  const prompt = idioma === "pt"
+    ? `Use o seguinte texto como base, mantendo o conteúdo e estrutura, mas reescrevendo com 30% de liberdade criativa, usando linguagem mais fluida, provocadora e humana. Mantenha o foco exclusivamente no sintoma: ${sintoma} e na categoria: ${categoria}. Não aborde outros temas. Não mude o tema e mantenha o foco em: ${sintoma}\n\nTexto-base:\n${baseText}`
+    : `Use the following text as a base. Keep the core message and structure, but rewrite with 30% creative freedom in a more natural, engaging, and human tone. Keep the focus exclusively on the symptom: ${sintoma} and category: ${categoria}. Do not address other topics. Do not change the topic and keep the focus on: ${sintoma}\n\nBase text:\n${baseText}`;
 
-    const voices = speechSynthesis.getVoices();
+  try {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: GPT_MODEL,
+        messages: [{ role: "system", content: prompt }],
+        temperature: 0.65,
+        max_tokens: 600
+      })
+    });
 
-    // Tenta selecionar voz masculina preferencialmente em pt ou en
-    const maleVoice = voices.find(voice => 
-      (voice.lang.startsWith('pt') || voice.lang.startsWith('en')) &&
-      /male/i.test(voice.name)
+    const data = await response.json();
+    return data.choices?.[0]?.message?.content?.trim() || baseText;
+  } catch (e) {
+    console.error("Erro ao reescrever com GPT:", e);
+    return baseText;
+  }
+}
+
+async function generateFreeTextWithGPT(prompt) {
+  try {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: GPT_MODEL,
+        messages: [{ role: "system", content: prompt }],
+        temperature: 0.7,
+        max_tokens: 700
+      })
+    });
+
+    const data = await response.json();
+    return data.choices?.[0]?.message?.content?.trim() || "";
+  } catch (e) {
+    console.error("Erro ao gerar texto livre com GPT:", e);
+    return "";
+  }
+}
+
+async function generateFollowUpQuestions(context, idioma) {
+  const usedQuestions = sessionMemory.usedQuestions || [];
+  const symptom = context.sintoma || "symptom";
+  const phase = context.funnelPhase || 1;
+
+  const promptPT = `
+Você é um assistente de saúde inteligente e provocador. Com base no sintoma "${symptom}" e na fase do funil ${phase}, gere 3 perguntas curtas, provocativas e instigantes que levem o usuário para a próxima etapa. 
+Evite repetir estas perguntas já feitas: ${usedQuestions.join("; ")}.
+As perguntas devem ser distintas, relacionadas ao sintoma e fase, e ter gancho forte de curiosidade, dor, emergência ou solução.
+
+Retorne apenas as 3 perguntas numeradas.
+`;
+
+  const promptEN = `
+You are a smart and provocative health assistant. Based on the symptom "${symptom}" and funnel phase ${phase}, generate 3 short, provocative, and engaging questions to guide the user to the next step.
+Avoid repeating these previously asked questions: ${usedQuestions.join("; ")}.
+Questions must be distinct, related to the symptom and phase, with strong hooks around curiosity, pain, urgency or solution.
+
+Return only the 3 numbered questions.
+`;
+
+  const prompt = idioma === "pt" ? promptPT : promptEN;
+
+  try {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: GPT_MODEL,
+        messages: [
+          { role: "system", content: "You generate only 3 relevant and persuasive questions. No extra explanation." },
+          { role: "user", content: prompt }
+        ],
+        temperature: 0.75,
+        max_tokens: 300
+      })
+    });
+
+    const data = await response.json();
+    let questionsRaw = data.choices?.[0]?.message?.content || "";
+    let questions = questionsRaw.split(/\d+\.\s+/).filter(Boolean).slice(0, 3);
+
+    // Filtrar perguntas repetidas (exato match)
+    questions = questions.filter(q => !usedQuestions.includes(q));
+
+    // Atualiza as perguntas usadas na sessão
+    sessionMemory.usedQuestions.push(...questions);
+
+    // Se menos de 3 perguntas após filtro, adiciona fallback interno
+    const fallbackPT = [
+      "Você já tentou mudar sua alimentação ou rotina?",
+      "Como você acha que isso está afetando seu dia a dia?",
+      "Está disposto(a) a descobrir uma solução mais eficaz agora?"
+    ];
+    const fallbackEN = [
+      "Have you tried adjusting your diet or lifestyle?",
+      "How do you think this is affecting your daily life?",
+      "Are you ready to explore a better solution now?"
+    ];
+
+    if (questions.length < 3) {
+      const fallback = idioma === "pt" ? fallbackPT : fallbackEN;
+      // Adiciona perguntas de fallback que ainda não foram usadas
+      for (const fq of fallback) {
+        if (questions.length >= 3) break;
+        if (!sessionMemory.usedQuestions.includes(fq)) {
+          questions.push(fq);
+          sessionMemory.usedQuestions.push(fq);
+        }
+      }
+    }
+
+    return questions.slice(0, 3);
+
+  } catch (err) {
+    console.warn("❗️Erro ao gerar perguntas com GPT:", err);
+    // fallback direto sem usar GPT
+    return idioma === "pt"
+      ? [
+          "Você já tentou mudar sua alimentação ou rotina?",
+          "Como você acha que isso está afetando seu dia a dia?",
+          "Está disposto(a) a descobrir uma solução mais eficaz agora?"
+        ]
+      : [
+          "Have you tried adjusting your diet or lifestyle?",
+          "How do you think this is affecting your daily life?",
+          "Are you ready to explore a better solution now?"
+        ];
+  }
+}
+
+function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
+  const phaseTitle = idioma === "pt" ? "Vamos explorar mais:" : "Let's explore further:";
+  const instruction = idioma === "pt"
+    ? "Escolha uma das opções abaixo para continuarmos:"
+    : "Choose one of the options below to continue:";
+
+  let response = gptResponse?.trim() || "";
+
+  if (followupQuestions.length) {
+    response += `\n\n${phaseTitle}\n${instruction}\n\n`;
+    followupQuestions.slice(0, 3).forEach((q, i) => {
+      response += `<div class="clickable-question" data-question="${encodeURIComponent(q)}" onclick="handleQuestionClick(this)">${i + 1}. ${q}</div>\n`;
+    });
+  }
+
+  return response;
+}
+
+// Função nova: identifica sintoma no input do usuário comparando com lista do fallback
+async function identifySymptom(userInput, symptomsList, idioma) {
+  const promptPT = `
+Você é um assistente que identifica o sintoma mais próximo de uma lista dada, a partir do texto do usuário. 
+A lista de sintomas é:
+${symptomsList.join(", ")}
+
+Dado o texto do usuário:
+"${userInput}"
+
+Responda apenas com o sintoma da lista que melhor corresponde ao texto do usuário. Use exatamente o texto da lista. Se não reconhecer, responda "unknown".
+  `;
+
+  const promptEN = `
+You are an assistant that identifies the closest symptom from a given list, based on the user's text.
+The list of symptoms is:
+${symptomsList.join(", ")}
+
+Given the user's input:
+"${userInput}"
+
+Answer only with the symptom from the list that best matches the user's text. Use the exact text from the list. If no match, respond "unknown".
+  `;
+
+  const prompt = idioma === "pt" ? promptPT : promptEN;
+
+  try {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: GPT_MODEL,
+        messages: [
+          { role: "system", content: "You are a precise symptom matcher." },
+          { role: "user", content: prompt }
+        ],
+        temperature: 0,
+        max_tokens: 20
+      })
+    });
+
+    const data = await response.json();
+    const match = data.choices?.[0]?.message?.content.trim() || "unknown";
+    return match.toLowerCase();
+  } catch (e) {
+    console.error("Erro ao identificar sintoma:", e);
+    return "unknown";
+  }
+}
+
+// Handler principal do bot
+export default async function handler(req, res) {
+  if (req.method !== "POST") return res.status(405).json({ error: "Método não permitido" });
+
+  const { message, name, age, sex, weight, selectedQuestion } = req.body;
+  const userInput = selectedQuestion || message;
+  const isFollowUp = Boolean(selectedQuestion);
+  const intent = await classifyUserIntent(userInput, sessionMemory.idioma || "pt");
+
+if (intent !== "sintoma") {
+  const gptResponse = await generateFreeTextWithGPT(
+    sessionMemory.idioma === "pt"
+      ? `Você é o Dr. Owl, um assistente de saúde provocador e inteligente. Um usuário te fez uma pergunta fora do padrão de sintomas, mas que mostra curiosidade ou dúvida. Responda com carisma, humor leve e empatia. No fim, convide o usuário a relatar algum sintoma ou sinal do corpo que esteja incomodando. Pergunta do usuário: "${userInput}"`
+      : `You are Dr. Owl, a clever and insightful health assistant. A user just asked something that shows curiosity or vague doubt. Respond with charm and subtle sarcasm, then invite them to share any body signal or discomfort they're feeling. User's message: "${userInput}"`
+  );
+
+  const followupQuestions = await generateFollowUpQuestions(
+    { sintoma: "entrada genérica", funnelPhase: 1 },
+    sessionMemory.idioma
+  );
+
+  const content = formatHybridResponse({}, gptResponse, followupQuestions, sessionMemory.idioma);
+
+  // Registra entrada genérica
+  sessionMemory.genericEntry = true;
+  sessionMemory.genericMessages = sessionMemory.genericMessages || [];
+  sessionMemory.genericMessages.push(userInput);
+
+  return res.status(200).json({
+    choices: [{ message: { content, followupQuestions } }]
+  });
+}
+
+  // Detecta idioma do input
+  const isPortuguese = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
+  const idiomaDetectado = isPortuguese ? "pt" : "en";
+  sessionMemory.idioma = idiomaDetectado;
+  const idioma = sessionMemory.idioma;
+
+  // Prepara lista de sintomas para identificação
+  const allSymptoms = Object.keys(fallbackTextsBySymptom);
+
+  // Identifica o sintoma mais próximo do input usando GPT
+  const identifiedSymptom = await identifySymptom(userInput, allSymptoms, idioma);
+
+  // Atualiza sintomaAtual para a busca, ou usa o texto do usuário se não identificar
+  sessionMemory.sintomaAtual = identifiedSymptom === "unknown" ? userInput.toLowerCase() : identifiedSymptom;
+
+  sessionMemory.nome = name?.trim() || "";
+  sessionMemory.respostasUsuario.push(userInput);
+
+  const userAge = parseInt(age);
+  const userWeight = parseFloat(weight);
+
+  // Busca contexto do sintoma identificado no Notion
+  let context = await getSymptomContext(
+    sessionMemory.sintomaAtual,
+    sessionMemory.nome,
+    userAge,
+    userWeight,
+    sessionMemory.funnelPhase,
+    sessionMemory.sintomaAtual,
+    sessionMemory.usedQuestions
+  );
+
+  // Mantém sintoma e categoria para contexto coerente
+  if (context.sintoma && !sessionMemory.sintomaAtual) sessionMemory.sintomaAtual = context.sintoma;
+  if (context.categoria && !sessionMemory.categoriaAtual) sessionMemory.categoriaAtual = context.categoria;
+
+  // Se não achar textos na tabela, usa fallback por sintoma
+  if (!context.funnelTexts || Object.keys(context.funnelTexts).length === 0) {
+    // fallback: gerar texto livre com GPT para manter funil
+    const freeTextPrompt = idioma === "pt"
+      ? `Você é um assistente de saúde. Explique detalhadamente e de forma humana o sintoma "${sessionMemory.sintomaAtual}" considerando a categoria "${sessionMemory.categoriaAtual}". Forneça informações úteis e conduza o usuário no funil, mesmo sem textos específicos na base.`
+      : `You are a health assistant. Explain in detail and humanly the symptom "${sessionMemory.sintomaAtual}" considering the category "${sessionMemory.categoriaAtual}". Provide useful information and guide the user through the funnel even if no specific texts are available in the database.`;
+
+    const freeTextResponse = await generateFreeTextWithGPT(freeTextPrompt);
+
+    const followupQuestions = await generateFollowUpQuestions(
+      { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
+      idioma
     );
 
-    if (maleVoice) {
-      utterance.voice = maleVoice;
-    } else if (voices.length > 0) {
-      utterance.voice = voices[0]; // fallback padrão
-    }
+    const content = formatHybridResponse(context, freeTextResponse, followupQuestions, idioma);
 
-    speechSynthesis.speak(utterance);
-  }
-});
-
-    document.addEventListener('click', (e) => {
-      if (e.target.classList.contains('clickable-question')) {
-        const question = decodeURIComponent(e.target.getAttribute('data-question'));
-        sendMessage("", question);
-      }
+    return res.status(200).json({
+      choices: [{ message: { content, followupQuestions: followupQuestions || [] } }]
     });
+  }
 
-    // Inicializar com mensagem de boas-vindas, opcional:
-        responseDiv.innerHTML = `
-      <div class="bot-message">
-        ${botIconHTML}
-        <div>Hello! How can I assist you today?</div>
-      </div>
-    `;
-  </script>
+  // Textos oficiais do Notion
+  const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
+  let funnelTexts = context.funnelTexts?.[funnelKey] || [];
 
-  <!-- ✅ Função para envio de e-mail para Google Sheets -->
-  <script>
-    async function submitEmail() {
-      const emailInput = document.getElementById("userEmail");
-      const email = emailInput?.value?.trim();
+  // Tenta fallback pelo sintoma
+  if (!funnelTexts.length) {
+    const fallbackTexts = fallbackTextsBySymptom[sessionMemory.sintomaAtual?.toLowerCase().trim()] || {};
+    funnelTexts = fallbackTexts[funnelKey] || [];
+  }
 
-      if (!email) {
-        alert("Please enter a valid email.");
-        return;
-      }
+  // (Opcional) fallback genérico
+  if (!funnelTexts.length) {
+    funnelTexts = [
+      idioma === "pt"
+        ? "Desculpe, ainda não temos conteúdo para esse sintoma e etapa. Tente outro sintoma ou reformule sua pergunta."
+        : "Sorry, we don’t have content for this symptom and phase yet. Please try another symptom or rephrase your query."
+    ];
+  }
 
-      try {
-        const res = await fetch("/api/subscribe.js", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email })
-        });
+  const baseText = funnelTexts[Math.floor(Math.random() * funnelTexts.length)];
 
-        if (res.ok) {
-          alert("✅ Thank you! Your email was successfully submitted.");
-        } else {
-          alert("❌ There was an error submitting your email.");
-        }
-      } catch (err) {
-        alert("⚠️ Connection error. Please try again later.");
-      }
-    }
-  </script>
-</body>
-</html>
+  const gptResponse = baseText
+    ? await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, idioma, sessionMemory.funnelPhase, sessionMemory.categoriaAtual)
+    : await rewriteWithGPT(
+        `Explain clearly about the symptom ${sessionMemory.sintomaAtual} in phase ${sessionMemory.funnelPhase}, focusing on phase key ${funnelKey}`,
+        sessionMemory.sintomaAtual,
+        idioma,
+        sessionMemory.funnelPhase,
+        sessionMemory.categoriaAtual
+      );
+
+  const followupQuestions = await generateFollowUpQuestions(
+    { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
+    idioma
+  );
+
+  // Atualiza a fase do funil com segurança
+  sessionMemory.funnelPhase = Math.min((context.funnelPhase || sessionMemory.funnelPhase || 1) + 1, 6);
+
+  // Debug logs
+  console.log("🧪 Sintoma detectado:", context.sintoma);
+  console.log("🧪 Categoria atual:", sessionMemory.categoriaAtual);
+  console.log("🧪 Fase atual:", sessionMemory.funnelPhase);
+  console.log("🧪 Texto da fase:", funnelKey, funnelTexts);
+
+  const content = formatHybridResponse(context, gptResponse, followupQuestions, idioma);
+
+  return res.status(200).json({
+    choices: [{ message: { content, followupQuestions: followupQuestions || [] } }]
+  });
+}
