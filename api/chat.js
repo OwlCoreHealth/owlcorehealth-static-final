@@ -359,14 +359,13 @@ export default async function handler(req, res) {
     sessionMemory.genericMessages = sessionMemory.genericMessages || [];
     sessionMemory.genericMessages.push(userInput);
 
-    return res.status(200).json({
-      choices: [{ message: { content, followupQuestions } }]
-    });
-  }
+        return res.status(200).json({
+    choices: [{ message: { content, followupQuestions } }]
+  });
 
-  // ... restante do código para casos com sintomas ...
-}
-
+  // Fim do bloco "intent !== sintoma"
+} else {
+  // A PARTIR DAQUI: fluxo de tratamento do caso com sintoma
   // Detecta idioma do input
   const isPortuguese = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
   const idiomaDetectado = isPortuguese ? "pt" : "en";
@@ -405,7 +404,6 @@ export default async function handler(req, res) {
 
   // Se não achar textos na tabela, usa fallback por sintoma
   if (!context.funnelTexts || Object.keys(context.funnelTexts).length === 0) {
-    // fallback: gerar texto livre com GPT para manter funil
     const freeTextPrompt = idioma === "pt"
       ? `Você é um assistente de saúde. Explique detalhadamente e de forma humana o sintoma "${sessionMemory.sintomaAtual}" considerando a categoria "${sessionMemory.categoriaAtual}". Forneça informações úteis e conduza o usuário no funil, mesmo sem textos específicos na base.`
       : `You are a health assistant. Explain in detail and humanly the symptom "${sessionMemory.sintomaAtual}" considering the category "${sessionMemory.categoriaAtual}". Provide useful information and guide the user through the funnel even if no specific texts are available in the database.`;
