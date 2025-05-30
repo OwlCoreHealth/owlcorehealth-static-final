@@ -1,6 +1,5 @@
 import { getSymptomContext } from "./notion.mjs";
 import { fallbackTextsBySymptom } from "./fallbackTextsBySymptom.js";
-import { supplementLinks, getPlantsForSymptom } from "./symptomToSupplementMap.js";
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const GPT_MODEL = "gpt-4o-mini";
@@ -13,8 +12,7 @@ let sessionMemory = {
   sintomaAtual: null,
   categoriaAtual: null,
   funnelPhase: 1,
-  usedQuestions: [],
-  emailOffered: false
+  usedQuestions: []
 };
 
 function getFunnelKey(phase) {
@@ -27,51 +25,6 @@ function getFunnelKey(phase) {
     case 6: return "cta";
     default: return "base";
   }
-}
-
-function renderEmailPrompt(idioma) {
-  const labelText = idioma === "pt"
-    ? "Quer receber descobertas e soluções naturais como essa direto no seu e-mail?"
-    : "Want to receive natural solutions like this directly to your inbox?";
-
-  const placeholder = idioma === "pt" ? "Digite seu e-mail" : "Enter your email";
-  const buttonText = idioma === "pt" ? "Sim, quero dicas!" : "Yes, send me tips!";
-
-  return `
-  <div style="margin-top: 25px; padding: 18px; background-color: #f0ecfc; border-radius: 12px; max-width: 500px;">
-    <p style="margin-bottom: 12px; font-size: 16px; color: #333;">${labelText}</p>
-    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-      <input type="email" id="userEmail" placeholder="${placeholder}" 
-        style="flex: 1 1 250px; padding: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 15px;" />
-      <button class="email-submit" onclick="submitEmail()" 
-        style="padding: 10px 18px; background-color: #6e44ff; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">
-        ${buttonText}
-      </button>
-    </div>
-  </div>`;
-}
-
-function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
-  const phaseTitle = idioma === "pt" ? "Vamos explorar mais:" : "Let's explore further:";
-  const instruction = idioma === "pt"
-    ? "Escolha uma das opções abaixo para continuarmos:"
-    : "Choose one of the options below to continue:";
-
-  let response = gptResponse?.trim() || "";
-
-  if (followupQuestions.length) {
-    response += `\n\n${phaseTitle}\n${instruction}\n\n`;
-    followupQuestions.slice(0, 3).forEach((q, i) => {
-      response += `<div class="clickable-question" data-question="${encodeURIComponent(q)}" onclick="handleQuestionClick(this)">${i + 1}. ${q}</div>\n`;
-    });
-
-    if (!sessionMemory.emailOffered) {
-      sessionMemory.emailOffered = true;
-      response += renderEmailPrompt(idioma);
-    }
-  }
-
-  return response;
 }
 async function classifyUserIntent(userInput, idioma) {
   const prompt = idioma === "pt"
@@ -268,6 +221,24 @@ Return only the 3 numbered questions.
   }
 }
 
+function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
+  const phaseTitle = idioma === "pt" ? "Vamos explorar mais:" : "Let's explore further:";
+  const instruction = idioma === "pt"
+    ? "Escolha uma das opções abaixo para continuarmos:"
+    : "Choose one of the options below to continue:";
+
+  let response = gptResponse?.trim() || "";
+
+  if (followupQuestions.length) {
+    response += `\n\n${phaseTitle}\n${instruction}\n\n`;
+    followupQuestions.slice(0, 3).forEach((q, i) => {
+      response += `<div class="clickable-question" data-question="${encodeURIComponent(q)}" onclick="handleQuestionClick(this)">${i + 1}. ${q}</div>\n`;
+    });
+  }
+
+  return response;
+}
+
 // Função nova: identifica sintoma no input do usuário comparando com lista do fallback
 async function identifySymptom(userInput, symptomsList, idioma) {
   const promptPT = `
@@ -322,101 +293,38 @@ Answer only with the symptom from the list that best matches the user's text. Us
 }
 
 // Handler principal do bot
-// Continuação da função handler
-
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Método não permitido" });
 
   const { message, name, age, sex, weight, selectedQuestion } = req.body;
   const userInput = selectedQuestion || message;
   const isFollowUp = Boolean(selectedQuestion);
+  const intent = await classifyUserIntent(userInput, sessionMemory.idioma || "pt");
 
-  // Detectar idioma
-  const isPortuguese = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
-  const idioma = isPortuguese ? "pt" : "en";
-  sessionMemory.idioma = idioma;
-
-  // Classificar intenção (sintoma, dúvida, etc)
-  // Detecta idioma do input
-const isPortuguese = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
-const idiomaDetectado = isPortuguese ? "pt" : "en";
-sessionMemory.idioma = idiomaDetectado;
-const idioma = sessionMemory.idioma;
-
-const intent = await classifyUserIntent(userInput, idioma);
-
-  if (intent !== "sintoma") {
-    const gptResponse = await generateFreeTextWithGPT(
-      idioma === "pt"
-        ? `Você é o Dr. Owl. Um usuário te fez uma pergunta vaga ou curiosa. Responda com empatia e provocação sutil. Estimule o usuário a compartilhar um sintoma real. Mensagem: "${userInput}"`
-        : `You are Dr. Owl. A user asked something vague or curious. Respond with empathy and subtle provocation. Encourage them to share a real symptom. Message: "${userInput}"`
-    );
-
-    const followupQuestions = await generateFollowUpQuestions({ sintoma: "entrada genérica", funnelPhase: 1 }, idioma);
-    const content = formatHybridResponse({}, gptResponse, followupQuestions, idioma);
-
-    sessionMemory.genericEntry = true;
-    sessionMemory.genericMessages = sessionMemory.genericMessages || [];
-    sessionMemory.genericMessages.push(userInput);
-
-    return res.status(200).json({ choices: [{ message: { content, followupQuestions } }] });
-  }
-
-  // Identifica sintoma usando fallback
-  const allSymptoms = Object.keys(fallbackTextsBySymptom);
-  const identifiedSymptom = await identifySymptom(userInput, allSymptoms, idioma);
-  sessionMemory.sintomaAtual = identifiedSymptom === "unknown" ? userInput.toLowerCase() : identifiedSymptom;
-  sessionMemory.nome = name?.trim() || "";
-  sessionMemory.respostasUsuario.push(userInput);
-
-  // Buscar contexto no Notion
-  let context = await getSymptomContext(
-    sessionMemory.sintomaAtual,
-    sessionMemory.nome,
-    parseInt(age),
-    parseFloat(weight),
-    sessionMemory.funnelPhase,
-    sessionMemory.sintomaAtual,
-    sessionMemory.usedQuestions
+if (intent !== "sintoma") {
+  const gptResponse = await generateFreeTextWithGPT(
+    sessionMemory.idioma === "pt"
+      ? `Você é o Dr. Owl, um assistente de saúde provocador e inteligente. Um usuário te fez uma pergunta fora do padrão de sintomas, mas que mostra curiosidade ou dúvida. Responda com carisma, humor leve e empatia. No fim, convide o usuário a relatar algum sintoma ou sinal do corpo que esteja incomodando. Pergunta do usuário: "${userInput}"`
+      : `You are Dr. Owl, a clever and insightful health assistant. A user just asked something that shows curiosity or vague doubt. Respond with charm and subtle sarcasm, then invite them to share any body signal or discomfort they're feeling. User's message: "${userInput}"`
   );
 
-  // Atualiza categoria e sintoma se vier do Notion
-  if (context.sintoma) sessionMemory.sintomaAtual = context.sintoma;
-  if (context.categoria) sessionMemory.categoriaAtual = context.categoria;
+  const followupQuestions = await generateFollowUpQuestions(
+    { sintoma: "entrada genérica", funnelPhase: 1 },
+    sessionMemory.idioma
+  );
 
-  // Se não houver texto na tabela, gerar com GPT
-  if (!context.funnelTexts || Object.keys(context.funnelTexts).length === 0) {
-    const fallbackPrompt = idioma === "pt"
-      ? `Explique detalhadamente o sintoma "${sessionMemory.sintomaAtual}" considerando a categoria "${sessionMemory.categoriaAtual}". Conduza o usuário no funil.`
-      : `Explain the symptom "${sessionMemory.sintomaAtual}" considering the category "${sessionMemory.categoriaAtual}". Guide the user through the funnel.`;
+  const content = formatHybridResponse({}, gptResponse, followupQuestions, sessionMemory.idioma);
 
-    const fallbackText = await generateFreeTextWithGPT(fallbackPrompt);
-    const followupQuestions = await generateFollowUpQuestions({ sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase }, idioma);
-    const content = formatHybridResponse(context, fallbackText, followupQuestions, idioma);
+  // Registra entrada genérica
+  sessionMemory.genericEntry = true;
+  sessionMemory.genericMessages = sessionMemory.genericMessages || [];
+  sessionMemory.genericMessages.push(userInput);
 
-    return res.status(200).json({ choices: [{ message: { content, followupQuestions } }] });
-  }
-
-  // Puxar textos da fase atual
-  const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
-  let funnelTexts = context.funnelTexts?.[funnelKey] || [];
-  if (!funnelTexts.length) {
-    const fallback = fallbackTextsBySymptom[sessionMemory.sintomaAtual?.toLowerCase().trim()] || {};
-    funnelTexts = fallback[funnelKey] || [];
-  }
-
-  const baseText = funnelTexts[Math.floor(Math.random() * funnelTexts.length)] || "";
-  const gptResponse = await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, idioma, sessionMemory.funnelPhase, sessionMemory.categoriaAtual);
-  const followupQuestions = await generateFollowUpQuestions({ sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase }, idioma);
-
-  // Atualiza fase
-  sessionMemory.funnelPhase = Math.min(sessionMemory.funnelPhase + 1, 6);
-  sessionMemory.genericEntry = false;
-
-  const content = formatHybridResponse(context, gptResponse, followupQuestions, idioma);
-
-  return res.status(200).json({ choices: [{ message: { content, followupQuestions } }] });
+  return res.status(200).json({
+    choices: [{ message: { content, followupQuestions } }]
+  });
 }
+
   // Detecta idioma do input
   const isPortuguese = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
   const idiomaDetectado = isPortuguese ? "pt" : "en";
@@ -520,7 +428,6 @@ const intent = await classifyUserIntent(userInput, idioma);
   console.log("🧪 Texto da fase:", funnelKey, funnelTexts);
 
   const content = formatHybridResponse(context, gptResponse, followupQuestions, idioma);
-  sessionMemory.genericEntry = false;
 
   return res.status(200).json({
     choices: [{ message: { content, followupQuestions: followupQuestions || [] } }]
