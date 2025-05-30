@@ -342,22 +342,19 @@ if (intent !== "sintoma") {
       : `You are Dr. Owl, a clever and insightful health assistant. A user just asked something that shows curiosity or vague doubt. Respond with charm and subtle sarcasm, then invite them to share any body signal or discomfort they're feeling. User's message: "${userInput}"`
   );
 
-  const followupQuestions = await generateFollowUpQuestions(
-    { sintoma: "entrada genérica", funnelPhase: 1 },
-    sessionMemory.idioma
-  );
-
   const content = formatHybridResponse({}, gptResponse, followupQuestions, sessionMemory.idioma);
 
-  // Registra entrada genérica
-  sessionMemory.genericEntry = true;
-  sessionMemory.genericMessages = sessionMemory.genericMessages || [];
-  sessionMemory.genericMessages.push(userInput);
+// Atualiza a fase do funil com segurança após resposta genérica
+sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
 
-  return res.status(200).json({
-    choices: [{ message: { content, followupQuestions } }]
-  });
-}
+// Registra entrada genérica
+sessionMemory.genericEntry = true;
+sessionMemory.genericMessages = sessionMemory.genericMessages || [];
+sessionMemory.genericMessages.push(userInput);
+
+return res.status(200).json({
+  choices: [{ message: { content, followupQuestions } }]
+});
 
   // Detecta idioma do input
   const isPortuguese = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
