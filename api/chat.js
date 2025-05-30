@@ -51,8 +51,8 @@ function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
     });
   }
 
-  // Mostrar campo de email apenas uma vez, após a primeira resposta com perguntas
-  if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
+  // ✅ Mostrar campo de e-mail apenas após a 1ª resposta, fase 2 do funil
+  if (typeof sessionMemory !== "undefined" && !sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
     sessionMemory.emailOffered = true;
     response += renderEmailPrompt(idioma);
   }
@@ -444,6 +444,7 @@ if (intent !== "sintoma") {
   console.log("🧪 Texto da fase:", funnelKey, funnelTexts);
 
   const content = formatHybridResponse(context, gptResponse, followupQuestions, idioma);
+  sessionMemory.genericEntry = false;
 
   return res.status(200).json({
     choices: [{ message: { content, followupQuestions: followupQuestions || [] } }]
