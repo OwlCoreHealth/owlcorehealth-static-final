@@ -332,12 +332,6 @@ if (intent !== "sintoma") {
   });
 }
 
-  // Detecta idioma do input
-  const isPortuguese = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
-  const idiomaDetectado = isPortuguese ? "pt" : "en";
-  sessionMemory.idioma = idiomaDetectado;
-  const idioma = sessionMemory.idioma;
-
   // Prepara lista de sintomas para identificação
   const allSymptoms = Object.keys(fallbackTextsBySymptom);
 
