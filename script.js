@@ -185,52 +185,61 @@ if (emailPrompt && !emailPrompt.dataset.shown) {
     speechSynthesis.speak(silent);
   }, { once: true });
 
-  // ✅ BLOCO FINAL ADICIONADO: Envia dados para o Google Sheets
-  const subscribeBtn = document.querySelector('.subscribe-btn');
+  // ✅ BLOCO FINAL ADICIONADO: Subscrição com apenas e-mail
+const subscribeBtn = document.querySelector('.subscribe-btn');
 
-  if (subscribeBtn) {
-    subscribeBtn.addEventListener('click', async () => {
-      subscribeBtn.disabled = true;
+if (subscribeBtn) {
+  subscribeBtn.addEventListener('click', async () => {
+    subscribeBtn.disabled = true;
 
-      const name = document.querySelector('.user-name')?.value.trim() || "";
-      const email = document.querySelector('.email-input')?.value.trim() || "";
-      const gender = document.querySelector('.gender-input')?.value.trim() || "";
-      const age = document.querySelector('.age-input')?.value.trim() || "";
+    const email = document.querySelector('.email-input')?.value.trim() || "";
+    if (!email) {
+      alert("Por favor, insira um e-mail válido.");
+      subscribeBtn.disabled = false;
+      return;
+    }
 
-      const data = { name, email, gender, age };
+    try {
+      await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email })
+      });
+      alert("✔️ Subscrição enviada com sucesso!");
+    } catch (err) {
+      alert("❌ Erro ao enviar subscrição.");
+      console.error(err);
+    } finally {
+      subscribeBtn.disabled = false;
+    }
+  });
+}
 
-      try {
-        await fetch("/api/subscribe", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data)
-        });
-        alert("✔️ Subscrição enviada com sucesso!");
-      } catch (err) {
-        alert("❌ Erro ao enviar subscrição.");
-        console.error(err);
-      } finally {
-        subscribeBtn.disabled = false;
-      }
-    });
+// ✅ EXIBIR FORMULÁRIO DE E-MAIL APÓS A PRIMEIRA RESPOSTA DO BOT
+const observer = new MutationObserver(() => {
+  const botMessages = document.querySelectorAll('.chat-box .bot-message');
+  const emailPrompt = document.getElementById('email-prompt');
+
+  if (botMessages.length >= 1 && emailPrompt && emailPrompt.style.display === "none") {
+    emailPrompt.style.display = "block";
+    emailPrompt.scrollIntoView({ behavior: 'smooth' });
+    observer.disconnect(); // só executa uma vez
   }
 });
+
+observer.observe(document.querySelector('.chat-box'), { childList: true });
+
 // Função para lidar com cliques nas perguntas sugeridas
 function handleQuestionClick(element) {
   const question = decodeURIComponent(element.getAttribute('data-question'));
-  
-  // Adicionar a pergunta ao campo de entrada
   document.querySelector('.chat-input').value = question;
-  
-  // Opcional: enviar automaticamente a pergunta
   document.querySelector('.send-btn').click();
 }
 
 // Ao adicionar mensagens do bot à chat-box, use innerHTML em vez de textContent
-// Exemplo:
 function addBotMessage(message) {
   const messageElement = document.createElement('div');
   messageElement.className = 'bot-message';
-  messageElement.innerHTML = message; // Use innerHTML em vez de textContent
+  messageElement.innerHTML = message;
   document.querySelector('.chat-box').appendChild(messageElement);
 }
