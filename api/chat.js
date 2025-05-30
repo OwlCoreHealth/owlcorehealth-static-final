@@ -28,10 +28,27 @@ function getFunnelKey(phase) {
   }
 }
 
+// ⬇️ NOVA VERSÃO ESTILIZADA – renderiza campo de subscrição com visual mais bonito
 function renderEmailPrompt(idioma) {
-  return idioma === "pt"
-    ? `\n\nQuer receber descobertas e soluções naturais como essa direto no seu e-mail?\n\n<input type="email" id="userEmail" placeholder="Digite seu e-mail" class="email-input" />\n<button class="email-submit" onclick="submitEmail()">Sim, quero dicas!</button>`
-    : `\n\nWant to receive natural solutions like this directly to your inbox?\n\n<input type="email" id="userEmail" placeholder="Enter your email" class="email-input" />\n<button class="email-submit" onclick="submitEmail()">Yes, send me tips!</button>`;
+  const labelText = idioma === "pt"
+    ? "Quer receber descobertas e soluções naturais como essa direto no seu e-mail?"
+    : "Want to receive natural solutions like this directly to your inbox?";
+
+  const placeholder = idioma === "pt" ? "Digite seu e-mail" : "Enter your email";
+  const buttonText = idioma === "pt" ? "Sim, quero dicas!" : "Yes, send me tips!";
+
+  return `
+  <div style="margin-top: 25px; padding: 18px; background-color: #f0ecfc; border-radius: 12px; max-width: 500px;">
+    <p style="margin-bottom: 12px; font-size: 16px; color: #333;">${labelText}</p>
+    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+      <input type="email" id="userEmail" placeholder="${placeholder}" 
+        style="flex: 1 1 250px; padding: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 15px;" />
+      <button class="email-submit" onclick="submitEmail()" 
+        style="padding: 10px 18px; background-color: #6e44ff; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">
+        ${buttonText}
+      </button>
+    </div>
+  </div>`;
 }
 
 function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
