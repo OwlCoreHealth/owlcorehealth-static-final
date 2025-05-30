@@ -342,7 +342,7 @@ if (intent !== "sintoma") {
       : `You are Dr. Owl, a clever and insightful health assistant. A user just asked something that shows curiosity or vague doubt. Respond with charm and subtle sarcasm, then invite them to share any body signal or discomfort they're feeling. User's message: "${userInput}"`
   );
 
-  const content = formatHybridResponse({}, gptResponse, followupQuestions, sessionMemory.idioma);
+  const content = formatHybridResponse({}, letgptResponse, followupQuestions, sessionMemory.idioma);
 
 // Atualiza a fase do funil com segurança após resposta genérica
 sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
