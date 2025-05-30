@@ -1,13 +1,5 @@
-// ✅ Arquivo funcional do chatbot Dr. Owl (sem endpoint de subscribe)
-
 import { getSymptomContext } from "./notion.mjs";
 import { fallbackTextsBySymptom } from "./fallbackTextsBySymptom.js";
-import { identifySymptom } from "./identifySymptom.js";
-import { generateFreeTextWithGPT } from "./generateFreeTextWithGPT.js";
-import { rewriteWithGPT } from "./rewriteWithGPT.js";
-import { generateFollowUpQuestions } from "./followupQuestionsGPT.js";
-import { classifyUserIntent } from "./classifyUserIntent.js";
-import { formatHybridResponse } from "./formatHybridResponse.js";
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const GPT_MODEL = "gpt-4o-mini";
@@ -20,7 +12,8 @@ let sessionMemory = {
   sintomaAtual: null,
   categoriaAtual: null,
   funnelPhase: 1,
-  usedQuestions: []
+  usedQuestions: [],
+  emailOffered: false // Novo controle de exibição do campo de email
 };
 
 function getFunnelKey(phase) {
@@ -35,46 +28,37 @@ function getFunnelKey(phase) {
   }
 }
 
-export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ error: "Método não permitido" });
-  }
+// ⬇️ NOVO BLOCO – renderiza campo de subscrição
+function renderEmailPrompt(idioma) {
+  return idioma === "pt"
+    ? `\n\nQuer receber descobertas e soluções naturais como essa direto no seu e-mail?\n\n<input type="email" id="userEmail" placeholder="Digite seu e-mail" class="email-input" />\n<button class="email-submit" onclick="submitEmail()">Quero Receber</button>`
+    : `\n\nWant to receive natural solutions like this directly to your inbox?\n\n<input type="email" id="userEmail" placeholder="Enter your email" class="email-input" />\n<button class="email-submit" onclick="submitEmail()">Send Me Tips</button>`;
+}
 
-  const { message, name, age, sex, weight, selectedQuestion } = req.body;
-  const userInput = selectedQuestion || message;
-  const isFollowUp = Boolean(selectedQuestion);
+// ⬇️ ALTERAÇÃO NO formatHybridResponse para adicionar e-mail após 1ª resposta
+function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
+  const phaseTitle = idioma === "pt" ? "Vamos explorar mais:" : "Let's explore further:";
+  const instruction = idioma === "pt"
+    ? "Escolha uma das opções abaixo para continuarmos:"
+    : "Choose one of the options below to continue:";
 
-  const intent = await classifyUserIntent(userInput, sessionMemory.idioma || "pt");
+  let response = gptResponse?.trim() || "";
 
-  if (intent !== "sintoma") {
-    const gptResponse = await generateFreeTextWithGPT(
-      sessionMemory.idioma === "pt"
-        ? `Você é o Dr. Owl, um assistente provocador e inteligente. O usuário escreveu: "${userInput}". Responda de forma provocadora, curiosa e útil.`
-        : `You are Dr. Owl, a clever and provocative health assistant. The user said: "${userInput}". Respond with curiosity, empathy and insight.`
-    );
-
-    const followupQuestions = await generateFollowUpQuestions(
-      { sintoma: "entrada genérica", funnelPhase: 1 },
-      sessionMemory.idioma
-    );
-
-    const content = formatHybridResponse({}, gptResponse, followupQuestions, sessionMemory.idioma);
-
-    sessionMemory.genericEntry = true;
-    sessionMemory.genericMessages = sessionMemory.genericMessages || [];
-    sessionMemory.genericMessages.push(userInput);
-
-    return res.status(200).json({
-      choices: [{ message: { content, followupQuestions } }]
+  if (followupQuestions.length) {
+    response += `\n\n${phaseTitle}\n${instruction}\n\n`;
+    followupQuestions.slice(0, 3).forEach((q, i) => {
+      response += `<div class="clickable-question" data-question="${encodeURIComponent(q)}" onclick="handleQuestionClick(this)">${i + 1}. ${q}</div>\n`;
     });
   }
 
-  // ... (continua o fluxo completo padrão do funil OwlCoreHealth AI)
-}
+  // Mostrar campo de email apenas uma vez, após a primeira resposta com perguntas
+  if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
+    sessionMemory.emailOffered = true;
+    response += renderEmailPrompt(idioma);
+  }
 
-// ✅ Observação final:
-// Tudo funciona de forma unificada: chatbot + identificação + follow-up + subscrição
-// Basta que seu front-end envie POST para /api/subscribe com { email }
+  return response;
+}
 
 async function classifyUserIntent(userInput, idioma) {
   const prompt = idioma === "pt"
