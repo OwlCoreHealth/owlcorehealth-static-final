@@ -491,6 +491,36 @@ if (SpeechRecognition) {
         <div>Hello! How can I assist you today?</div>
       </div>
     `;
+     </main>
+
+  <!-- ✅ Função para envio de e-mail -->
+  <script>
+    async function submitEmail() {
+      const emailInput = document.getElementById("userEmail");
+      const email = emailInput?.value?.trim();
+
+      if (!email) {
+        alert("Por favor, insira um e-mail válido.");
+        return;
+      }
+
+      try {
+        const res = await fetch("/api/subscribe.js", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email })
+        });
+
+        if (res.ok) {
+          alert("✅ Obrigado! Seu e-mail foi registrado com sucesso.");
+        } else {
+          alert("❌ Ocorreu um erro ao enviar seu e-mail.");
+        }
+      } catch (err) {
+        alert("⚠️ Erro de conexão. Tente novamente mais tarde.");
+      }
+    }
   </script>
+
 </body>
 </html>
