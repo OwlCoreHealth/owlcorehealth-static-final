@@ -12,7 +12,8 @@ let sessionMemory = {
   sintomaAtual: null,
   categoriaAtual: null,
   funnelPhase: 1,
-  usedQuestions: []
+  usedQuestions: [],
+  emailPromptShown: false // ✅ Controle de exibição única
 };
 
 function getFunnelKey(phase) {
@@ -26,6 +27,140 @@ function getFunnelKey(phase) {
     default: return "base";
   }
 }
+
+// ... [demais funções mantidas inalteradas] ...
+
+// Handler principal do bot
+export default async function handler(req, res) {
+  if (req.method !== "POST") return res.status(405).json({ error: "Método não permitido" });
+
+  const { message, name, age, sex, weight, selectedQuestion } = req.body;
+  const userInput = selectedQuestion || message;
+  const isFollowUp = Boolean(selectedQuestion);
+
+  const isPortuguese = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
+  const idiomaDetectado = isPortuguese ? "pt" : "en";
+  sessionMemory.idioma = idiomaDetectado;
+  const idioma = sessionMemory.idioma;
+
+  const intent = await classifyUserIntent(userInput, idioma);
+
+  if (intent !== "sintoma") {
+    const gptResponse = await generateFreeTextWithGPT(
+      idioma === "pt"
+        ? `Você é o Dr. Owl, um assistente de saúde provocador e inteligente. Um usuário te fez uma pergunta fora do padrão de sintomas, mas que mostra curiosidade ou dúvida. Responda com carisma, humor leve e empatia. No fim, convide o usuário a relatar algum sintoma ou sinal do corpo que esteja incomodando. Pergunta do usuário: "${userInput}"`
+        : `You are Dr. Owl, a clever and insightful health assistant. A user just asked something that shows curiosity or vague doubt. Respond with charm and subtle sarcasm, then invite them to share any body signal or discomfort they're feeling. User's message: "${userInput}"`
+    );
+
+    const followupQuestions = await generateFollowUpQuestions(
+      { sintoma: "entrada genérica", funnelPhase: 1 },
+      idioma
+    );
+
+    let content = formatHybridResponse({}, gptResponse, followupQuestions, idioma);
+    if (!sessionMemory.emailPromptShown) {
+      content += '\n\n<div id="email-prompt-trigger"></div>';
+      sessionMemory.emailPromptShown = true;
+    }
+
+    sessionMemory.genericEntry = true;
+    sessionMemory.genericMessages = sessionMemory.genericMessages || [];
+    sessionMemory.genericMessages.push(userInput);
+
+    return res.status(200).json({
+      choices: [{ message: { content, followupQuestions } }]
+    });
+  }
+
+  const allSymptoms = Object.keys(fallbackTextsBySymptom);
+  const identifiedSymptom = await identifySymptom(userInput, allSymptoms, idioma);
+  sessionMemory.sintomaAtual = identifiedSymptom === "unknown" ? userInput.toLowerCase() : identifiedSymptom;
+  sessionMemory.nome = name?.trim() || "";
+  sessionMemory.respostasUsuario.push(userInput);
+  const userAge = parseInt(age);
+  const userWeight = parseFloat(weight);
+
+  let context = await getSymptomContext(
+    sessionMemory.sintomaAtual,
+    sessionMemory.nome,
+    userAge,
+    userWeight,
+    sessionMemory.funnelPhase,
+    sessionMemory.sintomaAtual,
+    sessionMemory.usedQuestions
+  );
+
+  if (context.sintoma && !sessionMemory.sintomaAtual) sessionMemory.sintomaAtual = context.sintoma;
+  if (context.categoria && !sessionMemory.categoriaAtual) sessionMemory.categoriaAtual = context.categoria;
+
+  if (!context.funnelTexts || Object.keys(context.funnelTexts).length === 0) {
+    const freeTextPrompt = idioma === "pt"
+      ? `Você é um assistente de saúde. Explique detalhadamente e de forma humana o sintoma "${sessionMemory.sintomaAtual}" considerando a categoria "${sessionMemory.categoriaAtual}". Forneça informações úteis e conduza o usuário no funil, mesmo sem textos específicos na base.`
+      : `You are a health assistant. Explain in detail and humanly the symptom "${sessionMemory.sintomaAtual}" considering the category "${sessionMemory.categoriaAtual}". Provide useful information and guide the user through the funnel even if no specific texts are available in the database.`;
+
+    const freeTextResponse = await generateFreeTextWithGPT(freeTextPrompt);
+
+    const followupQuestions = await generateFollowUpQuestions(
+      { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
+      idioma
+    );
+
+    let content = formatHybridResponse(context, freeTextResponse, followupQuestions, idioma);
+    if (!sessionMemory.emailPromptShown) {
+      content += '\n\n<div id="email-prompt-trigger"></div>';
+      sessionMemory.emailPromptShown = true;
+    }
+
+    return res.status(200).json({
+      choices: [{ message: { content, followupQuestions } }]
+    });
+  }
+
+  const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
+  let funnelTexts = context.funnelTexts?.[funnelKey] || [];
+  if (!funnelTexts.length) {
+    const fallbackTexts = fallbackTextsBySymptom[sessionMemory.sintomaAtual?.toLowerCase().trim()] || {};
+    funnelTexts = fallbackTexts[funnelKey] || [];
+  }
+
+  if (!funnelTexts.length) {
+    funnelTexts = [
+      idioma === "pt"
+        ? "Desculpe, ainda não temos conteúdo para esse sintoma e etapa. Tente outro sintoma ou reformule sua pergunta."
+        : "Sorry, we don’t have content for this symptom and phase yet. Please try another symptom or rephrase your query."
+    ];
+  }
+
+  const baseText = funnelTexts[Math.floor(Math.random() * funnelTexts.length)];
+
+  const gptResponse = baseText
+    ? await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, idioma, sessionMemory.funnelPhase, sessionMemory.categoriaAtual)
+    : await rewriteWithGPT(
+        `Explain clearly about the symptom ${sessionMemory.sintomaAtual} in phase ${sessionMemory.funnelPhase}, focusing on phase key ${funnelKey}`,
+        sessionMemory.sintomaAtual,
+        idioma,
+        sessionMemory.funnelPhase,
+        sessionMemory.categoriaAtual
+      );
+
+  const followupQuestions = await generateFollowUpQuestions(
+    { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
+    idioma
+  );
+
+  sessionMemory.funnelPhase = Math.min((context.funnelPhase || sessionMemory.funnelPhase || 1) + 1, 6);
+
+  const content = formatHybridResponse(context, gptResponse, followupQuestions, idioma);
+  if (!sessionMemory.emailPromptShown) {
+    content += '\n\n<div id="email-prompt-trigger"></div>';
+    sessionMemory.emailPromptShown = true;
+  }
+
+  return res.status(200).json({
+    choices: [{ message: { content, followupQuestions } }]
+  });
+}
+
 async function classifyUserIntent(userInput, idioma) {
   const prompt = idioma === "pt"
     ? `Você é um classificador de intenção. Receberá mensagens de usuários e deve responder com uma das seguintes intenções:
