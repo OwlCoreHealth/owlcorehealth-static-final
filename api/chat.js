@@ -319,7 +319,6 @@ Answer only with the symptom from the list that best matches the user's text. Us
     console.error("Erro ao identificar sintoma:", e);
     return "unknown";
   }
-}
 
 // Handler principal do bot
 // Continuação da função handler
