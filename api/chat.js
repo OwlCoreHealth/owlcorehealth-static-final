@@ -28,15 +28,12 @@ function getFunnelKey(phase) {
   }
 }
 
-// ⬇️ NOVO BLOCO – renderiza campo de subscrição
-// ⬇️ NOVO BLOCO – renderiza campo de subscrição com copy otimizada
 function renderEmailPrompt(idioma) {
   return idioma === "pt"
-    ? `\n\nQuer receber descobertas como essa — naturais, científicas e que realmente funcionam — direto no seu e-mail?\n\n<input type="email" id="userEmail" placeholder="email@exemplo.com" class="email-input" />\n<button class="email-submit" onclick="submitEmail()">Sim, quero dicas!</button>`
-    : `\n\nWant natural, science-backed discoveries like this sent straight to your inbox?\n\n<input type="email" id="userEmail" placeholder="email@example.com" class="email-input" />\n<button class="email-submit" onclick="submitEmail()">Yes, send me tips!</button>`;
+    ? `\n\nQuer receber descobertas e soluções naturais como essa direto no seu e-mail?\n\n<input type="email" id="userEmail" placeholder="Digite seu e-mail" class="email-input" />\n<button class="email-submit" onclick="submitEmail()">Sim, quero dicas!</button>`
+    : `\n\nWant to receive natural solutions like this directly to your inbox?\n\n<input type="email" id="userEmail" placeholder="Enter your email" class="email-input" />\n<button class="email-submit" onclick="submitEmail()">Yes, send me tips!</button>`;
 }
 
-// ⬇️ ALTERAÇÃO NO formatHybridResponse para adicionar e-mail após 1ª resposta
 function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
   const phaseTitle = idioma === "pt" ? "Vamos explorar mais:" : "Let's explore further:";
   const instruction = idioma === "pt"
@@ -50,12 +47,12 @@ function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
     followupQuestions.slice(0, 3).forEach((q, i) => {
       response += `<div class="clickable-question" data-question="${encodeURIComponent(q)}" onclick="handleQuestionClick(this)">${i + 1}. ${q}</div>\n`;
     });
-  }
 
-  // ✅ Mostrar campo de e-mail apenas após a 1ª resposta, fase 2 do funil
-  if (typeof sessionMemory !== "undefined" && !sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
-    sessionMemory.emailOffered = true;
-    response += renderEmailPrompt(idioma);
+    // ✅ Mostra o formulário de e-mail na primeira vez que houver follow-ups
+    if (!sessionMemory.emailOffered) {
+      sessionMemory.emailOffered = true;
+      response += renderEmailPrompt(idioma);
+    }
   }
 
   return response;
