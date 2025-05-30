@@ -485,12 +485,41 @@ if (SpeechRecognition) {
     });
 
     // Inicializar com mensagem de boas-vindas, opcional:
-    responseDiv.innerHTML = `
+        responseDiv.innerHTML = `
       <div class="bot-message">
         ${botIconHTML}
         <div>Hello! How can I assist you today?</div>
       </div>
     `;
+  </script>
+
+  <!-- ✅ Função para envio de e-mail para Google Sheets -->
+  <script>
+    async function submitEmail() {
+      const emailInput = document.getElementById("userEmail");
+      const email = emailInput?.value?.trim();
+
+      if (!email) {
+        alert("Please enter a valid email.");
+        return;
+      }
+
+      try {
+        const res = await fetch("/api/subscribe.js", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email })
+        });
+
+        if (res.ok) {
+          alert("✅ Thank you! Your email was successfully submitted.");
+        } else {
+          alert("❌ There was an error submitting your email.");
+        }
+      } catch (err) {
+        alert("⚠️ Connection error. Please try again later.");
+      }
+    }
   </script>
 </body>
 </html>
