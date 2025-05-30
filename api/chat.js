@@ -319,6 +319,7 @@ Answer only with the symptom from the list that best matches the user's text. Us
     console.error("Erro ao identificar sintoma:", e);
     return "unknown";
   }
+}
 
 // Handler principal do bot
 // Continuação da função handler
@@ -336,7 +337,13 @@ export default async function handler(req, res) {
   sessionMemory.idioma = idioma;
 
   // Classificar intenção (sintoma, dúvida, etc)
-  const intent = await classifyUserIntent(userInput, idioma);
+  // Detecta idioma do input
+const isPortuguese = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
+const idiomaDetectado = isPortuguese ? "pt" : "en";
+sessionMemory.idioma = idiomaDetectado;
+const idioma = sessionMemory.idioma;
+
+const intent = await classifyUserIntent(userInput, idioma);
 
   if (intent !== "sintoma") {
     const gptResponse = await generateFreeTextWithGPT(
