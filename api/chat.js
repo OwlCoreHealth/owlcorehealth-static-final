@@ -319,6 +319,7 @@ const isPortuguese = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|s
 const idiomaDetectado = isPortuguese ? "pt" : "en";
 sessionMemory.idioma = idiomaDetectado;
 const idioma = sessionMemory.idioma;
+  
   const isFollowUp = Boolean(selectedQuestion);
   const intent = await classifyUserIntent(userInput, idioma || "en");
   let gptResponse; // ✅ Declarado uma vez só aqui
