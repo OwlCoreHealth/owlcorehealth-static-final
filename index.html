@@ -426,22 +426,6 @@ if (SpeechRecognition) {
         if (data.choices && data.choices.length > 0) {
           const content = data.choices[0].message.content;
 
-          // Inserir bloco de subscrição como resposta do Owl (somente na 1ª vez)
-if (!document.getElementById('email-prompt')) {
-  const emailHTML = `
-    <div class="bot-message" id="email-prompt">
-      ${botIconHTML}
-      <div>
-        <p style="margin-bottom: 12px; color: #2f2c63;">Want to receive personalized health tips from Dr. Owl?</p>
-        <input type="email" id="userEmail" placeholder="Enter your email" style="padding: 10px; font-size: 14px; border-radius: 8px; border: 1px solid #ccc; width: 70%; max-width: 300px;" />
-        <button onclick="submitEmail()" style="margin-left: 12px; margin-top: 8px; padding: 10px 16px; font-size: 14px; background-color: #2f2c63; color: white; border: none; border-radius: 8px; cursor: pointer;">Subscribe</button>
-      </div>
-    </div>
-  `;
-  responseDiv.insertAdjacentHTML('beforeend', emailHTML);
-  document.getElementById('email-prompt').scrollIntoView({ behavior: 'smooth' });
-}
-
           const tempDiv = document.createElement('div');
           tempDiv.innerHTML = content;
 
