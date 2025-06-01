@@ -453,34 +453,31 @@ questions.forEach(q => {
 });
 
 // ✅ Primeiro: inserir o bloco de subscrição – só 1 vez
-// ✅ Primeiro: inserir o bloco de subscrição – só 1 vez
 if (!window.emailPromptShown) {
   window.emailPromptShown = true;
   const langGuess = content.includes("Escolha uma das opções") ? "pt" : "en";
 
- // ✅ Primeiro: inserir o bloco de subscrição – só 1 vez
-if (!window.emailPromptShown) {
-  window.emailPromptShown = true;
   const emailHTML = `
     <div class="bot-message" id="email-prompt">
       ${botIconHTML}
       <div style="padding: 18px; background-color: #f0ecfc; border-radius: 12px; max-width: 500px;">
         <p style="margin-bottom: 12px; font-size: 16px; color: #333;">
-          ${(sessionMemory.idioma || "pt") === "pt"
+          ${langGuess === "pt"
             ? "Quer receber descobertas e soluções naturais como essa direto no seu e-mail?"
             : "Want to receive natural solutions like this directly to your inbox?"}
         </p>
         <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-          <input type="email" id="userEmail" placeholder="${(sessionMemory.idioma || "pt") === "pt" ? "Digite seu e-mail" : "Enter your email"}" 
+          <input type="email" id="userEmail" placeholder="${langGuess === "pt" ? "Digite seu e-mail" : "Enter your email"}" 
             style="flex: 1 1 250px; padding: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 15px;" />
           <button class="email-submit" onclick="submitEmail()" 
             style="padding: 10px 18px; background-color: #6e44ff; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">
-            ${(sessionMemory.idioma || "pt") === "pt" ? "Sim, quero dicas!" : "Subscribe"}
+            ${langGuess === "pt" ? "Sim, quero dicas!" : "Subscribe"}
           </button>
         </div>
       </div>
     </div>
   `;
+
   responseDiv.insertAdjacentHTML("beforeend", emailHTML);
 }
 
