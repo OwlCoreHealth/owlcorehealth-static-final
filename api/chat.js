@@ -437,11 +437,10 @@ let context = await getSymptomContext(
         sessionMemory.categoriaAtual
       );
 
-  const followupQuestions = await generateFollowUpQuestions(
-    { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
-    idioma
-  );
-
+  followupQuestions = await generateFollowUpQuestions(
+  { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
+  idioma
+);
   // Atualiza a fase do funil com segurança
   sessionMemory.funnelPhase = Math.min((context.funnelPhase || sessionMemory.funnelPhase || 1) + 1, 6);
 
