@@ -311,15 +311,8 @@ Answer only with the symptom from the list that best matches the user's text. Us
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Método não permitido" });
 
-  const { message, selectedQuestion } = req.body;
-const userInput = selectedQuestion || message;
-
-// ✅ Detectar idioma ANTES de qualquer resposta
-const isPortuguese = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
-const idiomaDetectado = isPortuguese ? "pt" : "en";
-sessionMemory.idioma = idiomaDetectado;
-const idioma = sessionMemory.idioma;
-  
+  const { message, selectedQuestion, idioma } = req.body;
+  const userInput = selectedQuestion || message;
   const isFollowUp = Boolean(selectedQuestion);
   const intent = await classifyUserIntent(userInput, idioma || "en");
   let gptResponse; // ✅ Declarado uma vez só aqui
@@ -331,10 +324,10 @@ const idioma = sessionMemory.idioma;
         : `You are Dr. Owl, a clever and insightful health assistant. A user just asked something that shows curiosity or vague doubt. Respond with charm and subtle sarcasm, then invite them to share any body signal or discomfort they're feeling. User's message: "${userInput}"`
     );
 
-    let followupQuestions = await generateFollowUpQuestions(
-  { sintoma: "entrada genérica", funnelPhase: 1 },
-  idioma
-);
+    const followupQuestions = await generateFollowUpQuestions(
+      { sintoma: "entrada genérica", funnelPhase: 1 },
+    idioma
+    );
 
     let content = formatHybridResponse({}, gptResponse, followupQuestions, idioma);
 
@@ -357,10 +350,13 @@ if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
   });
 
   // Fim do bloco "intent !== sintoma"
-// A PARTIR DAQUI: fluxo de tratamento do caso com sintoma
-const idioma = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|saúde/i.test(userInput) ? "pt" : "en";
-sessionMemory.idioma = idioma;
-
+} else {
+  // A PARTIR DAQUI: fluxo de tratamento do caso com sintoma
+  // Detecta idioma do input
+  const isPortuguese = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
+  const idiomaDetectado = isPortuguese ? "pt" : "en";
+  sessionMemory.idioma = idiomaDetectado;
+  const idioma = sessionMemory.idioma;
 
   // Prepara lista de sintomas para identificação
   const allSymptoms = Object.keys(fallbackTextsBySymptom);
@@ -374,9 +370,12 @@ sessionMemory.idioma = idioma;
   sessionMemory.nome = "";
 sessionMemory.respostasUsuario.push(userInput);
 
-// Busca contexto do sintoma identificado no Notion (versão sem nome, idade, peso)
+// Busca contexto do sintoma identificado no Notion (sem idade/peso)
 let context = await getSymptomContext(
   sessionMemory.sintomaAtual,
+  sessionMemory.nome,
+  null, // idade removida
+  null, // peso removido
   sessionMemory.funnelPhase,
   sessionMemory.sintomaAtual,
   sessionMemory.usedQuestions
@@ -437,10 +436,11 @@ let context = await getSymptomContext(
         sessionMemory.categoriaAtual
       );
 
-  followupQuestions = await generateFollowUpQuestions(
-  { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
-  idioma
-);
+  const followupQuestions = await generateFollowUpQuestions(
+    { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
+    idioma
+  );
+
   // Atualiza a fase do funil com segurança
   sessionMemory.funnelPhase = Math.min((context.funnelPhase || sessionMemory.funnelPhase || 1) + 1, 6);
 
@@ -450,7 +450,7 @@ let context = await getSymptomContext(
   console.log("🧪 Fase atual:", sessionMemory.funnelPhase);
   console.log("🧪 Texto da fase:", funnelKey, funnelTexts);
 
- content = formatHybridResponse(context, gptResponse, followupQuestions, idioma);
+  const content = formatHybridResponse(context, gptResponse, followupQuestions, idioma);
 
   return res.status(200).json({
     choices: [{ message: { content, followupQuestions: followupQuestions || [] } }]
@@ -458,4 +458,4 @@ let context = await getSymptomContext(
 
 } // 🔚 Fim do bloco else (intent === "sintoma")
 
-} // 🔚 Fim da função handler (export default async function handler)
+} // 🔚 Fim da função handler (export 
