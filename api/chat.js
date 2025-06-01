@@ -311,26 +311,25 @@ Answer only with the symptom from the list that best matches the user's text. Us
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Método não permitido" });
 
-  const { message, name, age, sex, weight, selectedQuestion } = req.body;
+  const { message, selectedQuestion, idioma } = req.body;
   const userInput = selectedQuestion || message;
   const isFollowUp = Boolean(selectedQuestion);
-  const intent = await classifyUserIntent(userInput, sessionMemory.idioma || "pt");
-
+  const intent = await classifyUserIntent(userInput, idioma || "pt");
   let gptResponse; // ✅ Declarado uma vez só aqui
 
   if (intent !== "sintoma") {
     gptResponse = await generateFreeTextWithGPT(
-      sessionMemory.idioma === "pt"
+     idioma === "pt"
         ? `Você é o Dr. Owl, um assistente de saúde provocador e inteligente. Um usuário te fez uma pergunta fora do padrão de sintomas, mas que mostra curiosidade ou dúvida. Responda com carisma, humor leve e empatia. No fim, convide o usuário a relatar algum sintoma ou sinal do corpo que esteja incomodando. Pergunta do usuário: "${userInput}"`
         : `You are Dr. Owl, a clever and insightful health assistant. A user just asked something that shows curiosity or vague doubt. Respond with charm and subtle sarcasm, then invite them to share any body signal or discomfort they're feeling. User's message: "${userInput}"`
     );
 
     const followupQuestions = await generateFollowUpQuestions(
       { sintoma: "entrada genérica", funnelPhase: 1 },
-      sessionMemory.idioma
+    idioma
     );
 
-    let content = formatHybridResponse({}, gptResponse, followupQuestions, sessionMemory.idioma);
+    let content = formatHybridResponse({}, gptResponse, followupQuestions, idioma);
 
 // ✅ Mostrar o formulário de subscrição apenas após a 1ª resposta genérica
 if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
