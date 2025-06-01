@@ -378,7 +378,7 @@ if (SpeechRecognition) {
   recognition.maxAlternatives = 1;
 
   // Variável para controlar idioma da sessão (você pode atualizar esta variável conforme necessário)
-  let currentLang = 'pt-BR'; // padrão português, ajuste conforme seu fluxo
+  let currentLang = 'en-US'; // idioma padrão inicial
 
   function updateRecognitionLang(lang) {
     recognition.lang = lang;
@@ -421,6 +421,7 @@ if (SpeechRecognition) {
   responseDiv.scrollTop = responseDiv.scrollHeight;
 }
       const idiomaDetectado = detectarIdioma(message || '');
+currentLang = idiomaDetectado === 'pt' ? 'pt-BR' : 'en-US';
 
 const payload = {
   message,
@@ -509,19 +510,18 @@ input.value = '';
 
     const utterance = new SpeechSynthesisUtterance(textToRead);
 
+    // Define o idioma da fala com base no idioma detectado
+    utterance.lang = currentLang || 'en-US';
+
     const voices = speechSynthesis.getVoices();
 
-    // Tenta selecionar voz masculina preferencialmente em pt ou en
-    const maleVoice = voices.find(voice => 
-      (voice.lang.startsWith('pt') || voice.lang.startsWith('en')) &&
-      /male/i.test(voice.name)
-    );
+    // Filtra vozes compatíveis com o idioma do utterance
+    const matchingVoices = voices.filter(voice => voice.lang.startsWith(utterance.lang.split('-')[0]));
 
-    if (maleVoice) {
-      utterance.voice = maleVoice;
-    } else if (voices.length > 0) {
-      utterance.voice = voices[0]; // fallback padrão
-    }
+    // Tenta voz masculina preferencialmente
+    const maleVoice = matchingVoices.find(v => /male/i.test(v.name)) || matchingVoices[0];
+
+    utterance.voice = maleVoice || voices[0];
 
     speechSynthesis.speak(utterance);
   }
