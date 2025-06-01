@@ -30,7 +30,10 @@ function getFunnelKey(phase) {
   }
 }
 
-// ✅ NOVO BLOCO – renderiza campo de subscrição visualmente estilizado
+function getBotIconHTML() {
+  return `<img src="owl-icon.png" alt="Owl Icon" class="bot-icon" style="width: 28px; margin-right: 12px;" />`;
+}
+
 function renderEmailPrompt(idioma) {
   const labelText = idioma === "pt"
     ? "Quer receber descobertas e soluções naturais como essa direto no seu e-mail?"
@@ -40,17 +43,21 @@ function renderEmailPrompt(idioma) {
   const buttonText = idioma === "pt" ? "Sim, quero dicas!" : "Yes, send me tips!";
 
   return `
-  <div style="margin-top: 25px; padding: 18px; background-color: #f0ecfc; border-radius: 12px; max-width: 500px;">
-    <p style="margin-bottom: 12px; font-size: 16px; color: #333;">${labelText}</p>
-    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-      <input type="email" id="userEmail" placeholder="${placeholder}" 
-        style="flex: 1 1 250px; padding: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 15px;" />
-      <button class="email-submit" onclick="submitEmail()" 
-        style="padding: 10px 18px; background-color: #6e44ff; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">
-        ${buttonText}
-      </button>
+    <div class="bot-message" style="margin-top: 25px;">
+      ${getBotIconHTML()}
+      <div style="padding: 18px; background-color: #f0ecfc; border-radius: 12px; max-width: 500px;">
+        <p style="margin-bottom: 12px; font-size: 16px; color: #333;">${labelText}</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+          <input type="email" id="userEmail" placeholder="${placeholder}" 
+            style="flex: 1 1 250px; padding: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 15px;" />
+          <button class="email-submit" onclick="submitEmail()" 
+            style="padding: 10px 18px; background-color: #6e44ff; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">
+            ${buttonText}
+          </button>
+        </div>
+      </div>
     </div>
-  </div>`;
+  `;
 }
 
 // ✅ ALTERAÇÃO NO formatHybridResponse para adicionar e-mail após 1ª resposta com perguntas
