@@ -456,12 +456,9 @@ if (!document.getElementById('email-prompt')) {
             </div>
           `);
 
-          questions.forEach(q => {
-  responseDiv.appendChild(q);
-});
-
-// ✅ Inserir bloco de subscrição após as perguntas finais
-if (!document.getElementById('email-prompt')) {
+// ✅ Primeiro: inserir o bloco de subscrição – só 1 vez
+if (!window.emailPromptShown) {
+  window.emailPromptShown = true;
   const emailHTML = `
     <div class="bot-message" id="email-prompt">
       ${botIconHTML}
@@ -473,8 +470,12 @@ if (!document.getElementById('email-prompt')) {
     </div>
   `;
   responseDiv.appendChild(document.createRange().createContextualFragment(emailHTML));
-  document.getElementById('email-prompt').scrollIntoView({ behavior: 'smooth' });
 }
+
+// ✅ Depois: inserir as perguntas clicáveis
+questions.forEach(q => {
+  responseDiv.appendChild(q);
+});
 
 const messages = responseDiv.querySelectorAll('.bot-message');
 const lastMessage = messages[messages.length - 1];
