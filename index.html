@@ -289,7 +289,7 @@
       padding: 10px;
     }
 
-    @media (max-width: 600px) {
+   @media (max-width: 600px) {
   .card {
     width: 100vw;
     height: 100vh;
@@ -299,6 +299,11 @@
   .send-button {
     width: 100%;
   }
+}
+
+/* ✅ Correção visual para evitar espaço excessivo no fim da resposta */
+.bot-message:last-of-type {
+  margin-bottom: 4px !important;
 }
 
 /* ✅ EXPANSÃO AUTOMÁTICA DO CHAT – FUNCIONA EM TODAS AS TELAS */
