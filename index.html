@@ -129,28 +129,27 @@
     }
 
     .clickable-question {
-  cursor: pointer;
-  color: #2f2c63;
-  margin: 4px 0;
-  padding: 6px 10px;
-  border-radius: 8px;
-  background-color: #e2dffd;
-  user-select: none;
-  font-size: 15px;
-}
+      cursor: pointer;
+      color: #2f2c63;
+      margin-top: 8px;
+      padding: 8px;
+      border-radius: 8px;
+      background-color: #e2dffd;
+      user-select: none;
+    }
 
     .clickable-question:hover {
       background-color: #bdb2f0;
     }
 
     .bot-message {
-  margin-top: 4px;
-  margin-bottom: 4px;
-  padding: 10px;
+  margin-top: 12px;
+  padding: 12px;
   border-radius: 12px;
   white-space: pre-wrap;
   text-align: left;
   background-color: transparent;
+  overflow: hidden; /* Para conter o float */
 }
 
 .bot-message .owl-icon {
@@ -275,14 +274,13 @@
     }
 
     .user-message {
-  margin-top: 6px;
-  margin-bottom: 4px;
-  padding: 10px;
-  border-radius: 12px;
-  white-space: pre-wrap;
-  text-align: right;
-  background-color: transparent;
-}
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 12px;
+      white-space: pre-wrap;
+      text-align: right;
+      background-color: transparent;
+    }
 
     .typing-indicator {
       font-style: italic;
@@ -314,18 +312,7 @@ body.chat-expanded .card {
 body.chat-expanded .wrapper {
   height: 100vh;
 }
-/* 🔧 Ajuste fino de espaçamento entre parágrafos das respostas do bot */
-.bot-message > div p {
-  margin-top: 4px !important;
-  margin-bottom: 6px !important;
-  line-height: 1.45 !important;
-  padding: 0 !important;
-}
 
-.bot-message p:has(br) {
-  margin-top: 4px !important;
-  margin-bottom: 4px !important;
-}
   </style>
 </head>
 <body>
