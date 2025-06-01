@@ -312,10 +312,6 @@ body.chat-expanded .card {
 body.chat-expanded .wrapper {
   height: 100vh;
 }
-/* ✅ Ajuste do espaçamento antes do bloco de e-mail */
-#email-prompt {
-  margin-top: 4px !important;
-}
 
   </style>
 </head>
@@ -435,14 +431,14 @@ if (SpeechRecognition) {
 
           const questions = tempDiv.querySelectorAll('.clickable-question');
           questions.forEach(q => q.remove());
-         const cleanedHTML = explanationHTML.trim();
+          const explanationHTML = tempDiv.innerHTML;
 
-responseDiv.insertAdjacentHTML('beforeend', `
-  <div class="bot-message">
-    ${botIconHTML}
-    <div>${cleanedHTML}</div>
-  </div>
-`);
+          responseDiv.insertAdjacentHTML('beforeend', `
+            <div class="bot-message">
+              ${botIconHTML}
+              <div>${explanationHTML}</div>
+            </div>
+          `);
 
 // ✅ Primeiro: inserir o bloco de subscrição – só 1 vez
 if (!window.emailPromptShown) {
