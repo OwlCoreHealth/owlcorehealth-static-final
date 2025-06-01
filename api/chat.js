@@ -380,7 +380,7 @@ let context = await getSymptomContext(
   null, // peso removido
   sessionMemory.funnelPhase,
   sessionMemory.sintomaAtual,
-  sessionMemory.usedQuestions
+  sessionMemory.usedQuestions,
   sessionMemory.idioma
 );
 
