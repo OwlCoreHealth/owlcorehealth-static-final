@@ -144,7 +144,7 @@
     }
 
     .bot-message {
-  margin-top: 6px;
+  margin-top: 4px;
   margin-bottom: 4px;
   padding: 10px;
   border-radius: 12px;
@@ -314,7 +314,17 @@ body.chat-expanded .card {
 body.chat-expanded .wrapper {
   height: 100vh;
 }
+/* 🔧 Ajuste fino de espaçamento entre parágrafos das respostas do bot */
+.bot-message > div p {
+  margin-top: 4px;
+  margin-bottom: 6px;
+  line-height: 1.45;
+}
 
+.bot-message p:has(br) {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
   </style>
 </head>
 <body>
