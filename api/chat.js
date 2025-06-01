@@ -471,3 +471,5 @@ const content = formatHybridResponse(
 return res.status(200).json({
   choices: [{ message: { content, followupQuestions: followupQuestions || [] } }],
 });
+} 
+} 
