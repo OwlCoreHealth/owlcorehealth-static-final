@@ -450,7 +450,10 @@ const followupQuestions = await generateFollowUpQuestions(
 );
 
 // Atualiza a fase do funil com segurança
-sessionMemory.funnelPhase = Math.min((context.funnelPhase || sessionMemory.funnelPhase || 1) + 1, 6);
+sessionMemory.funnelPhase = Math.min(
+  (context.funnelPhase || sessionMemory.funnelPhase || 1) + 1,
+  6
+);
 
 // Debug logs
 console.log("🧪 Sintoma detectado:", context.sintoma);
@@ -458,8 +461,13 @@ console.log("🧪 Categoria atual:", sessionMemory.categoriaAtual);
 console.log("🧪 Fase atual:", sessionMemory.funnelPhase);
 console.log("🧪 Texto da fase:", funnelKey, funnelTexts);
 
-const content = formatHybridResponse(context, gptResponse, followupQuestions, sessionMemory.idioma);
+const content = formatHybridResponse(
+  context,
+  gptResponse,
+  followupQuestions,
+  sessionMemory.idioma
+);
 
 return res.status(200).json({
-  choices: [{ message: { content, followupQuestions: followupQuestions || [] } }]
+  choices: [{ message: { content, followupQuestions: followupQuestions || [] } }],
 });
