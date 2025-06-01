@@ -117,7 +117,7 @@ if (role === 'bot') {
   sendBtn.addEventListener('click', async () => {
     const chatOwlButton = document.getElementById('chatOwlButton');
     if (chatOwlButton) {
-      chatOwlButton.style.display = 'none';
+      chatOwlButton.remove();
     }
 
     const userText = inputField.value.trim();
