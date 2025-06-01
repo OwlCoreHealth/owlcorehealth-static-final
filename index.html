@@ -440,41 +440,34 @@ if (SpeechRecognition) {
             </div>
           `);
 
-// Dentro da função sendMessage, após a resposta do bot e antes de adicionar as clickable questions:
-if (data.choices && data.choices.length > 0) {
-    // ... (código para explanationHTML e bot message) ...
-
-    // ✅ Inserir o bloco de subscrição – só 1 vez
-    if (!window.emailPromptShown) {
-        window.emailPromptShown = true;
-        const emailHTML = `
-        <div class="bot-message" id="email-prompt">
-            ${botIconHTML}
-            <div>
-            <p style="margin-bottom: 12px; color: #2f2c63;">Want to receive personalized health tips from Dr. Owl?</p>
-            <input type="email" id="userEmail" placeholder="Enter your email" style="padding: 10px; font-size: 14px; border-radius: 8px; border: 1px solid #ccc; width: 70%; max-width: 300px;" />
-            <button onclick="submitEmail()" style="margin-left: 12px; margin-top: 8px; padding: 10px 16px; font-size: 14px; background-color: #2f2c63; color: white; border: none; border-radius: 8px; cursor: pointer;">Subscribe</button>
-            </div>
-        </div>
-        `;
-        const emailPromptFragment = document.createRange().createContextualFragment(emailHTML);
-        responseDiv.appendChild(emailPromptFragment);
-        
-        // Encontrar o elemento recém-adicionado para fazer scroll
-        const newlyAddedEmailPrompt = responseDiv.querySelector("#email-prompt");
-        if (newlyAddedEmailPrompt) {
-            newlyAddedEmailPrompt.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // 'nearest' ou 'center' podem ser melhores
-        }
-    }
-
-    // ✅ Depois: inserir as perguntas clicáveis
-    questions.forEach(q => {
-        responseDiv.appendChild(q);
-    });
-
-    // ... (scroll para a última mensagem) ...
-    // input.value = ''; // Já sugerido limpar no chamador ou no final de sendMessage
+// ✅ Primeiro: inserir o bloco de subscrição – só 1 vez
+if (!window.emailPromptShown) {
+  window.emailPromptShown = true;
+  const emailHTML = `
+    <div class="bot-message" id="email-prompt">
+      ${botIconHTML}
+      <div>
+        <p style="margin-bottom: 12px; color: #2f2c63;">Want to receive personalized health tips from Dr. Owl?</p>
+        <input type="email" id="userEmail" placeholder="Enter your email" style="padding: 10px; font-size: 14px; border-radius: 8px; border: 1px solid #ccc; width: 70%; max-width: 300px;" />
+        <button onclick="submitEmail()" style="margin-left: 12px; margin-top: 8px; padding: 10px 16px; font-size: 14px; background-color: #2f2c63; color: white; border: none; border-radius: 8px; cursor: pointer;">Subscribe</button>
+      </div>
+    </div>
+  `;
+  responseDiv.appendChild(document.createRange().createContextualFragment(emailHTML));
 }
+
+// ✅ Depois: inserir as perguntas clicáveis
+questions.forEach(q => {
+  responseDiv.appendChild(q);
+});
+
+const messages = responseDiv.querySelectorAll('.bot-message');
+const lastMessage = messages[messages.length - 1];
+if (lastMessage) {
+  lastMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+input.value = '';
           
         }
       } catch (err) {
