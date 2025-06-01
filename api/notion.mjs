@@ -5,7 +5,7 @@ const databaseId = process.env.NOTION_DATABASE_ID;
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const GPT_MODEL = "gpt-4o-mini";
 
-export async function getSymptomContext(input, name, age, weight, funnelPhase, previousSymptom, usedQuestions) {
+export async function getSymptomContext(input, funnelPhase, previousSymptom, usedQuestions) {
   const filtro = {
     or: [
       { property: "Keywords", rich_text: { contains: input } },
@@ -58,7 +58,7 @@ export async function getSymptomContext(input, name, age, weight, funnelPhase, p
   return {
     gptPromptData: {
       prompt: "You are OwlCoreHealth AI.",
-      context: { selectedQuestion: null, name, age, weight }
+      context: { selectedQuestion: null }
     },
     sintoma: page.properties?.Symptoms?.rich_text?.[0]?.plain_text || previousSymptom,
     funnelPhase,
