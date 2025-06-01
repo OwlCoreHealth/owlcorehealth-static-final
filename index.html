@@ -35,92 +35,7 @@
       justify-content: center;
       align-items: center;
     }
-/* ====== Estilos para expansão do chat ====== */
-body.chat-expanded .wrapper {
-  height: 100vh;
-  width: 100vw;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
-body.chat-expanded .card {
-  width: 100vw;
-  height: 100vh;
-  max-width: 100vw;
-  max-height: 100vh;
-  border-radius: 0;
-  padding: 16px 24px;
-  box-sizing: border-box;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch;
-  overflow: hidden;
-
-  transition: all 0.3s ease-in-out;
-}
-    body.chat-expanded .header {
-  display: none;
-}
-
-body.chat-expanded .card {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw !important;
-  height: 100vh !important;
-  max-width: 100vw !important;
-  max-height: 100vh !important;
-  border-radius: 0 !important;
-  padding: 16px 24px !important;
-  box-sizing: border-box;
-  background: white;
-  z-index: 9999;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-/* ====== Ajustes específicos para mobile ====== */
-@media (max-width: 600px) {
-  body.chat-expanded .card {
-    padding: 12px 16px;
-  }
-
-  body.chat-expanded .response {
-    flex-grow: 1;
-    overflow-y: auto;
-    max-height: none;
-    margin-bottom: 8px;
-    width: 100%;
-  }
-
-  body.chat-expanded .input-row {
-    width: 100%;
-    margin-bottom: 8px;
-    display: flex;
-    gap: 8px;
-  }
-
-  body.chat-expanded .send-button,
-  body.chat-expanded .read-aloud {
-    width: 100%;
-    margin-top: 0;
-    padding: 14px;
-    font-size: 16px;
-    border-radius: 12px;
-  }
-
-  body.chat-expanded .owl-image {
-    height: 80px;
-    margin-bottom: 12px;
-    align-self: center;
-  }
-}
     .owl-image {
       height: 140px;
       margin-bottom: 24px;
@@ -380,26 +295,15 @@ body.chat-expanded .card {
       padding: 10px;
     }
 
-   @media (max-width: 600px) {
-  body.chat-expanded .card {
-    height: 100vh !important;
-    width: 100vw !important;
-    border-radius: 0 !important;
-    padding: 16px 12px !important;
-    box-sizing: border-box;
+    @media (max-width: 600px) {
+  .card {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
   }
 
-  body.chat-expanded .response {
-    max-height: calc(100vh - 180px) !important;
-    overflow-y: auto !important;
-  }
-
-  body.chat-expanded .input-row,
-  body.chat-expanded .send-button,
-  body.chat-expanded .read-aloud {
-    width: 100% !important;
-    box-sizing: border-box;
-    margin-top: 8px;
+  .send-button {
+    width: 100%;
   }
 }
 
@@ -410,32 +314,34 @@ body.chat-expanded .card {
   border-radius: 0 !important;
   transition: all 0.3s ease-in-out;
 }
+
+body.chat-expanded .wrapper {
+  height: 100vh;
+}
+
   </style>
 </head>
 <body>
   <div class="wrapper">
-  <header class="header">
-    <img src="owl-doctor.png" alt="Dr. Owl" width="150" class="owl-image" />
-    <h1>Welcome to Dr. Owl’s AI Office</h1>
-    <h2>Where Science Meets Personal Care</h2>
-  </header>
+    <div class="card">
+      <img src="owl-doctor.png" alt="Dr. Owl" width="150" class="owl-image" />
 
-  <div class="card">
-    <div class="response"></div>
+      <h1>Welcome to Dr. Owl’s AI Office</h1>
+      <h2>Where Science Meets Personal Care</h2>
 
-    <div class="input-row">
-      <input type="text" placeholder="Type your message..." autocomplete="off" />
-      <button class="icon" aria-label="Microphone">🎤</button>
-    </div>
+      <div class="response"></div>
 
-    <button class="send-button">Send</button>
+      <div class="input-row">
+        <input type="text" placeholder="Type your message..." autocomplete="off" />
+        <button class="icon" aria-label="Microphone">🎤</button>
+      </div>
 
-    <div class="read-aloud">
-      <span>🔊</span>
-      <span>Read Aloud</span>
-    </div>
-  </div>
-</div>
+      <button class="send-button">Send</button>
+
+           <div class="read-aloud">
+        <span>🔊</span>
+        <span>Read Aloud</span>
+      </div>
 
   <script>
     const input = document.querySelector('.input-row input');
@@ -505,7 +411,9 @@ if (SpeechRecognition) {
    async function sendMessage(message, selectedQuestion = null) {
   if (!message.trim() && !selectedQuestion) return;
 
-  document.body.classList.add('chat-expanded');
+  // Expande só a área das mensagens, não o layout inteiro
+  responseDiv.classList.add('expanded');
+
   // resto do código continua normal...
 
       if (message.trim() && !selectedQuestion) {
