@@ -450,7 +450,7 @@ let context = await getSymptomContext(
   console.log("🧪 Fase atual:", sessionMemory.funnelPhase);
   console.log("🧪 Texto da fase:", funnelKey, funnelTexts);
 
-  const content = formatHybridResponse(context, gptResponse, followupQuestions, idioma);
+ content = formatHybridResponse(context, gptResponse, followupQuestions, idioma);
 
   return res.status(200).json({
     choices: [{ message: { content, followupQuestions: followupQuestions || [] } }]
