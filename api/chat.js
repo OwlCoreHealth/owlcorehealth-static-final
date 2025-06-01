@@ -165,6 +165,7 @@ async function generateFollowUpQuestions(context, idioma) {
   const symptom = context.sintoma || "symptom";
   const phase = context.funnelPhase || 1;
 
+  // Prompt de acordo com o idioma da sessão
   const promptPT = `
 Você é um assistente de saúde inteligente e provocador. Com base no sintoma "${symptom}" e na fase do funil ${phase}, gere 3 perguntas curtas, provocativas e instigantes que levem o usuário para a próxima etapa. 
 Evite repetir estas perguntas já feitas: ${usedQuestions.join("; ")}.
@@ -203,15 +204,17 @@ Return only the 3 numbered questions.
 
     const data = await response.json();
     let questionsRaw = data.choices?.[0]?.message?.content || "";
+
+    // Separar perguntas numeradas (ex: "1. Question?")
     let questions = questionsRaw.split(/\d+\.\s+/).filter(Boolean).slice(0, 3);
 
-    // Filtrar perguntas repetidas (exato match)
+    // Filtrar perguntas repetidas
     questions = questions.filter(q => !usedQuestions.includes(q));
 
-    // Atualiza as perguntas usadas na sessão
+    // Atualiza as perguntas usadas
     sessionMemory.usedQuestions.push(...questions);
 
-    // Se menos de 3 perguntas após filtro, adiciona fallback interno
+    // Se faltar perguntas, acrescentar fallback na língua correta
     const fallbackPT = [
       "Você já tentou mudar sua alimentação ou rotina?",
       "Como você acha que isso está afetando seu dia a dia?",
@@ -225,7 +228,6 @@ Return only the 3 numbered questions.
 
     if (questions.length < 3) {
       const fallback = idioma === "pt" ? fallbackPT : fallbackEN;
-      // Adiciona perguntas de fallback que ainda não foram usadas
       for (const fq of fallback) {
         if (questions.length >= 3) break;
         if (!sessionMemory.usedQuestions.includes(fq)) {
@@ -235,6 +237,25 @@ Return only the 3 numbered questions.
       }
     }
 
+    return questions.slice(0, 3);
+
+  } catch (err) {
+    console.warn("❗️Erro ao gerar perguntas com GPT:", err);
+
+    // Retorna fallback fixo no idioma correto
+    return idioma === "pt"
+      ? [
+          "Você já tentou mudar sua alimentação ou rotina?",
+          "Como você acha que isso está afetando seu dia a dia?",
+          "Está disposto(a) a descobrir uma solução mais eficaz agora?"
+        ]
+      : [
+          "Have you tried adjusting your diet or lifestyle?",
+          "How do you think this is affecting your daily life?",
+          "Are you ready to explore a better solution now?"
+        ];
+  }
+}
     return questions.slice(0, 3);
 
   } catch (err) {
