@@ -290,16 +290,29 @@
     }
 
     @media (max-width: 600px) {
-      .card {
-        width: 100vw;
-        height: 100vh;
-        border-radius: 0;
-      }
+  .card {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+  }
 
-      .send-button {
-        width: 100%;
-      }
-    }
+  .send-button {
+    width: 100%;
+  }
+}
+
+/* ✅ EXPANSÃO AUTOMÁTICA DO CHAT – FUNCIONA EM TODAS AS TELAS */
+body.chat-expanded .card {
+  height: 100vh !important;
+  width: 100vw !important;
+  border-radius: 0 !important;
+  transition: all 0.3s ease-in-out;
+}
+
+body.chat-expanded .wrapper {
+  height: 100vh;
+}
+
   </style>
 </head>
 <body>
@@ -388,6 +401,7 @@ if (SpeechRecognition) {
 
     async function sendMessage(message, selectedQuestion = null) {
       if (!message.trim() && !selectedQuestion) return;
+      document.body.classList.add('chat-expanded'); 
 
       if (message.trim()) {
         responseDiv.insertAdjacentHTML('beforeend', `<div class="user-message">${message.trim()}</div>`);
