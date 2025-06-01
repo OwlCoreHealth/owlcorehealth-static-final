@@ -314,7 +314,7 @@ export default async function handler(req, res) {
   const { message, selectedQuestion, idioma } = req.body;
   const userInput = selectedQuestion || message;
   const isFollowUp = Boolean(selectedQuestion);
-  const intent = await classifyUserIntent(userInput, idioma || "pt");
+  const intent = await classifyUserIntent(userInput, idioma || "en");
   let gptResponse; // ✅ Declarado uma vez só aqui
 
   if (intent !== "sintoma") {
