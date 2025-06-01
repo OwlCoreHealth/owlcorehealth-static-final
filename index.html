@@ -439,11 +439,11 @@ if (SpeechRecognition) {
           const explanationHTML = tempDiv.innerHTML;
 
           responseDiv.insertAdjacentHTML('beforeend', `
-            <div class="bot-message">
-              ${botIconHTML}
-              <div>${explanationHTML}</div>
-            </div>
-          `);
+  <div class="bot-message" style="margin-bottom: 0;">
+    ${botIconHTML}
+    <div>${explanationHTML.trim()}</div>
+  </div>
+`);
 
 // ✅ Primeiro: inserir o bloco de subscrição – só 1 vez
 if (!window.emailPromptShown) {
