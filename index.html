@@ -443,8 +443,17 @@ if (SpeechRecognition) {
 // ✅ Primeiro: inserir o bloco de subscrição – só 1 vez
 if (!window.emailPromptShown) {
   window.emailPromptShown = true;
-  const emailHTML = renderEmailPrompt(sessionMemory.idioma || "pt");
-  responseDiv.insertAdjacentHTML('beforeend', emailHTML);
+  const emailHTML = `
+    <div class="bot-message" id="email-prompt">
+      ${botIconHTML}
+      <div>
+        <p style="margin-bottom: 12px; color: #2f2c63;">Want to receive personalized health tips from Dr. Owl?</p>
+        <input type="email" id="userEmail" placeholder="Enter your email" style="padding: 10px; font-size: 14px; border-radius: 8px; border: 1px solid #ccc; width: 70%; max-width: 300px;" />
+        <button onclick="submitEmail()" style="margin-left: 12px; margin-top: 8px; padding: 10px 16px; font-size: 14px; background-color: #2f2c63; color: white; border: none; border-radius: 8px; cursor: pointer;">Subscribe</button>
+      </div>
+    </div>
+  `;
+  responseDiv.appendChild(document.createRange().createContextualFragment(emailHTML));
 }
 
 // ✅ Depois: inserir as perguntas clicáveis
