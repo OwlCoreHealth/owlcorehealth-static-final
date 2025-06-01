@@ -457,16 +457,33 @@ if (!document.getElementById('email-prompt')) {
           `);
 
           questions.forEach(q => {
-            responseDiv.appendChild(q);
-          });
+  responseDiv.appendChild(q);
+});
 
-          const messages = responseDiv.querySelectorAll('.bot-message');
-          const lastMessage = messages[messages.length - 1];
-          if (lastMessage) {
-            lastMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
+// ✅ Inserir bloco de subscrição após as perguntas finais
+if (!document.getElementById('email-prompt')) {
+  const emailHTML = `
+    <div class="bot-message" id="email-prompt">
+      ${botIconHTML}
+      <div>
+        <p style="margin-bottom: 12px; color: #2f2c63;">Want to receive personalized health tips from Dr. Owl?</p>
+        <input type="email" id="userEmail" placeholder="Enter your email" style="padding: 10px; font-size: 14px; border-radius: 8px; border: 1px solid #ccc; width: 70%; max-width: 300px;" />
+        <button onclick="submitEmail()" style="margin-left: 12px; margin-top: 8px; padding: 10px 16px; font-size: 14px; background-color: #2f2c63; color: white; border: none; border-radius: 8px; cursor: pointer;">Subscribe</button>
+      </div>
+    </div>
+  `;
+  responseDiv.appendChild(document.createRange().createContextualFragment(emailHTML));
+  document.getElementById('email-prompt').scrollIntoView({ behavior: 'smooth' });
+}
 
-          input.value = '';
+const messages = responseDiv.querySelectorAll('.bot-message');
+const lastMessage = messages[messages.length - 1];
+if (lastMessage) {
+  lastMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+input.value = '';
+          
         }
       } catch (err) {
         responseDiv.textContent = "Error communicating with server.";
