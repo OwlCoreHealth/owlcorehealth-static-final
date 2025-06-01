@@ -377,12 +377,9 @@ if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
   sessionMemory.nome = "";
 sessionMemory.respostasUsuario.push(userInput);
 
-// Busca contexto do sintoma identificado no Notion (sem idade/peso)
+// Busca contexto do sintoma identificado no Notion (versão sem nome, idade, peso)
 let context = await getSymptomContext(
   sessionMemory.sintomaAtual,
-  sessionMemory.nome,
-  null, // idade removida
-  null, // peso removido
   sessionMemory.funnelPhase,
   sessionMemory.sintomaAtual,
   sessionMemory.usedQuestions
