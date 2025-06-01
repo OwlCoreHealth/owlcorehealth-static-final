@@ -593,6 +593,50 @@ observer.observe(document.querySelector('.response'), { childList: true });
         alert("⚠️ Connection error. Please try again later.");
       }
     }
-  </script>
+ <!-- ... seu conteúdo anterior -->
+
+<!-- Seu conteúdo anterior ... -->
+
+<!-- Botão balão "Chat with Owl" fixo no canto inferior direito -->
+<button id="chatOwlButton" style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #2f2c63;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 24px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  z-index: 1000;
+">
+  🦉 Chat with Owl
+</button>
+
+<!-- Script para controlar o botão balão e abrir/esconder o chat -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const chatOwlButton = document.getElementById('chatOwlButton');
+    const wrapper = document.querySelector('.wrapper'); // container do chat
+
+    // Esconde o chat no início para mostrar só o balão
+    if (wrapper) {
+      wrapper.style.display = 'none';
+    }
+
+    // Quando clicar no balão...
+    chatOwlButton.addEventListener('click', () => {
+      chatOwlButton.style.display = 'none'; // esconde o balão
+      if (wrapper) {
+        wrapper.style.display = 'flex';     // mostra o chat
+      }
+      // Coloca foco no input de mensagem
+      const inputField = document.querySelector('.input-row input');
+      if (inputField) inputField.focus();
+    });
+  });
+</script>
+
 </body>
 </html>
