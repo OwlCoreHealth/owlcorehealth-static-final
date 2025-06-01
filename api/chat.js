@@ -368,21 +368,18 @@ if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
   sessionMemory.sintomaAtual = identifiedSymptom === "unknown" ? userInput.toLowerCase() : identifiedSymptom;
 
   sessionMemory.nome = "";
-  sessionMemory.respostasUsuario.push(userInput);
+sessionMemory.respostasUsuario.push(userInput);
 
-  const userAge = parseInt(age);
-  const userWeight = parseFloat(weight);
-
-  // Busca contexto do sintoma identificado no Notion
-  let context = await getSymptomContext(
-    sessionMemory.sintomaAtual,
-    sessionMemory.nome,
-    userAge,
-    userWeight,
-    sessionMemory.funnelPhase,
-    sessionMemory.sintomaAtual,
-    sessionMemory.usedQuestions
-  );
+// Busca contexto do sintoma identificado no Notion (sem idade/peso)
+let context = await getSymptomContext(
+  sessionMemory.sintomaAtual,
+  sessionMemory.nome,
+  null, // idade removida
+  null, // peso removido
+  sessionMemory.funnelPhase,
+  sessionMemory.sintomaAtual,
+  sessionMemory.usedQuestions
+);
 
   // Mantém sintoma e categoria para contexto coerente
   if (context.sintoma && !sessionMemory.sintomaAtual) sessionMemory.sintomaAtual = context.sintoma;
