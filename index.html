@@ -434,11 +434,23 @@ if (SpeechRecognition) {
           const explanationHTML = tempDiv.innerHTML;
 
           responseDiv.insertAdjacentHTML('beforeend', `
-            <div class="bot-message">
-              ${botIconHTML}
-              <div>${explanationHTML}</div>
-            </div>
-          `);
+  <div class="bot-message">
+    ${botIconHTML}
+    <div>${explanationHTML}</div>
+  </div>
+`);
+
+// ✅ Prevenir repetição de "Let's explore further"
+if (sessionMemory.lastCTAInsertedPhase === sessionMemory.funnelPhase) {
+  questions.forEach(q => q.remove());
+} else {
+  sessionMemory.lastCTAInsertedPhase = sessionMemory.funnelPhase;
+}
+
+// ✅ Depois disso, inserção das perguntas
+questions.forEach(q => {
+  responseDiv.appendChild(q);
+});
 
 // ✅ Primeiro: inserir o bloco de subscrição – só 1 vez
 if (!window.emailPromptShown) {
