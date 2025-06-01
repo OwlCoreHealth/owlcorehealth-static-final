@@ -34,32 +34,6 @@ function getBotIconHTML() {
   return `<img src="owl-icon.png" alt="Owl Icon" class="bot-icon" style="width: 28px; margin-right: 12px;" />`;
 }
 
-function renderEmailPrompt(idioma) {
-  const labelText = idioma === "pt"
-    ? "Quer receber descobertas e soluções naturais como essa direto no seu e-mail?"
-    : "Want to receive natural solutions like this directly to your inbox?";
-
-  const placeholder = idioma === "pt" ? "Digite seu e-mail" : "Enter your email";
-  const buttonText = idioma === "pt" ? "Sim, quero dicas!" : "Yes, send me tips!";
-
-  return `
-    <div class="bot-message" style="margin-top: 25px;">
-      ${getBotIconHTML()}
-      <div style="padding: 18px; background-color: #f0ecfc; border-radius: 12px; max-width: 500px;">
-        <p style="margin-bottom: 12px; font-size: 16px; color: #333;">${labelText}</p>
-        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-          <input type="email" id="userEmail" placeholder="${placeholder}" 
-            style="flex: 1 1 250px; padding: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 15px;" />
-          <button class="email-submit" onclick="submitEmail()" 
-            style="padding: 10px 18px; background-color: #6e44ff; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">
-            ${buttonText}
-          </button>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
 // ✅ ALTERAÇÃO NO formatHybridResponse para adicionar e-mail após 1ª resposta com perguntas
 function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
   const phaseTitle = idioma === "pt" ? "Vamos explorar mais:" : "Let's explore further:";
@@ -78,7 +52,7 @@ function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
     // ✅ Mostra o formulário de e-mail na primeira vez que houver follow-ups
     if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
       sessionMemory.emailOffered = true;
-      response += renderEmailPrompt(idioma);
+     // response += renderEmailPrompt(idioma);
     }
   }
 
@@ -361,7 +335,7 @@ export default async function handler(req, res) {
 // ✅ Mostrar o formulário de subscrição apenas após a 1ª resposta genérica
 if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
   sessionMemory.emailOffered = true;
-  content += renderEmailPrompt(sessionMemory.idioma);
+  // content += renderEmailPrompt(sessionMemory.idioma);
 }
 
     // Atualiza a fase do funil com segurança após resposta genérica
