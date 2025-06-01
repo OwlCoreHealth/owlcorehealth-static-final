@@ -38,16 +38,16 @@ export async function getSymptomContext(input, funnelPhase, previousSymptom, use
     const fallbackSymptom = categoryMap[fallbackCategory] || "general inflammation";
 
     return {
-      gptPromptData: {
-        prompt: "You are OwlCoreHealth AI.",
-        context: { selectedQuestion: null, name, age, weight }
-      },
-      sintoma: fallbackSymptom,
-      funnelPhase,
-      language: "en",
-      funnelTexts: {},
-      followupQuestions: []
-    };
+  gptPromptData: {
+    prompt: "You are OwlCoreHealth AI.",
+    context: { selectedQuestion: null }
+  },
+  sintoma: fallbackSymptom,
+  funnelPhase,
+  language: "en",
+  funnelTexts: {},
+  followupQuestions: []
+};
   }
 
   const getTexts = (field) => {
