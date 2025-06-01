@@ -326,7 +326,7 @@ export default async function handler(req, res) {
 
     const followupQuestions = await generateFollowUpQuestions(
       { sintoma: "entrada genérica", funnelPhase: 1 },
-    idioma
+    sessionMemory.idioma
     );
 
     let content = formatHybridResponse({}, gptResponse, followupQuestions, idioma);
@@ -396,7 +396,7 @@ let context = await getSymptomContext(
 
     const followupQuestions = await generateFollowUpQuestions(
       { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
-      idioma
+      sessionMemory.idioma
     );
 
     const content = formatHybridResponse(context, freeTextResponse, followupQuestions, idioma);
@@ -439,7 +439,7 @@ let context = await getSymptomContext(
 
   const followupQuestions = await generateFollowUpQuestions(
     { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
-    idioma
+    sessionMemory.idioma
   );
 
   // Atualiza a fase do funil com segurança
