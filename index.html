@@ -435,14 +435,14 @@ if (SpeechRecognition) {
 
           const questions = tempDiv.querySelectorAll('.clickable-question');
           questions.forEach(q => q.remove());
-          const explanationHTML = tempDiv.innerHTML;
+         const cleanedHTML = explanationHTML.trim();
 
-          responseDiv.insertAdjacentHTML('beforeend', `
-            <div class="bot-message">
-              ${botIconHTML}
-              <div>${explanationHTML}</div>
-            </div>
-          `);
+responseDiv.insertAdjacentHTML('beforeend', `
+  <div class="bot-message">
+    ${botIconHTML}
+    <div>${cleanedHTML}</div>
+  </div>
+`);
 
 // ✅ Primeiro: inserir o bloco de subscrição – só 1 vez
 if (!window.emailPromptShown) {
