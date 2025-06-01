@@ -289,7 +289,7 @@
       padding: 10px;
     }
 
-   @media (max-width: 600px) {
+    @media (max-width: 600px) {
   .card {
     width: 100vw;
     height: 100vh;
@@ -299,11 +299,6 @@
   .send-button {
     width: 100%;
   }
-}
-
-/* ✅ Correção visual para evitar espaço excessivo no fim da resposta */
-.bot-message:last-of-type {
-  margin-bottom: 4px !important;
 }
 
 /* ✅ EXPANSÃO AUTOMÁTICA DO CHAT – FUNCIONA EM TODAS AS TELAS */
@@ -439,11 +434,27 @@ if (SpeechRecognition) {
           const explanationHTML = tempDiv.innerHTML;
 
           responseDiv.insertAdjacentHTML('beforeend', `
-  <div class="bot-message" style="margin-bottom: 0;">
-    ${botIconHTML}
-    <div>${explanationHTML.trim()}</div>
-  </div>
-`);
+            <div class="bot-message">
+              ${botIconHTML}
+              <div>${explanationHTML}</div>
+            </div>
+          `);
+
+// ✅ Primeiro: inserir o bloco de subscrição – só 1 vez
+if (!window.emailPromptShown) {
+  window.emailPromptShown = true;
+  const emailHTML = `
+    <div class="bot-message" id="email-prompt">
+      ${botIconHTML}
+      <div>
+        <p style="margin-bottom: 12px; color: #2f2c63;">Want to receive personalized health tips from Dr. Owl?</p>
+        <input type="email" id="userEmail" placeholder="Enter your email" style="padding: 10px; font-size: 14px; border-radius: 8px; border: 1px solid #ccc; width: 70%; max-width: 300px;" />
+        <button onclick="submitEmail()" style="margin-left: 12px; margin-top: 8px; padding: 10px 16px; font-size: 14px; background-color: #2f2c63; color: white; border: none; border-radius: 8px; cursor: pointer;">Subscribe</button>
+      </div>
+    </div>
+  `;
+  responseDiv.appendChild(document.createRange().createContextualFragment(emailHTML));
+}
 
 // ✅ Depois: inserir as perguntas clicáveis
 questions.forEach(q => {
