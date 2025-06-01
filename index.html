@@ -102,33 +102,79 @@
       color: #444;
     }
 
-    .send-button {
-      margin-top: 16px;
-      background-color: #2f2c63;
-      color: white;
-      border: none;
-      border-radius: 12px;
-      width: 33%;
-      padding: 14px;
-      font-size: 16px;
-      cursor: pointer;
-    }
+    .input-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 8px 12px;
+  background-color: white;
+  width: 100%;
+  box-sizing: border-box;
+}
 
-    .read-aloud {
-      margin-top: 24px;
-      font-size: 16px;
-      color: #2f2c63;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 16px 24px;
-      border: 1px solid #ccc;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      cursor: pointer;
-      user-select: none;
-    }
+.input-row input {
+  flex: 1;
+  border: none;
+  font-size: 14px;
+  padding: 10px 12px;
+  outline: none;
+  border-radius: 12px;
+}
+
+.input-row button.icon {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #444;
+  padding: 6px;
+  border-radius: 8px;
+  user-select: none;
+  transition: background-color 0.2s;
+}
+.input-row button.icon:hover {
+  background-color: #eee;
+}
+
+.input-row .send-button {
+  background-color: #2f2c63;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  flex-shrink: 0;
+  min-width: 80px;
+  transition: background-color 0.2s;
+}
+.input-row .send-button:hover {
+  background-color: #221f48;
+}
+
+.input-row .read-aloud {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2f2c63;
+  cursor: pointer;
+  user-select: none;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  flex-shrink: 0;
+  white-space: nowrap;
+  font-size: 18px;
+  transition: background-color 0.2s;
+}
+.input-row .read-aloud:hover {
+  background-color: #e2dffd;
+}
 
     .read-aloud span {
       font-size: 18px;
@@ -342,17 +388,12 @@ body.chat-expanded .response {
 
       <div class="response"></div>
 
-      <div class="input-row">
-        <input type="text" placeholder="Type your message..." autocomplete="off" />
-        <button class="icon" aria-label="Microphone">🎤</button>
-      </div>
-
-      <button class="send-button">Send</button>
-
-           <div class="read-aloud">
-        <span>🔊</span>
-        <span>Read Aloud</span>
-      </div>
+     <div class="input-row">
+  <input type="text" placeholder="Type your message..." autocomplete="off" />
+  <button class="icon mic-button" aria-label="Microphone">🎤</button>
+  <button class="icon send-button" aria-label="Send">➡️</button>
+  <button class="icon read-aloud" aria-label="Read Aloud">🔊</button>
+</div>
 
   <script>
     const input = document.querySelector('.input-row input');
