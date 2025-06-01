@@ -341,15 +341,26 @@ body.chat-expanded .card {
       padding: 10px;
     }
 
-    @media (max-width: 600px) {
-  .card {
-    width: 100vw;
-    height: 100vh;
-    border-radius: 0;
+   @media (max-width: 600px) {
+  body.chat-expanded .card {
+    height: 100vh !important;
+    width: 100vw !important;
+    border-radius: 0 !important;
+    padding: 16px 12px !important;
+    box-sizing: border-box;
   }
 
-  .send-button {
-    width: 100%;
+  body.chat-expanded .response {
+    max-height: calc(100vh - 180px) !important;
+    overflow-y: auto !important;
+  }
+
+  body.chat-expanded .input-row,
+  body.chat-expanded .send-button,
+  body.chat-expanded .read-aloud {
+    width: 100% !important;
+    box-sizing: border-box;
+    margin-top: 8px;
   }
 }
 
@@ -360,11 +371,6 @@ body.chat-expanded .card {
   border-radius: 0 !important;
   transition: all 0.3s ease-in-out;
 }
-
-body.chat-expanded .wrapper {
-  height: 100vh;
-}
-
   </style>
 </head>
 <body>
