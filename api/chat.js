@@ -381,6 +381,7 @@ let context = await getSymptomContext(
   sessionMemory.funnelPhase,
   sessionMemory.sintomaAtual,
   sessionMemory.usedQuestions
+  sessionMemory.idioma
 );
 
   // Mantém sintoma e categoria para contexto coerente
@@ -400,8 +401,7 @@ let context = await getSymptomContext(
       sessionMemory.idioma
     );
 
-    const content = formatHybridResponse(context, freeTextResponse, followupQuestions, idioma);
-
+    const content = formatHybridResponse(context, freeTextResponse, followupQuestions, sessionMemory.idioma);
     return res.status(200).json({
       choices: [{ message: { content, followupQuestions: followupQuestions || [] } }]
     });
@@ -428,36 +428,38 @@ let context = await getSymptomContext(
 
   const baseText = funnelTexts[Math.floor(Math.random() * funnelTexts.length)];
 
-  const gptResponse = baseText
-    ? await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, sessionMemory.idioma, sessionMemory.funnelPhase, sessionMemory.categoriaAtual)
-    : await rewriteWithGPT(
-        `Explain clearly about the symptom ${sessionMemory.sintomaAtual} in phase ${sessionMemory.funnelPhase}, focusing on phase key ${funnelKey}`,
-        sessionMemory.sintomaAtual,
-        sessionMemory.idioma,
-        sessionMemory.funnelPhase,
-        sessionMemory.categoriaAtual
-      );
+const gptResponse = baseText
+  ? await rewriteWithGPT(
+      baseText,
+      sessionMemory.sintomaAtual,
+      sessionMemory.idioma,
+      sessionMemory.funnelPhase,
+      sessionMemory.categoriaAtual
+    )
+  : await rewriteWithGPT(
+      `Explain clearly about the symptom ${sessionMemory.sintomaAtual} in phase ${sessionMemory.funnelPhase}, focusing on phase key ${funnelKey}`,
+      sessionMemory.sintomaAtual,
+      sessionMemory.idioma,
+      sessionMemory.funnelPhase,
+      sessionMemory.categoriaAtual
+    );
 
-  const followupQuestions = await generateFollowUpQuestions(
-    { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
-    sessionMemory.idioma
-  );
+const followupQuestions = await generateFollowUpQuestions(
+  { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
+  sessionMemory.idioma
+);
 
-  // Atualiza a fase do funil com segurança
-  sessionMemory.funnelPhase = Math.min((context.funnelPhase || sessionMemory.funnelPhase || 1) + 1, 6);
+// Atualiza a fase do funil com segurança
+sessionMemory.funnelPhase = Math.min((context.funnelPhase || sessionMemory.funnelPhase || 1) + 1, 6);
 
-   // Debug logs
-  console.log("🧪 Sintoma detectado:", context.sintoma);
-  console.log("🧪 Categoria atual:", sessionMemory.categoriaAtual);
-  console.log("🧪 Fase atual:", sessionMemory.funnelPhase);
-  console.log("🧪 Texto da fase:", funnelKey, funnelTexts);
+// Debug logs
+console.log("🧪 Sintoma detectado:", context.sintoma);
+console.log("🧪 Categoria atual:", sessionMemory.categoriaAtual);
+console.log("🧪 Fase atual:", sessionMemory.funnelPhase);
+console.log("🧪 Texto da fase:", funnelKey, funnelTexts);
 
-  const content = formatHybridResponse(context, gptResponse, followupQuestions, idioma);
+const content = formatHybridResponse(context, gptResponse, followupQuestions, sessionMemory.idioma);
 
-  return res.status(200).json({
-    choices: [{ message: { content, followupQuestions: followupQuestions || [] } }]
-  });
-
-} // 🔚 Fim do bloco else (intent === "sintoma")
-
-} // 🔚 Fim da função handler (export 
+return res.status(200).json({
+  choices: [{ message: { content, followupQuestions: followupQuestions || [] } }]
+});
