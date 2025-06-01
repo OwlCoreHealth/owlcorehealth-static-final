@@ -508,11 +508,20 @@ input.value = '';
 });
 
     document.addEventListener('click', (e) => {
-      if (e.target.classList.contains('clickable-question')) {
-        const question = decodeURIComponent(e.target.getAttribute('data-question'));
-        sendMessage("", question);
-      }
-    });
+  if (e.target.classList.contains('clickable-question')) {
+    const question = decodeURIComponent(e.target.getAttribute('data-question'));
+
+    // ✅ Mostra a pergunta na tela como se o usuário tivesse escrito
+    const userDiv = document.createElement("div");
+    userDiv.classList.add("user-message");
+    userDiv.innerText = question;
+    responseDiv.appendChild(userDiv);
+    responseDiv.scrollTop = responseDiv.scrollHeight;
+
+    // ✅ Envia a pergunta como se fosse input do usuário
+    sendMessage(question, true);
+  }
+});
 
     // Inicializar com mensagem de boas-vindas, opcional:
         responseDiv.innerHTML = `
