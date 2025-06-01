@@ -34,38 +34,11 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      overflow: hidden;
-    }
-
-    /* Bot container: todo o balão branco */
-    .bot-container {
-      background: white;
-      border-radius: 24px;
-      padding: 24px;
-      max-width: 600px;
-      width: 100%;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center; /* vertical centering no início */
-      gap: 16px;
-      height: 100%;
-      transition: all 0.3s ease-in-out;
-    }
-
-    /* Header com imagem + títulos */
-    .bot-header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
     }
 
     .owl-image {
       height: 140px;
-      margin-bottom: 0; /* margem removida porque já há gap no container */
-      transition: height 0.3s ease-in-out;
+      margin-bottom: 24px;
     }
 
     h1 {
@@ -77,118 +50,185 @@
     h2 {
       font-size: 14px;
       font-weight: normal;
-      margin: 0;
+      margin-top: 8px;
+      margin-bottom: 24px;
       color: #666;
     }
 
-    /* Texto de boas-vindas */
-    .bot-welcome-text {
-      font-size: 16px;
-      color: #333;
-      text-align: center;
-      max-width: 90%;
-      margin: 0;
-    }
-
-    /* Caixa de diálogo de respostas */
     .response {
-      background-color: #F6F6FB;
-      border-radius: 12px;
-      padding: 16px;
-      font-size: 15px;
-      color: #333;
-      width: 100%;
-      box-sizing: border-box;
-      overflow-y: auto;
-      max-height: 40vh;
-      white-space: pre-wrap;
-      margin: 16px 0 0 0;
-      flex-shrink: 0;
-      transition: max-height 0.3s ease-in-out;
-    }
-    .response.expanded {
-      max-height: 70vh;
-    }
+  background-color: #F6F6FB;
+  border-radius: 12px;
+  padding: 16px;
+  font-size: 15px;
+  margin-bottom: 16px;
+  color: #333;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
+  max-height: 40vh;
+  white-space: pre-wrap;
+}
 
-    /* Balão do input com fundo azul clarinho */
-    .input-bubble {
-      background-color: #E7F0FF;
-      border-radius: 16px;
-      padding: 8px 16px;
+/* Adicione este bloco logo após */
+.response.expanded {
+  max-height: 70vh;
+  transition: max-height 0.3s ease-in-out;
+}
+
+    .input-row {
       display: flex;
       align-items: center;
-      gap: 8px;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      padding: 4px 12px;
+      background-color: white;
       width: 100%;
-      max-width: 600px;
       box-sizing: border-box;
-      flex-shrink: 0;
-      margin-top: 16px;
     }
 
-    /* Input texto dentro do balão */
-    .input-bubble input {
+    .input-row input {
       flex: 1;
       border: none;
       font-size: 14px;
-      padding: 12px 12px;
+      padding: 12px 8px;
       outline: none;
-      border-radius: 12px;
     }
 
-    /* Botões dentro do balão: microfone, send, read aloud */
-    .input-bubble button {
+    .input-row button.icon {
       background: none;
       border: none;
-      font-size: 20px;
+      font-size: 18px;
+      cursor: pointer;
+      color: #444;
+    }
+
+    .send-button {
+      margin-top: 16px;
+      background-color: #2f2c63;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      width: 33%;
+      padding: 14px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .read-aloud {
+      margin-top: 24px;
+      font-size: 16px;
+      color: #2f2c63;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 16px 24px;
+      border: 1px solid #ccc;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .read-aloud span {
+      font-size: 18px;
+    }
+
+    .clickable-question {
       cursor: pointer;
       color: #2f2c63;
-      padding: 6px 10px;
-      border-radius: 12px;
-      transition: background-color 0.2s ease-in-out;
+      margin-top: 8px;
+      padding: 8px;
+      border-radius: 8px;
+      background-color: #e2dffd;
       user-select: none;
-      white-space: nowrap;
-    }
-    .input-bubble button:hover {
-      background-color: #c2dbff;
     }
 
-    /* Botões individuais com classes para facilitar */
-    .input-bubble .send-button {
-      font-size: 18px;
-      font-weight: 600;
-      padding: 8px 14px;
-    }
-    .input-bubble .read-aloud {
-      font-size: 18px;
-      font-weight: 600;
-    }
-    .input-bubble .mic-button {
-      font-size: 22px;
+    .clickable-question:hover {
+      background-color: #bdb2f0;
     }
 
-    /* Mensagens do bot */
     .bot-message {
-      margin-top: 12px;
-      padding: 12px;
-      border-radius: 12px;
-      white-space: pre-wrap;
-      text-align: left;
-      background-color: transparent;
-      overflow: hidden;
-    }
-    .bot-message .owl-icon {
-      float: left;
-      width: 24px;
-      height: 24px;
-      margin-right: 8px;
-      margin-top: 2px;
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  white-space: pre-wrap;
+  text-align: left;
+  background-color: transparent;
+  overflow: hidden; /* Para conter o float */
+}
+
+.bot-message .owl-icon {
+  float: left;
+  width: 24px; /* Tamanho reduzido */
+  height: 24px;
+  margin-right: 8px;
+  margin-top: 2px; /* Ajuste vertical */
+  background: #2f2c63;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: inset 0 3px 6px rgba(255 255 255 / 0.3);
+}
+
+.bot-message .owl-icon::before,
+.bot-message .owl-icon::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  width: 10px;
+  height: 14px;
+  background: white;
+  border-radius: 50% / 60%;
+  border: 2px solid #2f2c63;
+}
+
+.bot-message .owl-icon::before {
+  left: 6px;
+  transform: rotate(-10deg);
+}
+
+.bot-message .owl-icon::after {
+  right: 6px;
+  transform: rotate(10deg);
+}
+
+.bot-message .owl-icon .pupil {
+  position: absolute;
+  top: 15px;
+  width: 6px;
+  height: 8px;
+  background: #2f2c63;
+  border-radius: 50%;
+}
+
+.bot-message .owl-icon .pupil.left {
+  left: 10px;
+}
+
+.bot-message .owl-icon .pupil.right {
+  right: 10px;
+}
+
+.bot-message .owl-icon .beak {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 10px solid #e0b85f;
+  border-radius: 1px;
+}
+    .owl-icon {
+      position: relative;
       background: #2f2c63;
       border-radius: 50%;
-      position: relative;
-      box-shadow: inset 0 3px 6px rgba(255 255 255 / 0.3);
     }
-    .bot-message .owl-icon::before,
-    .bot-message .owl-icon::after {
+
+    .owl-icon::before,
+    .owl-icon::after {
       content: '';
       position: absolute;
       top: 10px;
@@ -198,15 +238,18 @@
       border-radius: 50% / 60%;
       border: 2px solid #2f2c63;
     }
-    .bot-message .owl-icon::before {
+
+    .owl-icon::before {
       left: 6px;
       transform: rotate(-10deg);
     }
-    .bot-message .owl-icon::after {
+
+    .owl-icon::after {
       right: 6px;
       transform: rotate(10deg);
     }
-    .bot-message .owl-icon .pupil {
+
+    .owl-icon .pupil {
       position: absolute;
       top: 15px;
       width: 6px;
@@ -214,13 +257,16 @@
       background: #2f2c63;
       border-radius: 50%;
     }
-    .bot-message .owl-icon .pupil.left {
+
+    .owl-icon .pupil.left {
       left: 10px;
     }
-    .bot-message .owl-icon .pupil.right {
+
+    .owl-icon .pupil.right {
       right: 10px;
     }
-    .bot-message .owl-icon .beak {
+
+    .owl-icon .beak {
       position: absolute;
       bottom: 8px;
       left: 50%;
@@ -249,338 +295,304 @@
       padding: 10px;
     }
 
-    /* ===== Estado expandido após primeira mensagem ===== */
-    body.chat-expanded .bot-container {
-      justify-content: flex-start;
-      height: 100%;
-      padding-top: 32px;
-    }
-    body.chat-expanded .owl-image {
-      height: 100px;
-      margin-bottom: 16px;
-    }
-    body.chat-expanded .response {
-      flex-grow: 1;
-      max-height: none !important;
-      overflow-y: auto;
-      margin: 24px 0;
-      width: 100%;
-      box-sizing: border-box;
-    }
-    body.chat-expanded .input-bubble {
-      position: sticky;
-      bottom: 24px;
-      background-color: #E7F0FF;
-      padding: 8px 16px;
-      border-radius: 16px;
-      z-index: 10;
-      max-width: 600px;
-      margin: 0 auto;
-      flex-shrink: 0;
-      margin-top: 0;
-    }
-    body.chat-expanded .card {
-      justify-content: flex-start;
-      padding: 0 24px 40px 24px;
-      height: 100vh !important;
-      overflow: hidden;
-    }
-
     @media (max-width: 600px) {
-      .card {
-        width: 100vw;
-        height: 100vh;
-        border-radius: 0;
-      }
-      body.chat-expanded .bot-container {
-        padding-top: 16px;
-      }
-      body.chat-expanded .input-bubble {
-        bottom: 16px;
-        padding: 6px 12px;
-      }
-      .input-bubble button {
-        font-size: 18px;
-        padding: 4px 8px;
-      }
-    }
+  .card {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+  }
+
+  .send-button {
+    width: 100%;
+  }
+}
+
+/* ✅ EXPANSÃO AUTOMÁTICA DO CHAT – FUNCIONA EM TODAS AS TELAS */
+body.chat-expanded .card {
+  height: 100vh !important;
+  width: 100vw !important;
+  border-radius: 0 !important;
+  transition: all 0.3s ease-in-out;
+}
+
+body.chat-expanded .wrapper {
+  height: 100vh;
+}
+
   </style>
 </head>
 <body>
   <div class="wrapper">
     <div class="card">
-      <div class="bot-container">
-        <div class="bot-header">
-          <img src="owl-doctor.png" alt="Dr. Owl" width="150" class="owl-image" />
-          <h1>Welcome to Dr. Owl’s AI Office</h1>
-          <h2>Where Science Meets Personal Care</h2>
-        </div>
+      <img src="owl-doctor.png" alt="Dr. Owl" width="150" class="owl-image" />
 
-        <div class="bot-welcome-text">
-          Hello! How can I assist you today?
-        </div>
+      <h1>Welcome to Dr. Owl’s AI Office</h1>
+      <h2>Where Science Meets Personal Care</h2>
 
-        <div class="response"></div>
+      <div class="response"></div>
 
-        <div class="input-bubble">
-          <input type="text" placeholder="Type your message..." autocomplete="off" />
-          <button class="icon mic-button" aria-label="Microphone">🎤</button>
-          <button class="icon send-button" aria-label="Send">➡️</button>
-          <button class="icon read-aloud" aria-label="Read Aloud">🔊</button>
-        </div>
+      <div class="input-row">
+        <input type="text" placeholder="Type your message..." autocomplete="off" />
+        <button class="icon" aria-label="Microphone">🎤</button>
       </div>
-    </div>
-  </div>
 
-<script>
-  const input = document.querySelector('.input-bubble input');
-  const responseDiv = document.querySelector('.response');
-  const sendButton = document.querySelector('.input-bubble .send-button');
-  const readAloudButton = document.querySelector('.input-bubble .read-aloud');
-  const micButton = document.querySelector('.input-bubble .mic-button');
+      <button class="send-button">Send</button>
 
-  // 🧠 Função para detectar idioma (EN ou PT) de forma simples
-  function detectarIdioma(texto) {
-    const palavrasPt = ['como', 'tenho', 'estou', 'dor', 'problema', 'saúde'];
-    const palavrasEn = ['how', 'what', 'pain', 'problem', 'health', 'i am'];
+           <div class="read-aloud">
+        <span>🔊</span>
+        <span>Read Aloud</span>
+      </div>
 
-    const textoLower = texto.toLowerCase();
-    const ptMatches = palavrasPt.filter(p => textoLower.includes(p)).length;
-    const enMatches = palavrasEn.filter(p => textoLower.includes(p)).length;
+  <script>
+    const input = document.querySelector('.input-row input');
+    const responseDiv = document.querySelector('.response');
+    const sendButton = document.querySelector('.send-button');
+    const readAloudButton = document.querySelector('.read-aloud');
+    const micButton = document.querySelector('.input-row button.icon');
+    // 🧠 Função para detectar idioma (EN ou PT) de forma simples
+function detectarIdioma(texto) {
+  const palavrasPt = ['como', 'tenho', 'estou', 'dor', 'problema', 'saúde'];
+  const palavrasEn = ['how', 'what', 'pain', 'problem', 'health', 'i am'];
 
-    return enMatches >= ptMatches ? 'en' : 'pt';
+  const textoLower = texto.toLowerCase();
+  const ptMatches = palavrasPt.filter(p => textoLower.includes(p)).length;
+  const enMatches = palavrasEn.filter(p => textoLower.includes(p)).length;
+
+  return enMatches >= ptMatches ? 'en' : 'pt';
+}
+
+
+    const botIconHTML = `
+      <div class="owl-icon">
+        <div class="pupil left"></div>
+        <div class="pupil right"></div>
+        <div class="beak"></div>
+      </div>
+    `;
+
+    // Implementação do reconhecimento de voz
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+if (SpeechRecognition) {
+  const recognition = new SpeechRecognition();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  // Variável para controlar idioma da sessão (você pode atualizar esta variável conforme necessário)
+  let currentLang = 'en-US'; // idioma padrão inicial
+
+  function updateRecognitionLang(lang) {
+    recognition.lang = lang;
   }
 
-  const botIconHTML = `
-    <div class="owl-icon">
-      <div class="pupil left"></div>
-      <div class="pupil right"></div>
-      <div class="beak"></div>
-    </div>
-  `;
+  micButton.addEventListener('click', () => {
+    updateRecognitionLang(currentLang);
+    recognition.start();
+  });
 
-  // Implementação do reconhecimento de voz
-  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if (SpeechRecognition) {
-    const recognition = new SpeechRecognition();
-    recognition.interimResults = false;
-    recognition.maxAlternatives = 1;
+  recognition.addEventListener('result', (event) => {
+    const transcript = event.results[0][0].transcript;
+    input.value = transcript;
+    sendMessage(transcript);
+  });
 
-    // Variável para controlar idioma da sessão (você pode atualizar esta variável conforme necessário)
-    let currentLang = 'en-US'; // idioma padrão inicial
+  recognition.addEventListener('speechend', () => {
+    recognition.stop();
+  });
 
-    function updateRecognitionLang(lang) {
-      recognition.lang = lang;
-    }
+  recognition.addEventListener('error', (event) => {
+    alert('Erro no reconhecimento de voz: ' + event.error);
+  });
+} else {
+  micButton.addEventListener('click', () => {
+    alert('Reconhecimento de voz não suportado neste navegador.');
+  });
+}
 
-    micButton.addEventListener('click', () => {
-      updateRecognitionLang(currentLang);
-      recognition.start();
-    });
+   async function sendMessage(message, selectedQuestion = null) {
+  if (!message.trim() && !selectedQuestion) return;
 
-    recognition.addEventListener('result', (event) => {
-      const transcript = event.results[0][0].transcript;
-      input.value = transcript;
-      sendMessage(transcript);
-    });
+  // Expande só a área das mensagens, não o layout inteiro
+  responseDiv.classList.add('expanded');
 
-    recognition.addEventListener('speechend', () => {
-      recognition.stop();
-    });
+  // resto do código continua normal...
 
-    recognition.addEventListener('error', (event) => {
-      alert('Erro no reconhecimento de voz: ' + event.error);
-    });
-  } else {
-    micButton.addEventListener('click', () => {
-      alert('Reconhecimento de voz não suportado neste navegador.');
-    });
-  }
+      if (message.trim() && !selectedQuestion) {
+  responseDiv.insertAdjacentHTML('beforeend', `<div class="user-message">${message.trim()}</div>`);
+  responseDiv.scrollTop = responseDiv.scrollHeight;
+}
+      const idiomaDetectado = detectarIdioma(message || '');
+currentLang = idiomaDetectado === 'pt' ? 'pt-BR' : 'en-US';
 
-  async function sendMessage(message, selectedQuestion = null) {
-    if (!message.trim() && !selectedQuestion) return;
+const payload = {
+  message,
+  idioma: idiomaDetectado,
+  selectedQuestion
+};
 
-    // Expande só a área das mensagens, não o layout inteiro
-    responseDiv.classList.add('expanded');
+      try {
+        responseDiv.insertAdjacentHTML('beforeend', `<div class="typing-indicator">Dr. Owl is typing...</div>`);
+        responseDiv.scrollTop = responseDiv.scrollHeight;
 
-    // resto do código continua normal...
-
-    if (message.trim() && !selectedQuestion) {
-      responseDiv.insertAdjacentHTML('beforeend', `<div class="user-message">${message.trim()}</div>`);
-      responseDiv.scrollTop = responseDiv.scrollHeight;
-    }
-    const idiomaDetectado = detectarIdioma(message || '');
-    currentLang = idiomaDetectado === 'pt' ? 'pt-BR' : 'en-US';
-
-    const payload = {
-      message,
-      idioma: idiomaDetectado,
-      selectedQuestion
-    };
-
-    try {
-      responseDiv.insertAdjacentHTML('beforeend', `<div class="typing-indicator">Dr. Owl is typing...</div>`);
-      responseDiv.scrollTop = responseDiv.scrollHeight;
-
-      const res = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-
-      const data = await res.json();
-
-      const typing = responseDiv.querySelector('.typing-indicator');
-      if (typing) typing.remove();
-
-      if (data.choices && data.choices.length > 0) {
-        const content = data.choices[0].message.content;
-
-        const tempDiv = document.createElement('div');
-        tempDiv.innerHTML = content;
-
-        const questions = tempDiv.querySelectorAll('.clickable-question');
-        questions.forEach(q => q.remove());
-        const explanationHTML = tempDiv.innerHTML;
-
-        responseDiv.insertAdjacentHTML('beforeend', `
-          <div class="bot-message">
-            ${botIconHTML}
-            <div>${explanationHTML}</div>
-          </div>
-        `);
-
-        // ✅ Primeiro: inserir o bloco de subscrição – só 1 vez
-        if (!window.emailPromptShown) {
-          window.emailPromptShown = true;
-          const emailHTML = `
-            <div class="bot-message" id="email-prompt">
-              ${botIconHTML}
-              <div>
-                <p style="margin-bottom: 12px; color: #2f2c63;">Want to receive personalized health tips from Dr. Owl?</p>
-                <input type="email" id="userEmail" placeholder="Enter your email" style="padding: 10px; font-size: 14px; border-radius: 8px; border: 1px solid #ccc; width: 70%; max-width: 300px;" />
-                <button onclick="submitEmail()" style="margin-left: 12px; margin-top: 8px; padding: 10px 16px; font-size: 14px; background-color: #2f2c63; color: white; border: none; border-radius: 8px; cursor: pointer;">Subscribe</button>
-              </div>
-            </div>
-          `;
-          responseDiv.appendChild(document.createRange().createContextualFragment(emailHTML));
-        }
-
-        // ✅ Depois: inserir as perguntas clicáveis
-        questions.forEach(q => {
-          responseDiv.appendChild(q);
+        const res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
         });
 
-        const messages = responseDiv.querySelectorAll('.bot-message');
-        const lastMessage = messages[messages.length - 1];
-        if (lastMessage) {
-          lastMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        const data = await res.json();
 
-        input.value = '';
+        const typing = responseDiv.querySelector('.typing-indicator');
+        if (typing) typing.remove();
 
-      }
-    } catch (err) {
-      responseDiv.textContent = "Error communicating with server.";
-      console.error(err);
-    }
-  }
+        if (data.choices && data.choices.length > 0) {
+          const content = data.choices[0].message.content;
 
-  sendButton.addEventListener('click', () => {
-    sendMessage(input.value);
-  });
+          const tempDiv = document.createElement('div');
+          tempDiv.innerHTML = content;
 
-  readAloudButton.addEventListener('click', () => {
-    if (speechSynthesis.speaking) {
-      speechSynthesis.cancel();
-    } else {
-      const textToRead = responseDiv.textContent || responseDiv.innerText;
-      if (!textToRead) return;
+          const questions = tempDiv.querySelectorAll('.clickable-question');
+          questions.forEach(q => q.remove());
+          const explanationHTML = tempDiv.innerHTML;
 
-      const utterance = new SpeechSynthesisUtterance(textToRead);
+          responseDiv.insertAdjacentHTML('beforeend', `
+            <div class="bot-message">
+              ${botIconHTML}
+              <div>${explanationHTML}</div>
+            </div>
+          `);
 
-      // Define o idioma da fala com base no idioma detectado
-      utterance.lang = currentLang || 'en-US';
-
-      const voices = speechSynthesis.getVoices();
-
-      // Filtra vozes compatíveis com o idioma do utterance
-      const matchingVoices = voices.filter(voice => voice.lang.startsWith(utterance.lang.split('-')[0]));
-
-      // Tenta voz masculina preferencialmente
-      const maleVoice = matchingVoices.find(v => /male/i.test(v.name)) || matchingVoices[0];
-
-      utterance.voice = maleVoice || voices[0];
-
-      speechSynthesis.speak(utterance);
-    }
-  });
-
-  document.addEventListener('click', (e) => {
-    if (e.target.classList.contains('clickable-question')) {
-      const question = decodeURIComponent(e.target.getAttribute('data-question'));
-
-      // ✅ Mostra a pergunta na tela como se o usuário tivesse escrito
-      const userDiv = document.createElement("div");
-      userDiv.classList.add("user-message");
-      userDiv.innerText = question;
-      responseDiv.appendChild(userDiv);
-      responseDiv.scrollTop = responseDiv.scrollHeight;
-
-      // ✅ Envia a pergunta como se fosse input do usuário
-      sendMessage(question, true);
-    }
-  });
-
-  // Inicializar com mensagem de boas-vindas, opcional:
-  responseDiv.innerHTML = `
-    <div class="bot-message">
+// ✅ Primeiro: inserir o bloco de subscrição – só 1 vez
+if (!window.emailPromptShown) {
+  window.emailPromptShown = true;
+  const emailHTML = `
+    <div class="bot-message" id="email-prompt">
       ${botIconHTML}
-      <div>Hello! How can I assist you today?</div>
+      <div>
+        <p style="margin-bottom: 12px; color: #2f2c63;">Want to receive personalized health tips from Dr. Owl?</p>
+        <input type="email" id="userEmail" placeholder="Enter your email" style="padding: 10px; font-size: 14px; border-radius: 8px; border: 1px solid #ccc; width: 70%; max-width: 300px;" />
+        <button onclick="submitEmail()" style="margin-left: 12px; margin-top: 8px; padding: 10px 16px; font-size: 14px; background-color: #2f2c63; color: white; border: none; border-radius: 8px; cursor: pointer;">Subscribe</button>
+      </div>
     </div>
   `;
-  // ✅ Mostrar o campo de e-mail após a primeira resposta do bot
-  const observer = new MutationObserver(() => {
-    const botMessages = document.querySelectorAll('.response .bot-message');
-    const emailPrompt = document.getElementById("email-prompt");
+  responseDiv.appendChild(document.createRange().createContextualFragment(emailHTML));
+}
 
-    if (botMessages.length >= 1 && emailPrompt && emailPrompt.style.display === "none") {
-      emailPrompt.style.display = "block";
-      emailPrompt.scrollIntoView({ behavior: 'smooth' });
-      observer.disconnect(); // só mostra uma vez
-    }
-  });
+// ✅ Depois: inserir as perguntas clicáveis
+questions.forEach(q => {
+  responseDiv.appendChild(q);
+});
 
-  observer.observe(document.querySelector('.response'), { childList: true });
-</script>
+const messages = responseDiv.querySelectorAll('.bot-message');
+const lastMessage = messages[messages.length - 1];
+if (lastMessage) {
+  lastMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 
-<!-- ✅ Função para envio de e-mail para Google Sheets -->
-<script>
-  async function submitEmail() {
-    const emailInput = document.getElementById("userEmail");
-    const email = emailInput?.value?.trim();
-
-    if (!email) {
-      alert("Please enter a valid email.");
-      return;
-    }
-
-    try {
-      const res = await fetch("/api/subscribe.js", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email })
-      });
-
-      if (res.ok) {
-        alert("✅ Thank you! Your email was successfully submitted.");
-      } else {
-        alert("❌ There was an error submitting your email.");
+input.value = '';
+          
+        }
+      } catch (err) {
+        responseDiv.textContent = "Error communicating with server.";
+        console.error(err);
       }
-    } catch (err) {
-      alert("⚠️ Connection error. Please try again later.");
     }
+
+    sendButton.addEventListener('click', () => {
+      sendMessage(input.value);
+    });
+
+    readAloudButton.addEventListener('click', () => {
+  if (speechSynthesis.speaking) {
+    speechSynthesis.cancel();
+  } else {
+    const textToRead = responseDiv.textContent || responseDiv.innerText;
+    if (!textToRead) return;
+
+    const utterance = new SpeechSynthesisUtterance(textToRead);
+
+    // Define o idioma da fala com base no idioma detectado
+    utterance.lang = currentLang || 'en-US';
+
+    const voices = speechSynthesis.getVoices();
+
+    // Filtra vozes compatíveis com o idioma do utterance
+    const matchingVoices = voices.filter(voice => voice.lang.startsWith(utterance.lang.split('-')[0]));
+
+    // Tenta voz masculina preferencialmente
+    const maleVoice = matchingVoices.find(v => /male/i.test(v.name)) || matchingVoices[0];
+
+    utterance.voice = maleVoice || voices[0];
+
+    speechSynthesis.speak(utterance);
   }
-</script>
+});
+
+    document.addEventListener('click', (e) => {
+  if (e.target.classList.contains('clickable-question')) {
+    const question = decodeURIComponent(e.target.getAttribute('data-question'));
+
+    // ✅ Mostra a pergunta na tela como se o usuário tivesse escrito
+    const userDiv = document.createElement("div");
+    userDiv.classList.add("user-message");
+    userDiv.innerText = question;
+    responseDiv.appendChild(userDiv);
+    responseDiv.scrollTop = responseDiv.scrollHeight;
+
+    // ✅ Envia a pergunta como se fosse input do usuário
+    sendMessage(question, true);
+  }
+});
+
+    // Inicializar com mensagem de boas-vindas, opcional:
+        responseDiv.innerHTML = `
+      <div class="bot-message">
+        ${botIconHTML}
+        <div>Hello! How can I assist you today?</div>
+      </div>
+    `;
+    // ✅ Mostrar o campo de e-mail após a primeira resposta do bot
+const observer = new MutationObserver(() => {
+  const botMessages = document.querySelectorAll('.response .bot-message');
+  const emailPrompt = document.getElementById("email-prompt");
+
+  if (botMessages.length >= 1 && emailPrompt && emailPrompt.style.display === "none") {
+    emailPrompt.style.display = "block";
+    emailPrompt.scrollIntoView({ behavior: 'smooth' });
+    observer.disconnect(); // só mostra uma vez
+  }
+});
+
+observer.observe(document.querySelector('.response'), { childList: true });
+
+  </script>
+
+  <!-- ✅ Função para envio de e-mail para Google Sheets -->
+  <script>
+    async function submitEmail() {
+      const emailInput = document.getElementById("userEmail");
+      const email = emailInput?.value?.trim();
+
+      if (!email) {
+        alert("Please enter a valid email.");
+        return;
+      }
+
+      try {
+        const res = await fetch("/api/subscribe.js", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email })
+        });
+
+        if (res.ok) {
+          alert("✅ Thank you! Your email was successfully submitted.");
+        } else {
+          alert("❌ There was an error submitting your email.");
+        }
+      } catch (err) {
+        alert("⚠️ Connection error. Please try again later.");
+      }
+    }
+  </script>
 </body>
 </html>
