@@ -69,13 +69,13 @@
       white-space: pre-wrap;
     }
 
-    /* Quando expandir, aumenta máximo */
+    /* Expansão da resposta no chat */
     .response.expanded {
       max-height: 70vh;
       transition: max-height 0.3s ease-in-out;
     }
 
-    /* Barra de input e botões juntos */
+    /* Barra de input com botões */
     .input-row {
       display: flex;
       align-items: center;
@@ -97,16 +97,24 @@
       border-radius: 12px;
     }
 
+    .input-row button.icon,
+    .input-row .send-button,
+    .input-row .read-aloud {
+      font-size: 18px;
+      padding: 8px 12px;
+      flex-shrink: 0;
+      cursor: pointer;
+      user-select: none;
+      border-radius: 12px;
+      transition: background-color 0.2s;
+    }
+
     .input-row button.icon {
+      width: 36px;
+      height: 36px;
       background: none;
       border: none;
-      font-size: 20px;
-      cursor: pointer;
       color: #444;
-      padding: 6px;
-      border-radius: 8px;
-      user-select: none;
-      transition: background-color 0.2s;
     }
 
     .input-row button.icon:hover {
@@ -117,15 +125,7 @@
       background-color: #2f2c63;
       color: white;
       border: none;
-      border-radius: 12px;
-      padding: 10px 16px;
-      font-size: 16px;
-      cursor: pointer;
-      white-space: nowrap;
-      user-select: none;
-      flex-shrink: 0;
-      min-width: 80px;
-      transition: background-color 0.2s;
+      min-width: 60px;
     }
 
     .input-row .send-button:hover {
@@ -133,205 +133,66 @@
     }
 
     .input-row .read-aloud {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #2f2c63;
-      cursor: pointer;
-      user-select: none;
-      padding: 8px 12px;
       border: 1px solid #ccc;
-      border-radius: 16px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      flex-shrink: 0;
+      color: #2f2c63;
       white-space: nowrap;
-      font-size: 18px;
-      transition: background-color 0.2s;
     }
 
     .input-row .read-aloud:hover {
       background-color: #e2dffd;
     }
 
-    .read-aloud span {
-      font-size: 18px;
+    /* Botão enviar e read aloud no desktop ficam abaixo da input-row */
+    @media (min-width: 601px) {
+      .send-button,
+      .read-aloud {
+        margin-top: 16px;
+        width: 33%;
+        padding: 14px;
+        font-size: 16px;
+        border-radius: 12px;
+        cursor: pointer;
+        box-sizing: border-box;
+      }
+      .input-row .send-button,
+      .input-row .read-aloud {
+        display: none;
+      }
     }
 
-    .clickable-question {
-      cursor: pointer;
-      color: #2f2c63;
-      margin-top: 8px;
-      padding: 8px;
-      border-radius: 8px;
-      background-color: #e2dffd;
-      user-select: none;
-    }
-
-    .clickable-question:hover {
-      background-color: #bdb2f0;
-    }
-
-    .bot-message {
-      margin-top: 12px;
-      padding: 12px;
-      border-radius: 12px;
-      white-space: pre-wrap;
-      text-align: left;
-      background-color: transparent;
-      overflow: hidden;
-    }
-
-    .bot-message .owl-icon {
-      float: left;
-      width: 24px;
-      height: 24px;
-      margin-right: 8px;
-      margin-top: 2px;
-      background: #2f2c63;
-      border-radius: 50%;
-      position: relative;
-      box-shadow: inset 0 3px 6px rgba(255 255 255 / 0.3);
-    }
-
-    .bot-message .owl-icon::before,
-    .bot-message .owl-icon::after {
-      content: '';
-      position: absolute;
-      top: 10px;
-      width: 10px;
-      height: 14px;
-      background: white;
-      border-radius: 50% / 60%;
-      border: 2px solid #2f2c63;
-    }
-
-    .bot-message .owl-icon::before {
-      left: 6px;
-      transform: rotate(-10deg);
-    }
-
-    .bot-message .owl-icon::after {
-      right: 6px;
-      transform: rotate(10deg);
-    }
-
-    .bot-message .owl-icon .pupil {
-      position: absolute;
-      top: 15px;
-      width: 6px;
-      height: 8px;
-      background: #2f2c63;
-      border-radius: 50%;
-    }
-
-    .bot-message .owl-icon .pupil.left {
-      left: 10px;
-    }
-
-    .bot-message .owl-icon .pupil.right {
-      right: 10px;
-    }
-
-    .bot-message .owl-icon .beak {
-      position: absolute;
-      bottom: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 0;
-      border-left: 6px solid transparent;
-      border-right: 6px solid transparent;
-      border-top: 10px solid #e0b85f;
-      border-radius: 1px;
-    }
-
-    .owl-icon {
-      position: relative;
-      background: #2f2c63;
-      border-radius: 50%;
-    }
-
-    .owl-icon::before,
-    .owl-icon::after {
-      content: '';
-      position: absolute;
-      top: 10px;
-      width: 10px;
-      height: 14px;
-      background: white;
-      border-radius: 50% / 60%;
-      border: 2px solid #2f2c63;
-    }
-
-    .owl-icon::before {
-      left: 6px;
-      transform: rotate(-10deg);
-    }
-
-    .owl-icon::after {
-      right: 6px;
-      transform: rotate(10deg);
-    }
-
-    .owl-icon .pupil {
-      position: absolute;
-      top: 15px;
-      width: 6px;
-      height: 8px;
-      background: #2f2c63;
-      border-radius: 50%;
-    }
-
-    .owl-icon .pupil.left {
-      left: 10px;
-    }
-
-    .owl-icon .pupil.right {
-      right: 10px;
-    }
-
-    .owl-icon .beak {
-      position: absolute;
-      bottom: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 0;
-      border-left: 6px solid transparent;
-      border-right: 6px solid transparent;
-      border-top: 10px solid #e0b85f;
-      border-radius: 1px;
-    }
-
-    .user-message {
-      margin-top: 12px;
-      padding: 12px;
-      border-radius: 12px;
-      white-space: pre-wrap;
-      text-align: right;
-      background-color: transparent;
-    }
-
-    .typing-indicator {
-      font-style: italic;
-      color: #999;
-      margin-top: 12px;
-      padding: 10px;
-    }
-
+    /* Mobile: imagem menor e no topo */
     @media (max-width: 600px) {
-      .card {
-        width: 100vw;
-        height: 100vh;
-        border-radius: 0;
+      .owl-image {
+        height: 14px; /* reduzida 10x */
+        margin-bottom: 12px;
+        align-self: center;
+        display: block;
       }
 
-      .send-button {
+      .card {
+        height: 100vh;
+        width: 100vw;
+        max-width: 100vw;
+        border-radius: 0;
+        padding: 16px 20px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: stretch;
+      }
+
+      .response {
+        max-height: calc(100vh - 140px); /* espaço para input e imagem */
+        overflow-y: auto;
+        flex-grow: 1;
+        margin-bottom: 8px;
         width: 100%;
       }
     }
 
-    /* ✅ EXPANSÃO AUTOMÁTICA DO CHAT – FUNCIONA EM TODAS AS TELAS */
+    /* Expansão automática no mobile e desktop */
     body.chat-expanded .card {
       height: 100vh !important;
       width: 100vw !important;
@@ -343,10 +204,10 @@
       height: 100vh;
     }
 
-    /* CORREÇÃO: Seletor .response separado */
+    /* Expansão da resposta quando chat expandido */
     body.chat-expanded .response {
-      max-height: 100vh !important;
-      height: calc(100vh - 180px); /* Ajuste conforme necessário */
+      max-height: calc(100vh - 140px) !important;
+      height: auto !important;
       overflow-y: auto;
       flex-grow: 1;
       margin-bottom: 8px;
@@ -371,6 +232,8 @@
         <button class="icon send-button" aria-label="Send">➡️</button>
         <button class="icon read-aloud" aria-label="Read Aloud">🔊</button>
       </div>
+    </div>
+  </div>
 
   <script>
     const input = document.querySelector('.input-row input');
@@ -378,44 +241,31 @@
     const sendButton = document.querySelector('.send-button');
     const readAloudButton = document.querySelector('.read-aloud');
     const micButton = document.querySelector('.mic-button');
-    // 🧠 Função para detectar idioma (EN ou PT) de forma simples
+
+    // Função para detectar idioma simples
     function detectarIdioma(texto) {
       const palavrasPt = ['como', 'tenho', 'estou', 'dor', 'problema', 'saúde'];
       const palavrasEn = ['how', 'what', 'pain', 'problem', 'health', 'i am'];
-
       const textoLower = texto.toLowerCase();
       const ptMatches = palavrasPt.filter(p => textoLower.includes(p)).length;
       const enMatches = palavrasEn.filter(p => textoLower.includes(p)).length;
-
       return enMatches >= ptMatches ? 'en' : 'pt';
     }
 
-    const botIconHTML = `
-      <div class="owl-icon">
-        <div class="pupil left"></div>
-        <div class="pupil right"></div>
-        <div class="beak"></div>
-      </div>
-    `;
+    let currentLang = 'en-US';
 
-    // Implementação do reconhecimento de voz
+    micButton.addEventListener('click', () => {
+      recognition.lang = currentLang;
+      recognition.start();
+    });
+
+    // Speech recognition setup (simplified)
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    let recognition;
     if (SpeechRecognition) {
-      const recognition = new SpeechRecognition();
+      recognition = new SpeechRecognition();
       recognition.interimResults = false;
       recognition.maxAlternatives = 1;
-
-      // Variável para controlar idioma da sessão (você pode atualizar esta variável conforme necessário)
-      let currentLang = 'en-US'; // idioma padrão inicial
-
-      function updateRecognitionLang(lang) {
-        recognition.lang = lang;
-      }
-
-      micButton.addEventListener('click', () => {
-        updateRecognitionLang(currentLang);
-        recognition.start();
-      });
 
       recognition.addEventListener('result', (event) => {
         const transcript = event.results[0][0].transcript;
@@ -423,26 +273,18 @@
         sendMessage(transcript);
       });
 
-      recognition.addEventListener('speechend', () => {
-        recognition.stop();
-      });
-
-      recognition.addEventListener('error', (event) => {
-        alert('Erro no reconhecimento de voz: ' + event.error);
-      });
+      recognition.addEventListener('speechend', () => recognition.stop());
+      recognition.addEventListener('error', (e) => alert('Erro no reconhecimento de voz: ' + e.error));
     } else {
-      micButton.addEventListener('click', () => {
-        alert('Reconhecimento de voz não suportado neste navegador.');
-      });
+      micButton.addEventListener('click', () => alert('Reconhecimento de voz não suportado.'));
     }
 
     async function sendMessage(message, selectedQuestion = null) {
       if (!message.trim() && !selectedQuestion) return;
 
-      // Expande só a área das mensagens, não o layout inteiro
+      // Expande só a área da resposta
       responseDiv.classList.add('expanded');
 
-      // adiciona a mensagem do usuário
       if (message.trim() && !selectedQuestion) {
         responseDiv.insertAdjacentHTML('beforeend', `<div class="user-message">${message.trim()}</div>`);
         responseDiv.scrollTop = responseDiv.scrollHeight;
@@ -484,17 +326,25 @@
 
           responseDiv.insertAdjacentHTML('beforeend', `
             <div class="bot-message">
-              ${botIconHTML}
+              <div class="owl-icon">
+                <div class="pupil left"></div>
+                <div class="pupil right"></div>
+                <div class="beak"></div>
+              </div>
               <div>${explanationHTML}</div>
             </div>
           `);
 
-          // ✅ Primeiro: inserir o bloco de subscrição – só 1 vez
+          // Insere bloco de subscrição só uma vez
           if (!window.emailPromptShown) {
             window.emailPromptShown = true;
             const emailHTML = `
               <div class="bot-message" id="email-prompt">
-                ${botIconHTML}
+                <div class="owl-icon">
+                  <div class="pupil left"></div>
+                  <div class="pupil right"></div>
+                  <div class="beak"></div>
+                </div>
                 <div>
                   <p style="margin-bottom: 12px; color: #2f2c63;">Want to receive personalized health tips from Dr. Owl?</p>
                   <input type="email" id="userEmail" placeholder="Enter your email" style="padding: 10px; font-size: 14px; border-radius: 8px; border: 1px solid #ccc; width: 70%; max-width: 300px;" />
@@ -505,11 +355,12 @@
             responseDiv.appendChild(document.createRange().createContextualFragment(emailHTML));
           }
 
-          // ✅ Depois: inserir as perguntas clicáveis
+          // Insere perguntas clicáveis
           questions.forEach(q => {
             responseDiv.appendChild(q);
           });
 
+          // Scroll para última mensagem
           const messages = responseDiv.querySelectorAll('.bot-message');
           const lastMessage = messages[messages.length - 1];
           if (lastMessage) {
@@ -537,12 +388,12 @@
 
         const utterance = new SpeechSynthesisUtterance(textToRead);
 
-        // Define o idioma da fala com base no idioma detectado
+        // Define idioma da fala com base no idioma detectado
         utterance.lang = currentLang || 'en-US';
 
         const voices = speechSynthesis.getVoices();
 
-        // Filtra vozes compatíveis com o idioma do utterance
+        // Filtra vozes compatíveis com idioma
         const matchingVoices = voices.filter(voice => voice.lang.startsWith(utterance.lang.split('-')[0]));
 
         // Tenta voz masculina preferencialmente
@@ -558,27 +409,31 @@
       if (e.target.classList.contains('clickable-question')) {
         const question = decodeURIComponent(e.target.getAttribute('data-question'));
 
-        // ✅ Mostra a pergunta na tela como se o usuário tivesse escrito
+        // Mostra a pergunta na tela como se o usuário tivesse escrito
         const userDiv = document.createElement("div");
         userDiv.classList.add("user-message");
         userDiv.innerText = question;
         responseDiv.appendChild(userDiv);
         responseDiv.scrollTop = responseDiv.scrollHeight;
 
-        // ✅ Envia a pergunta como se fosse input do usuário
+        // Envia a pergunta como se fosse input do usuário
         sendMessage(question, true);
       }
     });
 
-    // Inicializar com mensagem de boas-vindas, opcional:
+    // Mensagem inicial do bot
     responseDiv.innerHTML = `
       <div class="bot-message">
-        ${botIconHTML}
+        <div class="owl-icon">
+          <div class="pupil left"></div>
+          <div class="pupil right"></div>
+          <div class="beak"></div>
+        </div>
         <div>Hello! How can I assist you today?</div>
       </div>
     `;
 
-    // ✅ Mostrar o campo de e-mail após a primeira resposta do bot
+    // Observer para mostrar prompt de e-mail só uma vez
     const observer = new MutationObserver(() => {
       const botMessages = document.querySelectorAll('.response .bot-message');
       const emailPrompt = document.getElementById("email-prompt");
@@ -586,13 +441,13 @@
       if (botMessages.length >= 1 && emailPrompt && emailPrompt.style.display === "none") {
         emailPrompt.style.display = "block";
         emailPrompt.scrollIntoView({ behavior: 'smooth' });
-        observer.disconnect(); // só mostra uma vez
+        observer.disconnect();
       }
     });
 
     observer.observe(document.querySelector('.response'), { childList: true });
 
-    // Função para envio de e-mail para Google Sheets
+    // Função para envio do email
     async function submitEmail() {
       const emailInput = document.getElementById("userEmail");
       const email = emailInput?.value?.trim();
