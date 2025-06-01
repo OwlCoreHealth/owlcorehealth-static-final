@@ -56,18 +56,24 @@
     }
 
     .response {
-      background-color: #F6F6FB;
-      border-radius: 12px;
-      padding: 16px;
-      font-size: 15px;
-      margin-bottom: 16px;
-      color: #333;
-      width: 100%;
-      box-sizing: border-box;
-      overflow-y: auto;
-      max-height: 40vh;
-      white-space: pre-wrap;
-    }
+  background-color: #F6F6FB;
+  border-radius: 12px;
+  padding: 16px;
+  font-size: 15px;
+  margin-bottom: 16px;
+  color: #333;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
+  max-height: 40vh;
+  white-space: pre-wrap;
+}
+
+/* Adicione este bloco logo após */
+.response.expanded {
+  max-height: 70vh;
+  transition: max-height 0.3s ease-in-out;
+}
 
     .input-row {
       display: flex;
@@ -402,9 +408,13 @@ if (SpeechRecognition) {
   });
 }
 
-    async function sendMessage(message, selectedQuestion = null) {
-      if (!message.trim() && !selectedQuestion) return;
-      document.body.classList.add('chat-expanded'); 
+   async function sendMessage(message, selectedQuestion = null) {
+  if (!message.trim() && !selectedQuestion) return;
+
+  // Expande só a área das mensagens, não o layout inteiro
+  responseDiv.classList.add('expanded');
+
+  // resto do código continua normal...
 
       if (message.trim() && !selectedQuestion) {
   responseDiv.insertAdjacentHTML('beforeend', `<div class="user-message">${message.trim()}</div>`);
