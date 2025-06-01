@@ -367,7 +367,7 @@ if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
   // Atualiza sintomaAtual para a busca, ou usa o texto do usuário se não identificar
   sessionMemory.sintomaAtual = identifiedSymptom === "unknown" ? userInput.toLowerCase() : identifiedSymptom;
 
-  sessionMemory.nome = name?.trim() || "";
+  sessionMemory.nome = "";
   sessionMemory.respostasUsuario.push(userInput);
 
   const userAge = parseInt(age);
