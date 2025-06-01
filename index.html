@@ -343,6 +343,18 @@ body.chat-expanded .wrapper {
     const sendButton = document.querySelector('.send-button');
     const readAloudButton = document.querySelector('.read-aloud');
     const micButton = document.querySelector('.input-row button.icon');
+    // 🧠 Função para detectar idioma (EN ou PT) de forma simples
+function detectarIdioma(texto) {
+  const palavrasPt = ['como', 'tenho', 'estou', 'dor', 'problema', 'saúde'];
+  const palavrasEn = ['how', 'what', 'pain', 'problem', 'health', 'i am'];
+
+  const textoLower = texto.toLowerCase();
+  const ptMatches = palavrasPt.filter(p => textoLower.includes(p)).length;
+  const enMatches = palavrasEn.filter(p => textoLower.includes(p)).length;
+
+  return enMatches >= ptMatches ? 'en' : 'pt';
+}
+
 
     const botIconHTML = `
       <div class="owl-icon">
@@ -398,14 +410,13 @@ if (SpeechRecognition) {
   responseDiv.insertAdjacentHTML('beforeend', `<div class="user-message">${message.trim()}</div>`);
   responseDiv.scrollTop = responseDiv.scrollHeight;
 }
-      const payload = {
-        message,
-        name: "",
-        age: "",
-        sex: "",
-        weight: "",
-        selectedQuestion
-      };
+      const idiomaDetectado = detectarIdioma(message || '');
+
+const payload = {
+  message,
+  idioma: idiomaDetectado,
+  selectedQuestion
+};
 
       try {
         responseDiv.insertAdjacentHTML('beforeend', `<div class="typing-indicator">Dr. Owl is typing...</div>`);
