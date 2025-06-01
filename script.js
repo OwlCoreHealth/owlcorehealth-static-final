@@ -114,33 +114,38 @@ if (role === 'bot') {
   }
 
   if (sendBtn) {
-    sendBtn.addEventListener('click', async () => {
-      const userText = inputField.value.trim();
-      if (!userText) return;
+  sendBtn.addEventListener('click', async () => {
+    const chatOwlButton = document.getElementById('chatOwlButton');
+    if (chatOwlButton) {
+      chatOwlButton.style.display = 'none';
+    }
 
-      userName = nameInput?.value?.trim() || "amigo";
-      appendMessage(userText, 'user');
-      inputField.value = '';
-      appendMessage("Typing...", 'bot');
+    const userText = inputField.value.trim();
+    if (!userText) return;
 
-      try {
-        const { text: botReply, followups } = await fetchGPTResponse(userText, userName);
-        const typingMsg = chatBox.querySelector('.bot-message:last-child');
-        if (typingMsg) typingMsg.remove();
-        appendMessage(botReply, 'bot');
-        // ✅ Mostrar campo de subscrição após a primeira resposta
-const emailPrompt = document.getElementById("email-prompt");
-if (emailPrompt && !emailPrompt.dataset.shown) {
-  emailPrompt.style.display = "block";
-  emailPrompt.dataset.shown = "true";
-}
+    userName = nameInput?.value?.trim() || "amigo";
+    appendMessage(userText, 'user');
+    inputField.value = '';
+    appendMessage("Typing...", 'bot');
 
-        renderFollowUpButtons(followups);
-      } catch (err) {
-        appendMessage("❌ GPT communication error.", 'bot');
+    try {
+      const { text: botReply, followups } = await fetchGPTResponse(userText, userName);
+      const typingMsg = chatBox.querySelector('.bot-message:last-child');
+      if (typingMsg) typingMsg.remove();
+      appendMessage(botReply, 'bot');
+
+      const emailPrompt = document.getElementById("email-prompt");
+      if (emailPrompt && !emailPrompt.dataset.shown) {
+        emailPrompt.style.display = "block";
+        emailPrompt.dataset.shown = "true";
       }
-    });
-  }
+
+      renderFollowUpButtons(followups);
+    } catch (err) {
+      appendMessage("❌ GPT communication error.", 'bot');
+    }
+  });
+}
 
   function renderFollowUpButtons(questions) {
     if (!questions || !questions.length) return;
