@@ -165,7 +165,6 @@ async function generateFollowUpQuestions(context, idioma) {
   const symptom = context.sintoma || "symptom";
   const phase = context.funnelPhase || 1;
 
-  // Prompt de acordo com o idioma da sessão
   const promptPT = `
 Você é um assistente de saúde inteligente e provocador. Com base no sintoma "${symptom}" e na fase do funil ${phase}, gere 3 perguntas curtas, provocativas e instigantes que levem o usuário para a próxima etapa. 
 Evite repetir estas perguntas já feitas: ${usedQuestions.join("; ")}.
@@ -204,17 +203,15 @@ Return only the 3 numbered questions.
 
     const data = await response.json();
     let questionsRaw = data.choices?.[0]?.message?.content || "";
-
-    // Separar perguntas numeradas (ex: "1. Question?")
     let questions = questionsRaw.split(/\d+\.\s+/).filter(Boolean).slice(0, 3);
 
-    // Filtrar perguntas repetidas
+    // Filtrar perguntas repetidas (exato match)
     questions = questions.filter(q => !usedQuestions.includes(q));
 
-    // Atualiza as perguntas usadas
+    // Atualiza as perguntas usadas na sessão
     sessionMemory.usedQuestions.push(...questions);
 
-    // Se faltar perguntas, acrescentar fallback na língua correta
+    // Se menos de 3 perguntas após filtro, adiciona fallback interno
     const fallbackPT = [
       "Você já tentou mudar sua alimentação ou rotina?",
       "Como você acha que isso está afetando seu dia a dia?",
@@ -228,6 +225,7 @@ Return only the 3 numbered questions.
 
     if (questions.length < 3) {
       const fallback = idioma === "pt" ? fallbackPT : fallbackEN;
+      // Adiciona perguntas de fallback que ainda não foram usadas
       for (const fq of fallback) {
         if (questions.length >= 3) break;
         if (!sessionMemory.usedQuestions.includes(fq)) {
@@ -237,25 +235,6 @@ Return only the 3 numbered questions.
       }
     }
 
-    return questions.slice(0, 3);
-
-  } catch (err) {
-    console.warn("❗️Erro ao gerar perguntas com GPT:", err);
-
-    // Retorna fallback fixo no idioma correto
-    return idioma === "pt"
-      ? [
-          "Você já tentou mudar sua alimentação ou rotina?",
-          "Como você acha que isso está afetando seu dia a dia?",
-          "Está disposto(a) a descobrir uma solução mais eficaz agora?"
-        ]
-      : [
-          "Have you tried adjusting your diet or lifestyle?",
-          "How do you think this is affecting your daily life?",
-          "Are you ready to explore a better solution now?"
-        ];
-  }
-}
     return questions.slice(0, 3);
 
   } catch (err) {
@@ -345,13 +324,12 @@ export default async function handler(req, res) {
         : `You are Dr. Owl, a clever and insightful health assistant. A user just asked something that shows curiosity or vague doubt. Respond with charm and subtle sarcasm, then invite them to share any body signal or discomfort they're feeling. User's message: "${userInput}"`
     );
 
-    console.log("🧪 Idioma usado para gerar perguntas (entrada genérica):", sessionMemory.idioma);
-const followupQuestions = await generateFollowUpQuestions(
-  { sintoma: "entrada genérica", funnelPhase: 1 },
-  sessionMemory.idioma
-);
+    const followupQuestions = await generateFollowUpQuestions(
+      { sintoma: "entrada genérica", funnelPhase: 1 },
+    idioma
+    );
 
-let content = formatHybridResponse({}, gptResponse, followupQuestions, sessionMemory.idioma);
+    let content = formatHybridResponse({}, gptResponse, followupQuestions, idioma);
 
 // ✅ Mostrar o formulário de subscrição apenas após a 1ª resposta genérica
 if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
@@ -375,11 +353,10 @@ if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
 } else {
   // A PARTIR DAQUI: fluxo de tratamento do caso com sintoma
   // Detecta idioma do input
-  if (!sessionMemory.idioma) {
   const isPortuguese = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
-  sessionMemory.idioma = isPortuguese ? "pt" : "en";
-}
-const idioma = sessionMemory.idioma;
+  const idiomaDetectado = isPortuguese ? "pt" : "en";
+  sessionMemory.idioma = idiomaDetectado;
+  const idioma = sessionMemory.idioma;
 
   // Prepara lista de sintomas para identificação
   const allSymptoms = Object.keys(fallbackTextsBySymptom);
@@ -401,8 +378,7 @@ let context = await getSymptomContext(
   null, // peso removido
   sessionMemory.funnelPhase,
   sessionMemory.sintomaAtual,
-  sessionMemory.usedQuestions,
-  sessionMemory.idioma
+  sessionMemory.usedQuestions
 );
 
   // Mantém sintoma e categoria para contexto coerente
@@ -419,10 +395,11 @@ let context = await getSymptomContext(
 
     const followupQuestions = await generateFollowUpQuestions(
       { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
-      sessionMemory.idioma
+      idioma
     );
 
-    const content = formatHybridResponse(context, freeTextResponse, followupQuestions, sessionMemory.idioma);
+    const content = formatHybridResponse(context, freeTextResponse, followupQuestions, idioma);
+
     return res.status(200).json({
       choices: [{ message: { content, followupQuestions: followupQuestions || [] } }]
     });
@@ -449,48 +426,36 @@ let context = await getSymptomContext(
 
   const baseText = funnelTexts[Math.floor(Math.random() * funnelTexts.length)];
 
-const gptResponse = baseText
-  ? await rewriteWithGPT(
-      baseText,
-      sessionMemory.sintomaAtual,
-      sessionMemory.idioma,
-      sessionMemory.funnelPhase,
-      sessionMemory.categoriaAtual
-    )
-  : await rewriteWithGPT(
-      `Explain clearly about the symptom ${sessionMemory.sintomaAtual} in phase ${sessionMemory.funnelPhase}, focusing on phase key ${funnelKey}`,
-      sessionMemory.sintomaAtual,
-      sessionMemory.idioma,
-      sessionMemory.funnelPhase,
-      sessionMemory.categoriaAtual
-    );
+  const gptResponse = baseText
+    ? await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, idioma, sessionMemory.funnelPhase, sessionMemory.categoriaAtual)
+    : await rewriteWithGPT(
+        `Explain clearly about the symptom ${sessionMemory.sintomaAtual} in phase ${sessionMemory.funnelPhase}, focusing on phase key ${funnelKey}`,
+        sessionMemory.sintomaAtual,
+        idioma,
+        sessionMemory.funnelPhase,
+        sessionMemory.categoriaAtual
+      );
 
-const followupQuestions = await generateFollowUpQuestions(
-  { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
-  sessionMemory.idioma
-);
+  const followupQuestions = await generateFollowUpQuestions(
+    { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
+    idioma
+  );
 
-// Atualiza a fase do funil com segurança
-sessionMemory.funnelPhase = Math.min(
-  (context.funnelPhase || sessionMemory.funnelPhase || 1) + 1,
-  6
-);
+  // Atualiza a fase do funil com segurança
+  sessionMemory.funnelPhase = Math.min((context.funnelPhase || sessionMemory.funnelPhase || 1) + 1, 6);
 
-// Debug logs
-console.log("🧪 Sintoma detectado:", context.sintoma);
-console.log("🧪 Categoria atual:", sessionMemory.categoriaAtual);
-console.log("🧪 Fase atual:", sessionMemory.funnelPhase);
-console.log("🧪 Texto da fase:", funnelKey, funnelTexts);
+   // Debug logs
+  console.log("🧪 Sintoma detectado:", context.sintoma);
+  console.log("🧪 Categoria atual:", sessionMemory.categoriaAtual);
+  console.log("🧪 Fase atual:", sessionMemory.funnelPhase);
+  console.log("🧪 Texto da fase:", funnelKey, funnelTexts);
 
-const content = formatHybridResponse(
-  context,
-  gptResponse,
-  followupQuestions,
-  sessionMemory.idioma
-);
+  const content = formatHybridResponse(context, gptResponse, followupQuestions, idioma);
 
-return res.status(200).json({
-  choices: [{ message: { content, followupQuestions: followupQuestions || [] } }],
-});
-} 
-} 
+  return res.status(200).json({
+    choices: [{ message: { content, followupQuestions: followupQuestions || [] } }]
+  });
+
+} // 🔚 Fim do bloco else (intent === "sintoma")
+
+} // 🔚 Fim da função handler (export 
