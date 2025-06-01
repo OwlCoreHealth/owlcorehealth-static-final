@@ -394,11 +394,10 @@ if (SpeechRecognition) {
       if (!message.trim() && !selectedQuestion) return;
       document.body.classList.add('chat-expanded'); 
 
-      if (message.trim()) {
-        responseDiv.insertAdjacentHTML('beforeend', `<div class="user-message">${message.trim()}</div>`);
-        responseDiv.scrollTop = responseDiv.scrollHeight;
-      }
-
+      if (message.trim() && !selectedQuestion) {
+  responseDiv.insertAdjacentHTML('beforeend', `<div class="user-message">${message.trim()}</div>`);
+  responseDiv.scrollTop = responseDiv.scrollHeight;
+}
       const payload = {
         message,
         name: "",
