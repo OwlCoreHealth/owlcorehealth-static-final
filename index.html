@@ -63,6 +63,27 @@ body.chat-expanded .card {
 
   transition: all 0.3s ease-in-out;
 }
+    body.chat-expanded .header {
+  display: none;
+}
+
+body.chat-expanded .card {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: 100vw !important;
+  max-height: 100vh !important;
+  border-radius: 0 !important;
+  padding: 16px 24px !important;
+  box-sizing: border-box;
+  background: white;
+  z-index: 9999;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
 /* ====== Ajustes específicos para mobile ====== */
 @media (max-width: 600px) {
@@ -393,25 +414,28 @@ body.chat-expanded .card {
 </head>
 <body>
   <div class="wrapper">
-    <div class="card">
-      <img src="owl-doctor.png" alt="Dr. Owl" width="150" class="owl-image" />
+  <header class="header">
+    <img src="owl-doctor.png" alt="Dr. Owl" width="150" class="owl-image" />
+    <h1>Welcome to Dr. Owl’s AI Office</h1>
+    <h2>Where Science Meets Personal Care</h2>
+  </header>
 
-      <h1>Welcome to Dr. Owl’s AI Office</h1>
-      <h2>Where Science Meets Personal Care</h2>
+  <div class="card">
+    <div class="response"></div>
 
-      <div class="response"></div>
+    <div class="input-row">
+      <input type="text" placeholder="Type your message..." autocomplete="off" />
+      <button class="icon" aria-label="Microphone">🎤</button>
+    </div>
 
-      <div class="input-row">
-        <input type="text" placeholder="Type your message..." autocomplete="off" />
-        <button class="icon" aria-label="Microphone">🎤</button>
-      </div>
+    <button class="send-button">Send</button>
 
-      <button class="send-button">Send</button>
-
-           <div class="read-aloud">
-        <span>🔊</span>
-        <span>Read Aloud</span>
-      </div>
+    <div class="read-aloud">
+      <span>🔊</span>
+      <span>Read Aloud</span>
+    </div>
+  </div>
+</div>
 
   <script>
     const input = document.querySelector('.input-row input');
