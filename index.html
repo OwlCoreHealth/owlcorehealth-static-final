@@ -456,6 +456,10 @@ questions.forEach(q => {
 if (!window.emailPromptShown) {
   window.emailPromptShown = true;
   const emailHTML = `
+    // ✅ Primeiro: inserir o bloco de subscrição – só 1 vez
+if (!window.emailPromptShown) {
+  window.emailPromptShown = true;
+  const emailHTML = `
     <div class="bot-message" id="email-prompt">
       ${botIconHTML}
       <div>
