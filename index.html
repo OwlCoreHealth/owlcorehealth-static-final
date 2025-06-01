@@ -319,6 +319,17 @@ body.chat-expanded .wrapper {
   height: 100vh;
 }
 
+/* CORREÇÃO: Seletor .response separado */
+body.chat-expanded .response {
+  max-height: 100vh !important;
+  height: calc(100vh - 180px); /* Ajuste conforme necessário */
+  overflow-y: auto;
+  flex-grow: 1;
+  margin-bottom: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
   </style>
 </head>
 <body>
