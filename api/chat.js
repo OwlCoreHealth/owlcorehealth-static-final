@@ -357,13 +357,10 @@ if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
   });
 
   // Fim do bloco "intent !== sintoma"
-} else {
-  // A PARTIR DAQUI: fluxo de tratamento do caso com sintoma
-  // Detecta idioma do input
-  const isPortuguese = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
-  const idiomaDetectado = isPortuguese ? "pt" : "en";
-  sessionMemory.idioma = idiomaDetectado;
-  const idioma = sessionMemory.idioma;
+// A PARTIR DAQUI: fluxo de tratamento do caso com sintoma
+const idioma = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|saúde/i.test(userInput) ? "pt" : "en";
+sessionMemory.idioma = idioma;
+
 
   // Prepara lista de sintomas para identificação
   const allSymptoms = Object.keys(fallbackTextsBySymptom);
