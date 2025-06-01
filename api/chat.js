@@ -311,8 +311,14 @@ Answer only with the symptom from the list that best matches the user's text. Us
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Método não permitido" });
 
-  const { message, selectedQuestion, idioma } = req.body;
-  const userInput = selectedQuestion || message;
+  const { message, selectedQuestion } = req.body;
+const userInput = selectedQuestion || message;
+
+// ✅ Detectar idioma ANTES de qualquer resposta
+const isPortuguese = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
+const idiomaDetectado = isPortuguese ? "pt" : "en";
+sessionMemory.idioma = idiomaDetectado;
+const idioma = sessionMemory.idioma;
   const isFollowUp = Boolean(selectedQuestion);
   const intent = await classifyUserIntent(userInput, idioma || "en");
   let gptResponse; // ✅ Declarado uma vez só aqui
