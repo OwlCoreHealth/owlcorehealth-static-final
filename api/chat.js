@@ -239,43 +239,45 @@ Return only the 3 numbered questions.
     let questions = questionsRaw.split(/\d+\.\s+/).filter(Boolean).slice(0, 3);
 
     // Filtrar perguntas repetidas (exato match)
-questions = questions.filter(q => !usedQuestions.includes(q));
+    questions = questions.filter(q => !usedQuestions.includes(q.trim()));
 
-// Definição dos fallback com a pergunta CTA na fase 5
-const fallbackPT = [
-  "Você já tentou mudar sua alimentação ou rotina?",
-  "Como você acha que isso está afetando seu dia a dia?",
-  "Está disposto(a) a descobrir uma solução mais eficaz agora?"
-];
-const fallbackEN = [
-  "Have you tried adjusting your diet or lifestyle?",
-  "How do you think this is affecting your daily life?",
-  "Are you ready to explore a better solution now?"
-];
+    // Definição dos fallback com a pergunta CTA na fase 5
+    const fallbackPT = [
+      "Você já tentou mudar sua alimentação ou rotina?",
+      "Como você acha que isso está afetando seu dia a dia?",
+      "Está disposto(a) a descobrir uma solução mais eficaz agora?"
+    ];
+    const fallbackEN = [
+      "Have you tried adjusting your diet or lifestyle?",
+      "How do you think this is affecting your daily life?",
+      "Are you ready to explore a better solution now?"
+    ];
 
-// Adicionar pergunta CTA sutil na fase 5
-if (phase === 5) {
-  fallbackPT.push("Quer saber qual suplemento pode ajudar você com isso?");
-  fallbackEN.push("Want to know which supplement can help you with this?");
-}
-
-// Se menos de 3 perguntas após filtro, adiciona fallback interno
-if (questions.length < 3) {
-  const fallback = idioma === "pt" ? fallbackPT : fallbackEN;
-  // Adiciona perguntas de fallback que ainda não foram usadas
-  for (const fq of fallback) {
-    if (questions.length >= 3) break;
-    if (!sessionMemory.usedQuestions.includes(fq) && !questions.includes(fq)) {
-      questions.push(fq);
+    // Adicionar pergunta CTA sutil na fase 5
+    if (phase === 5) {
+      fallbackPT.push("Quer saber qual suplemento pode ajudar você com isso?");
+      fallbackEN.push("Want to know which supplement can help you with this?");
     }
-  }
-}
 
+    // Se menos de 3 perguntas após filtro, adiciona fallback interno
+    if (questions.length < 3) {
+      const fallback = idioma === "pt" ? fallbackPT : fallbackEN;
+      // Adiciona perguntas de fallback que ainda não foram usadas
+      for (const fq of fallback) {
+        if (questions.length >= 3) break;
+        // Garante que a pergunta não foi usada
+        if (!sessionMemory.usedQuestions.includes(fq) && !questions.includes(fq)) {
+          questions.push(fq);
+        }
+      }
+    }
+
+    // Atualiza as perguntas usadas na sessão evitando duplicatas
     questions.forEach(q => {
-  if (!sessionMemory.usedQuestions.includes(q)) {
-    sessionMemory.usedQuestions.push(q);
-  }
-});
+      if (!sessionMemory.usedQuestions.includes(q)) {
+        sessionMemory.usedQuestions.push(q);
+      }
+    });
 
     return questions.slice(0, 3);
 
