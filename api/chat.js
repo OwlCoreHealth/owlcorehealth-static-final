@@ -362,29 +362,28 @@ export default async function handler(req, res) {
 if (!sessionMemory.nome) {
   const userName = userInput.trim();
 
-  // Se for a primeira interação e o input for curto (suposição de nome), capturamos
-  if (userName.length > 0 && userName.length < 30) {
-    sessionMemory.nome = userName;
-    return res.status(200).json({
-      choices: [{
-        message: {
-          content: `Nice to meet you, ${userName}! How can I help you today?`,
-          followupQuestions: []
-        }
-      }]
-    });
-  } else {
-    // Se não capturamos nome, pedimos novamente educadamente
-    return res.status(200).json({
-      choices: [{
-        message: {
-          content: "Hi! I’m Dr. Owl. May I know your name?",
-          followupQuestions: []
-        }
-      }]
-    });
-  }
+ // Se o nome do usuário ainda não foi capturado
+if (!sessionMemory.nome) {
+  return res.status(200).json({
+    choices: [{
+      message: {
+        content: "Hello! I’m Dr. Owl. How can I assist you today? May I know your name?",  // Saudação com a pergunta do nome
+        followupQuestions: []
+      }
+    }]
+  });
 }
+
+// Se o nome já foi capturado, saudação personalizada
+return res.status(200).json({
+  choices: [{
+    message: {
+      content: `Nice to meet you, ${sessionMemory.nome}! How can I help you today?`,  // Saudação com o nome
+      followupQuestions: []
+    }
+  }]
+});
+
 
   if (intent !== "sintoma") {
     gptResponse = await generateFreeTextWithGPT(
