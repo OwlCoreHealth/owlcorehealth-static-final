@@ -234,7 +234,19 @@ Return only the 3 numbered questions.
       })
     });
 
-    const data = await response.json();
+    // Primeiro, leia a resposta como texto para debugar
+    const responseText = await response.text();
+    console.log("Resposta da API:", responseText);
+
+    // Tente converter o texto para JSON
+    let data;
+    try {
+      data = JSON.parse(responseText);
+    } catch (err) {
+      console.error("Erro ao converter resposta para JSON:", err);
+      return [];
+    }
+
     let questionsRaw = data.choices?.[0]?.message?.content || "";
     let questions = questionsRaw.split(/\d+\.\s+/).filter(Boolean).slice(0, 3);
 
