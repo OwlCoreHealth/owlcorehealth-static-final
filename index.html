@@ -318,73 +318,6 @@ body.chat-expanded .card {
 body.chat-expanded .wrapper {
   height: 100vh;
 }
-/* Reset total de margens e paddings em mensagens do bot e seus filhos */
-.bot-message,
-.bot-message > div,
-.bot-message > div > *,
-.bot-message p,
-.bot-message br,
-.bot-message span,
-.bot-message div {
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* Reset total de margens e paddings em mensagens do usuário e filhos */
-.user-message,
-.user-message > div,
-.user-message > div > *,
-.user-message p,
-.user-message br,
-.user-message span,
-.user-message div {
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* Espaçamento uniforme entre mensagens dentro do container de respostas */
-.response > * {
-  margin-top: 4px !important;
-  margin-bottom: 4px !important;
-  padding: 0 !important;
-}
-
-/* Ajustes nas mensagens para margem e padding reduzidos */
-.bot-message {
-  margin-top: 4px !important;
-  padding: 6px 8px !important;
-  border-radius: 12px;
-  white-space: pre-wrap;
-  text-align: left;
-  background-color: transparent;
-  overflow: hidden;
-}
-
-.user-message {
-  margin-top: 4px !important;
-  padding: 6px 8px !important;
-  border-radius: 12px;
-  white-space: pre-wrap;
-  text-align: right;
-  background-color: transparent;
-}
-
-/* Perguntas clicáveis com margens compactas e padding confortável */
-.clickable-question {
-  cursor: pointer;
-  color: #2f2c63;
-  margin: 6px 0 !important;
-  padding: 8px 10px !important;
-  border-radius: 8px;
-  background-color: #d6d4f8;
-  user-select: none;
-  font-size: 15px;
-  line-height: 1.3;
-}
-
-.clickable-question:hover {
-  background-color: #b0adef;
-}
 
   </style>
 </head>
@@ -661,6 +594,8 @@ observer.observe(document.querySelector('.response'), { childList: true });
       }
     }
   </script>
+</body>
+</html>
       <script>
   // Função para limpar margens e paddings inline em mensagens já renderizadas
   function limparEstilosInline() {
