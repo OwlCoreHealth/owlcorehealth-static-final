@@ -108,10 +108,10 @@ Answer (intent only):`;
   }
 }
 
-async function rewriteWithGPT(baseText, sintoma, idioma, funnelPhase, categoria) {
-  const prompt = idioma === "pt"
+async function rewriteWithGPT(baseText, sintoma, idioma, funnelPhase, categoria, promptCustom = null) {
+  const prompt = promptCustom || (idioma === "pt"
     ? `Use o seguinte texto como base, mantendo o conteúdo e estrutura, mas reescrevendo com 30% de liberdade criativa, usando linguagem mais fluida, provocadora e humana. Mantenha o foco exclusivamente no sintoma: ${sintoma} e na categoria: ${categoria}. Não aborde outros temas. Não mude o tema e mantenha o foco em: ${sintoma}\n\nTexto-base:\n${baseText}`
-    : `Use the following text as a base. Keep the core message and structure, but rewrite with 30% creative freedom in a more natural, engaging, and human tone. Keep the focus exclusively on the symptom: ${sintoma} and category: ${categoria}. Do not address other topics. Do not change the topic and keep the focus on: ${sintoma}\n\nBase text:\n${baseText}`;
+    : `Use the following text as a base. Keep the core message and structure, but rewrite with 30% creative freedom in a more natural, engaging, and human tone. Keep the focus exclusively on the symptom: ${sintoma} and category: ${categoria}. Do not address other topics. Do not change the topic and keep the focus on: ${sintoma}\n\nBase text:\n${baseText}`);
 
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -133,6 +133,39 @@ async function rewriteWithGPT(baseText, sintoma, idioma, funnelPhase, categoria)
   } catch (e) {
     console.error("Erro ao reescrever com GPT:", e);
     return baseText;
+  }
+}
+
+// <<< Aqui, logo após fechar a função rewriteWithGPT, cole a função countWords >>>
+
+function countWords(str) {
+  return str.trim().split(/\s+/).length;
+}
+
+async function expandResponseWithGPT(text, sintoma, idioma, funnelPhase, categoria) {
+  const prompt = idioma === "pt"
+    ? `O texto abaixo tem menos de 100 palavras. Expanda-o para pelo menos 100 palavras mantendo o foco no sintoma "${sintoma}" e na categoria "${categoria}". Use linguagem humana, fluida e provocadora:\n\n${text}`
+    : `The text below has less than 100 words. Expand it to at least 100 words keeping focus on the symptom "${sintoma}" and category "${categoria}". Use human, fluid and provocative language:\n\n${text}`;
+
+  try {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: GPT_MODEL,
+        messages: [{ role: "system", content: prompt }],
+        temperature: 0.7,
+        max_tokens: 300
+      })
+    });
+    const data = await response.json();
+    return data.choices?.[0]?.message?.content?.trim() || text;
+  } catch (e) {
+    console.error("Erro ao expandir resposta com GPT:", e);
+    return text;
   }
 }
 
@@ -208,9 +241,6 @@ Return only the 3 numbered questions.
     // Filtrar perguntas repetidas (exato match)
     questions = questions.filter(q => !usedQuestions.includes(q));
 
-    // Atualiza as perguntas usadas na sessão
-    sessionMemory.usedQuestions.push(...questions);
-
     // Se menos de 3 perguntas após filtro, adiciona fallback interno
     const fallbackPT = [
       "Você já tentou mudar sua alimentação ou rotina?",
@@ -228,12 +258,33 @@ Return only the 3 numbered questions.
       // Adiciona perguntas de fallback que ainda não foram usadas
       for (const fq of fallback) {
         if (questions.length >= 3) break;
-        if (!sessionMemory.usedQuestions.includes(fq)) {
+        if (!sessionMemory.usedQuestions.includes(fq) && !questions.includes(fq)) {
           questions.push(fq);
-          sessionMemory.usedQuestions.push(fq);
         }
       }
     }
+
+    // Atualiza as perguntas usadas na sessão
+    sessionMemory.usedQuestions.push(...questions);
+
+    return questions.slice(0, 3);
+
+  } catch (err) {
+    console.warn("❗️Erro ao gerar perguntas com GPT:", err);
+    // fallback direto sem usar GPT
+    return idioma === "pt"
+      ? [
+          "Você já tentou mudar sua alimentação ou rotina?",
+          "Como você acha que isso está afetando seu dia a dia?",
+          "Está disposto(a) a descobrir uma solução mais eficaz agora?"
+        ]
+      : [
+          "Have you tried adjusting your diet or lifestyle?",
+          "How do you think this is affecting your daily life?",
+          "Are you ready to explore a better solution now?"
+        ];
+  }
+}
 
     return questions.slice(0, 3);
 
@@ -337,8 +388,21 @@ if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
   // content += renderEmailPrompt(sessionMemory.idioma);
 }
 
-    // Atualiza a fase do funil com segurança após resposta genérica
-    sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
+    // Atualiza a fase do funil, avançando no máximo 1 etapa por vez e não mudando de tema antes da fase 6
+const currentPhase = sessionMemory.funnelPhase || 1;
+const nextPhaseFromContext = context.funnelPhase || currentPhase;
+
+if (currentPhase < 6) {
+  // Avança somente uma etapa por vez e não ultrapassa a fase 6
+  if (nextPhaseFromContext > currentPhase) {
+    sessionMemory.funnelPhase = currentPhase + 1;
+  } else {
+    sessionMemory.funnelPhase = currentPhase;
+  }
+} else {
+  // Já está na fase 6 (final), mantém
+  sessionMemory.funnelPhase = 6;
+}
 
     // Registra entrada genérica
     sessionMemory.genericEntry = true;
@@ -426,15 +490,20 @@ let context = await getSymptomContext(
 
   const baseText = funnelTexts[Math.floor(Math.random() * funnelTexts.length)];
 
-  const gptResponse = baseText
-    ? await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, idioma, sessionMemory.funnelPhase, sessionMemory.categoriaAtual)
-    : await rewriteWithGPT(
-        `Explain clearly about the symptom ${sessionMemory.sintomaAtual} in phase ${sessionMemory.funnelPhase}, focusing on phase key ${funnelKey}`,
-        sessionMemory.sintomaAtual,
-        idioma,
-        sessionMemory.funnelPhase,
-        sessionMemory.categoriaAtual
-      );
+  let gptResponse = baseText
+  ? await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, idioma, sessionMemory.funnelPhase, sessionMemory.categoriaAtual)
+  : await rewriteWithGPT(
+      `Explain clearly about the symptom ${sessionMemory.sintomaAtual} in phase ${sessionMemory.funnelPhase}, focusing on phase key ${funnelKey}`,
+      sessionMemory.sintomaAtual,
+      idioma,
+      sessionMemory.funnelPhase,
+      sessionMemory.categoriaAtual
+    );
+
+// Verifica se a resposta tem menos de 100 palavras e expande se necessário
+if (countWords(gptResponse) < 100) {
+  gptResponse = await expandResponseWithGPT(gptResponse, sessionMemory.sintomaAtual, idioma, sessionMemory.funnelPhase, sessionMemory.categoriaAtual);
+}
 
   const followupQuestions = await generateFollowUpQuestions(
     { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
