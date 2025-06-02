@@ -350,9 +350,8 @@ if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
   });
 
   // Fim do bloco "intent !== sintoma"
-} else {
+} else { 
   // A PARTIR DAQUI: fluxo de tratamento do caso com sintoma
-  // Detecta idioma do input
   const isPortuguese = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
   const idiomaDetectado = isPortuguese ? "pt" : "en";
   sessionMemory.idioma = idiomaDetectado;
@@ -367,43 +366,45 @@ if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
   // Atualiza sintomaAtual para a busca, ou usa o texto do usuário se não identificar
   sessionMemory.sintomaAtual = identifiedSymptom === "unknown" ? userInput.toLowerCase() : identifiedSymptom;
 
-  sessionMemory.nome = "";
-sessionMemory.respostasUsuario.push(userInput);
+  // Aqui começa a lógica da Fase 1: Explicação e Soluções Rápidas
+  if (sessionMemory.funnelPhase === 1) {
+    const sintomas = fallbackTextsBySymptom[sessionMemory.sintomaAtual?.toLowerCase()];
 
-// Busca contexto do sintoma identificado no Notion (sem idade/peso)
-let context = await getSymptomContext(
-  sessionMemory.sintomaAtual,
-  sessionMemory.nome,
-  null, // idade removida
-  null, // peso removido
-  sessionMemory.funnelPhase,
-  sessionMemory.sintomaAtual,
-  sessionMemory.usedQuestions
-);
+    if (sintomas && sintomas.base) {
+      // Pega o texto da Fase 1 (explicação simples sobre o sintoma)
+      const textoFase1 = sintomas.base[idioma];  // Pega o texto correspondente ao idioma
 
-  // Mantém sintoma e categoria para contexto coerente
-  if (context.sintoma && !sessionMemory.sintomaAtual) sessionMemory.sintomaAtual = context.sintoma;
-  if (context.categoria && !sessionMemory.categoriaAtual) sessionMemory.categoriaAtual = context.categoria;
+      if (textoFase1) {
+        let response = textoFase1;  // Conteúdo da explicação do sintoma
 
-  // Se não achar textos na tabela, usa fallback por sintoma
-  if (!context.funnelTexts || Object.keys(context.funnelTexts).length === 0) {
-    const freeTextPrompt = idioma === "pt"
-      ? `Você é um assistente de saúde. Explique detalhadamente e de forma humana o sintoma "${sessionMemory.sintomaAtual}" considerando a categoria "${sessionMemory.categoriaAtual}". Forneça informações úteis e conduza o usuário no funil, mesmo sem textos específicos na base.`
-      : `You are a health assistant. Explain in detail and humanly the symptom "${sessionMemory.sintomaAtual}" considering the category "${sessionMemory.categoriaAtual}". Provide useful information and guide the user through the funnel even if no specific texts are available in the database.`;
+        // Solicitar ao GPT 3 soluções rápidas e práticas baseadas no sintoma
+        const solutions = await generateSolutionsWithGPT(sessionMemory.sintomaAtual, idioma);
 
-    const freeTextResponse = await generateFreeTextWithGPT(freeTextPrompt);
+        // Adicionar soluções rápidas ao conteúdo
+        response += `<p>Soluções rápidas e práticas:</p><ul>`;
+        solutions.forEach(solution => {
+          response += `<li>${solution}</li>`;
+        });
+        response += `</ul>`;
 
-    const followupQuestions = await generateFollowUpQuestions(
-      { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
-      idioma
-    );
+        // Atualiza a fase do funil para a Fase 2
+        sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
 
-    const content = formatHybridResponse(context, freeTextResponse, followupQuestions, idioma);
+        // Registra entrada genérica
+        sessionMemory.genericEntry = true;
+        sessionMemory.genericMessages = sessionMemory.genericMessages || [];
+        sessionMemory.genericMessages.push(userInput);
 
-    return res.status(200).json({
-      choices: [{ message: { content, followupQuestions: followupQuestions || [] } }]
-    });
+        // Retorna a resposta gerada para o usuário
+        return res.status(200).json({
+          choices: [{ message: { content: response, followupQuestions: [] } }]
+        });
+      }
+    }
   }
+
+  // Continuação do fluxo para as outras fases...
+}
 
   // Textos oficiais do Notion
   const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
