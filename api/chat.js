@@ -234,7 +234,12 @@ Return only the 3 numbered questions.
       })
     });
 
-    // Primeiro, leia a resposta como texto para debugar
+    // Verificar status da resposta
+    if (!response.ok) {
+      throw new Error(`Erro na resposta da API: ${response.statusText}`);
+    }
+
+    // Primeiro, leia a resposta como texto
     const responseText = await response.text();
     console.log("Resposta da API:", responseText);
 
