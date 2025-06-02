@@ -149,14 +149,13 @@
     }
 
     .bot-message {
-  margin-top: 6px !important;
-  margin-bottom: 4px !important;
-  padding: 8px 10px !important;
+  margin-top: 12px;
+  padding: 12px;
   border-radius: 12px;
   white-space: pre-wrap;
   text-align: left;
   background-color: transparent;
-  overflow: hidden;
+  overflow: hidden; /* Para conter o float */
 }
 
 .bot-message .owl-icon {
@@ -318,28 +317,6 @@ body.chat-expanded .card {
 
 body.chat-expanded .wrapper {
   height: 100vh;
-}
-/* Reduzir espaço abaixo da resposta do Owl */
-.bot-message {
-  margin-bottom: 4px !important;
-}
-
-/* Reduzir espaço acima da primeira pergunta clicável */
-.clickable-question:first-of-type {
-  margin-top: 4px !important;
-}
-
-/* Ajustar margens entre perguntas para espaçamento compacto e legível */
-.clickable-question {
-  margin-top: 6px !important;
-  margin-bottom: 6px !important;
-  padding: 8px 10px;
-  border-radius: 8px;
-  background-color: #d6d4f8;
-  cursor: pointer;
-  font-size: 15px;
-  line-height: 1.3;
-  user-select: none;
 }
 
   </style>
@@ -617,28 +594,5 @@ observer.observe(document.querySelector('.response'), { childList: true });
       }
     }
   </script>
-</body>
-</html>
-      <script>
-  // Função para limpar margens e paddings inline em mensagens já renderizadas
-  function limparEstilosInline() {
-    const seletor = '.bot-message div, .user-message';
-    const elementos = document.querySelectorAll(seletor);
-    elementos.forEach(el => {
-      el.style.margin = null;
-      el.style.padding = null;
-    });
-  }
-
-  // Observar alterações no container de respostas para limpar estilos sempre que mensagens forem adicionadas
-  const respostaContainer = document.querySelector('.response');
-  if (respostaContainer) {
-    const observer = new MutationObserver(() => {
-      limparEstilosInline();
-    });
-    observer.observe(respostaContainer, { childList: true, subtree: true });
-  }
-</script>
-
 </body>
 </html>
