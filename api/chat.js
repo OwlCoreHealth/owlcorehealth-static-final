@@ -198,8 +198,6 @@ async function generateFollowUpQuestions(context, idioma) {
   const symptom = context.sintoma || "symptom";
   const phase = context.funnelPhase || 1;
 
-  console.log("Gerando perguntas de follow-up para o sintoma:", symptom);  // Log inicial
-
   const promptPT = `
 Você é um assistente de saúde inteligente e provocador. Com base no sintoma "${symptom}" e na fase do funil ${phase}, gere 3 perguntas curtas, provocativas e instigantes que levem o usuário para a próxima etapa. 
 Evite repetir estas perguntas já feitas: ${usedQuestions.join("; ")}.
@@ -219,8 +217,6 @@ Return only the 3 numbered questions.
   const prompt = idioma === "pt" ? promptPT : promptEN;
 
   try {
-    console.log("Enviando requisição para o OpenAI...");  // Log antes de fazer a requisição
-
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -238,19 +234,14 @@ Return only the 3 numbered questions.
       })
     });
 
-    console.log("Resposta do OpenAI recebida.");  // Log após receber resposta
-
     const data = await response.json();
     let questionsRaw = data.choices?.[0]?.message?.content || "";
-
-    console.log("Perguntas geradas:", questionsRaw);  // Log das perguntas geradas
-
     let questions = questionsRaw.split(/\d+\.\s+/).filter(Boolean).slice(0, 3);
 
     // Filtrar perguntas repetidas (exato match)
     questions = questions.filter(q => !usedQuestions.includes(q.trim()));
 
-    // Adicionar fallback com perguntas CTA
+    // Definição dos fallback com a pergunta CTA na fase 5
     const fallbackPT = [
       "Você já tentou mudar sua alimentação ou rotina?",
       "Como você acha que isso está afetando seu dia a dia?",
@@ -268,7 +259,7 @@ Return only the 3 numbered questions.
       fallbackEN.push("Want to know which supplement can help you with this?");
     }
 
-    // Se menos de 3 perguntas após filtro, adiciona fallback
+    // Se menos de 3 perguntas após filtro, adiciona fallback interno
     if (questions.length < 3) {
       const fallback = idioma === "pt" ? fallbackPT : fallbackEN;
       for (const fq of fallback) {
@@ -279,14 +270,12 @@ Return only the 3 numbered questions.
       }
     }
 
-    // Atualizar perguntas usadas na sessão
+    // Atualiza as perguntas usadas na sessão evitando duplicatas
     questions.forEach(q => {
       if (!sessionMemory.usedQuestions.includes(q)) {
         sessionMemory.usedQuestions.push(q);
       }
     });
-
-    console.log("Perguntas finais:", questions);  // Log das perguntas finais
 
     return questions.slice(0, 3);
 
