@@ -374,29 +374,29 @@ if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
     const textoFase1 = sintomas.base[idioma];
 
     if (textoFase1) {
-      gptResponse = textoFase1; // Atualiza gptResponse com o texto da Fase 1
+  gptResponse = textoFase1; // Atualiza gptResponse com o texto da Fase 1
 
-      // Solicitar ao GPT 3 soluções rápidas e práticas baseadas no sintoma
-      const solutions = await generateSolutionsWithGPT(sessionMemory.sintomaAtual, idioma);
+  // Solicitar ao GPT 3 soluções rápidas e práticas baseadas no sintoma
+  const solutions = await generateSolutionsWithGPT(sessionMemory.sintomaAtual, idioma);
 
-      // Adicionar soluções rápidas ao conteúdo
-      gptResponse += `<p>Soluções rápidas e práticas:</p><ul>`;
-      solutions.forEach(solution => {
-        gptResponse += `<li>${solution}</li>`;
-      });
-      gptResponse += `</ul>`;
+  // Adicionar soluções rápidas ao conteúdo
+  gptResponse += `<p>Soluções rápidas e práticas:</p><ul>`;
+  solutions.forEach(solution => {
+    gptResponse += `<li>${solution}</li>`;
+  });
+  gptResponse += `</ul>`;
 
-      // Atualiza a fase do funil para a Fase 2
-      sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
+  // Atualiza a fase do funil para a Fase 2
+  sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
 
-      sessionMemory.genericEntry = true;
-      sessionMemory.genericMessages = sessionMemory.genericMessages || [];
-      sessionMemory.genericMessages.push(userInput);
+  sessionMemory.genericEntry = true;
+  sessionMemory.genericMessages = sessionMemory.genericMessages || [];
+  sessionMemory.genericMessages.push(userInput);
 
-      return res.status(200).json({
-        choices: [{ message: { content: gptResponse, followupQuestions: [] } }]
-      });
-    }
+  return res.status(200).json({
+    choices: [{ message: { content: gptResponse, followupQuestions: [] } }]
+  });
+}
   }
 }
 
