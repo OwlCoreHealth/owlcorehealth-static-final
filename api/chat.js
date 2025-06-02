@@ -368,40 +368,37 @@ if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
 
   // Aqui começa a lógica da Fase 1: Explicação e Soluções Rápidas
   if (sessionMemory.funnelPhase === 1) {
-    const sintomas = fallbackTextsBySymptom[sessionMemory.sintomaAtual?.toLowerCase()];
+  const sintomas = fallbackTextsBySymptom[sessionMemory.sintomaAtual?.toLowerCase()];
 
-    if (sintomas && sintomas.base) {
-      // Pega o texto da Fase 1 (explicação simples sobre o sintoma)
-      const textoFase1 = sintomas.base[idioma];  // Pega o texto correspondente ao idioma
+  if (sintomas && sintomas.base) {
+    const textoFase1 = sintomas.base[idioma];
 
-      if (textoFase1) {
-        let response = textoFase1;  // Conteúdo da explicação do sintoma
+    if (textoFase1) {
+      gptResponse = textoFase1; // Atualiza gptResponse com o texto da Fase 1
 
-        // Solicitar ao GPT 3 soluções rápidas e práticas baseadas no sintoma
-        const solutions = await generateSolutionsWithGPT(sessionMemory.sintomaAtual, idioma);
+      // Solicitar ao GPT 3 soluções rápidas e práticas baseadas no sintoma
+      const solutions = await generateSolutionsWithGPT(sessionMemory.sintomaAtual, idioma);
 
-        // Adicionar soluções rápidas ao conteúdo
-        response += `<p>Soluções rápidas e práticas:</p><ul>`;
-        solutions.forEach(solution => {
-          response += `<li>${solution}</li>`;
-        });
-        response += `</ul>`;
+      // Adicionar soluções rápidas ao conteúdo
+      gptResponse += `<p>Soluções rápidas e práticas:</p><ul>`;
+      solutions.forEach(solution => {
+        gptResponse += `<li>${solution}</li>`;
+      });
+      gptResponse += `</ul>`;
 
-        // Atualiza a fase do funil para a Fase 2
-        sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
+      // Atualiza a fase do funil para a Fase 2
+      sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
 
-        // Registra entrada genérica
-        sessionMemory.genericEntry = true;
-        sessionMemory.genericMessages = sessionMemory.genericMessages || [];
-        sessionMemory.genericMessages.push(userInput);
+      sessionMemory.genericEntry = true;
+      sessionMemory.genericMessages = sessionMemory.genericMessages || [];
+      sessionMemory.genericMessages.push(userInput);
 
-        // Retorna a resposta gerada para o usuário
-        return res.status(200).json({
-          choices: [{ message: { content: response, followupQuestions: [] } }]
-        });
-      }
+      return res.status(200).json({
+        choices: [{ message: { content: gptResponse, followupQuestions: [] } }]
+      });
     }
   }
+}
 
   // Continuação do fluxo para as outras fases...
 }
