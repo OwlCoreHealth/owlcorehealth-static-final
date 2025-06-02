@@ -199,20 +199,20 @@ async function generateFollowUpQuestions(context, idioma) {
   const phase = context.funnelPhase || 1;
 
   const promptPT = `
-Você é um assistente de saúde inteligente e provocador. Com base no sintoma "${symptom}" e na fase do funil ${phase}, gere 3 perguntas curtas, provocativas e instigantes que levem o usuário para a próxima etapa. 
-Evite repetir estas perguntas já feitas: ${usedQuestions.join("; ")}.
-As perguntas devem ser distintas, relacionadas ao sintoma e fase, e ter gancho forte de curiosidade, dor, emergência ou solução.
-
-Retorne apenas as 3 perguntas numeradas.
-`;
+    Você é um assistente de saúde inteligente e provocador. Com base no sintoma "${symptom}" e na fase do funil ${phase}, gere 3 perguntas curtas, provocativas e instigantes que levem o usuário para a próxima etapa. 
+    Evite repetir estas perguntas já feitas: ${usedQuestions.join("; ")}.
+    As perguntas devem ser distintas, relacionadas ao sintoma e fase, e ter gancho forte de curiosidade, dor, emergência ou solução.
+  
+    Retorne apenas as 3 perguntas numeradas.
+  `;
 
   const promptEN = `
-You are a smart and provocative health assistant. Based on the symptom "${symptom}" and funnel phase ${phase}, generate 3 short, provocative, and engaging questions to guide the user to the next step.
-Avoid repeating these previously asked questions: ${usedQuestions.join("; ")}.
-Questions must be distinct, related to the symptom and phase, with strong hooks around curiosity, pain, urgency or solution.
-
-Return only the 3 numbered questions.
-`;
+    You are a smart and provocative health assistant. Based on the symptom "${symptom}" and funnel phase ${phase}, generate 3 short, provocative, and engaging questions to guide the user to the next step.
+    Avoid repeating these previously asked questions: ${usedQuestions.join("; ")}.
+    Questions must be distinct, related to the symptom and phase, with strong hooks around curiosity, pain, urgency or solution.
+  
+    Return only the 3 numbered questions.
+  `;
 
   const prompt = idioma === "pt" ? promptPT : promptEN;
 
@@ -234,36 +234,20 @@ Return only the 3 numbered questions.
       })
     });
 
-    // Verificar status da resposta
-    if (!response.ok) {
-      throw new Error(`Erro na resposta da API: ${response.statusText}`);
-    }
-
-    // Primeiro, leia a resposta como texto
-    const responseText = await response.text();
-    console.log("Resposta da API:", responseText);
-
-    // Tente converter o texto para JSON
-    let data;
-    try {
-      data = JSON.parse(responseText);
-    } catch (err) {
-      console.error("Erro ao converter resposta para JSON:", err);
-      return [];
-    }
-
+    const data = await response.json();
     let questionsRaw = data.choices?.[0]?.message?.content || "";
     let questions = questionsRaw.split(/\d+\.\s+/).filter(Boolean).slice(0, 3);
 
     // Filtrar perguntas repetidas (exato match)
-    questions = questions.filter(q => !usedQuestions.includes(q.trim()));
+    questions = questions.filter(q => !usedQuestions.includes(q));
 
-    // Definição dos fallback com a pergunta CTA na fase 5
+    // Adicionar fallback interno, se necessário
     const fallbackPT = [
       "Você já tentou mudar sua alimentação ou rotina?",
       "Como você acha que isso está afetando seu dia a dia?",
       "Está disposto(a) a descobrir uma solução mais eficaz agora?"
     ];
+
     const fallbackEN = [
       "Have you tried adjusting your diet or lifestyle?",
       "How do you think this is affecting your daily life?",
@@ -276,7 +260,6 @@ Return only the 3 numbered questions.
       fallbackEN.push("Want to know which supplement can help you with this?");
     }
 
-    // Se menos de 3 perguntas após filtro, adiciona fallback interno
     if (questions.length < 3) {
       const fallback = idioma === "pt" ? fallbackPT : fallbackEN;
       for (const fq of fallback) {
@@ -287,7 +270,7 @@ Return only the 3 numbered questions.
       }
     }
 
-    // Atualiza as perguntas usadas na sessão evitando duplicatas
+    // Atualiza as perguntas usadas na sessão
     questions.forEach(q => {
       if (!sessionMemory.usedQuestions.includes(q)) {
         sessionMemory.usedQuestions.push(q);
@@ -297,8 +280,7 @@ Return only the 3 numbered questions.
     return questions.slice(0, 3);
 
   } catch (err) {
-    console.warn("❗️Erro ao gerar perguntas com GPT:", err);
-    // fallback direto sem usar GPT
+    console.error("❗️Erro ao gerar perguntas com GPT:", err);
     return idioma === "pt"
       ? [
           "Você já tentou mudar sua alimentação ou rotina?",
