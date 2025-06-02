@@ -367,6 +367,33 @@ export default async function handler(req, res) {
   const isFollowUp = Boolean(selectedQuestion);
   const intent = await classifyUserIntent(userInput, idioma || "en");
   let gptResponse; // ✅ Declarado uma vez só aqui
+// Se ainda não temos o nome do usuário, iniciamos a conversa pedindo o nome
+if (!sessionMemory.nome) {
+  const userName = userInput.trim();
+
+  // Se for a primeira interação e o input for curto (suposição de nome), capturamos
+  if (userName.length > 0 && userName.length < 30) {
+    sessionMemory.nome = userName;
+    return res.status(200).json({
+      choices: [{
+        message: {
+          content: `Nice to meet you, ${userName}! How can I help you today?`,
+          followupQuestions: []
+        }
+      }]
+    });
+  } else {
+    // Se não capturamos nome, pedimos novamente educadamente
+    return res.status(200).json({
+      choices: [{
+        message: {
+          content: "Hi! I’m Dr. Owl. May I know your name?",
+          followupQuestions: []
+        }
+      }]
+    });
+  }
+}
 
   if (intent !== "sintoma") {
     gptResponse = await generateFreeTextWithGPT(
@@ -461,8 +488,14 @@ let context = await getSymptomContext(
       { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
       idioma
     );
+// Construir saudação personalizada se nome disponível
+const saudacao = sessionMemory.nome
+  ? idioma === "pt"
+    ? `Olá, ${sessionMemory.nome}! `
+    : `Hello, ${sessionMemory.nome}! `
+  : "";
 
-    const content = formatHybridResponse(context, freeTextResponse, followupQuestions, idioma);
+    const content = saudacao + (await formatHybridResponse(context, freeTextResponse, followupQuestions, idioma));
 
     return res.status(200).json({
       choices: [{ message: { content, followupQuestions: followupQuestions || [] } }]
