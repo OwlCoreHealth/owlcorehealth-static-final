@@ -271,27 +271,11 @@ if (questions.length < 3) {
   }
 }
 
-    // Atualiza as perguntas usadas na sessão
-    sessionMemory.usedQuestions.push(...questions);
-
-    return questions.slice(0, 3);
-
-  } catch (err) {
-    console.warn("❗️Erro ao gerar perguntas com GPT:", err);
-    // fallback direto sem usar GPT
-    return idioma === "pt"
-      ? [
-          "Você já tentou mudar sua alimentação ou rotina?",
-          "Como você acha que isso está afetando seu dia a dia?",
-          "Está disposto(a) a descobrir uma solução mais eficaz agora?"
-        ]
-      : [
-          "Have you tried adjusting your diet or lifestyle?",
-          "How do you think this is affecting your daily life?",
-          "Are you ready to explore a better solution now?"
-        ];
+    questions.forEach(q => {
+  if (!sessionMemory.usedQuestions.includes(q)) {
+    sessionMemory.usedQuestions.push(q);
   }
-}
+});
 
     return questions.slice(0, 3);
 
