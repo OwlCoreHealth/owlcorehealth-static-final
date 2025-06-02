@@ -135,18 +135,48 @@
     }
 
     .clickable-question {
-      cursor: pointer;
-      color: #2f2c63;
-      margin-top: 8px;
-      padding: 8px;
-      border-radius: 8px;
-      background-color: #e2dffd;
-      user-select: none;
-    }
+  cursor: pointer;
+  color: #2f2c63;
+  margin-top: 12px;      /* aumentou de 8px para 12px */
+  margin-bottom: 12px;   /* adiciona espaçamento inferior */
+  padding: 10px 12px;    /* aumentou padding para área clicável confortável */
+  border-radius: 8px;
+  background-color: #d6d4f8; /* fundo suave para destaque */
+  user-select: none;
+  font-size: 15px;       /* aumenta fonte para melhor legibilidade */
+  line-height: 1.4;      /* espaçamento entre linhas confortável */
+}
 
-    .clickable-question:hover {
-      background-color: #bdb2f0;
-    }
+.clickable-question:hover {
+  background-color: #b0adef; /* cor hover mais forte */
+}
+/* Formulário email: container compacto e alinhado */
+#email-prompt > div {
+  margin-top: 6px;
+  margin-bottom: 0;
+}
+
+#email-prompt {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+/* Input email e botão */
+#email-prompt input[type="email"] {
+  padding: 8px 10px;
+  font-size: 14px;
+  flex-grow: 1;
+  max-width: 300px;
+  margin: 0;
+}
+
+#email-prompt button {
+  margin-left: 8px;
+  padding: 10px 16px;
+  font-size: 14px;
+  cursor: pointer;
+}
 
     .bot-message {
   margin-top: 6px;        /* de 12px para 6px */
