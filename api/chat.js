@@ -369,32 +369,53 @@ export default async function handler(req, res) {
   const intent = await classifyUserIntent(userInput, idioma || "en");
   let gptResponse;
 
-  if (intent !== "sintoma") {
-    gptResponse = await generateFreeTextWithGPT(
-      idioma === "pt"
-         ? `Você é o Dr. Owl, um assistente de saúde inteligente e focado em fornecer explicações científicas e objetivas. Um usuário fez uma pergunta fora do padrão de sintomas, que envolve curiosidade ou dúvida. Responda de forma clara, baseada em evidências científicas, sem humor ou metáforas. Pergunta do usuário: "${userInput}"`
-        : `You are Dr. Owl, a health assistant focused on providing scientific and objective explanations. A user has asked a question outside the symptom context, involving curiosity or doubt. Respond clearly, based on scientific evidence, without humor or metaphors. User's message: "${userInput}"`
-    );
+  // Fase 1: Explicação científica e soluções rápidas
+  if (sessionMemory.funnelPhase === 1) {
+    gptResponse = await generateAnswerForSymptom(sessionMemory.sintomaAtual, idioma);
+    const solutions = ["Solução 1", "Solução 2", "Solução 3"]; // Exemplos de soluções rápidas
+    gptResponse += "\n\n" + solutions.join("\n");
 
-   const followupQuestions = await generateFollowUpQuestions(
-  { sintoma: sessionMemory.sintomaAtual, funnelPhase: 1 },
-  idioma
-);
+  } else if (sessionMemory.funnelPhase === 2) {
+    // Fase 2: Consequências se não tomar cuidados
+    gptResponse = "Ignorar esse sintoma pode levar a complicações como [explicar as consequências]. Estudos mostram que [estatísticas de risco].";
 
-    let content = formatHybridResponse({}, gptResponse, followupQuestions, idioma);
+  } else if (sessionMemory.funnelPhase === 3) {
+    // Fase 3: O que está realmente arriscando (agravamento)
+    gptResponse = "As estatísticas mostram que ignorar este sintoma pode aumentar o risco de [agravamento do problema]. O risco de [consequência] pode ser de até 82%.";
+    
+  } else if (sessionMemory.funnelPhase === 4) {
+    // Fase 4: Nutrientes e plantas naturais
+    gptResponse = "Alimentos sozinhos não são suficientes para combater esse sintoma. A introdução de plantas como [nomes das plantas] pode ser muito eficaz, como mostrado por estudos científicos.";
+    
+  } else if (sessionMemory.funnelPhase === 5) {
+    // Fase 5: Suplemento como solução
+    gptResponse = "Para uma solução completa, o suplemento [nome do suplemento] é altamente eficaz. Estudos mostram que [estatísticas sobre eficácia do suplemento].";
 
-    if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
-      sessionMemory.emailOffered = true;
-    }
+  }
 
-    sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
-    sessionMemory.genericEntry = true;
-    sessionMemory.genericMessages = sessionMemory.genericMessages || [];
-    sessionMemory.genericMessages.push(userInput);
+  // Gerar perguntas de follow-up, baseadas no sintoma e na fase do funil
+  const followupQuestions = await generateFollowUpQuestions(
+    { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase || 1 },
+    idioma
+  );
 
-    return res.status(200).json({
-      choices: [{ message: { content, followupQuestions } }]
-    });
+  // Retornar a resposta com perguntas de follow-up
+  let content = formatHybridResponse({}, gptResponse, followupQuestions, idioma);
+
+  // Lógica do formulário de e-mail
+  if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
+    sessionMemory.emailOffered = true;
+    // Adicionar lógica de renderização de formulário de e-mail, se necessário
+  }
+
+  // Atualizar a fase do funil
+  sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
+
+  // Retornar a resposta com perguntas de follow-up e o conteúdo gerado
+  return res.status(200).json({
+    choices: [{ message: { content, followupQuestions } }]
+  });
+}
 
   } else {
     // A PARTIR DAQUI: fluxo de tratamento do caso com sintoma
