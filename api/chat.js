@@ -396,8 +396,10 @@ export default async function handler(req, res) {
         ? `Você é o Dr. Owl, um assistente de saúde inteligente e focado em fornecer explicações científicas e objetivas. Um usuário fez uma pergunta fora do padrão de sintomas, que envolve curiosidade ou dúvida. Responda de forma clara, baseada em evidências científicas, sem humor ou metáforas. Pergunta do usuário: "${userInput}"`
         : `You are Dr. Owl, a health assistant focused on providing scientific and objective explanations. A user has asked a question outside the symptom context, involving curiosity or doubt. Respond clearly, based on scientific evidence, without humor or metaphors. User's message: "${userInput}"`
     );
-  } else {
-    // Caso seja relacionado a sintoma
+  }
+
+  // Caso seja relacionado a sintoma
+  if (intent === "sintoma") {
     // Aqui você coloca a lógica para lidar com o sintoma detectado
     gptResponse = await generateAnswerForSymptom(sessionMemory.sintomaAtual, idioma);
   }
@@ -420,7 +422,11 @@ export default async function handler(req, res) {
   // Atualizar a fase do funil
   sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
 
-  // Retornar a resposta com perguntas de follow-up e o conteúdo ger
+  // Retornar a resposta com perguntas de follow-up e o conteúdo gerado
+  return res.status(200).json({
+    choices: [{ message: { content, followupQuestions } }]
+  });
+}
 
   } else {
     // A PARTIR DAQUI: fluxo de tratamento do caso com sintoma
