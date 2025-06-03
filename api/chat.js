@@ -225,7 +225,7 @@ Return only the 3 numbered questions.
       "Are you ready to explore a better solution now?"
     ];
 
-    // Se menos de 3 perguntas após filtro, adiciona fallback interno
+   // Se menos de 3 perguntas após filtro, adiciona fallback interno
 if (questions.length < 3) {
   let fallback = [];
   
