@@ -166,18 +166,20 @@ async function generateFollowUpQuestions(context, idioma) {
   const phase = context.funnelPhase || 1;
 
   const promptPT = `
-Você é um assistente de saúde inteligente e provocador. Com base no sintoma "${symptom}" e na fase do funil ${phase}, gere 3 perguntas curtas, provocativas e instigantes que levem o usuário para a próxima etapa. 
-Evite repetir estas perguntas já feitas: ${usedQuestions.join("; ")}.
-As perguntas devem ser distintas, relacionadas ao sintoma e fase, e ter gancho forte de curiosidade, dor, emergência ou solução.
-
+Você é um assistente de saúde inteligente e focado no sintoma "${symptom}". 
+Com base nesse sintoma e na fase do funil ${phase}, gere 3 perguntas curtas, objetivas e focadas no sintoma.
+As perguntas devem ser claras, relacionadas ao sintoma, e com foco em compreensão, tratamento ou prevenção.
+Evite perguntas filosóficas e gerais; a intenção é ajudar o usuário a entender melhor o sintoma e suas possíveis soluções.
+Não repita perguntas já feitas: ${usedQuestions.join("; ")}.
 Retorne apenas as 3 perguntas numeradas.
 `;
 
-  const promptEN = `
-You are a smart and provocative health assistant. Based on the symptom "${symptom}" and funnel phase ${phase}, generate 3 short, provocative, and engaging questions to guide the user to the next step.
-Avoid repeating these previously asked questions: ${usedQuestions.join("; ")}.
-Questions must be distinct, related to the symptom and phase, with strong hooks around curiosity, pain, urgency or solution.
-
+const promptEN = `
+You are a smart and focused health assistant, primarily concentrating on the symptom "${symptom}". 
+Based on this symptom and funnel phase ${phase}, generate 3 short, clear, and focused questions about the symptom.
+The questions should explore understanding, treatment, or prevention of the symptom.
+Avoid philosophical or general questions; the goal is to help the user better understand the symptom and potential solutions.
+Do not repeat the previously asked questions: ${usedQuestions.join("; ")}.
 Return only the 3 numbered questions.
 `;
 
@@ -254,7 +256,6 @@ Return only the 3 numbered questions.
   }
 }
 
-// Função nova: identifica sintoma no input do usuário comparando com lista do fallback
 async function identifySymptom(userInput, symptomsList, idioma) {
   const promptPT = `
 Você é um assistente que identifica o sintoma mais próximo de uma lista dada, a partir do texto do usuário. 
@@ -264,7 +265,7 @@ ${symptomsList.join(", ")}
 Dado o texto do usuário:
 "${userInput}"
 
-Responda apenas com o sintoma da lista que melhor corresponde ao texto do usuário. Use exatamente o texto da lista. Se não reconhecer, responda "unknown".
+Responda apenas com o sintoma da lista que melhor corresponde ao texto do usuário ou com o sintoma mais **semelhante** ou **relacionado**. Se não reconhecer, responda "unknown".
   `;
 
   const promptEN = `
@@ -275,7 +276,7 @@ ${symptomsList.join(", ")}
 Given the user's input:
 "${userInput}"
 
-Answer only with the symptom from the list that best matches the user's text. Use the exact text from the list. If no match, respond "unknown".
+Answer only with the symptom from the list that best matches or is most **similar** or **related** to the user's text. If no match, respond "unknown".
   `;
 
   const prompt = idioma === "pt" ? promptPT : promptEN;
