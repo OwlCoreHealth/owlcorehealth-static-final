@@ -310,25 +310,23 @@ Return only the 3 numbered questions.
 
 async function identifySymptom(userInput, symptomsList, idioma) {
   const promptPT = `
-Você é um assistente que identifica o sintoma mais próximo de uma lista dada, a partir do texto do usuário. 
-A lista de sintomas é:
-${symptomsList.join(", ")}
+    Você é um assistente que identifica o sintoma mais próximo de uma lista dada, a partir do texto do usuário. 
+    A lista de sintomas é: ${symptomsList.join(", ")}
 
-Dado o texto do usuário:
-"${userInput}"
+    Dado o texto do usuário:
+    "${userInput}"
 
-Responda apenas com o sintoma da lista que melhor corresponde ao texto do usuário ou com o sintoma mais **semelhante** ou **relacionado**. Se não reconhecer, responda "unknown".
+    Responda apenas com o sintoma da lista que melhor corresponde ao texto do usuário ou com o sintoma mais **semelhante** ou **relacionado**. Se não reconhecer, responda "unknown".
   `;
 
   const promptEN = `
-You are an assistant that identifies the closest symptom from a given list, based on the user's text.
-The list of symptoms is:
-${symptomsList.join(", ")}
+    You are an assistant that identifies the closest symptom from a given list, based on the user's text.
+    The list of symptoms is: ${symptomsList.join(", ")}
 
-Given the user's input:
-"${userInput}"
+    Given the user's input:
+    "${userInput}"
 
-Answer only with the symptom from the list that best matches or is most **similar** or **related** to the user's text. If no match, respond "unknown".
+    Answer only with the symptom from the list that best matches or is most **similar** or **related** to the user's text. If no match, respond "unknown".
   `;
 
   const prompt = idioma === "pt" ? promptPT : promptEN;
@@ -353,10 +351,23 @@ Answer only with the symptom from the list that best matches or is most **simila
 
     const data = await response.json();
     const match = data.choices?.[0]?.message?.content.trim() || "unknown";
+    sessionMemory.sintomaAtual = match === "unknown" ? userInput.toLowerCase() : match;
+    
+    // Garantir que a categoria e o sintoma sejam consistentes
+    validateTopicConsistency();
+
     return match.toLowerCase();
   } catch (e) {
     console.error("Erro ao identificar sintoma:", e);
     return "unknown";
+  }
+}
+
+// Função para validar a consistência do tópico (sintoma e categoria)
+function validateTopicConsistency() {
+  if (sessionMemory.funnelPhase < 6 && sessionMemory.sintomaAtual !== sessionMemory.categoriaAtual) {
+    // Reforçar o tema e sintoma detectado, impedindo desvio de tema
+    sessionMemory.categoriaAtual = sessionMemory.sintomaAtual;
   }
 }
 
