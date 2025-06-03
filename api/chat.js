@@ -389,42 +389,42 @@ export default async function handler(req, res) {
   const intent = await classifyUserIntent(userInput, idioma || "en");
   let gptResponse;
 
- if (intent !== "sintoma") {
   // Caso não seja relacionado a sintoma
-  gptResponse = await generateFreeTextWithGPT(
-    idioma === "pt"
-      ? `Você é o Dr. Owl, um assistente de saúde inteligente e focado em fornecer explicações científicas e objetivas. Um usuário fez uma pergunta fora do padrão de sintomas, que envolve curiosidade ou dúvida. Responda de forma clara, baseada em evidências científicas, sem humor ou metáforas. Pergunta do usuário: "${userInput}"`
-      : `You are Dr. Owl, a health assistant focused on providing scientific and objective explanations. A user has asked a question outside the symptom context, involving curiosity or doubt. Respond clearly, based on scientific evidence, without humor or metaphors. User's message: "${userInput}"`
+  if (intent !== "sintoma") {
+    gptResponse = await generateFreeTextWithGPT(
+      idioma === "pt"
+        ? `Você é o Dr. Owl, um assistente de saúde inteligente e focado em fornecer explicações científicas e objetivas. Um usuário fez uma pergunta fora do padrão de sintomas, que envolve curiosidade ou dúvida. Responda de forma clara, baseada em evidências científicas, sem humor ou metáforas. Pergunta do usuário: "${userInput}"`
+        : `You are Dr. Owl, a health assistant focused on providing scientific and objective explanations. A user has asked a question outside the symptom context, involving curiosity or doubt. Respond clearly, based on scientific evidence, without humor or metaphors. User's message: "${userInput}"`
+    );
+  } else {
+    // Caso seja relacionado a sintoma
+    // Aqui você coloca a lógica para lidar com o sintoma detectado
+    gptResponse = await generateAnswerForSymptom(sessionMemory.sintomaAtual, idioma);
+  }
+
+  // Gerar perguntas de follow-up, baseadas na fase do funil e no sintoma
+  const followupQuestions = await generateFollowUpQuestions(
+    { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase || 1 },
+    idioma
   );
-} else {
-  // Caso seja relacionado a sintoma
-  // Aqui você coloca a lógica para lidar com o sintoma detectado
-  // Por exemplo, você pode consultar o conteúdo do Notion, gerar a resposta com base na tabela, fallback ou GPT
 
-  gptResponse = await generateAnswerForSymptom(sessionMemory.sintomaAtual, idioma);
+  // Criar a resposta híbrida com perguntas de follow-up
+  let content = formatHybridResponse({}, gptResponse, followupQuestions, idioma);
 
-  // Você pode continuar com o processamento de follow-up ou outros ajustes necessários
+  // Lógica do formulário de e-mail
+  if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
+    sessionMemory.emailOffered = true;
+    // Adicionar lógica de renderização de formulário de e-mail, se necessário
+  }
+
+  // Atualizar a fase do funil
+  sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
+
+  // Retornar a resposta com perguntas de follow-up e o conteúdo gerado
+  return res.status(200).json({
+    choices: [{ message: { content, followupQuestions } }]
+  });
 }
-
-// Gerar perguntas de follow-up, baseadas na fase do funil e no sintoma
-const followupQuestions = await generateFollowUpQuestions(
-  { sintoma: sessionMemory.sintomaAtual, funnelPhase: 1 },
-  idioma
-);
-    let content = formatHybridResponse({}, gptResponse, followupQuestions, idioma);
-
-    if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
-      sessionMemory.emailOffered = true;
-    }
-
-    sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
-    sessionMemory.genericEntry = true;
-    sessionMemory.genericMessages = sessionMemory.genericMessages || [];
-    sessionMemory.genericMessages.push(userInput);
-
-    return res.status(200).json({
-      choices: [{ message: { content, followupQuestions } }]
-    });
 
   } else {
     // A PARTIR DAQUI: fluxo de tratamento do caso com sintoma
