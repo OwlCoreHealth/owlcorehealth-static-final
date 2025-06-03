@@ -29,34 +29,41 @@ function getFunnelKey(phase) {
     default: return "base";
   }
 }
+
 // Função que gera resposta completa para o sintoma
 const generateAnswerForSymptom = async (symptom, idioma) => {
   const prompt = idioma === "pt" ? promptPT : promptEN;
   
   // Chamar a API do GPT para gerar a resposta completa
   const response = await fetch("https://api.openai.com/v1/chat/completions", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${OPENAI_API_KEY}`
-  },
-  body: JSON.stringify({
-    model: GPT_MODEL,
-    messages: [
-      { role: "system", content: "Você é um assistente de saúde fornecendo explicações científicas e práticas sobre sintomas." },
-      { role: "user", content: prompt }
-    ],
-    temperature: 0.7,
-    max_tokens: 500 // Aumente o número de tokens aqui
-  })
-});
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${OPENAI_API_KEY}`
+    },
+    body: JSON.stringify({
+      model: GPT_MODEL,
+      messages: [
+        { role: "system", content: "Você é um assistente de saúde fornecendo explicações científicas e práticas sobre sintomas." },
+        { role: "user", content: prompt }
+      ],
+      temperature: 0.7,
+      max_tokens: 500 // Aumente o número de tokens aqui
+    })
+  });
 
   const data = await response.json();
-console.log("Resposta do servidor:", data); // Adicione este log para inspecionar a resposta completa
+  console.log("Resposta do servidor:", data); // Adicione este log para inspecionar a resposta completa
 
-  
-  // Retorna o conteúdo gerado pela API
-  return data.choices?.[0]?.message?.content || "Desculpe, não consegui gerar uma resposta no momento.";
+  // Verifica se a resposta contém uma explicação científica válida
+  const answer = data.choices?.[0]?.message?.content || "Desculpe, não consegui gerar uma resposta no momento.";
+
+  // Se a resposta não for suficientemente científica, adiciona uma explicação genérica científica
+  if (answer.length < 100 || !answer.match(/causa|tratamento|sintoma|prevenção/i)) {
+    return "Desculpe, não consegui encontrar uma explicação específica para seu sintoma. No entanto, posso te dizer que as dores abdominais, por exemplo, podem ser causadas por condições como gastrite ou refluxo gastroesofágico, que exigem acompanhamento médico adequado.";
+  }
+
+  return answer;
 };
 
 function getBotIconHTML() {
@@ -81,115 +88,11 @@ function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
     // ✅ Mostra o formulário de e-mail na primeira vez que houver follow-ups
     if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
       sessionMemory.emailOffered = true;
-     // response += renderEmailPrompt(idioma);
+      // response += renderEmailPrompt(idioma);  // A lógica de exibição do e-mail está aqui.
     }
   }
 
   return response;
-}
-
-async function classifyUserIntent(userInput, idioma) {
-  const prompt = idioma === "pt"
-    ? `Você é um classificador de intenção. Receberá mensagens de usuários e deve responder com uma das seguintes intenções:
-
-- sintoma
-- saudação
-- curiosidade
-- pergunta funcional
-- dúvida vaga
-- outro
-
-Mensagem do usuário: "${userInput}"
-Resposta (apenas a intenção):`
-    : `You are an intent classifier. You’ll receive a user message and must reply with one of the following labels:
-
-- symptom
-- greeting
-- curiosity
-- functional_question
-- vague_doubt
-- other
-
-User message: "${userInput}"
-Answer (intent only):`;
-
-  try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${OPENAI_API_KEY}`
-  },
-  body: JSON.stringify({
-    model: GPT_MODEL,
-    messages: [
-      { role: "system", content: "Você é um assistente de saúde fornecendo explicações científicas e práticas sobre sintomas." },
-      { role: "user", content: prompt }
-    ],
-    temperature: 0.7,
-    max_tokens: 300
-  })
-});
-
-    const data = await response.json();
-    const intent = data.choices?.[0]?.message?.content?.trim().toLowerCase() || "outro";
-    return intent;
-  } catch (e) {
-    console.error("Erro ao classificar intenção:", e);
-    return "outro";
-  }
-}
-
-async function rewriteWithGPT(baseText, sintoma, idioma, funnelPhase, categoria) {
-  const prompt = idioma === "pt"
-    ? `Use o seguinte texto como base, mantendo o conteúdo e estrutura, mas reescrevendo com 30% de liberdade criativa, usando linguagem mais fluida, provocadora e humana. Mantenha o foco exclusivamente no sintoma: ${sintoma} e na categoria: ${categoria}. Não aborde outros temas. Não mude o tema e mantenha o foco em: ${sintoma}\n\nTexto-base:\n${baseText}`
-    : `Use the following text as a base. Keep the core message and structure, but rewrite with 30% creative freedom in a more natural, engaging, and human tone. Keep the focus exclusively on the symptom: ${sintoma} and category: ${categoria}. Do not address other topics. Do not change the topic and keep the focus on: ${sintoma}\n\nBase text:\n${baseText}`;
-
-  try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${OPENAI_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: GPT_MODEL,
-        messages: [{ role: "system", content: prompt }],
-        temperature: 0.65,
-        max_tokens: 600
-      })
-    });
-
-    const data = await response.json();
-    return data.choices?.[0]?.message?.content?.trim() || baseText;
-  } catch (e) {
-    console.error("Erro ao reescrever com GPT:", e);
-    return baseText;
-  }
-}
-
-async function generateFreeTextWithGPT(prompt) {
-  try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${OPENAI_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: GPT_MODEL,
-        messages: [{ role: "system", content: prompt }],
-        temperature: 0.7,
-        max_tokens: 700
-      })
-    });
-
-    const data = await response.json();
-    return data.choices?.[0]?.message?.content?.trim() || "";
-  } catch (e) {
-    console.error("Erro ao gerar texto livre com GPT:", e);
-    return "";
-  }
 }
 
 // Função para gerar as perguntas de follow-up com base no sintoma
@@ -245,50 +148,6 @@ Return only the 3 numbered questions.
 
     // Atualiza as perguntas usadas na sessão
     sessionMemory.usedQuestions.push(...questions);
-
-    // Se menos de 3 perguntas após filtro, adiciona fallback interno
-    let fallback = [];
-    if (sessionMemory.sintomaAtual === "gengivas inflamadas") {
-      fallback = idioma === "pt" ? [
-        "Você já visitou um dentista para tratar da inflamação nas gengivas?",
-        "Está sentindo algum desconforto além do sangramento das gengivas?",
-        "Sabia que a inflamação nas gengivas pode ser causada por uma higiene bucal inadequada?"
-      ] : [
-        "Have you visited a dentist to treat the gum inflammation?",
-        "Are you feeling any discomfort besides the gum bleeding?",
-        "Did you know that gum inflammation can be caused by poor oral hygiene?"
-      ];
-    } else if (sessionMemory.sintomaAtual === "acne") {
-      fallback = idioma === "pt" ? [
-        "Você já tentou algum tratamento para a acne?",
-        "Você sabe quais alimentos podem estar ajudando a piorar a acne?",
-        "Está lidando com acne principalmente em alguma área do rosto?"
-      ] : [
-        "Have you tried any treatments for acne?",
-        "Do you know which foods might be contributing to your acne?",
-        "Are you dealing with acne mainly in any specific area of your face?"
-      ];
-    } else {
-      // Fallback genérico se o sintoma não for específico
-      fallback = idioma === "pt" ? [
-        "Você já procurou tratamento para o seu sintoma?",
-        "Há algo específico que você gostaria de aprender sobre esse sintoma?",
-        "Você tem tentado alguma solução por conta própria?"
-      ] : [
-        "Have you sought treatment for this symptom?",
-        "Is there anything specific you'd like to learn about this symptom?",
-        "Have you tried any solutions on your own?"
-      ];
-    }
-
-    // Adiciona perguntas de fallback que ainda não foram usadas
-    for (const fq of fallback) {
-      if (questions.length >= 3) break;  // Limita a 3 perguntas
-      if (!sessionMemory.usedQuestions.includes(fq)) {
-        questions.push(fq);  // Adiciona a pergunta ao conjunto de perguntas
-        sessionMemory.usedQuestions.push(fq);  // Marca como já usada
-      }
-    }
 
     return questions.slice(0, 3);
 
@@ -376,10 +235,10 @@ export default async function handler(req, res) {
         : `You are Dr. Owl, a clever and insightful health assistant. A user just asked something that shows curiosity or vague doubt. Respond with charm and subtle sarcasm, then invite them to share any body signal or discomfort they're feeling. User's message: "${userInput}"`
     );
 
-   const followupQuestions = await generateFollowUpQuestions(
-  { sintoma: sessionMemory.sintomaAtual, funnelPhase: 1 },
-  idioma
-);
+    const followupQuestions = await generateFollowUpQuestions(
+      { sintoma: sessionMemory.sintomaAtual, funnelPhase: 1 },
+      idioma
+    );
 
     let content = formatHybridResponse({}, gptResponse, followupQuestions, idioma);
 
@@ -395,7 +254,6 @@ export default async function handler(req, res) {
     return res.status(200).json({
       choices: [{ message: { content, followupQuestions } }]
     });
-
   } else {
     // A PARTIR DAQUI: fluxo de tratamento do caso com sintoma
     const isPortuguese = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
@@ -478,6 +336,5 @@ export default async function handler(req, res) {
     return res.status(200).json({
       choices: [{ message: { content, followupQuestions: followupQuestions || [] } }]
     });
-
   }
 }
