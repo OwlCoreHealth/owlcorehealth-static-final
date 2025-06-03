@@ -376,10 +376,9 @@ export default async function handler(req, res) {
     );
 
     const followupQuestions = await generateFollowUpQuestions(
-  { sintoma: sessionMemory.sintomaAtual, funnelPhase: 1 },
-  idioma
-);
-
+      { sintoma: "entrada genérica", funnelPhase: 1 },
+      idioma
+    );
 
     let content = formatHybridResponse({}, gptResponse, followupQuestions, idioma);
 
@@ -408,7 +407,6 @@ export default async function handler(req, res) {
     // Identifica o sintoma mais próximo do input usando GPT
     const identifiedSymptom = await identifySymptom(userInput, allSymptoms, idioma);
 
-    // Atualiza sintomaAtual para a busca, ou usa o texto do usuário se não identificar
     sessionMemory.sintomaAtual = identifiedSymptom === "unknown" ? userInput.toLowerCase() : identifiedSymptom;
     sessionMemory.nome = "";
     sessionMemory.respostasUsuario.push(userInput);
@@ -429,64 +427,59 @@ export default async function handler(req, res) {
     // Gerar a explicação completa do sintoma
     const answer = await generateAnswerForSymptom(sessionMemory.sintomaAtual, idioma);
 
+    // Textos oficiais do Notion
+    const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
+    let funnelTexts = context.funnelTexts?.[funnelKey] || [];
+
+    // Tenta fallback pelo sintoma
+    if (!funnelTexts.length) {
+      const fallbackTexts = fallbackTextsBySymptom[sessionMemory.sintomaAtual?.toLowerCase().trim()] || {};
+      funnelTexts = fallbackTexts[funnelKey] || [];
+    }
+
+    // (Opcional) fallback genérico
+    if (!funnelTexts.length) {
+      funnelTexts = [
+        idioma === "pt"
+          ? "Desculpe, ainda não temos conteúdo para esse sintoma e etapa. Tente outro sintoma ou reformule sua pergunta."
+          : "Sorry, we don’t have content for this symptom and phase yet. Please try another symptom or rephrase your query."
+      ];
+    }
+
+    const baseText = funnelTexts[Math.floor(Math.random() * funnelTexts.length)];
+
+    const gptResponse = baseText
+      ? await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, idioma, sessionMemory.funnelPhase, sessionMemory.categoriaAtual)
+      : await rewriteWithGPT(
+          `Explain clearly about the symptom ${sessionMemory.sintomaAtual} in phase ${sessionMemory.funnelPhase}, focusing on phase key ${funnelKey}`,
+          sessionMemory.sintomaAtual,
+          idioma,
+          sessionMemory.funnelPhase,
+          sessionMemory.categoriaAtual
+        );
+
+    const followupQuestions = await generateFollowUpQuestions(
+      { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
+      idioma
+    );
+
+    // Atualiza a fase do funil com segurança
+    sessionMemory.funnelPhase = Math.min((context.funnelPhase || sessionMemory.funnelPhase || 1) + 1, 6);
+
+    // Debug logs
+    console.log("🧪 Sintoma detectado:", context.sintoma);
+    console.log("🧪 Categoria atual:", sessionMemory.categoriaAtual);
+    console.log("🧪 Fase atual:", sessionMemory.funnelPhase);
+    console.log("🧪 Texto da fase:", funnelKey, funnelTexts);
+
+    content = formatHybridResponse(context, gptResponse, followupQuestions, idioma);
+
     return res.status(200).json({
-      choices: [{
-        message: { content: answer }
-      }]
+      choices: [{ message: { content, followupQuestions: followupQuestions || [] } }]
     });
+
   }
 }
-
-  // Textos oficiais do Notion
-  const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
-  let funnelTexts = context.funnelTexts?.[funnelKey] || [];
-
-  // Tenta fallback pelo sintoma
-  if (!funnelTexts.length) {
-    const fallbackTexts = fallbackTextsBySymptom[sessionMemory.sintomaAtual?.toLowerCase().trim()] || {};
-    funnelTexts = fallbackTexts[funnelKey] || [];
-  }
-
-  // (Opcional) fallback genérico
-  if (!funnelTexts.length) {
-    funnelTexts = [
-      idioma === "pt"
-        ? "Desculpe, ainda não temos conteúdo para esse sintoma e etapa. Tente outro sintoma ou reformule sua pergunta."
-        : "Sorry, we don’t have content for this symptom and phase yet. Please try another symptom or rephrase your query."
-    ];
-  }
-
-  const baseText = funnelTexts[Math.floor(Math.random() * funnelTexts.length)];
-
-  const gptResponse = baseText
-    ? await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, idioma, sessionMemory.funnelPhase, sessionMemory.categoriaAtual)
-    : await rewriteWithGPT(
-        `Explain clearly about the symptom ${sessionMemory.sintomaAtual} in phase ${sessionMemory.funnelPhase}, focusing on phase key ${funnelKey}`,
-        sessionMemory.sintomaAtual,
-        idioma,
-        sessionMemory.funnelPhase,
-        sessionMemory.categoriaAtual
-      );
-
-  const followupQuestions = await generateFollowUpQuestions(
-    { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
-    idioma
-  );
-
-  // Atualiza a fase do funil com segurança
-  sessionMemory.funnelPhase = Math.min((context.funnelPhase || sessionMemory.funnelPhase || 1) + 1, 6);
-
-   // Debug logs
-  console.log("🧪 Sintoma detectado:", context.sintoma);
-  console.log("🧪 Categoria atual:", sessionMemory.categoriaAtual);
-  console.log("🧪 Fase atual:", sessionMemory.funnelPhase);
-  console.log("🧪 Texto da fase:", funnelKey, funnelTexts);
-
-  const content = formatHybridResponse(context, gptResponse, followupQuestions, idioma);
-
-  return res.status(200).json({
-    choices: [{ message: { content, followupQuestions: followupQuestions || [] } }]
-  });
 
 } // 🔚 Fim do bloco else (intent === "sintoma")
 
