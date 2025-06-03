@@ -70,15 +70,13 @@ const generateAnswerForSymptom = async (symptom, idioma) => {
   const data = await response.json();
   const answer = data.choices?.[0]?.message?.content || "Desculpe, não consegui gerar uma resposta no momento.";
 
-  // 4. Se a resposta do GPT não for científica, fornece uma explicação genérica
+  // 4. Se a resposta do GPT não for científica ou suficiente, fornece explicação genérica
   if (answer.length < 100 || !answer.match(/causa|tratamento|sintoma|prevenção/i)) {
     return "Desculpe, não consegui encontrar uma explicação específica para seu sintoma. No entanto, posso te dizer que as dores abdominais, por exemplo, podem ser causadas por condições como gastrite ou refluxo gastroesofágico, que exigem acompanhamento médico adequado.";
   }
 
   return answer;
 };
-
-// Substitua a função `formatHybridResponse` pela versão ajustada abaixo:
 
 function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
   const phaseTitle = idioma === "pt" ? "Vamos explorar mais:" : "Let's explore further:";
@@ -105,6 +103,7 @@ function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
   return response;
 }
 
+// Função de classificação de intenção (permanecendo sem alterações significativas)
 async function classifyUserIntent(userInput, idioma) {
   const prompt = idioma === "pt"
     ? `Você é um classificador de intenção. Receberá mensagens de usuários e deve responder com uma das seguintes intenções:
@@ -132,21 +131,21 @@ Answer (intent only):`;
 
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${OPENAI_API_KEY}`
-  },
-  body: JSON.stringify({
-    model: GPT_MODEL,
-    messages: [
-      { role: "system", content: "Você é um assistente de saúde fornecendo explicações científicas e práticas sobre sintomas." },
-      { role: "user", content: prompt }
-    ],
-    temperature: 0.7,
-    max_tokens: 300
-  })
-});
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: GPT_MODEL,
+        messages: [
+          { role: "system", content: "Você é um assistente de saúde fornecendo explicações científicas e práticas sobre sintomas." },
+          { role: "user", content: prompt }
+        ],
+        temperature: 0.7,
+        max_tokens: 300
+      })
+    });
 
     const data = await response.json();
     const intent = data.choices?.[0]?.message?.content?.trim().toLowerCase() || "outro";
