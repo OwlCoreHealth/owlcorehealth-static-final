@@ -163,18 +163,21 @@ async function rewriteWithGPT(baseText, sintoma, idioma, funnelPhase, categoria)
 
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${OPENAI_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: GPT_MODEL,
-        messages: [{ role: "system", content: prompt }],
-        temperature: 0.65,
-        max_tokens: 600
-      })
-    });
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${OPENAI_API_KEY}`
+  },
+  body: JSON.stringify({
+    model: GPT_MODEL,
+    messages: [
+      { role: "system", content: "Você é um assistente de saúde fornecendo explicações científicas e práticas sobre sintomas, com um foco objetivo e informativo. Seu objetivo é oferecer soluções baseadas em evidências científicas, sem utilizar humor ou metáforas." },
+      { role: "user", content: prompt }
+    ],
+    temperature: 0.7,
+    max_tokens: 500
+  })
+});
 
     const data = await response.json();
     return data.choices?.[0]?.message?.content?.trim() || baseText;
