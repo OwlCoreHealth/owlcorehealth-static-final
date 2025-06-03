@@ -35,23 +35,25 @@ const generateAnswerForSymptom = async (symptom, idioma) => {
   
   // Chamar a API do GPT para gerar a resposta completa
   const response = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${OPENAI_API_KEY}`
-    },
-    body: JSON.stringify({
-      model: GPT_MODEL,
-      messages: [
-        { role: "system", content: "Você é um assistente de saúde fornecendo explicações científicas e práticas sobre sintomas." },
-        { role: "user", content: prompt }
-      ],
-      temperature: 0.7,
-      max_tokens: 300
-    })
-  });
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${OPENAI_API_KEY}`
+  },
+  body: JSON.stringify({
+    model: GPT_MODEL,
+    messages: [
+      { role: "system", content: "Você é um assistente de saúde fornecendo explicações científicas e práticas sobre sintomas." },
+      { role: "user", content: prompt }
+    ],
+    temperature: 0.7,
+    max_tokens: 500 // Aumente o número de tokens aqui
+  })
+});
 
   const data = await response.json();
+console.log("Resposta do servidor:", data); // Adicione este log para inspecionar a resposta completa
+
   
   // Retorna o conteúdo gerado pela API
   return data.choices?.[0]?.message?.content || "Desculpe, não consegui gerar uma resposta no momento.";
@@ -113,18 +115,21 @@ Answer (intent only):`;
 
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${OPENAI_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: GPT_MODEL,
-        messages: [{ role: "system", content: prompt }],
-        temperature: 0,
-        max_tokens: 10
-      })
-    });
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${OPENAI_API_KEY}`
+  },
+  body: JSON.stringify({
+    model: GPT_MODEL,
+    messages: [
+      { role: "system", content: "Você é um assistente de saúde fornecendo explicações científicas e práticas sobre sintomas." },
+      { role: "user", content: prompt }
+    ],
+    temperature: 0.7,
+    max_tokens: 300
+  })
+});
 
     const data = await response.json();
     const intent = data.choices?.[0]?.message?.content?.trim().toLowerCase() || "outro";
@@ -213,23 +218,6 @@ Return only the 3 numbered questions.
   const prompt = idioma === "pt" ? promptPT : promptEN;
 
   try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${OPENAI_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: GPT_MODEL,
-        messages: [
-          { role: "system", content: "You generate only 3 relevant and persuasive questions. No extra explanation." },
-          { role: "user", content: prompt }
-        ],
-        temperature: 0.75,
-        max_tokens: 300
-      })
-    });
-
     const data = await response.json();
     let questionsRaw = data.choices?.[0]?.message?.content || "";
     let questions = questionsRaw.split(/\d+\.\s+/).filter(Boolean).slice(0, 3);
@@ -388,9 +376,10 @@ export default async function handler(req, res) {
     );
 
     const followupQuestions = await generateFollowUpQuestions(
-      { sintoma: "entrada genérica", funnelPhase: 1 },
-      idioma
-    );
+  { sintoma: sessionMemory.sintomaAtual, funnelPhase: 1 },
+  idioma
+);
+
 
     let content = formatHybridResponse({}, gptResponse, followupQuestions, idioma);
 
