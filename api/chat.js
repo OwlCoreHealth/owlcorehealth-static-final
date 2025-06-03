@@ -29,41 +29,44 @@ function getFunnelKey(phase) {
     default: return "base";
   }
 }
-// Função que gera resposta completa para o sintoma
+// Substitua a função `generateAnswerForSymptom` pela versão ajustada abaixo:
+
 const generateAnswerForSymptom = async (symptom, idioma) => {
-  const prompt = idioma === "pt" ? promptPT : promptEN;
+  const prompt = idioma === "pt" ? `Explique claramente o sintoma "${symptom}" de maneira científica e prática.` : `Explain clearly the symptom "${symptom}" in a scientific and practical way.`;
   
   // Chamar a API do GPT para gerar a resposta completa
   const response = await fetch("https://api.openai.com/v1/chat/completions", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${OPENAI_API_KEY}`
-  },
-  body: JSON.stringify({
-    model: GPT_MODEL,
-    messages: [
-      { role: "system", content: "Você é um assistente de saúde fornecendo explicações científicas e práticas sobre sintomas." },
-      { role: "user", content: prompt }
-    ],
-    temperature: 0.7,
-    max_tokens: 500 // Aumente o número de tokens aqui
-  })
-});
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${OPENAI_API_KEY}`
+    },
+    body: JSON.stringify({
+      model: GPT_MODEL,
+      messages: [
+        { role: "system", content: "Você é um assistente de saúde fornecendo explicações científicas e práticas sobre sintomas." },
+        { role: "user", content: prompt }
+      ],
+      temperature: 0.7,
+      max_tokens: 500
+    })
+  });
 
   const data = await response.json();
-console.log("Resposta do servidor:", data); // Adicione este log para inspecionar a resposta completa
+  console.log("Resposta do servidor:", data); // Para depuração
 
-  
-  // Retorna o conteúdo gerado pela API
-  return data.choices?.[0]?.message?.content || "Desculpe, não consegui gerar uma resposta no momento.";
+  const answer = data.choices?.[0]?.message?.content || "Desculpe, não consegui gerar uma resposta no momento.";
+
+  // Se a resposta não for suficientemente científica, adiciona uma explicação genérica científica
+  if (answer.length < 100 || !answer.match(/causa|tratamento|sintoma|prevenção/i)) {
+    return "Desculpe, não consegui encontrar uma explicação específica para seu sintoma. No entanto, posso te dizer que as dores abdominais, por exemplo, podem ser causadas por condições como gastrite ou refluxo gastroesofágico, que exigem acompanhamento médico adequado.";
+  }
+
+  return answer;
 };
 
-function getBotIconHTML() {
-  return `<img src="owl-icon.png" alt="Owl Icon" class="bot-icon" style="width: 28px; margin-right: 12px;" />`;
-}
+// Substitua a função `formatHybridResponse` pela versão ajustada abaixo:
 
-// ✅ ALTERAÇÃO NO formatHybridResponse para adicionar e-mail após 1ª resposta com perguntas
 function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
   const phaseTitle = idioma === "pt" ? "Vamos explorar mais:" : "Let's explore further:";
   const instruction = idioma === "pt"
@@ -81,7 +84,8 @@ function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
     // ✅ Mostra o formulário de e-mail na primeira vez que houver follow-ups
     if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
       sessionMemory.emailOffered = true;
-     // response += renderEmailPrompt(idioma);
+      // Adicione a lógica de renderização do formulário de e-mail aqui, se necessário
+      // response += renderEmailPrompt(idioma);
     }
   }
 
@@ -192,7 +196,8 @@ async function generateFreeTextWithGPT(prompt) {
   }
 }
 
-// Função para gerar as perguntas de follow-up com base no sintoma
+// Substitua a função `generateFollowUpQuestions` pela versão ajustada abaixo:
+
 async function generateFollowUpQuestions(context, idioma) {
   const usedQuestions = sessionMemory.usedQuestions || [];
   const symptom = context.sintoma || "symptom";
