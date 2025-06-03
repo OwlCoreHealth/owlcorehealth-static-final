@@ -361,6 +361,7 @@ Answer only with the symptom from the list that best matches or is most **simila
 }
 
 export default async function handler(req, res) {
+  // Verifica se o método da requisição é POST
   if (req.method !== "POST") return res.status(405).json({ error: "Método não permitido" });
 
   const { message, selectedQuestion, idioma } = req.body;
@@ -415,6 +416,7 @@ export default async function handler(req, res) {
     choices: [{ message: { content, followupQuestions } }]
   });
 }
+
   } else {
     // A PARTIR DAQUI: fluxo de tratamento do caso com sintoma
     const isPortuguese = /[\u00e3\u00f5\u00e7áéíóú]| você|dor|tenho|problema|saúde/i.test(userInput);
