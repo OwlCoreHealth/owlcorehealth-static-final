@@ -192,71 +192,29 @@ async function generateFreeTextWithGPT(prompt) {
   }
 }
 
-async function generateFollowUpQuestions(context, userInput, allSymptoms, idioma) {
-  let followupQuestions = [];
-
-  // Verifique se o sintoma está identificado corretamente
-  if (context.sintoma === "hormonal weight gain") {
-    followupQuestions = [
-      "Você já identificou quais fatores hormonais podem estar contribuindo para o seu ganho de peso?",
-      "Você tem notado algum padrão no seu ciclo menstrual ou outros sinais hormonais que possam estar relacionados ao ganho de peso?",
-      "Já tentou alguma mudança no estilo de vida ou dieta para lidar com o ganho de peso hormonal?"
-    ];
-  } else if (context.sintoma === "belly fat") {
-    followupQuestions = [
-      "Você já tentou ajustar sua alimentação ou exercícios para reduzir a gordura abdominal?",
-      "Há algum fator como estresse ou falta de sono que você acha que pode estar contribuindo para a gordura abdominal?",
-      "Já considerou procurar um profissional para avaliar a gordura abdominal e suas causas?"
-    ];
-  } else {
-    try {
-      // Identificar sintomas relacionados
-      const relatedSymptom = await identifySymptom(userInput, allSymptoms, idioma);
-      
-      if (relatedSymptom !== "unknown") {
-        followupQuestions = [
-          `Você já tentou algum tratamento para o sintoma de ${relatedSymptom}?`,
-          `Você notou algum fator que agrava o sintoma de ${relatedSymptom}?`,
-          `Está disposto a investigar mais sobre o sintoma de ${relatedSymptom} com um profissional?`
-        ];
-      } else {
-        // Fallback para perguntas genéricas
-        followupQuestions = [
-          "Você já procurou ajuda profissional para investigar a causa do seu sintoma?",
-          "Há algo mais que gostaria de aprender sobre o que pode estar causando o seu sintoma?",
-          "Você já tentou fazer mudanças no seu estilo de vida para melhorar?"
-        ];
-      }
-    } catch (error) {
-      console.error("Erro ao identificar sintoma:", error);
-      followupQuestions = [
-        "Você já procurou tratamento para o seu sintoma?",
-        "Há algo específico que você gostaria de aprender sobre esse sintoma?",
-        "Você tem tentado alguma solução por conta própria?"
-      ];
-    }
-  }
-
-  return followupQuestions;
-}
+// Função para gerar as perguntas de follow-up com base no sintoma
+async function generateFollowUpQuestions(context, idioma) {
+  const usedQuestions = sessionMemory.usedQuestions || [];
+  const symptom = context.sintoma || "symptom";
+  const phase = context.funnelPhase || 1;
 
   const promptPT = `
-    Você é um assistente de saúde inteligente e focado no sintoma "${symptom}". 
-    Com base nesse sintoma e na fase do funil ${phase}, gere 3 perguntas curtas, objetivas e focadas no sintoma.
-    As perguntas devem ser claras, relacionadas ao sintoma, e com foco em compreensão, tratamento ou prevenção.
-    Evite perguntas filosóficas e gerais; a intenção é ajudar o usuário a entender melhor o sintoma e suas possíveis soluções.
-    Não repita perguntas já feitas: ${usedQuestions.join("; ")}.
-    Retorne apenas as 3 perguntas numeradas.
-  `;
+Você é um assistente de saúde inteligente e focado no sintoma "${symptom}". 
+Com base nesse sintoma e na fase do funil ${phase}, gere 3 perguntas curtas, objetivas e focadas no sintoma.
+As perguntas devem ser claras, relacionadas ao sintoma, e com foco em compreensão, tratamento ou prevenção.
+Evite perguntas filosóficas e gerais; a intenção é ajudar o usuário a entender melhor o sintoma e suas possíveis soluções.
+Não repita perguntas já feitas: ${usedQuestions.join("; ")}.
+Retorne apenas as 3 perguntas numeradas.
+`;
 
   const promptEN = `
-    You are a smart and focused health assistant, primarily concentrating on the symptom "${symptom}". 
-    Based on this symptom and funnel phase ${phase}, generate 3 short, clear, and focused questions about the symptom.
-    The questions should explore understanding, treatment, or prevention of the symptom.
-    Avoid philosophical or general questions; the goal is to help the user better understand the symptom and potential solutions.
-    Do not repeat the previously asked questions: ${usedQuestions.join("; ")}.
-    Return only the 3 numbered questions.
-  `;
+You are a smart and focused health assistant, primarily concentrating on the symptom "${symptom}". 
+Based on this symptom and funnel phase ${phase}, generate 3 short, clear, and focused questions about the symptom.
+The questions should explore understanding, treatment, or prevention of the symptom.
+Avoid philosophical or general questions; the goal is to help the user better understand the symptom and potential solutions.
+Do not repeat the previously asked questions: ${usedQuestions.join("; ")}.
+Return only the 3 numbered questions.
+`;
 
   const prompt = idioma === "pt" ? promptPT : promptEN;
 
@@ -289,49 +247,46 @@ async function generateFollowUpQuestions(context, userInput, allSymptoms, idioma
     sessionMemory.usedQuestions.push(...questions);
 
     // Se menos de 3 perguntas após filtro, adiciona fallback interno
-    const fallbackPT = [
-      "Você já tentou mudar sua alimentação ou rotina?",
-      "Como você acha que isso está afetando seu dia a dia?",
-      "Está disposto(a) a descobrir uma solução mais eficaz agora?"
-    ];
-    const fallbackEN = [
-      "Have you tried adjusting your diet or lifestyle?",
-      "How do you think this is affecting your daily life?",
-      "Are you ready to explore a better solution now?"
-    ];
+    let fallback = [];
+    if (sessionMemory.sintomaAtual === "gengivas inflamadas") {
+      fallback = idioma === "pt" ? [
+        "Você já visitou um dentista para tratar da inflamação nas gengivas?",
+        "Está sentindo algum desconforto além do sangramento das gengivas?",
+        "Sabia que a inflamação nas gengivas pode ser causada por uma higiene bucal inadequada?"
+      ] : [
+        "Have you visited a dentist to treat the gum inflammation?",
+        "Are you feeling any discomfort besides the gum bleeding?",
+        "Did you know that gum inflammation can be caused by poor oral hygiene?"
+      ];
+    } else if (sessionMemory.sintomaAtual === "acne") {
+      fallback = idioma === "pt" ? [
+        "Você já tentou algum tratamento para a acne?",
+        "Você sabe quais alimentos podem estar ajudando a piorar a acne?",
+        "Está lidando com acne principalmente em alguma área do rosto?"
+      ] : [
+        "Have you tried any treatments for acne?",
+        "Do you know which foods might be contributing to your acne?",
+        "Are you dealing with acne mainly in any specific area of your face?"
+      ];
+    } else {
+      // Fallback genérico se o sintoma não for específico
+      fallback = idioma === "pt" ? [
+        "Você já procurou tratamento para o seu sintoma?",
+        "Há algo específico que você gostaria de aprender sobre esse sintoma?",
+        "Você tem tentado alguma solução por conta própria?"
+      ] : [
+        "Have you sought treatment for this symptom?",
+        "Is there anything specific you'd like to learn about this symptom?",
+        "Have you tried any solutions on your own?"
+      ];
+    }
 
-    if (questions.length < 3) {
-      let fallback = [];
-
-      if (sessionMemory.sintomaAtual === "cansaço constante") {
-        fallback = idioma === "pt" ? [
-          "Você já percebeu algum padrão em sua rotina que possa estar piorando seu cansaço?",
-          "Há outros sintomas, como falta de concentração ou dor muscular, que acompanham o cansaço?",
-          "Já consultou um médico para investigar a causa do seu cansaço constante?"
-        ] : [
-          "Have you noticed any patterns in your routine that might be worsening your fatigue?",
-          "Are there any other symptoms, like lack of concentration or muscle pain, that accompany the fatigue?",
-          "Have you seen a doctor to investigate the cause of your constant fatigue?"
-        ];
-      } else {
-        fallback = idioma === "pt" ? [
-          "Você já procurou tratamento para o seu sintoma?",
-          "Há algo específico que você gostaria de aprender sobre esse sintoma?",
-          "Você tem tentado alguma solução por conta própria?"
-        ] : [
-          "Have you sought treatment for this symptom?",
-          "Is there anything specific you'd like to learn about this symptom?",
-          "Have you tried any solutions on your own?"
-        ];
-      }
-
-      // Adiciona perguntas de fallback que ainda não foram usadas
-      for (const fq of fallback) {
-        if (questions.length >= 3) break;  // Limita a 3 perguntas
-        if (!sessionMemory.usedQuestions.includes(fq)) {
-          questions.push(fq);  // Adiciona a pergunta ao conjunto de perguntas
-          sessionMemory.usedQuestions.push(fq);  // Marca como já usada
-        }
+    // Adiciona perguntas de fallback que ainda não foram usadas
+    for (const fq of fallback) {
+      if (questions.length >= 3) break;  // Limita a 3 perguntas
+      if (!sessionMemory.usedQuestions.includes(fq)) {
+        questions.push(fq);  // Adiciona a pergunta ao conjunto de perguntas
+        sessionMemory.usedQuestions.push(fq);  // Marca como já usada
       }
     }
 
@@ -339,7 +294,6 @@ async function generateFollowUpQuestions(context, userInput, allSymptoms, idioma
 
   } catch (err) {
     console.warn("❗️Erro ao gerar perguntas com GPT:", err);
-    // fallback direto sem usar GPT
     return idioma === "pt"
       ? [
           "Você já tentou mudar sua alimentação ou rotina?",
@@ -422,15 +376,13 @@ export default async function handler(req, res) {
         : `You are Dr. Owl, a clever and insightful health assistant. A user just asked something that shows curiosity or vague doubt. Respond with charm and subtle sarcasm, then invite them to share any body signal or discomfort they're feeling. User's message: "${userInput}"`
     );
 
-   // Modificar a parte das perguntas de follow-up para evitar respostas vagas como "true"
-const followupQuestions = await generateFollowUpQuestions(
+   const followupQuestions = await generateFollowUpQuestions(
   { sintoma: sessionMemory.sintomaAtual, funnelPhase: 1 },
   idioma
 );
 
-// Retornar as perguntas de follow-up com foco no sintoma
-let content = formatHybridResponse({}, gptResponse, followupQuestions, idioma);
-    
+    let content = formatHybridResponse({}, gptResponse, followupQuestions, idioma);
+
     if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
       sessionMemory.emailOffered = true;
     }
