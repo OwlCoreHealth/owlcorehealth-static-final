@@ -29,55 +29,41 @@ function getFunnelKey(phase) {
     default: return "base";
   }
 }
-// Substitua a função `generateAnswerForSymptom` pela versão ajustada abaixo:
-
+// Função que gera resposta completa para o sintoma
 const generateAnswerForSymptom = async (symptom, idioma) => {
-  // 1. Verificar na tabela do Notion
-  const notionResponse = await getSymptomContext(symptom, 1, null, []);
-  if (notionResponse && notionResponse.funnelTexts) {
-    // Se encontrar no Notion, retorna o conteúdo da fase 'base' (ou outro estágio desejado)
-    return notionResponse.funnelTexts.base.join(" ");
-  }
-
-  // 2. Verificar no arquivo fallbackTextsBySymptom.js
-  const fallback = fallbackTextsBySymptom[symptom.toLowerCase()];
-  if (fallback && fallback.base) {
-    // Se encontrar no fallback, retorna o conteúdo do arquivo
-    return idioma === "pt" ? fallback.base.join(" ") : fallback.base.join(" ");
-  }
-
-  // 3. Se não encontrou no Notion ou no fallback, consulta o GPT
-  const prompt = idioma === "pt" ? `Explique claramente o sintoma "${symptom}" de maneira científica e prática.` : `Explain clearly the symptom "${symptom}" in a scientific and practical way.`;
-
-  // Chama a API do GPT para gerar a resposta
+  const prompt = idioma === "pt" ? promptPT : promptEN;
+  
+  // Chamar a API do GPT para gerar a resposta completa
   const response = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${OPENAI_API_KEY}`
-    },
-    body: JSON.stringify({
-      model: GPT_MODEL,
-      messages: [
-        { role: "system", content: "Você é um assistente de saúde fornecendo explicações científicas e práticas sobre sintomas." },
-        { role: "user", content: prompt }
-      ],
-      temperature: 0.7,
-      max_tokens: 500
-    })
-  });
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${OPENAI_API_KEY}`
+  },
+  body: JSON.stringify({
+    model: GPT_MODEL,
+    messages: [
+      { role: "system", content: "Você é um assistente de saúde fornecendo explicações científicas e práticas sobre sintomas." },
+      { role: "user", content: prompt }
+    ],
+    temperature: 0.7,
+    max_tokens: 500 // Aumente o número de tokens aqui
+  })
+});
 
   const data = await response.json();
-  const answer = data.choices?.[0]?.message?.content || "Desculpe, não consegui gerar uma resposta no momento.";
+console.log("Resposta do servidor:", data); // Adicione este log para inspecionar a resposta completa
 
-  // 4. Se a resposta do GPT não for científica ou suficiente, fornece explicação genérica
-  if (answer.length < 100 || !answer.match(/causa|tratamento|sintoma|prevenção/i)) {
-    return "Desculpe, não consegui encontrar uma explicação específica para seu sintoma. No entanto, posso te dizer que as dores abdominais, por exemplo, podem ser causadas por condições como gastrite ou refluxo gastroesofágico, que exigem acompanhamento médico adequado.";
-  }
-
-  return answer;
+  
+  // Retorna o conteúdo gerado pela API
+  return data.choices?.[0]?.message?.content || "Desculpe, não consegui gerar uma resposta no momento.";
 };
 
+function getBotIconHTML() {
+  return `<img src="owl-icon.png" alt="Owl Icon" class="bot-icon" style="width: 28px; margin-right: 12px;" />`;
+}
+
+// ✅ ALTERAÇÃO NO formatHybridResponse para adicionar e-mail após 1ª resposta com perguntas
 function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
   const phaseTitle = idioma === "pt" ? "Vamos explorar mais:" : "Let's explore further:";
   const instruction = idioma === "pt"
@@ -95,15 +81,13 @@ function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
     // ✅ Mostra o formulário de e-mail na primeira vez que houver follow-ups
     if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
       sessionMemory.emailOffered = true;
-      // Adicione a lógica de renderização do formulário de e-mail aqui, se necessário
-      // response += renderEmailPrompt(idioma);
+     // response += renderEmailPrompt(idioma);
     }
   }
 
   return response;
 }
 
-// Função de classificação de intenção (permanecendo sem alterações significativas)
 async function classifyUserIntent(userInput, idioma) {
   const prompt = idioma === "pt"
     ? `Você é um classificador de intenção. Receberá mensagens de usuários e deve responder com uma das seguintes intenções:
@@ -131,21 +115,21 @@ Answer (intent only):`;
 
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${OPENAI_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: GPT_MODEL,
-        messages: [
-          { role: "system", content: "Você é um assistente de saúde fornecendo explicações científicas e práticas sobre sintomas." },
-          { role: "user", content: prompt }
-        ],
-        temperature: 0.7,
-        max_tokens: 300
-      })
-    });
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${OPENAI_API_KEY}`
+  },
+  body: JSON.stringify({
+    model: GPT_MODEL,
+    messages: [
+      { role: "system", content: "Você é um assistente de saúde fornecendo explicações científicas e práticas sobre sintomas." },
+      { role: "user", content: prompt }
+    ],
+    temperature: 0.7,
+    max_tokens: 300
+  })
+});
 
     const data = await response.json();
     const intent = data.choices?.[0]?.message?.content?.trim().toLowerCase() || "outro";
@@ -158,26 +142,23 @@ Answer (intent only):`;
 
 async function rewriteWithGPT(baseText, sintoma, idioma, funnelPhase, categoria) {
   const prompt = idioma === "pt"
-    ? `Use o seguinte texto como base, mantendo o conteúdo e estrutura, mas reescrevendo com 50% de liberdade criativa, usando linguagem mais fluida, informativa e humana. Mantenha o foco exclusivamente no sintoma: ${sintoma} e na categoria: ${categoria}. Não aborde outros temas. Não mude o tema e mantenha o foco em: ${sintoma}\n\nTexto-base:\n${baseText}`
-    : `Use the following text as a base. Keep the core message and structure, but rewrite with 50% creative freedom in a more natural, engaging, and human tone. Keep the focus exclusively on the symptom: ${sintoma} and category: ${categoria}. Do not address other topics. Do not change the topic and keep the focus on: ${sintoma}\n\nBase text:\n${baseText}`;
+    ? `Use o seguinte texto como base, mantendo o conteúdo e estrutura, mas reescrevendo com 30% de liberdade criativa, usando linguagem mais fluida, provocadora e humana. Mantenha o foco exclusivamente no sintoma: ${sintoma} e na categoria: ${categoria}. Não aborde outros temas. Não mude o tema e mantenha o foco em: ${sintoma}\n\nTexto-base:\n${baseText}`
+    : `Use the following text as a base. Keep the core message and structure, but rewrite with 30% creative freedom in a more natural, engaging, and human tone. Keep the focus exclusively on the symptom: ${sintoma} and category: ${categoria}. Do not address other topics. Do not change the topic and keep the focus on: ${sintoma}\n\nBase text:\n${baseText}`;
 
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${OPENAI_API_KEY}`
-  },
-  body: JSON.stringify({
-    model: GPT_MODEL,
-    messages: [
-      { role: "system", content: "Você é um assistente de saúde fornecendo explicações científicas e práticas sobre sintomas, com um foco objetivo e informativo. Seu objetivo é oferecer soluções baseadas em evidências científicas, sem utilizar humor ou metáforas." },
-      { role: "user", content: prompt }
-    ],
-    temperature: 0.7,
-    max_tokens: 500
-  })
-});
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: GPT_MODEL,
+        messages: [{ role: "system", content: prompt }],
+        temperature: 0.65,
+        max_tokens: 600
+      })
+    });
 
     const data = await response.json();
     return data.choices?.[0]?.message?.content?.trim() || baseText;
@@ -211,8 +192,7 @@ async function generateFreeTextWithGPT(prompt) {
   }
 }
 
-// Substitua a função `generateFollowUpQuestions` pela versão ajustada abaixo:
-
+// Função para gerar as perguntas de follow-up com base no sintoma
 async function generateFollowUpQuestions(context, idioma) {
   const usedQuestions = sessionMemory.usedQuestions || [];
   const symptom = context.sintoma || "symptom";
@@ -390,43 +370,31 @@ export default async function handler(req, res) {
   let gptResponse;
 
   if (intent !== "sintoma") {
-    // Caso não seja relacionado a sintoma
     gptResponse = await generateFreeTextWithGPT(
       idioma === "pt"
-        ? `Você é o Dr. Owl, um assistente de saúde inteligente e focado em fornecer explicações científicas e objetivas. Um usuário fez uma pergunta fora do padrão de sintomas, que envolve curiosidade ou dúvida. Responda de forma clara, baseada em evidências científicas, sem humor ou metáforas. Pergunta do usuário: "${userInput}"`
-        : `You are Dr. Owl, a health assistant focused on providing scientific and objective explanations. A user has asked a question outside the symptom context, involving curiosity or doubt. Respond clearly, based on scientific evidence, without humor or metaphors. User's message: "${userInput}"`
+        ? `Você é o Dr. Owl, um assistente de saúde provocador e inteligente. Um usuário te fez uma pergunta fora do padrão de sintomas, mas que mostra curiosidade ou dúvida. Responda com carisma, humor leve e empatia. No fim, convide o usuário a relatar algum sintoma ou sinal do corpo que esteja incomodando. Pergunta do usuário: "${userInput}"`
+        : `You are Dr. Owl, a clever and insightful health assistant. A user just asked something that shows curiosity or vague doubt. Respond with charm and subtle sarcasm, then invite them to share any body signal or discomfort they're feeling. User's message: "${userInput}"`
     );
-  }
 
-  // Caso seja relacionado a sintoma
-  if (intent === "sintoma") {
-    // Aqui você coloca a lógica para lidar com o sintoma detectado
-    gptResponse = await generateAnswerForSymptom(sessionMemory.sintomaAtual, idioma);
-  }
+   const followupQuestions = await generateFollowUpQuestions(
+  { sintoma: sessionMemory.sintomaAtual, funnelPhase: 1 },
+  idioma
+);
 
-  // Gerar perguntas de follow-up, baseadas na fase do funil e no sintoma
-  const followupQuestions = await generateFollowUpQuestions(
-    { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase || 1 },
-    idioma
-  );
+    let content = formatHybridResponse({}, gptResponse, followupQuestions, idioma);
 
-  // Criar a resposta híbrida com perguntas de follow-up
-  let content = formatHybridResponse({}, gptResponse, followupQuestions, idioma);
+    if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
+      sessionMemory.emailOffered = true;
+    }
 
-  // Lógica do formulário de e-mail
-  if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
-    sessionMemory.emailOffered = true;
-    // Adicionar lógica de renderização de formulário de e-mail, se necessário
-  }
+    sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
+    sessionMemory.genericEntry = true;
+    sessionMemory.genericMessages = sessionMemory.genericMessages || [];
+    sessionMemory.genericMessages.push(userInput);
 
-  // Atualizar a fase do funil
-  sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
-
-  // Retornar a resposta com perguntas de follow-up e o conteúdo gerado
-  return res.status(200).json({
-    choices: [{ message: { content, followupQuestions } }]
-  });
-}
+    return res.status(200).json({
+      choices: [{ message: { content, followupQuestions } }]
+    });
 
   } else {
     // A PARTIR DAQUI: fluxo de tratamento do caso com sintoma
