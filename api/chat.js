@@ -220,7 +220,7 @@ Answer only with the symptom from the list that best matches or is most **simila
   }
 }
 
-// Função para classificar a intenção do usuário (a função que estamos adicionando agora)
+// Função para classificar a intenção do usuário
 async function classifyUserIntent(userInput, idioma) {
   const promptPT = `
 Você é um classificador de intenção. Receberá mensagens de usuários e deve responder com uma das seguintes intenções:
@@ -289,7 +289,7 @@ export default async function handler(req, res) {
   const intent = await classifyUserIntent(userInput, idioma || "en");  // AQUI É ONDE A FUNÇÃO classifyUserIntent É CHAMADA
   let gptResponse;
 
-  // ... o resto do código da função 'handler' permanece o mesmo.
+  // Resto do código da função 'handler' permanece o mesmo
 }
 
   const promptEN = `
