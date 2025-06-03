@@ -193,40 +193,49 @@ async function generateFreeTextWithGPT(prompt) {
 }
 
 async function generateFollowUpQuestions(context, idioma) {
-  const usedQuestions = sessionMemory.usedQuestions || [];
-  const symptom = context.sintoma || "symptom";
-  const phase = context.funnelPhase || 1;
-
   let followupQuestions = [];
 
-if (sessionMemory.sintomaAtual === "hormonal weight gain") {
-  followupQuestions = [
-    "Você já identificou quais fatores hormonais podem estar contribuindo para o seu ganho de peso?",
-    "Você tem notado algum padrão no seu ciclo menstrual ou outros sinais hormonais que possam estar relacionados ao ganho de peso?",
-    "Já tentou alguma mudança no estilo de vida ou dieta para lidar com o ganho de peso hormonal?"
-  ];
-} else if (sessionMemory.sintomaAtual === "belly fat") {
-  followupQuestions = [
-    "Você já tentou ajustar sua alimentação ou exercícios para reduzir a gordura abdominal?",
-    "Há algum fator como estresse ou falta de sono que você acha que pode estar contribuindo para a gordura abdominal?",
-    "Já considerou procurar um profissional para avaliar a gordura abdominal e suas causas?"
-  ];
-} else {
-  // Identificar sintomas relacionados e gerar perguntas mais relevantes
-  const relatedSymptom = await identifySymptom(userInput, allSymptoms, idioma);
-  if (relatedSymptom !== "unknown") {
+  if (context.sintoma === "hormonal weight gain") {
     followupQuestions = [
-      `Você já tentou algum tratamento para o sintoma de ${relatedSymptom}?`,
-      `Você notou algum fator que agrava o sintoma de ${relatedSymptom}?`,
-      `Está disposto a investigar mais sobre o sintoma de ${relatedSymptom} com um profissional?`
+      "Você já identificou quais fatores hormonais podem estar contribuindo para o seu ganho de peso?",
+      "Você tem notado algum padrão no seu ciclo menstrual ou outros sinais hormonais que possam estar relacionados ao ganho de peso?",
+      "Já tentou alguma mudança no estilo de vida ou dieta para lidar com o ganho de peso hormonal?"
+    ];
+  } else if (context.sintoma === "belly fat") {
+    followupQuestions = [
+      "Você já tentou ajustar sua alimentação ou exercícios para reduzir a gordura abdominal?",
+      "Há algum fator como estresse ou falta de sono que você acha que pode estar contribuindo para a gordura abdominal?",
+      "Já considerou procurar um profissional para avaliar a gordura abdominal e suas causas?"
     ];
   } else {
-    followupQuestions = [
-      "Você já procurou ajuda profissional para investigar a causa do seu sintoma?",
-      "Há algo mais que gostaria de aprender sobre o que pode estar causando o seu sintoma?",
-      "Você já tentou fazer mudanças no seu estilo de vida para melhorar?"
-    ];
+    // Identificar sintomas relacionados e gerar perguntas mais relevantes
+    try {
+      const relatedSymptom = await identifySymptom(userInput, allSymptoms, idioma);
+      if (relatedSymptom !== "unknown") {
+        followupQuestions = [
+          `Você já tentou algum tratamento para o sintoma de ${relatedSymptom}?`,
+          `Você notou algum fator que agrava o sintoma de ${relatedSymptom}?`,
+          `Está disposto a investigar mais sobre o sintoma de ${relatedSymptom} com um profissional?`
+        ];
+      } else {
+        followupQuestions = [
+          "Você já procurou ajuda profissional para investigar a causa do seu sintoma?",
+          "Há algo mais que gostaria de aprender sobre o que pode estar causando o seu sintoma?",
+          "Você já tentou fazer mudanças no seu estilo de vida para melhorar?"
+        ];
+      }
+    } catch (error) {
+      console.error("Erro ao identificar sintoma:", error);
+      // Fallback genérico caso erro de identificação
+      followupQuestions = [
+        "Você já procurou tratamento para o seu sintoma?",
+        "Há algo específico que você gostaria de aprender sobre esse sintoma?",
+        "Você tem tentado alguma solução por conta própria?"
+      ];
+    }
   }
+
+  return followupQuestions;
 }
   
   const promptPT = `
