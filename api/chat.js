@@ -382,15 +382,14 @@ export default async function handler(req, res) {
   } else if (sessionMemory.funnelPhase === 3) {
     // Fase 3: O que está realmente arriscando (agravamento)
     gptResponse = "As estatísticas mostram que ignorar este sintoma pode aumentar o risco de [agravamento do problema]. O risco de [consequência] pode ser de até 82%.";
-    
+
   } else if (sessionMemory.funnelPhase === 4) {
     // Fase 4: Nutrientes e plantas naturais
     gptResponse = "Alimentos sozinhos não são suficientes para combater esse sintoma. A introdução de plantas como [nomes das plantas] pode ser muito eficaz, como mostrado por estudos científicos.";
-    
+
   } else if (sessionMemory.funnelPhase === 5) {
     // Fase 5: Suplemento como solução
     gptResponse = "Para uma solução completa, o suplemento [nome do suplemento] é altamente eficaz. Estudos mostram que [estatísticas sobre eficácia do suplemento].";
-
   }
 
   // Gerar perguntas de follow-up, baseadas no sintoma e na fase do funil
@@ -416,6 +415,7 @@ export default async function handler(req, res) {
     choices: [{ message: { content, followupQuestions } }]
   });
 }
+
 
   } else {
     // A PARTIR DAQUI: fluxo de tratamento do caso com sintoma
