@@ -382,22 +382,6 @@ const followupQuestions = await generateFollowUpQuestions(
   idioma
 );
 
-// Exemplo de perguntas relacionadas ao sintoma detectado, sem usar "true"
-if (sessionMemory.sintomaAtual === "cansaço constante") {
-  followupQuestions = [
-    "Você já percebeu algum padrão em sua rotina que possa estar piorando seu cansaço?",
-    "Há outros sintomas, como falta de concentração ou dor muscular, que acompanham o cansaço?",
-    "Já consultou um médico para investigar a causa do seu cansaço constante?"
-  ];
-} else {
-  // Para outros sintomas, perguntas focadas
-  followupQuestions = [
-    "Você tem notado algo específico que agrava seu sintoma?",
-    "Está utilizando algum tratamento ou remédio para aliviar esse sintoma?",
-    "Quais mudanças em seu estilo de vida você acha que podem ajudar?"
-  ];
-}
-
 // Retornar as perguntas de follow-up com foco no sintoma
 let content = formatHybridResponse({}, gptResponse, followupQuestions, idioma);
     
