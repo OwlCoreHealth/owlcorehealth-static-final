@@ -480,7 +480,3 @@ export default async function handler(req, res) {
 
   }
 }
-
-} // 🔚 Fim do bloco else (intent === "sintoma")
-
-} // 🔚 Fim da função handler (export 
