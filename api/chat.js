@@ -32,18 +32,18 @@ function getFunnelKey(phase) {
 // Substitua a função `generateAnswerForSymptom` pela versão ajustada abaixo:
 
 const generateAnswerForSymptom = async (symptom, idioma) => {
-  // 1. Verificar no arquivo fallbackTextsBySymptom.js
+  // 1. Verificar na tabela do Notion
+  const notionResponse = await getSymptomContext(symptom, 1, null, []);
+  if (notionResponse && notionResponse.funnelTexts) {
+    // Se encontrar no Notion, retorna o conteúdo
+    return notionResponse.funnelTexts.base.join(" ");
+  }
+
+  // 2. Verificar no arquivo fallbackTextsBySymptom.js
   const fallback = fallbackTextsBySymptom[symptom.toLowerCase()];
   if (fallback && fallback.base) {
     // Se encontrar no fallback, retorna o conteúdo do arquivo
     return idioma === "pt" ? fallback.base.join(" ") : fallback.base.join(" ");
-  }
-
-  // 2. Verificar na tabela do Notion
-  const notionResponse = await getSymptomContext(symptom, 1, null, []);
-  if (notionResponse && notionResponse.funnelTexts) {
-    // Retorna o conteúdo do Notion
-    return notionResponse.funnelTexts.base.join(" ");
   }
 
   // 3. Se não encontrou no Notion ou no fallback, consulta o GPT
