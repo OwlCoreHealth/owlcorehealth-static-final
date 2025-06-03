@@ -389,23 +389,28 @@ export default async function handler(req, res) {
   const intent = await classifyUserIntent(userInput, idioma || "en");
   let gptResponse;
 
-  if (intent !== "sintoma") {
+ if (intent !== "sintoma") {
+  // Caso não seja relacionado a sintoma
   gptResponse = await generateFreeTextWithGPT(
     idioma === "pt"
       ? `Você é o Dr. Owl, um assistente de saúde inteligente e focado em fornecer explicações científicas e objetivas. Um usuário fez uma pergunta fora do padrão de sintomas, que envolve curiosidade ou dúvida. Responda de forma clara, baseada em evidências científicas, sem humor ou metáforas. Pergunta do usuário: "${userInput}"`
       : `You are Dr. Owl, a health assistant focused on providing scientific and objective explanations. A user has asked a question outside the symptom context, involving curiosity or doubt. Respond clearly, based on scientific evidence, without humor or metaphors. User's message: "${userInput}"`
   );
 } else {
-  // O código do 'else' vai aqui
-  // Adicione seu código para a situação em que intent == "sintoma"
+  // Caso seja relacionado a sintoma
+  // Aqui você coloca a lógica para lidar com o sintoma detectado
+  // Por exemplo, você pode consultar o conteúdo do Notion, gerar a resposta com base na tabela, fallback ou GPT
+
+  gptResponse = await generateAnswerForSymptom(sessionMemory.sintomaAtual, idioma);
+
+  // Você pode continuar com o processamento de follow-up ou outros ajustes necessários
 }
 
-
-   const followupQuestions = await generateFollowUpQuestions(
+// Gerar perguntas de follow-up, baseadas na fase do funil e no sintoma
+const followupQuestions = await generateFollowUpQuestions(
   { sintoma: sessionMemory.sintomaAtual, funnelPhase: 1 },
   idioma
 );
-
     let content = formatHybridResponse({}, gptResponse, followupQuestions, idioma);
 
     if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
