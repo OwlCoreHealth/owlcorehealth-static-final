@@ -229,9 +229,17 @@ Return only the 3 numbered questions.
 if (questions.length < 3) {
   let fallback = [];
   
-  // Verifique o sintoma e escolha o fallback apropriado
-  if (symptom === "gengivas inflamadas") {
-    fallback = idioma === "pt" ? fallbackPT : fallbackEN;
+  // Verifique o sintoma atual e escolha o fallback apropriado
+  if (sessionMemory.sintomaAtual === "gengivas inflamadas") {
+    fallback = idioma === "pt" ? [
+      "Você já visitou um dentista para tratar da inflamação nas gengivas?",
+      "Está sentindo algum desconforto além do sangramento das gengivas?",
+      "Sabia que a inflamação nas gengivas pode ser causada por uma higiene bucal inadequada?"
+    ] : [
+      "Have you visited a dentist to treat the gum inflammation?",
+      "Are you feeling any discomfort besides the gum bleeding?",
+      "Did you know that gum inflammation can be caused by poor oral hygiene?"
+    ];
   } else {
     // Fallback genérico se o sintoma não for específico
     fallback = idioma === "pt" ? [
