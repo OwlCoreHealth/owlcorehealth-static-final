@@ -8,8 +8,8 @@ const GPT_MODEL = "gpt-4o-mini";
 export async function getSymptomContext(input, funnelPhase, previousSymptom, usedQuestions) {
   const filtro = {
     or: [
-      { property: "Keywords", rich_text: { contains: input } },
-      { property: "Symptoms", rich_text: { contains: input } }
+      { property: "Keywords", text: { contains: input } },
+      { property: "Symptoms", text: { contains: input } }
     ]
   };
 
@@ -23,10 +23,10 @@ export async function getSymptomContext(input, funnelPhase, previousSymptom, use
   if (!page) {
     console.warn("❗️Nenhuma entrada encontrada no Notion para o input:", input);
 
-    // 🧠 Fallback: pedir ao GPT uma categoria sintomática aproximada
+    // 🧠 Fallback: Pedir ao GPT uma categoria sintomática aproximada
     const fallbackCategory = await identifySymptomCategoryWithGPT(input);
 
-    // Aqui você pode mapear manualmente as respostas do GPT para categorias conhecidas
+    // Mapeamento manual de categorias sintomáticas
     const categoryMap = {
       gut: "bloating and skin irritation",
       metabolism: "belly fat and fatigue",
@@ -38,59 +38,62 @@ export async function getSymptomContext(input, funnelPhase, previousSymptom, use
     const fallbackSymptom = categoryMap[fallbackCategory] || "general inflammation";
 
     return {
-  gptPromptData: {
-    prompt: "You are OwlCoreHealth AI.",
-    context: { selectedQuestion: null }
-  },
-  sintoma: fallbackSymptom,
-  funnelPhase,
-  language: "en",
-  funnelTexts: {},
-  followupQuestions: []
-};
+      gptPromptData: {
+        prompt: "You are OwlCoreHealth AI.",
+        context: { selectedQuestion: null }
+      },
+      sintoma: fallbackSymptom,
+      funnelPhase,
+      language: "en",
+      funnelTexts: {},
+      followupQuestions: []
+    };
   }
 
   const getTexts = (field) => {
-    const raw = page.properties[field]?.rich_text?.[0]?.plain_text || "";
+    const raw = page.properties[field]?.text?.[0]?.plain_text || "";  // Mudança para 'text' e não 'rich_text'
     return raw.split("||").map(t => t.trim()).filter(Boolean);
   };
+
+  // Acessar o conteúdo da coluna "Symptoms" diretamente
+  const symptomsContent = page.properties?.Symptoms?.text?.[0]?.plain_text || previousSymptom;
 
   return {
     gptPromptData: {
       prompt: "You are OwlCoreHealth AI.",
       context: { selectedQuestion: null }
     },
-    sintoma: page.properties?.Symptoms?.rich_text?.[0]?.plain_text || previousSymptom,
+    sintoma: symptomsContent,  // Agora, o sintoma é extraído diretamente da coluna "Symptoms"
     funnelPhase,
     language: "en",
     funnelTexts: {
       base: [
-        page.properties["Funnel 1 Variation 1"]?.rich_text?.[0]?.plain_text || "",
-        page.properties["Funnel 1 Variation 2"]?.rich_text?.[0]?.plain_text || "",
-        page.properties["Funnel 1 Variation 3"]?.rich_text?.[0]?.plain_text || ""
+        page.properties["Funnel 1 Variation 1"]?.text?.[0]?.plain_text || "",
+        page.properties["Funnel 1 Variation 2"]?.text?.[0]?.plain_text || "",
+        page.properties["Funnel 1 Variation 3"]?.text?.[0]?.plain_text || ""
       ].filter(Boolean),
       gravidade: [
-        page.properties["Funnel 2 Variation 1"]?.rich_text?.[0]?.plain_text || "",
-        page.properties["Funnel 2 Variation 2"]?.rich_text?.[0]?.plain_text || "",
-        page.properties["Funnel 2 Variation 3"]?.rich_text?.[0]?.plain_text || ""
+        page.properties["Funnel 2 Variation 1"]?.text?.[0]?.plain_text || "",
+        page.properties["Funnel 2 Variation 2"]?.text?.[0]?.plain_text || "",
+        page.properties["Funnel 2 Variation 3"]?.text?.[0]?.plain_text || ""
       ].filter(Boolean),
       estatisticas: [
-        page.properties["Funnel 3 Variation 1"]?.rich_text?.[0]?.plain_text || "",
-        page.properties["Funnel 3 Variation 2"]?.rich_text?.[0]?.plain_text || "",
-        page.properties["Funnel 3 Variation 3"]?.rich_text?.[0]?.plain_text || ""
+        page.properties["Funnel 3 Variation 1"]?.text?.[0]?.plain_text || "",
+        page.properties["Funnel 3 Variation 2"]?.text?.[0]?.plain_text || "",
+        page.properties["Funnel 3 Variation 3"]?.text?.[0]?.plain_text || ""
       ].filter(Boolean),
       nutrientes: [
-        page.properties["Funnel 4 Variation 1"]?.rich_text?.[0]?.plain_text || "",
-        page.properties["Funnel 4 Variation 2"]?.rich_text?.[0]?.plain_text || "",
-        page.properties["Funnel 4 Variation 3"]?.rich_text?.[0]?.plain_text || ""
+        page.properties["Funnel 4 Variation 1"]?.text?.[0]?.plain_text || "",
+        page.properties["Funnel 4 Variation 2"]?.text?.[0]?.plain_text || "",
+        page.properties["Funnel 4 Variation 3"]?.text?.[0]?.plain_text || ""
       ].filter(Boolean),
       suplemento: [
-        page.properties["Funnel 5 Variation 1"]?.rich_text?.[0]?.plain_text || "",
-        page.properties["Funnel 5 Variation 2"]?.rich_text?.[0]?.plain_text || "",
-        page.properties["Funnel 5 Variation 3"]?.rich_text?.[0]?.plain_text || ""
+        page.properties["Funnel 5 Variation 1"]?.text?.[0]?.plain_text || "",
+        page.properties["Funnel 5 Variation 2"]?.text?.[0]?.plain_text || "",
+        page.properties["Funnel 5 Variation 3"]?.text?.[0]?.plain_text || ""
       ].filter(Boolean),
       cta: [
-        page.properties["Links"]?.rich_text?.[0]?.plain_text || ""
+        page.properties["Links"]?.text?.[0]?.plain_text || ""  // Acessando "Links"
       ].filter(Boolean)
     },
     followupQuestions: []
