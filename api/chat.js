@@ -400,6 +400,7 @@ if (sessionMemory.sintomaAtual === "cansaço constante") {
 
 // Retornar as perguntas de follow-up com foco no sintoma
 let content = formatHybridResponse({}, gptResponse, followupQuestions, idioma);
+    
     if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
       sessionMemory.emailOffered = true;
     }
