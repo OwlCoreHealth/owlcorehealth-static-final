@@ -199,6 +199,27 @@ async function generateFollowUpQuestions(context, idioma) {
 
   let followupQuestions = [];
 
+if (sessionMemory.sintomaAtual === "hormonal weight gain") {
+  followupQuestions = [
+    "Você já identificou quais fatores hormonais podem estar contribuindo para o seu ganho de peso?",
+    "Você tem notado algum padrão no seu ciclo menstrual ou outros sinais hormonais que possam estar relacionados ao ganho de peso?",
+    "Já tentou alguma mudança no estilo de vida ou dieta para lidar com o ganho de peso hormonal?"
+  ];
+} else if (sessionMemory.sintomaAtual === "belly fat") {
+  followupQuestions = [
+    "Você já tentou ajustar sua alimentação ou exercícios para reduzir a gordura abdominal?",
+    "Há algum fator como estresse ou falta de sono que você acha que pode estar contribuindo para a gordura abdominal?",
+    "Já considerou procurar um profissional para avaliar a gordura abdominal e suas causas?"
+  ];
+} else {
+  // Para outros sintomas, perguntas genéricas (apenas para fallback)
+  followupQuestions = [
+    "Você já procurou tratamento para o seu sintoma?",
+    "Há algo específico que você gostaria de aprender sobre esse sintoma?",
+    "Você tem tentado alguma solução por conta própria?"
+  ];
+}
+
   const promptPT = `
     Você é um assistente de saúde inteligente e focado no sintoma "${symptom}". 
     Com base nesse sintoma e na fase do funil ${phase}, gere 3 perguntas curtas, objetivas e focadas no sintoma.
