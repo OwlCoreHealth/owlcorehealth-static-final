@@ -192,6 +192,7 @@ async function generateFreeTextWithGPT(prompt) {
   }
 }
 
+// Função para gerar as perguntas de follow-up com base no sintoma
 async function generateFollowUpQuestions(context, idioma) {
   const usedQuestions = sessionMemory.usedQuestions || [];
   const symptom = context.sintoma || "symptom";
@@ -206,7 +207,7 @@ Não repita perguntas já feitas: ${usedQuestions.join("; ")}.
 Retorne apenas as 3 perguntas numeradas.
 `;
 
-const promptEN = `
+  const promptEN = `
 You are a smart and focused health assistant, primarily concentrating on the symptom "${symptom}". 
 Based on this symptom and funnel phase ${phase}, generate 3 short, clear, and focused questions about the symptom.
 The questions should explore understanding, treatment, or prevention of the symptom.
@@ -218,6 +219,23 @@ Return only the 3 numbered questions.
   const prompt = idioma === "pt" ? promptPT : promptEN;
 
   try {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: GPT_MODEL,
+        messages: [
+          { role: "system", content: "You generate only 3 relevant and persuasive questions. No extra explanation." },
+          { role: "user", content: prompt }
+        ],
+        temperature: 0.75,
+        max_tokens: 300
+      })
+    });
+
     const data = await response.json();
     let questionsRaw = data.choices?.[0]?.message?.content || "";
     let questions = questionsRaw.split(/\d+\.\s+/).filter(Boolean).slice(0, 3);
@@ -229,70 +247,53 @@ Return only the 3 numbered questions.
     sessionMemory.usedQuestions.push(...questions);
 
     // Se menos de 3 perguntas após filtro, adiciona fallback interno
-    const fallbackPT = [
-      "Você já tentou mudar sua alimentação ou rotina?",
-      "Como você acha que isso está afetando seu dia a dia?",
-      "Está disposto(a) a descobrir uma solução mais eficaz agora?"
-    ];
-    const fallbackEN = [
-      "Have you tried adjusting your diet or lifestyle?",
-      "How do you think this is affecting your daily life?",
-      "Are you ready to explore a better solution now?"
-    ];
-
-   // Se menos de 3 perguntas após filtro, adiciona fallback interno
-if (questions.length < 3) {
-  let fallback = [];
-
-  // Verifique o sintoma atual e escolha o fallback apropriado
-  if (sessionMemory.sintomaAtual === "gengivas inflamadas") {
-    fallback = idioma === "pt" ? [
-      "Você já visitou um dentista para tratar da inflamação nas gengivas?",
-      "Está sentindo algum desconforto além do sangramento das gengivas?",
-      "Sabia que a inflamação nas gengivas pode ser causada por uma higiene bucal inadequada?"
-    ] : [
-      "Have you visited a dentist to treat the gum inflammation?",
-      "Are you feeling any discomfort besides the gum bleeding?",
-      "Did you know that gum inflammation can be caused by poor oral hygiene?"
-    ];
-  } else if (sessionMemory.sintomaAtual === "acne") {
-    fallback = idioma === "pt" ? [
-      "Você já tentou algum tratamento para a acne?",
-      "Você sabe quais alimentos podem estar ajudando a piorar a acne?",
-      "Está lidando com acne principalmente em alguma área do rosto?"
-    ] : [
-      "Have you tried any treatments for acne?",
-      "Do you know which foods might be contributing to your acne?",
-      "Are you dealing with acne mainly in any specific area of your face?"
-    ];
-  } else {
-    // Fallback genérico se o sintoma não for específico
-    fallback = idioma === "pt" ? [
-      "Você já procurou tratamento para o seu sintoma?",
-      "Há algo específico que você gostaria de aprender sobre esse sintoma?",
-      "Você tem tentado alguma solução por conta própria?"
-    ] : [
-      "Have you sought treatment for this symptom?",
-      "Is there anything specific you'd like to learn about this symptom?",
-      "Have you tried any solutions on your own?"
-    ];
-  }
-
-  // Adiciona perguntas de fallback que ainda não foram usadas
-  for (const fq of fallback) {
-    if (questions.length >= 3) break;  // Limita a 3 perguntas
-    if (!sessionMemory.usedQuestions.includes(fq)) {
-      questions.push(fq);  // Adiciona a pergunta ao conjunto de perguntas
-      sessionMemory.usedQuestions.push(fq);  // Marca como já usada
+    let fallback = [];
+    if (sessionMemory.sintomaAtual === "gengivas inflamadas") {
+      fallback = idioma === "pt" ? [
+        "Você já visitou um dentista para tratar da inflamação nas gengivas?",
+        "Está sentindo algum desconforto além do sangramento das gengivas?",
+        "Sabia que a inflamação nas gengivas pode ser causada por uma higiene bucal inadequada?"
+      ] : [
+        "Have you visited a dentist to treat the gum inflammation?",
+        "Are you feeling any discomfort besides the gum bleeding?",
+        "Did you know that gum inflammation can be caused by poor oral hygiene?"
+      ];
+    } else if (sessionMemory.sintomaAtual === "acne") {
+      fallback = idioma === "pt" ? [
+        "Você já tentou algum tratamento para a acne?",
+        "Você sabe quais alimentos podem estar ajudando a piorar a acne?",
+        "Está lidando com acne principalmente em alguma área do rosto?"
+      ] : [
+        "Have you tried any treatments for acne?",
+        "Do you know which foods might be contributing to your acne?",
+        "Are you dealing with acne mainly in any specific area of your face?"
+      ];
+    } else {
+      // Fallback genérico se o sintoma não for específico
+      fallback = idioma === "pt" ? [
+        "Você já procurou tratamento para o seu sintoma?",
+        "Há algo específico que você gostaria de aprender sobre esse sintoma?",
+        "Você tem tentado alguma solução por conta própria?"
+      ] : [
+        "Have you sought treatment for this symptom?",
+        "Is there anything specific you'd like to learn about this symptom?",
+        "Have you tried any solutions on your own?"
+      ];
     }
-  }
-}
+
+    // Adiciona perguntas de fallback que ainda não foram usadas
+    for (const fq of fallback) {
+      if (questions.length >= 3) break;  // Limita a 3 perguntas
+      if (!sessionMemory.usedQuestions.includes(fq)) {
+        questions.push(fq);  // Adiciona a pergunta ao conjunto de perguntas
+        sessionMemory.usedQuestions.push(fq);  // Marca como já usada
+      }
+    }
 
     return questions.slice(0, 3);
 
   } catch (err) {
     console.warn("❗️Erro ao gerar perguntas com GPT:", err);
-    // fallback direto sem usar GPT
     return idioma === "pt"
       ? [
           "Você já tentou mudar sua alimentação ou rotina?",
