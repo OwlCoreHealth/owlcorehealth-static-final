@@ -376,10 +376,10 @@ export default async function handler(req, res) {
         : `You are Dr. Owl, a clever and insightful health assistant. A user just asked something that shows curiosity or vague doubt. Respond with charm and subtle sarcasm, then invite them to share any body signal or discomfort they're feeling. User's message: "${userInput}"`
     );
 
-    const followupQuestions = await generateFollowUpQuestions(
-      { sintoma: "entrada genérica", funnelPhase: 1 },
-      idioma
-    );
+   const followupQuestions = await generateFollowUpQuestions(
+  { sintoma: sessionMemory.sintomaAtual, funnelPhase: 1 },
+  idioma
+);
 
     let content = formatHybridResponse({}, gptResponse, followupQuestions, idioma);
 
