@@ -395,7 +395,11 @@ export default async function handler(req, res) {
       ? `Você é o Dr. Owl, um assistente de saúde inteligente e focado em fornecer explicações científicas e objetivas. Um usuário fez uma pergunta fora do padrão de sintomas, que envolve curiosidade ou dúvida. Responda de forma clara, baseada em evidências científicas, sem humor ou metáforas. Pergunta do usuário: "${userInput}"`
       : `You are Dr. Owl, a health assistant focused on providing scientific and objective explanations. A user has asked a question outside the symptom context, involving curiosity or doubt. Respond clearly, based on scientific evidence, without humor or metaphors. User's message: "${userInput}"`
   );
+} else {
+  // O código do 'else' vai aqui
+  // Adicione seu código para a situação em que intent == "sintoma"
 }
+
 
    const followupQuestions = await generateFollowUpQuestions(
   { sintoma: sessionMemory.sintomaAtual, funnelPhase: 1 },
