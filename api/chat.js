@@ -225,17 +225,35 @@ Return only the 3 numbered questions.
       "Are you ready to explore a better solution now?"
     ];
 
-    if (questions.length < 3) {
-      const fallback = idioma === "pt" ? fallbackPT : fallbackEN;
-      // Adiciona perguntas de fallback que ainda não foram usadas
-      for (const fq of fallback) {
-        if (questions.length >= 3) break;
-        if (!sessionMemory.usedQuestions.includes(fq)) {
-          questions.push(fq);
-          sessionMemory.usedQuestions.push(fq);
-        }
-      }
+    // Se menos de 3 perguntas após filtro, adiciona fallback interno
+if (questions.length < 3) {
+  let fallback = [];
+  
+  // Verifique o sintoma e escolha o fallback apropriado
+  if (symptom === "gengivas inflamadas") {
+    fallback = idioma === "pt" ? fallbackPT : fallbackEN;
+  } else {
+    // Fallback genérico se o sintoma não for específico
+    fallback = idioma === "pt" ? [
+      "Você já procurou tratamento para o seu sintoma?",
+      "Há algo específico que você gostaria de aprender sobre esse sintoma?",
+      "Você tem tentado alguma solução por conta própria?"
+    ] : [
+      "Have you sought treatment for this symptom?",
+      "Is there anything specific you'd like to learn about this symptom?",
+      "Have you tried any solutions on your own?"
+    ];
+  }
+
+  // Adiciona perguntas de fallback que ainda não foram usadas
+  for (const fq of fallback) {
+    if (questions.length >= 3) break;  // Limita a 3 perguntas
+    if (!sessionMemory.usedQuestions.includes(fq)) {
+      questions.push(fq);  // Adiciona a pergunta ao conjunto de perguntas
+      sessionMemory.usedQuestions.push(fq);  // Marca como já usada
     }
+  }
+}
 
     return questions.slice(0, 3);
 
