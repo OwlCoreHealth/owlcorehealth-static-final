@@ -195,6 +195,7 @@ async function generateFreeTextWithGPT(prompt) {
 async function generateFollowUpQuestions(context, idioma) {
   let followupQuestions = [];
 
+  // Verifique se o sintoma está identificado corretamente
   if (context.sintoma === "hormonal weight gain") {
     followupQuestions = [
       "Você já identificou quais fatores hormonais podem estar contribuindo para o seu ganho de peso?",
@@ -208,9 +209,10 @@ async function generateFollowUpQuestions(context, idioma) {
       "Já considerou procurar um profissional para avaliar a gordura abdominal e suas causas?"
     ];
   } else {
-    // Identificar sintomas relacionados e gerar perguntas mais relevantes
     try {
+      // Identificar sintomas relacionados
       const relatedSymptom = await identifySymptom(userInput, allSymptoms, idioma);
+      
       if (relatedSymptom !== "unknown") {
         followupQuestions = [
           `Você já tentou algum tratamento para o sintoma de ${relatedSymptom}?`,
@@ -218,6 +220,7 @@ async function generateFollowUpQuestions(context, idioma) {
           `Está disposto a investigar mais sobre o sintoma de ${relatedSymptom} com um profissional?`
         ];
       } else {
+        // Fallback para perguntas genéricas
         followupQuestions = [
           "Você já procurou ajuda profissional para investigar a causa do seu sintoma?",
           "Há algo mais que gostaria de aprender sobre o que pode estar causando o seu sintoma?",
@@ -226,7 +229,6 @@ async function generateFollowUpQuestions(context, idioma) {
       }
     } catch (error) {
       console.error("Erro ao identificar sintoma:", error);
-      // Fallback genérico caso erro de identificação
       followupQuestions = [
         "Você já procurou tratamento para o seu sintoma?",
         "Há algo específico que você gostaria de aprender sobre esse sintoma?",
@@ -235,9 +237,10 @@ async function generateFollowUpQuestions(context, idioma) {
     }
   }
 
+  // **Importante**: Certifique-se que `return` está dentro de uma função assíncrona como aqui
   return followupQuestions;
 }
-  
+
   const promptPT = `
     Você é um assistente de saúde inteligente e focado no sintoma "${symptom}". 
     Com base nesse sintoma e na fase do funil ${phase}, gere 3 perguntas curtas, objetivas e focadas no sintoma.
