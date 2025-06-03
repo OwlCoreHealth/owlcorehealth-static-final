@@ -228,7 +228,7 @@ Return only the 3 numbered questions.
    // Se menos de 3 perguntas após filtro, adiciona fallback interno
 if (questions.length < 3) {
   let fallback = [];
-  
+
   // Verifique o sintoma atual e escolha o fallback apropriado
   if (sessionMemory.sintomaAtual === "gengivas inflamadas") {
     fallback = idioma === "pt" ? [
@@ -239,6 +239,16 @@ if (questions.length < 3) {
       "Have you visited a dentist to treat the gum inflammation?",
       "Are you feeling any discomfort besides the gum bleeding?",
       "Did you know that gum inflammation can be caused by poor oral hygiene?"
+    ];
+  } else if (sessionMemory.sintomaAtual === "acne") {
+    fallback = idioma === "pt" ? [
+      "Você já tentou algum tratamento para a acne?",
+      "Você sabe quais alimentos podem estar ajudando a piorar a acne?",
+      "Está lidando com acne principalmente em alguma área do rosto?"
+    ] : [
+      "Have you tried any treatments for acne?",
+      "Do you know which foods might be contributing to your acne?",
+      "Are you dealing with acne mainly in any specific area of your face?"
     ];
   } else {
     // Fallback genérico se o sintoma não for específico
