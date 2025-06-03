@@ -32,8 +32,22 @@ function getFunnelKey(phase) {
 // Substitua a função `generateAnswerForSymptom` pela versão ajustada abaixo:
 
 const generateAnswerForSymptom = async (symptom, idioma) => {
+  // 1. Verificar no arquivo fallbackTextsBySymptom.js
+  const fallback = fallbackTextsBySymptom[symptom.toLowerCase()];
+  if (fallback && fallback.base) {
+    // Retorna o conteúdo do arquivo de fallback se encontrado
+    return idioma === "pt" ? fallback.base.join(" ") : fallback.base.join(" ");
+  }
+
+  // 2. Verificar na tabela do Notion (este é um exemplo simples, você precisará garantir que o Notion está sendo consultado corretamente)
+  const notionResponse = await getSymptomContext(symptom, "", null, null, 1, symptom, []);
+  if (notionResponse && notionResponse.content) {
+    return notionResponse.content;
+  }
+
+  // 3. Caso não tenha encontrado no Notion ou no arquivo de fallback, faz a consulta ao GPT
   const prompt = idioma === "pt" ? `Explique claramente o sintoma "${symptom}" de maneira científica e prática.` : `Explain clearly the symptom "${symptom}" in a scientific and practical way.`;
-  
+
   // Chamar a API do GPT para gerar a resposta completa
   const response = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
@@ -53,11 +67,9 @@ const generateAnswerForSymptom = async (symptom, idioma) => {
   });
 
   const data = await response.json();
-  console.log("Resposta do servidor:", data); // Para depuração
-
   const answer = data.choices?.[0]?.message?.content || "Desculpe, não consegui gerar uma resposta no momento.";
 
-  // Se a resposta não for suficientemente científica, adiciona uma explicação genérica científica
+  // 4. Se a resposta do GPT não for científica ou suficiente, fornece explicação genérica
   if (answer.length < 100 || !answer.match(/causa|tratamento|sintoma|prevenção/i)) {
     return "Desculpe, não consegui encontrar uma explicação específica para seu sintoma. No entanto, posso te dizer que as dores abdominais, por exemplo, podem ser causadas por condições como gastrite ou refluxo gastroesofágico, que exigem acompanhamento médico adequado.";
   }
