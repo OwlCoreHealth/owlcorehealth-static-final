@@ -35,7 +35,7 @@ const generateAnswerForSymptom = async (symptom, idioma) => {
   // 1. Verificar na tabela do Notion
   const notionResponse = await getSymptomContext(symptom, 1, null, []);
   if (notionResponse && notionResponse.funnelTexts) {
-    // Se encontrar no Notion, retorna o conteúdo
+    // Se encontrar no Notion, retorna o conteúdo da fase 'base' (ou outro estágio desejado)
     return notionResponse.funnelTexts.base.join(" ");
   }
 
