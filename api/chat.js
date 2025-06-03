@@ -192,7 +192,7 @@ async function generateFreeTextWithGPT(prompt) {
   }
 }
 
-async function generateFollowUpQuestions(context, idioma) {
+async function generateFollowUpQuestions(context, userInput, allSymptoms, idioma) {
   let followupQuestions = [];
 
   // Verifique se o sintoma está identificado corretamente
@@ -237,7 +237,6 @@ async function generateFollowUpQuestions(context, idioma) {
     }
   }
 
-  // **Importante**: Certifique-se que `return` está dentro de uma função assíncrona como aqui
   return followupQuestions;
 }
 
