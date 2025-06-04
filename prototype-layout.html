@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dr. Owl Chatbot</title>
+<style>
+  /* Reset básico */
+  * {
+    box-sizing: border-box;
+  }
+  body, html {
+    margin: 0; padding: 0; height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: #fff;
+    color: #333;
+  }
+
+  /* Layout principal */
+  .container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    width: 280px;
+    background: #f9fafb;
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+  }
+  .sidebar.hide {
+    transform: translateX(-100%);
+  }
+
+  /* Sidebar header - hamburger & title */
+  .sidebar-header {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+  }
+  .hamburger-btn {
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    cursor: pointer;
+    margin-right: 1rem;
+    user-select: none;
+  }
+  .sidebar-title {
+    font-weight: 700;
+    font-size: 1.2rem;
+    flex-grow: 1;
+  }
+
+  /* Sidebar content: categorias */
+  .categories {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 1rem;
+  }
+  .category {
+    margin-bottom: 2rem;
+  }
+  .category-title {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.6rem;
+    color: #2a2a72;
+  }
+  .category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .category-list li {
+    margin-bottom: 0.5rem;
+  }
+  .category-list button {
+    background: none;
+    border: none;
+    color: #3757b2;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-align: left;
+    padding: 0;
+    width: 100%;
+    transition: color 0.2s ease;
+  }
+  .category-list button:hover,
+  .category-list button:focus {
+    color: #1e3c9f;
+    outline: none;
+    text-decoration: underline;
+  }
+
+  /* Sidebar footer */
+  .sidebar-footer {
+    padding: 1rem;
+    border-top: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+  }
+  .user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #3757b2;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 0.75rem;
+  }
+  .user-name {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #222;
+  }
+
+  /* Área do chat */
+  .chat-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    height: 100%;
+  }
+
+  /* Chat header */
+  .chat-header {
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .chat-header-title {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #222;
+  }
+  .new-chat-btn {
+    background: #3757b2;
+    border: none;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  .new-chat-btn:hover,
+  .new-chat-btn:focus {
+    background-color: #2a3e89;
+    outline: none;
+  }
+
+  /* Chat messages */
+  .chat-messages {
+    flex-grow: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    background: #fdfdfd;
+  }
+
+  /* Message bubbles */
+  .message {
+    max-width: 65%;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .message.bot {
+    justify-content: flex-start;
+  }
+  .message.user {
+    justify-content: flex-end;
+    margin-left: auto;
+  }
+
+  .message-bubble {
+    padding: 0.7rem 1rem;
+    border-radius: 16px;
+    font-size: 1rem;
+    line-height: 1.4;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .message.bot .message-bubble {
+    background: #fff;
+    color: #222;
+    border: 1px solid #ddd;
+    position: relative;
+  }
+  .message.user .message-bubble {
+    background: #c6dbf7;
+    color: #12305a;
+  }
+
+  /* Bot icon */
+  .bot-icon {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+  }
+
+  /* Chat input area */
+  .chat-input-area {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid #ddd;
+    background: #f8f8fa;
+  }
+
+  .chat-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  /* Input field */
+  .chat-input {
+    flex-grow: 1;
+    padding: 0.7rem 1rem;
+    border-radius: 9999px;
+    border: 1px solid #ccc;
+    background: #eef0f4;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+  .chat-input:focus {
+    border-color: #3757b2;
+  }
+
+  /* Left buttons container */
+  .input-left-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .input-button {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.4rem 0.75rem;
+    border-radius: 9999px;
+    border: 1px solid #3757b2;
+    background: white;
+    color: #3757b2;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  .input-button:hover,
+  .input-button:focus {
+    background-color: #3757b2;
+    color: white;
+    outline: none;
+  }
+  .input-button svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
+
+  /* Right send button */
+  .send-button {
+    background-color: #3757b2;
+    border: none;
+    color: white;
+    border-radius: 9999px;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s ease;
+  }
+  .send-button:hover,
+  .send-button:focus {
+    background-color: #2a3e89;
+    outline: none;
+  }
+  .send-button svg {
+    width: 20px;
+    height: 20px;
+    fill: white;
+  }
+
+  /* Scrollbar personalizado para mensagens */
+  .chat-messages::-webkit-scrollbar {
+    width: 8px;
+  }
+  .chat-messages::-webkit-scrollbar-thumb {
+    background: #c0c0c0;
+    border-radius: 9999px;
+  }
+  .chat-messages::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      height: 100vh;
+    }
+    .sidebar {
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      z-index: 1000;
+      transform: translateX(-100%);
+      box-shadow: 2px 0 8px rgba(0,0,0,0.15);
+      width: 260px;
+    }
+    .sidebar.show {
+      transform: translateX(0);
+    }
+    .chat-area {
+      flex-grow: 1;
+      height: 100%;
+    }
+    .chat-header {
+      padding: 1rem 0.75rem;
+      position: relative;
+    }
+    .hamburger-btn-mobile {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #3757b2;
+      z-index: 1100;
+      user-select: none;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <button class="hamburger-btn" id="sidebarCloseBtn" aria-label="Fechar menu">&#x2715;</button>
+      <div class="sidebar-title">Menu</div>
+    </div>
+    <div class="categories">
+      <div class="category" id="category-dr-owl">
+        <div class="category-title">Conheça o Dr. Owl</div>
+        <ul class="category-list">
+          <li><button type="button">Quem é o Dr. Owl?</button></li>
+          <li><button type="button">Qual a função do Dr. Owl?</button></li>
+          <li><button type="button">Como o Dr. Owl pode ajudar?</button></li>
+          <li><button type="button">Por que confiar no Dr. Owl?</button></li>
+          <li><button type="button">Quais são os diferenciais do Dr. Owl?</button></li>
+        </ul>
+      </div>
+      <div class="category" id="category-sintomas">
+        <div class="category-title">Sintomas</div>
+        <ul class="category-list">
+          <li><button type="button">Quer saber sobre o sintoma A?</button></li>
+          <li><button type="button">Quer saber como o sintoma B pode agravar sua saúde?</button></li>
+          <li><button type="button">Como identificar o sintoma C?</button></li>
+          <li><button type="button">Quais são os riscos do sintoma D?</button></li>
+          <li><button type="button">Sintoma E: causas comuns?</button></li>
+        </ul>
+      </div>
+      <div class="category" id="category-outros">
+        <div class="category-title">Categoria 3</div>
+        <ul class="category-list">
+          <li><button type="button">Pergunta 1 da categoria 3</button></li>
+          <li><button type="button">Pergunta 2 da categoria 3</button></li>
+          <li><button type="button">Pergunta 3 da categoria 3</button></li>
+          <li><button type="button">Pergunta 4 da categoria 3</button></li>
+          <li><button type="button">Pergunta 5 da categoria 3</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="sidebar-footer">
+      <div class="user-avatar" aria-label="Avatar do usuário" title="Avatar do usuário">JB</div>
+      <div class="user-name">João Batista</div>
+    </div>
+  </nav>
+
+  <main class="chat-area" role="main">
+    <header class="chat-header">
+      <button class="hamburger-btn-mobile" id="sidebarOpenBtn" aria-label="Abrir menu">&#9776;</button>
+      <div class="chat-header-title">Conversa Atual</div>
+      <button class="new-chat-btn" aria-label="Nova conversa">+ Nova conversa</button>
+    </header>
+    <section class="chat-messages" id="chatMessages" aria-live="polite" aria-relevant="additions">
+      <!-- Exemplo de mensagens -->
+      <article class="message bot">
+        <svg class="bot-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="32" r="32" fill="#3757b2"/>
+          <path fill="#fff" d="M20 28c5 10 14 8 20 6-8 3-15-1-20-6z"/>
+          <circle cx="25" cy="27" r="4" fill="#fff"/>
+          <circle cx="42" cy="25" r="5" fill="#fff"/>
+        </svg>
+        <div class="message-bubble">Olá! Como posso ajudar você hoje? 😊</div>
+      </article>
+      <article class="message user">
+        <div class="message-bubble">Olá, tudo bem?</div>
+      </article>
+    </section>
+    <form class="chat-input-area" id="chatForm" aria-label="Enviar mensagem">
+      <div class="chat-input-wrapper">
+        <div class="input-left-buttons">
+          <button type="button" class="input-button" aria-label="Ler mensagem em voz alta" title="Read Aloud">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false" width="20" height="20">
+              <path d="M3 9v6h4l5 5V4L7 9H3zM16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.06c1.48-.74 2.5-2.26 2.5-4.03z"/>
+            </svg>
+            Read Aloud
+          </button>
+          <button type="button" class="input-button" aria-label="Ativar microfone" title="Microphone">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false" width="20" height="20">
+              <path d="M12 14a3 3 0 003-3V5a3 3 0 10-6 0v6a3 3 0 003 3z"/>
+              <path d="M19 11v2a7 7 0 01-14 0v-2"/>
+              <line x1="12" y1="19" x2="12" y2="23" stroke="currentColor" stroke-width="2"/>
+              <line x1="8" y1="23" x2="16" y2="23" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </button>
+        </div>
+        <input type="text" id="chatInput" class="chat-input" placeholder="Digite sua mensagem aqui..." autocomplete="off" required aria-required="true" />
+        <button type="button" class="send-button" aria-label="Enviar mensagem" title="Enviar">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false" width="24" height="24">
+            <path d="M2 21l21-9L2 3v7l15 2-15 2z"/>
+          </svg>
+        </button>
+      </div>
+    </form>
+  </main>
+</div>
+
+<script>
+  // Sidebar toggle buttons
+  const sidebar = document.getElementById('sidebar');
+  const openBtn = document.getElementById('sidebarOpenBtn');
+  const closeBtn = document.getElementById('sidebarCloseBtn');
+
+  openBtn.addEventListener('click', () => {
+    sidebar.classList.add('show');
+  });
+  closeBtn.addEventListener('click', () => {
+    sidebar.classList.remove('show');
+  });
+
+  // Exemplo: evento para frases clicáveis (pode ser customizado depois)
+  document.querySelectorAll('.category-list button').forEach(button => {
+    button.addEventListener('click', () => {
+      alert(`Você clicou em: "${button.textContent}"`);
+      // Aqui pode disparar outras ações como carregar conteúdo no chat
+    });
+  });
+
+  // Enviar mensagem simulada ao clicar em enviar
+  const chatForm = document.getElementById('chatForm');
+  const chatInput = document.getElementById('chatInput');
+  const chatMessages = document.getElementById('chatMessages');
+
+  chatForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const text = chatInput.value.trim();
+    if (!text) return;
+
+    // Cria mensagem do usuário
+    const userMsg = document.createElement('article');
+    userMsg.classList.add('message', 'user');
+    userMsg.innerHTML = `<div class="message-bubble"></div>`;
+    userMsg.querySelector('.message-bubble').textContent = text;
+    chatMessages.appendChild(userMsg);
+
+    chatInput.value = '';
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    // Aqui poderia chamar API backend para responder
+  });
+
+  // Também permitir enviar mensagem pelo botão enviar
+  const sendBtn = document.querySelector('.send-button');
+  sendBtn.addEventListener('click', () => {
+    chatForm.requestSubmit();
+  });
+</script>
+</body>
+</html>
