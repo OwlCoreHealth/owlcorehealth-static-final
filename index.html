@@ -438,17 +438,66 @@
             lastMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
 
-          input.value = '';
-        }
-      } catch (err) {
-        responseDiv.textContent = "Error communicating with server.";
-        console.error(err);
-      }
+      // Seleciona o campo contenteditable (altere o seletor se precisar)
+const input = document.querySelector('.message-label'); 
+
+function clearContentEditable(el) {
+  el.textContent = '\u200B'; // espaço invisível para manter cursor
+  const range = document.createRange();
+  const sel = window.getSelection();
+  range.setStart(el.childNodes[0], 1);
+  range.collapse(true);
+  sel.removeAllRanges();
+  sel.addRange(range);
+}
+
+async function sendMessage(message) {
+  if (!message.trim()) return;
+
+  // Insere a mensagem do usuário na tela (exemplo)
+  responseDiv.insertAdjacentHTML('beforeend', `<div class="user-message">${message.trim()}</div>`);
+  responseDiv.scrollTop = responseDiv.scrollHeight;
+
+  // Aqui o fetch para a API do bot (exemplo genérico)
+  try {
+    responseDiv.insertAdjacentHTML('beforeend', `<div class="typing-indicator">Dr. Owl is typing...</div>`);
+    responseDiv.scrollTop = responseDiv.scrollHeight;
+
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message })
+    });
+
+    const data = await res.json();
+
+    const typing = responseDiv.querySelector('.typing-indicator');
+    if (typing) typing.remove();
+
+    // Exemplo de inserir resposta do bot
+    if (data.choices && data.choices.length > 0) {
+      responseDiv.insertAdjacentHTML('beforeend', `
+        <div class="bot-message">
+          ${botIconHTML}
+          <div>${data.choices[0].message.content}</div>
+        </div>
+      `);
     }
 
-    sendButton?.addEventListener('click', () => {
-      sendMessage(input.value);
-    });
+    // Limpa o campo contenteditable mantendo o cursor ativo
+    clearContentEditable(input);
+
+  } catch (err) {
+    responseDiv.textContent = "Error communicating with server.";
+    console.error(err);
+  }
+}
+
+// Evento do botão enviar
+sendButton.addEventListener('click', () => {
+  const message = input.textContent.replace(/\u200B/g, '').trim(); // Remove o espaço invisível e trim
+  sendMessage(message);
+});
 
     readAloudButton?.addEventListener('click', () => {
       if (speechSynthesis.speaking) {
