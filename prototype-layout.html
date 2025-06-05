@@ -1,501 +1,301 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Dr. Owl Chatbot</title>
-<style>
-  /* Reset básico */
-  * {
-    box-sizing: border-box;
-  }
-  body, html {
-    margin: 0; padding: 0; height: 100%;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background: #fff;
-    color: #333;
-  }
-
-  /* Layout principal */
-  .container {
-    display: flex;
-    height: 100vh;
-    overflow: hidden;
-  }
-
-  /* Sidebar */
-  .sidebar {
-    width: 280px;
-    background: #f9fafb;
-    border-right: 1px solid #ddd;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.3s ease;
-  }
-  .sidebar.hide {
-    transform: translateX(-100%);
-  }
-
-  /* Sidebar header - hamburger & title */
-  .sidebar-header {
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-    border-bottom: 1px solid #ddd;
-  }
-  .hamburger-btn {
-    background: none;
-    border: none;
-    font-size: 1.6rem;
-    cursor: pointer;
-    margin-right: 1rem;
-    user-select: none;
-  }
-  .sidebar-title {
-    font-weight: 700;
-    font-size: 1.2rem;
-    flex-grow: 1;
-  }
-
-  /* Sidebar content: categorias */
-  .categories {
-    flex-grow: 1;
-    overflow-y: auto;
-    padding: 1rem;
-  }
-  .category {
-    margin-bottom: 2rem;
-  }
-  .category-title {
-    font-weight: 700;
-    font-size: 1rem;
-    margin-bottom: 0.6rem;
-    color: #2a2a72;
-  }
-  .category-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  .category-list li {
-    margin-bottom: 0.5rem;
-  }
-  .category-list button {
-    background: none;
-    border: none;
-    color: #3757b2;
-    cursor: pointer;
-    font-size: 0.9rem;
-    text-align: left;
-    padding: 0;
-    width: 100%;
-    transition: color 0.2s ease;
-  }
-  .category-list button:hover,
-  .category-list button:focus {
-    color: #1e3c9f;
-    outline: none;
-    text-decoration: underline;
-  }
-
-  /* Sidebar footer */
-  .sidebar-footer {
-    padding: 1rem;
-    border-top: 1px solid #ddd;
-    display: flex;
-    align-items: center;
-  }
-  .user-avatar {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background-color: #3757b2;
-    color: white;
-    font-weight: 700;
-    font-size: 1.1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 0.75rem;
-  }
-  .user-name {
-    font-weight: 600;
-    font-size: 1rem;
-    color: #222;
-  }
-
-  /* Área do chat */
-  .chat-area {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    background: white;
-    height: 100%;
-  }
-
-  /* Chat header */
-  .chat-header {
-    padding: 1rem;
-    border-bottom: 1px solid #ddd;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .chat-header-title {
-    font-weight: 700;
-    font-size: 1.25rem;
-    color: #222;
-  }
-  .new-chat-btn {
-    background: #3757b2;
-    border: none;
-    color: white;
-    font-weight: 600;
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-    border-radius: 9999px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-  .new-chat-btn:hover,
-  .new-chat-btn:focus {
-    background-color: #2a3e89;
-    outline: none;
-  }
-
-  /* Chat messages */
-  .chat-messages {
-    flex-grow: 1;
-    padding: 1rem;
-    overflow-y: auto;
-    background: #fdfdfd;
-  }
-
-  /* Message bubbles */
-  .message {
-    max-width: 65%;
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-  }
-  .message.bot {
-    justify-content: flex-start;
-  }
-  .message.user {
-    justify-content: flex-end;
-    margin-left: auto;
-  }
-
-  .message-bubble {
-    padding: 0.7rem 1rem;
-    border-radius: 16px;
-    font-size: 1rem;
-    line-height: 1.4;
-    white-space: pre-wrap;
-    word-break: break-word;
-  }
-
-  .message.bot .message-bubble {
-    background: #fff;
-    color: #222;
-    border: 1px solid #ddd;
-    position: relative;
-  }
-  .message.user .message-bubble {
-    background: #c6dbf7;
-    color: #12305a;
-  }
-
-  /* Bot icon */
-  .bot-icon {
-    flex-shrink: 0;
-    width: 32px;
-    height: 32px;
-  }
-
-  /* Chat input area */
-  .chat-input-area {
-    padding: 0.75rem 1rem;
-    border-top: 1px solid #ddd;
-    background: #f8f8fa;
-  }
-
-  .chat-input-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  /* Input field */
-  .chat-input {
-    flex-grow: 1;
-    padding: 0.7rem 1rem;
-    border-radius: 9999px;
-    border: 1px solid #ccc;
-    background: #eef0f4;
-    font-size: 1rem;
-    outline: none;
-    transition: border-color 0.2s ease;
-  }
-  .chat-input:focus {
-    border-color: #3757b2;
-  }
-
-  /* Left buttons container */
-  .input-left-buttons {
-    display: flex;
-    gap: 0.5rem;
-  }
-  .input-button {
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    padding: 0.4rem 0.75rem;
-    border-radius: 9999px;
-    border: 1px solid #3757b2;
-    background: white;
-    color: #3757b2;
-    font-size: 0.9rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s ease, color 0.2s ease;
-  }
-  .input-button:hover,
-  .input-button:focus {
-    background-color: #3757b2;
-    color: white;
-    outline: none;
-  }
-  .input-button svg {
-    width: 18px;
-    height: 18px;
-    fill: currentColor;
-  }
-
-  /* Right send button */
-  .send-button {
-    background-color: #3757b2;
-    border: none;
-    color: white;
-    border-radius: 9999px;
-    width: 36px;
-    height: 36px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background-color 0.2s ease;
-  }
-  .send-button:hover,
-  .send-button:focus {
-    background-color: #2a3e89;
-    outline: none;
-  }
-  .send-button svg {
-    width: 20px;
-    height: 20px;
-    fill: white;
-  }
-
-  /* Scrollbar personalizado para mensagens */
-  .chat-messages::-webkit-scrollbar {
-    width: 8px;
-  }
-  .chat-messages::-webkit-scrollbar-thumb {
-    background: #c0c0c0;
-    border-radius: 9999px;
-  }
-  .chat-messages::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  /* Responsividade */
-  @media (max-width: 768px) {
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dr. Owl’s AI Office</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background-color: #fff; /* fundo branco conforme pedido */
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
     .container {
-      flex-direction: column;
-      height: 100vh;
-    }
-    .sidebar {
-      position: fixed;
-      top: 0; left: 0; bottom: 0;
-      z-index: 1000;
-      transform: translateX(-100%);
-      box-shadow: 2px 0 8px rgba(0,0,0,0.15);
-      width: 260px;
-    }
-    .sidebar.show {
-      transform: translateX(0);
-    }
-    .chat-area {
-      flex-grow: 1;
-      height: 100%;
-    }
-    .chat-header {
-      padding: 1rem 0.75rem;
+      max-width: 600px;
+      width: 90%;
+      padding: 20px;
+      text-align: center;
       position: relative;
     }
-    .hamburger-btn-mobile {
-      position: absolute;
-      left: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      font-size: 1.8rem;
-      cursor: pointer;
-      color: #3757b2;
-      z-index: 1100;
-      user-select: none;
+    h1 {
+      font-weight: 700;
+      font-size: 24px;
+      margin: 0;
     }
-  }
-</style>
+    p.subtitle {
+      font-weight: 300;
+      font-size: 16px;
+      margin: 4px 0 24px 0;
+      color: #555;
+    }
+
+    .menu-hamburger {
+  position: fixed; /* fixo na viewport */
+  top: 0;
+  left: 0; /* canto superior esquerdo */
+  margin: 0; /* remove margens */
+  padding: 20px; /* mantém espaçamento interno clicável */
+  width: 28px;
+  height: 22px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 1001; /* acima do menu lateral */
+  box-sizing: content-box; /* evita influenciar largura por padding */
+}
+    .menu-hamburger span {
+      display: block;
+      height: 3px;
+      background-color: #6C63FF;
+      border-radius: 2px;
+    }
+
+    /* Menu lateral real */
+    .side-menu {
+      position: fixed;
+      top: 0;
+      left: -280px; /* escondido fora da tela */
+      width: 280px;
+      height: 100vh;
+      background: #f8f8f8;
+      box-shadow: 2px 0 8px rgba(0,0,0,0.15);
+      overflow-y: auto;
+      transition: left 0.3s ease;
+      z-index: 1000;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .side-menu.open {
+      left: 0; /* menu aparece */
+    }
+    .side-menu h2 {
+      margin-top: 0;
+      font-size: 18px;
+      font-weight: 700;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 6px;
+    }
+    .side-menu h3 {
+      margin-top: 20px;
+      font-size: 16px;
+      font-weight: 700;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 4px;
+    }
+    .side-menu ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 8px 0 0 0;
+    }
+    .side-menu ul li {
+      margin-bottom: 8px;
+    }
+    .side-menu ul li a {
+      color: #3a3a8c;
+      text-decoration: none;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .side-menu ul li a:hover {
+      text-decoration: underline;
+    }
+    .side-menu .close-btn {
+      font-size: 20px;
+      cursor: pointer;
+      margin-bottom: 20px;
+      display: block;
+      text-align: right;
+      color: #6C63FF;
+    }
+
+    /* Frase fina centralizada dentro do balão */
+    .input-area {
+      position: relative;
+      background-color: #ECECF3;
+      border-radius: 24px;
+      padding: 0 16px 16px 16px;
+      height: 104px;
+      display: flex;
+      align-items: center;
+      justify-content: center; /* CENTRALIZA HORIZONTALMENTE E VERTICALMENTE */
+      gap: 10px;
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .message-label {
+      font-weight: 300;
+      font-size: 14px;
+      color: #555;
+      margin: 0;
+      user-select: none;
+      pointer-events: none;
+      text-align: center;
+    }
+
+    .left-buttons {
+      position: absolute;
+      bottom: 12px;
+      left: 16px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      z-index: 1;
+    }
+    button {
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      user-select: none;
+      border-radius: 16px;
+      padding: 4px 14px;
+      background: transparent;
+      border: 2px solid #6C63FF;
+      color: #6C63FF;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    button:hover {
+      background-color: #6C63FF;
+      color: white;
+    }
+    button#send-btn {
+      margin-left: auto;
+      background-color: #6C63FF;
+      border: none;
+      color: white;
+      padding: 8px 24px;
+      font-weight: 700;
+      font-size: 14px;
+      border-radius: 16px;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s;
+      z-index: 1;
+    }
+    button#send-btn:hover {
+      background-color: #5750d1;
+    }
+    svg.logo {
+      display: block;
+      margin: 0 auto 16px auto;
+      fill: #6C63FF;
+      width: 80px;
+      height: 80px;
+    }
+    /* Icon inside Read Aloud */
+    svg.read-icon {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+  </style>
 </head>
 <body>
-<div class="container">
-  <nav class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <button class="hamburger-btn" id="sidebarCloseBtn" aria-label="Fechar menu">&#x2715;</button>
-      <div class="sidebar-title">Menu</div>
-    </div>
-    <div class="categories">
-      <div class="category" id="category-dr-owl">
-        <div class="category-title">Conheça o Dr. Owl</div>
-        <ul class="category-list">
-          <li><button type="button">Quem é o Dr. Owl?</button></li>
-          <li><button type="button">Qual a função do Dr. Owl?</button></li>
-          <li><button type="button">Como o Dr. Owl pode ajudar?</button></li>
-          <li><button type="button">Por que confiar no Dr. Owl?</button></li>
-          <li><button type="button">Quais são os diferenciais do Dr. Owl?</button></li>
-        </ul>
-      </div>
-      <div class="category" id="category-sintomas">
-        <div class="category-title">Sintomas</div>
-        <ul class="category-list">
-          <li><button type="button">Quer saber sobre o sintoma A?</button></li>
-          <li><button type="button">Quer saber como o sintoma B pode agravar sua saúde?</button></li>
-          <li><button type="button">Como identificar o sintoma C?</button></li>
-          <li><button type="button">Quais são os riscos do sintoma D?</button></li>
-          <li><button type="button">Sintoma E: causas comuns?</button></li>
-        </ul>
-      </div>
-      <div class="category" id="category-outros">
-        <div class="category-title">Categoria 3</div>
-        <ul class="category-list">
-          <li><button type="button">Pergunta 1 da categoria 3</button></li>
-          <li><button type="button">Pergunta 2 da categoria 3</button></li>
-          <li><button type="button">Pergunta 3 da categoria 3</button></li>
-          <li><button type="button">Pergunta 4 da categoria 3</button></li>
-          <li><button type="button">Pergunta 5 da categoria 3</button></li>
-        </ul>
-      </div>
-    </div>
-    <div class="sidebar-footer">
-      <div class="user-avatar" aria-label="Avatar do usuário" title="Avatar do usuário">JB</div>
-      <div class="user-name">João Batista</div>
-    </div>
-  </nav>
+  <div class="container">
 
-  <main class="chat-area" role="main">
-    <header class="chat-header">
-      <button class="hamburger-btn-mobile" id="sidebarOpenBtn" aria-label="Abrir menu">&#9776;</button>
-      <div class="chat-header-title">Conversa Atual</div>
-      <button class="new-chat-btn" aria-label="Nova conversa">+ Nova conversa</button>
-    </header>
-    <section class="chat-messages" id="chatMessages" aria-live="polite" aria-relevant="additions">
-      <!-- Exemplo de mensagens -->
-      <article class="message bot">
-        <svg class="bot-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="32" cy="32" r="32" fill="#3757b2"/>
-          <path fill="#fff" d="M20 28c5 10 14 8 20 6-8 3-15-1-20-6z"/>
-          <circle cx="25" cy="27" r="4" fill="#fff"/>
-          <circle cx="42" cy="25" r="5" fill="#fff"/>
-        </svg>
-        <div class="message-bubble">Olá! Como posso ajudar você hoje? 😊</div>
-      </article>
-      <article class="message user">
-        <div class="message-bubble">Olá, tudo bem?</div>
-      </article>
-    </section>
-    <form class="chat-input-area" id="chatForm" aria-label="Enviar mensagem">
-      <div class="chat-input-wrapper">
-        <div class="input-left-buttons">
-          <button type="button" class="input-button" aria-label="Ler mensagem em voz alta" title="Read Aloud">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false" width="20" height="20">
-              <path d="M3 9v6h4l5 5V4L7 9H3zM16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.06c1.48-.74 2.5-2.26 2.5-4.03z"/>
-            </svg>
-            Read Aloud
-          </button>
-          <button type="button" class="input-button" aria-label="Ativar microfone" title="Microphone">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false" width="20" height="20">
-              <path d="M12 14a3 3 0 003-3V5a3 3 0 10-6 0v6a3 3 0 003 3z"/>
-              <path d="M19 11v2a7 7 0 01-14 0v-2"/>
-              <line x1="12" y1="19" x2="12" y2="23" stroke="currentColor" stroke-width="2"/>
-              <line x1="8" y1="23" x2="16" y2="23" stroke="currentColor" stroke-width="2"/>
-            </svg>
-          </button>
-        </div>
-        <input type="text" id="chatInput" class="chat-input" placeholder="Digite sua mensagem aqui..." autocomplete="off" required aria-required="true" />
-        <button type="button" class="send-button" aria-label="Enviar mensagem" title="Enviar">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false" width="24" height="24">
-            <path d="M2 21l21-9L2 3v7l15 2-15 2z"/>
+    <!-- Menu Hamburguer -->
+    <div class="menu-hamburger" aria-label="Menu" role="button" tabindex="0" onclick="toggleMenu()" onkeydown="if(event.key==='Enter'){toggleMenu();}">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- Menu Lateral -->
+    <nav class="side-menu" id="sideMenu" aria-label="Main menu">
+      <span class="close-btn" role="button" tabindex="0" aria-label="Close menu" onclick="toggleMenu()" onkeydown="if(event.key==='Enter'){toggleMenu();}">&times;</span>
+      
+      <h2>Conheça o Dr. Owl</h2>
+      <ul>
+        <li><a href="#">Quem é o Dr. Owl?</a></li>
+        <li><a href="#">Qual a função do Dr. Owl?</a></li>
+        <li><a href="#">Como o Dr. Owl pode ajudar?</a></li>
+        <li><a href="#">Por que confiar no Dr. Owl?</a></li>
+        <li><a href="#">Quais são os diferenciais do Dr. Owl?</a></li>
+      </ul>
+      
+      <h3>Sintomas</h3>
+      <ul>
+        <li><a href="#">Quer saber sobre o sintoma A?</a></li>
+        <li><a href="#">Quer saber como o sintoma B pode agravar sua saúde?</a></li>
+        <li><a href="#">Como identificar o sintoma C?</a></li>
+        <li><a href="#">Quais são os riscos do sintoma D?</a></li>
+        <li><a href="#">Sintoma E: causas comuns?</a></li>
+      </ul>
+      
+      <h3>Categoria 3</h3>
+      <ul>
+        <li><a href="#">Pergunta 1 da categoria 3</a></li>
+        <li><a href="#">Pergunta 2 da categoria 3</a></li>
+        <li><a href="#">Pergunta 3 da categoria 3</a></li>
+        <li><a href="#">Pergunta 4 da categoria 3</a></li>
+        <li><a href="#">Pergunta 5 da categoria 3</a></li>
+      </ul>
+    </nav>
+
+    <!-- Logo Dr. Owl SVG -->
+    <svg class="logo" viewBox="0 0 375 375" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="img" aria-label="Dr Owl logo">
+      <defs>
+        <clipPath id="6526b8b4d3"><path d="M 113 88.230469 L 262 88.230469 L 262 135 L 113 135 Z M 113 88.230469 "/></clipPath>
+        <clipPath id="7c67bab10c"><path d="M 151 269 L 173 269 L 173 286.980469 L 151 286.980469 Z M 151 269 "/></clipPath>
+        <clipPath id="ee73742734"><path d="M 110.335938 280 L 264.835938 280 L 264.835938 286.980469 L 110.335938 286.980469 Z M 110.335938 280 "/></clipPath>
+        <clipPath id="dd244b840d"><path d="M 169 269 L 206 269 L 206 286.980469 L 169 286.980469 Z M 169 269 "/></clipPath>
+        <clipPath id="e9c4384c2b"><path d="M 202 269 L 223 269 L 223 286.980469 L 202 286.980469 Z M 202 269 "/></clipPath>
+      </defs>
+      <g id="9f691288a1">
+        <path style=" stroke:none;fill-rule:evenodd;fill:#4a64b2;fill-opacity:1;" d="M 214.34375 146.761719 C 217.371094 146.761719 219.828125 149.214844 219.828125 152.246094 C 219.828125 155.277344 217.371094 157.734375 214.34375 157.734375 C 211.3125 157.734375 208.855469 155.277344 208.855469 152.246094 C 208.855469 149.214844 211.3125 146.761719 214.34375 146.761719 Z M 214.34375 165.277344 C 221.34375 165.277344 227.019531 159.601562 227.019531 152.601562 C 227.019531 145.601562 221.34375 139.925781 214.34375 139.925781 C 207.339844 139.925781 201.664062 145.601562 201.664062 152.601562 C 201.664062 159.601562 207.339844 165.277344 214.34375 165.277344 Z M 214.34375 165.277344 "/>
+        <path style=" stroke:none;fill-rule:evenodd;fill:#4a64b2;fill-opacity:1;" d="M 160.054688 146.476562 C 163.082031 146.476562 165.539062 148.933594 165.539062 151.960938 C 165.539062 154.992188 163.082031 157.449219 160.054688 157.449219 C 157.023438 157.449219 154.566406 154.992188 154.566406 151.960938 C 154.566406 148.933594 157.019531 146.476562 160.054688 146.476562 Z M 160.054688 164.640625 C 167.054688 164.640625 172.730469 158.964844 172.730469 151.960938 C 172.730469 144.960938 167.054688 139.285156 160.054688 139.285156 C 153.050781 139.285156 147.375 144.960938 147.375 151.960938 C 147.375 158.964844 153.050781 164.640625 160.054688 164.640625 Z M 160.054688 164.640625 "/>
+        <path style=" stroke:none;fill-rule:evenodd;fill:#4a64b2;fill-opacity:1;" d="M 188.085938 183.265625 C 188.085938 183.265625 192.089844 177.933594 192.941406 172.175781 C 193.011719 171.761719 193.046875 171.328125 193.046875 170.882812 C 193.046875 167.488281 190.894531 164.726562 188.214844 164.640625 C 188.171875 164.636719 188.128906 164.636719 188.085938 164.636719 C 188.042969 164.636719 188 164.636719 187.957031 164.640625 C 185.277344 164.726562 183.125 167.484375 183.125 170.882812 C 183.125 171.328125 183.164062 171.757812 183.230469 172.175781 C 184.082031 177.933594 188.085938 183.265625 188.085938 183.265625 Z M 188.085938 183.265625 "/>
+        <path style=" stroke:none;fill-rule:evenodd;fill:#4a64b2;fill-opacity:1;" d="M 172.242188 192.910156 L 155.789062 192.910156 C 155.789062 197.878906 159.472656 201.910156 164.015625 201.910156 C 168.558594 201.910156 172.242188 197.878906 172.242188 192.910156 Z M 188.089844 241.363281 C 192.632812 241.363281 196.316406 237.335938 196.316406 232.367188 L 179.863281 232.367188 C 179.863281 237.339844 183.546875 241.363281 188.089844 241.363281 Z M 200.214844 222.542969 C 204.757812 222.542969 208.441406 218.511719 208.441406 213.546875 L 191.992188 213.546875 C 191.992188 218.511719 195.671875 222.542969 200.21875 222.542969 Z M 184.1875 213.546875 L 167.734375 213.546875 C 167.734375 218.511719 171.417969 222.542969 175.960938 222.542969 C 180.503906 222.542969 184.1875 218.511719 184.1875 213.546875 Z M 212.160156 201.910156 C 216.703125 201.910156 220.386719 197.878906 220.386719 192.914062 L 203.9375 192.914062 C 203.9375 197.878906 207.617188 201.910156 212.160156 201.910156 Z M 188.269531 201.910156 C 192.8125 201.910156 196.496094 197.878906 196.496094 192.914062 L 180.042969 192.914062 C 180.042969 197.878906 183.726562 201.910156 188.273438 201.910156 Z M 188.269531 201.910156 "/>
+      <g clip-rule="nonzero" clip-path="url(#6526b8b4d3)"><path style=" stroke:none;fill-rule:evenodd;fill:#4a64b2;fill-opacity:1;" d="M 113.191406 101.082031 C 125.289062 106.308594 136.15625 103.234375 146.933594 98.167969 C 159.625 92.199219 172.847656 88.328125 187.074219 88.230469 C 202.617188 88.128906 216.828125 92.882812 230.648438 99.351562 C 238.867188 103.203125 247.34375 105.082031 256.414062 102.953125 C 258.085938 102.5625 260.21875 100.632812 261.199219 101.769531 C 262.734375 103.542969 260.96875 105.875 260.179688 107.835938 C 258.433594 112.179688 256.015625 116.113281 252.496094 119.277344 C 248.714844 122.679688 244.707031 123.679688 239.78125 121.402344 C 227.75 115.839844 215.457031 114.25 203.113281 120.46875 C 196.671875 123.714844 191.792969 128.847656 187.472656 134.722656 C 185.671875 132.558594 184.148438 130.453125 182.355469 128.613281 C 169.957031 115.871094 154.316406 113.128906 136.855469 120.546875 C 128.867188 123.945312 124.871094 123.066406 119.558594 116.210938 C 116.246094 111.9375 113.402344 107.324219 113.191406 101.085938 Z M 113.191406 101.082031 "/></g><path style=" stroke:none;fill-rule:evenodd;fill:#54add4;fill-opacity:1;" d="M 157.921875 170.121094 C 146.171875 170.121094 136.644531 160.59375 136.644531 148.84375 C 136.644531 137.089844 146.171875 127.5625 157.921875 127.5625 C 169.675781 127.5625 179.203125 137.089844 179.203125 148.84375 C 179.203125 160.59375 169.675781 170.121094 157.921875 170.121094 Z M 150.855469 122.875 C 143.617188 125.417969 137.324219 129.894531 131.972656 136.300781 C 128.929688 141.070312 127.164062 146.738281 127.164062 152.816406 C 127.164062 159.855469 129.527344 166.335938 133.503906 171.519531 C 128.9375 180.132812 126.347656 189.957031 126.347656 200.390625 C 126.347656 234.488281 153.988281 262.128906 188.085938 262.128906 C 222.179688 262.128906 249.824219 234.488281 249.824219 200.390625 C 249.824219 189.597656 247.050781 179.457031 242.183594 170.628906 C 245.761719 165.601562 247.867188 159.457031 247.867188 152.816406 C 247.867188 146.621094 246.03125 140.855469 242.878906 136.027344 L 243.28125 136.300781 C 238.960938 129.710938 232.648438 125.25 224.339844 122.917969 C 222.019531 122.359375 219.601562 122.0625 217.109375 122.0625 C 203.039062 122.0625 191.175781 131.507812 187.515625 144.402344 C 183.855469 131.507812 171.992188 122.0625 157.921875 122.0625 C 155.492188 122.0625 153.125 122.347656 150.855469 122.878906 Z M 133.878906 171.996094 C 139.515625 179.050781 148.191406 183.574219 157.921875 183.574219 C 167.808594 183.574219 176.609375 178.910156 182.234375 171.660156 C 182.1875 171.398438 182.140625 171.140625 182.101562 170.878906 C 182.015625 170.363281 181.96875 169.832031 181.96875 169.285156 C 181.96875 165.328125 184.339844 162.074219 187.394531 161.640625 C 187.433594 161.503906 187.476562 161.367188 187.515625 161.226562 C 187.550781 161.355469 187.59375 161.484375 187.628906 161.609375 C 187.730469 161.601562 187.828125 161.597656 187.929688 161.59375 C 187.980469 161.589844 188.035156 161.589844 188.085938 161.589844 C 188.140625 161.589844 188.191406 161.589844 188.246094 161.59375 C 191.550781 161.695312 194.203125 165.101562 194.203125 169.285156 C 194.203125 169.832031 194.15625 170.363281 194.070312 170.878906 C 193.972656 171.511719 193.851562 172.140625 193.699219 172.765625 C 199.339844 179.378906 207.734375 183.570312 217.105469 183.570312 C 226.859375 183.570312 235.550781 179.03125 241.1875 171.949219 C 238.667969 175.226562 235.492188 177.96875 231.851562 179.980469 C 234.742188 186.179688 236.363281 193.09375 236.363281 200.386719 C 236.363281 227.050781 214.75 248.664062 188.085938 248.664062 C 161.421875 248.664062 139.804688 227.050781 139.804688 200.386719 C 139.804688 193.28125 141.339844 186.539062 144.09375 180.464844 C 140.089844 178.429688 136.601562 175.519531 133.882812 171.992188 Z M 216.683594 170.121094 C 204.925781 170.121094 195.402344 160.59375 195.402344 148.84375 C 195.402344 137.089844 204.929688 127.5625 216.683594 127.5625 C 228.433594 127.5625 237.964844 137.089844 237.964844 148.84375 C 237.964844 160.59375 228.433594 170.121094 216.683594 170.121094 "/>
+
+    <!-- Title -->
+    <h1 style="font-weight: 700; font-size: 24px; margin: 0;">Hi, I'm Dr. Owl.</h1>
+    <p style="font-weight: 300; font-size: 16px; margin: 4px 0 24px 0; color: #555;">Let's chat and find solutions together.</p>
+
+    <!-- Input Box -->
+    <div class="input-area" role="form" aria-label="Chat input area">
+
+      <!-- Message Dr. Owl (centrado no balão) -->
+      <p class="message-label">message Dr. Owl</p>
+
+      <!-- Left Buttons: Read Aloud + Microphone -->
+      <div class="left-buttons">
+
+        <button type="button" aria-label="Read aloud">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor" class="read-icon">
+            <path d="M3 10v4h4l5 5V5L7 10H3z"/>
           </svg>
+          Read Aloud
         </button>
+
+        <!-- Microphone Button -->
+        <button type="button" aria-label="Microphone">Micro</button>
       </div>
-    </form>
-  </main>
-</div>
 
-<script>
-  // Sidebar toggle buttons
-  const sidebar = document.getElementById('sidebar');
-  const openBtn = document.getElementById('sidebarOpenBtn');
-  const closeBtn = document.getElementById('sidebarCloseBtn');
+      <!-- Send Button -->
+      <button id="send-btn" type="submit" aria-label="Send message">
+        Send
+      </button>
+    </div>
 
-  openBtn.addEventListener('click', () => {
-    sidebar.classList.add('show');
-  });
-  closeBtn.addEventListener('click', () => {
-    sidebar.classList.remove('show');
-  });
+  </div>
 
-  // Exemplo: evento para frases clicáveis (pode ser customizado depois)
-  document.querySelectorAll('.category-list button').forEach(button => {
-    button.addEventListener('click', () => {
-      alert(`Você clicou em: "${button.textContent}"`);
-      // Aqui pode disparar outras ações como carregar conteúdo no chat
-    });
-  });
-
-  // Enviar mensagem simulada ao clicar em enviar
-  const chatForm = document.getElementById('chatForm');
-  const chatInput = document.getElementById('chatInput');
-  const chatMessages = document.getElementById('chatMessages');
-
-  chatForm.addEventListener('submit', e => {
-    e.preventDefault();
-    const text = chatInput.value.trim();
-    if (!text) return;
-
-    // Cria mensagem do usuário
-    const userMsg = document.createElement('article');
-    userMsg.classList.add('message', 'user');
-    userMsg.innerHTML = `<div class="message-bubble"></div>`;
-    userMsg.querySelector('.message-bubble').textContent = text;
-    chatMessages.appendChild(userMsg);
-
-    chatInput.value = '';
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-
-    // Aqui poderia chamar API backend para responder
-  });
-
-  // Também permitir enviar mensagem pelo botão enviar
-  const sendBtn = document.querySelector('.send-button');
-  sendBtn.addEventListener('click', () => {
-    chatForm.requestSubmit();
-  });
-</script>
+  <script>
+    // Função para abrir/fechar menu lateral
+    function toggleMenu() {
+      const menu = document.getElementById('sideMenu');
+      menu.classList.toggle('open');
+    }
+  </script>
 </body>
 </html>
