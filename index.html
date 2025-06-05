@@ -129,22 +129,25 @@
     }
 
 .message-label {
-  font-weight: 300;
-  font-size: 14px;
-  color: #555;
+  font-weight: 400;
+  font-size: 16px; /* tamanho legível */
+  color: #333; /* cinza escuro para o texto digitado */
   margin: 0;
-  text-align: center;
+  text-align: left; /* pode mudar para center se preferir */
   cursor: text;
-  min-height: 20px; /* garante altura para o cursor aparecer */
+  min-height: 24px; /* garante altura para o cursor aparecer bem */
   outline: none;
-  white-space: pre-wrap;
+  white-space: pre-wrap; /* permite quebra de linha */
 }
 
+/* Placeholder customizado quando o campo está vazio */
 .message-label:empty::before {
   content: attr(data-placeholder);
-  color: #aaa;
+  color: #aaa; /* cor clara para o placeholder */
   pointer-events: none;
   user-select: none;
+  font-weight: 300;
+  font-size: 16px;
 }
 
     .left-buttons {
