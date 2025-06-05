@@ -276,8 +276,15 @@
     <!-- Input Box -->
     <div class="input-area" role="form" aria-label="Chat input area">
 
-      <!-- Message Dr. Owl (centrado no balão) -->
-      <div id="messageInput" class="message-label" contenteditable="true" role="textbox" aria-label="Digite sua mensagem aqui" data-placeholder="message Dr. Owl" tabindex="0"></div>
+      <div
+  id="messageInput"
+  class="message-label"
+  contenteditable="true"
+  role="textbox"
+  aria-label="Digite sua mensagem aqui"
+  data-placeholder="message Dr. Owl"
+  tabindex="0"
+></div>
 
       <!-- Left Buttons: Read Aloud + Microphone -->
       <div class="left-buttons">
@@ -586,6 +593,34 @@ sendButton.addEventListener('click', () => {
         alert('⚠️ Connection error. Please try again later.');
       }
     }
-  </script>
+ <script>
+  const input = document.getElementById('messageInput');
+
+  function ensureCursorVisible(el) {
+    if (el.textContent.trim() === '') {
+      el.textContent = '\u200B';  // caractere invisível
+      el.focus();
+
+      const range = document.createRange();
+      const sel = window.getSelection();
+      range.setStart(el.childNodes[0], 1);
+      range.collapse(true);
+      sel.removeAllRanges();
+      sel.addRange(range);
+    }
+  }
+
+  input.addEventListener('input', () => {
+    setTimeout(() => {
+      ensureCursorVisible(input);
+    }, 0);
+  });
+
+  window.addEventListener('load', () => {
+    ensureCursorVisible(input);
+    input.focus();
+  });
+</script>
+        
 </body>
 </html>
