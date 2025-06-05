@@ -130,14 +130,16 @@
 
 .message-label {
   font-weight: 400;
-  font-size: 16px; /* tamanho legível */
-  color: #333; /* cinza escuro para o texto digitado */
+  font-size: 16px;
+  color: #333;
   margin: 0;
-  text-align: left; /* pode mudar para center se preferir */
+  text-align: left;
   cursor: text;
-  min-height: 24px; /* garante altura para o cursor aparecer bem */
+  min-height: 24px;
   outline: none;
-  white-space: pre-wrap; /* permite quebra de linha */
+  white-space: pre-wrap;
+  user-select: text;      /* Permite seleção */
+  pointer-events: auto;   /* Permite clique e foco */
 }
 
 /* Placeholder customizado quando o campo está vazio */
@@ -438,8 +440,7 @@
             lastMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
 
-      // Seleciona o campo contenteditable (altere o seletor se precisar)
-const input = document.querySelector('.message-label');
+      const input = document.getElementById('messageInput');
 
 function ensureCursorVisible(el) {
   if (el.textContent.trim() === '') {
@@ -462,7 +463,7 @@ input.addEventListener('input', () => {
   ensureCursorVisible(input);
 });
 
-// Inicializa com foco e cursor ativo
+// Inicializa com foco e cursor ativo ao carregar a página
 window.addEventListener('load', () => {
   ensureCursorVisible(input);
   input.focus();
