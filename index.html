@@ -439,17 +439,31 @@
           }
 
       // Seleciona o campo contenteditable (altere o seletor se precisar)
-const input = document.querySelector('.message-label'); 
+const input = document.querySelector('.message-label');
 
-function clearContentEditable(el) {
-  el.textContent = '\u200B'; // espaço invisível para manter cursor
-  const range = document.createRange();
-  const sel = window.getSelection();
-  range.setStart(el.childNodes[0], 1);
-  range.collapse(true);
-  sel.removeAllRanges();
-  sel.addRange(range);
+function ensureCursorVisible(el) {
+  // Se o conteúdo estiver vazio
+  if (el.textContent.trim() === '') {
+    // Coloca o caractere invisível
+    el.textContent = '\u200B';
+    
+    // Posiciona o cursor no final desse caractere
+    const range = document.createRange();
+    const sel = window.getSelection();
+    range.setStart(el.childNodes[0], 1);
+    range.collapse(true);
+    sel.removeAllRanges();
+    sel.addRange(range);
+  }
 }
+
+// Ouve a entrada do usuário para monitorar apagamentos
+input.addEventListener('input', () => {
+  ensureCursorVisible(input);
+});
+
+// Inicializa o campo para já ter o caractere invisível (se estiver vazio)
+ensureCursorVisible(input);
 
 async function sendMessage(message) {
   if (!message.trim()) return;
