@@ -442,12 +442,13 @@
 const input = document.querySelector('.message-label');
 
 function ensureCursorVisible(el) {
-  // Se o conteúdo estiver vazio
   if (el.textContent.trim() === '') {
-    // Coloca o caractere invisível
     el.textContent = '\u200B';
-    
-    // Posiciona o cursor no final desse caractere
+
+    // Força o foco no elemento
+    el.focus();
+
+    // Posiciona o cursor no final
     const range = document.createRange();
     const sel = window.getSelection();
     range.setStart(el.childNodes[0], 1);
@@ -457,13 +458,15 @@ function ensureCursorVisible(el) {
   }
 }
 
-// Ouve a entrada do usuário para monitorar apagamentos
 input.addEventListener('input', () => {
   ensureCursorVisible(input);
 });
 
-// Inicializa o campo para já ter o caractere invisível (se estiver vazio)
-ensureCursorVisible(input);
+// Inicializa com foco e cursor ativo
+window.addEventListener('load', () => {
+  ensureCursorVisible(input);
+  input.focus();
+});
 
 async function sendMessage(message) {
   if (!message.trim()) return;
