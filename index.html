@@ -211,11 +211,61 @@
       height: 16px;
       fill: currentColor;
     }
+/* Layout inicial - tudo centralizado */
+.container.initial-state {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  text-align: center;
+}
 
+/* Layout diálogo - input fixo no rodapé, mensagens ocupam a maior parte */
+.container.dialog-state {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  min-height: 100vh;
+  padding: 20px;
+  text-align: left;
+  position: relative;
+}
+
+/* Área de mensagens no diálogo - altura maior para usar a tela */
+.response {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-bottom: 16px;
+  max-height: none !important;
+}
+
+/* Input fixo na parte inferior */
+.input-area {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 600px;
+  width: 90%;
+  z-index: 10;
+  background-color: #ECECF3;
+  border-radius: 24px;
+  padding: 0 16px 16px 16px;
+  height: 104px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: text;
+}
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="container initial-state">
+  <!-- Seu conteúdo aqui -->
+</div>
 
     <!-- Menu Hamburguer -->
     <div class="menu-hamburger" aria-label="Menu" role="button" tabindex="0" onclick="toggleMenu()" onkeydown="if(event.key==='Enter'){toggleMenu();}">
@@ -325,6 +375,7 @@ tabindex="0"
   const sendButton = document.getElementById('send-btn');
   const readAloudButton = document.getElementById('read-aloud-btn');
   const micButton = document.getElementById('mic-btn');
+  const container = document.querySelector('.container');
 
   // Focar o input ao clicar em qualquer lugar do balão
   inputArea.addEventListener('click', () => {
@@ -355,9 +406,10 @@ tabindex="0"
 
   // Ativar ensureCursorVisible e foco ao carregar a página
   window.addEventListener('load', () => {
-    ensureCursorVisible(input);
-    input.focus();
-  });
+  container.classList.add('initial-state');
+  ensureCursorVisible(input);
+  input.focus();
+});
 
   // Função para limpar o conteúdo do contenteditable mantendo cursor ativo
   function clearContentEditable(el) {
@@ -451,11 +503,15 @@ tabindex="0"
     }
   }
 
-  // Evento do botão enviar
-  sendButton.addEventListener('click', () => {
-    const message = input.textContent.replace(/\u200B/g, '').trim(); // Remove o espaço invisível e trim
+ // Evento do botão enviar
+sendButton.addEventListener('click', () => {
+  const message = input.textContent.replace(/\u200B/g, '').trim(); // Remove o espaço invisível e trim
+  if (message) {
+    container.classList.remove('initial-state');  // remove o estado inicial
+    container.classList.add('dialog-state');      // adiciona o estado de diálogo
     sendMessage(message);
-  });
+  }
+});
 
   readAloudButton?.addEventListener('click', () => {
     if (speechSynthesis.speaking) {
