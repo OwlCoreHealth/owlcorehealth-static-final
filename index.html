@@ -447,7 +447,12 @@
             lastMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
 
+const inputArea = document.querySelector('.input-area');
 const input = document.getElementById('messageInput');
+
+inputArea.addEventListener('click', () => {
+  input.focus();
+});
 
 function ensureCursorVisible(el) {
   if (el.textContent.trim() === '') {
