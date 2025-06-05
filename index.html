@@ -128,15 +128,19 @@
       position: relative;
     }
 
-    .message-label {
-      font-weight: 300;
-      font-size: 14px;
-      color: #555;
-      margin: 0;
-      user-select: none;
-      pointer-events: none;
-      text-align: center;
-    }
+.message-label {
+  font-weight: 300;
+  font-size: 14px;
+  color: #555;
+  margin: 0;
+  text-align: center;
+  cursor: text;
+}
+
+.message-label:focus {
+  outline: none;
+  box-shadow: none;
+}
 
     .left-buttons {
       position: absolute;
