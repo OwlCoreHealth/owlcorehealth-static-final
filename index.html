@@ -135,11 +135,16 @@
   margin: 0;
   text-align: center;
   cursor: text;
+  min-height: 20px; /* garante altura para o cursor aparecer */
+  outline: none;
+  white-space: pre-wrap;
 }
 
-.message-label:focus {
-  outline: none;
-  box-shadow: none;
+.message-label:empty::before {
+  content: attr(data-placeholder);
+  color: #aaa;
+  pointer-events: none;
+  user-select: none;
 }
 
     .left-buttons {
@@ -267,7 +272,7 @@
     <div class="input-area" role="form" aria-label="Chat input area">
 
       <!-- Message Dr. Owl (centrado no balão) -->
-      <p class="message-label" contenteditable="true" role="textbox" aria-label="Digite sua mensagem aqui">message Dr. Owl</p>
+      <div class="message-label" contenteditable="true" role="textbox" aria-label="Digite sua mensagem aqui" data-placeholder="message Dr. Owl"></div>
 
       <!-- Left Buttons: Read Aloud + Microphone -->
       <div class="left-buttons">
