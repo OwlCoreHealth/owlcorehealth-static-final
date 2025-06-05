@@ -468,15 +468,15 @@ function ensureCursorVisible(el) {
   }
 }
 
-input.addEventListener('input', () => {
+messageInput.addEventListener('input', () => {
   setTimeout(() => {
-    ensureCursorVisible(input);
+    ensureCursorVisible(messageInput);
   }, 0);
 });
 
 window.addEventListener('load', () => {
-  ensureCursorVisible(input);
-  input.focus();
+  ensureCursorVisible(messageInput);
+  messageInput.focus();
 });
 
 async function sendMessage(message) {
