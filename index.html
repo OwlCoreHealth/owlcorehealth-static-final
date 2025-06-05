@@ -129,25 +129,25 @@
     }
 
 .message-label {
-  font-weight: 400;
+  font-weight: 300;
   font-size: 16px;
   color: #333;
   margin: 0;
   text-align: left;
   cursor: text;
-  min-height: 24px;
   outline: none;
+  user-select: text;
+  pointer-events: auto;
+  min-height: 24px;
   white-space: pre-wrap;
-  user-select: text;      /* Permite seleção */
-  pointer-events: auto;   /* Permite clique e foco */
 }
 
-/* Placeholder customizado quando o campo está vazio */
-.message-label:empty::before {
+/* Placeholder customizado */
+.message-label[contenteditable]:empty::before {
   content: attr(data-placeholder);
-  color: #aaa; /* cor clara para o placeholder */
+  color: #aaa;
   pointer-events: none;
-  user-select: none;
+  display: block;
   font-weight: 300;
   font-size: 16px;
 }
@@ -277,7 +277,7 @@
     <div class="input-area" role="form" aria-label="Chat input area">
 
       <!-- Message Dr. Owl (centrado no balão) -->
-      <div id="messageInput" class="message-label" contenteditable="true" role="textbox" aria-label="Digite sua mensagem aqui" data-placeholder="message Dr. Owl"></div>
+      <div id="messageInput" class="message-label" contenteditable="true" role="textbox" aria-label="Digite sua mensagem aqui" data-placeholder="message Dr. Owl" tabindex="0"></div>
 
       <!-- Left Buttons: Read Aloud + Microphone -->
       <div class="left-buttons">
@@ -440,16 +440,13 @@
             lastMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
 
-      const input = document.getElementById('messageInput');
+const input = document.getElementById('messageInput');
 
 function ensureCursorVisible(el) {
   if (el.textContent.trim() === '') {
-    el.textContent = '\u200B';
-
-    // Força o foco no elemento
+    el.textContent = '\u200B';  // caractere invisível
     el.focus();
 
-    // Posiciona o cursor no final
     const range = document.createRange();
     const sel = window.getSelection();
     range.setStart(el.childNodes[0], 1);
@@ -460,13 +457,11 @@ function ensureCursorVisible(el) {
 }
 
 input.addEventListener('input', () => {
-  // Pequeno delay para garantir o foco depois do input
   setTimeout(() => {
     ensureCursorVisible(input);
   }, 0);
 });
 
-// Inicializa com foco e cursor ativo
 window.addEventListener('load', () => {
   ensureCursorVisible(input);
   input.focus();
