@@ -460,10 +460,13 @@ function ensureCursorVisible(el) {
 }
 
 input.addEventListener('input', () => {
-  ensureCursorVisible(input);
+  // Pequeno delay para garantir o foco depois do input
+  setTimeout(() => {
+    ensureCursorVisible(input);
+  }, 0);
 });
 
-// Inicializa com foco e cursor ativo ao carregar a página
+// Inicializa com foco e cursor ativo
 window.addEventListener('load', () => {
   ensureCursorVisible(input);
   input.focus();
