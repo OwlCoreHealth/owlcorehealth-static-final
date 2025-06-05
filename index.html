@@ -21,119 +21,120 @@
       padding: 20px;
       text-align: center;
       position: relative;
-      transition: all 0.3s ease;
     }
-    h1, p.subtitle, svg.logo {
-      transition: opacity 0.3s ease;
+    h1 {
+      font-weight: 700;
+      font-size: 24px;
+      margin: 0;
+    }
+    p.subtitle {
+      font-weight: 300;
+      font-size: 16px;
+      margin: 4px 0 24px 0;
+      color: #555;
     }
 
-    /* NOVO: estilos para o modo diálogo (após 1ª mensagem) */
-    .container.dialog-mode {
-      height: 100vh;
-      max-width: 600px;
-      width: 90%;
-      padding: 0;
-      text-align: left;
+    .menu-hamburger {
+      position: fixed;
+      top: 0;
+      left: 0;
+      margin: 0;
+      padding: 20px;
+      width: 28px;
+      height: 22px;
+      cursor: pointer;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
+      justify-content: space-between;
+      z-index: 1001;
+      box-sizing: content-box;
     }
-    /* Esconde logo e títulos no diálogo */
-    .container.dialog-mode svg.logo,
-    .container.dialog-mode h1,
-    .container.dialog-mode p.subtitle {
-      opacity: 0;
-      height: 0;
-      margin: 0;
-      overflow: hidden;
-      pointer-events: none;
-      user-select: none;
+    .menu-hamburger span {
+      display: block;
+      height: 3px;
+      background-color: #6C63FF;
+      border-radius: 2px;
     }
 
-    /* Área das mensagens do chat: expandida verticalmente */
-    .response {
-      max-height: 65vh;
-      overflow-y: auto;
-      margin-bottom: 16px;
-      padding: 12px 16px;
-      box-sizing: border-box;
-      flex-grow: 1;
-      background: #f0f0f5;
-      border-radius: 16px;
-      border: 1px solid #ddd;
-      font-size: 15px;
-      line-height: 1.4;
-    }
-
-    /* Container input fixo na base */
-    .container.dialog-mode .input-area {
+    .side-menu {
       position: fixed;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #ECECF3;
-      border-radius: 24px 24px 0 0;
-      padding: 10px 16px;
-      width: 600px;
-      max-width: 90vw;
+      top: 0;
+      left: -280px;
+      width: 280px;
+      height: 100vh;
+      background: #f8f8f8;
+      box-shadow: 2px 0 8px rgba(0,0,0,0.15);
+      overflow-y: auto;
+      transition: left 0.3s ease;
+      z-index: 1000;
+      padding: 20px;
       box-sizing: border-box;
+    }
+    .side-menu.open {
+      left: 0;
+    }
+    .side-menu h2 {
+      margin-top: 0;
+      font-size: 18px;
+      font-weight: 700;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 6px;
+    }
+    .side-menu h3 {
+      margin-top: 20px;
+      font-size: 16px;
+      font-weight: 700;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 4px;
+    }
+    .side-menu ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 8px 0 0 0;
+    }
+    .side-menu ul li {
+      margin-bottom: 8px;
+    }
+    .side-menu ul li a {
+      color: #3a3a8c;
+      text-decoration: none;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .side-menu ul li a:hover {
+      text-decoration: underline;
+    }
+    .side-menu .close-btn {
+      font-size: 20px;
+      cursor: pointer;
+      margin-bottom: 20px;
+      display: block;
+      text-align: right;
+      color: #6C63FF;
+    }
+
+    .input-area {
+      position: relative;
+      background-color: #ECECF3;
+      border-radius: 24px;
+      padding: 0 16px 16px 16px;
+      height: 104px;
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 10px;
-      cursor: text;
-      z-index: 1000;
-    }
-
-    /* Estilos das mensagens do bot e do usuário */
-    .bot-message, .user-message {
-      max-width: 80%;
-      margin-bottom: 12px;
-      padding: 12px 16px;
-      border-radius: 18px;
-      font-size: 15px;
-      line-height: 1.4;
-      display: inline-block;
-      word-wrap: break-word;
-    }
-
-    /* Bot à esquerda com ícone */
-    .bot-message {
-      background-color: #6C63FF;
-      color: white;
-      text-align: left;
+      max-width: 600px;
+      margin: 0 auto;
       position: relative;
-      margin-right: auto;
-      border-bottom-left-radius: 4px;
-    }
-    /* Ícone do Dr Owl à esquerda da mensagem do bot */
-    .bot-message::before {
-      content: '';
-      position: absolute;
-      left: -40px;
-      top: 12px;
-      width: 32px;
-      height: 32px;
-      background-image: url('data:image/svg+xml;utf8,<svg fill="%23fff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 375 375"><circle cx="187.5" cy="187.5" r="187.5"/></svg>'); /* Substitua pelo ícone real */
-      background-size: contain;
-      background-repeat: no-repeat;
-      border-radius: 50%;
+      cursor: text; /* deixa cursor pointer no balão */
     }
 
-    /* Usuário à direita */
-    .user-message {
-      background-color: #dcdcff;
-      color: #333;
-      text-align: right;
-      margin-left: auto;
-      border-bottom-right-radius: 4px;
-    }
-
-    /* Input area e botões */
     .message-label {
       font-weight: 300;
       font-size: 16px;
       color: #333;
       margin: 0;
+      text-align: left;
       outline: none;
       user-select: text;
       pointer-events: auto;
@@ -143,7 +144,7 @@
       cursor: text;
     }
 
-    /* Placeholder */
+    /* Placeholder customizado */
     .message-label[contenteditable]:empty::before {
       content: attr(data-placeholder);
       color: #aaa;
@@ -153,8 +154,10 @@
       font-size: 16px;
     }
 
-    /* Botões (Read Aloud e Microfone) */
     .left-buttons {
+      position: absolute;
+      bottom: 12px;
+      left: 16px;
       display: flex;
       gap: 12px;
       align-items: center;
@@ -180,6 +183,7 @@
       color: white;
     }
     button#send-btn {
+      margin-left: auto;
       background-color: #6C63FF;
       border: none;
       color: white;
@@ -191,11 +195,23 @@
       user-select: none;
       transition: background-color 0.3s;
       z-index: 1;
-      margin-left: auto;
     }
     button#send-btn:hover {
       background-color: #5750d1;
     }
+    svg.logo {
+      display: block;
+      margin: 0 auto 16px auto;
+      fill: #6C63FF;
+      width: 80px;
+      height: 80px;
+    }
+    svg.read-icon {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
   </style>
 </head>
 <body>
@@ -259,9 +275,6 @@
 <!-- Title -->
 <h1 style="font-weight: 700; font-size: 24px; margin: 0;">Hi, I'm Dr. Owl.</h1>
 <p style="font-weight: 300; font-size: 16px; margin: 4px 0 24px 0; color: #555;">Let's chat and find solutions together.</p>
-<!-- Área de mensagens do chat -->
-
-<div class="response" style="max-height: 50vh; overflow-y: auto; margin-bottom: 16px;"></div>
 
 <!-- Input Box -->
 <div class="input-area" role="form" aria-label="Chat input area">
@@ -313,8 +326,6 @@ tabindex="0"
   const readAloudButton = document.getElementById('read-aloud-btn');
   const micButton = document.getElementById('mic-btn');
 
-  let firstMessageSent = false;
-
   // Focar o input ao clicar em qualquer lugar do balão
   inputArea.addEventListener('click', () => {
     input.focus();
@@ -364,25 +375,6 @@ tabindex="0"
   // Função para enviar mensagem ao bot
   async function sendMessage(message, selectedQuestion = null) {
     if (!message.trim() && !selectedQuestion) return;
-
-    // Na primeira mensagem enviada, aplica modo diálogo
-    if (!firstMessageSent) {
-      firstMessageSent = true;
-
-      // Remove logo e títulos
-      const logo = document.querySelector('svg.logo');
-      const title = document.querySelector('h1');
-      const subtitle = document.querySelector('p.subtitle');
-      if (logo) logo.style.display = 'none';
-      if (title) title.style.display = 'none';
-      if (subtitle) subtitle.style.display = 'none';
-
-      // Adiciona classe para layout diálogo
-      document.querySelector('.container').classList.add('dialog-mode');
-
-      // Ajusta o max-height da área de respostas para ocupar mais espaço
-      responseDiv.style.maxHeight = '65vh';
-    }
 
     responseDiv.classList.add('expanded');
 
@@ -447,6 +439,7 @@ tabindex="0"
         if (lastMessage) {
           lastMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
+
       }
 
       // Limpa o campo mantendo cursor ativo
