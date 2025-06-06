@@ -429,50 +429,51 @@ tabindex="0"
       if (typing) typing.remove();
 
       if (data.choices && data.choices.length > 0) {
-        const content = data.choices[0].message.content;
-        const tempDiv = document.createElement('div');
-        tempDiv.innerHTML = content;
+  const content = data.choices[0].message.content;
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = content;
 
-        const questions = tempDiv.querySelectorAll('.clickable-question');
-        questions.forEach(q => q.remove());
-        const explanationHTML = tempDiv.innerHTML;
+  const questions = tempDiv.querySelectorAll('.clickable-question');
+  questions.forEach(q => q.remove());
+  const explanationHTML = tempDiv.innerHTML;
 
-        responseDiv.insertAdjacentHTML('beforeend', `
-          <div class="bot-message">
-  <svg aria-hidden="true" focusable="false" role="img" viewBox="0 0 24 24" ...>
-    <!-- Conteúdo do SVG do Owl, igual ao seu ícone -->
-    <path fill="#6C63FF" d="M12 2C9.243 2 7 4.243 7 7c0 2.757 2.243 5 5 5s5-2.243 5-5c0-2.757-2.243-5-5-5zM5 21c0-2.761 4-4 7-4s7 1.239 7 4v1H5v-1z"/>
-  </svg>
-  <div class="message-text">
-    <!-- Aqui vai o texto da mensagem do bot -->
-    Seu texto do bot aqui, com quebras de linha e tudo.
-  </div>
-</div>
+  // Montar o HTML da mensagem do bot com SVG + texto
+  const botMessageHTML = `
+    <div class="bot-message">
+      <svg aria-hidden="true" focusable="false" role="img" viewBox="0 0 24 24" width="24" height="24" fill="#6C63FF" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0; margin-top:4px;">
+        <path d="M12 2C9.243 2 7 4.243 7 7c0 2.757 2.243 5 5 5s5-2.243 5-5c0-2.757-2.243-5-5-5zM5 21c0-2.761 4-4 7-4s7 1.239 7 4v1H5v-1z"/>
+      </svg>
+      <div class="message-text">${explanationHTML}</div>
+    </div>
+  `;
 
-        if (!window.emailPromptShown) {
-          window.emailPromptShown = true;
-          const emailHTML = `
-            <div class="bot-message" id="email-prompt">
-              ${botIconHTML}
-              <div>
-                <p style="margin-bottom: 12px; color: #2f2c63;">Want to receive personalized health tips from Dr. Owl?</p>
-                <input type="email" id="userEmail" placeholder="Enter your email" style="padding: 10px; font-size: 14px; border-radius: 8px; border: 1px solid #ccc; width: 70%; max-width: 300px;" />
-                <button onclick="submitEmail()" style="margin-left: 12px; margin-top: 8px; padding: 10px 16px; font-size: 14px; background-color: #2f2c63; color: white; border: none; border-radius: 8px; cursor: pointer;">Subscribe</button>
-              </div>
-            </div>
-          `;
-          responseDiv.appendChild(document.createRange().createContextualFragment(emailHTML));
-        }
+  responseDiv.insertAdjacentHTML('beforeend', botMessageHTML);
 
-        questions.forEach(q => {
-          responseDiv.appendChild(q);
-        });
+  if (!window.emailPromptShown) {
+    window.emailPromptShown = true;
+    const emailHTML = `
+      <div class="bot-message" id="email-prompt">
+        ${botIconHTML}
+        <div>
+          <p style="margin-bottom: 12px; color: #2f2c63;">Want to receive personalized health tips from Dr. Owl?</p>
+          <input type="email" id="userEmail" placeholder="Enter your email" style="padding: 10px; font-size: 14px; border-radius: 8px; border: 1px solid #ccc; width: 70%; max-width: 300px;" />
+          <button onclick="submitEmail()" style="margin-left: 12px; margin-top: 8px; padding: 10px 16px; font-size: 14px; background-color: #2f2c63; color: white; border: none; border-radius: 8px; cursor: pointer;">Subscribe</button>
+        </div>
+      </div>
+    `;
+    responseDiv.appendChild(document.createRange().createContextualFragment(emailHTML));
+  }
 
-        const messages = responseDiv.querySelectorAll('.bot-message');
-        const lastMessage = messages[messages.length - 1];
-        if (lastMessage) {
-          lastMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+  questions.forEach(q => {
+    responseDiv.appendChild(q);
+  });
+
+  const messages = responseDiv.querySelectorAll('.bot-message');
+  const lastMessage = messages[messages.length - 1];
+  if (lastMessage) {
+    lastMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
 
       }
 
