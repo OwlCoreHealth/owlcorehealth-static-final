@@ -211,29 +211,7 @@
       height: 16px;
       fill: currentColor;
     }
-.bot-message {
-  display: flex;
-  align-items: flex-start; /* Alinha ícone e texto no topo */
-  gap: 8px; /* Espaço entre ícone e texto */
-  margin-bottom: 20px; /* Espaço entre mensagens */
-  color: #222;
-  font-weight: 400;
-  font-size: 16px;
-  text-align: left;
-}
 
-.bot-message svg {
-  flex-shrink: 0; /* Evita que o ícone encolha */
-  width: 24px;
-  height: 24px;
-  margin-top: 4px; /* Ajuste vertical fino */
-  fill: #6C63FF;
-}
-
-.bot-message .message-text {
-  flex: 1; /* Texto ocupa espaço restante */
-  white-space: pre-wrap;
-}
   </style>
 </head>
 <body>
@@ -429,51 +407,45 @@ tabindex="0"
       if (typing) typing.remove();
 
       if (data.choices && data.choices.length > 0) {
-  const content = data.choices[0].message.content;
-  const tempDiv = document.createElement('div');
-  tempDiv.innerHTML = content;
+        const content = data.choices[0].message.content;
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = content;
 
-  const questions = tempDiv.querySelectorAll('.clickable-question');
-  questions.forEach(q => q.remove());
-  const explanationHTML = tempDiv.innerHTML;
+        const questions = tempDiv.querySelectorAll('.clickable-question');
+        questions.forEach(q => q.remove());
+        const explanationHTML = tempDiv.innerHTML;
 
-  // Montar o HTML da mensagem do bot com SVG + texto
-  const botMessageHTML = `
-    <div class="bot-message">
-      <svg aria-hidden="true" focusable="false" role="img" viewBox="0 0 24 24" width="24" height="24" fill="#6C63FF" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0; margin-top:4px;">
-        <path d="M12 2C9.243 2 7 4.243 7 7c0 2.757 2.243 5 5 5s5-2.243 5-5c0-2.757-2.243-5-5-5zM5 21c0-2.761 4-4 7-4s7 1.239 7 4v1H5v-1z"/>
-      </svg>
-      <div class="message-text">${explanationHTML}</div>
-    </div>
-  `;
+        responseDiv.insertAdjacentHTML('beforeend', `
+          <div class="bot-message">
+            ${botIconHTML}
+            <div>${explanationHTML}</div>
+          </div>
+        `);
 
-  responseDiv.insertAdjacentHTML('beforeend', botMessageHTML);
+        if (!window.emailPromptShown) {
+          window.emailPromptShown = true;
+          const emailHTML = `
+            <div class="bot-message" id="email-prompt">
+              ${botIconHTML}
+              <div>
+                <p style="margin-bottom: 12px; color: #2f2c63;">Want to receive personalized health tips from Dr. Owl?</p>
+                <input type="email" id="userEmail" placeholder="Enter your email" style="padding: 10px; font-size: 14px; border-radius: 8px; border: 1px solid #ccc; width: 70%; max-width: 300px;" />
+                <button onclick="submitEmail()" style="margin-left: 12px; margin-top: 8px; padding: 10px 16px; font-size: 14px; background-color: #2f2c63; color: white; border: none; border-radius: 8px; cursor: pointer;">Subscribe</button>
+              </div>
+            </div>
+          `;
+          responseDiv.appendChild(document.createRange().createContextualFragment(emailHTML));
+        }
 
-  if (!window.emailPromptShown) {
-    window.emailPromptShown = true;
-    const emailHTML = `
-      <div class="bot-message" id="email-prompt">
-        ${botIconHTML}
-        <div>
-          <p style="margin-bottom: 12px; color: #2f2c63;">Want to receive personalized health tips from Dr. Owl?</p>
-          <input type="email" id="userEmail" placeholder="Enter your email" style="padding: 10px; font-size: 14px; border-radius: 8px; border: 1px solid #ccc; width: 70%; max-width: 300px;" />
-          <button onclick="submitEmail()" style="margin-left: 12px; margin-top: 8px; padding: 10px 16px; font-size: 14px; background-color: #2f2c63; color: white; border: none; border-radius: 8px; cursor: pointer;">Subscribe</button>
-        </div>
-      </div>
-    `;
-    responseDiv.appendChild(document.createRange().createContextualFragment(emailHTML));
-  }
+        questions.forEach(q => {
+          responseDiv.appendChild(q);
+        });
 
-  questions.forEach(q => {
-    responseDiv.appendChild(q);
-  });
-
-  const messages = responseDiv.querySelectorAll('.bot-message');
-  const lastMessage = messages[messages.length - 1];
-  if (lastMessage) {
-    lastMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-}
+        const messages = responseDiv.querySelectorAll('.bot-message');
+        const lastMessage = messages[messages.length - 1];
+        if (lastMessage) {
+          lastMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
 
       }
 
@@ -519,6 +491,14 @@ tabindex="0"
       sendMessage(question, true);
     }
   });
+
+  // Inicializa mensagem de boas-vindas
+  responseDiv.innerHTML = `
+    <div class="bot-message">
+      ${botIconHTML}
+      <div>Hello! How can I assist you today?</div>
+    </div>
+  `;
 
   // Observador para prompt email
   const observer = new MutationObserver(() => {
