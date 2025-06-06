@@ -6,266 +6,262 @@
   <title>Dr. Owl’s AI Office</title>
   <style>
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      background-color: #fff;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
-    .container {
-      max-width: 600px;
-      width: 90%;
-      padding: 20px;
-      text-align: center;
-      position: relative;
-    }
-    h1 {
-      font-weight: 700;
-      font-size: 24px;
-      margin: 0;
-    }
-    p.subtitle {
-      font-weight: 300;
-      font-size: 16px;
-      margin: 4px 0 24px 0;
-      color: #555;
-    }
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: #fff;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
 
-    .menu-hamburger {
-      position: fixed;
-      top: 0;
-      left: 0;
-      margin: 0;
-      padding: 20px;
-      width: 28px;
-      height: 22px;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      z-index: 1001;
-      box-sizing: content-box;
-    }
-    .menu-hamburger span {
-      display: block;
-      height: 3px;
-      background-color: #6C63FF;
-      border-radius: 2px;
-    }
+.container {
+  max-width: 700px;
+  width: 90%;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+}
 
-    .side-menu {
-      position: fixed;
-      top: 0;
-      left: -280px;
-      width: 280px;
-      height: 100vh;
-      background: #f8f8f8;
-      box-shadow: 2px 0 8px rgba(0,0,0,0.15);
-      overflow-y: auto;
-      transition: left 0.3s ease;
-      z-index: 1000;
-      padding: 20px;
-      box-sizing: border-box;
-    }
-    .side-menu.open {
-      left: 0;
-    }
-    .side-menu h2 {
-      margin-top: 0;
-      font-size: 18px;
-      font-weight: 700;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 6px;
-    }
-    .side-menu h3 {
-      margin-top: 20px;
-      font-size: 16px;
-      font-weight: 700;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 4px;
-    }
-    .side-menu ul {
-      list-style: none;
-      padding-left: 0;
-      margin: 8px 0 0 0;
-    }
-    .side-menu ul li {
-      margin-bottom: 8px;
-    }
-    .side-menu ul li a {
-      color: #3a3a8c;
-      text-decoration: none;
-      font-size: 14px;
-      cursor: pointer;
-    }
-    .side-menu ul li a:hover {
-      text-decoration: underline;
-    }
-    .side-menu .close-btn {
-      font-size: 20px;
-      cursor: pointer;
-      margin-bottom: 20px;
-      display: block;
-      text-align: right;
-      color: #6C63FF;
-    }
+h1 {
+  font-weight: 700;
+  font-size: 24px;
+  margin: 0;
+}
 
-    .input-area {
-      position: relative;
-      background-color: #ECECF3;
-      border-radius: 24px;
-      padding: 0 16px 16px 16px;
-      height: 104px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      max-width: 600px;
-      margin: 0 auto;
-      position: relative;
-      cursor: text; /* deixa cursor pointer no balão */
-    }
+p.subtitle {
+  font-weight: 300;
+  font-size: 16px;
+  margin: 4px 0 24px 0;
+  color: #555;
+}
 
-    .message-label {
-      font-weight: 300;
-      font-size: 16px;
-      color: #333;
-      margin: 0;
-      text-align: left;
-      outline: none;
-      user-select: text;
-      pointer-events: auto;
-      min-height: 24px;
-      white-space: pre-wrap;
-      flex: 1;
-      cursor: text;
-    }
+.menu-hamburger {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 20px;
+  width: 28px;
+  height: 22px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 1001;
+  box-sizing: content-box;
+}
 
-    /* Placeholder customizado */
-    .message-label[contenteditable]:empty::before {
-      content: attr(data-placeholder);
-      color: #aaa;
-      pointer-events: none;
-      display: block;
-      font-weight: 300;
-      font-size: 16px;
-    }
+.menu-hamburger span {
+  display: block;
+  height: 3px;
+  background-color: #6C63FF;
+  border-radius: 2px;
+}
 
-    .left-buttons {
-      position: absolute;
-      bottom: 12px;
-      left: 16px;
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      z-index: 1;
-    }
-    button {
-      font-weight: 700;
-      font-size: 14px;
-      cursor: pointer;
-      user-select: none;
-      border-radius: 16px;
-      padding: 4px 14px;
-      background: transparent;
-      border: 2px solid #6C63FF;
-      color: #6C63FF;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: background-color 0.3s, color 0.3s;
-    }
-    button:hover {
-      background-color: #6C63FF;
-      color: white;
-    }
-    button#send-btn {
-      margin-left: auto;
-      background-color: #6C63FF;
-      border: none;
-      color: white;
-      padding: 8px 24px;
-      font-weight: 700;
-      font-size: 14px;
-      border-radius: 16px;
-      cursor: pointer;
-      user-select: none;
-      transition: background-color 0.3s;
-      z-index: 1;
-    }
-    button#send-btn:hover {
-      background-color: #5750d1;
-    }
-    svg.logo {
-      display: block;
-      margin: 0 auto 16px auto;
-      fill: #6C63FF;
-      width: 80px;
-      height: 80px;
-    }
-    svg.read-icon {
-      width: 16px;
-      height: 16px;
-      fill: currentColor;
-    }
-.response {
-  max-height: 500px;       /* aumenta um pouco a área de mensagens */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 280px;
+  height: 100vh;
+  background: #f8f8f8;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.15);
   overflow-y: auto;
-  margin-bottom: 24px;     /* mais espaçamento embaixo */
-  padding: 16px 24px;      /* padding maior para criar "respiro" */
-  background-color: #f9f9fc;  /* fundo mais claro, mais suave */
-  border-radius: 24px;     /* cantos mais arredondados */
-  box-shadow: inset 0 0 10px #e0e0f0; /* sombra interna suave */
+  transition: left 0.3s ease;
+  z-index: 1000;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.side-menu.open {
+  left: 0;
+}
+
+.side-menu h2 {
+  margin-top: 0;
+  font-size: 18px;
+  font-weight: 700;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 6px;
+}
+
+.side-menu h3 {
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: 700;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 4px;
+}
+
+.side-menu ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 8px 0 0 0;
+}
+
+.side-menu ul li {
+  margin-bottom: 8px;
+}
+
+.side-menu ul li a {
+  color: #3a3a8c;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.side-menu ul li a:hover {
+  text-decoration: underline;
+}
+
+.side-menu .close-btn {
+  font-size: 20px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  display: block;
+  text-align: right;
+  color: #6C63FF;
+}
+
+/* Área de mensagens */
+.response {
+  max-height: 600px;
+  overflow-y: auto;
+  margin-bottom: 24px;
   text-align: left;
+  padding: 16px;
+  background-color: #f9faff;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(108, 99, 255, 0.15);
+}
+
+/* Balões de mensagens do bot e usuário */
+.bot-message, .user-message {
+  border-radius: 20px;
+  padding: 14px 20px;
+  margin-bottom: 16px;
+  font-size: 16px;
+  line-height: 1.5;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  max-width: 80%;
+  word-wrap: break-word;
 }
 
 .bot-message {
-  padding: 20px 24px;
-  margin-bottom: 20px;
-  max-width: 75%;          /* um pouco mais largo */
-  border-radius: 20px;
   background-color: #dbe9ff;
-  color: #0a2540;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  color: #1a1a1a;
   display: flex;
-  align-items: flex-start;
-  gap: 12px;
+  align-items: center;
+  gap: 10px;
 }
 
 .user-message {
-  padding: 20px 24px;
-  margin-bottom: 20px;
-  max-width: 75%;
-  background-color: #e8f0fe;
-  color: #3a3a8c;
-  border-radius: 20px;
+  background-color: #c7d8ff;
+  color: #1a1a1a;
   margin-left: auto;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   text-align: right;
 }
 
+/* Área do input */
 .input-area {
-  height: 120px;             /* deixa o input mais alto */
-  padding: 0 24px 20px 24px; /* espaçamento interno maior */
-  gap: 16px;                 /* distância maior entre botões e campo */
-  border-radius: 24px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background-color: #f0f2ff;
+  border-radius: 30px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  cursor: text;
 }
-.left-buttons button {
-  padding: 8px 18px;
-  font-size: 14px;
+
+.message-label {
+  flex: 1;
+  min-height: 40px;
+  padding: 12px 16px;
+  font-size: 16px;
   border-radius: 20px;
-  gap: 8px;
+  background-color: white;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+  outline: none;
+  user-select: text;
+  pointer-events: auto;
+  white-space: pre-wrap;
+  cursor: text;
+}
+
+/* Placeholder customizado */
+.message-label[contenteditable]:empty::before {
+  content: attr(data-placeholder);
+  color: #aaa;
+  pointer-events: none;
+  display: block;
+  font-weight: 300;
+  font-size: 16px;
+}
+
+.left-buttons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  z-index: 1;
+}
+
+button {
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 16px;
+  padding: 4px 14px;
+  background: transparent;
+  border: 2px solid #6C63FF;
+  color: #6C63FF;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+  background-color: #6C63FF;
+  color: white;
 }
 
 button#send-btn {
-  padding: 12px 32px;
-  font-size: 16px;
-  border-radius: 24px;
   margin-left: auto;
+  background-color: #6C63FF;
+  border: none;
+  color: white;
+  padding: 8px 24px;
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 16px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s;
+  z-index: 1;
+}
+
+button#send-btn:hover {
+  background-color: #5750d1;
+}
+
+svg.logo {
+  display: block;
+  margin: 0 auto 16px auto;
+  fill: #6C63FF;
+  width: 80px;
+  height: 80px;
+}
+
+svg.read-icon {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
 }
     
   </style>
