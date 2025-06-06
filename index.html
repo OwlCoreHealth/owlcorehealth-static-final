@@ -439,10 +439,15 @@ tabindex="0"
 
         responseDiv.insertAdjacentHTML('beforeend', `
           <div class="bot-message">
-            ${botIconHTML}
-            <div>${explanationHTML}</div>
-          </div>
-        `);
+  <svg aria-hidden="true" focusable="false" role="img" viewBox="0 0 24 24" ...>
+    <!-- Conteúdo do SVG do Owl, igual ao seu ícone -->
+    <path fill="#6C63FF" d="M12 2C9.243 2 7 4.243 7 7c0 2.757 2.243 5 5 5s5-2.243 5-5c0-2.757-2.243-5-5-5zM5 21c0-2.761 4-4 7-4s7 1.239 7 4v1H5v-1z"/>
+  </svg>
+  <div class="message-text">
+    <!-- Aqui vai o texto da mensagem do bot -->
+    Seu texto do bot aqui, com quebras de linha e tudo.
+  </div>
+</div>
 
         if (!window.emailPromptShown) {
           window.emailPromptShown = true;
