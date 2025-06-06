@@ -211,7 +211,63 @@
       height: 16px;
       fill: currentColor;
     }
+.response {
+  max-height: 500px;       /* aumenta um pouco a área de mensagens */
+  overflow-y: auto;
+  margin-bottom: 24px;     /* mais espaçamento embaixo */
+  padding: 16px 24px;      /* padding maior para criar "respiro" */
+  background-color: #f9f9fc;  /* fundo mais claro, mais suave */
+  border-radius: 24px;     /* cantos mais arredondados */
+  box-shadow: inset 0 0 10px #e0e0f0; /* sombra interna suave */
+  text-align: left;
+}
 
+.bot-message {
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  max-width: 75%;          /* um pouco mais largo */
+  border-radius: 20px;
+  background-color: #dbe9ff;
+  color: #0a2540;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.user-message {
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  max-width: 75%;
+  background-color: #e8f0fe;
+  color: #3a3a8c;
+  border-radius: 20px;
+  margin-left: auto;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: right;
+}
+
+.input-area {
+  height: 120px;             /* deixa o input mais alto */
+  padding: 0 24px 20px 24px; /* espaçamento interno maior */
+  gap: 16px;                 /* distância maior entre botões e campo */
+  border-radius: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.left-buttons button {
+  padding: 8px 18px;
+  font-size: 14px;
+  border-radius: 20px;
+  gap: 8px;
+}
+
+button#send-btn {
+  padding: 12px 32px;
+  font-size: 16px;
+  border-radius: 24px;
+  margin-left: auto;
+}
+    
   </style>
 </head>
 <body>
