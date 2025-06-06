@@ -211,7 +211,29 @@
       height: 16px;
       fill: currentColor;
     }
+.bot-message {
+  display: flex;
+  align-items: flex-start; /* Alinha ícone e texto no topo */
+  gap: 8px; /* Espaço entre ícone e texto */
+  margin-bottom: 20px; /* Espaço entre mensagens */
+  color: #222;
+  font-weight: 400;
+  font-size: 16px;
+  text-align: left;
+}
 
+.bot-message svg {
+  flex-shrink: 0; /* Evita que o ícone encolha */
+  width: 24px;
+  height: 24px;
+  margin-top: 4px; /* Ajuste vertical fino */
+  fill: #6C63FF;
+}
+
+.bot-message .message-text {
+  flex: 1; /* Texto ocupa espaço restante */
+  white-space: pre-wrap;
+}
   </style>
 </head>
 <body>
@@ -491,14 +513,6 @@ tabindex="0"
       sendMessage(question, true);
     }
   });
-
-  // Inicializa mensagem de boas-vindas
-  responseDiv.innerHTML = `
-    <div class="bot-message">
-      ${botIconHTML}
-      <div>Hello! How can I assist you today?</div>
-    </div>
-  `;
 
   // Observador para prompt email
   const observer = new MutationObserver(() => {
