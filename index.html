@@ -747,11 +747,9 @@ readAloudButton?.addEventListener('click', () => {
     let textToRead = '';
 
     if (!firstReadDone) {
-      // Ler toda a primeira resposta completa na primeira leitura
       textToRead = botMessages[0].textContent.trim();
       firstReadDone = true;
     } else {
-      // Depois, ler sempre a última resposta (incluindo perguntas finais)
       const lastBotMessage = botMessages[botMessages.length - 1];
       textToRead = lastBotMessage.textContent.trim();
     }
