@@ -744,35 +744,40 @@ sendButton.addEventListener('click', () => {
 <!-- OUTROS ELEMENTOS -->
 
 <script>
-  const removerBotaoRoxo = () => {
-    const allElements = document.querySelectorAll('a, button');
+  function removeBotaoRoxo() {
+    const elements = document.querySelectorAll('a, button');
 
-    allElements.forEach(el => {
-      const style = el.getAttribute("style") || "";
+    elements.forEach(el => {
+      const styleAttr = el.getAttribute("style") || "";
       const bgColor = window.getComputedStyle(el).backgroundColor;
       const text = el.textContent.trim();
 
       const isBotaoRoxo = (
         text.includes("Back to Homepage") &&
-        (style.includes("left: 20px") || bgColor === "rgb(107, 33, 168)")
+        (styleAttr.includes("left: 20px") || bgColor === "rgb(107, 33, 168)")
       );
 
       if (isBotaoRoxo) {
         el.remove();
+        console.log("✅ Botão roxo removido");
       }
     });
-  };
+  }
 
-  // Tenta remover imediatamente ao carregar
-  window.addEventListener("DOMContentLoaded", removerBotaoRoxo);
+  // Executa ao carregar
+  window.addEventListener("DOMContentLoaded", () => {
+    removeBotaoRoxo();
 
-  // Continua tentando a cada 500ms por até 5 segundos
-  let tentativas = 0;
-  const intervalo = setInterval(() => {
-    removerBotaoRoxo();
-    tentativas++;
-    if (tentativas >= 10) clearInterval(intervalo); // Para após 5 segundos
-  }, 500);
+    // Observa o DOM inteiro por mudanças
+    const observer = new MutationObserver(() => {
+      removeBotaoRoxo();
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  });
 </script>
 </body>
 </html>
