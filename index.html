@@ -611,15 +611,30 @@ window.addEventListener('load', () => {
 
   // Evento do botão enviar
 sendButton.addEventListener('click', () => {
-  const message = input.textContent.replace(/\u200B/g, '').trim(); // Remove o espaço invisível e trim
+  const message = input.textContent.replace(/\u200B/g, '').trim();
 
   if (message !== "") {
     sendMessage(message);
 
-    // ✅ Aguardar 300ms antes de tirar o foco para evitar conflitos
+    // ✅ Remove foco para esconder teclado
+    input.blur();
+
+    // ✅ Remove o foco de verdade em mobile (iOS e Android)
     setTimeout(() => {
-      input.blur(); // Fecha o teclado no mobile sem interferir
-    }, 300);
+      const hiddenInput = document.createElement('input');
+      hiddenInput.setAttribute('type', 'text');
+      hiddenInput.style.position = 'absolute';
+      hiddenInput.style.opacity = 0;
+      hiddenInput.style.height = 0;
+      hiddenInput.style.fontSize = '16px'; // Necessário para iOS
+      document.body.appendChild(hiddenInput);
+      hiddenInput.focus();
+
+      // ✅ Remove o campo escondido depois
+      setTimeout(() => {
+        hiddenInput.remove();
+      }, 100);
+    }, 100);
   }
 });
 
