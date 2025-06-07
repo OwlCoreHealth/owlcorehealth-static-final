@@ -1,52 +1,32 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dr. Owl’s AI Office</title>
   <style>
-    /* Base geral */
-    body {
+    /* Reset e estilo base */
+    body, html {
+      margin: 0; padding: 0; height: 100%; width: 100%;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       background-color: #fff;
-      margin: 0;
-      padding: 0;
+      overflow: hidden; /* impede scroll fora da área */
       display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
+      flex-direction: row;
     }
-    .container {
-      max-width: 600px;
-      width: 90%;
-      padding: 20px;
-      text-align: center;
-      position: relative;
-    }
-    h1 {
-      font-weight: 700;
-      font-size: 24px;
-      margin: 0;
-    }
-    p.subtitle {
-      font-weight: 300;
-      font-size: 16px;
-      margin: 4px 0 24px 0;
-      color: #555;
-    }
+
+    /* Menu hamburguer lateral */
     .menu-hamburger {
       position: fixed;
-      top: 0;
-      left: 0;
-      margin: 0;
-      padding: 20px;
+      top: 20px;
+      left: 20px;
       width: 28px;
       height: 22px;
       cursor: pointer;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      z-index: 1001;
+      z-index: 1100;
       box-sizing: content-box;
     }
     .menu-hamburger span {
@@ -55,6 +35,8 @@
       background-color: #6C63FF;
       border-radius: 2px;
     }
+
+    /* Menu lateral fixo */
     .side-menu {
       position: fixed;
       top: 0;
@@ -65,7 +47,7 @@
       box-shadow: 2px 0 8px rgba(0,0,0,0.15);
       overflow-y: auto;
       transition: left 0.3s ease;
-      z-index: 1000;
+      z-index: 1050;
       padding: 20px;
       box-sizing: border-box;
     }
@@ -111,34 +93,149 @@
       text-align: right;
       color: #6C63FF;
     }
-    .input-area {
-      position: relative;
-      background-color: #ECECF3;
-      border-radius: 24px;
-      padding: 0 16px 16px 16px;
-      height: 104px;
+
+    /* Container principal do chat (à direita do menu) */
+    .chat-container {
+      margin-left: 280px; /* largura do menu */
+      height: 100vh;
+      width: calc(100vw - 280px);
       display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      max-width: 600px;
-      margin: 0 auto;
-      cursor: text; /* deixa cursor pointer no balão */
+      flex-direction: column;
+      background-color: white;
+      position: relative;
     }
-    .message-label {
+
+    /* Oculta imagem + título na tela de chat ativa */
+    .initial-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 32px 0;
+      flex-shrink: 0;
+    }
+    .initial-header.hidden {
+      display: none;
+    }
+
+    svg.logo {
+      fill: #6C63FF;
+      width: 80px;
+      height: 80px;
+      margin-bottom: 16px;
+    }
+    .initial-header h1 {
+      font-weight: 700;
+      font-size: 24px;
+      margin: 0 0 8px 0;
+    }
+    .initial-header p.subtitle {
       font-weight: 300;
       font-size: 16px;
-      color: #333;
+      margin: 0 0 24px 0;
+      color: #555;
+    }
+
+    /* Área de mensagens */
+    .response {
+      flex-grow: 1;
+      overflow-y: auto;
+      padding: 0 24px 16px 24px;
       margin: 0;
-      text-align: left;
+      box-sizing: border-box;
+      scrollbar-width: thin;
+      scrollbar-color: #bbb transparent;
+      position: relative;
+    }
+    .response::-webkit-scrollbar {
+      width: 8px;
+    }
+    .response::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .response::-webkit-scrollbar-thumb {
+      background-color: #bbb;
+      border-radius: 20px;
+      border: 2px solid transparent;
+      background-clip: content-box;
+    }
+    /* Espaçamento entre mensagens */
+    .response > * + * {
+      margin-top: 20px;
+    }
+
+    /* Mensagem do Bot */
+    .bot-message {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 15px;
+      color: #222;
+      line-height: 1.4;
+      max-width: 720px;
+      margin-left: 0;
+      margin-right: auto;
+      white-space: pre-wrap;
+    }
+    .bot-message svg {
+      flex-shrink: 0;
+      margin-top: 4px; /* Alinha o ícone na primeira linha do texto */
+      width: 24px;
+      height: 24px;
+      fill: #6C63FF;
+    }
+    .bot-message > div {
+      max-width: calc(100% - 32px);
+    }
+
+    /* Mensagem do usuário */
+    .user-message {
+      max-width: 50%;
+      margin-left: auto;
+      margin-right: 24px;
+      background: #e7edff;
+      color: #222;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 15px;
+      line-height: 1.4;
+      white-space: pre-wrap;
+      word-break: break-word;
+      box-sizing: border-box;
+      box-shadow: 0 1px 4px rgb(0 0 0 / 0.1);
+    }
+
+    /* Caixa de input fixa no rodapé */
+    .input-area {
+      flex-shrink: 0;
+      height: 100px;
+      background-color: #ECECF3;
+      border-radius: 24px;
+      margin: 0 24px 24px 24px;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      box-sizing: border-box;
+    }
+    /* Input contenteditable */
+    .message-label {
+      flex-grow: 1;
+      min-height: 36px;
+      font-size: 16px;
+      font-weight: 300;
+      color: #333;
       outline: none;
       user-select: text;
-      pointer-events: auto;
-      min-height: 24px;
-      white-space: pre-wrap;
-      flex: 1;
       cursor: text;
+      white-space: pre-wrap;
+      overflow-wrap: break-word;
+      padding: 10px 12px;
+      border-radius: 16px;
+      background: white;
+      box-sizing: border-box;
     }
+    /* Placeholder personalizado */
     .message-label[contenteditable]:empty::before {
       content: attr(data-placeholder);
       color: #aaa;
@@ -147,16 +244,15 @@
       font-weight: 300;
       font-size: 16px;
     }
+
+    /* Botões do lado esquerdo (Read Aloud + Micro) */
     .left-buttons {
-      position: absolute;
-      bottom: 12px;
-      left: 16px;
       display: flex;
       gap: 12px;
       align-items: center;
-      z-index: 1;
+      margin-right: 16px;
     }
-    button {
+    .left-buttons button {
       font-weight: 700;
       font-size: 14px;
       cursor: pointer;
@@ -171,12 +267,12 @@
       gap: 6px;
       transition: background-color 0.3s, color 0.3s;
     }
-    button:hover {
+    .left-buttons button:hover {
       background-color: #6C63FF;
       color: white;
     }
-    button#send-btn {
-      margin-left: auto;
+    /* Botão Send */
+    #send-btn {
       background-color: #6C63FF;
       border: none;
       color: white;
@@ -187,270 +283,158 @@
       cursor: pointer;
       user-select: none;
       transition: background-color 0.3s;
-      z-index: 1;
     }
-    button#send-btn:hover {
+    #send-btn:hover {
       background-color: #5750d1;
     }
-    svg.logo {
-      display: block;
-      margin: 0 auto 16px auto;
-      fill: #6C63FF;
-      width: 80px;
-      height: 80px;
-    }
-    svg.read-icon {
-      width: 16px;
-      height: 16px;
-      fill: currentColor;
-    }
-    /* === Início CSS para layout chat ativo === */
-    body.chat-active {
-      background: white;
-      display: block; /* evita conflito do flex no body normal */
-      min-height: 100vh;
-    }
-    body.chat-active .side-menu {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 280px;
-      height: 100vh;
-      background: #f8f8f8;
-      box-shadow: 2px 0 8px rgba(0,0,0,0.15);
-      overflow-y: auto;
-      padding: 20px;
-      box-sizing: border-box;
-      z-index: 1000;
-      transition: left 0.3s ease;
-    }
-    body.chat-active .side-menu.open {
-      left: 0;
-    }
-    body.chat-active .container {
-      position: fixed;
-      top: 0;
-      left: 280px; /* espaço para menu */
-      right: 0;
-      bottom: 0;
-      background: white;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      padding: 20px;
-      box-sizing: border-box;
-      max-width: none;
-      width: auto;
-    }
-    body.chat-active .response {
-      flex-grow: 1;
-      overflow-y: auto;
-      margin-bottom: 16px;
-      text-align: left;
-      padding-right: 12px;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      font-family: inherit;
-      font-size: 15px;
-      line-height: 1.6;
-      color: #222;
-    }
-    body.chat-active .bot-message {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      max-width: 75%;
-      background: transparent;
-      padding: 0;
-      margin: 0;
-    }
-    body.chat-active .bot-message > svg {
-      flex-shrink: 0;
-      margin-top: 6px;
-      width: 24px;
-      height: 24px;
-      fill: #6C63FF;
-    }
-    body.chat-active .bot-message > div {
-      flex: 1;
-      word-wrap: break-word;
-    }
-    body.chat-active .user-message {
-      max-width: 75%;
-      align-self: flex-end;
-      background-color: #d0e6ff;
-      color: #0a1f44;
-      padding: 12px 18px;
-      border-radius: 20px;
-      font-size: 15px;
-      line-height: 1.6;
-      white-space: pre-wrap;
-      word-wrap: break-word;
-      margin: 0;
-    }
-    body.chat-active .input-area {
-      height: 104px;
-      background-color: #ECECF3;
-      border-radius: 24px;
-      padding: 0 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      box-sizing: border-box;
-      max-width: none;
-      width: auto;
-      margin: 0;
-    }
-    body.chat-active .left-buttons {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-    }
-    body.chat-active .message-label {
-      flex-grow: 1;
-      font-weight: 300;
-      font-size: 16px;
-      color: #333;
-      min-height: 24px;
-      white-space: pre-wrap;
-      outline: none;
-      cursor: text;
-    }
-    /* === Fim CSS layout chat ativo === */
   </style>
 </head>
 <body>
-  <div class="container">
 
-    <!-- Menu Hamburguer -->
-    <div class="menu-hamburger" aria-label="Menu" role="button" tabindex="0" onclick="toggleMenu()" onkeydown="if(event.key==='Enter'){toggleMenu();}">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-
-    <!-- Menu Lateral -->
-    <nav class="side-menu" id="sideMenu" aria-label="Main menu">
-      <span class="close-btn" role="button" tabindex="0" aria-label="Close menu" onclick="toggleMenu()" onkeydown="if(event.key==='Enter'){toggleMenu();}">&times;</span>
-
-      <h2>Conheça o Dr. Owl</h2>
-      <ul>
-        <li><a href="#">Quem é o Dr. Owl?</a></li>
-        <li><a href="#">Qual a função do Dr. Owl?</a></li>
-        <li><a href="#">Como o Dr. Owl pode ajudar?</a></li>
-        <li><a href="#">Por que confiar no Dr. Owl?</a></li>
-        <li><a href="#">Quais são os diferenciais do Dr. Owl?</a></li>
-      </ul>
-
-      <h3>Sintomas</h3>
-      <ul>
-        <li><a href="#">Quer saber sobre o sintoma A?</a></li>
-        <li><a href="#">Quer saber como o sintoma B pode agravar sua saúde?</a></li>
-        <li><a href="#">Como identificar o sintoma C?</a></li>
-        <li><a href="#">Quais são os riscos do sintoma D?</a></li>
-        <li><a href="#">Sintoma E: causas comuns?</a></li>
-      </ul>
-
-      <h3>Categoria 3</h3>
-      <ul>
-        <li><a href="#">Pergunta 1 da categoria 3</a></li>
-        <li><a href="#">Pergunta 2 da categoria 3</a></li>
-        <li><a href="#">Pergunta 3 da categoria 3</a></li>
-        <li><a href="#">Pergunta 4 da categoria 3</a></li>
-        <li><a href="#">Pergunta 5 da categoria 3</a></li>
-      </ul>
-    </nav>
-
-    <!-- Logo Dr. Owl SVG -->
-    <svg class="logo" viewBox="0 0 375 375" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="img" aria-label="Dr Owl logo">
-      <defs>
-        <clipPath id="6526b8b4d3"><path d="M 113 88.230469 L 262 88.230469 L 262 135 L 113 135 Z M 113 88.230469 "/></clipPath>
-        <clipPath id="7c67bab10c"><path d="M 151 269 L 173 269 L 173 286.980469 L 151 286.980469 Z M 151 269 "/></clipPath>
-        <clipPath id="ee73742734"><path d="M 110.335938 280 L 264.835938 280 L 264.835938 286.980469 L 110.335938 286.980469 Z M 110.335938 280 "/></clipPath>
-        <clipPath id="dd244b840d"><path d="M 169 269 L 206 269 L 206 286.980469 L 169 286.980469 Z M 169 269 "/></clipPath>
-        <clipPath id="e9c4384c2b"><path d="M 202 269 L 223 269 L 223 286.980469 L 202 286.980469 Z M 202 269 "/></clipPath>
-      </defs>
-      <g id="9f691288a1">
-        <path style=" stroke:none;fill-rule:evenodd;fill:#4a64b2;fill-opacity:1;" d="M 214.34375 146.761719 C 217.371094 146.761719 219.828125 149.214844 219.828125 152.246094 C 219.828125 155.277344 217.371094 157.734375 214.34375 157.734375 C 211.3125 157.734375 208.855469 155.277344 208.855469 152.246094 C 208.855469 149.214844 211.3125 146.761719 214.34375 146.761719 Z M 214.34375 165.277344 C 221.34375 165.277344 227.019531 159.601562 227.019531 152.601562 C 227.019531 145.601562 221.34375 139.925781 214.34375 139.925781 C 207.339844 139.925781 201.664062 145.601562 201.664062 152.601562 C 201.664062 159.601562 207.339844 165.277344 214.34375 165.277344 Z M 214.34375 165.277344 "/>
-        <path style=" stroke:none;fill-rule:evenodd;fill:#4a64b2;fill-opacity:1;" d="M 160.054688 146.476562 C 163.082031 146.476562 165.539062 148.933594 165.539062 151.960938 C 165.539062 154.992188 163.082031 157.449219 160.054688 157.449219 C 157.023438 157.449219 154.566406 154.992188 154.566406 151.960938 C 154.566406 148.933594 157.019531 146.476562 160.054688 146.476562 Z M 160.054688 164.640625 C 167.054688 164.640625 172.730469 158.964844 172.730469 151.960938 C 172.730469 144.960938 167.054688 139.285156 160.054688 139.285156 C 153.050781 139.285156 147.375 144.960938 147.375 151.960938 C 147.375 158.964844 153.050781 164.640625 160.054688 164.640625 Z M 160.054688 164.640625 "/>
-        <path style=" stroke:none;fill-rule:evenodd;fill:#4a64b2;fill-opacity:1;" d="M 188.085938 183.265625 C 188.085938 183.265625 192.089844 177.933594 192.941406 172.175781 C 193.011719 171.761719 193.046875 171.328125 193.046875 170.882812 C 193.046875 167.488281 190.894531 164.726562 188.214844 164.640625 C 188.171875 164.636719 188.128906 164.636719 188.085938 164.636719 C 188.042969 164.636719 188 164.636719 187.957031 164.640625 C 185.277344 164.726562 183.125 167.484375 183.125 170.882812 C 183.125 171.328125 183.164062 171.757812 183.230469 172.175781 C 184.082031 177.933594 188.085938 183.265625 188.085938 183.265625 Z M 188.085938 183.265625 "/>
-        <path style=" stroke:none;fill-rule:evenodd;fill:#4a64b2;fill-opacity:1;" d="M 172.242188 192.910156 L 155.789062 192.910156 C 155.789062 197.878906 159.472656 201.910156 164.015625 201.910156 C 168.558594 201.910156 172.242188 197.878906 172.242188 192.910156 Z M 188.089844 241.363281 C 192.632812 241.363281 196.316406 237.335938 196.316406 232.367188 L 179.863281 232.367188 C 179.863281 237.339844 183.546875 241.363281 188.089844 241.363281 Z M 200.214844 222.542969 C 204.757812 222.542969 208.441406 218.511719 208.441406 213.546875 L 191.992188 213.546875 C 191.992188 218.511719 195.671875 222.542969 200.21875 222.542969 Z M 184.1875 213.546875 L 167.734375 213.546875 C 167.734375 218.511719 171.417969 222.542969 175.960938 222.542969 C 180.503906 222.542969 184.1875 218.511719 184.1875 213.546875 Z M 212.160156 201.910156 C 216.703125 201.910156 220.386719 197.878906 220.386719 192.914062 L 203.9375 192.914062 C 203.9375 197.878906 207.617188 201.910156 212.160156 201.910156 Z M 188.269531 201.910156 C 192.8125 201.910156 196.496094 197.878906 196.496094 192.914062 L 180.042969 192.914062 C 180.042969 197.878906 183.726562 201.910156 188.273438 201.910156 Z M 188.269531 201.910156 "/>
-
-<!-- Title -->
-<h1 style="font-weight: 700; font-size: 24px; margin: 0;">Hi, I'm Dr. Owl.</h1>
-<p style="font-weight: 300; font-size: 16px; margin: 4px 0 24px 0; color: #555;">Let's chat and find solutions together.</p>
-
-        <div class="response" style="max-height: 400px; overflow-y: auto; margin-bottom: 16px; text-align: left;"></div>
-
-<!-- Input Box -->
-<div class="input-area" role="form" aria-label="Chat input area">
-
-  <div
-id="messageInput"
-class="message-label"
-contenteditable="true"
-role="textbox"
-aria-label="Digite sua mensagem aqui"
-data-placeholder="message Dr. Owl"
-tabindex="0"
-></div>
-
-  <!-- Left Buttons: Read Aloud + Microphone -->
-  <div class="left-buttons">
-
-    <button type="button" aria-label="Read aloud" id="read-aloud-btn">
-      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor" class="read-icon">
-        <path d="M3 10v4h4l5 5V5L7 10H3z"/>
-      </svg>
-      Read Aloud
-    </button>
-
-    <!-- Microphone Button -->
-    <button type="button" aria-label="Microphone" id="mic-btn">Micro</button>
+  <!-- Menu Hamburguer -->
+  <div class="menu-hamburger" aria-label="Menu" role="button" tabindex="0" onclick="toggleMenu()" onkeydown="if(event.key==='Enter'){toggleMenu();}">
+    <span></span>
+    <span></span>
+    <span></span>
   </div>
 
-  <!-- Send Button -->
-  <button id="send-btn" type="submit" aria-label="Send message">
-    Send
-  </button>
-</div>
+  <!-- Menu Lateral -->
+  <nav class="side-menu" id="sideMenu" aria-label="Main menu">
+    <span class="close-btn" role="button" tabindex="0" aria-label="Close menu" onclick="toggleMenu()" onkeydown="if(event.key==='Enter'){toggleMenu();}">&times;</span>
 
-</div>
+    <h2>Conheça o Dr. Owl</h2>
+    <ul>
+      <li><a href="#">Quem é o Dr. Owl?</a></li>
+      <li><a href="#">Qual a função do Dr. Owl?</a></li>
+      <li><a href="#">Como o Dr. Owl pode ajudar?</a></li>
+      <li><a href="#">Por que confiar no Dr. Owl?</a></li>
+      <li><a href="#">Quais são os diferenciais do Dr. Owl?</a></li>
+    </ul>
 
-<script>
-  const botIconHTML = `
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="img" aria-label="Owl icon">
-      <path fill="#6C63FF" d="M12 2C9.243 2 7 4.243 7 7c0 2.757 2.243 5 5 5s5-2.243 5-5c0-2.757-2.243-5-5-5zM5 21c0-2.761 4-4 7-4s7 1.239 7 4v1H5v-1z"/>
-    </svg>
-  `;
-  // Toggle do menu lateral
-  function toggleMenu() {
-    const menu = document.getElementById('sideMenu');
-    menu.classList.toggle('open');
-  }
+    <h3>Sintomas</h3>
+    <ul>
+      <li><a href="#">Quer saber sobre o sintoma A?</a></li>
+      <li><a href="#">Quer saber como o sintoma B pode agravar sua saúde?</a></li>
+      <li><a href="#">Como identificar o sintoma C?</a></li>
+      <li><a href="#">Quais são os riscos do sintoma D?</a></li>
+      <li><a href="#">Sintoma E: causas comuns?</a></li>
+    </ul>
 
-  // Variáveis para manipular DOM - **usar sempre o #messageInput**
-  const input = document.getElementById('messageInput');
-  const inputArea = document.querySelector('.input-area');
-  const responseDiv = document.querySelector('.response') || document.createElement('div');
-  const sendButton = document.getElementById('send-btn');
-  const readAloudButton = document.getElementById('read-aloud-btn');
-  const micButton = document.getElementById('mic-btn');
+    <h3>Categoria 3</h3>
+    <ul>
+      <li><a href="#">Pergunta 1 da categoria 3</a></li>
+      <li><a href="#">Pergunta 2 da categoria 3</a></li>
+      <li><a href="#">Pergunta 3 da categoria 3</a></li>
+      <li><a href="#">Pergunta 4 da categoria 3</a></li>
+      <li><a href="#">Pergunta 5 da categoria 3</a></li>
+    </ul>
+  </nav>
 
-  // Focar o input ao clicar em qualquer lugar do balão
-  inputArea.addEventListener('click', () => {
-    input.focus();
-  });
+  <!-- Área principal do chat -->
+  <main class="chat-container" role="main" aria-label="Chat area">
 
-  // Função para manter cursor visível e ativo mesmo em campo vazio
-  function ensureCursorVisible(el) {
-    if (el.textContent.trim() === '') {
-      el.textContent = '\u200B';  // caractere invisível
+    <!-- Imagem e título iniciais -->
+    <header class="initial-header" id="initialHeader">
+      <svg class="logo" viewBox="0 0 375 375" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="img" aria-label="Dr Owl logo">
+        <defs>
+          <clipPath id="6526b8b4d3"><path d="M 113 88.230469 L 262 88.230469 L 262 135 L 113 135 Z M 113 88.230469 "/></clipPath>
+          <clipPath id="7c67bab10c"><path d="M 151 269 L 173 269 L 173 286.980469 L 151 286.980469 Z M 151 269 "/></clipPath>
+          <clipPath id="ee73742734"><path d="M 110.335938 280 L 264.835938 280 L 264.835938 286.980469 L 110.335938 286.980469 Z M 110.335938 280 "/></clipPath>
+          <clipPath id="dd244b840d"><path d="M 169 269 L 206 269 L 206 286.980469 L 169 286.980469 Z M 169 269 "/></clipPath>
+          <clipPath id="e9c4384c2b"><path d="M 202 269 L 223 269 L 223 286.980469 L 202 286.980469 Z M 202 269 "/></clipPath>
+        </defs>
+        <g id="9f691288a1">
+          <path style=" stroke:none;fill-rule:evenodd;fill:#4a64b2;fill-opacity:1;" d="M 214.34375 146.761719 C 217.371094 146.761719 219.828125 149.214844 219.828125 152.246094 C 219.828125 155.277344 217.371094 157.734375 214.34375 157.734375 C 211.3125 157.734375 208.855469 155.277344 208.855469 152.246094 C 208.855469 149.214844 211.3125 146.761719 214.34375 146.761719 Z M 214.34375 165.277344 C 221.34375 165.277344 227.019531 159.601562 227.019531 152.601562 C 227.019531 145.601562 221.34375 139.925781 214.34375 139.925781 C 207.339844 139.925781 201.664062 145.601562 201.664062 152.601562 C 201.664062 159.601562 207.339844 165.277344 214.34375 165.277344 Z M 214.34375 165.277344 "/>
+          <path style=" stroke:none;fill-rule:evenodd;fill:#4a64b2;fill-opacity:1;" d="M 160.054688 146.476562 C 163.082031 146.476562 165.539062 148.933594 165.539062 151.960938 C 165.539062 154.992188 163.082031 157.449219 160.054688 157.449219 C 157.023438 157.449219 154.566406 154.992188 154.566406 151.960938 C 154.566406 148.933594 157.019531 146.476562 160.054688 146.476562 Z M 160.054688 164.640625 C 167.054688 164.640625 172.730469 158.964844 172.730469 151.960938 C 172.730469 144.960938 167.054688 139.285156 160.054688 139.285156 C 153.050781 139.285156 147.375 144.960938 147.375 151.960938 C 147.375 158.964844 153.050781 164.640625 160.054688 164.640625 Z M 160.054688 164.640625 "/>
+          <path style=" stroke:none;fill-rule:evenodd;fill:#4a64b2;fill-opacity:1;" d="M 188.085938 183.265625 C 188.085938 183.265625 192.089844 177.933594 192.941406 172.175781 C 193.011719 171.761719 193.046875 171.328125 193.046875 170.882812 C 193.046875 167.488281 190.894531 164.726562 188.214844 164.640625 C 188.171875 164.636719 188.128906 164.636719 188.085938 164.636719 C 188.042969 164.636719 188 164.636719 187.957031 164.640625 C 185.277344 164.726562 183.125 167.484375 183.125 170.882812 C 183.125 171.328125 183.164062 171.757812 183.230469 172.175781 C 184.082031 177.933594 188.085938 183.265625 188.085938 183.265625 Z M 188.085938 183.265625 "/>
+          <path style=" stroke:none;fill-rule:evenodd;fill:#4a64b2;fill-opacity:1;" d="M 172.242188 192.910156 L 155.789062 192.910156 C 155.789062 197.878906 159.472656 201.910156 164.015625 201.910156 C 168.558594 201.910156 172.242188 197.878906 172.242188 192.910156 Z M 188.089844 241.363281 C 192.632812 241.363281 196.316406 237.335938 196.316406 232.367188 L 179.863281 232.367188 C 179.863281 237.339844 183.546875 241.363281 188.089844 241.363281 Z M 200.214844 222.542969 C 204.757812 222.542969 208.441406 218.511719 208.441406 213.546875 L 191.992188 213.546875 C 191.992188 218.511719 195.671875 222.542969 200.21875 222.542969 Z M 184.1875 213.546875 L 167.734375 213.546875 C 167.734375 218.511719 171.417969 222.542969 175.960938 222.542969 C 180.503906 222.542969 184.1875 218.511719 184.1875 213.546875 Z M 212.160156 201.910156 C 216.703125 201.910156 220.386719 197.878906 220.386719 192.914062 L 203.9375 192.914062 C 203.9375 197.878906 207.617188 201.910156 212.160156 201.910156 Z M 188.269531 201.910156 C 192.8125 201.910156 196.496094 197.878906 196.496094 192.914062 L 180.042969 192.914062 C 180.042969 197.878906 183.726562 201.910156 188.273438 201.910156 Z M 188.269531 201.910156 "/>
+        </g>
+      </svg>
+      <h1 style="font-weight: 700; font-size: 24px; margin: 0;">Hi, I'm Dr. Owl.</h1>
+      <p style="font-weight: 300; font-size: 16px; margin: 4px 0 24px 0; color: #555;">Let's chat and find solutions together.</p>
+    </header>
+
+    <!-- Área de mensagens -->
+    <div class="response" role="region" aria-live="polite" aria-label="Chat messages" tabindex="0"></div>
+
+    <!-- Caixa de input -->
+    <form class="input-area" role="form" aria-label="Chat input area" onsubmit="handleSubmit(event)">
+      <div
+        id="messageInput"
+        class="message-label"
+        contenteditable="true"
+        role="textbox"
+        aria-multiline="true"
+        aria-label="Digite sua mensagem aqui"
+        data-placeholder="Type your message..."
+        tabindex="0"
+      ></div>
+
+      <div class="left-buttons">
+        <button type="button" aria-label="Read aloud" id="read-aloud-btn">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor" class="read-icon">
+            <path d="M3 10v4h4l5 5V5L7 10H3z"/>
+          </svg>
+          Read Aloud
+        </button>
+
+        <button type="button" aria-label="Microphone" id="mic-btn">Micro</button>
+      </div>
+
+      <button id="send-btn" type="submit" aria-label="Send message">
+        Send
+      </button>
+    </form>
+
+  </main>
+
+  <script>
+    const sideMenu = document.getElementById('sideMenu');
+    const menuHamburger = document.querySelector('.menu-hamburger');
+    const responseDiv = document.querySelector('.response');
+    const messageInput = document.getElementById('messageInput');
+    const readAloudBtn = document.getElementById('read-aloud-btn');
+    const micBtn = document.getElementById('mic-btn');
+
+    // Toggle do menu lateral
+    function toggleMenu() {
+      sideMenu.classList.toggle('open');
+    }
+
+    // Focar input ao clicar no balão
+    document.querySelector('.input-area').addEventListener('click', () => {
+      messageInput.focus();
+    });
+
+    // Garantir cursor visível em contenteditable vazio
+    function ensureCursorVisible(el) {
+      if (el.textContent.trim() === '') {
+        el.textContent = '\u200B';
+        el.focus();
+        const range = document.createRange();
+        const sel = window.getSelection();
+        range.setStart(el.childNodes[0], 1);
+        range.collapse(true);
+        sel.removeAllRanges();
+        sel.addRange(range);
+      }
+    }
+
+    messageInput.addEventListener('input', () => {
+      setTimeout(() => {
+        ensureCursorVisible(messageInput);
+      }, 0);
+    });
+
+    window.addEventListener('load', () => {
+      ensureCursorVisible(messageInput);
+      messageInput.focus();
+    });
+
+    // Função para limpar contenteditable mantendo cursor ativo
+    function clearContentEditable(el) {
+      el.textContent = '\u200B';
       el.focus();
-
       const range = document.createRange();
       const sel = window.getSelection();
       range.setStart(el.childNodes[0], 1);
@@ -458,183 +442,123 @@ tabindex="0"
       sel.removeAllRanges();
       sel.addRange(range);
     }
-  }
 
-  // Ativar ensureCursorVisible ao digitar (input)
-  input.addEventListener('input', () => {
-    setTimeout(() => {
-      ensureCursorVisible(input);
-    }, 0);
-  });
+    // Função para enviar mensagem ao bot
+    async function sendMessage(message, selectedQuestion = null) {
+      if (!message.trim() && !selectedQuestion) return;
 
-  // Ativar ensureCursorVisible e foco ao carregar a página
-  window.addEventListener('load', () => {
-    ensureCursorVisible(input);
-    input.focus();
-  });
+      // Exibir mensagem do usuário
+      if (message.trim() && !selectedQuestion) {
+        const userDiv = document.createElement('div');
+        userDiv.classList.add('user-message');
+        userDiv.textContent = message.trim();
+        responseDiv.appendChild(userDiv);
+        responseDiv.scrollTop = responseDiv.scrollHeight;
+      }
 
-  // Função para limpar o conteúdo do contenteditable mantendo cursor ativo
-  function clearContentEditable(el) {
-    el.textContent = '\u200B';
-    el.focus();
-
-    const range = document.createRange();
-    const sel = window.getSelection();
-    range.setStart(el.childNodes[0], 1);
-    range.collapse(true);
-    sel.removeAllRanges();
-    sel.addRange(range);
-  }
-
-  // Função para enviar mensagem ao bot
-  async function sendMessage(message, selectedQuestion = null) {
-    if (!message.trim() && !selectedQuestion) return;
-
-    // === ADICIONADO: ativa o layout chat ao enviar a primeira mensagem ===
-    if (!document.body.classList.contains('chat-active')) {
-      document.body.classList.add('chat-active');
-    }
-
-    responseDiv.classList.add('expanded');
-
-    if (message.trim() && !selectedQuestion) {
-      responseDiv.insertAdjacentHTML('beforeend', `<div class="user-message">${message.trim()}</div>`);
-      responseDiv.scrollTop = responseDiv.scrollHeight;
-    }
-
-    // Aqui coloque sua lógica para enviar a mensagem para o backend ou API
-    try {
-      responseDiv.insertAdjacentHTML('beforeend', `<div class="typing-indicator">Dr. Owl is typing...</div>`);
+      // Inserir indicador de digitação
+      const typingIndicator = document.createElement('div');
+      typingIndicator.classList.add('typing-indicator');
+      typingIndicator.textContent = 'Dr. Owl is typing...';
+      responseDiv.appendChild(typingIndicator);
       responseDiv.scrollTop = responseDiv.scrollHeight;
 
-      const res = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message, selectedQuestion })
-      });
-
-      const data = await res.json();
-
-      const typing = responseDiv.querySelector('.typing-indicator');
-      if (typing) typing.remove();
-
-      if (data.choices && data.choices.length > 0) {
-        const content = data.choices[0].message.content;
-        const tempDiv = document.createElement('div');
-        tempDiv.innerHTML = content;
-
-        const questions = tempDiv.querySelectorAll('.clickable-question');
-        questions.forEach(q => q.remove());
-        const explanationHTML = tempDiv.innerHTML;
-
-        responseDiv.insertAdjacentHTML('beforeend', `
-          <div class="bot-message">
-            ${botIconHTML}
-            <div>${explanationHTML}</div>
-          </div>
-        `);
-
-        if (!window.emailPromptShown) {
-          window.emailPromptShown = true;
-          const emailHTML = `
-            <div class="bot-message" id="email-prompt">
-              ${botIconHTML}
-              <div>
-                <p style="margin-bottom: 12px; color: #2f2c63;">Want to receive personalized health tips from Dr. Owl?</p>
-                <input type="email" id="userEmail" placeholder="Enter your email" style="padding: 10px; font-size: 14px; border-radius: 8px; border: 1px solid #ccc; width: 70%; max-width: 300px;" />
-                <button onclick="submitEmail()" style="margin-left: 12px; margin-top: 8px; padding: 10px 16px; font-size: 14px; background-color: #2f2c63; color: white; border: none; border-radius: 8px; cursor: pointer;">Subscribe</button>
-              </div>
-            </div>
-          `;
-          responseDiv.appendChild(document.createRange().createContextualFragment(emailHTML));
-        }
-
-        questions.forEach(q => {
-          responseDiv.appendChild(q);
+      try {
+        const res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message, selectedQuestion }),
         });
+        const data = await res.json();
 
-        const messages = responseDiv.querySelectorAll('.bot-message');
-        const lastMessage = messages[messages.length - 1];
-        if (lastMessage) {
-          lastMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Remover indicador de digitação
+        typingIndicator.remove();
+
+        if (data.choices && data.choices.length > 0) {
+          const content = data.choices[0].message.content;
+          const tempDiv = document.createElement('div');
+          tempDiv.innerHTML = content;
+
+          // Remover perguntas clicáveis para inserir depois
+          const questions = tempDiv.querySelectorAll('.clickable-question');
+          questions.forEach(q => q.remove());
+          const explanationHTML = tempDiv.innerHTML;
+
+          // Criar mensagem do bot
+          const botDiv = document.createElement('div');
+          botDiv.classList.add('bot-message');
+          botDiv.innerHTML = `
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="img" aria-label="Owl icon">
+              <path fill="#6C63FF" d="M12 2C9.243 2 7 4.243 7 7c0 2.757 2.243 5 5 5s5-2.243 5-5c0-2.757-2.243-5-5-5zM5 21c0-2.761 4-4 7-4s7 1.239 7 4v1H5v-1z"/>
+            </svg>
+            <div>${explanationHTML}</div>
+          `;
+          responseDiv.appendChild(botDiv);
+
+          // Inserir perguntas clicáveis depois
+          questions.forEach(q => responseDiv.appendChild(q));
+
+          // Rolar para a última mensagem
+          botDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
+        // Limpar input mantendo cursor ativo
+        clearContentEditable(messageInput);
+
+      } catch (err) {
+        typingIndicator.remove();
+        alert('Error communicating with server.');
+        console.error(err);
       }
-
-      clearContentEditable(input);
-
-    } catch (err) {
-      responseDiv.textContent = "Error communicating with server.";
-      console.error(err);
     }
-  }
 
-  sendButton.addEventListener('click', () => {
-    const message = input.textContent.replace(/\u200B/g, '').trim();
-    sendMessage(message);
-  });
+    // Evento enviar mensagem no botão Send e no form submit
+    document.getElementById('send-btn').addEventListener('click', (e) => {
+      e.preventDefault();
+      const message = messageInput.textContent.replace(/\u200B/g, '').trim();
+      sendMessage(message);
+    });
+    document.querySelector('.input-area').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const message = messageInput.textContent.replace(/\u200B/g, '').trim();
+      sendMessage(message);
+    });
 
-  readAloudButton?.addEventListener('click', () => {
-    if (speechSynthesis.speaking) {
-      speechSynthesis.cancel();
-    } else {
-      const textToRead = responseDiv.textContent || responseDiv.innerText;
-      if (!textToRead) return;
-      const utterance = new SpeechSynthesisUtterance(textToRead);
-      utterance.lang = currentLang || 'en-US';
-      const voices = speechSynthesis.getVoices();
-      const matchingVoices = voices.filter(voice => voice.lang.startsWith(utterance.lang.split('-')[0]));
-      const maleVoice = matchingVoices.find(v => /male/i.test(v.name)) || matchingVoices[0];
-      utterance.voice = maleVoice || voices[0];
-      speechSynthesis.speak(utterance);
-    }
-  });
-
-  document.addEventListener('click', (e) => {
-    if (e.target.classList.contains('clickable-question')) {
-      const question = decodeURIComponent(e.target.getAttribute('data-question'));
-      const userDiv = document.createElement('div');
-      userDiv.classList.add('user-message');
-      userDiv.innerText = question;
-      responseDiv.appendChild(userDiv);
-      responseDiv.scrollTop = responseDiv.scrollHeight;
-      sendMessage(question, true);
-    }
-  });
-
-  const observer = new MutationObserver(() => {
-    const botMessages = document.querySelectorAll('.response .bot-message');
-    const emailPrompt = document.getElementById('email-prompt');
-    if (botMessages.length >= 1 && emailPrompt && emailPrompt.style.display === 'none') {
-      emailPrompt.style.display = 'block';
-      emailPrompt.scrollIntoView({ behavior: 'smooth' });
-      observer.disconnect();
-    }
-  });
-  observer.observe(document.querySelector('.response'), { childList: true });
-
-  async function submitEmail() {
-    const emailInput = document.getElementById('userEmail');
-    const email = emailInput?.value?.trim();
-    if (!email) {
-      alert('Please enter a valid email.');
-      return;
-    }
-    try {
-      const res = await fetch('/api/subscribe.js', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email })
-      });
-      if (res.ok) {
-        alert('✅ Thank you! Your email was successfully submitted.');
+    // Botão Read Aloud
+    readAloudBtn.addEventListener('click', () => {
+      if (speechSynthesis.speaking) {
+        speechSynthesis.cancel();
       } else {
-        alert('❌ There was an error submitting your email.');
+        const textToRead = responseDiv.textContent || responseDiv.innerText;
+        if (!textToRead) return;
+        const utterance = new SpeechSynthesisUtterance(textToRead);
+        utterance.lang = 'en-US';
+        const voices = speechSynthesis.getVoices();
+        const matchingVoices = voices.filter(voice => voice.lang.startsWith(utterance.lang.split('-')[0]));
+        const maleVoice = matchingVoices.find(v => /male/i.test(v.name)) || matchingVoices[0];
+        utterance.voice = maleVoice || voices[0];
+        speechSynthesis.speak(utterance);
       }
-    } catch (err) {
-      alert('⚠️ Connection error. Please try again later.');
-    }
-  }
-</script>
+    });
+
+    // Botão Microfone (simples placeholder)
+    micBtn.addEventListener('click', () => {
+      alert('Microphone feature not implemented.');
+    });
+
+    // Clique nas perguntas clicáveis
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('clickable-question')) {
+        const question = decodeURIComponent(e.target.getAttribute('data-question'));
+        const userDiv = document.createElement('div');
+        userDiv.classList.add('user-message');
+        userDiv.innerText = question;
+        responseDiv.appendChild(userDiv);
+        responseDiv.scrollTop = responseDiv.scrollHeight;
+        sendMessage(question, true);
+      }
+    });
+
+  </script>
 </body>
 </html>
