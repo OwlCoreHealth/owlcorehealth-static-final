@@ -741,13 +741,15 @@ readAloudButton?.addEventListener('click', () => {
   if (speechSynthesis.speaking) {
     speechSynthesis.cancel();
   } else {
-    const textToRead = responseDiv.textContent.trim();
+    const botMessages = responseDiv.querySelectorAll('.bot-message');
+    if (botMessages.length === 0) return;
+    const lastBotMessage = botMessages[botMessages.length - 1];
+    const textToRead = lastBotMessage.textContent.trim();
     if (!textToRead) return;
 
     const utterance = new SpeechSynthesisUtterance(textToRead);
     utterance.lang = currentLang;
 
-    // Seleciona voz que melhor corresponde ao idioma
     const voice = voices.find(v => v.lang === currentLang || v.lang.startsWith(currentLang.split('-')[0]));
     if (voice) {
       utterance.voice = voice;
