@@ -515,7 +515,6 @@ tabindex="0"
   // Ativar ensureCursorVisible ao carregar a página (sem ativar o teclado)
 window.addEventListener('load', () => {
   ensureCursorVisible(input); // ✅ Mantém o cursor visível
-  // input.focus(); ⛔️ Removido para não abrir teclado automaticamente
 });
 
   // Função para limpar o conteúdo do contenteditable mantendo cursor ativo
@@ -615,21 +614,8 @@ sendButton.addEventListener('click', () => {
   const message = input.textContent.replace(/\u200B/g, '').trim(); // Remove o espaço invisível e trim
   sendMessage(message);
 
-  // 👉 Solução completa para esconder o teclado no mobile
-  setTimeout(() => {
-    const hiddenInput = document.createElement('input');
-    hiddenInput.style.position = 'absolute';
-    hiddenInput.style.opacity = 0;
-    hiddenInput.style.height = 0;
-    hiddenInput.style.fontSize = '16px'; // iOS workaround
-    document.body.appendChild(hiddenInput);
-
-    hiddenInput.focus(); // Foca no campo invisível para remover foco do campo principal
-    setTimeout(() => {
-      hiddenInput.remove(); // Remove input escondido
-    }, 100);
-  }, 100);
-});
+    // ✅ Fecha o teclado no mobile corretamente
+  input.blur();
 
 
   readAloudButton?.addEventListener('click', () => {
