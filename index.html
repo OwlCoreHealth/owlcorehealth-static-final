@@ -517,18 +517,20 @@ window.addEventListener('load', () => {
   ensureCursorVisible(input); // ✅ Mantém o cursor visível
 });
 
-  // Função para limpar o conteúdo do contenteditable mantendo cursor ativo
-  function clearContentEditable(el) {
-    el.textContent = '\u200B';
-    el.focus();
+// Função para limpar o conteúdo do contenteditable sem ativar o teclado
+function clearContentEditable(el) {
+  el.textContent = '\u200B';
 
-    const range = document.createRange();
-    const sel = window.getSelection();
+  const range = document.createRange();
+  const sel = window.getSelection();
+
+  if (el.childNodes.length > 0) {
     range.setStart(el.childNodes[0], 1);
     range.collapse(true);
     sel.removeAllRanges();
     sel.addRange(range);
   }
+}
 
   // Função para enviar mensagem ao bot
   async function sendMessage(message, selectedQuestion = null) {
