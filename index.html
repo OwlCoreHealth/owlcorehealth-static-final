@@ -384,18 +384,19 @@
   }
 }
 <style>
-  /* ...todos seus estilos aqui... */
+  /* Remove especificamente o botão roxo estilizado colado à esquerda */
+a[href="https://www.naturepharmalab.com/"][style*="top: 10px"][style*="left: 20px"][style*="background-color: #6b21a8"] {
+  display: none !important;
+}
 
-  /* COLE AQUI: */
-  a[href="https://www.naturepharmalab.com/"][style*="left: 20px"][style*="background-color: #6b21a8"] {
-    display: none !important;
-  }
-  button.back-to-home {
-    display: none !important;
-  }
-  #keep-this-button {
-    display: inline-block !important;
-  }
+/* Oculta todos os botões back-to-home exceto o que tem ID correto */
+button.back-to-home {
+  display: none !important;
+}
+
+#keep-this-button {
+  display: inline-block !important;
+}
 
 </style>
 </head>
