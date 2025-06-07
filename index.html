@@ -741,7 +741,11 @@ readAloudButton?.addEventListener('click', () => {
   if (speechSynthesis.speaking) {
     speechSynthesis.cancel();
   } else {
-    const textToRead = responseDiv.textContent.trim();
+    // Pega todas as mensagens do bot e do usuário e concatena o texto
+    const allMessages = responseDiv.querySelectorAll('.bot-message, .user-message');
+    const texts = Array.from(allMessages).map(el => el.textContent.trim()).filter(t => t.length > 0);
+    const textToRead = texts.join('. ');  // separa com pausas curtas
+
     if (!textToRead) return;
 
     const utterance = new SpeechSynthesisUtterance(textToRead);
