@@ -211,6 +211,77 @@
       height: 16px;
       fill: currentColor;
     }
+<style>
+  /* Seu CSS atual todo aqui */
+
+  /* --- INÍCIO DOS AJUSTES DE LAYOUT DO DIÁLOGO --- */
+  .response {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 16px;
+    text-align: left;
+    width: 67vw;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: 0;
+    padding-right: 12px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .bot-message {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-weight: 300;
+    font-size: 16px;
+    color: #222;
+  }
+
+  .bot-message > div:last-child {
+    flex: 1;
+    line-height: 1.5;
+  }
+
+  .bot-message svg {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    margin-top: 4px;
+    fill: #6C63FF;
+  }
+
+  .user-message {
+    max-width: 65%;
+    background-color: #CCE4FF;
+    color: #000;
+    padding: 12px 18px;
+    border-radius: 24px 24px 4px 24px;
+    margin-left: auto;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.4;
+    word-wrap: break-word;
+    box-sizing: border-box;
+  }
+
+  .input-area {
+    width: 67vw;
+    max-width: 900px;
+    background-color: #ECECF3;
+    border-radius: 24px;
+    padding: 0 16px 16px 16px;
+    height: 104px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 auto 24px auto;
+    position: relative;
+    cursor: text;
+  }
 
   </style>
 </head>
