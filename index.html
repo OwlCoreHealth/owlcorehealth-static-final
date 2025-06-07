@@ -735,41 +735,19 @@ function loadVoices() {
 speechSynthesis.onvoiceschanged = loadVoices;
 loadVoices();
 
-let firstReadDone = false;
-let voices = [];
-
-function loadVoices() {
-  voices = speechSynthesis.getVoices();
-  if (!voices.length) {
-    setTimeout(loadVoices, 100);
-  }
-}
-speechSynthesis.onvoiceschanged = loadVoices;
-loadVoices();
-
 readAloudButton?.addEventListener('click', () => {
   if (!responseDiv) return;
 
   if (speechSynthesis.speaking) {
     speechSynthesis.cancel();
   } else {
-    const botMessages = responseDiv.querySelectorAll('.bot-message');
-    if (botMessages.length === 0) return;
-
-    let textToRead = '';
-
-    if (!firstReadDone) {
-      textToRead = botMessages[0].textContent.trim();
-      firstReadDone = true;
-    } else {
-      textToRead = botMessages[botMessages.length - 1].textContent.trim();
-    }
-
+    const textToRead = responseDiv.textContent.trim();
     if (!textToRead) return;
 
     const utterance = new SpeechSynthesisUtterance(textToRead);
     utterance.lang = currentLang;
 
+    // Seleciona voz que melhor corresponde ao idioma
     const voice = voices.find(v => v.lang === currentLang || v.lang.startsWith(currentLang.split('-')[0]));
     if (voice) {
       utterance.voice = voice;
@@ -778,6 +756,7 @@ readAloudButton?.addEventListener('click', () => {
     speechSynthesis.speak(utterance);
   }
 });
+
 
   document.addEventListener('click', (e) => {
     if (e.target.classList.contains('clickable-question')) {
