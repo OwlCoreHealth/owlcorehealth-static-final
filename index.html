@@ -512,11 +512,11 @@ tabindex="0"
     }, 0);
   });
 
-  // Ativar ensureCursorVisible e foco ao carregar a página
-  window.addEventListener('load', () => {
-    ensureCursorVisible(input);
-    input.focus();
-  });
+  // Ativar ensureCursorVisible ao carregar a página (sem ativar o teclado)
+window.addEventListener('load', () => {
+  ensureCursorVisible(input); // ✅ Mantém o cursor visível
+  // input.focus(); ⛔️ Removido para não abrir teclado automaticamente
+});
 
   // Função para limpar o conteúdo do contenteditable mantendo cursor ativo
   function clearContentEditable(el) {
