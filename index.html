@@ -383,12 +383,21 @@
     display: none !important;
   }
 }
-/* Oculta todos os botões .back-to-home, exceto o que tem id="keep-this-button" */
-button.back-to-home:not(#keep-this-button) {
-  display: none !important;
-}
+<style>
+  /* ...todos seus estilos aqui... */
 
-  </style>
+  /* COLE AQUI: */
+  a[href="https://www.naturepharmalab.com/"][style*="left: 20px"][style*="background-color: #6b21a8"] {
+    display: none !important;
+  }
+  button.back-to-home {
+    display: none !important;
+  }
+  #keep-this-button {
+    display: inline-block !important;
+  }
+
+</style>
 </head>
 <body>
   <button id="keep-this-button" class="back-to-home" onclick="location.reload()">Back to Homepage</button>
