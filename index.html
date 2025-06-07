@@ -16,12 +16,12 @@
       min-height: 100vh;
     }
    .container {
-  max-width: 900px; /* Aumentado para acomodar o diálogo maior */
-  width: 90%;
+  width: 100%;         /* ocupa toda a largura da tela */
+  max-width: 100%;     /* sem limite máximo */
   padding: 20px;
   text-align: center;
   position: relative;
-  margin: 0 auto; /* garante centralização */
+  margin: 0 auto;
   box-sizing: border-box;
 }
     h1 {
@@ -220,10 +220,12 @@
   overflow-y: auto;
   margin-bottom: 16px;
   text-align: left;
-  max-width: 600px; /* 50% maior que 400px */
-  width: 100%;
-  padding-right: 8px; /* mantém espaçamento para barra de rolagem */
+  width: 100%;         /* ocupa toda a largura */
+  padding: 0 12px;     /* pequeno padding lateral para conforto */
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 /* Container das mensagens do bot */
@@ -253,17 +255,17 @@
 
 /* Mensagem do usuário */
 .user-message {
-  max-width: 75% !important;
-  align-self: flex-end !important;
-  background-color: #d0e6ff !important;
-  color: #0a1f44 !important;
-  padding: 10px 16px !important;
-  border-radius: 20px !important;
-  font-size: 15px !important;
-  line-height: 1.5 !important;
-  white-space: pre-wrap !important;
-  word-wrap: break-word !important;
-  margin: 0 !important;
+  max-width: 75%;
+  align-self: flex-end;      /* alinha à direita */
+  background-color: #d0e6ff; /* balão azul claro */
+  color: #0a1f44;
+  padding: 10px 16px;
+  border-radius: 20px;
+  font-size: 15px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin: 0;
 }
 
   </style>
