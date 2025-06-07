@@ -316,72 +316,59 @@
     word-break: break-word;
   }
 
+  @media (max-width: 600px) {
   .input-area {
-  width: 100% !important;
-  height: 150px !important; /* altura aumentada em 50% */
-  padding: 12px 16px !important;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  background-color: #F6F6FC;
-  border-radius: 24px;
-  margin-bottom: 12px;
-  box-sizing: border-box;
-}
+    width: 100%;
+    height: auto;
+    padding: 8px 12px;
+    gap: 6px;
+    flex-wrap: wrap;
+    border-radius: 16px;
+    margin-bottom: 12px;
+  }
 
-/* Campo de digitação ocupa a parte de cima */
-.message-label {
-  min-height: 48px;
-  flex-grow: 1;
-  padding: 8px 12px;
-  font-size: 14px;
-  line-height: 1.4;
-  border-radius: 12px;
-  background-color: #fff;
-  width: 100%;
-  box-sizing: border-box;
-  overflow-y: auto;
-}
+  .message-label {
+    min-height: 32px;
+    padding: 6px 10px;
+    font-size: 15px;
+    line-height: 1.4;
+    flex: 1 1 100%;
+    border-radius: 12px;
+    background-color: #fff;
+    color: #333;
+  }
 
-/* Botões da esquerda embaixo */
-.left-buttons {
-  position: absolute;
-  bottom: 8px;
-  left: 12px;
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
+  .left-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+    order: 1;
+  }
 
-.left-buttons button {
-  font-size: 10px;
-  padding: 4px 10px;
-  height: 28px;
-  border-radius: 8px;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
+  .left-buttons button {
+    padding: 6px 10px;
+    font-size: 14px;
+    border-radius: 10px;
+    flex: 1;
+    margin: 0 4px;
+  }
 
-/* Ícone de envio redondo à direita */
-#send-btn {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background-color: #6C63FF;
-  border: none;
-  color: white;
-  font-size: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
+  button#send-btn {
+    background: transparent;
+    border: none;
+    padding: 4px;
+    order: 2;
+    width: 40px;
+    height: 40px;
+    background-image: url('https://cdn-icons-png.flaticon.com/512/5720/5720446.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 26px 26px;
+    border-radius: 50%;
+    cursor: pointer;
+    align-self: center;
+  }
 }
 
 #send-btn::before {
