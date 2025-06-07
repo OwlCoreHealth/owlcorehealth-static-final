@@ -334,13 +334,18 @@
     z-index: 9999;
   }
 
-  h1,
-  p.subtitle,
-  svg.logo {
+  /* Elementos que somem só após chat começar */
+  body.chat-started h1,
+  body.chat-started p.subtitle,
+  body.chat-started svg.logo {
+    display: none !important;
+  }
+
+  body.chat-started .chat-launcher-button {
     display: none !important;
   }
 }
-    
+
   </style>
 </head>
 <body>
