@@ -220,8 +220,10 @@
   text-align: left;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding-right: 8px;
+  gap: 20px; /* aumenta espaçamento vertical */
+  padding: 0 20px 0 20px; /* margens laterais mais largas */
+  max-width: 700px; /* deixa a área mais larga */
+  box-sizing: border-box;
 }
 
 /* Container das mensagens do bot */
@@ -239,9 +241,9 @@
 }
 
 /* Ícone do bot */
-.bot-message > svg {
-  flex-shrink: 0 !important;
-  margin-top: 4px !important;
+..bot-message > svg {
+  flex-shrink: 0;
+  margin-top: 6px; /* ajusta para alinhar melhor */
 }
 
 /* Texto da mensagem do bot */
