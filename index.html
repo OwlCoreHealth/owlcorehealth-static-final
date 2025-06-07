@@ -286,47 +286,34 @@
   left: 10px;
   z-index: 9999;
 }
-@media (max-width: 600px) {
-  .container {
-    width: 100%;
-    padding: 12px;
-  }
+ @media (max-width: 600px) {
+    .input-area {
+      width: 100%;
+      height: 72px;
+      flex-wrap: nowrap;
+      padding: 8px 12px;
+      gap: 6px;
+      margin-bottom: 16px;
+      align-items: center;
+    }
 
-  .response {
-    width: 100%;
-    padding: 0 10px;
-    margin-left: 0;
-  }
+    /* 🔧 2. Botões mais finos e menores */
+    button#send-btn {
+      order: 2;
+      padding: 6px 12px;
+      font-size: 14px;
+      border-radius: 12px;
+      min-width: 80px;
+    }
 
-  .input-area {
-    width: 100%;
-    height: auto;
-    flex-wrap: wrap;
-    padding: 12px;
-    gap: 8px;
-    margin-bottom: 16px;
+    /* 🔧 3. Centralizar botão Back to Homepage */
+    .back-to-home {
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 14px;
+      padding: 6px 12px;
+    }
   }
-
-  h1, p.subtitle {
-    display: none;
-  }
-
-  .left-buttons {
-    position: static;
-    order: 1;
-    width: 100%;
-    justify-content: center;
-    margin-top: 8px;
-  }
-
-  button#send-btn {
-    order: 2;
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-  }
-}
-
   </style>
 </head>
 <body>
@@ -644,6 +631,14 @@ tabindex="0"
       alert('⚠️ Connection error. Please try again later.');
     }
   }
+document.addEventListener("DOMContentLoaded", () => {
+    const startBtn = document.getElementById("start-chat-btn");
+    if (startBtn) {
+      startBtn.addEventListener("click", () => {
+        startBtn.style.display = "none";
+      });
+    }
+  });
 </script>
 </body>
 </html>
