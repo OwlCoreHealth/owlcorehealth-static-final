@@ -35,19 +35,26 @@
     }
 
     .menu-hamburger {
-    top: 15px;         /* exemplo: desce um pouco */
-    left: 15px;        /* exemplo: afasta da borda esquerda */
-    width: 35px;       /* aumenta a largura */
-    height: 28px;      /* aumenta a altura */
-    padding: 12px;     /* ajusta o espaçamento interno */
-  }
-
-  .menu-hamburger span {
-    height: 4px;       /* barras um pouco mais grossas */
-    background-color: #6C63FF; /* mantém a cor */
-    border-radius: 3px; /* cantos arredondados */
-  }
-}
+      position: fixed;
+      top: 0;
+      left: 0;
+      margin: 0;
+      padding: 20px;
+      width: 28px;
+      height: 22px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      z-index: 1001;
+      box-sizing: content-box;
+    }
+    .menu-hamburger span {
+      display: block;
+      height: 3px;
+      background-color: #6C63FF;
+      border-radius: 2px;
+    }
 
     .side-menu {
       position: fixed;
