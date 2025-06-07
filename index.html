@@ -16,13 +16,18 @@
       min-height: 100vh;
     }
    .container {
-  width: 100%;         /* ocupa toda a largura da tela */
-  max-width: 100%;     /* sem limite máximo */
+  width: 67vw;       /* 67% da largura da viewport */
+  max-width: 67vw;
+  height: auto;
   padding: 20px;
   text-align: center;
-  position: relative;
-  margin: 0 auto;
+  position: fixed;     /* fixado na tela */
+  top: 0;
+  right: 0;            /* encostado na borda direita */
+  bottom: 0;
+  overflow-y: auto;    /* para scroll se precisar */
   box-sizing: border-box;
+  background: white;   /* ou a cor do fundo desejada */
 }
     h1 {
       font-weight: 700;
@@ -216,12 +221,12 @@
 /* === INÍCIO - Estilos para mensagens bot e usuário === */
 
 .response {
-  max-height: 400px;
+  max-height: calc(100vh - 180px); /* ajusta altura para o espaço visível */
   overflow-y: auto;
   margin-bottom: 16px;
   text-align: left;
-  width: 100%;
-  padding-right: 8px;  /* espaço para barra de rolagem */
+  width: 100%;     /* ocupa largura total do container */
+  padding-right: 8px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
