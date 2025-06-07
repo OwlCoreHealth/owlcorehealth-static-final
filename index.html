@@ -286,6 +286,46 @@
   left: 10px;
   z-index: 9999;
 }
+@media (max-width: 600px) {
+  .container {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .response {
+    width: 100%;
+    padding: 0 10px;
+    margin-left: 0;
+  }
+
+  .input-area {
+    width: 100%;
+    height: auto;
+    flex-wrap: wrap;
+    padding: 12px;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  h1, p.subtitle {
+    display: none;
+  }
+
+  .left-buttons {
+    position: static;
+    order: 1;
+    width: 100%;
+    justify-content: center;
+    margin-top: 8px;
+  }
+
+  button#send-btn {
+    order: 2;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+  }
+}
 
   </style>
 </head>
