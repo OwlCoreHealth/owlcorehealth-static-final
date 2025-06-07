@@ -744,10 +744,10 @@ sendButton.addEventListener('click', () => {
 <!-- OUTROS ELEMENTOS -->
 
 <script>
-  window.addEventListener("DOMContentLoaded", function () {
-    const links = document.querySelectorAll('a[href="https://www.naturepharmalab.com/"], a, button');
+  const removerBotaoRoxo = () => {
+    const allElements = document.querySelectorAll('a, button');
 
-    links.forEach(el => {
+    allElements.forEach(el => {
       const style = el.getAttribute("style") || "";
       const bgColor = window.getComputedStyle(el).backgroundColor;
       const text = el.textContent.trim();
@@ -761,7 +761,18 @@ sendButton.addEventListener('click', () => {
         el.remove();
       }
     });
-  });
+  };
+
+  // Tenta remover imediatamente ao carregar
+  window.addEventListener("DOMContentLoaded", removerBotaoRoxo);
+
+  // Continua tentando a cada 500ms por até 5 segundos
+  let tentativas = 0;
+  const intervalo = setInterval(() => {
+    removerBotaoRoxo();
+    tentativas++;
+    if (tentativas >= 10) clearInterval(intervalo); // Para após 5 segundos
+  }, 500);
 </script>
 </body>
 </html>
