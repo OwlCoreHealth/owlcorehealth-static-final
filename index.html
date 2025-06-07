@@ -735,26 +735,43 @@ function loadVoices() {
 speechSynthesis.onvoiceschanged = loadVoices;
 loadVoices();
 
+let lastReadIndex = -1;
 readAloudButton?.addEventListener('click', () => {
-  if (!responseDiv) return;
+  if (!responseDiv) {
+    console.log('responseDiv não encontrado');
+    return;
+  }
 
   if (speechSynthesis.speaking) {
     speechSynthesis.cancel();
+    console.log('Speech synthesis cancelado');
   } else {
     const botMessages = responseDiv.querySelectorAll('.bot-message');
-    if (botMessages.length === 0) return;
+    if (!botMessages) {
+      console.log('Nenhuma mensagem do bot encontrada');
+      return;
+    }
+    if (botMessages.length === 0) {
+      console.log('Nenhuma mensagem do bot para ler');
+      return;
+    }
 
-    // Pega as mensagens novas que ainda não foram lidas
     const newMessages = Array.from(botMessages).slice(lastReadIndex + 1);
-    if (newMessages.length === 0) return; // nada novo para ler
+    if (newMessages.length === 0) {
+      console.log('Nenhuma mensagem nova para ler');
+      return;
+    }
 
-    // Atualiza o índice da última mensagem lida
     lastReadIndex = botMessages.length - 1;
 
-    // Concatena os textos das novas mensagens, separando por pausa
-    const textToRead = newMessages.map(el => el.textContent.trim()).filter(t => t.length > 0).join('. ');
+    const texts = newMessages.map(el => el.textContent.trim()).filter(t => t.length > 0);
+    if (texts.length === 0) {
+      console.log('Mensagens novas sem texto');
+      return;
+    }
 
-    if (!textToRead) return;
+    const textToRead = texts.join('. ');
+    console.log('Lendo texto:', textToRead);
 
     const utterance = new SpeechSynthesisUtterance(textToRead);
     utterance.lang = currentLang;
@@ -762,12 +779,14 @@ readAloudButton?.addEventListener('click', () => {
     const voice = voices.find(v => v.lang === currentLang || v.lang.startsWith(currentLang.split('-')[0]));
     if (voice) {
       utterance.voice = voice;
+      console.log('Voz selecionada:', voice.name, voice.lang);
+    } else {
+      console.log('Nenhuma voz correspondente encontrada');
     }
 
     speechSynthesis.speak(utterance);
   }
 });
-
 
   document.addEventListener('click', (e) => {
     if (e.target.classList.contains('clickable-question')) {
