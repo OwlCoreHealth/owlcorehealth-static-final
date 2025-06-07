@@ -546,7 +546,7 @@ if (!SpeechRecognition) {
       recognition.lang = currentLang || 'en-US'; // Atualiza idioma antes de iniciar
       recognition.start();
       recognizing = true;
-      micButton.textContent = 'Parar';
+      micButton.textContent = 'stop';
     }
   });
 
@@ -741,17 +741,24 @@ readAloudButton?.addEventListener('click', () => {
   if (speechSynthesis.speaking) {
     speechSynthesis.cancel();
   } else {
-    // Pega todas as mensagens do bot e do usuário e concatena o texto
-    const allMessages = responseDiv.querySelectorAll('.bot-message, .user-message');
-    const texts = Array.from(allMessages).map(el => el.textContent.trim()).filter(t => t.length > 0);
-    const textToRead = texts.join('. ');  // separa com pausas curtas
+    const botMessages = responseDiv.querySelectorAll('.bot-message');
+    if (botMessages.length === 0) return;
+
+    // Pega as mensagens novas que ainda não foram lidas
+    const newMessages = Array.from(botMessages).slice(lastReadIndex + 1);
+    if (newMessages.length === 0) return; // nada novo para ler
+
+    // Atualiza o índice da última mensagem lida
+    lastReadIndex = botMessages.length - 1;
+
+    // Concatena os textos das novas mensagens, separando por pausa
+    const textToRead = newMessages.map(el => el.textContent.trim()).filter(t => t.length > 0).join('. ');
 
     if (!textToRead) return;
 
     const utterance = new SpeechSynthesisUtterance(textToRead);
     utterance.lang = currentLang;
 
-    // Seleciona voz que melhor corresponde ao idioma
     const voice = voices.find(v => v.lang === currentLang || v.lang.startsWith(currentLang.split('-')[0]));
     if (voice) {
       utterance.voice = voice;
