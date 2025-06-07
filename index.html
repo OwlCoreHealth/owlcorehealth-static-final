@@ -221,48 +221,48 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding-right: 8px; /* espaço para a barra de rolagem */
+  padding-right: 8px;
 }
 
-/* Mensagem do bot alinhada à esquerda, texto sem balão */
+/* Container das mensagens do bot */
 .bot-message {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  max-width: 75%;
-  background: transparent;
-  padding: 0;
-  color: #222;
-  font-size: 15px;
-  line-height: 1.5;
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 8px !important;
+  max-width: 75% !important;
+  background: transparent !important;
+  padding: 0 !important;
+  color: #222 !important;
+  font-size: 15px !important;
+  line-height: 1.5 !important;
+  margin: 0 !important;
 }
 
-/* Ícone do bot à esquerda com espaçamento */
+/* Ícone do bot */
 .bot-message > svg {
-  flex-shrink: 0;
-  margin-top: 4px;
+  flex-shrink: 0 !important;
+  margin-top: 4px !important;
 }
 
-/* Texto do bot dentro da div, flexível */
+/* Texto da mensagem do bot */
 .bot-message > div {
-  flex: 1;
+  flex: 1 !important;
 }
 
-/* Mensagem do usuário alinhada à direita com balão azul suave */
+/* Mensagem do usuário */
 .user-message {
-  max-width: 75%;
-  align-self: flex-end;
-  background-color: #d0e6ff;
-  color: #0a1f44;
-  padding: 10px 16px;
-  border-radius: 20px;
-  font-size: 15px;
-  line-height: 1.5;
-  white-space: pre-wrap;
-  word-wrap: break-word;
+  max-width: 75% !important;
+  align-self: flex-end !important;
+  background-color: #d0e6ff !important;
+  color: #0a1f44 !important;
+  padding: 10px 16px !important;
+  border-radius: 20px !important;
+  font-size: 15px !important;
+  line-height: 1.5 !important;
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+  margin: 0 !important;
 }
-
-/* === FIM - Estilos para mensagens bot e usuário === */
 
   </style>
 </head>
