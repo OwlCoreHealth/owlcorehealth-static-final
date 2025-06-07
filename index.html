@@ -524,6 +524,49 @@ function detectLanguage(text) {
   const sendButton = document.getElementById('send-btn');
   const readAloudButton = document.getElementById('read-aloud-btn');
   const micButton = document.getElementById('mic-btn');
+  // Verifica suporte à API de reconhecimento de voz
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+if (!SpeechRecognition) {
+  alert('Seu navegador não suporta reconhecimento de voz. Por favor, use Chrome ou Edge.');
+} else {
+  const recognition = new SpeechRecognition();
+  recognition.lang = currentLang || 'en-US'; // Usa o idioma atual
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  let recognizing = false;
+
+  micButton.addEventListener('click', () => {
+    if (recognizing) {
+      recognition.stop();
+      recognizing = false;
+      micButton.textContent = 'Micro';
+    } else {
+      recognition.lang = currentLang || 'en-US'; // Atualiza idioma antes de iniciar
+      recognition.start();
+      recognizing = true;
+      micButton.textContent = 'Parar';
+    }
+  });
+
+  recognition.addEventListener('result', (event) => {
+    const transcript = event.results[0][0].transcript;
+    input.textContent = transcript;
+    input.focus();
+  });
+
+  recognition.addEventListener('end', () => {
+    recognizing = false;
+    micButton.textContent = 'Micro';
+  });
+
+  recognition.addEventListener('error', (event) => {
+    console.error('Erro no reconhecimento de voz:', event.error);
+    recognizing = false;
+    micButton.textContent = 'Micro';
+  });
+}
 
   // Focar o input ao clicar em qualquer lugar do balão
   inputArea.addEventListener('click', () => {
