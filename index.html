@@ -735,6 +735,18 @@ function loadVoices() {
 speechSynthesis.onvoiceschanged = loadVoices;
 loadVoices();
 
+let firstReadDone = false;
+let voices = [];
+
+function loadVoices() {
+  voices = speechSynthesis.getVoices();
+  if (!voices.length) {
+    setTimeout(loadVoices, 100);
+  }
+}
+speechSynthesis.onvoiceschanged = loadVoices;
+loadVoices();
+
 readAloudButton?.addEventListener('click', () => {
   if (!responseDiv) return;
 
@@ -750,8 +762,7 @@ readAloudButton?.addEventListener('click', () => {
       textToRead = botMessages[0].textContent.trim();
       firstReadDone = true;
     } else {
-      const lastBotMessage = botMessages[botMessages.length - 1];
-      textToRead = lastBotMessage.textContent.trim();
+      textToRead = botMessages[botMessages.length - 1].textContent.trim();
     }
 
     if (!textToRead) return;
