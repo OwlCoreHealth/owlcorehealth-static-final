@@ -492,14 +492,6 @@ tabindex="0"
     }
   });
 
-  // Inicializa mensagem de boas-vindas
-  responseDiv.innerHTML = `
-    <div class="bot-message">
-      ${botIconHTML}
-      <div>Hello! How can I assist you today?</div>
-    </div>
-  `;
-
   // Observador para prompt email
   const observer = new MutationObserver(() => {
     const botMessages = document.querySelectorAll('.response .bot-message');
