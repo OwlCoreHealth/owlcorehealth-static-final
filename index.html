@@ -734,8 +734,14 @@ sendButton.addEventListener('click', () => {
 <!-- OUTROS ELEMENTOS -->
 
 <script>
-  const botaoRoxo = document.querySelector('a[href="https://www.naturepharmalab.com/"]');
-  if (botaoRoxo) botaoRoxo.remove();
+  document.addEventListener("DOMContentLoaded", function () {
+    const allButtons = document.querySelectorAll("a, button");
+    allButtons.forEach(btn => {
+      if (btn.textContent.includes("Back to Homepage") && btn.style.backgroundColor === "rgb(107, 33, 168)") {
+        btn.remove();
+      }
+    });
+  });
 </script>
 </body>
 </html>
