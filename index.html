@@ -612,10 +612,16 @@ window.addEventListener('load', () => {
   // Evento do botão enviar
 sendButton.addEventListener('click', () => {
   const message = input.textContent.replace(/\u200B/g, '').trim(); // Remove o espaço invisível e trim
-  sendMessage(message);
 
-    // ✅ Fecha o teclado no mobile corretamente
-  input.blur();
+  if (message !== "") {
+    sendMessage(message);
+
+    // ✅ Aguardar 300ms antes de tirar o foco para evitar conflitos
+    setTimeout(() => {
+      input.blur(); // Fecha o teclado no mobile sem interferir
+    }, 300);
+  }
+});
 
 
   readAloudButton?.addEventListener('click', () => {
