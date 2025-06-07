@@ -36,8 +36,8 @@
 
     .menu-hamburger {
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 3;
+      left: 6;
       margin: 0;
       padding: 20px;
       width: 28px;
@@ -281,7 +281,19 @@
     cursor: text;
   }
     
-@media (max-width: 600px) {
+@media (min-width: 601px) {
+  .menu-hamburger {
+    width: 40px;      /* aumenta largura do botão no desktop */
+    height: 30px;     /* aumenta altura do botão no desktop */
+    padding: 12px;    /* ajusta espaçamento interno do botão */
+  }
+
+  .menu-hamburger span {
+    height: 5px;      /* barras mais grossas no desktop */
+    border-radius: 3px; /* cantos um pouco mais arredondados */
+  }
+}
+    
   .response {
     width: 100% !important;
     max-width: 100% !important;
