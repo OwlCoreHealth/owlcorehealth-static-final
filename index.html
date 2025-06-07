@@ -611,10 +611,12 @@ tabindex="0"
   }
 
   // Evento do botão enviar
-  sendButton.addEventListener('click', () => {
-    const message = input.textContent.replace(/\u200B/g, '').trim(); // Remove o espaço invisível e trim
-    sendMessage(message);
-  });
+sendButton.addEventListener('click', () => {
+  const message = input.textContent.replace(/\u200B/g, '').trim(); // Remove o espaço invisível e trim
+  sendMessage(message);
+  input.blur(); // ✅ Fecha o teclado no mobile após envio
+});
+
 
   readAloudButton?.addEventListener('click', () => {
     if (speechSynthesis.speaking) {
