@@ -497,6 +497,20 @@ tabindex="0"
       <path fill="#6C63FF" d="M12 2C9.243 2 7 4.243 7 7c0 2.757 2.243 5 5 5s5-2.243 5-5c0-2.757-2.243-5-5-5zM5 21c0-2.761 4-4 7-4s7 1.239 7 4v1H5v-1z"/>
     </svg>
   `;
+  // Idioma atual da conversa (padrão inglês EUA)
+let currentLang = 'en-US';
+function detectLanguage(text) {
+  const portugueseWords = ['o', 'a', 'de', 'que', 'não', 'é', 'em', 'por', 'com', 'para'];
+  const englishWords = ['the', 'and', 'is', 'of', 'to', 'in', 'that', 'it', 'on', 'for'];
+
+  const textLower = text.toLowerCase();
+
+  const ptCount = portugueseWords.reduce((count, word) => count + (textLower.includes(word) ? 1 : 0), 0);
+  const enCount = englishWords.reduce((count, word) => count + (textLower.includes(word) ? 1 : 0), 0);
+
+  return ptCount > enCount ? 'pt-BR' : 'en-US';
+}
+
   // Toggle do menu lateral
   function toggleMenu() {
     const menu = document.getElementById('sideMenu');
@@ -587,6 +601,9 @@ function clearContentEditable(el) {
 
       if (data.choices && data.choices.length > 0) {
         const content = data.choices[0].message.content;
+        
+        currentLang = detectLanguage(content);
+        
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = content;
 
@@ -667,21 +684,36 @@ sendButton.addEventListener('click', () => {
 });
 
 
-  readAloudButton?.addEventListener('click', () => {
-    if (speechSynthesis.speaking) {
-      speechSynthesis.cancel();
-    } else {
-      const textToRead = responseDiv.textContent || responseDiv.innerText;
-      if (!textToRead) return;
-      const utterance = new SpeechSynthesisUtterance(textToRead);
-      utterance.lang = currentLang || 'en-US';
-      const voices = speechSynthesis.getVoices();
-      const matchingVoices = voices.filter(voice => voice.lang.startsWith(utterance.lang.split('-')[0]));
-      const maleVoice = matchingVoices.find(v => /male/i.test(v.name)) || matchingVoices[0];
-      utterance.voice = maleVoice || voices[0];
-      speechSynthesis.speak(utterance);
+  // Carrega vozes e escuta evento para garantir vozes disponíveis
+let voices = [];
+function loadVoices() {
+  voices = speechSynthesis.getVoices();
+}
+speechSynthesis.onvoiceschanged = loadVoices;
+loadVoices();
+
+readAloudButton?.addEventListener('click', () => {
+  if (!responseDiv) return;
+
+  if (speechSynthesis.speaking) {
+    speechSynthesis.cancel();
+  } else {
+    const textToRead = responseDiv.textContent.trim();
+    if (!textToRead) return;
+
+    const utterance = new SpeechSynthesisUtterance(textToRead);
+    utterance.lang = currentLang;
+
+    // Seleciona voz que melhor corresponde ao idioma
+    const voice = voices.find(v => v.lang === currentLang || v.lang.startsWith(currentLang.split('-')[0]));
+    if (voice) {
+      utterance.voice = voice;
     }
-  });
+
+    speechSynthesis.speak(utterance);
+  }
+});
+
 
   document.addEventListener('click', (e) => {
     if (e.target.classList.contains('clickable-question')) {
