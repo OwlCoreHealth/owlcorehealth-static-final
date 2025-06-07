@@ -383,15 +383,15 @@
     display: none !important;
   }
 }
-/* Remove o botão roxo à esquerda baseado na ordem de aparição */
-a[href="https://www.naturepharmalab.com/"]:first-of-type {
+/* Oculta todos os botões .back-to-home, exceto o que tem id="keep-this-button" */
+button.back-to-home:not(#keep-this-button) {
   display: none !important;
 }
 
   </style>
 </head>
 <body>
-  <button class="back-to-home" onclick="location.reload()">Back to Homepage</button>
+  <button id="keep-this-button" class="back-to-home" onclick="location.reload()">Back to Homepage</button>
 
   <div class="container">
     <!-- restante do conteúdo -->
