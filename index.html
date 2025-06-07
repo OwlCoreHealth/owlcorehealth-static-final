@@ -281,7 +281,7 @@
     cursor: text;
   }
     
-@media (min-width: 600px) {
+@media (max-width: 600px) {
   .response {
     width: 100% !important;
     max-width: 100% !important;
@@ -318,12 +318,11 @@
 
   .input-area {
     width: 100% !important;
-    max-width: 100% !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    box-sizing: border-box;
-    padding-left: 12px;  /* se quiser espaçamento igual */
-    padding-right: 12px; /* idem */
+    height: auto !important;
+    flex-wrap: wrap;
+    padding: 16px 12px 24px 12px !important;
+    gap: 8px;
+    margin-bottom: 12px;
   }
 
   .message-label {
