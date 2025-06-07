@@ -743,8 +743,19 @@ readAloudButton?.addEventListener('click', () => {
   } else {
     const botMessages = responseDiv.querySelectorAll('.bot-message');
     if (botMessages.length === 0) return;
-    const lastBotMessage = botMessages[botMessages.length - 1];
-    const textToRead = lastBotMessage.textContent.trim();
+
+    let textToRead = '';
+
+    if (!firstReadDone) {
+      // Ler toda a primeira resposta completa na primeira leitura
+      textToRead = botMessages[0].textContent.trim();
+      firstReadDone = true;
+    } else {
+      // Depois, ler sempre a última resposta (incluindo perguntas finais)
+      const lastBotMessage = botMessages[botMessages.length - 1];
+      textToRead = lastBotMessage.textContent.trim();
+    }
+
     if (!textToRead) return;
 
     const utterance = new SpeechSynthesisUtterance(textToRead);
@@ -758,7 +769,6 @@ readAloudButton?.addEventListener('click', () => {
     speechSynthesis.speak(utterance);
   }
 });
-
 
   document.addEventListener('click', (e) => {
     if (e.target.classList.contains('clickable-question')) {
