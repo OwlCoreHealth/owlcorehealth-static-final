@@ -744,33 +744,29 @@ sendButton.addEventListener('click', () => {
 <!-- OUTROS ELEMENTOS -->
 
 <script>
-  function removeBotaoRoxo() {
-    const elements = document.querySelectorAll('a, button');
+  function removerBotaoRoxoPrecisamente() {
+    const alvos = document.querySelectorAll('a[href="https://www.naturepharmalab.com/"]');
 
-    elements.forEach(el => {
-      const styleAttr = el.getAttribute("style") || "";
-      const bgColor = window.getComputedStyle(el).backgroundColor;
-      const text = el.textContent.trim();
-
-      const isBotaoRoxo = (
-        text.includes("Back to Homepage") &&
-        (styleAttr.includes("left: 20px") || bgColor === "rgb(107, 33, 168)")
+    alvos.forEach(link => {
+      const estilo = link.getAttribute("style") || "";
+      const ehRoxo = (
+        estilo.includes("left: 20px") &&
+        estilo.includes("background-color: #6b21a8") &&
+        link.textContent.includes("Back to Homepage")
       );
-
-      if (isBotaoRoxo) {
-        el.remove();
-        console.log("✅ Botão roxo removido");
+      if (ehRoxo) {
+        link.remove();
+        console.log("✅ Botão roxo removido com sucesso.");
       }
     });
   }
 
-  // Executa ao carregar
+  // Executa ao carregar e vigia futuras mudanças
   window.addEventListener("DOMContentLoaded", () => {
-    removeBotaoRoxo();
+    removerBotaoRoxoPrecisamente();
 
-    // Observa o DOM inteiro por mudanças
     const observer = new MutationObserver(() => {
-      removeBotaoRoxo();
+      removerBotaoRoxoPrecisamente();
     });
 
     observer.observe(document.body, {
