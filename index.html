@@ -211,6 +211,58 @@
       height: 16px;
       fill: currentColor;
     }
+/* === INÍCIO - Estilos para mensagens bot e usuário === */
+
+.response {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 16px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-right: 8px; /* espaço para a barra de rolagem */
+}
+
+/* Mensagem do bot alinhada à esquerda, texto sem balão */
+.bot-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  max-width: 75%;
+  background: transparent;
+  padding: 0;
+  color: #222;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* Ícone do bot à esquerda com espaçamento */
+.bot-message > svg {
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+/* Texto do bot dentro da div, flexível */
+.bot-message > div {
+  flex: 1;
+}
+
+/* Mensagem do usuário alinhada à direita com balão azul suave */
+.user-message {
+  max-width: 75%;
+  align-self: flex-end;
+  background-color: #d0e6ff;
+  color: #0a1f44;
+  padding: 10px 16px;
+  border-radius: 20px;
+  font-size: 15px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* === FIM - Estilos para mensagens bot e usuário === */
 
   </style>
 </head>
