@@ -357,20 +357,15 @@
 }
 
   .back-to-home {
-  position: fixed !important;
-  top: 10px !important;
-  right: 10px !important;
-  left: auto !important;
-  transform: none !important;
-  font-size: 10px !important;
-  padding: 4px 10px !important;
-  background-color: #E3ECF7 !important;
-  border: none !important;
-  border-radius: 12px !important;
-  color: #333 !important;
-  z-index: 9999 !important;
-  cursor: pointer !important;
-}
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 13px;
+    padding: 6px 12px;
+    border-radius: 12px;
+    z-index: 9999;
+  }
 
   /* Elementos que somem só após chat começar */
   body.chat-started h1,
@@ -383,28 +378,11 @@
     display: none !important;
   }
 }
-<style>
-  /* Remove especificamente o botão roxo estilizado colado à esquerda */
-a[href="https://www.naturepharmalab.com/"][style*="top: 10px"][style*="left: 20px"][style*="background-color: #6b21a8"] {
-  display: none !important;
-}
 
-/* Oculta todos os botões back-to-home exceto o que tem ID correto */
-button.back-to-home {
-  display: none !important;
-}
-
-#keep-this-button {
-  display: inline-block !important;
-}
-
-</style>
+  </style>
 </head>
 <body>
-  <button id="keep-this-button" class="back-to-home" onclick="location.reload()">Back to Homepage</button>
-
   <div class="container">
-    <!-- restante do conteúdo -->
 
     <!-- Menu Hamburguer -->
     <div class="menu-hamburger" aria-label="Menu" role="button" tabindex="0" onclick="toggleMenu()" onkeydown="if(event.key==='Enter'){toggleMenu();}">
@@ -741,39 +719,6 @@ sendButton.addEventListener('click', () => {
       alert('⚠️ Connection error. Please try again later.');
     }
   }
-<!-- OUTROS ELEMENTOS -->
-
-<script>
-  function removerBotaoRoxoPrecisamente() {
-    const alvos = document.querySelectorAll('a[href="https://www.naturepharmalab.com/"]');
-
-    alvos.forEach(link => {
-      const estilo = link.getAttribute("style") || "";
-      const ehRoxo = (
-        estilo.includes("left: 20px") &&
-        estilo.includes("background-color: #6b21a8") &&
-        link.textContent.includes("Back to Homepage")
-      );
-      if (ehRoxo) {
-        link.remove();
-        console.log("✅ Botão roxo removido com sucesso.");
-      }
-    });
-  }
-
-  // Executa ao carregar e vigia futuras mudanças
-  window.addEventListener("DOMContentLoaded", () => {
-    removerBotaoRoxoPrecisamente();
-
-    const observer = new MutationObserver(() => {
-      removerBotaoRoxoPrecisamente();
-    });
-
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true
-    });
-  });
 </script>
 </body>
 </html>
