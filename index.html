@@ -357,15 +357,22 @@
 }
 
   .back-to-home {
-    position: fixed;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 13px;
-    padding: 6px 12px;
-    border-radius: 12px;
-    z-index: 9999;
-  }
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: #E3ECF7;
+  border: none;
+  border-radius: 12px;
+  color: #333;
+  font-size: 10px;
+  padding: 4px 10px;
+  z-index: 9999;
+  cursor: pointer;
+}
+
+button.back-to-home:not(#keep-this-button) {
+  display: none !important;
+}
 
   /* Elementos que somem só após chat começar */
   body.chat-started h1,
