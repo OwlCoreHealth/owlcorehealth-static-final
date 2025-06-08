@@ -12,7 +12,7 @@
       padding: 0;
       display: flex;
       justify-content: center;
-      align-items: center; 
+      align-items: center;
       min-height: 100vh;
     }
     .container {
@@ -357,17 +357,17 @@
 }
 
   .back-to-home {
-  display: inline-block;    /* faz o botão ajustar ao conteúdo */
-  width: auto;              /* largura automática */
-  padding: 6px 12px;        /* espaçamento confortável, você pode ajustar */
-  background-color: #E3ECF7; /* cor azul clara */
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: #E3ECF7;
   border: none;
   border-radius: 12px;
   color: #333;
-  font-size: 14px;
+  font-size: 10px;
+  padding: 4px 10px;
+  z-index: 9999;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  white-space: nowrap;      /* evita quebra da frase */
 }
 
 button.back-to-home:not(#keep-this-button) {
