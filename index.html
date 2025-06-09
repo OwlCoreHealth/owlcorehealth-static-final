@@ -390,22 +390,34 @@ button.back-to-home:not(#keep-this-button) {
   }
 }
 @media (max-width: 600px) {
+  .response {
+    width: 100vw !important;
+    max-width: 100% !important;
+    padding: 0 12px !important; /* Menor padding lateral */
+    margin: 0 auto !important;
+    box-sizing: border-box;
+  }
+
   .bot-message {
     display: flex;
-    flex-direction: row-reverse; /* move o ícone para a direita */
+    flex-direction: row-reverse;
     align-items: flex-start;
+    padding: 0 !important;
+    gap: 8px;
   }
 
   .bot-message > div {
-    width: 100% !important;
+    flex: 1;
     padding: 0 !important;
     margin: 0 !important;
+    width: 100% !important;
     box-sizing: border-box;
   }
 
   .bot-message svg {
-    margin-left: 12px;
+    margin-left: 0;
     margin-right: 0;
+    align-self: flex-start;
     flex-shrink: 0;
   }
 }
