@@ -282,14 +282,13 @@
   }
     
 @media (min-width: 601px) {
-  .back-to-home {
-    display: inline-block;
-    width: auto;
-    padding: 6px 12px;
-    white-space: nowrap;
-  }
   .side-menu {
-    left: 0 !important;
+    /* escondido por padrão */
+    left: -280px;
+    transition: left 0.3s ease;
+  }
+  .side-menu.open {
+    left: 0;
     box-shadow: 2px 0 8px rgba(0,0,0,0.15);
     pointer-events: auto;
   }
