@@ -4,26 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dr. Owl’s AI Office</title>
-
   <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       background-color: #fff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
-  
-
     .container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
+      max-width: 600px;
+      width: 90%;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
     h1 {
       font-weight: 700;
       font-size: 24px;
@@ -294,7 +292,6 @@
     box-shadow: 2px 0 8px rgba(0,0,0,0.15);
     pointer-events: auto;
   }
-}
 
   .bot-message,
   .user-message {
@@ -314,7 +311,8 @@
   line-height: 1.4;
   word-break: break-word;
   box-sizing: border-box;
-  width: 100%;
+  max-width: 80%;
+  width: fit-content;
 }
 
   .bot-message > div:last-child {
@@ -391,39 +389,6 @@ button.back-to-home:not(#keep-this-button) {
     display: none !important;
   }
 }
-@media (max-width: 600px) {
-  .response {
-    width: 100vw !important;
-    max-width: 100% !important;
-    padding: 0 12px !important; /* Menor padding lateral */
-    margin: 0 auto !important;
-    box-sizing: border-box;
-    flex: 1 1 auto;
-  min-height: 0;
-  }
-
-  .bot-message {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: flex-start;
-    padding: 0 !important;
-    gap: 8px;
-  }
-
-  .bot-message > div {
-    flex: 1;
-    padding: 0 !important;
-    margin: 0 !important;
-    width: 100% !important;
-    box-sizing: border-box;
-  }
-
-  .bot-message svg {
-    margin-left: 0;
-    margin-right: 0;
-    align-self: flex-start;
-    flex-shrink: 0;
-  }
 
   </style>
 </head>
