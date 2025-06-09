@@ -379,16 +379,46 @@ button.back-to-home:not(#keep-this-button) {
   display: none !important;
 }
 
-  /* Elementos que somem só após chat começar */
-  body.chat-started h1,
-  body.chat-started p.subtitle,
-  body.chat-started svg.logo {
-    display: none !important;
-  }
+  /* Esconde o botão launcher mas mantém logo e título visíveis e fixos */
+body.chat-started .chat-launcher-button {
+  display: none !important;
+}
 
-  body.chat-started .chat-launcher-button {
-    display: none !important;
-  }
+/* Mantém logo, título e subtítulo fixos e visíveis no topo após chat iniciar */
+body.chat-started svg.logo,
+body.chat-started h1,
+body.chat-started p.subtitle {
+  display: block !important;
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  z-index: 1000;
+  background: white; /* para garantir legibilidade */
+  padding: 0 10px;
+  border-radius: 6px;
+}
+
+body.chat-started svg.logo {
+  width: 48px;
+  height: 48px;
+}
+
+body.chat-started h1 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 56px; /* espaço abaixo do logo */
+  color: #222;
+}
+
+body.chat-started p.subtitle {
+  font-size: 14px;
+  font-weight: 300;
+  margin-top: 4px;
+  color: #555;
+}
+
 }
 
   </style>
