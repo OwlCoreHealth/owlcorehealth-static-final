@@ -6,31 +6,22 @@
   <title>Dr. Owl’s AI Office</title>
   <style>
     body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background-color: #fff;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background-color: #fff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
     .container {
-  display: flex;
-  flex-direction: column;
-  height: 90vh; /* ou 100vh */
-  max-width: 600px;
-  width: 90vw;
-  padding: 20px;
-  box-sizing: border-box;
-  transition: height 0.3s ease;
-}
-    .header {
-  text-align: center;
-  transition: all 0.3s ease;
-  margin-bottom: 20px;
-}
+      max-width: 600px;
+      width: 90%;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
     h1 {
       font-weight: 700;
       font-size: 24px;
@@ -137,16 +128,6 @@
       position: relative;
       cursor: text; /* deixa cursor pointer no balão */
     }
-    <body class="initial">
-  height: auto;
-  min-height: 300px; /* altura menor, centralizado */
-  justify-content: center;
-  align-items: center;
-}
-
-body.initial .header {
-  margin-bottom: 0;
-}
 
     .message-label {
       font-weight: 300;
@@ -233,11 +214,21 @@ body.initial .header {
     
   /* --- INÍCIO DOS AJUSTES DE LAYOUT DO DIÁLOGO --- */
   .response {
-  flex-grow: 1;
-  overflow-y: auto;
-  text-align: left;
-  margin-bottom: 12px;
-}
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 16px;
+    text-align: left;
+    width: 67vw;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: 0;
+    padding-right: 12px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
   .bot-message {
     display: flex;
     align-items: flex-start;
@@ -275,17 +266,20 @@ body.initial .header {
   }
 
   .input-area {
-  height: 104px;
-  flex-shrink: 0;
-  background-color: #ECECF3;
-  border-radius: 24px;
-  padding: 0 16px 16px 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  cursor: text;
-}
+    width: 67vw;
+    max-width: 900px;
+    background-color: #ECECF3;
+    border-radius: 24px;
+    padding: 0 16px 16px 16px;
+    height: 104px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 auto 24px auto;
+    position: relative;
+    cursor: text;
+  }
     
 @media (min-width: 601px) {
   .side-menu {
@@ -385,19 +379,16 @@ button.back-to-home:not(#keep-this-button) {
   display: none !important;
 }
 
-  body.chat-started .container {
-  height: 100vh;
-  justify-content: flex-start;
-  align-items: stretch;
-  padding-top: 20px;
-  padding-bottom: 0;
-}
+  /* Elementos que somem só após chat começar */
+  body.chat-started h1,
+  body.chat-started p.subtitle,
+  body.chat-started svg.logo {
+    display: none !important;
+  }
 
-body.chat-started .response {
-  flex-grow: 1;
-  overflow-y: auto;
-  margin-bottom: 0;
-}
+  body.chat-started .chat-launcher-button {
+    display: none !important;
+  }
 }
 
   </style>
@@ -408,16 +399,6 @@ body.chat-started .response {
 </button>
  
   <div class="container">
-  <div class="header">
-    <svg class="logo">...</svg>
-    <h1>Hi, I'm Dr. Owl.</h1>
-    <p class="subtitle">Let's chat and find solutions together.</p>
-  </div>
-
-  <div class="response"></div>
-
-  <div class="input-area">...</div>
-</div>
 
     <!-- Menu Hamburguer -->
     <div class="menu-hamburger" aria-label="Menu" role="button" tabindex="0" onclick="toggleMenu()" onkeydown="if(event.key==='Enter'){toggleMenu();}">
@@ -729,22 +710,11 @@ function clearContentEditable(el) {
   }
 
   // Evento do botão enviar
-function onFirstMessageSent() {
-  document.body.classList.remove('initial');
-  document.body.classList.add('chat-started');
-}
-
-// Ao enviar mensagem:
 sendButton.addEventListener('click', () => {
-  const message = input.textContent.trim();
-  if (!message) return;
+  const message = input.textContent.replace(/\u200B/g, '').trim();
 
-  if (!document.body.classList.contains('chat-started')) {
-    onFirstMessageSent();
-  }
-
-  sendMessage(message);
-});
+  if (message !== "") {
+    sendMessage(message);
 
     // ✅ Remove foco para esconder teclado
     input.blur();
