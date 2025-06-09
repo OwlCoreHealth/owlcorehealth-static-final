@@ -282,61 +282,17 @@
   }
     
 @media (min-width: 601px) {
-  body.chat-started {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    margin: 0;
+  .side-menu {
+    /* escondido por padrão */
+    left: -280px;
+    transition: left 0.3s ease;
   }
-
-  body.chat-started .header {
-    flex: 0 0 auto;
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 67vw;
-    max-width: 900px;
-    background: white; /* para cobrir conteúdo atrás */
-    padding: 16px 0;
-    text-align: center;
-    z-index: 10;
-  }
-
-  body.chat-started .response {
-    flex: 1 1 auto;
-    margin-top: 80px; /* altura aproximada do header fixo */
-    margin-bottom: 120px; /* espaço para input fixo */
-    overflow-y: auto;
-    width: 67vw;
-    max-width: 900px;
-    padding-right: 12px;
-    box-sizing: border-box;
-  }
-
-  body.chat-started .input-area {
-    flex: 0 0 auto;
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 67vw;
-    max-width: 900px;
-    background-color: #ECECF3;
-    border-radius: 24px 24px 0 0;
-    padding: 0 16px 16px 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 0 auto;
-    z-index: 10;
-  }
-
   .side-menu.open {
     left: 0;
     box-shadow: 2px 0 8px rgba(0,0,0,0.15);
     pointer-events: auto;
   }
+}
 
   .bot-message,
   .user-message {
@@ -758,9 +714,6 @@ sendButton.addEventListener('click', () => {
   const message = input.textContent.replace(/\u200B/g, '').trim();
 
   if (message !== "") {
-    if (!document.body.classList.contains('chat-started')) {
-      document.body.classList.add('chat-started');
-    }
     sendMessage(message);
 
     // ✅ Remove foco para esconder teclado
