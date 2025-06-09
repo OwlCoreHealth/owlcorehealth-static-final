@@ -283,21 +283,22 @@
     
 @media (min-width: 601px) {
   .response {
-    position: fixed;
-    top: 120px; /* deixa como está para manter espaço no topo */
-    bottom: 96px;/* diminua para aumentar a altura da área de texto */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 67vw;
-    max-width: 900px;
-    overflow-y: auto;
-    margin: 0;
-    padding-right: 12px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
+  position: fixed;       /* fixa na tela */
+  top: 120px;            /* abaixo do título e logo */
+  bottom: 80px;          /* acima do input */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 67vw;
+  max-width: 900px;
+  margin: 0;
+  padding-right: 12px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
   .side-menu.open {
     left: 0;
     box-shadow: 2px 0 8px rgba(0,0,0,0.15);
