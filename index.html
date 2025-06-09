@@ -6,20 +6,16 @@
   <title>Dr. Owl’s AI Office</title>
   <style>
     body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: #fff;
+  margin: 0;
+  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
 }
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      background-color: #fff;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
+
     .container {
   display: flex;
   flex-direction: column;
@@ -141,7 +137,7 @@
       position: relative;
       cursor: text; /* deixa cursor pointer no balão */
     }
-    body.initial .container {
+    <body class="initial">
   height: auto;
   min-height: 300px; /* altura menor, centralizado */
   justify-content: center;
@@ -389,16 +385,19 @@ button.back-to-home:not(#keep-this-button) {
   display: none !important;
 }
 
-  /* Elementos que somem só após chat começar */
-  body.chat-started h1,
-  body.chat-started p.subtitle,
-  body.chat-started svg.logo {
-    display: none !important;
-  }
+  body.chat-started .container {
+  height: 100vh;
+  justify-content: flex-start;
+  align-items: stretch;
+  padding-top: 20px;
+  padding-bottom: 0;
+}
 
-  body.chat-started .chat-launcher-button {
-    display: none !important;
-  }
+body.chat-started .response {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-bottom: 0;
+}
 }
 
   </style>
