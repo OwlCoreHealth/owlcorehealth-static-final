@@ -389,7 +389,25 @@ button.back-to-home:not(#keep-this-button) {
     display: none !important;
   }
 }
+@media (max-width: 600px) {
+  .response {
+    width: 100vw !important;
+    max-width: 100% !important;
+    padding: 0 16px !important;
+    margin: 0 auto !important;
+    box-sizing: border-box;
+  }
 
+  .bot-message,
+  .bot-message > div,
+  .user-message {
+    max-width: 100% !important;
+    width: 100% !important;
+    box-sizing: border-box;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
   </style>
 </head>
 <body>
