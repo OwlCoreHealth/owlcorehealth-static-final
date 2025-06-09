@@ -141,6 +141,16 @@
       position: relative;
       cursor: text; /* deixa cursor pointer no balão */
     }
+    body.initial .container {
+  height: auto;
+  min-height: 300px; /* altura menor, centralizado */
+  justify-content: center;
+  align-items: center;
+}
+
+body.initial .header {
+  margin-bottom: 0;
+}
 
     .message-label {
       font-weight: 300;
@@ -720,11 +730,22 @@ function clearContentEditable(el) {
   }
 
   // Evento do botão enviar
-sendButton.addEventListener('click', () => {
-  const message = input.textContent.replace(/\u200B/g, '').trim();
+function onFirstMessageSent() {
+  document.body.classList.remove('initial');
+  document.body.classList.add('chat-started');
+}
 
-  if (message !== "") {
-    sendMessage(message);
+// Ao enviar mensagem:
+sendButton.addEventListener('click', () => {
+  const message = input.textContent.trim();
+  if (!message) return;
+
+  if (!document.body.classList.contains('chat-started')) {
+    onFirstMessageSent();
+  }
+
+  sendMessage(message);
+});
 
     // ✅ Remove foco para esconder teclado
     input.blur();
