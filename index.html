@@ -600,9 +600,16 @@ if (!SpeechRecognition) {
     }, 0);
   });
 
-  // Ativar ensureCursorVisible ao carregar a página (sem ativar o teclado)
-window.addEventListener('load', () => {
+  window.addEventListener('load', () => {
   ensureCursorVisible(input); // ✅ Mantém o cursor visível
+
+  // Abre o menu automaticamente no desktop (largura >= 601px)
+  if (window.innerWidth >= 601) {
+    const menu = document.getElementById('sideMenu');
+    if (menu && !menu.classList.contains('open')) {
+      menu.classList.add('open');
+    }
+  }
 });
 
 // Função para limpar o conteúdo do contenteditable sem ativar o teclado
