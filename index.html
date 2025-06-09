@@ -276,33 +276,17 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    margin-bottom: 12px;
+    margin: 0 auto 24px auto;
     position: relative;
     cursor: text;
   }
     
 @media (min-width: 601px) {
-  .input-area {
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 67vw;
-    max-width: 900px;
-    height: 104px;  /* ou altura desejada */
-    background-color: #ECECF3;
-    border-radius: 24px 24px 0 0; /* bordas arredondadas só em cima */
-    padding: 0 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin: 0;  /* remover margem inferior */
-    box-sizing: border-box;
-    cursor: text;
-    z-index: 10;
+  .side-menu {
+    /* escondido por padrão */
+    left: -280px;
+    transition: left 0.3s ease;
   }
-
   .side-menu.open {
     left: 0;
     box-shadow: 2px 0 8px rgba(0,0,0,0.15);
