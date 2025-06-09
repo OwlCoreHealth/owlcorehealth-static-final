@@ -283,7 +283,6 @@
     
 @media (min-width: 601px) {
   .side-menu {
-    /* escondido por padrão */
     left: -280px;
     transition: left 0.3s ease;
   }
@@ -292,17 +291,62 @@
     box-shadow: 2px 0 8px rgba(0,0,0,0.15);
     pointer-events: auto;
   }
-}
 
-  .bot-message,
-  .user-message {
+  .bot-message {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-start;
+    gap: 8px;
     width: 100%;
     box-sizing: border-box;
+    padding: 0 8px;
   }
 
-  .user-message {
+  .bot-message > div {
+    flex-grow: 1;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 0;
+  }
+
+  .bot-message svg {
+    align-self: flex-start;
+    flex-shrink: 0;
+    margin: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .bot-message {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 8px;
+  }
+
+  .bot-message > div {
+    flex-grow: 1;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 0;
+  }
+
+  .bot-message svg {
+    align-self: flex-start;
+    flex-shrink: 0;
+    margin: 0;
+  }
+}
+
+/* Estilos globais (para ambos os tamanhos de tela) */
+.user-message {
   display: inline-block;
-  background-color: #EEF3FB; /* cor mais suave */
+  background-color: #EEF3FB;
   color: #000;
   padding: 12px 16px;
   border-radius: 24px 24px 4px 24px;
@@ -316,30 +360,25 @@
   width: fit-content;
 }
 
-  .bot-message > div:last-child {
-    width: 100%;
-    word-break: break-word;
-  }
+.input-area {
+  width: 100% !important;
+  height: auto !important;
+  flex-wrap: wrap;
+  padding: 16px 12px 24px 12px !important;
+  gap: 8px;
+  margin-bottom: 12px;
+}
 
-  .input-area {
-    width: 100% !important;
-    height: auto !important;
-    flex-wrap: wrap;
-    padding: 16px 12px 24px 12px !important;
-    gap: 8px;
-    margin-bottom: 12px;
-  }
+.message-label {
+  min-height: 36px !important;
+  padding: 6px 8px !important;
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+  width: 100%;
+  box-sizing: border-box;
+}
 
-  .message-label {
-    min-height: 36px !important;
-    padding: 6px 8px !important;
-    font-size: 14px !important;
-    line-height: 1.4 !important;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .left-buttons {
+.left-buttons {
   position: absolute;
   bottom: 8px;
   left: 12px;
@@ -361,7 +400,7 @@
   height: 14px;
 }
 
-  .back-to-home {
+.back-to-home {
   position: fixed;
   top: 10px;
   right: 10px;
@@ -379,16 +418,14 @@ button.back-to-home:not(#keep-this-button) {
   display: none !important;
 }
 
-  /* Elementos que somem só após chat começar */
-  body.chat-started h1,
-  body.chat-started p.subtitle,
-  body.chat-started svg.logo {
-    display: none !important;
-  }
+body.chat-started h1,
+body.chat-started p.subtitle,
+body.chat-started svg.logo {
+  display: none !important;
+}
 
-  body.chat-started .chat-launcher-button {
-    display: none !important;
-  }
+body.chat-started .chat-launcher-button {
+  display: none !important;
 }
 
   </style>
