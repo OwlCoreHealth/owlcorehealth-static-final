@@ -390,24 +390,26 @@ button.back-to-home:not(#keep-this-button) {
   }
 }
 @media (max-width: 600px) {
-  .response {
-    width: 100vw !important;
-    max-width: 100% !important;
-    padding: 0 16px !important;
-    margin: 0 auto !important;
+  .bot-message {
+    display: flex;
+    flex-direction: row-reverse; /* move o ícone para a direita */
+    align-items: flex-start;
+  }
+
+  .bot-message > div {
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
     box-sizing: border-box;
   }
 
-  .bot-message,
-  .bot-message > div,
-  .user-message {
-    max-width: 100% !important;
-    width: 100% !important;
-    box-sizing: border-box;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+  .bot-message svg {
+    margin-left: 12px;
+    margin-right: 0;
+    flex-shrink: 0;
   }
 }
+
   </style>
 </head>
 <body>
