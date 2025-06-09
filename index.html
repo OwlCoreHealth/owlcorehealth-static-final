@@ -721,12 +721,16 @@ function clearContentEditable(el) {
     }
   }
 
-  // Evento do botão enviar
-sendButton.addEventListener('click', () => {
+  sendButton.addEventListener('click', () => {
   const message = input.textContent.replace(/\u200B/g, '').trim();
 
   if (message !== "") {
+    if (!document.body.classList.contains('chat-started')) {
+      document.body.classList.add('chat-started');
+    }
     sendMessage(message);
+  }
+});
 
 
     // ✅ Remove foco para esconder teclado
