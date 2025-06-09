@@ -128,18 +128,6 @@
       position: relative;
       cursor: text; /* deixa cursor pointer no balão */
     }
-    body.chat-started .container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
-body.chat-started .response {
-  flex-grow: 1;
-  max-height: none;
-  overflow-y: auto;
-  margin-bottom: 0;
-}
 
     .message-label {
       font-weight: 300;
@@ -721,17 +709,12 @@ function clearContentEditable(el) {
     }
   }
 
-  sendButton.addEventListener('click', () => {
+  // Evento do botão enviar
+sendButton.addEventListener('click', () => {
   const message = input.textContent.replace(/\u200B/g, '').trim();
 
   if (message !== "") {
-    if (!document.body.classList.contains('chat-started')) {
-      document.body.classList.add('chat-started');
-    }
     sendMessage(message);
-  }
-});
-
 
     // ✅ Remove foco para esconder teclado
     input.blur();
