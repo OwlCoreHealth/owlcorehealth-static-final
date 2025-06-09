@@ -745,6 +745,8 @@ sendButton.addEventListener('click', () => {
 
   if (message !== "") {
     sendMessage(message);
+    document.body.classList.add('chat-started');
+
 
     // ✅ Remove foco para esconder teclado
     input.blur();
