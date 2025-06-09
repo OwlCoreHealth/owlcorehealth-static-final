@@ -16,12 +16,18 @@
       min-height: 100vh;
     }
     .container {
-      max-width: 600px;
-      width: 90%;
-      padding: 20px;
-      text-align: center;
-      position: relative;
-    }
+  max-width: 600px;
+  width: 90%;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
     h1 {
       font-weight: 700;
       font-size: 24px;
@@ -214,20 +220,20 @@
     
   /* --- INÍCIO DOS AJUSTES DE LAYOUT DO DIÁLOGO --- */
   .response {
-    max-height: 400px;
-    overflow-y: auto;
-    margin-bottom: 16px;
-    text-align: left;
-    width: 67vw;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: 0;
-    padding-right: 12px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-bottom: 16px;
+  text-align: left;
+  width: 67vw;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: 0;
+  padding-right: 12px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
 
   .bot-message {
     display: flex;
@@ -266,20 +272,24 @@
   }
 
   .input-area {
-    width: 67vw;
-    max-width: 900px;
-    background-color: #ECECF3;
-    border-radius: 24px;
-    padding: 0 16px 16px 16px;
-    height: 104px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin: 0 auto 24px auto;
-    position: relative;
-    cursor: text;
-  }
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 67vw;
+  max-width: 900px;
+  background-color: #ECECF3;
+  border-radius: 24px;
+  padding: 0 16px 16px 16px;
+  height: 104px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0;
+  cursor: text;
+  z-index: 10; /* para garantir que fique acima de outros elementos */
+}
     
 @media (min-width: 601px) {
   .side-menu {
