@@ -10,29 +10,27 @@
       background-color: #fff;
       margin: 0;
       padding: 0;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
     }
     .container {
-      max-width: 600px;
-      width: 90%;
-      padding: 20px;
-      text-align: center;
-      position: relative;
-    }
-    h1 {
-      font-weight: 700;
-      font-size: 24px;
-      margin: 0;
-    }
-    p.subtitle {
-      font-weight: 300;
-      font-size: 16px;
-      margin: 4px 0 24px 0;
-      color: #555;
-    }
+  display: flex;
+  flex-direction: column;
+  height: 100vh;  /* ocupa toda a altura da tela */
+  max-width: 600px; /* pode ajustar */
+  width: 90%;
+  padding: 20px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  text-align: center;
+}
+    h1, p.subtitle {
+  margin: 0 0 8px 0;
+  flex-shrink: 0; /* título não encolhe */
+}
 
     .menu-hamburger {
       position: fixed;
@@ -114,20 +112,20 @@
     }
 
     .input-area {
-      position: relative;
-      background-color: #ECECF3;
-      border-radius: 24px;
-      padding: 0 16px 16px 16px;
-      height: 104px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      max-width: 600px;
-      margin: 0 auto;
-      position: relative;
-      cursor: text; /* deixa cursor pointer no balão */
-    }
+  flex-shrink: 0;         /* input não encolhe */
+  height: 104px;          /* mantém altura fixa */
+  background-color: #ECECF3;
+  border-radius: 24px;
+  padding: 0 16px 16px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: text;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 0;
+}
 
     .message-label {
       font-weight: 300;
@@ -212,22 +210,17 @@
       fill: currentColor;
     }
     
-  /* --- INÍCIO DOS AJUSTES DE LAYOUT DO DIÁLOGO --- */
   .response {
-    max-height: 400px;
-    overflow-y: auto;
-    margin-bottom: 16px;
-    text-align: left;
-    width: 67vw;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: 0;
-    padding-right: 12px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
+  flex-grow: 1;           /* cresce para ocupar o espaço disponível */
+  overflow-y: auto;       /* barra de rolagem se conteúdo for maior */
+  margin-bottom: 12px;
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
 
   .bot-message {
     display: flex;
