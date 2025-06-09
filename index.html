@@ -16,12 +16,15 @@
       min-height: 100vh;
     }
     .container {
-      max-width: 600px;
-      width: 90%;
-      padding: 20px;
-      text-align: center;
-      position: relative;
-    }
+  height: 100vh;
+  max-width: 600px;
+  width: 90vw;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
     h1 {
       font-weight: 700;
       font-size: 24px;
@@ -212,22 +215,13 @@
       fill: currentColor;
     }
     
-  /* --- INÍCIO DOS AJUSTES DE LAYOUT DO DIÁLOGO --- */
-  .response {
-    max-height: 400px;
-    overflow-y: auto;
-    margin-bottom: 16px;
-    text-align: left;
-    width: 67vw;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: 0;
-    padding-right: 12px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
+ .response {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-bottom: 16px;
+  text-align: left;
+  /* pode ajustar largura conforme necessário */
+}
 
   .bot-message {
     display: flex;
@@ -266,20 +260,21 @@
   }
 
   .input-area {
-    width: 67vw;
-    max-width: 900px;
-    background-color: #ECECF3;
-    border-radius: 24px;
-    padding: 0 16px 16px 16px;
-    height: 104px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin: 0 auto 24px auto;
-    position: relative;
-    cursor: text;
-  }
+  flex-shrink: 0;
+  height: 104px; /* ou outra altura fixa */
+  background-color: #ECECF3;
+  border-radius: 24px;
+  padding: 0 16px 16px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 auto 24px auto;
+  position: relative;
+  cursor: text;
+  max-width: 600px;
+  width: 90vw;
+}
     
 @media (min-width: 601px) {
   .side-menu {
