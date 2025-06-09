@@ -721,9 +721,13 @@ function clearContentEditable(el) {
     }
   }
 
-  sendButton.addEventListener('click', () => {
-  alert('Botão Send clicado');
-});
+  // Evento do botão enviar
+sendButton.addEventListener('click', () => {
+  const message = input.textContent.replace(/\u200B/g, '').trim();
+
+  if (message !== "") {
+    sendMessage(message);
+
 
     // ✅ Remove foco para esconder teclado
     input.blur();
