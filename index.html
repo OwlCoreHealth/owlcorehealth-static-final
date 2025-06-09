@@ -282,21 +282,49 @@
   }
     
 @media (min-width: 601px) {
-  .response {
-    position: fixed;       /* fixa a caixa na tela */
-    top: 120px;            /* distância do topo para liberar espaço para logo e título */
-    bottom: 120px;         /* distância do rodapé para liberar espaço para o input */
-    left: 50%;             /* centraliza horizontalmente */
+  /* Título + logo fixos no topo */
+  h1, .logo, p.subtitle {
+    position: fixed;
+    top: 0;
+    left: 50%;
     transform: translateX(-50%);
-    width: 67vw;           /* largura proporcional */
-    max-width: 900px;      /* largura máxima */
-    overflow-y: auto;      /* barra de rolagem vertical se o conteúdo for maior */
-    margin: 0;             /* sem margem */
-    padding-right: 12px;   /* espaço interno à direita */
+    width: 67vw;
+    max-width: 900px;
+    background: white; /* para sobrepor o scroll */
+    padding: 16px 0 8px 0;
+    margin: 0;
+    text-align: center;
+    z-index: 10;
+  }
+
+  /* Container input fixo no rodapé */
+  .input-area {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 67vw;
+    max-width: 900px;
+    background: #e3e1f7;
+    padding: 12px 24px;
     box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+    border-radius: 24px 24px 0 0;
+    z-index: 10;
+  }
+
+  /* Caixa de diálogo ocupando espaço entre topo e rodapé */
+  .response {
+    position: fixed;
+    top: 72px;     /* altura do título + logo (ajuste conforme seu layout) */
+    bottom: 72px;  /* altura do input (ajuste conforme seu layout) */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 67vw;
+    max-width: 900px;
+    margin: 0;
+    padding-right: 12px;
+    overflow-y: auto;
+    box-sizing: border-box;
   }
 
   .side-menu {
