@@ -15,30 +15,13 @@
       align-items: center;
       min-height: 100vh;
     }
-    body.chat-started .input-area {
-  position: sticky;
-  bottom: 0;
-  background-color: #ECECF3;
-  padding: 10px 16px;
-  border-radius: 24px 24px 0 0;
-  z-index: 100;
-  max-width: 600px;
-  margin: 0 auto 20px auto;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
     .container {
-  max-width: 600px;
-  width: 90%;
-  padding: 20px;
-  text-align: center;
-  position: relative;
-  height: 100vh;          /* força ocupar toda a altura da viewport */
-  display: flex;
-  flex-direction: column; /* empilha filhos verticalmente */
-}
-
+      max-width: 600px;
+      width: 90%;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
     h1 {
       font-weight: 700;
       font-size: 24px;
@@ -133,15 +116,19 @@
     .input-area {
   position: relative;
   background-color: #ECECF3;
-  padding: 10px 16px;
-  border-radius: 24px 24px 0 0;
-  z-index: 100;
-  max-width: 600px;
-  margin: 0 auto 20px auto;
+  border-radius: 24px;
+  padding: 16px;            /* Ajustar padding para topo e laterais */
+  height: auto !important;  /* Remover altura fixa para expansão */
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
+  max-width: 600px;
+  margin: 0 auto;
+  cursor: text;
+  flex-wrap: wrap;          /* Permitir quebra de linha dos elementos internos */
 }
+
 
     .message-label {
       font-weight: 300;
@@ -228,9 +215,11 @@
     
   /* --- INÍCIO DOS AJUSTES DE LAYOUT DO DIÁLOGO --- */
   .response {
-  flex-grow: 1;            /* expande para ocupar espaço disponível */
-  overflow-y: auto;        /* rolagem vertical quando conteúdo exceder */
-  margin-bottom: 16px;
+  max-height: none;
+  height: auto; 
+  overflow-y: visible; 
+  margin: 0 auto 16px auto;
+  text-align: left;
   width: 67vw;
   max-width: 900px;
   padding-right: 12px;
@@ -336,6 +325,22 @@
   background-color: #a3c4ff; /* Hover um pouco mais escuro */
 }
 
+  .input-area {
+    width: 67vw;
+    max-width: 900px;
+    background-color: #ECECF3;
+    border-radius: 24px;
+    padding: 0 16px 16px 16px;
+    height: 104px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 auto 24px auto;
+    position: relative;
+    cursor: text;
+  }
+    
 @media (min-width: 601px) {
   .side-menu {
     left: -280px;
@@ -551,12 +556,6 @@ body.chat-started .chat-launcher-button {
 </button>
  
   <div class="container">
-    <div class="chat-box" id="chatBox"></div>
-    <div class="input-area">
-      <input type="text" id="inputField" placeholder="Digite sua mensagem..." />
-      <button id="sendBtn">Enviar</button>
-    </div>
-  </div>
 
     <!-- Menu Hamburguer -->
     <div class="menu-hamburger" aria-label="Menu" role="button" tabindex="0" onclick="toggleMenu()" onkeydown="if(event.key==='Enter'){toggleMenu();}">
@@ -1033,46 +1032,7 @@ readAloudButton?.addEventListener('click', () => {
       alert('⚠️ Connection error. Please try again later.');
     }
   }
-const sendBtn = document.getElementById('sendBtn');
-    const inputField = document.getElementById('inputField');
-    const chatBox = document.getElementById('chatBox');
-    let primeiraMensagemEnviada = false;
-
-    sendBtn.addEventListener('click', () => {
-      const texto = inputField.value.trim();
-      if (!texto) return;
-
-      // Adiciona mensagem do usuário
-      const userMsg = document.createElement('div');
-      userMsg.textContent = "Você: " + texto;
-      userMsg.style.margin = "10px 0";
-      userMsg.style.fontWeight = "700";
-      chatBox.appendChild(userMsg);
-
-      // Limpa input
-      inputField.value = "";
-
-      // Se for a primeira mensagem, ativa layout chat iniciado
-      if (!primeiraMensagemEnviada) {
-        document.body.classList.add('chat-started');
-        primeiraMensagemEnviada = true;
-      }
-
-      // Simula resposta do bot após 1s
-      setTimeout(() => {
-        const botMsg = document.createElement('div');
-        botMsg.textContent = "Dr. Owl: Recebi sua mensagem!";
-        botMsg.style.margin = "10px 0";
-        botMsg.style.color = "#6C63FF";
-        chatBox.appendChild(botMsg);
-        // Scrolla para o fim
-        chatBox.scrollTop = chatBox.scrollHeight;
-      }, 1000);
-
-      // Scrolla para o fim logo após enviar
-      chatBox.scrollTop = chatBox.scrollHeight;
-    });
-  </script>
+</script>
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
 </body>
