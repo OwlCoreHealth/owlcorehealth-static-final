@@ -777,19 +777,23 @@ function clearContentEditable(el) {
         
         currentLang = detectLanguage(content);
         
-        const tempDiv = document.createElement('div');
-        tempDiv.innerHTML = content;
+        // Converte Markdown para HTML usando marked.js
+const htmlContent = marked.parse(content);
 
-        const questions = tempDiv.querySelectorAll('.clickable-question');
-        questions.forEach(q => q.remove());
-        const explanationHTML = tempDiv.innerHTML;
+// Cria div temporária para remover perguntas clicáveis, se houver
+const tempDiv = document.createElement('div');
+tempDiv.innerHTML = htmlContent;
 
-        responseDiv.insertAdjacentHTML('beforeend', `
-          <div class="bot-message">
-            ${botIconHTML}
-            <div>${explanationHTML}</div>
-          </div>
-        `);
+const questions = tempDiv.querySelectorAll('.clickable-question');
+questions.forEach(q => q.remove());
+
+// Insere o conteúdo já limpo e convertido
+responseDiv.insertAdjacentHTML('beforeend', `
+  <div class="bot-message">
+    ${botIconHTML}
+    <div>${tempDiv.innerHTML}</div>
+  </div>
+`);
 
         if (!window.emailPromptShown) {
           window.emailPromptShown = true;
@@ -966,5 +970,7 @@ readAloudButton?.addEventListener('click', () => {
     }
   }
 </script>
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
 </body>
 </html>
