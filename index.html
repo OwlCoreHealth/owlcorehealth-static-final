@@ -16,12 +16,16 @@
       min-height: 100vh;
     }
     .container {
-      max-width: 600px;
-      width: 90%;
-      padding: 20px;
-      text-align: center;
-      position: relative;
-    }
+  max-width: 600px;
+  width: 90%;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  height: 100vh;          /* força ocupar toda a altura da viewport */
+  display: flex;
+  flex-direction: column; /* empilha filhos verticalmente */
+}
+
     h1 {
       font-weight: 700;
       font-size: 24px;
@@ -114,21 +118,18 @@
     }
 
     .input-area {
-  position: relative;
+  position: sticky;
+  bottom: 0;
   background-color: #ECECF3;
-  border-radius: 24px;
-  padding: 16px;            /* Ajustar padding para topo e laterais */
-  height: auto !important;  /* Remover altura fixa para expansão */
+  padding: 10px 16px;
+  border-radius: 24px 24px 0 0;
+  z-index: 100;
+  max-width: 600px;
+  margin: 0 auto 20px auto;
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 10px;
-  max-width: 600px;
-  margin: 0 auto;
-  cursor: text;
-  flex-wrap: wrap;          /* Permitir quebra de linha dos elementos internos */
 }
-
 
     .message-label {
       font-weight: 300;
@@ -215,11 +216,9 @@
     
   /* --- INÍCIO DOS AJUSTES DE LAYOUT DO DIÁLOGO --- */
   .response {
-  max-height: none;
-  height: auto; 
-  overflow-y: visible; 
-  margin: 0 auto 16px auto;
-  text-align: left;
+  flex-grow: 1;            /* expande para ocupar espaço disponível */
+  overflow-y: auto;        /* rolagem vertical quando conteúdo exceder */
+  margin-bottom: 16px;
   width: 67vw;
   max-width: 900px;
   padding-right: 12px;
@@ -325,22 +324,6 @@
   background-color: #a3c4ff; /* Hover um pouco mais escuro */
 }
 
-  .input-area {
-    width: 67vw;
-    max-width: 900px;
-    background-color: #ECECF3;
-    border-radius: 24px;
-    padding: 0 16px 16px 16px;
-    height: 104px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin: 0 auto 24px auto;
-    position: relative;
-    cursor: text;
-  }
-    
 @media (min-width: 601px) {
   .side-menu {
     left: -280px;
