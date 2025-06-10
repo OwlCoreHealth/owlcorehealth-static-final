@@ -15,14 +15,13 @@
       align-items: center;
       min-height: 100vh;
     }
-   .container {
-  max-width: 600px;
-  width: 90%;
-  padding: 20px;
-  text-align: center;
-  position: relative;
-  margin: 0 auto 24px auto; /* centraliza e cria margem inferior */
-}
+    .container {
+      max-width: 600px;
+      width: 90%;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
     h1 {
       font-weight: 700;
       font-size: 24px;
@@ -132,22 +131,19 @@
 
 
     .message-label {
-  font-weight: 300;
-  font-size: 16px;
-  color: #333;
-  margin: 0;
-  text-align: left;
-  outline: none;
-  user-select: text;
-  pointer-events: auto;
-  min-height: 36px;        /* aumentar um pouco para melhor área de clique */
-  white-space: pre-wrap;
-  flex: 1;
-  cursor: text;
-  box-sizing: border-box;  /* garantir padding e largura corretos */
-  padding: 6px 8px;        /* igual ao padding do input-area */
-}
-
+      font-weight: 300;
+      font-size: 16px;
+      color: #333;
+      margin: 0;
+      text-align: left;
+      outline: none;
+      user-select: text;
+      pointer-events: auto;
+      min-height: 24px;
+      white-space: pre-wrap;
+      flex: 1;
+      cursor: text;
+    }
 
     /* Placeholder customizado */
     .message-label[contenteditable]:empty::before {
@@ -560,25 +556,6 @@ body.chat-started .chat-launcher-button {
 </button>
  
   <div class="container">
-  <h1>Hi, I'm Dr. Owl.</h1>
-  <p class="subtitle">Let's chat and find solutions together.</p>
-</div>
-<div class="response">
-  <!-- mensagens do chat aparecem aqui -->
-</div>
-
-<div class="input-area" role="form" aria-label="Chat input area">
-  <div
-    id="messageInput"
-    class="message-label"
-    contenteditable="true"
-    role="textbox"
-    aria-label="Digite sua mensagem aqui"
-    data-placeholder="message Dr. Owl"
-    tabindex="0"
-  ></div>
-</div>
-
 
     <!-- Menu Hamburguer -->
     <div class="menu-hamburger" aria-label="Menu" role="button" tabindex="0" onclick="toggleMenu()" onkeydown="if(event.key==='Enter'){toggleMenu();}">
