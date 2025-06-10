@@ -15,6 +15,48 @@
       align-items: center;
       min-height: 100vh;
     }
+    body.chat-started {
+  align-items: stretch; /* permite que o container cresça verticalmente */
+}
+
+/* Container principal do chat */
+body.chat-started .container {
+  height: 100vh;           /* ocupar a tela toda */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 20px;
+  box-sizing: border-box;
+}
+
+/* Área das mensagens - adapte o seletor para o seu container real */
+body.chat-started .chat-box {
+  flex-grow: 1;            /* ocupa o espaço vertical disponível */
+  overflow-y: auto;        /* rolagem vertical */
+  margin-bottom: 16px;
+  width: 67vw;
+  max-width: 900px;
+  padding-right: 12px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Input fixo no rodapé do container */
+body.chat-started .input-area {
+  position: sticky;
+  bottom: 0;
+  background-color: #ECECF3;
+  padding: 10px 16px;
+  border-radius: 24px 24px 0 0;
+  z-index: 100;
+  max-width: 600px;
+  margin: 0 auto 20px auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
     .container {
       max-width: 600px;
       width: 90%;
