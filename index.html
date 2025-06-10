@@ -416,7 +416,7 @@
 @media (max-width: 600px) {
   .bot-message {
     display: flex;
-    flex-direction: row; /* <-- Ícone à esquerda */
+    flex-direction: column;
     align-items: flex-start;
     gap: 8px;
     width: 100%;
@@ -437,7 +437,24 @@
     margin: 0;
     align-self: flex-start;
   }
+.bot-icon {
+  margin-bottom: 4px;
+}
 
+.bot-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: #6C63FF;
+}
+
+.bot-text {
+  flex: 1;
+  line-height: 1.6;
+  color: #222;
+  font-weight: 400;
+  text-align: left;
+  width: 100%;
+}
   .response {
     width: 100vw !important;
     max-width: 100% !important;
@@ -812,8 +829,8 @@ questions.forEach(q => q.remove());
 // Insere o conteúdo já limpo e convertido
 responseDiv.insertAdjacentHTML('beforeend', `
   <div class="bot-message">
-    ${botIconHTML}
-    <div>${tempDiv.innerHTML}</div>
+    <div class="bot-icon">${botIconHTML}</div>
+    <div class="bot-text">${tempDiv.innerHTML}</div>
   </div>
 `);
 
