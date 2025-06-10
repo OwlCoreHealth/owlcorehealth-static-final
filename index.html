@@ -13,9 +13,12 @@
 
   /* Inicialmente: centraliza verticalmente */
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
   min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 body.chat-started {
@@ -32,22 +35,21 @@ body.chat-started .container {
 }
 
 body.chat-started .response {
-  flex-grow: 1;           /* permite ocupar espaço vertical restante */
-  overflow-y: auto;       /* ativa rolagem vertical */
-  margin-bottom: 16px;
-  width: 67vw;
-  max-width: 900px;
-  padding-right: 12px;
+  height: calc(100vh - 180px) !important;
+  max-height: none !important;
+  overflow-y: auto !important;
 }
 
   .container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
   max-width: 600px;
   width: 90%;
   padding: 20px;
-  text-align: center;
-  position: relative;
+  box-sizing: border-box;
 }
-
+    
 .container h1 {
   font-weight: 700;
   font-size: 24px;
