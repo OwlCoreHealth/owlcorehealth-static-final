@@ -123,6 +123,12 @@ if (role === 'bot') {
     const userText = inputField.value.trim();
     if (!userText) return;
 
+    // Adiciona classe chat-started após a primeira mensagem
+    if (!primeiraMensagemEnviada) {
+      document.body.classList.add('chat-started');
+      primeiraMensagemEnviada = true;
+    }
+
     userName = nameInput?.value?.trim() || "amigo";
     appendMessage(userText, 'user');
     inputField.value = '';
