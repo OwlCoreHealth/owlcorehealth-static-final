@@ -551,6 +551,12 @@ body.chat-started .chat-launcher-button {
 </button>
  
   <div class="container">
+    <div class="chat-box" id="chatBox"></div>
+    <div class="input-area">
+      <input type="text" id="inputField" placeholder="Digite sua mensagem..." />
+      <button id="sendBtn">Enviar</button>
+    </div>
+  </div>
 
     <!-- Menu Hamburguer -->
     <div class="menu-hamburger" aria-label="Menu" role="button" tabindex="0" onclick="toggleMenu()" onkeydown="if(event.key==='Enter'){toggleMenu();}">
@@ -1027,7 +1033,46 @@ readAloudButton?.addEventListener('click', () => {
       alert('⚠️ Connection error. Please try again later.');
     }
   }
-</script>
+const sendBtn = document.getElementById('sendBtn');
+    const inputField = document.getElementById('inputField');
+    const chatBox = document.getElementById('chatBox');
+    let primeiraMensagemEnviada = false;
+
+    sendBtn.addEventListener('click', () => {
+      const texto = inputField.value.trim();
+      if (!texto) return;
+
+      // Adiciona mensagem do usuário
+      const userMsg = document.createElement('div');
+      userMsg.textContent = "Você: " + texto;
+      userMsg.style.margin = "10px 0";
+      userMsg.style.fontWeight = "700";
+      chatBox.appendChild(userMsg);
+
+      // Limpa input
+      inputField.value = "";
+
+      // Se for a primeira mensagem, ativa layout chat iniciado
+      if (!primeiraMensagemEnviada) {
+        document.body.classList.add('chat-started');
+        primeiraMensagemEnviada = true;
+      }
+
+      // Simula resposta do bot após 1s
+      setTimeout(() => {
+        const botMsg = document.createElement('div');
+        botMsg.textContent = "Dr. Owl: Recebi sua mensagem!";
+        botMsg.style.margin = "10px 0";
+        botMsg.style.color = "#6C63FF";
+        chatBox.appendChild(botMsg);
+        // Scrolla para o fim
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }, 1000);
+
+      // Scrolla para o fim logo após enviar
+      chatBox.scrollTop = chatBox.scrollHeight;
+    });
+  </script>
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
 </body>
