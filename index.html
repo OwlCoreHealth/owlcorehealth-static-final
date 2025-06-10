@@ -420,16 +420,17 @@
     align-items: flex-start;
     gap: 8px;
     width: 100%;
-    padding: 0 12px;
+    padding: 0 8px;
     box-sizing: border-box;
   }
 
   .bot-message > div {
-    flex-grow: 1;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 12px 0;
-  }
+  flex-grow: 1;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 0 12px 0;
+  margin-left: 0; /* garante alinhamento com perguntas */
+}
 
   .bot-message svg {
     flex-shrink: 0;
