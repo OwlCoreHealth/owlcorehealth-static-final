@@ -15,63 +15,13 @@
       align-items: center;
       min-height: 100vh;
     }
-    body.chat-started {
-  align-items: stretch; /* permite que o container cresça verticalmente */
-}
-
-/* Container principal do chat */
-body.chat-started .container {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  padding-top: 20px;
-  box-sizing: border-box;
-}
-    
-body.chat-started .response {
-  flex-grow: 1;
-  overflow-y: auto;
-}
-
-body.chat-started .chat-box {
-  flex-grow: 1; /* para crescer dentro do container */
-  height: 100%; /* garantir altura total do container pai */
-  overflow-y: auto; /* para ter barra de rolagem vertical */
-  margin-bottom: 16px;
-  width: 67vw;
-  max-width: 900px;
-  padding-right: 12px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-/* Input fixo no rodapé do container */
-body.chat-started .input-area {
-  position: sticky;
-  bottom: 0;
-  background-color: #ECECF3;
-  padding: 10px 16px;
-  border-radius: 24px 24px 0 0;
-  z-index: 100;
-  max-width: 600px;
-  margin: 0 auto 20px auto;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
     .container {
-  max-width: 600px;
-  width: 90%;
-  padding: 20px;
-  text-align: center;
-  position: relative;
-  height: 100vh; /* adicionar */
-  display: flex; /* adicionar */
-  flex-direction: column; /* adicionar */
-}
-
+      max-width: 600px;
+      width: 90%;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
     h1 {
       font-weight: 700;
       font-size: 24px;
@@ -374,6 +324,22 @@ body.chat-started .input-area {
 .clickable-question:hover {
   background-color: #a3c4ff; /* Hover um pouco mais escuro */
 }
+
+  .input-area {
+    width: 67vw;
+    max-width: 900px;
+    background-color: #ECECF3;
+    border-radius: 24px;
+    padding: 0 16px 16px 16px;
+    height: 104px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 auto 24px auto;
+    position: relative;
+    cursor: text;
+  }
     
 @media (min-width: 601px) {
   .side-menu {
