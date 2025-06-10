@@ -18,33 +18,26 @@
   min-height: 100vh;
 }
 
-/* Quando o chat começar, expande verticalmente */
 body.chat-started {
-  align-items: stretch; /* deixa o container ocupar toda altura */
+  align-items: stretch; /* deixa container ocupar toda altura */
 }
 
-/* Ajuste para o container ocupar a altura total */
 body.chat-started .container {
-  height: 100vh;
+  height: 100vh;          /* ocupa toda a altura da viewport */
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start; /* não centraliza mais */
-  padding-top: 20px; /* mantém espaçamento superior */
+  flex-direction: column; /* organiza elementos em coluna */
+  justify-content: flex-start; /* alinha conteúdo no topo */
+  padding-top: 20px;      /* mantém espaçamento superior */
+  box-sizing: border-box; /* inclui padding na altura */
 }
 
-/* Ajuste da área de resposta para usar espaço disponível */
 body.chat-started .response {
-  height: calc(100vh - 180px); /* ajuste conforme necessário */
-  max-height: none;
-  overflow-y: auto;
-  margin: 0 auto 16px auto;
+  flex-grow: 1;           /* permite ocupar espaço vertical restante */
+  overflow-y: auto;       /* ativa rolagem vertical */
+  margin-bottom: 16px;
   width: 67vw;
   max-width: 900px;
   padding-right: 12px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
 }
 
   .container {
