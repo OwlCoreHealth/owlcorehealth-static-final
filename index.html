@@ -756,6 +756,30 @@ if (!SpeechRecognition) {
       ensureCursorVisible(input);
     }, 0);
   });
+// Enviar mensagem ao pressionar Enter (sem Shift)
+input.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter' && !event.shiftKey) {
+    event.preventDefault(); // impede quebra de linha
+    const message = input.textContent.replace(/\u200B/g, '').trim();
+    if (message !== "") {
+      sendMessage(message);
+      input.blur();
+
+      // Remove foco para esconder o teclado e desfocar
+      setTimeout(() => {
+        const hiddenInput = document.createElement('input');
+        hiddenInput.setAttribute('type', 'text');
+        hiddenInput.style.position = 'absolute';
+        hiddenInput.style.opacity = 0;
+        hiddenInput.style.height = 0;
+        hiddenInput.style.fontSize = '16px';
+        document.body.appendChild(hiddenInput);
+        hiddenInput.focus();
+        setTimeout(() => hiddenInput.remove(), 100);
+      }, 100);
+    }
+  }
+});
 
   window.addEventListener('load', () => {
   ensureCursorVisible(input); // ✅ Mantém o cursor visível
