@@ -214,19 +214,25 @@
     }
     
   /* --- INÍCIO DOS AJUSTES DE LAYOUT DO DIÁLOGO --- */
-  .response {
-  max-height: none;
-  height: auto; 
-  overflow-y: visible; 
-  margin: 0 auto 16px auto;
-  text-align: left;
+  /* Estilo padrão (layout inicial) */
+.response {
+  max-height: 400px; /* limite inicial */
+  overflow-y: auto;
   width: 67vw;
   max-width: 900px;
+  margin: 0 auto 16px auto;
   padding-right: 12px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+/* Layout expandido após 1ª mensagem */
+body.chat-started .response {
+  height: calc(100vh - 180px); /* ajuste 180px conforme header+input */
+  max-height: none;
+  overflow-y: auto;
 }
 
   .bot-message {
@@ -688,7 +694,34 @@ function detectLanguage(text) {
   const micButton = document.getElementById('mic-btn');
   // Verifica suporte à API de reconhecimento de voz
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+// logo após pegar variáveis DOM
+let primeiraMensagemEnviada = false;
 
+sendButton.addEventListener('click', () => {
+  // Obtem o texto digitado
+  const mensagem = input.innerText.trim();
+
+  if (mensagem === '') {
+    // Opcional: você pode alertar ou focar o input
+    input.focus();
+    return; // não envia mensagem vazia
+  }
+
+  // Aqui você envia/processa a mensagem (substitua pela sua lógica)
+  // Exemplo simples: exibir no console
+  console.log('Mensagem enviada:', mensagem);
+
+  // Após o envio, adiciona a classe chat-started só na primeira mensagem
+  if (!primeiraMensagemEnviada) {
+    document.body.classList.add('chat-started');
+    primeiraMensagemEnviada = true;
+  }
+
+  // Limpa o input para próxima mensagem
+  input.innerText = '';
+  input.focus();
+});
+  
 if (!SpeechRecognition) {
   alert('Seu navegador não suporta reconhecimento de voz. Por favor, use Chrome ou Edge.');
 } else {
