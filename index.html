@@ -31,21 +31,12 @@ body.chat-started .container {
 body.chat-started .response {
   flex-grow: 1;
   overflow-y: auto;
-  margin-bottom: 16px;
-  width: 67vw;
-  max-width: 900px;
-  padding-right: 12px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  height: auto;
 }
 
-/* Área das mensagens - adapte o seletor para o seu container real */
 body.chat-started .chat-box {
-  flex-grow: 1;            /* ocupa o espaço vertical disponível */
-  overflow-y: auto;        /* rolagem vertical */
+  flex-grow: 1; /* para crescer dentro do container */
+  height: 100%; /* garantir altura total do container pai */
+  overflow-y: auto; /* para ter barra de rolagem vertical */
   margin-bottom: 16px;
   width: 67vw;
   max-width: 900px;
@@ -71,12 +62,16 @@ body.chat-started .input-area {
   gap: 10px;
 }
     .container {
-      max-width: 600px;
-      width: 90%;
-      padding: 20px;
-      text-align: center;
-      position: relative;
-    }
+  max-width: 600px;
+  width: 90%;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  height: 100vh; /* adicionar */
+  display: flex; /* adicionar */
+  flex-direction: column; /* adicionar */
+}
+
     h1 {
       font-weight: 700;
       font-size: 24px;
@@ -379,22 +374,6 @@ body.chat-started .input-area {
 .clickable-question:hover {
   background-color: #a3c4ff; /* Hover um pouco mais escuro */
 }
-
-  .input-area {
-    width: 67vw;
-    max-width: 900px;
-    background-color: #ECECF3;
-    border-radius: 24px;
-    padding: 0 16px 16px 16px;
-    height: 104px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin: 0 auto 24px auto;
-    position: relative;
-    cursor: text;
-  }
     
 @media (min-width: 601px) {
   .side-menu {
