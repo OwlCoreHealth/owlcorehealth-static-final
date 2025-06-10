@@ -114,20 +114,21 @@
     }
 
     .input-area {
-      position: relative;
-      background-color: #ECECF3;
-      border-radius: 24px;
-      padding: 0 16px 16px 16px;
-      height: 104px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      max-width: 600px;
-      margin: 0 auto;
-      position: relative;
-      cursor: text; /* deixa cursor pointer no balão */
-    }
+  position: relative;
+  background-color: #ECECF3;
+  border-radius: 24px;
+  padding: 16px;            /* Ajustar padding para topo e laterais */
+  height: auto !important;  /* Remover altura fixa para expansão */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  max-width: 600px;
+  margin: 0 auto;
+  cursor: text;
+  flex-wrap: wrap;          /* Permitir quebra de linha dos elementos internos */
+}
+
 
     .message-label {
       font-weight: 300;
@@ -214,21 +215,19 @@
     
   /* --- INÍCIO DOS AJUSTES DE LAYOUT DO DIÁLOGO --- */
   .response {
-    max-height: none;
-    height: auto; 
-    overflow-y: visible; 
-    margin-bottom: 16px;
-    text-align: left;
-    width: 67vw;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: 0;
-    padding-right: 12px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
+  max-height: none;
+  height: auto; 
+  overflow-y: visible; 
+  margin: 0 auto 16px auto;
+  text-align: left;
+  width: 67vw;
+  max-width: 900px;
+  padding-right: 12px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
 
   .bot-message {
     display: flex;
