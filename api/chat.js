@@ -192,17 +192,27 @@ async function generateFreeTextWithGPT(prompt) {
   }
 }
 
-async function generateStrategicFollowUpQuestions(context, idioma) {
+// Função para gerar as perguntas de follow-up com base no sintoma
+async function generateFollowUpQuestions(context, idioma) {
+  const usedQuestions = sessionMemory.usedQuestions || [];
   const symptom = context.sintoma || "symptom";
   const phase = context.funnelPhase || 1;
 
   const promptPT = `
-Você é um assistente de saúde inteligente, focado no sintoma "${symptom}". Gere 3 perguntas curtas, provocativas e impactantes que despertem curiosidade, medo ou desejo por solução, sem pedir que o usuário escreva ou explique nada. As perguntas devem ser frases diretas, fáceis de ler, com foco na dor, medo ou benefício. Não peça explicações, só perguntas que incentivem o clique.
+Você é um assistente de saúde inteligente e focado no sintoma "${symptom}". 
+Com base nesse sintoma e na fase do funil ${phase}, gere 3 perguntas curtas, objetivas e focadas no sintoma.
+As perguntas devem ser claras, relacionadas ao sintoma, e com foco em compreensão, tratamento ou prevenção.
+Evite perguntas filosóficas e gerais; a intenção é ajudar o usuário a entender melhor o sintoma e suas possíveis soluções.
+Não repita perguntas já feitas: ${usedQuestions.join("; ")}.
 Retorne apenas as 3 perguntas numeradas.
 `;
 
   const promptEN = `
-You are a smart health assistant focused on the symptom "${symptom}". Generate 3 short, provocative, and impactful questions that spark curiosity, fear, or desire for a solution, without asking the user to type or explain anything. The questions should be direct, easy to read, focusing on pain points, fears, or benefits. Do not ask for explanations, only questions that encourage clicking.
+You are a smart and focused health assistant, primarily concentrating on the symptom "${symptom}". 
+Based on this symptom and funnel phase ${phase}, generate 3 short, clear, and focused questions about the symptom.
+The questions should explore understanding, treatment, or prevention of the symptom.
+Avoid philosophical or general questions; the goal is to help the user better understand the symptom and potential solutions.
+Do not repeat the previously asked questions: ${usedQuestions.join("; ")}.
 Return only the 3 numbered questions.
 `;
 
@@ -218,11 +228,11 @@ Return only the 3 numbered questions.
       body: JSON.stringify({
         model: GPT_MODEL,
         messages: [
-          { role: "system", content: "You generate only 3 short, provocative and strategic questions. No explanations." },
+          { role: "system", content: "You generate only 3 relevant and persuasive questions. No extra explanation." },
           { role: "user", content: prompt }
         ],
-        temperature: 0.8,
-        max_tokens: 200
+        temperature: 0.75,
+        max_tokens: 300
       })
     });
 
@@ -230,50 +240,70 @@ Return only the 3 numbered questions.
     let questionsRaw = data.choices?.[0]?.message?.content || "";
     let questions = questionsRaw.split(/\d+\.\s+/).filter(Boolean).slice(0, 3);
 
-    // Remover perguntas já usadas para evitar repetição
-    const usedQuestions = sessionMemory.usedQuestions || [];
+    // Filtrar perguntas repetidas (exato match)
     questions = questions.filter(q => !usedQuestions.includes(q));
 
-    // Atualizar perguntas usadas na sessão
+    // Atualiza as perguntas usadas na sessão
     sessionMemory.usedQuestions.push(...questions);
 
-    // Caso gere menos que 3, pode-se adicionar fallback genérico (opcional)
-    if (questions.length < 3) {
-      const fallback = idioma === "pt"
-        ? [
-            "Quer saber o que pode estar piorando esse sintoma?",
-            "Sabia que pequenas mudanças podem melhorar muito?",
-            "Você conhece as soluções naturais para isso?"
-          ]
-        : [
-            "Want to know what might be worsening this symptom?",
-            "Did you know small changes can improve it a lot?",
-            "Do you know natural solutions for this?"
-          ];
-      for (const fq of fallback) {
-        if (questions.length >= 3) break;
-        if (!usedQuestions.includes(fq)) {
-          questions.push(fq);
-          sessionMemory.usedQuestions.push(fq);
-        }
+    // Se menos de 3 perguntas após filtro, adiciona fallback interno
+    let fallback = [];
+    if (sessionMemory.sintomaAtual === "gengivas inflamadas") {
+      fallback = idioma === "pt" ? [
+        "Você já visitou um dentista para tratar da inflamação nas gengivas?",
+        "Está sentindo algum desconforto além do sangramento das gengivas?",
+        "Sabia que a inflamação nas gengivas pode ser causada por uma higiene bucal inadequada?"
+      ] : [
+        "Have you visited a dentist to treat the gum inflammation?",
+        "Are you feeling any discomfort besides the gum bleeding?",
+        "Did you know that gum inflammation can be caused by poor oral hygiene?"
+      ];
+    } else if (sessionMemory.sintomaAtual === "acne") {
+      fallback = idioma === "pt" ? [
+        "Você já tentou algum tratamento para a acne?",
+        "Você sabe quais alimentos podem estar ajudando a piorar a acne?",
+        "Está lidando com acne principalmente em alguma área do rosto?"
+      ] : [
+        "Have you tried any treatments for acne?",
+        "Do you know which foods might be contributing to your acne?",
+        "Are you dealing with acne mainly in any specific area of your face?"
+      ];
+    } else {
+      // Fallback genérico se o sintoma não for específico
+      fallback = idioma === "pt" ? [
+        "Você já procurou tratamento para o seu sintoma?",
+        "Há algo específico que você gostaria de aprender sobre esse sintoma?",
+        "Você tem tentado alguma solução por conta própria?"
+      ] : [
+        "Have you sought treatment for this symptom?",
+        "Is there anything specific you'd like to learn about this symptom?",
+        "Have you tried any solutions on your own?"
+      ];
+    }
+
+    // Adiciona perguntas de fallback que ainda não foram usadas
+    for (const fq of fallback) {
+      if (questions.length >= 3) break;  // Limita a 3 perguntas
+      if (!sessionMemory.usedQuestions.includes(fq)) {
+        questions.push(fq);  // Adiciona a pergunta ao conjunto de perguntas
+        sessionMemory.usedQuestions.push(fq);  // Marca como já usada
       }
     }
 
     return questions.slice(0, 3);
 
-  } catch (e) {
-    console.error("Erro ao gerar perguntas estratégicas:", e);
-    // Fallback simples caso dê erro
+  } catch (err) {
+    console.warn("❗️Erro ao gerar perguntas com GPT:", err);
     return idioma === "pt"
       ? [
-          "Quer saber mais sobre esse sintoma?",
-          "Está pronto para descobrir soluções eficazes?",
-          "Gostaria de evitar que isso piore?"
+          "Você já tentou mudar sua alimentação ou rotina?",
+          "Como você acha que isso está afetando seu dia a dia?",
+          "Está disposto(a) a descobrir uma solução mais eficaz agora?"
         ]
       : [
-          "Want to learn more about this symptom?",
-          "Ready to discover effective solutions?",
-          "Would you like to prevent it from worsening?"
+          "Have you tried adjusting your diet or lifestyle?",
+          "How do you think this is affecting your daily life?",
+          "Are you ready to explore a better solution now?"
         ];
   }
 }
@@ -333,63 +363,38 @@ Answer only with the symptom from the list that best matches or is most **simila
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Método não permitido" });
 
- const { message, selectedQuestion, idioma } = req.body;
-const userInput = selectedQuestion || message;
-const isFollowUp = Boolean(selectedQuestion);
-const intent = await classifyUserIntent(userInput, idioma || "en");
-let gptResponse;
+  const { message, selectedQuestion, idioma } = req.body;
+  const userInput = selectedQuestion || message;
+  const isFollowUp = Boolean(selectedQuestion);
+  const intent = await classifyUserIntent(userInput, idioma || "en");
+  let gptResponse;
 
-// Declaro followupQuestions com valor padrão vazio para evitar ReferenceError
-let followupQuestions = [];
+  if (intent !== "sintoma") {
+    gptResponse = await generateFreeTextWithGPT(
+      idioma === "pt"
+         ? `Você é o Dr. Owl, um assistente de saúde inteligente e focado em fornecer explicações científicas e objetivas. Um usuário fez uma pergunta fora do padrão de sintomas, que envolve curiosidade ou dúvida. Responda de forma clara, baseada em evidências científicas, sem humor ou metáforas. Pergunta do usuário: "${userInput}"`
+        : `You are Dr. Owl, a health assistant focused on providing scientific and objective explanations. A user has asked a question outside the symptom context, involving curiosity or doubt. Respond clearly, based on scientific evidence, without humor or metaphors. User's message: "${userInput}"`
+    );
 
-if (isFollowUp) {
-  const prompt = idioma === "pt"
-    ? `Você é o Dr. Owl, um assistente de saúde inteligente. O sintoma atual é: "${sessionMemory.sintomaAtual}". A fase do funil é: ${sessionMemory.funnelPhase}. O usuário clicou na pergunta: "${selectedQuestion}". Responda de forma clara, científica e focada em avançar a conversa sobre esse sintoma nesta fase. Não faça perguntas nem respostas vagas.`
-    : `You are Dr. Owl, a smart health assistant. The current symptom is: "${sessionMemory.sintomaAtual}". The funnel phase is: ${sessionMemory.funnelPhase}. The user clicked the follow-up question: "${selectedQuestion}". Provide a clear, scientific, and focused response advancing the conversation about this symptom in this phase. Do not ask questions or give vague answers.`;
+   const followupQuestions = await generateFollowUpQuestions(
+  { sintoma: sessionMemory.sintomaAtual, funnelPhase: 1 },
+  idioma
+);
 
-  gptResponse = await generateFreeTextWithGPT(prompt);
+    let content = formatHybridResponse({}, gptResponse, followupQuestions, idioma);
 
-  // Em caso de follow-up, normalmente não geramos novas perguntas,
-  // mas se quiser gerar, faça aqui, ou deixe vazio (recomendado)
-  followupQuestions = [];
+    if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
+      sessionMemory.emailOffered = true;
+    }
 
-} else if (intent !== "sintoma") {
-  gptResponse = await generateFreeTextWithGPT(
-    idioma === "pt"
-      ? `Você é o Dr. Owl, um assistente de saúde inteligente e focado em fornecer explicações científicas e objetivas. Um usuário fez uma pergunta fora do padrão de sintomas, que envolve curiosidade ou dúvida. Responda de forma clara, baseada em evidências científicas, sem humor ou metáforas. Pergunta do usuário: "${userInput}"`
-      : `You are Dr. Owl, a health assistant focused on providing scientific and objective explanations. A user has asked a question outside the symptom context, involving curiosity or doubt. Respond clearly, based on scientific evidence, without humor or metaphors. User's message: "${userInput}"`
-  );
+    sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
+    sessionMemory.genericEntry = true;
+    sessionMemory.genericMessages = sessionMemory.genericMessages || [];
+    sessionMemory.genericMessages.push(userInput);
 
-  followupQuestions = await generateStrategicFollowUpQuestions(
-    { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
-    idioma
-  );
-
-} else {
-  // fluxo para intent === "sintoma"
-  // ... seu código atual para sintomas
-
-  followupQuestions = await generateFollowUpQuestions(
-    { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
-    idioma
-  );
-}
-
-// Continua normalmente
-let content = formatHybridResponse({}, gptResponse, followupQuestions, idioma);
-
-if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
-  sessionMemory.emailOffered = true;
-}
-
-sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
-sessionMemory.genericEntry = true;
-sessionMemory.genericMessages = sessionMemory.genericMessages || [];
-sessionMemory.genericMessages.push(userInput);
-
-return res.status(200).json({
-  choices: [{ message: { content, followupQuestions } }]
-});
+    return res.status(200).json({
+      choices: [{ message: { content, followupQuestions } }]
+    });
 
   } else {
     // A PARTIR DAQUI: fluxo de tratamento do caso com sintoma
