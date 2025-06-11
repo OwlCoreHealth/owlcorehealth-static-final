@@ -199,20 +199,21 @@ async function generateFollowUpQuestions(context, idioma) {
   const phase = context.funnelPhase || 1;
 
   const promptPT = `
-Você é um assistente de saúde inteligente e focado no sintoma "${symptom}". 
-Com base nesse sintoma e na fase do funil ${phase}, gere 3 perguntas curtas, objetivas e focadas no sintoma.
-As perguntas devem ser claras, relacionadas ao sintoma, e com foco em compreensão, tratamento ou prevenção.
-Evite perguntas filosóficas e gerais; a intenção é ajudar o usuário a entender melhor o sintoma e suas possíveis soluções.
+Você é um assistente de saúde inteligente focado no sintoma "${symptom}" e na fase do funil ${phase}.
+Gere 3 perguntas curtas, provocativas e estratégicas que despertem curiosidade ou senso de urgência sobre dores, medos ou soluções relacionadas a este sintoma.
+As perguntas devem ser simples, diretas e não devem pedir que o usuário escreva ou explique algo.
+Evite perguntas filosóficas, genéricas ou que forcem o usuário a digitar.
 Não repita perguntas já feitas: ${usedQuestions.join("; ")}.
-Retorne apenas as 3 perguntas numeradas.
+Retorne somente as 3 perguntas numeradas.
 `;
 
+
   const promptEN = `
-You are a smart and focused health assistant, primarily concentrating on the symptom "${symptom}". 
-Based on this symptom and funnel phase ${phase}, generate 3 short, clear, and focused questions about the symptom.
-The questions should explore understanding, treatment, or prevention of the symptom.
-Avoid philosophical or general questions; the goal is to help the user better understand the symptom and potential solutions.
-Do not repeat the previously asked questions: ${usedQuestions.join("; ")}.
+You are a smart health assistant focused on the symptom "${symptom}" and funnel phase ${phase}.
+Generate 3 short, provocative, and strategic questions that spark curiosity or urgency about pains, fears, or solutions related to this symptom.
+The questions must be simple, direct, and must NOT ask the user to write or explain anything.
+Avoid philosophical, generic questions, or questions that force the user to type.
+Do not repeat previously asked questions: ${usedQuestions.join("; ")}.
 Return only the 3 numbered questions.
 `;
 
