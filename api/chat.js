@@ -208,20 +208,18 @@ async function generateFollowUpQuestions(context, idioma) {
 
   const promptPT = `
 Você é um assistente de saúde inteligente e focado no sintoma "${symptom}". 
-Com base nesse sintoma e na fase do funil ${phase}, gere 3 perguntas curtas, objetivas e focadas no sintoma.
-As perguntas devem ser claras, relacionadas ao sintoma, e com foco em compreensão, tratamento ou prevenção.
-Evite perguntas filosóficas e gerais; a intenção é ajudar o usuário a entender melhor o sintoma e suas possíveis soluções.
-Não repita perguntas já feitas: ${usedQuestions.join("; ")}.
-Retorne apenas as 3 perguntas numeradas.
+Estamos na fase ${phase} do funil, e você já fez estas perguntas ao usuário: ${usedQuestions.join("; ")}.
+Gere 3 perguntas novas, curtas, claras e que aprofundem o entendimento do usuário sobre "${symptom}", considerando o contexto da fase ${phase}.
+Evite repetir perguntas anteriores, perguntas genéricas ou filosóficas.
+Liste somente as perguntas numeradas, sem explicações.
 `;
 
   const promptEN = `
-You are a smart and focused health assistant, primarily concentrating on the symptom "${symptom}". 
-Based on this symptom and funnel phase ${phase}, generate 3 short, clear, and focused questions about the symptom.
-The questions should explore understanding, treatment, or prevention of the symptom.
-Avoid philosophical or general questions; the goal is to help the user better understand the symptom and potential solutions.
-Do not repeat the previously asked questions: ${usedQuestions.join("; ")}.
-Return only the 3 numbered questions.
+You are a focused health assistant working on the symptom "${symptom}".
+We are currently at funnel phase ${phase}, and you have already asked these questions: ${usedQuestions.join("; ")}.
+Generate 3 new, short, clear questions that deepen the user's understanding of "${symptom}" considering the context of funnel phase ${phase}.
+Avoid repeating previous questions or asking generic or philosophical questions.
+List only the numbered questions, no explanations.
 `;
 
   const prompt = idioma === "pt" ? promptPT : promptEN;
