@@ -142,8 +142,32 @@ Answer (intent only):`;
 
 async function rewriteWithGPT(baseText, sintoma, idioma, funnelPhase, categoria) {
   const prompt = idioma === "pt"
-    ? `Use o seguinte texto como base, mantendo o conteúdo e estrutura, mas reescrevendo com 30% de liberdade criativa, usando linguagem mais fluida, provocadora e humana. Mantenha o foco exclusivamente no sintoma: ${sintoma} e na categoria: ${categoria}. Não aborde outros temas. Não mude o tema e mantenha o foco em: ${sintoma}\n\nTexto-base:\n${baseText}`
-    : `Use the following text as a base. Keep the core message and structure, but rewrite with 30% creative freedom in a more natural, engaging, and human tone. Keep the focus exclusively on the symptom: ${sintoma} and category: ${categoria}. Do not address other topics. Do not change the topic and keep the focus on: ${sintoma}\n\nBase text:\n${baseText}`;
+    ? `
+Use o seguinte texto como base, mantendo a mensagem central, mas reescrevendo com 30% de liberdade criativa para um tom urgente, científico, provocativo e focado no sintoma: ${sintoma}, e na categoria: ${categoria}.  
+O texto deve refletir a fase ${funnelPhase} do funil, apresentando:  
+- Na fase 1, explicação clara e científica do sintoma;  
+- Na fase 2, alertas urgentes sobre riscos do sintoma;  
+- Na fase 3, estatísticas reais que reforcem a gravidade;  
+- Na fase 4, nutrientes e plantas naturais que ajudam;  
+- Na fase 5, sugestões indiretas de soluções avançadas (sem citar nomes diretamente).  
+Não mude o tema ou aborde assuntos fora do contexto.  
+Mantenha a linguagem simples, direta e com senso de urgência.  
+Texto-base:  
+${baseText}
+`
+    : `
+Use the following text as a base, keeping the core message, but rewriting it with 30% creative freedom in an urgent, scientific, provocative tone focused on the symptom: ${sintoma} and category: ${categoria}.  
+The text should reflect funnel phase ${funnelPhase}, presenting:  
+- Phase 1: clear scientific explanation of the symptom;  
+- Phase 2: urgent alerts about risks;  
+- Phase 3: real statistics reinforcing severity;  
+- Phase 4: nutrients and natural plants that help;  
+- Phase 5: indirect suggestions of advanced solutions (without naming products).  
+Do not change the topic or include unrelated content.  
+Keep language simple, direct, and urgent.  
+Base text:  
+${baseText}
+`;
 
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -199,23 +223,25 @@ async function generateFollowUpQuestions(context, idioma) {
   const phase = context.funnelPhase || 1;
 
   const promptPT = `
-Você é um assistente de saúde inteligente focado no sintoma "${symptom}" e na fase do funil ${phase}.  
-Gere 3 perguntas curtas, provocativas e objetivas que incentivem o usuário a clicar para saber mais.  
-As perguntas devem ser relacionadas à dor, medo, solução ou curiosidade sobre o sintoma.  
-Não peça para o usuário explicar ou escrever nada.  
-Evite perguntas genéricas, filosóficas ou que peçam mais detalhes.  
-Não repita as perguntas já feitas: ${usedQuestions.join("; ")}.  
-Retorne apenas as 3 perguntas numeradas, sem mais texto.
+Você é um assistente de saúde inteligente, focado no sintoma "${symptom}" e na fase do funil ${phase}.  
+Gere exatamente 3 perguntas curtas, provocativas, impactantes e objetivas que façam o usuário querer clicar para saber mais.  
+As perguntas devem ser relacionadas a dores, medos, soluções ou curiosidades diretamente ligadas ao sintoma.  
+Não peça para o usuário escrever nada, nem para explicar algo.  
+Evite perguntas filosóficas, genéricas ou que peçam mais detalhes.  
+Não repita nenhuma pergunta já feita: ${usedQuestions.join("; ")}.  
+Retorne apenas as 3 perguntas numeradas, sem texto adicional ou explicações.  
+Se não conseguir gerar perguntas novas, use perguntas poderosas de fallback, mas ainda assim curtas e focadas.  
 `;
 
 const promptEN = `
 You are a smart health assistant focused on the symptom "${symptom}" and funnel phase ${phase}.  
-Generate 3 short, provocative, and objective questions that encourage the user to click to learn more.  
-The questions should be related to pain, fear, solution, or curiosity about the symptom.  
-Do not ask the user to explain or type anything.  
-Avoid generic, philosophical, or detail-asking questions.  
-Do not repeat previously asked questions: ${usedQuestions.join("; ")}.  
-Return only the 3 numbered questions, no extra text.
+Generate exactly 3 short, provocative, impactful, and objective questions that make the user want to click to learn more.  
+The questions should relate to pain, fear, solutions, or curiosities directly connected to the symptom.  
+Do not ask the user to write anything or explain.  
+Avoid philosophical, generic, or detail-asking questions.  
+Do not repeat any previously asked questions: ${usedQuestions.join("; ")}.  
+Return only the 3 numbered questions, with no extra text or explanations.  
+If you can't generate new questions, use powerful fallback questions but keep them short and focused.  
 `;
 
   const prompt = idioma === "pt" ? promptPT : promptEN;
