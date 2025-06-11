@@ -1,5 +1,3 @@
-// ✅ chat.js COMPLETO com integração do formulário de subscrição de e-mail (sem NENHUMA remoção do seu código)
-
 import { getSymptomContext } from "./notion.mjs";
 import { fallbackTextsBySymptom } from "./fallbackTextsBySymptom.js";
 
@@ -17,6 +15,8 @@ let sessionMemory = {
   usedQuestions: [],
   emailOffered: false
 };
+
+// Função para controlar atualização do sintoma sem mudar antes da fase 6
 function setSintomaAtual(novoSintoma) {
   if (sessionMemory.funnelPhase < 6 && sessionMemory.sintomaAtual && sessionMemory.sintomaAtual !== novoSintoma) {
     return sessionMemory.sintomaAtual;
@@ -26,6 +26,7 @@ function setSintomaAtual(novoSintoma) {
   return novoSintoma;
 }
 
+// Função para avançar fase do funil com limite 6
 function advanceFunnelPhase() {
   if (sessionMemory.funnelPhase < 6) {
     sessionMemory.funnelPhase++;
@@ -43,33 +44,28 @@ function getFunnelKey(phase) {
     default: return "base";
   }
 }
+
 // Função que gera resposta completa para o sintoma
 const generateAnswerForSymptom = async (symptom, idioma) => {
   const prompt = idioma === "pt" ? promptPT : promptEN;
-  
-  // Chamar a API do GPT para gerar a resposta completa
   const response = await fetch("https://api.openai.com/v1/chat/completions", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${OPENAI_API_KEY}`
-  },
-  body: JSON.stringify({
-    model: GPT_MODEL,
-    messages: [
-      { role: "system", content: "Você é um assistente de saúde fornecendo explicações científicas e práticas sobre sintomas." },
-      { role: "user", content: prompt }
-    ],
-    temperature: 0.7,
-    max_tokens: 500 // Aumente o número de tokens aqui
-  })
-});
-
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${OPENAI_API_KEY}`
+    },
+    body: JSON.stringify({
+      model: GPT_MODEL,
+      messages: [
+        { role: "system", content: "Você é um assistente de saúde fornecendo explicações científicas e práticas sobre sintomas." },
+        { role: "user", content: prompt }
+      ],
+      temperature: 0.7,
+      max_tokens: 500
+    })
+  });
   const data = await response.json();
-console.log("Resposta do servidor:", data); // Adicione este log para inspecionar a resposta completa
-
-  
-  // Retorna o conteúdo gerado pela API
+  console.log("Resposta do servidor:", data);
   return data.choices?.[0]?.message?.content || "Desculpe, não consegui gerar uma resposta no momento.";
 };
 
@@ -77,7 +73,6 @@ function getBotIconHTML() {
   return `<img src="owl-icon.png" alt="Owl Icon" class="bot-icon" style="width: 28px; margin-right: 12px;" />`;
 }
 
-// ✅ ALTERAÇÃO NO formatHybridResponse para adicionar e-mail após 1ª resposta com perguntas
 function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
   const phaseTitle = idioma === "pt" ? "Vamos explorar mais:" : "Let's explore further:";
   const instruction = idioma === "pt"
@@ -92,10 +87,9 @@ function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
       response += `<div class="clickable-question" data-question="${encodeURIComponent(q)}" onclick="handleQuestionClick(this)">${i + 1}. ${q}</div>\n`;
     });
 
-    // ✅ Mostra o formulário de e-mail na primeira vez que houver follow-ups
     if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
       sessionMemory.emailOffered = true;
-     // response += renderEmailPrompt(idioma);
+      // response += renderEmailPrompt(idioma);
     }
   }
 
@@ -129,21 +123,21 @@ Answer (intent only):`;
 
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${OPENAI_API_KEY}`
-  },
-  body: JSON.stringify({
-    model: GPT_MODEL,
-    messages: [
-      { role: "system", content: "Você é um assistente de saúde fornecendo explicações científicas e práticas sobre sintomas." },
-      { role: "user", content: prompt }
-    ],
-    temperature: 0.7,
-    max_tokens: 300
-  })
-});
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: GPT_MODEL,
+        messages: [
+          { role: "system", content: "Você é um assistente de saúde fornecendo explicações científicas e práticas sobre sintomas." },
+          { role: "user", content: prompt }
+        ],
+        temperature: 0.7,
+        max_tokens: 300
+      })
+    });
 
     const data = await response.json();
     const intent = data.choices?.[0]?.message?.content?.trim().toLowerCase() || "outro";
@@ -336,7 +330,7 @@ Responda apenas com o sintoma da lista que melhor corresponde ao texto do usuár
 
   const promptEN = `
 You are an assistant that identifies the closest symptom from a given list, based on the user's text.
-The list of symptoms is:
+The list of symptoms é:
 ${symptomsList.join(", ")}
 
 Given the user's input:
@@ -366,12 +360,18 @@ Answer only with the symptom from the list that best matches or is most **simila
     });
 
     const data = await response.json();
-const match = data.choices?.[0]?.message?.content.trim() || "unknown";
+    const match = data.choices?.[0]?.message?.content.trim() || "unknown";
 
-// Atualiza o sintoma usando a função de controle
-setSintomaAtual(match === "unknown" ? userInput.toLowerCase() : match);
+    // Atualiza o sintoma usando a função de controle
+    setSintomaAtual(match === "unknown" ? userInput.toLowerCase() : match);
 
-return match.toLowerCase();
+    return match.toLowerCase();
+
+  } catch (e) {
+    console.error("Erro ao identificar sintoma:", e);
+    return "unknown";
+  }
+}
 
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Método não permitido" });
