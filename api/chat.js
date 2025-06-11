@@ -378,7 +378,7 @@ export default async function handler(req, res) {
     );
 
    const followupQuestions = await generateFollowUpQuestions(
-  { sintoma: sessionMemory.sintomaAtual, funnelPhase: 1 },
+  { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
   idioma
 );
 
