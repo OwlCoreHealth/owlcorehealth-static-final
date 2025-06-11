@@ -17,6 +17,25 @@ let sessionMemory = {
   usedQuestions: [],
   emailOffered: false
 };
+function getRandomFunnelText(context, funnelPhase) {
+  const funnelColumnsMap = {
+    1: ["Funnel 1 Variation 1", "Funnel 1 Variation 2", "Funnel 1 Variation 3"],
+    2: ["Funnel 2 Variation 1", "Funnel 2 Variation 2", "Funnel 2 Variation 3"],
+    3: ["Funnel 3 Variation 1", "Funnel 3 Variation 2", "Funnel 3 Variation 3"],
+    4: ["Funnel 4 Variation 1", "Funnel 4 Variation 2", "Funnel 4 Variation 3"],
+    5: ["Funnel 5 Variation 1", "Funnel 5 Variation 2", "Funnel 5 Variation 3"],
+  };
+
+  const columns = funnelColumnsMap[funnelPhase] || [];
+
+  const texts = columns
+    .map(col => context[col])
+    .filter(text => typeof text === "string" && text.trim().length > 0);
+
+  if (texts.length === 0) return null;
+
+  return texts[Math.floor(Math.random() * texts.length)];
+}
 
 function getFunnelKey(phase) {
   switch (phase) {
@@ -428,26 +447,24 @@ export default async function handler(req, res) {
     // Gerar a explicação completa do sintoma
     const answer = await generateAnswerForSymptom(sessionMemory.sintomaAtual, idioma);
 
-    // Textos oficiais do Notion
-    const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
-    let funnelTexts = context.funnelTexts?.[funnelKey] || [];
+    const baseText = getRandomFunnelText(context, sessionMemory.funnelPhase);
 
-    // Tenta fallback pelo sintoma
-    if (!funnelTexts.length) {
-      const fallbackTexts = fallbackTextsBySymptom[sessionMemory.sintomaAtual?.toLowerCase().trim()] || {};
-      funnelTexts = fallbackTexts[funnelKey] || [];
-    }
+// Fallback pelo sintoma
+if (!baseText) {
+  const fallbackTexts = fallbackTextsBySymptom[sessionMemory.sintomaAtual?.toLowerCase().trim()] || {};
+  const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
+  const fallbackTextArray = fallbackTexts[funnelKey] || [];
+  if (fallbackTextArray.length) {
+    baseText = fallbackTextArray[Math.floor(Math.random() * fallbackTextArray.length)];
+  }
+}
 
-    // (Opcional) fallback genérico
-    if (!funnelTexts.length) {
-      funnelTexts = [
-        idioma === "pt"
-          ? "Desculpe, ainda não temos conteúdo para esse sintoma e etapa. Tente outro sintoma ou reformule sua pergunta."
-          : "Sorry, we don’t have content for this symptom and phase yet. Please try another symptom or rephrase your query."
-      ];
-    }
-
-    const baseText = funnelTexts[Math.floor(Math.random() * funnelTexts.length)];
+// Fallback genérico
+if (!baseText) {
+  baseText = idioma === "pt"
+    ? "Desculpe, ainda não temos conteúdo para esse sintoma e etapa. Tente outro sintoma ou reformule sua pergunta."
+    : "Sorry, we don’t have content for this symptom and phase yet. Please try another symptom or rephrase your query.";
+}
 
     const gptResponse = baseText
       ? await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, idioma, sessionMemory.funnelPhase, sessionMemory.categoriaAtual)
