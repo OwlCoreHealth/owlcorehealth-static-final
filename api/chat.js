@@ -369,6 +369,37 @@ export default async function handler(req, res) {
   const userInput = selectedQuestion || message;
   const isFollowUp = Boolean(selectedQuestion);
   const intent = await classifyUserIntent(userInput, idioma || "en");
+  // --- inserir aqui ---
+const vagueInputs = ["true", "ok", "sim", "não", "nao", ""];
+
+if (!isFollowUp && vagueInputs.includes(userInput.trim().toLowerCase())) {
+  // Retorna perguntas provocativas fixas para mensagens vagas
+  const fallbackQuestions = idioma === "pt"
+    ? [
+        "Você sabia que pequenas mudanças podem transformar sua saúde?",
+        "Quer descobrir o que está sabotando seu progresso?",
+        "Já tentou um método natural para resolver isso?"
+      ]
+    : [
+        "Did you know small changes can transform your health?",
+        "Want to find out what's sabotaging your progress?",
+        "Have you tried a natural method to fix this?"
+      ];
+
+  return res.status(200).json({
+    choices: [{
+      message: {
+        content: idioma === "pt" ? 
+          "Vamos explorar mais:\nEscolha uma das opções abaixo para continuarmos:\n\n" + fallbackQuestions.map((q,i) => `${i+1}. ${q}`).join("\n")
+          :
+          "Let's explore further:\nChoose one of the options below to continue:\n\n" + fallbackQuestions.map((q,i) => `${i+1}. ${q}`).join("\n"),
+        followupQuestions: fallbackQuestions
+      }
+    }]
+  });
+}
+// --- fim do bloco ---
+
   let gptResponse;
 
   if (intent !== "sintoma") {
