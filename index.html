@@ -840,23 +840,24 @@ function clearContentEditable(el) {
         
         currentLang = detectLanguage(content);
         
-        // Converte Markdown para HTML usando marked.js
-const htmlContent = marked.parse(content);
+        const htmlContent = marked.parse(content);
 
-// Cria div temporária para remover perguntas clicáveis, se houver
-const tempDiv = document.createElement('div');
-tempDiv.innerHTML = htmlContent;
-
-const questions = tempDiv.querySelectorAll('.clickable-question');
-questions.forEach(q => q.remove());
-
-// Insere o conteúdo já limpo e convertido
 responseDiv.insertAdjacentHTML('beforeend', `
   <div class="bot-message">
     <div class="bot-icon">${botIconHTML}</div>
-    <div class="bot-text">${tempDiv.innerHTML}</div>
+    <div class="bot-text">${htmlContent}</div>
   </div>
 `);
+
+const followupQuestions = data.choices[0].message.followupQuestions || [];
+
+followupQuestions.forEach(qText => {
+  const qDiv = document.createElement('div');
+  qDiv.classList.add('clickable-question');
+  qDiv.textContent = qText;
+  qDiv.setAttribute('data-question', encodeURIComponent(qText));
+  responseDiv.appendChild(qDiv);
+});
 
         if (!window.emailPromptShown) {
           window.emailPromptShown = true;
