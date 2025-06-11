@@ -333,54 +333,63 @@ Answer only with the symptom from the list that best matches or is most **simila
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Método não permitido" });
 
- // Linha aproximada: após desestruturação e definição de variáveis iniciais
-const { message, selectedQuestion, idioma } = req.body;
+ const { message, selectedQuestion, idioma } = req.body;
 const userInput = selectedQuestion || message;
 const isFollowUp = Boolean(selectedQuestion);
 const intent = await classifyUserIntent(userInput, idioma || "en");
 let gptResponse;
 
-// Linha aproximada:  aqui começa o novo bloco condicional
+// Declaro followupQuestions com valor padrão vazio para evitar ReferenceError
+let followupQuestions = [];
+
 if (isFollowUp) {
-  // Pergunta clicada: prompt focado em sintoma e fase para resposta direta e científica
   const prompt = idioma === "pt"
     ? `Você é o Dr. Owl, um assistente de saúde inteligente. O sintoma atual é: "${sessionMemory.sintomaAtual}". A fase do funil é: ${sessionMemory.funnelPhase}. O usuário clicou na pergunta: "${selectedQuestion}". Responda de forma clara, científica e focada em avançar a conversa sobre esse sintoma nesta fase. Não faça perguntas nem respostas vagas.`
     : `You are Dr. Owl, a smart health assistant. The current symptom is: "${sessionMemory.sintomaAtual}". The funnel phase is: ${sessionMemory.funnelPhase}. The user clicked the follow-up question: "${selectedQuestion}". Provide a clear, scientific, and focused response advancing the conversation about this symptom in this phase. Do not ask questions or give vague answers.`;
 
   gptResponse = await generateFreeTextWithGPT(prompt);
 
+  // Em caso de follow-up, normalmente não geramos novas perguntas,
+  // mas se quiser gerar, faça aqui, ou deixe vazio (recomendado)
+  followupQuestions = [];
+
 } else if (intent !== "sintoma") {
-  // Mensagem não sintoma: seu prompt atual para curiosidade, dúvidas, etc
   gptResponse = await generateFreeTextWithGPT(
     idioma === "pt"
       ? `Você é o Dr. Owl, um assistente de saúde inteligente e focado em fornecer explicações científicas e objetivas. Um usuário fez uma pergunta fora do padrão de sintomas, que envolve curiosidade ou dúvida. Responda de forma clara, baseada em evidências científicas, sem humor ou metáforas. Pergunta do usuário: "${userInput}"`
       : `You are Dr. Owl, a health assistant focused on providing scientific and objective explanations. A user has asked a question outside the symptom context, involving curiosity or doubt. Respond clearly, based on scientific evidence, without humor or metaphors. User's message: "${userInput}"`
   );
 
-  const followupQuestions = await generateStrategicFollowUpQuestions(
+  followupQuestions = await generateStrategicFollowUpQuestions(
     { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
     idioma
   );
 
 } else {
-  // Aqui continua o seu fluxo padrão para intent === "sintoma"
-  // ...
+  // fluxo para intent === "sintoma"
+  // ... seu código atual para sintomas
+
+  followupQuestions = await generateFollowUpQuestions(
+    { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
+    idioma
+  );
 }
 
-    let content = formatHybridResponse({}, gptResponse, followupQuestions, idioma);
+// Continua normalmente
+let content = formatHybridResponse({}, gptResponse, followupQuestions, idioma);
 
-    if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
-      sessionMemory.emailOffered = true;
-    }
+if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
+  sessionMemory.emailOffered = true;
+}
 
-    sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
-    sessionMemory.genericEntry = true;
-    sessionMemory.genericMessages = sessionMemory.genericMessages || [];
-    sessionMemory.genericMessages.push(userInput);
+sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
+sessionMemory.genericEntry = true;
+sessionMemory.genericMessages = sessionMemory.genericMessages || [];
+sessionMemory.genericMessages.push(userInput);
 
-    return res.status(200).json({
-      choices: [{ message: { content, followupQuestions } }]
-    });
+return res.status(200).json({
+  choices: [{ message: { content, followupQuestions } }]
+});
 
   } else {
     // A PARTIR DAQUI: fluxo de tratamento do caso com sintoma
