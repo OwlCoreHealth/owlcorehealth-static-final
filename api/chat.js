@@ -29,61 +29,32 @@ function getFunnelKey(phase) {
     default: return "base";
   }
 }
-const generateAnswerForSymptom = async (symptom, idioma, funnelPhase, categoria, baseText) => {
-  const promptPT = `
-Você é o Dr. Owl, um assistente de saúde especialista que responde ao sintoma "${symptom}" na fase ${funnelPhase} do funil de conversão.
-Baseando-se no seguinte texto-base, reescreva com até 30% de liberdade criativa, usando linguagem simples, científica, provocativa e focada na etapa do funil.
-Cada fase do funil deve conter:
-1 - Explicação científica clara
-2 - Riscos e consequências do sintoma
-3 - Estatísticas relevantes sobre o problema
-4 - Nutrientes e plantas naturais para ajudar
-5 - Indicações indiretas de soluções avançadas (sem citar nomes)
-Não saia do foco do sintoma e da categoria "${categoria}".
-Texto-base:
-${baseText}
-Resposta:
-`;
-
-  const promptEN = `
-You are Dr. Owl, a health assistant specializing in symptom "${symptom}" at funnel phase ${funnelPhase}.
-Based on the following base text, rewrite with up to 30% creative freedom, using simple, scientific, provocative language focused on the funnel phase.
-Each funnel phase should contain:
-1 - Clear scientific explanation
-2 - Risks and consequences of the symptom
-3 - Relevant statistics about the issue
-4 - Nutrients and natural plants that help
-5 - Indirect hints at advanced solutions (without naming products)
-Do not deviate from the focus on symptom and category "${categoria}".
-Base text:
-${baseText}
-Answer:
-`;
-
+// Função que gera resposta completa para o sintoma
+const generateAnswerForSymptom = async (symptom, idioma) => {
   const prompt = idioma === "pt" ? promptPT : promptEN;
+  
+  // Chamar a API do GPT para gerar a resposta completa
+  const response = await fetch("https://api.openai.com/v1/chat/completions", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${OPENAI_API_KEY}`
+  },
+  body: JSON.stringify({
+    model: GPT_MODEL,
+    messages: [
+      { role: "system", content: "Você é um assistente de saúde fornecendo explicações científicas e práticas sobre sintomas." },
+      { role: "user", content: prompt }
+    ],
+    temperature: 0.7,
+    max_tokens: 500 // Aumente o número de tokens aqui
+  })
+});
 
-  try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${OPENAI_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: GPT_MODEL,
-        messages: [{ role: "system", content: prompt }],
-        temperature: 0.7,
-        max_tokens: 600
-      })
-    });
+  const data = await response.json();
+console.log("Resposta do servidor:", data); // Adicione este log para inspecionar a resposta completa
 
-    const data = await response.json();
-    return data.choices?.[0]?.message?.content?.trim() || baseText;
-  } catch (e) {
-    console.error("Erro ao gerar resposta para sintoma:", e);
-    return baseText;
-  }
-};
+  
   // Retorna o conteúdo gerado pela API
   return data.choices?.[0]?.message?.content || "Desculpe, não consegui gerar uma resposta no momento.";
 };
@@ -157,7 +128,7 @@ Answer (intent only):`;
     ],
     temperature: 0.7,
     max_tokens: 300
-  }
+  })
 });
 
     const data = await response.json();
@@ -538,14 +509,14 @@ if (!isFollowUp && vagueInputs.includes(userInput.trim().toLowerCase())) {
     const baseText = funnelTexts[Math.floor(Math.random() * funnelTexts.length)];
 
     const gptResponse = baseText
-  ? await generateAnswerForSymptom(sessionMemory.sintomaAtual, idioma, sessionMemory.funnelPhase, sessionMemory.categoriaAtual, baseText)
-  : await generateAnswerForSymptom(
-      sessionMemory.sintomaAtual,
-      idioma,
-      sessionMemory.funnelPhase,
-      sessionMemory.categoriaAtual,
-      `Explain clearly about the symptom ${sessionMemory.sintomaAtual} in phase ${sessionMemory.funnelPhase}, focusing on phase key ${funnelKey}`
-    );
+      ? await rewriteWithGPT(baseText, sessionMemory.sintomaAtual, idioma, sessionMemory.funnelPhase, sessionMemory.categoriaAtual)
+      : await rewriteWithGPT(
+          `Explain clearly about the symptom ${sessionMemory.sintomaAtual} in phase ${sessionMemory.funnelPhase}, focusing on phase key ${funnelKey}`,
+          sessionMemory.sintomaAtual,
+          idioma,
+          sessionMemory.funnelPhase,
+          sessionMemory.categoriaAtual
+        );
 
     const followupQuestions = await generateFollowUpQuestions(
       { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
