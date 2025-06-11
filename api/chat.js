@@ -17,6 +17,19 @@ let sessionMemory = {
   usedQuestions: [],
   emailOffered: false
 };
+function setSintomaAtual(novoSintoma) {
+  if (sessionMemory.funnelPhase < 6 && sessionMemory.sintomaAtual && sessionMemory.sintomaAtual !== novoSintoma) {
+    return sessionMemory.sintomaAtual;
+  }
+  sessionMemory.sintomaAtual = novoSintoma;
+  sessionMemory.categoriaAtual = novoSintoma;
+  return novoSintoma;
+}
+function advanceFunnelPhase() {
+  if (sessionMemory.funnelPhase < 6) {
+    sessionMemory.funnelPhase++;
+  }
+}
 
 function getFunnelKey(phase) {
   switch (phase) {
@@ -351,7 +364,8 @@ async function identifySymptom(userInput, symptomsList, idioma) {
 
     const data = await response.json();
     const match = data.choices?.[0]?.message?.content.trim() || "unknown";
-    sessionMemory.sintomaAtual = match === "unknown" ? userInput.toLowerCase() : match;
+    setSintomaAtual(match === "unknown" ? userInput.toLowerCase() : match);
+
     
     // Garantir que a categoria e o sintoma sejam consistentes
     validateTopicConsistency();
@@ -387,10 +401,36 @@ export default async function handler(req, res) {
         : `You are Dr. Owl, a health assistant focused on providing scientific and objective explanations. A user has asked a question outside the symptom context, involving curiosity or doubt. Respond clearly, based on scientific evidence, without humor or metaphors. User's message: "${userInput}"`
     );
 
-   const followupQuestions = await generateFollowUpQuestions(
-  { sintoma: sessionMemory.sintomaAtual, funnelPhase: 1 },
-  idioma
-);
+   async function generateSafeFollowUpQuestions(context, idioma) {
+  let questions = await generateFollowUpQuestions(context, idioma);
+
+  const usedNormalized = sessionMemory.usedQuestions.map(q => q.trim().toLowerCase());
+  questions = questions.filter(q => !usedNormalized.includes(q.trim().toLowerCase()));
+
+  sessionMemory.usedQuestions.push(...questions);
+
+  const fallback = idioma === "pt"
+    ? [
+      "Você já tentou mudar sua alimentação ou rotina?",
+      "Como acha que isso afeta seu dia a dia?",
+      "Está disposto(a) a descobrir uma solução mais eficaz agora?"
+    ]
+    : [
+      "Have you tried adjusting your diet or lifestyle?",
+      "How do you think this affects your daily life?",
+      "Are you ready to explore a better solution now?"
+    ];
+
+  for (const fq of fallback) {
+    if (questions.length >= 3) break;
+    if (!usedNormalized.includes(fq.trim().toLowerCase())) {
+      questions.push(fq);
+      sessionMemory.usedQuestions.push(fq);
+    }
+  }
+
+  return questions.slice(0, 3);
+}
 
     let content = formatHybridResponse({}, gptResponse, followupQuestions, idioma);
 
@@ -398,7 +438,7 @@ export default async function handler(req, res) {
       sessionMemory.emailOffered = true;
     }
 
-    sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
+    advanceFunnelPhase();
     sessionMemory.genericEntry = true;
     sessionMemory.genericMessages = sessionMemory.genericMessages || [];
     sessionMemory.genericMessages.push(userInput);
@@ -419,7 +459,7 @@ export default async function handler(req, res) {
     // Identifica o sintoma mais próximo do input usando GPT
     const identifiedSymptom = await identifySymptom(userInput, allSymptoms, idioma);
 
-    sessionMemory.sintomaAtual = identifiedSymptom === "unknown" ? userInput.toLowerCase() : identifiedSymptom;
+    setSintomaAtual(identifiedSymptom === "unknown" ? userInput.toLowerCase() : identifiedSymptom);
     sessionMemory.nome = "";
     sessionMemory.respostasUsuario.push(userInput);
 
@@ -433,7 +473,7 @@ export default async function handler(req, res) {
       sessionMemory.usedQuestions
     );
 
-    if (context.sintoma && !sessionMemory.sintomaAtual) sessionMemory.sintomaAtual = context.sintoma;
+    if (context.sintoma && !sessionMemory.sintomaAtual) setSintomaAtual(context.sintoma);
     if (context.categoria && !sessionMemory.categoriaAtual) sessionMemory.categoriaAtual = context.categoria;
 
     // Gerar a explicação completa do sintoma
@@ -470,10 +510,10 @@ export default async function handler(req, res) {
           sessionMemory.categoriaAtual
         );
 
-    const followupQuestions = await generateFollowUpQuestions(
-      { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
-      idioma
-    );
+    const followupQuestions = await generateSafeFollowUpQuestions(
+  { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
+  idioma
+);
 
     // Atualiza a fase do funil com segurança
     sessionMemory.funnelPhase = Math.min((context.funnelPhase || sessionMemory.funnelPhase || 1) + 1, 6);
