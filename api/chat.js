@@ -510,10 +510,16 @@ export default async function handler(req, res) {
           sessionMemory.categoriaAtual
         );
 
-    const followupQuestions = await generateSafeFollowUpQuestions(
+    // Geração das perguntas finais com função segura
+const followupQuestions = await generateSafeFollowUpQuestions(
   { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
   idioma
 );
+
+// Depois, usa followupQuestions para montar resposta
+return res.status(200).json({
+  choices: [{ message: { content, followupQuestions } }]
+});
 
     // Atualiza a fase do funil com segurança
     sessionMemory.funnelPhase = Math.min((context.funnelPhase || sessionMemory.funnelPhase || 1) + 1, 6);
