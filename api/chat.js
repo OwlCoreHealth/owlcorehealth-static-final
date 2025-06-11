@@ -366,13 +366,12 @@ Answer only with the symptom from the list that best matches or is most **simila
     });
 
     const data = await response.json();
-    const match = data.choices?.[0]?.message?.content.trim() || "unknown";
-    return match.toLowerCase();
-  } catch (e) {
-    console.error("Erro ao identificar sintoma:", e);
-    return "unknown";
-  }
-}
+const match = data.choices?.[0]?.message?.content.trim() || "unknown";
+
+// Atualiza o sintoma usando a função de controle
+setSintomaAtual(match === "unknown" ? userInput.toLowerCase() : match);
+
+return match.toLowerCase();
 
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Método não permitido" });
