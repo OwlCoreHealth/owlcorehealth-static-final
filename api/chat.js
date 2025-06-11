@@ -157,7 +157,7 @@ Answer (intent only):`;
     ],
     temperature: 0.7,
     max_tokens: 300
-  })
+  }
 });
 
     const data = await response.json();
