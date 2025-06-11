@@ -424,14 +424,18 @@ export default async function handler(req, res) {
     sessionMemory.respostasUsuario.push(userInput);
 
     let context = await getSymptomContext(
-      sessionMemory.sintomaAtual,
-      sessionMemory.nome,
-      null, // idade removida
-      null, // peso removido
-      sessionMemory.funnelPhase,
-      sessionMemory.sintomaAtual,
-      sessionMemory.usedQuestions
-    );
+  sessionMemory.sintomaAtual,
+  sessionMemory.nome,
+  null, // idade removida
+  null, // peso removido
+  sessionMemory.funnelPhase,
+  sessionMemory.sintomaAtual,
+  sessionMemory.usedQuestions
+);
+
+// Adicione os logs aqui para depurar
+console.log("🔍 Dados Notion - Perguntas fase:", context.perguntasFase);
+console.log("🔍 Dados fallbackTextsBySymptom para sintoma:", sessionMemory.sintomaAtual, fallbackTextsBySymptom[sessionMemory.sintomaAtual?.toLowerCase()]);
 
     if (context.sintoma && !sessionMemory.sintomaAtual) sessionMemory.sintomaAtual = context.sintoma;
     if (context.categoria && !sessionMemory.categoriaAtual) sessionMemory.categoriaAtual = context.categoria;
