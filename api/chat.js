@@ -387,9 +387,6 @@ export default async function handler(req, res) {
   const intent = await classifyUserIntent(userInput, idioma || "en");
   let gptResponse;
 
-  // ... resto do código
-}
-
   if (intent !== "sintoma") {
     gptResponse = await generateFreeTextWithGPT(
       idioma === "pt"
@@ -398,9 +395,9 @@ export default async function handler(req, res) {
     );
 
    const followupQuestions = await generateFollowUpQuestions(
-  { sintoma: sessionMemory.sintomaAtual, funnelPhase: 1 },
-  idioma
-);
+    { sintoma: sessionMemory.sintomaAtual, funnelPhase: 1 },
+    idioma
+  );
 
     let content = formatHybridResponse({}, gptResponse, followupQuestions, idioma);
 
@@ -416,6 +413,11 @@ export default async function handler(req, res) {
     return res.status(200).json({
       choices: [{ message: { content, followupQuestions } }]
     });
+  }
+
+  // Aqui continuaria o else para intent === "sintoma" e o restante da lógica
+
+}
 
   } else {
     // A PARTIR DAQUI: fluxo de tratamento do caso com sintoma
