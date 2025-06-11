@@ -199,22 +199,23 @@ async function generateFollowUpQuestions(context, idioma) {
   const phase = context.funnelPhase || 1;
 
   const promptPT = `
-Você é um assistente de saúde inteligente focado no sintoma "${symptom}" e na fase do funil ${phase}.
-Gere 3 perguntas curtas, provocativas e estratégicas que despertem curiosidade ou senso de urgência sobre dores, medos ou soluções relacionadas a este sintoma.
-As perguntas devem ser simples, diretas e não devem pedir que o usuário escreva ou explique algo.
-Evite perguntas filosóficas, genéricas ou que forcem o usuário a digitar.
-Não repita perguntas já feitas: ${usedQuestions.join("; ")}.
-Retorne somente as 3 perguntas numeradas.
+Você é um assistente de saúde inteligente focado no sintoma "${symptom}" e na fase do funil ${phase}.  
+Gere 3 perguntas curtas, provocativas e objetivas que incentivem o usuário a clicar para saber mais.  
+As perguntas devem ser relacionadas à dor, medo, solução ou curiosidade sobre o sintoma.  
+Não peça para o usuário explicar ou escrever nada.  
+Evite perguntas genéricas, filosóficas ou que peçam mais detalhes.  
+Não repita as perguntas já feitas: ${usedQuestions.join("; ")}.  
+Retorne apenas as 3 perguntas numeradas, sem mais texto.
 `;
 
-
-  const promptEN = `
-You are a smart health assistant focused on the symptom "${symptom}" and funnel phase ${phase}.
-Generate 3 short, provocative, and strategic questions that spark curiosity or urgency about pains, fears, or solutions related to this symptom.
-The questions must be simple, direct, and must NOT ask the user to write or explain anything.
-Avoid philosophical, generic questions, or questions that force the user to type.
-Do not repeat previously asked questions: ${usedQuestions.join("; ")}.
-Return only the 3 numbered questions.
+const promptEN = `
+You are a smart health assistant focused on the symptom "${symptom}" and funnel phase ${phase}.  
+Generate 3 short, provocative, and objective questions that encourage the user to click to learn more.  
+The questions should be related to pain, fear, solution, or curiosity about the symptom.  
+Do not ask the user to explain or type anything.  
+Avoid generic, philosophical, or detail-asking questions.  
+Do not repeat previously asked questions: ${usedQuestions.join("; ")}.  
+Return only the 3 numbered questions, no extra text.
 `;
 
   const prompt = idioma === "pt" ? promptPT : promptEN;
