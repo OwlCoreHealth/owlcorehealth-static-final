@@ -17,6 +17,20 @@ let sessionMemory = {
   usedQuestions: [],
   emailOffered: false
 };
+function setSintomaAtual(novoSintoma) {
+  if (sessionMemory.funnelPhase < 6 && sessionMemory.sintomaAtual && sessionMemory.sintomaAtual !== novoSintoma) {
+    return sessionMemory.sintomaAtual;
+  }
+  sessionMemory.sintomaAtual = novoSintoma;
+  sessionMemory.categoriaAtual = novoSintoma;
+  return novoSintoma;
+}
+
+function advanceFunnelPhase() {
+  if (sessionMemory.funnelPhase < 6) {
+    sessionMemory.funnelPhase++;
+  }
+}
 
 function getFunnelKey(phase) {
   switch (phase) {
