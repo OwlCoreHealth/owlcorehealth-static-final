@@ -372,6 +372,13 @@ Answer only with the symptom from the list that best matches or is most **simila
 }
 
 export default async function handler(req, res) {
+  console.log("🚀 Novo request /api/chat recebido", {
+    message: req.body.message,
+    selectedQuestion: req.body.selectedQuestion,
+    idioma: req.body.idioma,
+    timestamp: new Date().toISOString()
+  });
+
   if (req.method !== "POST") return res.status(405).json({ error: "Método não permitido" });
 
   const { message, selectedQuestion, idioma } = req.body;
@@ -379,6 +386,9 @@ export default async function handler(req, res) {
   const isFollowUp = Boolean(selectedQuestion);
   const intent = await classifyUserIntent(userInput, idioma || "en");
   let gptResponse;
+
+  // ... resto do código
+}
 
   if (intent !== "sintoma") {
     gptResponse = await generateFreeTextWithGPT(
