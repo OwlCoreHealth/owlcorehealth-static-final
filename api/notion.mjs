@@ -2,6 +2,26 @@
 import { Client } from "@notionhq/client";
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 const databaseId = process.env.NOTION_DATABASE_ID;
+export async function getAllSymptoms() {
+  try {
+    const response = await notion.databases.query({
+      database_id: databaseId,
+      page_size: 100
+    });
+
+    const symptoms = response.results.map(page => {
+      // Ajuste o campo "Symptoms" para o nome correto na sua tabela
+      const symptomText = page.properties.Symptoms?.text?.[0]?.plain_text;
+      return symptomText ? symptomText.toLowerCase().trim() : null;
+    }).filter(Boolean);
+
+    return symptoms;
+  } catch (error) {
+    console.error("Erro ao buscar lista de sintomas do Notion:", error);
+    return [];
+  }
+}
+
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const GPT_MODEL = "gpt-4o-mini";
 
