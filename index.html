@@ -215,13 +215,14 @@
     
   /* --- INÍCIO DOS AJUSTES DE LAYOUT DO DIÁLOGO --- */
   .response {
-  max-height: 600px;   /* limita altura da caixa */
-  overflow-y: auto;    /* ativa barra de rolagem vertical */
-  padding-right: 0;    /* já está zero, ok */
-  width: 67vw;
-  max-width: 900px;
+  max-height: none;
+  height: auto; 
+  overflow-y: visible; 
   margin: 0 auto 16px auto;
   text-align: left;
+  width: 67vw;
+  max-width: 900px;
+  padding-right: 12px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -243,7 +244,6 @@
   color: #222222;
   font-weight: 400;
   text-align: left;
-  margin-right: 12px; /* espaçamento para o texto, sem empurrar a barra */
 }
 
 .bot-message > div:last-child p {
@@ -325,6 +325,22 @@
   background-color: #a3c4ff; /* Hover um pouco mais escuro */
 }
 
+  .input-area {
+    width: 67vw;
+    max-width: 900px;
+    background-color: #ECECF3;
+    border-radius: 24px;
+    padding: 0 16px 16px 16px;
+    height: 104px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 auto 24px auto;
+    position: relative;
+    cursor: text;
+  }
+    
 @media (min-width: 601px) {
   .side-menu {
     left: -280px;
@@ -1013,7 +1029,7 @@ readAloudButton?.addEventListener('click', () => {
         alert('❌ There was an error submitting your email.');
       }
     } catch (err) {
-      alert('⚠️ Connection error. Please try again later.');
+      alert(⚠️ Connection error. Please try again later.');
     }
   }
 </script>
