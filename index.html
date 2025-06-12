@@ -215,14 +215,13 @@
     
   /* --- INÍCIO DOS AJUSTES DE LAYOUT DO DIÁLOGO --- */
   .response {
-  max-height: none;
-  height: auto; 
-  overflow-y: visible; 
-  margin: 0 auto 16px auto;
-  text-align: left;
+  max-height: 600px;   /* limita altura da caixa */
+  overflow-y: auto;    /* ativa barra de rolagem vertical */
+  padding-right: 0;    /* já está zero, ok */
   width: 67vw;
   max-width: 900px;
-  padding-right: 0;
+  margin: 0 auto 16px auto;
+  text-align: left;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -244,6 +243,7 @@
   color: #222222;
   font-weight: 400;
   text-align: left;
+  margin-right: 12px; /* espaçamento para o texto, sem empurrar a barra */
 }
 
 .bot-message > div:last-child p {
