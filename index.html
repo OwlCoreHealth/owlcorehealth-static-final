@@ -531,21 +531,22 @@ body.chat-started svg.logo {
 body.chat-started .chat-launcher-button {
   display: none !important;
 }
+
   </style>
 </head>
 <body>
-<header class="top-bar">
-  <button class="back-to-home" onclick="window.location.href='https://www.naturepharmalab.com/'">
-    Back to Homepage
-  </button>
+<button id="keep-this-button" class="back-to-home" onclick="window.location.href='https://www.naturepharmalab.com/'">
+  Back to Homepage
+</button>
+ 
+  <div class="container">
 
-  <div class="menu-hamburger" aria-label="Menu" role="button" tabindex="0"
-       onclick="toggleMenu()" onkeydown="if(event.key==='Enter'){toggleMenu();}">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-</header>
+    <!-- Menu Hamburguer -->
+    <div class="menu-hamburger" aria-label="Menu" role="button" tabindex="0" onclick="toggleMenu()" onkeydown="if(event.key==='Enter'){toggleMenu();}">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
 
     <!-- Menu Lateral -->
     <nav class="side-menu" id="sideMenu" aria-label="Main menu">
