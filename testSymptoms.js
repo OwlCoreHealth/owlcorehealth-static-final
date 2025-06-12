@@ -1,4 +1,4 @@
-import { getAllSymptoms } from "./api/data/notion.mjs";
+import { getAllSymptoms } from "./notion.mjs";
 
 (async () => {
   const sintomas = await getAllSymptoms();
