@@ -445,6 +445,40 @@
     padding: 0 12px !important;
     box-sizing: border-box;
   }
+.top-bar-mobile {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 48px;
+    background-color: white;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .top-bar-mobile .back-to-home {
+    background-color: #E3ECF7;
+    border: none;
+    border-radius: 12px;
+    color: #333;
+    font-size: 10px;
+    padding: 6px 12px;
+    cursor: pointer;
+  }
+
+  /* Adiciona espaço no topo do conteúdo apenas em mobile */
+  .container {
+    padding-top: 60px !important;
+  }
+
+  /* Esconde o botão duplicado no desktop */
+  #keep-this-button {
+    display: none !important;
+  }
 }
 
 /* Estilos globais (para ambos os tamanhos de tela) */
@@ -535,18 +569,19 @@ body.chat-started .chat-launcher-button {
   </style>
 </head>
 <body>
-<button id="keep-this-button" class="back-to-home" onclick="window.location.href='https://www.naturepharmalab.com/'">
-  Back to Homepage
-</button>
- 
-  <div class="container">
+<!-- Header para mobile -->
+<header class="top-bar-mobile">
+  <button class="back-to-home" onclick="window.location.href='https://www.naturepharmalab.com/'">
+    Back to Homepage
+  </button>
 
-    <!-- Menu Hamburguer -->
-    <div class="menu-hamburger" aria-label="Menu" role="button" tabindex="0" onclick="toggleMenu()" onkeydown="if(event.key==='Enter'){toggleMenu();}">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
+  <div class="menu-hamburger" aria-label="Menu" role="button" tabindex="0"
+       onclick="toggleMenu()" onkeydown="if(event.key==='Enter'){toggleMenu();}">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</header>
 
     <!-- Menu Lateral -->
     <nav class="side-menu" id="sideMenu" aria-label="Main menu">
