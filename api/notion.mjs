@@ -3,11 +3,18 @@ dotenv.config();
 
 import { Client } from "@notionhq/client";
 
-console.log("NOTION_DATABASE_ID bruto:", process.env.NOTION_DATABASE_ID); // <=== Adicione esta linha para debug
+console.log("NOTION_DATABASE_ID bruto:", process.env.NOTION_DATABASE_ID); // Debug simples
+
+const rawDbId = process.env.NOTION_DATABASE_ID;
+console.log(
+  "Raw Database ID chars (hex):",
+  [...rawDbId].map(c => c.charCodeAt(0).toString(16)).join(" ")
+);
+
+const databaseId = rawDbId.replace(/['"]/g, "").trim();
+console.log("Database ID usado:", databaseId);
 
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
-const databaseId = process.env.NOTION_DATABASE_ID?.replace(/['"]/g, "").trim();
-console.log("Database ID usado:", databaseId);
 
 export async function getAllSymptoms() {
   try {
@@ -15,6 +22,12 @@ export async function getAllSymptoms() {
       database_id: databaseId,
       page_size: 100
     });
+    // ... seu código continua normalmente aqui
+  } catch (error) {
+    console.error("Erro ao buscar lista de sintomas do Notion:", error);
+    return [];
+  }
+}
     
     const symptoms = response.results.map(page => {
       // Ajuste o campo "Symptoms" para o nome correto na sua tabela do Notion
