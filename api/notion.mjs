@@ -3,6 +3,15 @@ dotenv.config();
 
 import { Client } from "@notionhq/client";
 
+// Função utilitária para extrair texto da propriedade Notion
+function getTextFromProperty(prop) {
+  if (!prop) return "";
+  if (prop.text) return prop.text.map(t => t.plain_text).join(" ");
+  if (prop.rich_text) return prop.rich_text.map(t => t.plain_text).join(" ");
+  if (prop.title) return prop.title.map(t => t.plain_text).join(" ");
+  return "";
+}
+
 console.log("NOTION_DATABASE_ID bruto:", process.env.NOTION_DATABASE_ID); // Debug simples
 
 const rawDbId = process.env.NOTION_DATABASE_ID;
@@ -23,11 +32,14 @@ export async function getAllSymptoms() {
       database_id: databaseId,
       page_size: 100
     });
-    // resto do código
+
+    // Debug da estrutura da propriedade Symptoms na primeira página
+    if (response.results.length > 0) {
+      console.log("Exemplo estrutura Symptoms da primeira página:", JSON.stringify(response.results[0].properties.Symptoms, null, 2));
+    }
 
     const symptoms = response.results.map(page => {
-      // Ajuste o campo "Symptoms" para o nome correto na sua tabela do Notion
-      const symptomText = page.properties.Symptoms?.text?.[0]?.plain_text;
+      const symptomText = getTextFromProperty(page.properties.Symptoms);
       return symptomText ? symptomText.toLowerCase().trim() : null;
     }).filter(Boolean);
 
