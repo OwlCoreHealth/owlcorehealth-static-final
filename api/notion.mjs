@@ -18,10 +18,12 @@ const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
 export async function getAllSymptoms() {
   try {
+    console.log("Database ID exato enviado ao Notion:", JSON.stringify(databaseId));
     const response = await notion.databases.query({
       database_id: databaseId,
       page_size: 100
     });
+    // resto do código
 
     const symptoms = response.results.map(page => {
       // Ajuste o campo "Symptoms" para o nome correto na sua tabela do Notion
