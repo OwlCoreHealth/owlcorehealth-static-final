@@ -47,91 +47,106 @@ export async function getSymptomContext(input, funnelPhase, previousSymptom, use
     ]
   };
 
-  const response = await notion.databases.query({
-    database_id: databaseId,
-    filter: filtro
-  });
+  try {
+    const response = await notion.databases.query({
+      database_id: databaseId,
+      filter: filtro
+    });
 
-  const page = response.results[0];
+    const page = response.results[0];
 
-  if (!page) {
-    console.warn("❗️Nenhuma entrada encontrada no Notion para o input:", input);
+    if (!page) {
+      console.warn("❗️Nenhuma entrada encontrada no Notion para o input:", input);
 
-    // 🧠 Fallback: Pedir ao GPT uma categoria sintomática aproximada
-    const fallbackCategory = await identifySymptomCategoryWithGPT(input);
+      // 🧠 Fallback: Pedir ao GPT uma categoria sintomática aproximada
+      const fallbackCategory = await identifySymptomCategoryWithGPT(input);
 
-    // Mapeamento manual de categorias sintomáticas
-    const categoryMap = {
-      gut: "bloating and skin irritation",
-      metabolism: "belly fat and fatigue",
-      oral: "bad breath and gum problems",
-      brain: "brain fog and anxiety",
-      immunity: "low immunity and sugar imbalance"
+      // Mapeamento manual de categorias sintomáticas
+      const categoryMap = {
+        gut: "bloating and skin irritation",
+        metabolism: "belly fat and fatigue",
+        oral: "bad breath and gum problems",
+        brain: "brain fog and anxiety",
+        immunity: "low immunity and sugar imbalance"
+      };
+
+      const fallbackSymptom = categoryMap[fallbackCategory] || "general inflammation";
+
+      return {
+        gptPromptData: {
+          prompt: "You are OwlCoreHealth AI.",
+          context: { selectedQuestion: null }
+        },
+        sintoma: fallbackSymptom,
+        funnelPhase,
+        language: "en",
+        funnelTexts: {},
+        followupQuestions: []
+      };
+    }
+
+    const getTexts = (field) => {
+      const raw = page.properties[field]?.text?.[0]?.plain_text || ""; 
+      return raw.split("||").map(t => t.trim()).filter(Boolean);
     };
 
-    const fallbackSymptom = categoryMap[fallbackCategory] || "general inflammation";
+    const symptomsContent = page.properties?.Symptoms?.text?.[0]?.plain_text || previousSymptom;
 
     return {
       gptPromptData: {
         prompt: "You are OwlCoreHealth AI.",
         context: { selectedQuestion: null }
       },
-      sintoma: fallbackSymptom,
+      sintoma: symptomsContent,
+      funnelPhase,
+      language: "en",
+      funnelTexts: {
+        base: [
+          page.properties["Funnel 1 Variation 1"]?.text?.[0]?.plain_text || "",
+          page.properties["Funnel 1 Variation 2"]?.text?.[0]?.plain_text || "",
+          page.properties["Funnel 1 Variation 3"]?.text?.[0]?.plain_text || ""
+        ].filter(Boolean),
+        gravidade: [
+          page.properties["Funnel 2 Variation 1"]?.text?.[0]?.plain_text || "",
+          page.properties["Funnel 2 Variation 2"]?.text?.[0]?.plain_text || "",
+          page.properties["Funnel 2 Variation 3"]?.text?.[0]?.plain_text || ""
+        ].filter(Boolean),
+        estatisticas: [
+          page.properties["Funnel 3 Variation 1"]?.text?.[0]?.plain_text || "",
+          page.properties["Funnel 3 Variation 2"]?.text?.[0]?.plain_text || "",
+          page.properties["Funnel 3 Variation 3"]?.text?.[0]?.plain_text || ""
+        ].filter(Boolean),
+        nutrientes: [
+          page.properties["Funnel 4 Variation 1"]?.text?.[0]?.plain_text || "",
+          page.properties["Funnel 4 Variation 2"]?.text?.[0]?.plain_text || "",
+          page.properties["Funnel 4 Variation 3"]?.text?.[0]?.plain_text || ""
+        ].filter(Boolean),
+        suplemento: [
+          page.properties["Funnel 5 Variation 1"]?.text?.[0]?.plain_text || "",
+          page.properties["Funnel 5 Variation 2"]?.text?.[0]?.plain_text || "",
+          page.properties["Funnel 5 Variation 3"]?.text?.[0]?.plain_text || ""
+        ].filter(Boolean),
+        cta: [
+          page.properties["Links"]?.text?.[0]?.plain_text || ""
+        ].filter(Boolean)
+      },
+      followupQuestions: []
+    };
+
+  } catch (error) {
+    console.error("Erro ao buscar contexto do sintoma no Notion:", error);
+    return {
+      gptPromptData: {
+        prompt: "You are OwlCoreHealth AI.",
+        context: { selectedQuestion: null }
+      },
+      sintoma: input,
       funnelPhase,
       language: "en",
       funnelTexts: {},
       followupQuestions: []
     };
   }
-
-  const getTexts = (field) => {
-    const raw = page.properties[field]?.text?.[0]?.plain_text || "";
-    return raw.split("||").map(t => t.trim()).filter(Boolean);
-  };
-
-  // Acessar o conteúdo da coluna "Symptoms" diretamente
-  const symptomsContent = page.properties?.Symptoms?.text?.[0]?.plain_text || previousSymptom;
-
-  return {
-    gptPromptData: {
-      prompt: "You are OwlCoreHealth AI.",
-      context: { selectedQuestion: null }
-    },
-    sintoma: symptomsContent,
-    funnelPhase,
-    language: "en",
-    funnelTexts: {
-      base: [
-        page.properties["Funnel 1 Variation 1"]?.text?.[0]?.plain_text || "",
-        page.properties["Funnel 1 Variation 2"]?.text?.[0]?.plain_text || "",
-        page.properties["Funnel 1 Variation 3"]?.text?.[0]?.plain_text || ""
-      ].filter(Boolean),
-      gravidade: [
-        page.properties["Funnel 2 Variation 1"]?.text?.[0]?.plain_text || "",
-        page.properties["Funnel 2 Variation 2"]?.text?.[0]?.plain_text || "",
-        page.properties["Funnel 2 Variation 3"]?.text?.[0]?.plain_text || ""
-      ].filter(Boolean),
-      estatisticas: [
-        page.properties["Funnel 3 Variation 1"]?.text?.[0]?.plain_text || "",
-        page.properties["Funnel 3 Variation 2"]?.text?.[0]?.plain_text || "",
-        page.properties["Funnel 3 Variation 3"]?.text?.[0]?.plain_text || ""
-      ].filter(Boolean),
-      nutrientes: [
-        page.properties["Funnel 4 Variation 1"]?.text?.[0]?.plain_text || "",
-        page.properties["Funnel 4 Variation 2"]?.text?.[0]?.plain_text || "",
-        page.properties["Funnel 4 Variation 3"]?.text?.[0]?.plain_text || ""
-      ].filter(Boolean),
-      suplemento: [
-        page.properties["Funnel 5 Variation 1"]?.text?.[0]?.plain_text || "",
-        page.properties["Funnel 5 Variation 2"]?.text?.[0]?.plain_text || "",
-        page.properties["Funnel 5 Variation 3"]?.text?.[0]?.plain_text || ""
-      ].filter(Boolean),
-      cta: [
-        page.properties["Links"]?.text?.[0]?.plain_text || ""
-      ].filter(Boolean)
-    },
-    followupQuestions: []
-  };
 }
 
 async function identifySymptomCategoryWithGPT(input) {
@@ -157,6 +172,6 @@ async function identifySymptomCategoryWithGPT(input) {
     return data.choices?.[0]?.message?.content?.trim().toLowerCase();
   } catch (e) {
     console.warn("⚠️ Erro no fallback GPT:", e);
-    return "gut"; // fallback padrão seguro
+    return "gut";
   }
 }
