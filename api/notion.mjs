@@ -2,6 +2,7 @@
 import { Client } from "@notionhq/client";
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 const databaseId = process.env.NOTION_DATABASE_ID?.replace(/['"]/g, "").trim();
+console.log("Database ID usado:", databaseId);
 export async function getAllSymptoms() {
   try {
     const response = await notion.databases.query({
