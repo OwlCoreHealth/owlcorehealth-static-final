@@ -1,7 +1,7 @@
 // notion.mjs (com fallback GPT se o Notion não encontrar)
 import { Client } from "@notionhq/client";
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
-const databaseId = process.env.NOTION_DATABASE_ID;
+const databaseId = process.env.NOTION_DATABASE_ID?.replace(/['"]/g, "").trim();
 export async function getAllSymptoms() {
   try {
     const response = await notion.databases.query({
