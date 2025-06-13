@@ -1,8 +1,12 @@
-// notion.mjs (com fallback GPT se o Notion não encontrar)
+import dotenv from "dotenv";
+dotenv.config();
+
 import { Client } from "@notionhq/client";
+
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 const databaseId = process.env.NOTION_DATABASE_ID?.replace(/['"]/g, "").trim();
 console.log("Database ID usado:", databaseId);
+
 export async function getAllSymptoms() {
   try {
     const response = await notion.databases.query({
@@ -11,7 +15,7 @@ export async function getAllSymptoms() {
     });
 
     const symptoms = response.results.map(page => {
-      // Ajuste o campo "Symptoms" para o nome correto na sua tabela
+      // Ajuste o campo "Symptoms" para o nome correto na sua tabela do Notion
       const symptomText = page.properties.Symptoms?.text?.[0]?.plain_text;
       return symptomText ? symptomText.toLowerCase().trim() : null;
     }).filter(Boolean);
