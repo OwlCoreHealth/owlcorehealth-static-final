@@ -22,13 +22,7 @@ export async function getAllSymptoms() {
       database_id: databaseId,
       page_size: 100
     });
-    // ... seu código continua normalmente aqui
-  } catch (error) {
-    console.error("Erro ao buscar lista de sintomas do Notion:", error);
-    return [];
-  }
-}
-    
+
     const symptoms = response.results.map(page => {
       // Ajuste o campo "Symptoms" para o nome correto na sua tabela do Notion
       const symptomText = page.properties.Symptoms?.text?.[0]?.plain_text;
@@ -91,7 +85,7 @@ export async function getSymptomContext(input, funnelPhase, previousSymptom, use
   }
 
   const getTexts = (field) => {
-    const raw = page.properties[field]?.text?.[0]?.plain_text || "";  // Mudança para 'text' e não 'rich_text'
+    const raw = page.properties[field]?.text?.[0]?.plain_text || "";
     return raw.split("||").map(t => t.trim()).filter(Boolean);
   };
 
@@ -103,7 +97,7 @@ export async function getSymptomContext(input, funnelPhase, previousSymptom, use
       prompt: "You are OwlCoreHealth AI.",
       context: { selectedQuestion: null }
     },
-    sintoma: symptomsContent,  // Agora, o sintoma é extraído diretamente da coluna "Symptoms"
+    sintoma: symptomsContent,
     funnelPhase,
     language: "en",
     funnelTexts: {
@@ -133,7 +127,7 @@ export async function getSymptomContext(input, funnelPhase, previousSymptom, use
         page.properties["Funnel 5 Variation 3"]?.text?.[0]?.plain_text || ""
       ].filter(Boolean),
       cta: [
-        page.properties["Links"]?.text?.[0]?.plain_text || ""  // Acessando "Links"
+        page.properties["Links"]?.text?.[0]?.plain_text || ""
       ].filter(Boolean)
     },
     followupQuestions: []
