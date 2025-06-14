@@ -411,30 +411,27 @@ if (
     cleanInput.match(/^\d+$/) // caso usuário só envie número (ex: escolha de opção)
   )
 ) {
-  // Avança fase do funil e sempre entrega follow-up
+  // --- AVANÇA O FUNIL ---
   sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
 
-  // NOVO BLOCO - GERA PERGUNTAS DE FOLLOW-UP DINÂMICAS
+  // --- GERA PERGUNTAS DINÂMICAS RELACIONADAS AO SINTOMA ---
+  const followupQuestions = await generateFollowUpQuestions(
+    { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
+    idioma
+  );
 
-sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
-
-// Chama função que gera perguntas provocativas para o sintoma atual
-const followupQuestions = await generateFollowUpQuestions(
-  { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
-  idioma
-);
-
-return res.status(200).json({
-  choices: [{
-    message: {
-      content: (idioma === "pt"
-        ? "Vamos explorar mais:\nEscolha uma das opções abaixo para continuarmos:\n\n"
-        : "Let's explore further:\nChoose one of the options below to continue:\n\n"
-      ) + followupQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n"),
-      followupQuestions: followupQuestions
-    }
-  }]
-});
+  return res.status(200).json({
+    choices: [{
+      message: {
+        content: (idioma === "pt"
+          ? "Vamos explorar mais:\nEscolha uma das opções abaixo para continuarmos:\n\n"
+          : "Let's explore further:\nChoose one of the options below to continue:\n\n"
+        ) + followupQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n"),
+        followupQuestions: followupQuestions
+      }
+    }]
+  });
+}
 
 // --- fim do bloco ---
 
