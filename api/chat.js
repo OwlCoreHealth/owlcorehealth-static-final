@@ -335,78 +335,105 @@ Answer only with the symptom from the list that best matches or is most **simila
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Método não permitido" });
 
-  const { message, selectedQuestion, idioma } = req.body;
+  const { message, selectedQuestion } = req.body;
   const userInput = selectedQuestion || message;
   const isFollowUp = Boolean(selectedQuestion);
-  const intent = await classifyUserIntent(userInput, idioma || "en");
-  // --- inserir aqui ---
-// --- TRATAMENTO MELHORADO PARA RESPOSTAS VAGAS/BREVES ---
-const vagueInputs = [
-  "true", "ok", "sim", "não", "nao", "yes", "no", "maybe", "sure", "certainly", "of course", "",
-  "next", "continue", "go", "seguir", "prosseguir", "avançar"
-];
-const cleanInput = (userInput || "").toString().trim().toLowerCase();
+  const idioma = "en"; // Sempre usa inglês (US English) como base
 
-if (
-  !isFollowUp &&
-  (
-    cleanInput.length < 3 ||
-    vagueInputs.includes(cleanInput) ||
-    cleanInput.match(/^\d+$/) // caso usuário só envie número (ex: escolha de opção)
-  )
-) {
-  // --- AVANÇA O FUNIL ---
-  sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
+  // Inputs muito vagos (não tratamos se for follow-up!)
+  const vagueInputs = ["true", "ok", "sim", "não", "nao", ""];
+  if (!isFollowUp && vagueInputs.includes((userInput || "").toString().trim().toLowerCase())) {
+    // Perguntas fixas para evitar "buraco"
+    const fallbackQuestions = [
+      "Did you know small changes can transform your health?",
+      "Want to find out what's sabotaging your progress?",
+      "Have you tried a natural method to fix this?"
+    ];
+    return res.status(200).json({
+      choices: [{
+        message: {
+          content: "Let's explore further:\nChoose one of the options below to continue:\n\n" +
+            fallbackQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n"),
+          followupQuestions: fallbackQuestions
+        }
+      }]
+    });
+  }
 
-  // --- GERA PERGUNTAS DINÂMICAS RELACIONADAS AO SINTOMA ---
-  const followupQuestions = await generateFollowUpQuestions(
+  // Avança a fase do funil ao clicar no follow-up
+  if (isFollowUp) {
+    sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
+  } else {
+    sessionMemory.funnelPhase = 1;
+    sessionMemory.usedQuestions = []; // reseta perguntas para novo sintoma
+    sessionMemory.sintomaAtual = null;
+  }
+
+  // Detecta sintoma (só se NÃO for follow-up)
+  if (!isFollowUp) {
+    // (Ideal: rode aqui sua função de intent/sintoma)
+    sessionMemory.sintomaAtual = userInput.toLowerCase();
+  }
+
+  // Busca contexto/fase do Notion para o sintoma e fase atual
+  let context = await getSymptomContext(
+    sessionMemory.sintomaAtual,
+    sessionMemory.funnelPhase,
+    sessionMemory.sintomaAtual,
+    sessionMemory.usedQuestions
+  );
+
+  const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
+  let funnelTexts = context.funnelTexts?.[funnelKey] || [];
+
+  if (!funnelTexts.length) {
+    // fallback, se Notion vazio
+    funnelTexts = [
+      `Sorry, we don’t have content for "${sessionMemory.sintomaAtual}" in this phase.`
+    ];
+  }
+
+  const baseText = funnelTexts[Math.floor(Math.random() * funnelTexts.length)];
+
+  // Reescreve copy com GPT para dar mais impacto, sem inventar conteúdo
+  const gptResponse = await rewriteWithGPT(
+    baseText,
+    sessionMemory.sintomaAtual,
+    idioma,
+    sessionMemory.funnelPhase,
+    sessionMemory.categoriaAtual
+  );
+
+  // Gera perguntas provocativas para o sintoma atual e fase
+  let followupQuestions = await generateFollowUpQuestions(
     { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
     idioma
   );
 
+  // Substitui “symptom” por sintoma real (corrige erro do GPT)
+  followupQuestions = followupQuestions.map(q =>
+    q.replace(/\[symptom\]/gi, sessionMemory.sintomaAtual)
+     .replace(/your symptom/gi, `your ${sessionMemory.sintomaAtual}`)
+     .replace(/the symptom/gi, sessionMemory.sintomaAtual)
+     .replace(/\bsymptom\b/gi, sessionMemory.sintomaAtual)
+     .replace(/\byour symptom\b/gi, `your ${sessionMemory.sintomaAtual}`)
+  );
+
+  // Monta a resposta do bot
+  let content = gptResponse + `\n\nLet's explore further: Choose one of the options below to continue:\n\n`;
+  followupQuestions.forEach((q, i) => {
+    content += `<div class="clickable-question" data-question="${encodeURIComponent(q)}">${i + 1}. ${q}</div>\n`;
+  });
+
   return res.status(200).json({
     choices: [{
       message: {
-        content: (idioma === "pt"
-          ? "Vamos explorar mais:\nEscolha uma das opções abaixo para continuarmos:\n\n"
-          : "Let's explore further:\nChoose one of the options below to continue:\n\n"
-        ) + followupQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n"),
-        followupQuestions: followupQuestions
+        content,
+        followupQuestions
       }
     }]
   });
 }
-
-// --- fim do bloco ---
-
-  let gptResponse;
-
-  if (intent !== "sintoma") {
-    gptResponse = await generateFreeTextWithGPT(
-      idioma === "pt"
-         ? `Você é o Dr. Owl, um assistente de saúde inteligente e focado em fornecer explicações científicas e objetivas. Um usuário fez uma pergunta fora do padrão de sintomas, que envolve curiosidade ou dúvida. Responda de forma clara, baseada em evidências científicas, sem humor ou metáforas. Pergunta do usuário: "${userInput}"`
-        : `You are Dr. Owl, a health assistant focused on providing scientific and objective explanations. A user has asked a question outside the symptom context, involving curiosity or doubt. Respond clearly, based on scientific evidence, without humor or metaphors. User's message: "${userInput}"`
-    );
-
-   const followupQuestions = await generateFollowUpQuestions(
-  { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
-  idioma
-);
-
-    let content = formatHybridResponse({}, gptResponse, followupQuestions, idioma);
-
-    if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
-      sessionMemory.emailOffered = true;
-    }
-
-    sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
-    sessionMemory.genericEntry = true;
-    sessionMemory.genericMessages = sessionMemory.genericMessages || [];
-    sessionMemory.genericMessages.push(userInput);
-
-    return res.status(200).json({
-      choices: [{ message: { content, followupQuestions } }]
-    });
 
   } else {
     // A PARTIR DAQUI: fluxo de tratamento do caso com sintoma
