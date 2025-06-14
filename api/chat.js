@@ -218,33 +218,24 @@ async function generateFreeTextWithGPT(prompt) {
 
 // Função para gerar as perguntas de follow-up com base no sintoma
 async function generateFollowUpQuestions(context, idioma) {
-  const usedQuestions = sessionMemory.usedQuestions || [];
   const symptom = context.sintoma || "symptom";
   const phase = context.funnelPhase || 1;
 
-  const promptPT = `
-Você é um assistente de saúde inteligente, focado no sintoma "${symptom}" e na fase do funil ${phase}.  
-Gere exatamente 3 perguntas curtas, provocativas, impactantes e objetivas que façam o usuário querer clicar para saber mais.  
-As perguntas devem ser relacionadas a dores, medos, soluções ou curiosidades diretamente ligadas ao sintoma.  
-Não peça para o usuário escrever nada, nem para explicar algo.  
-Evite perguntas filosóficas, genéricas ou que peçam mais detalhes.  
-Não repita nenhuma pergunta já feita: ${usedQuestions.join("; ")}.  
-Retorne apenas as 3 perguntas numeradas, sem texto adicional ou explicações.  
-Se não conseguir gerar perguntas novas, use perguntas poderosas de fallback, mas ainda assim curtas e focadas.  
-`;
-
-const promptEN = `
-You are a smart health assistant focused on the symptom "${symptom}" and funnel phase ${phase}.  
-Generate exactly 3 short, provocative, impactful, and objective questions that make the user want to click to learn more.  
-The questions should relate to pain, fear, solutions, or curiosities directly connected to the symptom.  
-Do not ask the user to write anything or explain.  
-Avoid philosophical, generic, or detail-asking questions.  
-Do not repeat any previously asked questions: ${usedQuestions.join("; ")}.  
-Return only the 3 numbered questions, with no extra text or explanations.  
-If you can't generate new questions, use powerful fallback questions but keep them short and focused.  
-`;
-
-  const prompt = idioma === "pt" ? promptPT : promptEN;
+  const promptEN = `
+Generate 3 follow-up questions for a sales funnel, focused on the symptom: "${symptom}". Each question must be of a different type:
+1. PAIN question: highlight a possible negative consequence or worsening of the symptom, with a provocative and alert tone.
+2. CURIOSITY question: bring a surprising fact, myth or little-known connection about the symptom, making the user want to know more.
+3. SOLUTION question: provoke the user about a natural, innovative or little-known solution for the symptom.
+The questions must:
+- Be short, direct and provocative
+- Never generic (always mention the symptom)
+- Focus on advancing the funnel (e.g., "Want to know how to avoid this?", "Would you be surprised by the solution?", etc)
+Format example:
+1. Did you know ignoring [symptom] can lead to [serious consequence]?
+2. Have you ever heard about a study linking [symptom] to [curiosity]?
+3. Have you ever thought about treating [symptom] naturally and quickly?
+Always generate the questions in American English (US English). Do not explain, do not repeat, just return the three numbered questions.
+  `;
 
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -256,11 +247,11 @@ If you can't generate new questions, use powerful fallback questions but keep th
       body: JSON.stringify({
         model: GPT_MODEL,
         messages: [
-          { role: "system", content: "You generate only 3 relevant and persuasive questions. No extra explanation." },
-          { role: "user", content: prompt }
+          { role: "system", content: "You are a health copywriter assistant." },
+          { role: "user", content: promptEN }
         ],
-        temperature: 0.75,
-        max_tokens: 300
+        temperature: 0.8,
+        max_tokens: 250
       })
     });
 
@@ -268,71 +259,14 @@ If you can't generate new questions, use powerful fallback questions but keep th
     let questionsRaw = data.choices?.[0]?.message?.content || "";
     let questions = questionsRaw.split(/\d+\.\s+/).filter(Boolean).slice(0, 3);
 
-    // Filtrar perguntas repetidas (exato match)
-    questions = questions.filter(q => !usedQuestions.includes(q));
-
-    // Atualiza as perguntas usadas na sessão
-    sessionMemory.usedQuestions.push(...questions);
-
-    // Se menos de 3 perguntas após filtro, adiciona fallback interno
-    let fallback = [];
-    if (sessionMemory.sintomaAtual === "gengivas inflamadas") {
-      fallback = idioma === "pt" ? [
-        "Você já visitou um dentista para tratar da inflamação nas gengivas?",
-        "Está sentindo algum desconforto além do sangramento das gengivas?",
-        "Sabia que a inflamação nas gengivas pode ser causada por uma higiene bucal inadequada?"
-      ] : [
-        "Have you visited a dentist to treat the gum inflammation?",
-        "Are you feeling any discomfort besides the gum bleeding?",
-        "Did you know that gum inflammation can be caused by poor oral hygiene?"
-      ];
-    } else if (sessionMemory.sintomaAtual === "acne") {
-      fallback = idioma === "pt" ? [
-        "Você já tentou algum tratamento para a acne?",
-        "Você sabe quais alimentos podem estar ajudando a piorar a acne?",
-        "Está lidando com acne principalmente em alguma área do rosto?"
-      ] : [
-        "Have you tried any treatments for acne?",
-        "Do you know which foods might be contributing to your acne?",
-        "Are you dealing with acne mainly in any specific area of your face?"
-      ];
-    } else {
-      // Fallback genérico se o sintoma não for específico
-      fallback = idioma === "pt" ? [
-        "Você já procurou tratamento para o seu sintoma?",
-        "Há algo específico que você gostaria de aprender sobre esse sintoma?",
-        "Você tem tentado alguma solução por conta própria?"
-      ] : [
-        "Have you sought treatment for this symptom?",
-        "Is there anything specific you'd like to learn about this symptom?",
-        "Have you tried any solutions on your own?"
-      ];
-    }
-
-    // Adiciona perguntas de fallback que ainda não foram usadas
-    for (const fq of fallback) {
-      if (questions.length >= 3) break;  // Limita a 3 perguntas
-      if (!sessionMemory.usedQuestions.includes(fq)) {
-        questions.push(fq);  // Adiciona a pergunta ao conjunto de perguntas
-        sessionMemory.usedQuestions.push(fq);  // Marca como já usada
-      }
-    }
-
-    return questions.slice(0, 3);
-
+    return questions;
   } catch (err) {
-    console.warn("❗️Erro ao gerar perguntas com GPT:", err);
-    return idioma === "pt"
-      ? [
-          "Você já tentou mudar sua alimentação ou rotina?",
-          "Como você acha que isso está afetando seu dia a dia?",
-          "Está disposto(a) a descobrir uma solução mais eficaz agora?"
-        ]
-      : [
-          "Have you tried adjusting your diet or lifestyle?",
-          "How do you think this is affecting your daily life?",
-          "Are you ready to explore a better solution now?"
-        ];
+    // fallback (em inglês)
+    return [
+      `Did you know ignoring ${symptom} can lead to chronic health problems?`,
+      `Ever wondered what most people get wrong about ${symptom}?`,
+      `Ready to discover a breakthrough solution for ${symptom}?`
+    ];
   }
 }
 
