@@ -216,7 +216,6 @@ async function generateFreeTextWithGPT(prompt) {
   }
 }
 
-// Função para gerar as perguntas de follow-up com base no sintoma
 async function generateFollowUpQuestions(context, idioma) {
   const symptom = context.sintoma || "symptom";
   const phase = context.funnelPhase || 1;
@@ -231,11 +230,12 @@ The questions must:
 - Never generic (always mention the symptom)
 - Focus on advancing the funnel (e.g., "Want to know how to avoid this?", "Would you be surprised by the solution?", etc)
 Format example:
-1. Did you know ignoring [symptom] can lead to [serious consequence]?
-2. Have you ever heard about a study linking [symptom] to [curiosity]?
-3. Have you ever thought about treating [symptom] naturally and quickly?
+1. Did you know ignoring ${symptom} can lead to serious health issues?
+2. Have you ever heard about a study linking ${symptom} to unexpected causes?
+3. Have you ever thought about treating ${symptom} naturally and quickly?
+Instead of writing [symptom], ALWAYS insert the exact text "${symptom}".
 Always generate the questions in American English (US English). Do not explain, do not repeat, just return the three numbered questions.
-  `;
+`;
 
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -257,11 +257,19 @@ Always generate the questions in American English (US English). Do not explain, 
 
     const data = await response.json();
     let questionsRaw = data.choices?.[0]?.message?.content || "";
+    // Divide as perguntas, ignora vazias, pega as 3 primeiras
     let questions = questionsRaw.split(/\d+\.\s+/).filter(Boolean).slice(0, 3);
+
+    // Substitui qualquer '[symptom]' pelo sintoma real (caso o GPT não siga a instrução)
+    questions = questions.map(q =>
+      q.replace(/\[symptom\]/gi, symptom)
+       .replace(/your symptom/gi, `your ${symptom}`)
+       .replace(/the symptom/gi, symptom)
+    );
 
     return questions;
   } catch (err) {
-    // fallback (em inglês)
+    // fallback em inglês (sempre usa o sintoma!)
     return [
       `Did you know ignoring ${symptom} can lead to chronic health problems?`,
       `Ever wondered what most people get wrong about ${symptom}?`,
