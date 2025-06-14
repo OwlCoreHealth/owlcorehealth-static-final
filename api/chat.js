@@ -396,10 +396,25 @@ export default async function handler(req, res) {
   const isFollowUp = Boolean(selectedQuestion);
   const intent = await classifyUserIntent(userInput, idioma || "en");
   // --- inserir aqui ---
-const vagueInputs = ["true", "ok", "sim", "não", "nao", ""];
+// --- TRATAMENTO MELHORADO PARA RESPOSTAS VAGAS/BREVES ---
+const vagueInputs = [
+  "true", "ok", "sim", "não", "nao", "yes", "no", "maybe", "sure", "certainly", "of course", "",
+  "next", "continue", "go", "seguir", "prosseguir", "avançar"
+];
+const cleanInput = userInput.trim().toLowerCase();
 
-if (!isFollowUp && vagueInputs.includes(userInput.trim().toLowerCase())) {
-  // Retorna perguntas provocativas fixas para mensagens vagas
+if (
+  !isFollowUp &&
+  (
+    cleanInput.length < 3 ||
+    vagueInputs.includes(cleanInput) ||
+    cleanInput.match(/^\d+$/) // caso usuário só envie número (ex: escolha de opção)
+  )
+) {
+  // Avança fase do funil e sempre entrega follow-up
+  sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
+
+  // Escolhe perguntas provocativas de acordo com idioma
   const fallbackQuestions = idioma === "pt"
     ? [
         "Você sabia que pequenas mudanças podem transformar sua saúde?",
@@ -415,15 +430,16 @@ if (!isFollowUp && vagueInputs.includes(userInput.trim().toLowerCase())) {
   return res.status(200).json({
     choices: [{
       message: {
-        content: idioma === "pt" ? 
-          "Vamos explorar mais:\nEscolha uma das opções abaixo para continuarmos:\n\n" + fallbackQuestions.map((q,i) => `${i+1}. ${q}`).join("\n")
-          :
-          "Let's explore further:\nChoose one of the options below to continue:\n\n" + fallbackQuestions.map((q,i) => `${i+1}. ${q}`).join("\n"),
+        content: (idioma === "pt"
+          ? "Vamos explorar mais:\nEscolha uma das opções abaixo para continuarmos:\n\n"
+          : "Let's explore further:\nChoose one of the options below to continue:\n\n"
+        ) + fallbackQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n"),
         followupQuestions: fallbackQuestions
       }
     }]
   });
 }
+
 // --- fim do bloco ---
 
   let gptResponse;
