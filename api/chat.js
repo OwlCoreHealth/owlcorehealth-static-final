@@ -262,10 +262,12 @@ Always generate the questions in American English (US English). Do not explain, 
 
     // Substitui qualquer '[symptom]' pelo sintoma real (caso o GPT não siga a instrução)
     questions = questions.map(q =>
-      q.replace(/\[symptom\]/gi, symptom)
-       .replace(/your symptom/gi, `your ${symptom}`)
-       .replace(/the symptom/gi, symptom)
-    );
+  q.replace(/\[symptom\]/gi, symptom)
+   .replace(/your symptom/gi, `your ${symptom}`)
+   .replace(/the symptom/gi, symptom)
+   .replace(/\bsymptom\b/gi, symptom) // <- linha adicionada
+   .replace(/\byour symptom\b/gi, `your ${symptom}`) // redundante, mas cobre variações
+);
 
     return questions;
   } catch (err) {
