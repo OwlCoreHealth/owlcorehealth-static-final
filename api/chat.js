@@ -401,7 +401,7 @@ const vagueInputs = [
   "true", "ok", "sim", "não", "nao", "yes", "no", "maybe", "sure", "certainly", "of course", "",
   "next", "continue", "go", "seguir", "prosseguir", "avançar"
 ];
-const cleanInput = userInput.trim().toLowerCase();
+const cleanInput = (userInput || "").toString().trim().toLowerCase();
 
 if (
   !isFollowUp &&
