@@ -414,31 +414,27 @@ if (
   // Avança fase do funil e sempre entrega follow-up
   sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
 
-  // Escolhe perguntas provocativas de acordo com idioma
-  const fallbackQuestions = idioma === "pt"
-    ? [
-        "Você sabia que pequenas mudanças podem transformar sua saúde?",
-        "Quer descobrir o que está sabotando seu progresso?",
-        "Já tentou um método natural para resolver isso?"
-      ]
-    : [
-        "Did you know small changes can transform your health?",
-        "Want to find out what's sabotaging your progress?",
-        "Have you tried a natural method to fix this?"
-      ];
+  // NOVO BLOCO - GERA PERGUNTAS DE FOLLOW-UP DINÂMICAS
 
-  return res.status(200).json({
-    choices: [{
-      message: {
-        content: (idioma === "pt"
-          ? "Vamos explorar mais:\nEscolha uma das opções abaixo para continuarmos:\n\n"
-          : "Let's explore further:\nChoose one of the options below to continue:\n\n"
-        ) + fallbackQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n"),
-        followupQuestions: fallbackQuestions
-      }
-    }]
-  });
-}
+sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
+
+// Chama função que gera perguntas provocativas para o sintoma atual
+const followupQuestions = await generateFollowUpQuestions(
+  { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
+  idioma
+);
+
+return res.status(200).json({
+  choices: [{
+    message: {
+      content: (idioma === "pt"
+        ? "Vamos explorar mais:\nEscolha uma das opções abaixo para continuarmos:\n\n"
+        : "Let's explore further:\nChoose one of the options below to continue:\n\n"
+      ) + followupQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n"),
+      followupQuestions: followupQuestions
+    }
+  }]
+});
 
 // --- fim do bloco ---
 
