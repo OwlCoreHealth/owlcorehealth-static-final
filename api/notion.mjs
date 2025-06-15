@@ -143,7 +143,6 @@ suplemento: [
 cta: [
   page.properties["Links"]?.rich_text?.[0]?.plain_text || ""
 ].filter(Boolean)
-
   },
   followupQuestions: []
 };
