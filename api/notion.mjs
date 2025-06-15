@@ -56,8 +56,8 @@ const GPT_MODEL = "gpt-4o-mini";
 export async function getSymptomContext(input, funnelPhase, previousSymptom, usedQuestions) {
   const filtro = {
     or: [
-      { property: "Keywords", text: { contains: input } },
-      { property: "Symptoms", text: { contains: input } }
+     { property: "Keywords", rich_text: { contains: input } }
+     { property: "Symptoms", rich_text: { contains: input } }
     ]
   };
 
@@ -116,33 +116,34 @@ export async function getSymptomContext(input, funnelPhase, previousSymptom, use
   language: "en",
   funnelTexts: {
     base: [
-      page.properties["Funnel Awareness 1"]?.text?.[0]?.plain_text || "",
-      page.properties["Funnel Awareness 2"]?.text?.[0]?.plain_text || "",
-      page.properties["Funnel Awareness 3"]?.text?.[0]?.plain_text || ""
-    ].filter(Boolean),
-    gravidade: [
-      page.properties["Funnel Severity 1"]?.text?.[0]?.plain_text || "",
-      page.properties["Funnel Severity 2"]?.text?.[0]?.plain_text || "",
-      page.properties["Funnel Severity 3"]?.text?.[0]?.plain_text || ""
-    ].filter(Boolean),
-    estatisticas: [
-      page.properties["Funnel Proof 1"]?.text?.[0]?.plain_text || "",
-      page.properties["Funnel Proof 2"]?.text?.[0]?.plain_text || "",
-      page.properties["Funnel Proof 3"]?.text?.[0]?.plain_text || ""
-    ].filter(Boolean),
-    nutrientes: [
-      page.properties["Funnel Solution 1"]?.text?.[0]?.plain_text || "",
-      page.properties["Funnel Solution 2"]?.text?.[0]?.plain_text || "",
-      page.properties["Funnel Solution 3"]?.text?.[0]?.plain_text || ""
-    ].filter(Boolean),
-    suplemento: [
-      page.properties["Funnel Advanced 1"]?.text?.[0]?.plain_text || "",
-      page.properties["Funnel Advanced 2"]?.text?.[0]?.plain_text || "",
-      page.properties["Funnel Advanced 3"]?.text?.[0]?.plain_text || ""
-    ].filter(Boolean),
-    cta: [
-      page.properties["Links"]?.text?.[0]?.plain_text || ""
-    ].filter(Boolean)
+  page.properties["Funnel Awareness 1"]?.rich_text?.[0]?.plain_text || "",
+  page.properties["Funnel Awareness 2"]?.rich_text?.[0]?.plain_text || "",
+  page.properties["Funnel Awareness 3"]?.rich_text?.[0]?.plain_text || ""
+].filter(Boolean),
+gravidade: [
+  page.properties["Funnel Severity 1"]?.rich_text?.[0]?.plain_text || "",
+  page.properties["Funnel Severity 2"]?.rich_text?.[0]?.plain_text || "",
+  page.properties["Funnel Severity 3"]?.rich_text?.[0]?.plain_text || ""
+].filter(Boolean),
+estatisticas: [
+  page.properties["Funnel Proof 1"]?.rich_text?.[0]?.plain_text || "",
+  page.properties["Funnel Proof 2"]?.rich_text?.[0]?.plain_text || "",
+  page.properties["Funnel Proof 3"]?.rich_text?.[0]?.plain_text || ""
+].filter(Boolean),
+nutrientes: [
+  page.properties["Funnel Solution 1"]?.rich_text?.[0]?.plain_text || "",
+  page.properties["Funnel Solution 2"]?.rich_text?.[0]?.plain_text || "",
+  page.properties["Funnel Solution 3"]?.rich_text?.[0]?.plain_text || ""
+].filter(Boolean),
+suplemento: [
+  page.properties["Funnel Advanced 1"]?.rich_text?.[0]?.plain_text || "",
+  page.properties["Funnel Advanced 2"]?.rich_text?.[0]?.plain_text || "",
+  page.properties["Funnel Advanced 3"]?.rich_text?.[0]?.plain_text || ""
+].filter(Boolean),
+cta: [
+  page.properties["Links"]?.rich_text?.[0]?.plain_text || ""
+].filter(Boolean)
+
   },
   followupQuestions: []
 };
