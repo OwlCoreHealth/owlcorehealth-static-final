@@ -17,6 +17,10 @@ app.get("/", (req, res) => {
 // IMPORTANTE: aqui você pode adicionar suas rotas de API se precisar
 // Exemplo para API:
 // import './api/chat.js'; // se você usar rotas tipo app.use('/api', ...);
+// Isso garante que ao acessar localhost:3000, ele retorna index.html
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
 
 app.listen(3000, () => {
   console.log("Servidor rodando em http://localhost:3000");
