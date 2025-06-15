@@ -38,7 +38,7 @@ export async function getAllSymptoms() {
     console.log("Vai enviar ao Notion:", JSON.stringify(databaseIdClean), databaseIdClean.length);
 
 const response = await notion.databases.query({
-  database_id: databaseIdClean,
+  database_id: String(databaseIdClean),
   page_size: 100
 });
  
