@@ -8,6 +8,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const nameInput = document.querySelector('.user-name');
   let isSpeaking = false;
   let userName = "amigo";
+  
+  window.funnelPhase = 1;        // Fase do funil
+  window.sintomaAtual = "";      // Último sintoma consultado
+  window.isFollowUp = false;     // Se está em follow-up
 
   function getEmojiFromName(name) {
     const clean = (name || "").toLowerCase();
@@ -119,7 +123,7 @@ if (role === 'bot') {
     }
   }
 
-  if (sendBtn) {
+ if (sendBtn) {
   sendBtn.addEventListener('click', async () => {
     const chatOwlButton = document.getElementById('chatOwlButton');
     if (chatOwlButton) {
@@ -128,6 +132,14 @@ if (role === 'bot') {
 
     const userText = inputField.value.trim();
     if (!userText) return;
+
+    // Reset só se NÃO for follow-up
+    if (!window.isFollowUp) {
+      window.funnelPhase = 1;
+      window.sintomaAtual = userText; // Novo sintoma
+    }
+    // Depois do envio, sempre resetar follow-up:
+    window.isFollowUp = false;
 
     // Adiciona classe chat-started após a primeira mensagem
     if (!primeiraMensagemEnviada) {
@@ -177,10 +189,13 @@ if (role === 'bot') {
     chatBox.scrollTop = chatBox.scrollHeight;
   }
 
-  function sendMessageWithSuggestion(text) {
-    inputField.value = text;
-    sendBtn.click();
-  }
+ function sendMessageWithSuggestion(text) {
+  inputField.value = text;
+  // Se for follow-up, avança a fase do funil:
+  window.funnelPhase = (window.funnelPhase || 1) + 1;
+  window.isFollowUp = true;
+  sendBtn.click();
+}
 
   if (micBtn && 'webkitSpeechRecognition' in window) {
     const recognition = new webkitSpeechRecognition();
