@@ -388,11 +388,17 @@ export default async function handler(req, res) {
   let funnelTexts = context.funnelTexts?.[funnelKey] || [];
 
   if (!funnelTexts.length) {
-    // fallback, se Notion vazio
+  // Fallback REAL
+  const fallbackGroup = fallbackTextsBySymptom[sessionMemory.sintomaAtual];
+  const fallbackKey = getFunnelKey(sessionMemory.funnelPhase); // "base", "gravidade", etc.
+  if (fallbackGroup && fallbackGroup[fallbackKey] && fallbackGroup[fallbackKey].length > 0) {
+    funnelTexts = fallbackGroup[fallbackKey];
+  } else {
     funnelTexts = [
       `Sorry, we don’t have content for "${sessionMemory.sintomaAtual}" in this phase.`
     ];
   }
+}
 
   const baseText = funnelTexts[Math.floor(Math.random() * funnelTexts.length)];
 
