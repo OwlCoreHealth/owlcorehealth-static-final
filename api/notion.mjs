@@ -107,49 +107,45 @@ export async function getSymptomContext(input, funnelPhase, previousSymptom, use
     const symptomsContent = page.properties?.Symptoms?.text?.[0]?.plain_text || previousSymptom;
 
     return {
-      gptPromptData: {
-        prompt: "You are OwlCoreHealth AI.",
-        context: { selectedQuestion: null }
-      },
-      sintoma: symptomsContent,
-      funnelPhase,
-      language: "en",
-      funnelTexts: {
-        base: [
-  page.properties["Funnel Awareness 1"]?.text?.[0]?.plain_text || "",
-  page.properties["Funnel Awareness 2"]?.text?.[0]?.plain_text || "",
-  page.properties["Funnel Awareness 3"]?.text?.[0]?.plain_text || ""
-].filter(Boolean),
-gravidade: [
-  page.properties["Funnel Severity 1"]?.text?.[0]?.plain_text || "",
-  page.properties["Funnel Severity 2"]?.text?.[0]?.plain_text || "",
-  page.properties["Funnel Severity 3"]?.text?.[0]?.plain_text || ""
-].filter(Boolean),
-estatisticas: [
-  page.properties["Funnel Proof 1"]?.text?.[0]?.plain_text || "",
-  page.properties["Funnel Proof 2"]?.text?.[0]?.plain_text || "",
-  page.properties["Funnel Proof 3"]?.text?.[0]?.plain_text || ""
-].filter(Boolean),
-nutrientes: [
-  page.properties["Funnel Solution 1"]?.text?.[0]?.plain_text || "",
-  page.properties["Funnel Solution 2"]?.text?.[0]?.plain_text || "",
-  page.properties["Funnel Solution 3"]?.text?.[0]?.plain_text || ""
-].filter(Boolean),
-suplemento: [
-  page.properties["Funnel Advanced 1"]?.text?.[0]?.plain_text || "",
-  page.properties["Funnel Advanced 2"]?.text?.[0]?.plain_text || "",
-  page.properties["Funnel Advanced 3"]?.text?.[0]?.plain_text || ""
-].filter(Boolean),
-cta: [
-  page.properties["Links"]?.text?.[0]?.plain_text || ""
-].filter(Boolean).
-
-        cta: [
-          page.properties["Links"]?.text?.[0]?.plain_text || ""
-        ].filter(Boolean)
-      },
-      followupQuestions: []
-    };
+  gptPromptData: {
+    prompt: "You are OwlCoreHealth AI.",
+    context: { selectedQuestion: null }
+  },
+  sintoma: symptomsContent,
+  funnelPhase,
+  language: "en",
+  funnelTexts: {
+    base: [
+      page.properties["Funnel Awareness 1"]?.text?.[0]?.plain_text || "",
+      page.properties["Funnel Awareness 2"]?.text?.[0]?.plain_text || "",
+      page.properties["Funnel Awareness 3"]?.text?.[0]?.plain_text || ""
+    ].filter(Boolean),
+    gravidade: [
+      page.properties["Funnel Severity 1"]?.text?.[0]?.plain_text || "",
+      page.properties["Funnel Severity 2"]?.text?.[0]?.plain_text || "",
+      page.properties["Funnel Severity 3"]?.text?.[0]?.plain_text || ""
+    ].filter(Boolean),
+    estatisticas: [
+      page.properties["Funnel Proof 1"]?.text?.[0]?.plain_text || "",
+      page.properties["Funnel Proof 2"]?.text?.[0]?.plain_text || "",
+      page.properties["Funnel Proof 3"]?.text?.[0]?.plain_text || ""
+    ].filter(Boolean),
+    nutrientes: [
+      page.properties["Funnel Solution 1"]?.text?.[0]?.plain_text || "",
+      page.properties["Funnel Solution 2"]?.text?.[0]?.plain_text || "",
+      page.properties["Funnel Solution 3"]?.text?.[0]?.plain_text || ""
+    ].filter(Boolean),
+    suplemento: [
+      page.properties["Funnel Advanced 1"]?.text?.[0]?.plain_text || "",
+      page.properties["Funnel Advanced 2"]?.text?.[0]?.plain_text || "",
+      page.properties["Funnel Advanced 3"]?.text?.[0]?.plain_text || ""
+    ].filter(Boolean),
+    cta: [
+      page.properties["Links"]?.text?.[0]?.plain_text || ""
+    ].filter(Boolean)
+  },
+  followupQuestions: []
+};
 
   } catch (error) {
     console.error("Erro ao buscar contexto do sintoma no Notion:", error);
