@@ -1,16 +1,16 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import handler from './api/chat.js';
-
+import express from "express";
+import path from "path";
+import { fileURLToPath } from "url";
 const app = express();
-const PORT = 3000;
 
-app.use(bodyParser.json());
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-app.post('/api/chat', (req, res) => {
-  handler(req, res);
-});
+// Servir arquivos estáticos (index.html, script.js, etc)
+app.use(express.static(__dirname));
 
-app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
+// ... Aqui fica o resto do seu código da API ...
+
+app.listen(3000, () => {
+  console.log("Servidor rodando em http://localhost:3000");
 });
