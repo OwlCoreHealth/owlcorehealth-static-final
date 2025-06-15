@@ -142,7 +142,7 @@ suplemento: [
 ].filter(Boolean),
 cta: [
   page.properties["Links"]?.text?.[0]?.plain_text || ""
-].filter(Boolean)
+].filter(Boolean).
 
         cta: [
           page.properties["Links"]?.text?.[0]?.plain_text || ""
