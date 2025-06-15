@@ -92,8 +92,14 @@ if (role === 'bot') {
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: prompt, name: name || "amigo" })
-      });
+        body: JSON.stringify({
+  message: prompt,
+  name: name || "amigo",
+  sintomaAtual: window.sintomaAtual || "",
+  funnelPhase: window.funnelPhase || 1,
+  isFollowUp: window.isFollowUp || false
+})
+
 
       const data = await response.json();
 
