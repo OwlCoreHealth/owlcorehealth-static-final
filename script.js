@@ -91,7 +91,7 @@ if (role === 'bot') {
     }
   }
 
-  async function fetchGPTResponse(prompt, name) {
+ async function fetchGPTResponse(prompt, name, isFollowUp = false, funnelPhase = 1) {
     try {
       const response = await fetch("/api/chat", {
         method: "POST",
@@ -153,7 +153,15 @@ if (role === 'bot') {
     appendMessage("Typing...", 'bot');
 
     try {
-      const { text: botReply, followups } = await fetchGPTResponse(userText, userName);
+      const { text: botReply, followups } = await fetchGPTResponse(
+  userText,
+  userName,
+  window.isFollowUp || false,    // Envia info se é follow-up
+  window.funnelPhase || 1        // (opcional, mas ajuda no controle de fase)
+);
+// Reset após o envio para garantir controle limpo:
+window.isFollowUp = false;
+
       const typingMsg = chatBox.querySelector('.bot-message:last-child');
       if (typingMsg) typingMsg.remove();
       appendMessage(botReply, 'bot');
@@ -189,11 +197,9 @@ if (role === 'bot') {
     chatBox.scrollTop = chatBox.scrollHeight;
   }
 
- function sendMessageWithSuggestion(text) {
+function sendMessageWithSuggestion(text) {
   inputField.value = text;
-  // Se for follow-up, avança a fase do funil:
-  window.funnelPhase = (window.funnelPhase || 1) + 1;
-  window.isFollowUp = true;
+  window.isFollowUp = true; // Marca que é follow-up!
   sendBtn.click();
 }
 
