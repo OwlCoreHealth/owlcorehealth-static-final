@@ -20,15 +20,15 @@ let sessionMemory = {
 
 function getFunnelKey(phase) {
   switch (phase) {
-    case 1: return "base";
-    case 2: return "gravidade";
-    case 3: return "estatisticas";
-    case 4: return "nutrientes";
-    case 5: return "suplemento";
-    case 6: return "cta";
-    default: return "base";
+    case 1: return "Funnel Awareness";
+    case 2: return "Funnel Severity";
+    case 3: return "Funnel Proof";
+    case 4: return "Funnel Solution";
+    case 5: return "Funnel Advanced";
+    default: return "Funnel Awareness";
   }
 }
+
 // Função que gera resposta completa para o sintoma
 const generateAnswerForSymptom = async (symptom, idioma) => {
   const prompt = idioma === "pt" ? promptPT : promptEN;
