@@ -20,7 +20,11 @@ console.log(
   [...rawDbId].map(c => c.charCodeAt(0).toString(16)).join(" ")
 );
 
+const rawDbId = process.env.NOTION_DATABASE_ID;
+console.log("Raw Database ID do .env:", rawDbId);
 const databaseId = (rawDbId || "").replace(/['"]/g, "").trim();
+console.log("Database ID FINAL sem aspas:", databaseId);
+
 console.log("Database ID usado:", databaseId);
 
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
