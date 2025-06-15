@@ -20,7 +20,7 @@ console.log(
   [...rawDbId].map(c => c.charCodeAt(0).toString(16)).join(" ")
 );
 console.log("Raw Database ID do .env:", rawDbId);
-const databaseId = (rawDbId || "").replace(/['"]/g, "").trim();
+const databaseId = (rawDbId || "").replace(/[^a-zA-Z0-9\-]/g, "").trim();
 console.log("Database ID FINAL sem aspas:", databaseId);
 
 
