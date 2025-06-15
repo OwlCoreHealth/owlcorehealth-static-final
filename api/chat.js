@@ -363,12 +363,15 @@ export default async function handler(req, res) {
 
   // Avança a fase do funil ao clicar no follow-up
   if (isFollowUp) {
-    sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
-  } else {
-    sessionMemory.funnelPhase = 1;
-    sessionMemory.usedQuestions = []; // reseta perguntas para novo sintoma
-    sessionMemory.sintomaAtual = null;
-  }
+  sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
+  // NÃO MUDA o sintomaAtual aqui!
+} else {
+  sessionMemory.funnelPhase = 1;
+  sessionMemory.usedQuestions = [];
+  // Salva novo sintoma
+  sessionMemory.sintomaAtual = userInput.toLowerCase();
+  console.log("Sintoma identificado:", sessionMemory.sintomaAtual);
+}
 
   // Detecta sintoma (só se NÃO for follow-up)
 if (!isFollowUp) {
