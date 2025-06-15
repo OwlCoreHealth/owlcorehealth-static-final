@@ -412,9 +412,6 @@ if (!funnelTexts.length) {
   }
 }
 
-// Escolhe aleatoriamente UMA variação
-const baseText = funnelTexts[Math.floor(Math.random() * funnelTexts.length)];
-  
 console.log("FASE ATUAL DO FUNIL:", sessionMemory.funnelPhase, "funnelKey:", funnelKey);
 console.log("Textos disponíveis nesta fase:", funnelTexts);
 
