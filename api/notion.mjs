@@ -17,27 +17,29 @@ console.log("NOTION_DATABASE_ID bruto:", process.env.NOTION_DATABASE_ID); // Deb
 const rawDbId = process.env.NOTION_DATABASE_ID;
 console.log("Raw Database ID do .env:", rawDbId);
 
-// Remove aspas duplas e simples se houver
-const databaseIdClean =
-  (databaseId || "")
-    .replace(/^["']+|["']+$/g, "")  // remove aspas duplas ou simples do início/fim
-    .replace(/[^a-zA-Z0-9\-]/g, "") // só deixa letras, números, traço
-    .trim();
+const databaseId = (rawDbId || "").replace(/['"]/g, "").trim();
+
+// FORÇA LIMPEZA FINAL (garantido SEM ASPAS, SÓ UUID)
+const databaseIdClean = (databaseId || "")
+  .replace(/^["']+|["']+$/g, "")  // remove aspas duplas ou simples do início/fim
+  .replace(/[^a-zA-Z0-9\-]/g, "") // só deixa letras, números, traço
+  .trim();
 
 console.log("Database ID FINAL para o Notion:", databaseIdClean);
 
-console.log("Database ID usado:", databaseId);
+// Só para mostrar CLARAMENTE o valor realmente usado
+console.log("Database ID usado nas queries:", databaseIdClean);
 
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
 export async function getAllSymptoms() {
   try {
-    console.log("Database ID exato enviado ao Notion:", JSON.stringify(databaseId));
+    console.log("Database ID exato enviado ao Notion:", JSON.stringify(databaseIdClean));
     const response = await notion.databases.query({
-  database_id: databaseIdClean,
-  page_size: 100
-});
-
+      database_id: databaseIdClean,
+      page_size: 100
+    });
+ 
     // Debug da estrutura da propriedade Symptoms na primeira página
     if (response.results.length > 0) {
       console.log("Exemplo estrutura Symptoms da primeira página:", JSON.stringify(response.results[0].properties.Symptoms, null, 2));
