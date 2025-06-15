@@ -405,16 +405,22 @@ if (!funnelTexts.length) {
 console.log("FASE ATUAL DO FUNIL:", sessionMemory.funnelPhase, "funnelKey:", funnelKey);
 console.log("Textos disponíveis nesta fase:", funnelTexts);
 
-  const baseText = funnelTexts[Math.floor(Math.random() * funnelTexts.length)];
+ // ...todo o código anterior...
+const baseText = funnelTexts[Math.floor(Math.random() * funnelTexts.length)];
 
-  // Reescreve copy com GPT para dar mais impacto, sem inventar conteúdo
-  const gptResponse = await rewriteWithGPT(
-    baseText,
-    sessionMemory.sintomaAtual,
-    idioma,
-    sessionMemory.funnelPhase,
-    sessionMemory.categoriaAtual
-  );
+console.log("===> Fase do funil:", sessionMemory.funnelPhase);
+console.log("===> funnelKey:", funnelKey);
+console.log("===> baseText selecionado:", baseText);
+
+const gptResponse = await rewriteWithGPT(
+  baseText,
+  sessionMemory.sintomaAtual,
+  idioma,
+  sessionMemory.funnelPhase,
+  sessionMemory.categoriaAtual
+);
+
+console.log("===> gptResponse retornado:", gptResponse);
 
   // Gera perguntas provocativas para o sintoma atual e fase
   let followupQuestions = await generateFollowUpQuestions(
