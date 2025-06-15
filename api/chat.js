@@ -398,6 +398,10 @@ let funnelTexts = [
   context.funnelTexts?.[`${funnelKey} 3`] || ""
 ].filter(Boolean);
 
+  console.log("Fase atual:", sessionMemory.funnelPhase);
+console.log("funnelKey:", funnelKey);
+console.log("funnelTexts:", funnelTexts);
+
 if (!funnelTexts.length) {
   // Fallback do arquivo fallbackTextsBySymptom.js
   const fallbackGroup = fallbackTextsBySymptom[sessionMemory.sintomaAtual];
@@ -417,7 +421,7 @@ console.log("Textos disponíveis nesta fase:", funnelTexts);
 
  // ...todo o código anterior...
 const baseText = funnelTexts[Math.floor(Math.random() * funnelTexts.length)];
-
+console.log("Texto base selecionado:", baseText);
 console.log("===> Fase do funil:", sessionMemory.funnelPhase);
 console.log("===> funnelKey:", funnelKey);
 console.log("===> baseText selecionado:", baseText);
