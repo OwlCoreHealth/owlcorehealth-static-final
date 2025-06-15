@@ -419,14 +419,16 @@ if (!funnelTexts.length) {
     idioma
   );
 
-  // Substitui “symptom” por sintoma real (corrige erro do GPT)
-  followupQuestions = followupQuestions.map(q =>
-    q.replace(/\[symptom\]/gi, sessionMemory.sintomaAtual)
-     .replace(/your symptom/gi, `your ${sessionMemory.sintomaAtual}`)
-     .replace(/the symptom/gi, sessionMemory.sintomaAtual)
-     .replace(/\bsymptom\b/gi, sessionMemory.sintomaAtual)
-     .replace(/\byour symptom\b/gi, `your ${sessionMemory.sintomaAtual}`)
-  );
+ console.log("Perguntas brutas antes de substituir:", followupQuestions);
+console.log("Sintoma usado para substituir:", sessionMemory.sintomaAtual);
+
+followupQuestions = followupQuestions.map(q =>
+  q.replace(/\[symptom\]/gi, sessionMemory.sintomaAtual)
+   .replace(/your symptom/gi, `your ${sessionMemory.sintomaAtual}`)
+   .replace(/the symptom/gi, sessionMemory.sintomaAtual)
+   .replace(/\bsymptom\b/gi, sessionMemory.sintomaAtual)
+   .replace(/\byour symptom\b/gi, `your ${sessionMemory.sintomaAtual}`)
+);
 
   // Monta a resposta do bot
   let content = gptResponse + `\n\nLet's explore further: Choose one of the options below to continue:\n\n`;
