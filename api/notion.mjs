@@ -20,7 +20,7 @@ console.log(
   [...rawDbId].map(c => c.charCodeAt(0).toString(16)).join(" ")
 );
 
-const databaseId = rawDbId.replace(/['"]/g, "").trim();
+const databaseId = (rawDbId || "").replace(/['"]/g, "").trim();
 console.log("Database ID usado:", databaseId);
 
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
