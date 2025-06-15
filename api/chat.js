@@ -371,10 +371,11 @@ export default async function handler(req, res) {
   }
 
   // Detecta sintoma (só se NÃO for follow-up)
-  if (!isFollowUp) {
-    // (Ideal: rode aqui sua função de intent/sintoma)
-    sessionMemory.sintomaAtual = userInput.toLowerCase();
-  }
+if (!isFollowUp) {
+  // (Ideal: rode aqui sua função de intent/sintoma)
+  sessionMemory.sintomaAtual = userInput.toLowerCase();
+  console.log("Sintoma identificado:", sessionMemory.sintomaAtual);
+}
 
   // Busca contexto/fase do Notion para o sintoma e fase atual
   let context = await getSymptomContext(
