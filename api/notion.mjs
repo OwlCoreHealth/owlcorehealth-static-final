@@ -15,14 +15,15 @@ function getTextFromProperty(prop) {
 console.log("NOTION_DATABASE_ID bruto:", process.env.NOTION_DATABASE_ID); // Debug simples
 
 const rawDbId = process.env.NOTION_DATABASE_ID;
-console.log(
-  "Raw Database ID chars (hex):",
-  [...rawDbId].map(c => c.charCodeAt(0).toString(16)).join(" ")
-);
 console.log("Raw Database ID do .env:", rawDbId);
-const databaseId = (rawDbId || "").replace(/[^a-zA-Z0-9\-]/g, "").trim();
-console.log("Database ID FINAL sem aspas:", databaseId);
 
+// Remove aspas duplas e simples se houver
+const databaseId = (rawDbId || "")
+  .replace(/^["']+|["']+$/g, "") // remove aspas do começo/fim
+  .replace(/[^a-zA-Z0-9\-]/g, "") // remove qualquer caractere que não seja letra, número ou traço
+  .trim();
+
+console.log("Database ID FINAL sem aspas:", databaseId);
 
 console.log("Database ID usado:", databaseId);
 
