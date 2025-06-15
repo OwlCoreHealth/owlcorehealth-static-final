@@ -34,11 +34,13 @@ const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
 export async function getAllSymptoms() {
   try {
-    console.log("Database ID exato enviado ao Notion:", JSON.stringify(databaseIdClean));
-    const response = await notion.databases.query({
-      database_id: databaseIdClean,
-      page_size: 100
-    });
+    
+    console.log("Vai enviar ao Notion:", JSON.stringify(databaseIdClean), databaseIdClean.length);
+
+const response = await notion.databases.query({
+  database_id: databaseIdClean,
+  page_size: 100
+});
  
     // Debug da estrutura da propriedade Symptoms na primeira página
     if (response.results.length > 0) {
