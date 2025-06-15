@@ -20,7 +20,7 @@ console.log("Raw Database ID do .env:", rawDbId);
 const databaseId = (rawDbId || "").replace(/['"]/g, "").trim();
 
 // FORÇA LIMPEZA FINAL (garantido SEM ASPAS, SÓ UUID)
-const databaseIdClean = (databaseIdClean || "")
+const databaseIdClean = (databaseId || "")
   .replace(/^["']+|["']+$/g, "")  // remove aspas duplas ou simples do início/fim
   .replace(/[^a-zA-Z0-9\-]/g, "") // só deixa letras, números, traço
   .trim();
