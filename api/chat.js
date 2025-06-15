@@ -332,6 +332,7 @@ Answer only with the symptom from the list that best matches or is most **simila
   }
 }
 
+console.log("Entrou na rota /api/chat!");
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Método não permitido" });
 
