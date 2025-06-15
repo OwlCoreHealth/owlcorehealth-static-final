@@ -2,24 +2,22 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 
-const app = express();
+// Configuração para módulos ES
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Servir arquivos estáticos da raiz do projeto (inclusive index.html)
+console.log("DEBUG __dirname:", __dirname);
+
+const app = express();
+
+// Servir arquivos estáticos
 app.use(express.static(__dirname));
 
-// Garantir index.html para a rota "/"
+// Rota principal para servir index.html
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
-});
-
-// IMPORTANTE: aqui você pode adicionar suas rotas de API se precisar
-// Exemplo para API:
-// import './api/chat.js'; // se você usar rotas tipo app.use('/api', ...);
-// Isso garante que ao acessar localhost:3000, ele retorna index.html
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  const indexPath = path.join(__dirname, "index.html");
+  console.log("DEBUG: tentando servir:", indexPath);
+  res.sendFile(indexPath);
 });
 
 app.listen(3000, () => {
