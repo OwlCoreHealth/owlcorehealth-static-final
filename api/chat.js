@@ -388,11 +388,18 @@ if (!isFollowUp) {
     sessionMemory.usedQuestions
   );
 
-  const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
-let funnelTexts = context.funnelTexts?.[funnelKey] || [];
+ const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
+
+// Supondo que as propriedades do Notion tenham os nomes exatos como:
+// Funnel Awareness 1, Funnel Awareness 2, Funnel Awareness 3 (etc)
+let funnelTexts = [
+  context.funnelTexts?.[`${funnelKey} 1`] || "",
+  context.funnelTexts?.[`${funnelKey} 2`] || "",
+  context.funnelTexts?.[`${funnelKey} 3`] || ""
+].filter(Boolean);
 
 if (!funnelTexts.length) {
-  // Fallback REAL do arquivo fallbackTextsBySymptom.js
+  // Fallback do arquivo fallbackTextsBySymptom.js
   const fallbackGroup = fallbackTextsBySymptom[sessionMemory.sintomaAtual];
   if (fallbackGroup && fallbackGroup[funnelKey] && fallbackGroup[funnelKey].length > 0) {
     funnelTexts = fallbackGroup[funnelKey];
@@ -404,6 +411,9 @@ if (!funnelTexts.length) {
     console.log("Sem dados no Notion nem no fallbackTextsBySymptom:", sessionMemory.sintomaAtual, funnelKey);
   }
 }
+
+// Escolhe aleatoriamente UMA variação
+const baseText = funnelTexts[Math.floor(Math.random() * funnelTexts.length)];
   
 console.log("FASE ATUAL DO FUNIL:", sessionMemory.funnelPhase, "funnelKey:", funnelKey);
 console.log("Textos disponíveis nesta fase:", funnelTexts);
