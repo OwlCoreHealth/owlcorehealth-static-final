@@ -385,18 +385,19 @@ export default async function handler(req, res) {
   );
 
   const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
-  let funnelTexts = context.funnelTexts?.[funnelKey] || [];
+let funnelTexts = context.funnelTexts?.[funnelKey] || [];
 
-  if (!funnelTexts.length) {
-  // Fallback REAL
+if (!funnelTexts.length) {
+  // Fallback REAL do arquivo fallbackTextsBySymptom.js
   const fallbackGroup = fallbackTextsBySymptom[sessionMemory.sintomaAtual];
-  const fallbackKey = getFunnelKey(sessionMemory.funnelPhase); // "base", "gravidade", etc.
-  if (fallbackGroup && fallbackGroup[fallbackKey] && fallbackGroup[fallbackKey].length > 0) {
-    funnelTexts = fallbackGroup[fallbackKey];
+  if (fallbackGroup && fallbackGroup[funnelKey] && fallbackGroup[funnelKey].length > 0) {
+    funnelTexts = fallbackGroup[funnelKey];
+    console.log("Usando fallback do arquivo fallbackTextsBySymptom para:", sessionMemory.sintomaAtual, funnelKey);
   } else {
     funnelTexts = [
       `Sorry, we don’t have content for "${sessionMemory.sintomaAtual}" in this phase.`
     ];
+    console.log("Sem dados no Notion nem no fallbackTextsBySymptom:", sessionMemory.sintomaAtual, funnelKey);
   }
 }
 
