@@ -55,11 +55,11 @@ const GPT_MODEL = "gpt-4o-mini";
 
 export async function getSymptomContext(input, funnelPhase, previousSymptom, usedQuestions) {
   const filtro = {
-    or: [
-     { property: "Keywords", rich_text: { contains: input } }
-     { property: "Symptoms", rich_text: { contains: input } }
-    ]
-  };
+  or: [
+    { property: "Keywords", rich_text: { contains: input } },
+    { property: "Symptoms", rich_text: { contains: input } }
+  ]
+};
 
   try {
     const response = await notion.databases.query({
