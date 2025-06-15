@@ -401,6 +401,9 @@ if (!funnelTexts.length) {
     console.log("Sem dados no Notion nem no fallbackTextsBySymptom:", sessionMemory.sintomaAtual, funnelKey);
   }
 }
+  
+console.log("FASE ATUAL DO FUNIL:", sessionMemory.funnelPhase, "funnelKey:", funnelKey);
+console.log("Textos disponíveis nesta fase:", funnelTexts);
 
   const baseText = funnelTexts[Math.floor(Math.random() * funnelTexts.length)];
 
