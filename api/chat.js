@@ -434,20 +434,21 @@ if (!funnelTexts.length) {
     console.log("Usando fallback do arquivo fallbackTextsBySymptom para:", sessionMemory.sintomaAtual, funnelKey);
   } else {
     funnelTexts = [
-  sessionMemory.lowConfidence
-    ? (idioma === "pt"
-        ? `Não consegui identificar seu sintoma de forma precisa, mas aqui está uma explicação baseada em sintomas parecidos ou no cluster mais próximo.`
-        : `I couldn't precisely identify your symptom, but here's an explanation based on similar symptoms or the closest cluster.`)
-    : (idioma === "pt"
-        ? `Desculpe, não temos conteúdo para "${sessionMemory.sintomaAtual}" nesta fase.`
-        : `Sorry, we don’t have content for "${sessionMemory.sintomaAtual}" in this phase.`)
-];
-console.log("No Notion or fallbackTextsBySymptom data for:", sessionMemory.sintomaAtual, funnelKey);
-    
+      sessionMemory.lowConfidence
+        ? (idioma === "pt"
+            ? `Não consegui identificar seu sintoma de forma precisa, mas aqui está uma explicação baseada em sintomas parecidos ou no cluster mais próximo.`
+            : `I couldn't precisely identify your symptom, but here's an explanation based on similar symptoms or the closest cluster.`)
+        : (idioma === "pt"
+            ? `Desculpe, não temos conteúdo para "${sessionMemory.sintomaAtual}" nesta fase.`
+            : `Sorry, we don’t have content for "${sessionMemory.sintomaAtual}" in this phase.`)
+    ];
+    console.log("No Notion or fallbackTextsBySymptom data for:", sessionMemory.sintomaAtual, funnelKey);
+  }
+}
+
 console.log("FASE ATUAL DO FUNIL:", sessionMemory.funnelPhase, "funnelKey:", funnelKey);
 console.log("Textos disponíveis nesta fase:", funnelTexts);
 
- // ...todo o código anterior...
 const baseText = funnelTexts[Math.floor(Math.random() * funnelTexts.length)];
 console.log("Texto base selecionado:", baseText);
 console.log("===> Fase do funil:", sessionMemory.funnelPhase);
@@ -464,13 +465,13 @@ const gptResponse = await rewriteWithGPT(
 
 console.log("===> gptResponse retornado:", gptResponse);
 
-  // Gera perguntas provocativas para o sintoma atual e fase
-  let followupQuestions = await generateFollowUpQuestions(
-    { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
-    idioma
-  );
+// Gera perguntas provocativas para o sintoma atual e fase
+let followupQuestions = await generateFollowUpQuestions(
+  { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
+  idioma
+);
 
- console.log("Perguntas brutas antes de substituir:", followupQuestions);
+console.log("Perguntas brutas antes de substituir:", followupQuestions);
 console.log("Sintoma usado para substituir:", sessionMemory.sintomaAtual);
 
 followupQuestions = followupQuestions.map(q =>
@@ -481,19 +482,18 @@ followupQuestions = followupQuestions.map(q =>
    .replace(/\byour symptom\b/gi, `your ${sessionMemory.sintomaAtual}`)
 );
 
-  // Monta a resposta do bot
-  let content = gptResponse + `\n\nLet's explore further: Choose one of the options below to continue:\n\n`;
-  followupQuestions.forEach((q, i) => {
-    content += `<div class="clickable-question" data-question="${encodeURIComponent(q)}">${i + 1}. ${q}</div>\n`;
-  });
+// Monta a resposta do bot
+let content = gptResponse + `\n\nLet's explore further: Choose one of the options below to continue:\n\n`;
+followupQuestions.forEach((q, i) => {
+  content += `<div class="clickable-question" data-question="${encodeURIComponent(q)}">${i + 1}. ${q}</div>\n`;
+});
 
-   return res.status(200).json({
-    choices: [{
-      message: {
-        content,
-        followupQuestions
-      }
-    }]
-  });
-} // <-- esta fecha o if/fallback
-} // <-- ADICIONA ESTA para fechar a função handler
+return res.status(200).json({
+  choices: [{
+    message: {
+      content,
+      followupQuestions
+    }
+  }]
+});
+} // <-- ESTA fecha a função handler (só uma chave no fim!)
