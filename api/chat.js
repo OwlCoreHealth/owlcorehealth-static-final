@@ -406,30 +406,33 @@ if (!isFollowUp) {
   }
 }
 
-  // 1. Defina mainSymptom aqui:
+  // 1. Definição
 const mainSymptom = sessionMemory.sintomaAtual
   ? sessionMemory.sintomaAtual.split(",")[0].trim()
   : sessionMemory.sintomaAtual;
 
+// 2. Buscar context
 let context = await getSymptomContext(
   mainSymptom,
   sessionMemory.funnelPhase,
   mainSymptom,
   sessionMemory.usedQuestions
 );
-  
-if (!funnelTexts.length) {
-  // Fallback ou GPT só aqui
-}
 
- const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
+// 3. Definir funnelKey
+const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
 
-// 2. Busca as 3 variantes da fase
+// 4. Inicializar funnelTexts
 let funnelTexts = [
   context.funnelTexts?.[`${funnelKey} 1`] || "",
   context.funnelTexts?.[`${funnelKey} 2`] || "",
   context.funnelTexts?.[`${funnelKey} 3`] || ""
 ].filter(Boolean);
+
+// 5. Só agora:
+if (!funnelTexts.length) {
+  // ... lógica do fallback ...
+}
 
 // 3. Remove textos já usados nesta sessão (sessionMemory.usedTexts)
 if (!sessionMemory.usedTexts) sessionMemory.usedTexts = [];
