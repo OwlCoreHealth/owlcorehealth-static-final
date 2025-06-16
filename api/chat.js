@@ -385,7 +385,7 @@ console.log("Sintoma mapeado para busca:", sessionMemory.sintomaAtual);
   console.log("Sintoma identificado:", sessionMemory.sintomaAtual);
 }
 
-  const SIMILARITY_THRESHOLD = 0.7; // ou ajuste após testes
+  const SIMILARITY_THRESHOLD = 0.3; // valor recomendado para clusters sintomáticos
 
 if (!isFollowUp) {
   try {
@@ -394,20 +394,13 @@ if (!isFollowUp) {
     sessionMemory.similarityScore = nearest.bestScore;
     console.log("Sintoma identificado (semântico):", sessionMemory.sintomaAtual, "Score:", sessionMemory.similarityScore);
 
-    if (nearest.bestScore < SIMILARITY_THRESHOLD) {
-      // Não foi suficientemente parecido, peça para o usuário reformular
-      return res.status(200).json({
-        choices: [{
-          message: {
-            content: "Desculpe, não consegui identificar claramente seu sintoma. Pode tentar descrever de outra forma ou ser mais específico?"
-          }
-        }]
-      });
-    }
+    // NÃO aborta fluxo — apenas registra confiança baixa, para customizar copy se quiser
+    sessionMemory.lowConfidence = nearest.bestScore < SIMILARITY_THRESHOLD;
   } catch (err) {
     console.error("Erro no matching semântico:", err);
     sessionMemory.sintomaAtual = userInput.toLowerCase();
     sessionMemory.similarityScore = null;
+    sessionMemory.lowConfidence = true;
   }
 }
 
@@ -441,12 +434,15 @@ if (!funnelTexts.length) {
     console.log("Usando fallback do arquivo fallbackTextsBySymptom para:", sessionMemory.sintomaAtual, funnelKey);
   } else {
     funnelTexts = [
-      `Sorry, we don’t have content for "${sessionMemory.sintomaAtual}" in this phase.`
-    ];
-    console.log("Sem dados no Notion nem no fallbackTextsBySymptom:", sessionMemory.sintomaAtual, funnelKey);
-  }
-}
-
+  sessionMemory.lowConfidence
+    ? (idioma === "pt"
+        ? `Não consegui identificar seu sintoma de forma precisa, mas aqui está uma explicação baseada em sintomas parecidos ou no cluster mais próximo.`
+        : `I couldn't precisely identify your symptom, but here's an explanation based on similar symptoms or the closest cluster.`)
+    : (idioma === "pt"
+        ? `Desculpe, não temos conteúdo para "${sessionMemory.sintomaAtual}" nesta fase.`
+        : `Sorry, we don’t have content for "${sessionMemory.sintomaAtual}" in this phase.`)
+];
+console.log("No Notion or fallbackTextsBySymptom data for:", sessionMemory.sintomaAtual, funnelKey);
 console.log("FASE ATUAL DO FUNIL:", sessionMemory.funnelPhase, "funnelKey:", funnelKey);
 console.log("Textos disponíveis nesta fase:", funnelTexts);
 
