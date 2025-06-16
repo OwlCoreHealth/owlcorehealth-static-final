@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config(); 
 
-import { Client } from "@notionhq/client";
+import { Client } from "@notionhq/client"; 
 
 // Função utilitária para extrair texto da propriedade Notion
 function getTextFromProperty(prop) {
