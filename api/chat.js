@@ -443,6 +443,7 @@ if (!funnelTexts.length) {
         : `Sorry, we don’t have content for "${sessionMemory.sintomaAtual}" in this phase.`)
 ];
 console.log("No Notion or fallbackTextsBySymptom data for:", sessionMemory.sintomaAtual, funnelKey);
+    
 console.log("FASE ATUAL DO FUNIL:", sessionMemory.funnelPhase, "funnelKey:", funnelKey);
 console.log("Textos disponíveis nesta fase:", funnelTexts);
 
@@ -486,7 +487,7 @@ followupQuestions = followupQuestions.map(q =>
     content += `<div class="clickable-question" data-question="${encodeURIComponent(q)}">${i + 1}. ${q}</div>\n`;
   });
 
-  return res.status(200).json({
+   return res.status(200).json({
     choices: [{
       message: {
         content,
@@ -494,4 +495,5 @@ followupQuestions = followupQuestions.map(q =>
       }
     }]
   });
-}
+} // <-- esta fecha o if/fallback
+} // <-- ADICIONA ESTA para fechar a função handler
