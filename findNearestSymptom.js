@@ -30,10 +30,9 @@ export async function findNearestSymptom(userInput) {
   // 1. Gerar embedding para o texto do usuário
   const userEmbedding = await generateEmbedding(userInput);
 
-  // 2. Ler embeddings salvos
   const embeddingsData = JSON.parse(
-    fs.readFileSync("./data/symptoms_embeddings.json", "utf-8")
-  );
+  fs.readFileSync(`${process.cwd()}/api/data/symptoms_embeddings.json`, "utf-8")
+);
 
   // 3. Calcular similaridade e pegar o mais próximo
   let bestScore = -Infinity;
