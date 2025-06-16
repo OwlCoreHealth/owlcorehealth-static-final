@@ -385,14 +385,25 @@ console.log("Sintoma mapeado para busca:", sessionMemory.sintomaAtual);
   console.log("Sintoma identificado:", sessionMemory.sintomaAtual);
 }
 
-  // Detecta sintoma (só se NÃO for follow-up)
+  const SIMILARITY_THRESHOLD = 0.7; // ou ajuste após testes
+
 if (!isFollowUp) {
-  // Busca sintoma mais próximo usando embeddings
   try {
     const nearest = await findNearestSymptom(userInput);
     sessionMemory.sintomaAtual = nearest.bestSymptom;
     sessionMemory.similarityScore = nearest.bestScore;
     console.log("Sintoma identificado (semântico):", sessionMemory.sintomaAtual, "Score:", sessionMemory.similarityScore);
+
+    if (nearest.bestScore < SIMILARITY_THRESHOLD) {
+      // Não foi suficientemente parecido, peça para o usuário reformular
+      return res.status(200).json({
+        choices: [{
+          message: {
+            content: "Desculpe, não consegui identificar claramente seu sintoma. Pode tentar descrever de outra forma ou ser mais específico?"
+          }
+        }]
+      });
+    }
   } catch (err) {
     console.error("Erro no matching semântico:", err);
     sessionMemory.sintomaAtual = userInput.toLowerCase();
