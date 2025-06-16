@@ -65,8 +65,11 @@ const GPT_MODEL = "gpt-4o-mini";
 export async function getSymptomContext(input, funnelPhase, previousSymptom, usedQuestions) {
   const filtro = {
   or: [
+    { property: "Keywords", multi_select: { contains: input } },
     { property: "Keywords", rich_text: { contains: input } },
-    { property: "Symptoms", rich_text: { contains: input } }
+    { property: "Symptoms", multi_select: { contains: input } },
+    { property: "Symptoms", rich_text: { contains: input } },
+    { property: "Symptoms", title: { contains: input } }
   ]
 };
 
@@ -113,7 +116,17 @@ export async function getSymptomContext(input, funnelPhase, previousSymptom, use
       return raw.split("||").map(t => t.trim()).filter(Boolean);
     };
 
-    const symptomsContent = page.properties?.Symptoms?.text?.[0]?.plain_text || previousSymptom;
+    // Suporta sintomas tanto em texto quanto em multi-select (Notion)
+let symptomsContent = previousSymptom;
+if (page.properties?.Symptoms) {
+  if (page.properties.Symptoms.type === "multi_select") {
+    symptomsContent = page.properties.Symptoms.multi_select.map(opt => opt.name).join(", ");
+  } else if (page.properties.Symptoms.text) {
+    symptomsContent = page.properties.Symptoms.text[0]?.plain_text || previousSymptom;
+  } else if (page.properties.Symptoms.rich_text) {
+    symptomsContent = page.properties.Symptoms.rich_text[0]?.plain_text || previousSymptom;
+  }
+}
 
     return {
   gptPromptData: {
@@ -124,34 +137,22 @@ export async function getSymptomContext(input, funnelPhase, previousSymptom, use
   funnelPhase,
   language: "en",
   funnelTexts: {
-    base: [
-  page.properties["Funnel Awareness 1"]?.rich_text?.[0]?.plain_text || "",
-  page.properties["Funnel Awareness 2"]?.rich_text?.[0]?.plain_text || "",
-  page.properties["Funnel Awareness 3"]?.rich_text?.[0]?.plain_text || ""
-].filter(Boolean),
-gravidade: [
-  page.properties["Funnel Severity 1"]?.rich_text?.[0]?.plain_text || "",
-  page.properties["Funnel Severity 2"]?.rich_text?.[0]?.plain_text || "",
-  page.properties["Funnel Severity 3"]?.rich_text?.[0]?.plain_text || ""
-].filter(Boolean),
-estatisticas: [
-  page.properties["Funnel Proof 1"]?.rich_text?.[0]?.plain_text || "",
-  page.properties["Funnel Proof 2"]?.rich_text?.[0]?.plain_text || "",
-  page.properties["Funnel Proof 3"]?.rich_text?.[0]?.plain_text || ""
-].filter(Boolean),
-nutrientes: [
-  page.properties["Funnel Solution 1"]?.rich_text?.[0]?.plain_text || "",
-  page.properties["Funnel Solution 2"]?.rich_text?.[0]?.plain_text || "",
-  page.properties["Funnel Solution 3"]?.rich_text?.[0]?.plain_text || ""
-].filter(Boolean),
-suplemento: [
-  page.properties["Funnel Advanced 1"]?.rich_text?.[0]?.plain_text || "",
-  page.properties["Funnel Advanced 2"]?.rich_text?.[0]?.plain_text || "",
-  page.properties["Funnel Advanced 3"]?.rich_text?.[0]?.plain_text || ""
-].filter(Boolean),
-cta: [
-  page.properties["Links"]?.rich_text?.[0]?.plain_text || ""
-].filter(Boolean)
+    "Funnel Awareness 1": page.properties["Funnel Awareness 1"]?.rich_text?.[0]?.plain_text || "",
+    "Funnel Awareness 2": page.properties["Funnel Awareness 2"]?.rich_text?.[0]?.plain_text || "",
+    "Funnel Awareness 3": page.properties["Funnel Awareness 3"]?.rich_text?.[0]?.plain_text || "",
+    "Funnel Severity 1": page.properties["Funnel Severity 1"]?.rich_text?.[0]?.plain_text || "",
+    "Funnel Severity 2": page.properties["Funnel Severity 2"]?.rich_text?.[0]?.plain_text || "",
+    "Funnel Severity 3": page.properties["Funnel Severity 3"]?.rich_text?.[0]?.plain_text || "",
+    "Funnel Proof 1": page.properties["Funnel Proof 1"]?.rich_text?.[0]?.plain_text || "",
+    "Funnel Proof 2": page.properties["Funnel Proof 2"]?.rich_text?.[0]?.plain_text || "",
+    "Funnel Proof 3": page.properties["Funnel Proof 3"]?.rich_text?.[0]?.plain_text || "",
+    "Funnel Solution 1": page.properties["Funnel Solution 1"]?.rich_text?.[0]?.plain_text || "",
+    "Funnel Solution 2": page.properties["Funnel Solution 2"]?.rich_text?.[0]?.plain_text || "",
+    "Funnel Solution 3": page.properties["Funnel Solution 3"]?.rich_text?.[0]?.plain_text || "",
+    "Funnel Advanced 1": page.properties["Funnel Advanced 1"]?.rich_text?.[0]?.plain_text || "",
+    "Funnel Advanced 2": page.properties["Funnel Advanced 2"]?.rich_text?.[0]?.plain_text || "",
+    "Funnel Advanced 3": page.properties["Funnel Advanced 3"]?.rich_text?.[0]?.plain_text || "",
+    "Links": page.properties["Links"]?.rich_text?.[0]?.plain_text || ""
   },
   followupQuestions: []
 };
