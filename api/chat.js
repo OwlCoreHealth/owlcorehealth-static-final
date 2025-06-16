@@ -391,6 +391,11 @@ if (!isFollowUp) {
   try {
     const nearest = await findNearestSymptom(userInput);
     sessionMemory.sintomaAtual = nearest.bestSymptom;
+    
+    const mainSymptom = sessionMemory.sintomaAtual
+  ? sessionMemory.sintomaAtual.split(",")[0].trim()
+  : sessionMemory.sintomaAtual;
+
     sessionMemory.similarityScore = nearest.bestScore;
     console.log("Sintoma identificado (semântico):", sessionMemory.sintomaAtual, "Score:", sessionMemory.similarityScore);
 
@@ -457,7 +462,7 @@ console.log("===> baseText selecionado:", baseText);
 
 const gptResponse = await rewriteWithGPT(
   baseText,
-  sessionMemory.sintomaAtual,
+  mainSymptom, // << agora usa o sintoma curto!
   idioma,
   sessionMemory.funnelPhase,
   sessionMemory.categoriaAtual
@@ -475,11 +480,11 @@ console.log("Perguntas brutas antes de substituir:", followupQuestions);
 console.log("Sintoma usado para substituir:", sessionMemory.sintomaAtual);
 
 followupQuestions = followupQuestions.map(q =>
-  q.replace(/\[symptom\]/gi, sessionMemory.sintomaAtual)
-   .replace(/your symptom/gi, `your ${sessionMemory.sintomaAtual}`)
-   .replace(/the symptom/gi, sessionMemory.sintomaAtual)
-   .replace(/\bsymptom\b/gi, sessionMemory.sintomaAtual)
-   .replace(/\byour symptom\b/gi, `your ${sessionMemory.sintomaAtual}`)
+  q.replace(/\[symptom\]/gi, mainSymptom)
+   .replace(/your symptom/gi, `your ${mainSymptom}`)
+   .replace(/the symptom/gi, mainSymptom)
+   .replace(/\bsymptom\b/gi, mainSymptom)
+   .replace(/\byour symptom\b/gi, `your ${mainSymptom}`)
 );
 
 // Monta a resposta do bot
