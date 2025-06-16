@@ -222,7 +222,8 @@ async function generateFollowUpQuestions(context, idioma) {
   const phase = context.funnelPhase || 1;
 
   const promptEN = `
-Generate 3 follow-up questions for a sales funnel, focused on the symptom: "${symptom}". Each question must be of a different type:
+const promptEN = `
+Generate 3 follow-up questions for a sales funnel, focused on the symptom: "${mainSymptom}". ...
 1. PAIN question: highlight a possible negative consequence or worsening of the symptom, with a provocative and alert tone.
 2. CURIOSITY question: bring a surprising fact, myth or little-known connection about the symptom, making the user want to know more.
 3. SOLUTION question: provoke the user about a natural, innovative or little-known solution for the symptom.
@@ -293,7 +294,7 @@ Dado o texto do usuário:
 Responda apenas com o sintoma da lista que melhor corresponde ao texto do usuário ou com o sintoma mais **semelhante** ou **relacionado**. Se não reconhecer, responda "unknown".
   `;
 
-  const promptEN = `
+ const promptEN = `
 You are an assistant that identifies the closest symptom from a given list, based on the user's text.
 The list of symptoms is:
 ${symptomsList.join(", ")}
@@ -301,8 +302,8 @@ ${symptomsList.join(", ")}
 Given the user's input:
 "${userInput}"
 
-Answer only with the symptom from the list that best matches or is most **similar** or **related** to the user's text. If no match, respond "unknown".
-  `;
+Answer only with the symptom from the list that best matches or is most similar or related to the user's text. If no match, respond "unknown".
+`;
 
   const prompt = idioma === "pt" ? promptPT : promptEN;
 
@@ -405,23 +406,44 @@ if (!isFollowUp) {
   }
 }
 
-  // Busca contexto/fase do Notion para o sintoma e fase atual
   let context = await getSymptomContext(
-    sessionMemory.sintomaAtual,
-    sessionMemory.funnelPhase,
-    sessionMemory.sintomaAtual,
-    sessionMemory.usedQuestions
-  );
+  mainSymptom,
+  sessionMemory.funnelPhase,
+  mainSymptom,
+  sessionMemory.usedQuestions
+);
+  
+if (!funnelTexts.length) {
+  // Fallback ou GPT só aqui
+}
 
  const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
 
-// Supondo que as propriedades do Notion tenham os nomes exatos como:
-// Funnel Awareness 1, Funnel Awareness 2, Funnel Awareness 3 (etc)
+// 1. Garante o mainSymptom como lookup
+const mainSymptom = sessionMemory.sintomaAtual
+  ? sessionMemory.sintomaAtual.split(",")[0].trim()
+  : sessionMemory.sintomaAtual;
+
+// 2. Busca as 3 variantes da fase
 let funnelTexts = [
   context.funnelTexts?.[`${funnelKey} 1`] || "",
   context.funnelTexts?.[`${funnelKey} 2`] || "",
   context.funnelTexts?.[`${funnelKey} 3`] || ""
 ].filter(Boolean);
+
+// 3. Remove textos já usados nesta sessão (sessionMemory.usedTexts)
+if (!sessionMemory.usedTexts) sessionMemory.usedTexts = [];
+funnelTexts = funnelTexts.filter(text => !sessionMemory.usedTexts.includes(text));
+
+// 4. Se esgotou todas as variações, permite repetir só depois de todas usadas
+if (funnelTexts.length === 0 && context.funnelTexts) {
+  sessionMemory.usedTexts = []; // reseta o histórico para aquele funnelKey
+  funnelTexts = [
+    context.funnelTexts?.[`${funnelKey} 1`] || "",
+    context.funnelTexts?.[`${funnelKey} 2`] || "",
+    context.funnelTexts?.[`${funnelKey} 3`] || ""
+  ].filter(Boolean);
+}
 
   console.log("Fase atual:", sessionMemory.funnelPhase);
 console.log("funnelKey:", funnelKey);
@@ -451,6 +473,9 @@ console.log("FASE ATUAL DO FUNIL:", sessionMemory.funnelPhase, "funnelKey:", fun
 console.log("Textos disponíveis nesta fase:", funnelTexts);
 
 const baseText = funnelTexts[Math.floor(Math.random() * funnelTexts.length)];
+  // Marca o texto como já usado para a próxima etapa não repetir
+sessionMemory.usedTexts.push(baseText);
+
 console.log("Texto base selecionado:", baseText);
 console.log("===> Fase do funil:", sessionMemory.funnelPhase);
 console.log("===> funnelKey:", funnelKey);
