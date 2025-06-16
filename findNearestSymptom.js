@@ -2,7 +2,14 @@ import fs from "fs";
 import fetch from "node-fetch";
 import cosineSimilarity from "cosine-similarity";
 import dotenv from "dotenv";
-import path from "path"; 
+import path from "path";
+import { fileURLToPath } from "url";         // <--- ADICIONA
+import { dirname } from "path";              // <--- ADICIONA
+
+// Corrige __dirname para ES Modules:   <--- ADICIONA
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 dotenv.config();
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
