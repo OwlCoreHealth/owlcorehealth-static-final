@@ -223,7 +223,7 @@ async function generateFollowUpQuestions(context, idioma) {
 
  
 const promptEN = `
-Generate 3 follow-up questions for a sales funnel, focused on the symptom: "${mainSymptom}". ...
+Generate 3 follow-up questions for a sales funnel, focused on the symptom: "${symptom}". ...
 1. PAIN question: highlight a possible negative consequence or worsening of the symptom, with a provocative and alert tone.
 2. CURIOSITY question: bring a surprising fact, myth or little-known connection about the symptom, making the user want to know more.
 3. SOLUTION question: provoke the user about a natural, innovative or little-known solution for the symptom.
