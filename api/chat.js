@@ -2,6 +2,7 @@
 
 import { getSymptomContext } from "./notion.mjs";
 import { fallbackTextsBySymptom } from "./fallbackTextsBySymptom.js";
+import { findNearestSymptom } from "../findNearestSymptom.js"; // ajuste o caminho se necessário
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const GPT_MODEL = "gpt-4o-mini";
@@ -386,9 +387,17 @@ console.log("Sintoma mapeado para busca:", sessionMemory.sintomaAtual);
 
   // Detecta sintoma (só se NÃO for follow-up)
 if (!isFollowUp) {
-  // (Ideal: rode aqui sua função de intent/sintoma)
-  sessionMemory.sintomaAtual = userInput.toLowerCase();
-  console.log("Sintoma identificado:", sessionMemory.sintomaAtual);
+  // Busca sintoma mais próximo usando embeddings
+  try {
+    const nearest = await findNearestSymptom(userInput);
+    sessionMemory.sintomaAtual = nearest.bestSymptom;
+    sessionMemory.similarityScore = nearest.bestScore;
+    console.log("Sintoma identificado (semântico):", sessionMemory.sintomaAtual, "Score:", sessionMemory.similarityScore);
+  } catch (err) {
+    console.error("Erro no matching semântico:", err);
+    sessionMemory.sintomaAtual = userInput.toLowerCase();
+    sessionMemory.similarityScore = null;
+  }
 }
 
   // Busca contexto/fase do Notion para o sintoma e fase atual

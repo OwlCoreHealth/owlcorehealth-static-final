@@ -4,9 +4,9 @@
   "type": "module",
   "dependencies": {
     "@notionhq/client": "^2.2.3",
-    "cosine-similarity": "^1.0.1",
     "dotenv": "^16.0.0",
-    "node-fetch": "^3.3.2"
+    "node-fetch": "^3.3.2",
+    "cosine-similarity": "^1.0.0"
   },
   "scripts": {
     "prepare-embeddings": "node generate_embeddings.js",

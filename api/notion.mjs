@@ -38,13 +38,14 @@ export async function getAllSymptoms() {
     console.log("Vai enviar ao Notion:", JSON.stringify(databaseIdClean), databaseIdClean.length);
 
 const response = await notion.databases.query({
-  database_id: databaseIdClean, 
+  database_id: databaseIdClean,
   page_size: 100
 });
-    // Debug da estrutura da propriedade Symptoms na primeira página
-    if (response.results.length > 0) {
-      console.log("Exemplo estrutura Symptoms da primeira página:", JSON.stringify(response.results[0].properties.Symptoms, null, 2));
-    }
+
+// Debug da estrutura da propriedade Symptoms na primeira página
+if (response.results.length > 0) {
+  console.log("Exemplo estrutura Symptoms da primeira página:", JSON.stringify(response.results[0].properties.Symptoms, null, 2));
+}
 
     const symptoms = response.results.map(page => {
       const symptomText = getTextFromProperty(page.properties.Symptoms);
