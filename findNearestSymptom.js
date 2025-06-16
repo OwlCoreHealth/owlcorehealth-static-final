@@ -2,6 +2,7 @@ import fs from "fs";
 import fetch from "node-fetch";
 import cosineSimilarity from "cosine-similarity";
 import dotenv from "dotenv";
+import path from "path"; 
 dotenv.config();
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
@@ -31,7 +32,7 @@ export async function findNearestSymptom(userInput) {
   const userEmbedding = await generateEmbedding(userInput);
 
   const embeddingsData = JSON.parse(
-  fs.readFileSync("api/data/symptoms_embeddings.json", "utf-8")
+  fs.readFileSync(path.join(__dirname, "symptoms_embeddings.json"), "utf-8")
 );
 
   // 3. Calcular similaridade e pegar o mais próximo
