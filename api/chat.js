@@ -371,8 +371,20 @@ export default async function handler(req, res) {
   sessionMemory.funnelPhase = 1;
   sessionMemory.usedQuestions = [];
   // Salva novo sintoma
-  // Aqui NÃO faz mapeamento manual! O sintoma será identificado mais abaixo com a função semântica.
-sessionMemory.sintomaAtual = userInput.toLowerCase(); // valor provisório até matching semântico
+  // Mapeamento manual só para testar
+const sintomaMapeado = (() => {
+  if (userInput.toLowerCase().includes("acne")) return "acne";
+  if (userInput.toLowerCase().includes("dry skin")) return "dry skin";
+  if (userInput.toLowerCase().includes("rosacea")) return "rosacea";
+  // ...adicione mais conforme seus sintomas do Notion!
+  return userInput.toLowerCase(); // fallback
+})();
+
+sessionMemory.sintomaAtual = sintomaMapeado;
+console.log("Sintoma mapeado para busca:", sessionMemory.sintomaAtual);
+
+  console.log("Sintoma identificado:", sessionMemory.sintomaAtual);
+}
 
   const SIMILARITY_THRESHOLD = 0.3; // valor recomendado para clusters sintomáticos
 
@@ -407,17 +419,6 @@ let context = await getSymptomContext(
   sessionMemory.usedQuestions
 );
 
-// Busca todas as entradas do Notion (pode ser função já pronta no seu notion.mjs)
-const notionRows = await getAllRowsFromNotion(); // <-- Certifique-se que esta função retorna todas as linhas da tabela
-
-// Monta um array de todos os sintomas possíveis (flatten de todas as listas de sintomas)
-let allSymptoms = [];
-for (const row of notionRows) {
-  // Considera que row.Symptoms é array. Se vier como string separada por vírgula, faça:
-  const sintomas = Array.isArray(row.Symptoms) ? row.Symptoms : row.Symptoms.split(",").map(s => s.trim());
-  allSymptoms = allSymptoms.concat(sintomas);
-}
-
 // 3. Definir funnelKey
 const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
 
@@ -428,38 +429,23 @@ let funnelTexts = [
   context.funnelTexts?.[`${funnelKey} 3`] || ""
 ].filter(Boolean);
 
-// Remove textos já usados nesta sessão (sessionMemory.usedTexts)
+// 5. Só agora:
+if (!funnelTexts.length) {
+  // ... lógica do fallback ...
+}
+
+// 3. Remove textos já usados nesta sessão (sessionMemory.usedTexts)
 if (!sessionMemory.usedTexts) sessionMemory.usedTexts = [];
 funnelTexts = funnelTexts.filter(text => !sessionMemory.usedTexts.includes(text));
 
-// Se esgotou todas as variações, permite repetir só depois de todas usadas
+// 4. Se esgotou todas as variações, permite repetir só depois de todas usadas
 if (funnelTexts.length === 0 && context.funnelTexts) {
-  sessionMemory.usedTexts = [];
+  sessionMemory.usedTexts = []; // reseta o histórico para aquele funnelKey
   funnelTexts = [
     context.funnelTexts?.[`${funnelKey} 1`] || "",
     context.funnelTexts?.[`${funnelKey} 2`] || "",
     context.funnelTexts?.[`${funnelKey} 3`] || ""
   ].filter(Boolean);
-}
-
-if (!funnelTexts.length) {
-  // Fallback do arquivo fallbackTextsBySymptom.js
-  const fallbackGroup = fallbackTextsBySymptom[mainSymptom];
-  if (fallbackGroup && fallbackGroup[funnelKey] && fallbackGroup[funnelKey].length > 0) {
-    funnelTexts = fallbackGroup[funnelKey];
-    console.log("Usando fallback do arquivo fallbackTextsBySymptom para:", mainSymptom, funnelKey);
-  } else {
-    funnelTexts = [
-      sessionMemory.lowConfidence
-        ? (idioma === "pt"
-            ? `Não consegui identificar seu sintoma de forma precisa, mas aqui está uma explicação baseada em sintomas parecidos ou no cluster mais próximo.`
-            : `I couldn't precisely identify your symptom, but here's an explanation based on similar symptoms or the closest cluster.`)
-        : (idioma === "pt"
-            ? `Desculpe, não temos conteúdo para "${mainSymptom}" nesta fase.`
-            : `Sorry, we don’t have content for "${mainSymptom}" in this phase.`)
-    ];
-    console.log("No Notion or fallbackTextsBySymptom data for:", mainSymptom, funnelKey);
-  }
 }
 
   console.log("Fase atual:", sessionMemory.funnelPhase);
@@ -489,14 +475,9 @@ if (!funnelTexts.length) {
 console.log("FASE ATUAL DO FUNIL:", sessionMemory.funnelPhase, "funnelKey:", funnelKey);
 console.log("Textos disponíveis nesta fase:", funnelTexts);
 
-// Seleciona um texto aleatório
 const baseText = funnelTexts[Math.floor(Math.random() * funnelTexts.length)];
-
-// Marca o texto como já usado para evitar repetição (só se houver textos!)
-if (baseText && baseText.length > 0) {
-  if (!sessionMemory.usedTexts) sessionMemory.usedTexts = [];
-  sessionMemory.usedTexts.push(baseText);
-}
+  // Marca o texto como já usado para a próxima etapa não repetir
+sessionMemory.usedTexts.push(baseText);
 
 console.log("Texto base selecionado:", baseText);
 console.log("===> Fase do funil:", sessionMemory.funnelPhase);
@@ -530,7 +511,7 @@ followupQuestions = followupQuestions.map(q =>
    .replace(/\byour symptom\b/gi, `your ${mainSymptom}`)
 );
 
-/// Monta a resposta do bot
+// Monta a resposta do bot
 let content = gptResponse + `\n\nLet's explore further: Choose one of the options below to continue:\n\n`;
 followupQuestions.forEach((q, i) => {
   content += `<div class="clickable-question" data-question="${encodeURIComponent(q)}">${i + 1}. ${q}</div>\n`;
@@ -544,5 +525,4 @@ return res.status(200).json({
     }
   }]
 });
-// NÃO ADICIONAR MAIS CHAVES — só precisa de UMA } para fechar a função handler!
-}
+} // <-- ESTA fecha a função handler (só uma ch
