@@ -9,6 +9,7 @@
   },
   "scripts": {
     "prepare-embeddings": "node generate_embeddings.js",
-    "dev": "npm run prepare-embeddings && node api/chat.js"
+    "chat": "node api/chat.js",
+    "dev": "npm run prepare-embeddings && npm run chat"
   }
 }
