@@ -391,10 +391,6 @@ if (!isFollowUp) {
   try {
     const nearest = await findNearestSymptom(userInput);
     sessionMemory.sintomaAtual = nearest.bestSymptom;
-    
-    const mainSymptom = sessionMemory.sintomaAtual
-  ? sessionMemory.sintomaAtual.split(",")[0].trim()
-  : sessionMemory.sintomaAtual;
 
     sessionMemory.similarityScore = nearest.bestScore;
     console.log("Sintoma identificado (semântico):", sessionMemory.sintomaAtual, "Score:", sessionMemory.similarityScore);
@@ -459,6 +455,10 @@ console.log("Texto base selecionado:", baseText);
 console.log("===> Fase do funil:", sessionMemory.funnelPhase);
 console.log("===> funnelKey:", funnelKey);
 console.log("===> baseText selecionado:", baseText);
+  
+const mainSymptom = sessionMemory.sintomaAtual
+  ? sessionMemory.sintomaAtual.split(",")[0].trim()
+  : sessionMemory.sintomaAtual;
 
 const gptResponse = await rewriteWithGPT(
   baseText,
