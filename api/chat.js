@@ -221,7 +221,7 @@ async function generateFollowUpQuestions(context, idioma) {
   const symptom = context.sintoma || "symptom";
   const phase = context.funnelPhase || 1;
 
-  const promptEN = `
+ 
 const promptEN = `
 Generate 3 follow-up questions for a sales funnel, focused on the symptom: "${mainSymptom}". ...
 1. PAIN question: highlight a possible negative consequence or worsening of the symptom, with a provocative and alert tone.
@@ -406,7 +406,12 @@ if (!isFollowUp) {
   }
 }
 
-  let context = await getSymptomContext(
+  // 1. Defina mainSymptom aqui:
+const mainSymptom = sessionMemory.sintomaAtual
+  ? sessionMemory.sintomaAtual.split(",")[0].trim()
+  : sessionMemory.sintomaAtual;
+
+let context = await getSymptomContext(
   mainSymptom,
   sessionMemory.funnelPhase,
   mainSymptom,
@@ -418,11 +423,6 @@ if (!funnelTexts.length) {
 }
 
  const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
-
-// 1. Garante o mainSymptom como lookup
-const mainSymptom = sessionMemory.sintomaAtual
-  ? sessionMemory.sintomaAtual.split(",")[0].trim()
-  : sessionMemory.sintomaAtual;
 
 // 2. Busca as 3 variantes da fase
 let funnelTexts = [
@@ -451,7 +451,7 @@ console.log("funnelTexts:", funnelTexts);
 
 if (!funnelTexts.length) {
   // Fallback do arquivo fallbackTextsBySymptom.js
-  const fallbackGroup = fallbackTextsBySymptom[sessionMemory.sintomaAtual];
+  const fallbackGroup = fallbackTextsBySymptom[mainSymptom];
   if (fallbackGroup && fallbackGroup[funnelKey] && fallbackGroup[funnelKey].length > 0) {
     funnelTexts = fallbackGroup[funnelKey];
     console.log("Usando fallback do arquivo fallbackTextsBySymptom para:", sessionMemory.sintomaAtual, funnelKey);
@@ -480,10 +480,6 @@ console.log("Texto base selecionado:", baseText);
 console.log("===> Fase do funil:", sessionMemory.funnelPhase);
 console.log("===> funnelKey:", funnelKey);
 console.log("===> baseText selecionado:", baseText);
-  
-const mainSymptom = sessionMemory.sintomaAtual
-  ? sessionMemory.sintomaAtual.split(",")[0].trim()
-  : sessionMemory.sintomaAtual;
 
 const gptResponse = await rewriteWithGPT(
   baseText,
@@ -497,7 +493,7 @@ console.log("===> gptResponse retornado:", gptResponse);
 
 // Gera perguntas provocativas para o sintoma atual e fase
 let followupQuestions = await generateFollowUpQuestions(
-  { sintoma: sessionMemory.sintomaAtual, funnelPhase: sessionMemory.funnelPhase },
+  { sintoma: mainSymptom, funnelPhase: sessionMemory.funnelPhase },
   idioma
 );
 
