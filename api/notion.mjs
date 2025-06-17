@@ -98,6 +98,15 @@ export async function getSymptomContext(input, funnelPhase, previousSymptom, use
       Links: page.properties["Links"]?.rich_text?.[0]?.plain_text || ""
     }));
 
+    // LOGA TUDO DA PRIMEIRA LINHA DO NOTION
+if (allRows.length > 0) {
+  console.log("---- LOG PRIMEIRA LINHA ----");
+  console.log("Symptoms:", allRows[0].Symptoms);
+  console.log("Funnel Awareness 1:", allRows[0]["Funnel Awareness 1"]);
+  console.log("Funnel Severity 1:", allRows[0]["Funnel Severity 1"]);
+  // Adicione outros campos para debug conforme necessário
+}
+
     // 3. Matching semântico ou exato (troque pelo seu findNearestSymptom se quiser!)
     // Exemplo simples: encontra a linha onde o sintoma existe (ignore case)
     const sintomaInput = input.toLowerCase().trim();
