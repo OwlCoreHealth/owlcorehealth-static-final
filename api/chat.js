@@ -469,7 +469,7 @@ if (matchedRow) {
 }
 
   // 2. Atualiza com o melhor sintoma encontrado
-  matchedSymptom = nearest.Symptoms[0]?;  // Melhor sintoma encontrado (assumindo que o primeiro é o mais relevante)
+  matchedSymptom = nearest.Symptoms[0];  // Melhor sintoma encontrado (assumindo que o primeiro é o mais relevante)
 
   // 3. Atualiza a confiança no matching semântico
   sessionMemory.sintomaAtual = matchedSymptom;  // Sintoma identificado
@@ -488,7 +488,7 @@ if (matchedRow) {
 
 // Definição do sintoma principal para usar nas próximas fases
 const mainSymptom = sessionMemory.sintomaAtual
-  ? sessionMemory.sintomaAtual.split(",")[0]?.trim()
+  ? sessionMemory.sintomaAtual.split(",")[0].trim()
   : sessionMemory.sintomaAtual;
 
 
