@@ -84,6 +84,7 @@ function extractRichText(prop) {
 
 // 2. Mapeia todas as linhas trazendo sintomas e conteúdos
 const allRows = response.results.map(page => ({
+  console.log("DADOS DA PÁGINA:", page);
   Supplement: page.properties.Supplement?.title?.[0]?.plain_text || "",
   Symptoms: page.properties.Symptoms?.multi_select?.map(opt => opt.name.toLowerCase()) || [],
   "Funnel Awareness 1": extractRichText(page.properties["Funnel Awareness 1"]),
