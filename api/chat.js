@@ -370,10 +370,17 @@ export default async function handler(req, res) {
 } else {
   sessionMemory.funnelPhase = 1;
   sessionMemory.usedQuestions = [];
-  // Salva novo sintoma
-  // Mapeamento manual só para testar
-// Aqui NÃO faz mapeamento manual! O sintoma será identificado mais abaixo com a função semântica.
-sessionMemory.sintomaAtual = userInput.toLowerCase(); // valor provisório até matching semântico
+    
+try {
+  const nearest = await findNearestSymptom(userInput);
+  sessionMemory.sintomaAtual = nearest.bestSymptom;
+  sessionMemory.similarityScore = nearest.bestScore;
+  console.log("Sintoma identificado (semântico):", sessionMemory.sintomaAtual, "Score:", sessionMemory.similarityScore);
+} catch (err) {
+  console.error("Erro no matching semântico:", err);
+  sessionMemory.sintomaAtual = userInput.toLowerCase();  // Como fallback, usa o input direto
+  sessionMemory.similarityScore = null;
+}
 
 
   const SIMILARITY_THRESHOLD = 0.3; // valor recomendado para clusters sintomáticos
