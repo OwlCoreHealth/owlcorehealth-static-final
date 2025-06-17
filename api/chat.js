@@ -372,7 +372,10 @@ export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Método não permitido" });
 
   const { message, selectedQuestion } = req.body;
-  const userInput = selectedQuestion || message;
+// Garanta que userInput SEMPRE seja string!
+let userInput = selectedQuestion || message;
+userInput = (userInput || "").toString();
+
   const isFollowUp = Boolean(selectedQuestion);
   const idioma = "en"; // Sempre usa inglês (US English) como base
 
