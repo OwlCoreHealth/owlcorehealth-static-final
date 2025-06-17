@@ -424,12 +424,8 @@ console.log("Sintoma mapeado para busca:", sessionMemory.sintomaAtual);
 
 if (!isFollowUp) {
   try {
-    // Substitua pela função semântica correta (exemplo usando findNearestSymptom do seu import)
-// 1. Junta todos os sintomas de todas as linhas em um array
-const allSymptoms = allNotionRows.flatMap(row => row.Symptoms);
+    
 
-// 2. Matching semântico: encontra o sintoma mais próximo do input do usuário
-// Antes de usar, adicione esta linha no início do handler:
 const allNotionRows = await getAllSupplementsAndSymptoms(); // <-- chama tua função correta
 // Agora pode usar normalmente:
 const allSymptoms = allNotionRows.flatMap(row => row.Symptoms);
