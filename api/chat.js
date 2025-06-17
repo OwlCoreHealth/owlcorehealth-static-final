@@ -17,7 +17,7 @@ const response = await notion.databases.query({
 
 // Mapeia só uma vez, aqui:
 return response.results.map(page => ({
-  Supplement: page.properties.Supplement.title[0]?.plain_text || "",
+  Supplement: page.properties.Supplement?.title?.[0]?.plain_text || "",
   Symptoms: page.properties.Symptoms?.multi_select?.map(opt => opt.name.toLowerCase()) || [],
   "Funnel Awareness 1": page.properties["Funnel Awareness 1"]?.rich_text[0]?.plain_text || "",
   "Funnel Awareness 2": page.properties["Funnel Awareness 2"]?.rich_text[0]?.plain_text || "",
