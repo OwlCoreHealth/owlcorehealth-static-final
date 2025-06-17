@@ -63,18 +63,12 @@ const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const GPT_MODEL = "gpt-4o-mini";
 
 export async function getSymptomContext(input, funnelPhase, previousSymptom, usedQuestions) {
-  const filtro = {
-  or: [
-    { property: "Keywords", rich_text: { contains: input } },
-    { property: "Symptoms", rich_text: { contains: input } }
-  ]
-};
+  const response = await notion.databases.query({
+  database_id: databaseId, // ou databaseIdClean, depende do nome no seu arquivo
+  page_size: 100 // ou sem page_size se quiser tudo
+  // NÃO coloque filter!
+});
 
-  try {
-    const response = await notion.databases.query({
-      database_id: databaseId,
-      filter: filtro
-    });
 
     const page = response.results[0];
 
