@@ -371,237 +371,171 @@ console.log("Entrou na rota /api/chat!");
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Método não permitido" });
 
-const { message, selectedQuestion } = req.body;
-const isFollowUp = Boolean(selectedQuestion);
+  const { message, selectedQuestion } = req.body;
+  const isFollowUp = Boolean(selectedQuestion);
 
-if (!sessionMemory) sessionMemory = {};
+  if (!sessionMemory) sessionMemory = {};
 
-let userInput;
+  let userInput;
+  if (!isFollowUp) {
+    userInput = (message || "").toString();
 
-if (!isFollowUp) {
-  userInput = (message || "").toString();
+    // Mapeamento manual inicial
+    const sintomaMapeado = (() => {
+      if (userInput.toLowerCase().includes("acne")) return "acne";
+      if (userInput.toLowerCase().includes("dry skin")) return "dry skin";
+      if (userInput.toLowerCase().includes("rosacea")) return "rosacea";
+      return userInput.toLowerCase();
+    })();
 
-  const sintomaMapeado = (() => {
-    if (userInput.toLowerCase().includes("acne")) return "acne";
-    if (userInput.toLowerCase().includes("dry skin")) return "dry skin";
-    if (userInput.toLowerCase().includes("rosacea")) return "rosacea";
-    return userInput.toLowerCase();
-  })();
+    sessionMemory.sintomaAtual = sintomaMapeado;
+    sessionMemory.funnelPhase = 1;
+    sessionMemory.usedQuestions = [];
+    console.log("Sintoma mapeado para busca:", sessionMemory.sintomaAtual);
+    console.log("Sintoma identificado:", sessionMemory.sintomaAtual);
 
-  sessionMemory.sintomaAtual = sintomaMapeado;
-  sessionMemory.funnelPhase = 1;
-  sessionMemory.usedQuestions = [];
-  console.log("Sintoma mapeado para busca:", sessionMemory.sintomaAtual);
-  console.log("Sintoma identificado:", sessionMemory.sintomaAtual);
+    // Matching semântico só na primeira vez!
+    try {
+      const allNotionRows = await getAllSupplementsAndSymptoms();
+      const allSymptoms = allNotionRows.flatMap(row => row.Symptoms);
+      const nearest = await findNearestSymptom(userInput, allSymptoms);
+      const matchedRow = allNotionRows.find(row => row.Symptoms.includes(nearest.bestSymptom));
 
-} else {
-  userInput = sessionMemory.sintomaAtual || "";
-  sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
-}
+      // Só troca se encontrar algo realmente próximo
+      sessionMemory.sintomaAtual =
+        nearest && nearest.bestScore > 0
+          ? nearest.bestSymptom
+          : sintomaMapeado || userInput.toLowerCase();
 
-const idioma = "en";
+      sessionMemory.similarityScore = nearest.bestScore;
+      sessionMemory.lowConfidence = nearest.bestScore < 0.3;
+      sessionMemory.notionRow = matchedRow || null;
+      console.log("Sintoma identificado (semântico):", sessionMemory.sintomaAtual, "Score:", sessionMemory.similarityScore);
+    } catch (err) {
+      console.error("Erro no matching semântico:", err);
+      sessionMemory.sintomaAtual = sintomaMapeado || userInput.toLowerCase();
+      sessionMemory.similarityScore = null;
+      sessionMemory.lowConfidence = true;
+      sessionMemory.notionRow = null;
+    }
 
-const vagueInputs = ["true", "ok", "sim", "não", "nao", ""];
-if (!isFollowUp && vagueInputs.includes((userInput || "").toString().trim().toLowerCase())) {
-  const fallbackQuestions = [
-    "Did you know small changes can transform your health?",
-    "Want to find out what's sabotaging your progress?",
-    "Have you tried a natural method to fix this?"
-  ];
-  return res.status(200).json({
-    choices: [{
-      message: {
-        content: "Let's explore further:\nChoose one of the options below to continue:\n\n" +
-          fallbackQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n"),
-        followupQuestions: fallbackQuestions
-      }
-    }]
-  });
-}
-
-  const SIMILARITY_THRESHOLD = 0.3; // valor recomendado para clusters sintomáticos
-
-if (!isFollowUp) {
-  try {
-    
-
-const allNotionRows = await getAllSupplementsAndSymptoms(); // <-- chama tua função correta
-// Agora pode usar normalmente:
-const allSymptoms = allNotionRows.flatMap(row => row.Symptoms);
-const nearest = await findNearestSymptom(userInput, allSymptoms);
-const matchedRow = allNotionRows.find(row => row.Symptoms.includes(nearest.bestSymptom));
-
-    sessionMemory.sintomaAtual = nearest.bestSymptom || userInput;
-
-    sessionMemory.similarityScore = nearest.bestScore;
-    console.log("Sintoma identificado (semântico):", sessionMemory.sintomaAtual, "Score:", sessionMemory.similarityScore);
-
-    // NÃO aborta fluxo — apenas registra confiança baixa, para customizar copy se quiser
-    sessionMemory.lowConfidence = nearest.bestScore < SIMILARITY_THRESHOLD;
-  } catch (err) {
-    console.error("Erro no matching semântico:", err);
-    sessionMemory.sintomaAtual = userInput.toLowerCase();
-    sessionMemory.similarityScore = null;
-    sessionMemory.lowConfidence = true;
+  } else {
+    // Follow-up: NÃO roda mais matching nem redefine sintoma!
+    userInput = sessionMemory.sintomaAtual || "";
+    sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
   }
-}
 
-  // Recebe o input do usuário e tenta fazer o matching semântico
-let matchedSymptom = userInput.toLowerCase();  // Usa o input direto como valor inicial
+  // Define sempre o sintoma principal para todas as próximas etapas!
+  let mainSymptom = (sessionMemory.sintomaAtual || userInput || "").split(",")[0].trim();
+  if (!mainSymptom || mainSymptom === "true" || mainSymptom === "symptom") mainSymptom = "symptom_not_identified";
+  console.log("mainSymptom usado para perguntas:", mainSymptom);
 
-try {
-  // 1. Tenta realizar o matching semântico
-const allNotionRows = await getAllSupplementsAndSymptoms();  // Pega todas as linhas do Notion
-const allSymptoms = allNotionRows.flatMap(row => row.Symptoms);
-const nearest = await findNearestSymptom(userInput, allSymptoms);
-const matchedRow = allNotionRows.find(row => row.Symptoms.includes(nearest.bestSymptom));
+  const idioma = "en";
+  const vagueInputs = ["true", "ok", "sim", "não", "nao", ""];
 
+  // Responde para inputs vagos (só na 1ª interação!)
+  if (!isFollowUp && vagueInputs.includes((userInput || "").trim().toLowerCase())) {
+    const fallbackQuestions = [
+      "Did you know small changes can transform your health?",
+      "Want to find out what's sabotaging your progress?",
+      "Have you tried a natural method to fix this?"
+    ];
+    return res.status(200).json({
+      choices: [{
+        message: {
+          content: "Let's explore further:\nChoose one of the options below to continue:\n\n" +
+            fallbackQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n"),
+          followupQuestions: fallbackQuestions
+        }
+      }]
+    });
+  }
 
-if (matchedRow) {
-  sessionMemory.sintomaAtual = nearest.bestSymptom;
-  sessionMemory.notionRow = matchedRow;
-  sessionMemory.similarityScore = nearest.bestScore;
-} else {
-  sessionMemory.sintomaAtual = userInput;
-  sessionMemory.notionRow = null;
-  sessionMemory.similarityScore = 0;
-}
-  
-console.log("Sintoma identificado (semântico):", sessionMemory.sintomaAtual, "| Score:", sessionMemory.similarityScore);
-
-  // 2. Atualiza com o melhor sintoma encontrado
-  matchedSymptom = nearest.Symptoms?.[0] || "";
-
-  // 3. Atualiza a confiança no matching semântico
-  sessionMemory.sintomaAtual = matchedSymptom;  // Sintoma identificado
-  sessionMemory.similarityScore = nearest.bestScore;  // Score de confiança
-
-  // 4. Marca a confiança baixa se o score for menor que o limiar
-  sessionMemory.lowConfidence = nearest.bestScore < SIMILARITY_THRESHOLD;
-  console.log("Sintoma identificado (semântico):", sessionMemory.sintomaAtual, "Score:", sessionMemory.similarityScore);
-
-} catch (err) {
-  console.error("Erro no matching semântico:", err);
-  sessionMemory.sintomaAtual = userInput.toLowerCase();  // Caso falhe, mantém o valor original
-  sessionMemory.similarityScore = null;
-  sessionMemory.lowConfidence = true;  // Marca como baixa confiança se houver erro
-}
-
-const mainSymptom = (sessionMemory.sintomaAtual || userInput || "").split(",")[0].trim();
-console.log("mainSymptom usado para perguntas:", mainSymptom);
-
-// 2. Buscar context
-let context = await getSymptomContext(
-  mainSymptom,
-  sessionMemory.funnelPhase,
-  mainSymptom,
-  sessionMemory.usedQuestions
-);
-
-// 3. Definir funnelKey
-const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
-
-// 4. Inicializar funnelTexts
-let funnelTexts = [
-  context.funnelTexts?.[`${funnelKey} 1`] || "",
-  context.funnelTexts?.[`${funnelKey} 2`] || "",
-  context.funnelTexts?.[`${funnelKey} 3`] || ""
-].filter(Boolean);
-
-// 5. Só agora:
-if (!funnelTexts.length) {
-  // ... lógica do fallback ...
-}
-
-// 3. Remove textos já usados nesta sessão (sessionMemory.usedTexts)
-if (!sessionMemory.usedTexts) sessionMemory.usedTexts = [];
-funnelTexts = funnelTexts.filter(text => !sessionMemory.usedTexts.includes(text));
-
-// 4. Se esgotou todas as variações, permite repetir só depois de todas usadas
-if (funnelTexts.length === 0 && context.funnelTexts) {
-  sessionMemory.usedTexts = []; // reseta o histórico para aquele funnelKey
-  funnelTexts = [
+  // Busca context do Notion/fallback, SEMPRE usando mainSymptom
+  let context = await getSymptomContext(
+    mainSymptom,
+    sessionMemory.funnelPhase,
+    mainSymptom,
+    sessionMemory.usedQuestions
+  );
+  const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
+  let funnelTexts = [
     context.funnelTexts?.[`${funnelKey} 1`] || "",
     context.funnelTexts?.[`${funnelKey} 2`] || "",
     context.funnelTexts?.[`${funnelKey} 3`] || ""
   ].filter(Boolean);
-}
+
+  if (!sessionMemory.usedTexts) sessionMemory.usedTexts = [];
+  funnelTexts = funnelTexts.filter(text => !sessionMemory.usedTexts.includes(text));
+  if (funnelTexts.length === 0 && context.funnelTexts) {
+    sessionMemory.usedTexts = [];
+    funnelTexts = [
+      context.funnelTexts?.[`${funnelKey} 1`] || "",
+      context.funnelTexts?.[`${funnelKey} 2`] || "",
+      context.funnelTexts?.[`${funnelKey} 3`] || ""
+    ].filter(Boolean);
+  }
 
   console.log("Fase atual:", sessionMemory.funnelPhase);
-console.log("funnelKey:", funnelKey);
-console.log("funnelTexts:", funnelTexts);
+  console.log("funnelKey:", funnelKey);
+  console.log("funnelTexts:", funnelTexts);
 
-if (!funnelTexts.length) {
-  // Fallback do arquivo fallbackTextsBySymptom.js
-  const fallbackGroup = fallbackTextsBySymptom[mainSymptom];
-  if (fallbackGroup && fallbackGroup[funnelKey] && fallbackGroup[funnelKey].length > 0) {
-    funnelTexts = fallbackGroup[funnelKey];
-    console.log("Usando fallback do arquivo fallbackTextsBySymptom para:", sessionMemory.sintomaAtual, funnelKey);
-  } else {
-    funnelTexts = [
-      sessionMemory.lowConfidence
-        ? (idioma === "pt"
+  // Fallback
+  if (!funnelTexts.length) {
+    const fallbackGroup = fallbackTextsBySymptom[mainSymptom];
+    if (fallbackGroup && fallbackGroup[funnelKey] && fallbackGroup[funnelKey].length > 0) {
+      funnelTexts = fallbackGroup[funnelKey];
+      console.log("Usando fallback do arquivo fallbackTextsBySymptom para:", mainSymptom, funnelKey);
+    } else {
+      funnelTexts = [
+        sessionMemory.lowConfidence
+          ? (idioma === "pt"
             ? `Não consegui identificar seu sintoma de forma precisa, mas aqui está uma explicação baseada em sintomas parecidos ou no cluster mais próximo.`
             : `I couldn't precisely identify your symptom, but here's an explanation based on similar symptoms or the closest cluster.`)
-        : (idioma === "pt"
-            ? `Desculpe, não temos conteúdo para "${sessionMemory.sintomaAtual}" nesta fase.`
-            : `Sorry, we don’t have content for "${sessionMemory.sintomaAtual}" in this phase.`)
-    ];
-    console.log("No Notion or fallbackTextsBySymptom data for:", sessionMemory.sintomaAtual, funnelKey);
-  }
-}
-
-console.log("FASE ATUAL DO FUNIL:", sessionMemory.funnelPhase, "funnelKey:", funnelKey);
-console.log("Textos disponíveis nesta fase:", funnelTexts);
-
-const baseText = funnelTexts[Math.floor(Math.random() * funnelTexts.length)];
-  // Marca o texto como já usado para a próxima etapa não repetir
-sessionMemory.usedTexts.push(baseText);
-
-console.log("Texto base selecionado:", baseText);
-console.log("===> Fase do funil:", sessionMemory.funnelPhase);
-console.log("===> funnelKey:", funnelKey);
-console.log("===> baseText selecionado:", baseText);
-
-const gptResponse = await rewriteWithGPT(
-  baseText,
-  mainSymptom, // << agora usa o sintoma curto!
-  idioma,
-  sessionMemory.funnelPhase,
-  sessionMemory.categoriaAtual
-);
-
-console.log("===> gptResponse retornado:", gptResponse);
-
-// Gera perguntas provocativas para o sintoma atual e fase
-let followupQuestions = await generateFollowUpQuestions(
-  { sintoma: mainSymptom, funnelPhase: sessionMemory.funnelPhase },
-  idioma
-);
-
-console.log("Perguntas brutas antes de substituir:", followupQuestions);
-console.log("Sintoma usado para substituir:", sessionMemory.sintomaAtual);
-
-followupQuestions = followupQuestions.map(q =>
-  q.replace(/\[symptom\]/gi, mainSymptom || userInput)
-   .replace(/your symptom/gi, `your ${mainSymptom || userInput}`)
-   .replace(/the symptom/gi, mainSymptom || userInput)
-   .replace(/\bsymptom\b/gi, mainSymptom || userInput)
-   .replace(/\byour symptom\b/gi, `your ${mainSymptom || userInput}`)
-);
-
-// Monta a resposta do bot
-let content = gptResponse + `\n\nLet's explore further: Choose one of the options below to continue:\n\n`;
-followupQuestions.forEach((q, i) => {
-  content += `<div class="clickable-question" data-question="${encodeURIComponent(q)}">${i + 1}. ${q}</div>\n`;
-});
-
-return res.status(200).json({
-  choices: [{
-    message: {
-      content,
-      followupQuestions
+          : (idioma === "pt"
+            ? `Desculpe, não temos conteúdo para "${mainSymptom}" nesta fase.`
+            : `Sorry, we don’t have content for "${mainSymptom}" in this phase.`)
+      ];
+      console.log("No Notion or fallbackTextsBySymptom data for:", mainSymptom, funnelKey);
     }
-  }]
-});
-} // <-- ESTA fecha a função handler (só uma ch
+  }
+
+  const baseText = funnelTexts[Math.floor(Math.random() * funnelTexts.length)];
+  sessionMemory.usedTexts.push(baseText);
+
+  const gptResponse = await rewriteWithGPT(
+    baseText,
+    mainSymptom,
+    idioma,
+    sessionMemory.funnelPhase,
+    sessionMemory.categoriaAtual
+  );
+
+  let followupQuestions = await generateFollowUpQuestions(
+    { sintoma: mainSymptom, funnelPhase: sessionMemory.funnelPhase },
+    idioma
+  );
+
+  // Substituições finais de placeholder
+  followupQuestions = followupQuestions.map(q =>
+    q.replace(/\[symptom\]/gi, mainSymptom)
+      .replace(/your symptom/gi, `your ${mainSymptom}`)
+      .replace(/the symptom/gi, mainSymptom)
+      .replace(/\bsymptom\b/gi, mainSymptom)
+      .replace(/\byour symptom\b/gi, `your ${mainSymptom}`)
+  );
+
+  let content = gptResponse + `\n\nLet's explore further: Choose one of the options below to continue:\n\n`;
+  followupQuestions.forEach((q, i) => {
+    content += `<div class="clickable-question" data-question="${encodeURIComponent(q)}">${i + 1}. ${q}</div>\n`;
+  });
+
+  return res.status(200).json({
+    choices: [{
+      message: {
+        content,
+        followupQuestions
+      }
+    }]
+  });
+}
