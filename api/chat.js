@@ -371,10 +371,24 @@ console.log("Entrou na rota /api/chat!");
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Método não permitido" });
 
-  const { message, selectedQuestion } = req.body;
-// Garanta que userInput SEMPRE seja string!
-let userInput = selectedQuestion || message;
-userInput = (userInput || "").toString();
+ // Novo padrão: só define userInput do início na primeira interação!
+const { message, selectedQuestion } = req.body;
+const isFollowUp = Boolean(selectedQuestion);
+
+if (!sessionMemory) sessionMemory = {};
+
+let userInput;
+if (!isFollowUp) {
+  // PRIMEIRA interação: pega do usuário, processa sintoma normalmente
+  userInput = (message || "").toString();
+  sessionMemory.sintomaAtual = userInput; // ou resultado do seu matcher/LLM
+  sessionMemory.funnelPhase = 1;
+  sessionMemory.usedQuestions = [];
+} else {
+  // FOLLOW-UP: avança fase, mas NÃO redefine userInput nem sintoma!
+  userInput = sessionMemory.sintomaAtual; // mantém o sintoma original!
+  sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
+}
 
   const isFollowUp = Boolean(selectedQuestion);
   const idioma = "en"; // Sempre usa inglês (US English) como base
@@ -490,7 +504,11 @@ console.log("Sintoma identificado (semântico):", sessionMemory.sintomaAtual, "|
   sessionMemory.lowConfidence = true;  // Marca como baixa confiança se houver erro
 }
 
-const mainSymptom = (sessionMemory.sintomaAtual || userInput).split(",")[0].trim();
+const mainSymptom = (
+  sessionMemory && sessionMemory.sintomaAtual
+    ? sessionMemory.sintomaAtual
+    : userInput
+).toString().split(",")[0].trim();
 console.log("mainSymptom usado para perguntas:", mainSymptom);
 
 
