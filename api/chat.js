@@ -371,68 +371,52 @@ console.log("Entrou na rota /api/chat!");
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Método não permitido" });
 
- // Novo padrão: só define userInput do início na primeira interação!
 const { message, selectedQuestion } = req.body;
 const isFollowUp = Boolean(selectedQuestion);
 
 if (!sessionMemory) sessionMemory = {};
 
 let userInput;
+
 if (!isFollowUp) {
-  // PRIMEIRA interação: pega do usuário, processa sintoma normalmente
   userInput = (message || "").toString();
-  sessionMemory.sintomaAtual = userInput; // ou resultado do seu matcher/LLM
+
+  const sintomaMapeado = (() => {
+    if (userInput.toLowerCase().includes("acne")) return "acne";
+    if (userInput.toLowerCase().includes("dry skin")) return "dry skin";
+    if (userInput.toLowerCase().includes("rosacea")) return "rosacea";
+    return userInput.toLowerCase();
+  })();
+
+  sessionMemory.sintomaAtual = sintomaMapeado;
   sessionMemory.funnelPhase = 1;
   sessionMemory.usedQuestions = [];
+  console.log("Sintoma mapeado para busca:", sessionMemory.sintomaAtual);
+  console.log("Sintoma identificado:", sessionMemory.sintomaAtual);
+
 } else {
-  // FOLLOW-UP: avança fase, mas NÃO redefine userInput nem sintoma!
-  userInput = sessionMemory.sintomaAtual; // mantém o sintoma original!
+  userInput = sessionMemory.sintomaAtual || "";
   sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
 }
 
-  const idioma = "en"; // Sempre usa inglês (US English) como base
+const idioma = "en";
 
-  // Inputs muito vagos (não tratamos se for follow-up!)
-  const vagueInputs = ["true", "ok", "sim", "não", "nao", ""];
-  if (!isFollowUp && vagueInputs.includes((userInput || "").toString().trim().toLowerCase())) {
-    // Perguntas fixas para evitar "buraco"
-    const fallbackQuestions = [
-      "Did you know small changes can transform your health?",
-      "Want to find out what's sabotaging your progress?",
-      "Have you tried a natural method to fix this?"
-    ];
-    return res.status(200).json({
-      choices: [{
-        message: {
-          content: "Let's explore further:\nChoose one of the options below to continue:\n\n" +
-            fallbackQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n"),
-          followupQuestions: fallbackQuestions
-        }
-      }]
-    });
-  }
-
-  // Avança a fase do funil ao clicar no follow-up
-  if (isFollowUp) {
-  sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
-  // NÃO MUDA o sintomaAtual aqui!
-} else {
-  sessionMemory.funnelPhase = 1;
-  sessionMemory.usedQuestions = [];
-  // Salva novo sintoma
-  // Mapeamento manual só para testar
-const sintomaMapeado = (() => {
-  if (userInput.toLowerCase().includes("acne")) return "acne";
-  if (userInput.toLowerCase().includes("dry skin")) return "dry skin";
-  if (userInput.toLowerCase().includes("rosacea")) return "rosacea";
-  // ...adicione mais conforme seus sintomas do Notion!
-  return userInput.toLowerCase(); // fallback
-})();
-
-sessionMemory.sintomaAtual = sintomaMapeado;
-console.log("Sintoma mapeado para busca:", sessionMemory.sintomaAtual);
-
-  console.log("Sintoma identificado:", sessionMemory.sintomaAtual);
+const vagueInputs = ["true", "ok", "sim", "não", "nao", ""];
+if (!isFollowUp && vagueInputs.includes((userInput || "").toString().trim().toLowerCase())) {
+  const fallbackQuestions = [
+    "Did you know small changes can transform your health?",
+    "Want to find out what's sabotaging your progress?",
+    "Have you tried a natural method to fix this?"
+  ];
+  return res.status(200).json({
+    choices: [{
+      message: {
+        content: "Let's explore further:\nChoose one of the options below to continue:\n\n" +
+          fallbackQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n"),
+        followupQuestions: fallbackQuestions
+      }
+    }]
+  });
 }
 
   const SIMILARITY_THRESHOLD = 0.3; // valor recomendado para clusters sintomáticos
@@ -503,13 +487,8 @@ console.log("Sintoma identificado (semântico):", sessionMemory.sintomaAtual, "|
   sessionMemory.lowConfidence = true;  // Marca como baixa confiança se houver erro
 }
 
-const mainSymptom = (
-  sessionMemory && sessionMemory.sintomaAtual
-    ? sessionMemory.sintomaAtual
-    : userInput
-).toString().split(",")[0].trim();
+const mainSymptom = (sessionMemory.sintomaAtual || userInput || "").split(",")[0].trim();
 console.log("mainSymptom usado para perguntas:", mainSymptom);
-
 
 // 2. Buscar context
 let context = await getSymptomContext(
