@@ -116,6 +116,16 @@ const matchedRow = allRows.find(row => {
   // Loga os sintomas dessa linha do Notion
   console.log("Sintomas da linha:", row.Symptoms);
   
+  return row.Symptoms.some(...); // sua lógica de matching
+});
+
+// Agora matchedRow já foi encontrado!
+if (matchedRow) {
+  console.log("==== PROPRIEDADES DA LINHA MATCHED ====");
+  console.log(matchedRow); // Esse é o objeto mapeado, normalmente só os campos filtrados.
+}
+
+  
   // Testa cada sintoma dessa linha
   const found = row.Symptoms.some(s => {
     const basicMatch = s.includes(sintomaInput) || sintomaInput.includes(s);
