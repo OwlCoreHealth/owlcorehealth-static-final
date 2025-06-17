@@ -410,10 +410,9 @@ if (!isFollowUp) {
   console.log("Sintoma final para processamento:", sessionMemory.sintomaAtual);
 }
 
-  // 1. Definição
-const mainSymptom = sessionMemory.sintomaAtual
-  ? sessionMemory.sintomaAtual.split(",")[0].trim()
-  : sessionMemory.sintomaAtual;
+  const mainSymptom = sessionMemory.sintomaAtual
+  ? sessionMemory.sintomaAtual.split(",")[0].trim() // Se tiver vírgula, pega o primeiro sintoma.
+  : sessionMemory.sintomaAtual.trim(); // Caso contrário, apenas usa o sintoma diretamente.
 
 // 2. Buscar context
 let context = await getSymptomContext(
