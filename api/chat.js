@@ -386,21 +386,24 @@ try {
   const SIMILARITY_THRESHOLD = 0.3; // valor recomendado para clusters sintomáticos
 
 if (!isFollowUp) {
-  try {
-    const nearest = await findNearestSymptom(userInput);
-    sessionMemory.sintomaAtual = nearest.bestSymptom;
+ // 1. Recebe o input do usuário
+sessionMemory.sintomaAtual = userInput.toLowerCase(); // Apenas temporário até o matching semântico
 
-    sessionMemory.similarityScore = nearest.bestScore;
-    console.log("Sintoma identificado (semântico):", sessionMemory.sintomaAtual, "Score:", sessionMemory.similarityScore);
+// 2. Agora realiza o matching semântico
+try {
+  const nearest = await findNearestSymptom(userInput);
+  sessionMemory.sintomaAtual = nearest.bestSymptom; // Atualiza com o melhor sintoma encontrado
+  sessionMemory.similarityScore = nearest.bestScore; // Salva o score de confiança
 
-    // NÃO aborta fluxo — apenas registra confiança baixa, para customizar copy se quiser
-    sessionMemory.lowConfidence = nearest.bestScore < SIMILARITY_THRESHOLD;
-  } catch (err) {
-    console.error("Erro no matching semântico:", err);
-    sessionMemory.sintomaAtual = userInput.toLowerCase();
-    sessionMemory.similarityScore = null;
-    sessionMemory.lowConfidence = true;
-  }
+  // Marca o estado de confiança
+  sessionMemory.lowConfidence = nearest.bestScore < SIMILARITY_THRESHOLD;
+  console.log("Sintoma identificado (semântico):", sessionMemory.sintomaAtual, "Score:", sessionMemory.similarityScore);
+
+} catch (err) {
+  console.error("Erro no matching semântico:", err);
+  sessionMemory.sintomaAtual = userInput.toLowerCase(); // Caso falhe, mantém o valor original
+  sessionMemory.similarityScore = null;
+  sessionMemory.lowConfidence = true; // Marca como baixa confiança se houver erro
 }
 
   // 1. Definição
