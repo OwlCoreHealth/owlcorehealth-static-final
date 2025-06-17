@@ -76,7 +76,7 @@ export async function getSymptomContext(input, funnelPhase, previousSymptom, use
       page_size: 100
     });
 
-// 2. Mapeia todas as linhas trazendo sintomas e conteúdos
+    // 2. Mapeia todas as linhas trazendo sintomas e conteúdos
     const allRows = response.results.map(page => ({
       Supplement: page.properties.Supplement?.title?.[0]?.plain_text || "",
       Symptoms: page.properties.Symptoms?.multi_select?.map(opt => opt.name.toLowerCase()) || [],
@@ -107,55 +107,24 @@ if (allRows.length > 0) {
   // Adicione outros campos para debug conforme necessário
 }
 
+    // 3. Matching semântico ou exato (troque pelo seu findNearestSymptom se quiser!)
+    // Exemplo simples: encontra a linha onde o sintoma existe (ignore case)
     const sintomaInput = input.toLowerCase().trim();
+    const matchedRow = allRows.find(row =>
+      row.Symptoms.some(s => sintomaInput.includes(s) || s.includes(sintomaInput))
+    );
 
-console.log("\n==== MATCHING DE SINTOMA ====");
-console.log("Sintoma buscado (input):", sintomaInput);
-
-const matchedRow = allRows.find(row => {
-  // Loga os sintomas dessa linha do Notion
-  console.log("Sintomas da linha:", row.Symptoms);
-  
-  return row.Symptoms.some(...); // sua lógica de matching
-});
-
-// Agora matchedRow já foi encontrado!
-if (matchedRow) {
-  console.log("==== PROPRIEDADES DA LINHA MATCHED ====");
-  console.log(matchedRow); // Esse é o objeto mapeado, normalmente só os campos filtrados.
-}
-
-  
-  // Testa cada sintoma dessa linha
-  const found = row.Symptoms.some(s => {
-    const basicMatch = s.includes(sintomaInput) || sintomaInput.includes(s);
-    const wordMatch = s.split(/[ ,;()]+/).some(word => sintomaInput.includes(word));
-    
-    // Log do resultado
-    if (basicMatch || wordMatch) {
-      console.log(`➡️ Match encontrado! "${s}" casa com "${sintomaInput}"`);
-    }
-    return basicMatch || wordMatch;
-  });
-  
-  if (found) {
-    console.log("✅ Esta linha do Notion foi selecionada para resposta.");
-  }
-  
-  return found;
-});
-
-if (!matchedRow) {
-  console.warn("❗️Nenhuma entrada encontrada no Notion para o input:", input);
-  const fallbackCategory = await identifySymptomCategoryWithGPT(input);
-  const categoryMap = {
-    gut: "bloating and skin irritation",
-    metabolism: "belly fat and fatigue",
-    oral: "bad breath and gum problems",
-    brain: "brain fog and anxiety",
-    immunity: "low immunity and sugar imbalance"
-  };
-
+    if (!matchedRow) {
+      // Não encontrou — fallback igual seu código antigo
+      console.warn("❗️Nenhuma entrada encontrada no Notion para o input:", input);
+      const fallbackCategory = await identifySymptomCategoryWithGPT(input);
+      const categoryMap = {
+        gut: "bloating and skin irritation",
+        metabolism: "belly fat and fatigue",
+        oral: "bad breath and gum problems",
+        brain: "brain fog and anxiety",
+        immunity: "low immunity and sugar imbalance"
+      };
       const fallbackSymptom = categoryMap[fallbackCategory] || "general inflammation";
       return {
         gptPromptData: {
