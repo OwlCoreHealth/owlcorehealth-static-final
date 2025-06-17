@@ -449,8 +449,18 @@ let matchedSymptom = userInput.toLowerCase();  // Usa o input direto como valor 
 
 try {
   // 1. Tenta realizar o matching semântico
-  const allNotionRows = await getAllSupplementsAndSymptoms();  // Pega todas as linhas do Notion
-  const nearest = await findMatchingSymptom(userInput, allNotionRows);  // Chama a função de matching semântico
+const allNotionRows = await getAllSupplementsAndSymptoms();  // Pega todas as linhas do Notion
+const result = await findMatchingNotionRow(userInput, allNotionRows, 0.7);  // Matching sintoma na linha correta
+
+if (result) {
+  sessionMemory.sintomaAtual = result.matchedSymptom;
+  sessionMemory.notionRow = result.row;
+  sessionMemory.similarityScore = result.score;
+} else {
+  sessionMemory.sintomaAtual = userInput;
+  sessionMemory.notionRow = null;
+  sessionMemory.similarityScore = 0;
+}
 
   // 2. Atualiza com o melhor sintoma encontrado
   matchedSymptom = nearest.Symptoms[0];  // Melhor sintoma encontrado (assumindo que o primeiro é o mais relevante)
