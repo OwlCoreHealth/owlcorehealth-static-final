@@ -453,7 +453,10 @@ let matchedSymptom = userInput.toLowerCase();  // Usa o input direto como valor 
 try {
   // 1. Tenta realizar o matching semântico
 const allNotionRows = await getAllSupplementsAndSymptoms();  // Pega todas as linhas do Notion
-const result = await findMatchingNotionRow(userInput, allNotionRows, 0.7);  // Matching sintoma na linha correta
+const allSymptoms = allNotionRows.flatMap(row => row.Symptoms);
+const nearest = await findNearestSymptom(userInput, allSymptoms);
+const matchedRow = allNotionRows.find(row => row.Symptoms.includes(nearest.bestSymptom));
+
 
 if (result) {
   sessionMemory.sintomaAtual = result.matchedSymptom;
