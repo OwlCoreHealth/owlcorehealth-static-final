@@ -468,7 +468,7 @@ if (matchedRow) {
 }
 
   // 2. Atualiza com o melhor sintoma encontrado
-  matchedSymptom = nearest.Symptoms[0];  // Melhor sintoma encontrado (assumindo que o primeiro é o mais relevante)
+  matchedSymptom = nearest.Symptoms?.[0] || "";
 
   // 3. Atualiza a confiança no matching semântico
   sessionMemory.sintomaAtual = matchedSymptom;  // Sintoma identificado
