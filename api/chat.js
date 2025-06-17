@@ -3,18 +3,26 @@
 import { getSymptomContext } from "./notion.mjs";
 import { fallbackTextsBySymptom } from "./fallbackTextsBySymptom.js";
 import { findNearestSymptom } from "../findNearestSymptom.js"; // ajuste o caminho se necessário
-// Função para buscar todos os suplementos e sintomas do Notion de uma vez
-// Função para buscar todos os suplementos e sintomas do Notion de uma vez
-// Função para buscar todos os suplementos e sintomas do Notion de uma vez
+import { Client } from '@notionhq/client'; // Importação do cliente Notion
+
+// Inicialize a instância do cliente Notion com sua chave de API
+const notion = new Client({ auth: process.env.NOTION_API_KEY });
+
 async function getAllSupplementsAndSymptoms() {
   const response = await notion.databases.query({
-    database_id: process.env.NOTION_DATABASE_ID
+    database_id: process.env.NOTION_DATABASE_ID,
+    filter: {
+      property: "Symptoms",  // Nome da propriedade na base de dados Notion
+      multi_select: {
+        contains: "acne"  // Use o valor que deseja buscar, por exemplo, "acne"
+      }
+    }
   });
 
-  // Monta a estrutura de dados para usar no matching
+  // Retorna a resposta da consulta
   return response.results.map(page => ({
     Supplement: page.properties.Supplement.title[0].plain_text,
-    Symptoms: page.properties.Symptoms.multi_select.map(opt => opt.name.toLowerCase()), // A chave aqui é .multi_select.map
+    Symptoms: page.properties.Symptoms.multi_select.map(opt => opt.name.toLowerCase()),
     "Funnel Awareness 1": page.properties["Funnel Awareness 1"]?.rich_text[0]?.plain_text || "",
     "Funnel Awareness 2": page.properties["Funnel Awareness 2"]?.rich_text[0]?.plain_text || "",
     "Funnel Awareness 3": page.properties["Funnel Awareness 3"]?.rich_text[0]?.plain_text || "",
