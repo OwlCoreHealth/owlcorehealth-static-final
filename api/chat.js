@@ -382,28 +382,32 @@ try {
   sessionMemory.similarityScore = null;
 }
 
-
-  const SIMILARITY_THRESHOLD = 0.3; // valor recomendado para clusters sintomáticos
+ const SIMILARITY_THRESHOLD = 0.3; // valor recomendado para clusters sintomáticos
 
 if (!isFollowUp) {
- // 1. Recebe o input do usuário
-sessionMemory.sintomaAtual = userInput.toLowerCase(); // Apenas temporário até o matching semântico
+  // 1. Recebe o input do usuário e tenta fazer o matching semântico
+  let matchedSymptom = userInput.toLowerCase();  // Usa o input direto como valor inicial
 
-// 2. Agora realiza o matching semântico
-try {
-  const nearest = await findNearestSymptom(userInput);
-  sessionMemory.sintomaAtual = nearest.bestSymptom; // Atualiza com o melhor sintoma encontrado
-  sessionMemory.similarityScore = nearest.bestScore; // Salva o score de confiança
+  try {
+    // 2. Tenta realizar o matching semântico
+    const nearest = await findNearestSymptom(userInput);
+    matchedSymptom = nearest.bestSymptom; // Atualiza com o melhor sintoma encontrado
+    sessionMemory.similarityScore = nearest.bestScore; // Salva o score de confiança
 
-  // Marca o estado de confiança
-  sessionMemory.lowConfidence = nearest.bestScore < SIMILARITY_THRESHOLD;
-  console.log("Sintoma identificado (semântico):", sessionMemory.sintomaAtual, "Score:", sessionMemory.similarityScore);
+    // Marca o estado de confiança
+    sessionMemory.lowConfidence = nearest.bestScore < SIMILARITY_THRESHOLD;
+    console.log("Sintoma identificado (semântico):", matchedSymptom, "Score:", sessionMemory.similarityScore);
 
-} catch (err) {
-  console.error("Erro no matching semântico:", err);
-  sessionMemory.sintomaAtual = userInput.toLowerCase(); // Caso falhe, mantém o valor original
-  sessionMemory.similarityScore = null;
-  sessionMemory.lowConfidence = true; // Marca como baixa confiança se houver erro
+  } catch (err) {
+    console.error("Erro no matching semântico:", err);
+    sessionMemory.similarityScore = null;
+    sessionMemory.lowConfidence = true; // Marca como baixa confiança se houver erro
+  }
+
+  // 3. Atualiza o valor final de sintoma (seja pelo matching semântico ou pelo fallback)
+  sessionMemory.sintomaAtual = matchedSymptom;
+
+  console.log("Sintoma final para processamento:", sessionMemory.sintomaAtual);
 }
 
   // 1. Definição
