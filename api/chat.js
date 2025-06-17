@@ -4,15 +4,17 @@ import { getSymptomContext } from "./notion.mjs";
 import { fallbackTextsBySymptom } from "./fallbackTextsBySymptom.js";
 import { findNearestSymptom } from "../findNearestSymptom.js"; // ajuste o caminho se necessário
 // Função para buscar todos os suplementos e sintomas do Notion de uma vez
+// Função para buscar todos os suplementos e sintomas do Notion de uma vez
+// Função para buscar todos os suplementos e sintomas do Notion de uma vez
 async function getAllSupplementsAndSymptoms() {
   const response = await notion.databases.query({
     database_id: process.env.NOTION_DATABASE_ID
   });
-  
+
   // Monta a estrutura de dados para usar no matching
   return response.results.map(page => ({
     Supplement: page.properties.Supplement.title[0].plain_text,
-    Symptoms: page.properties.Symptoms.multi_select.map(opt => opt.name),
+    Symptoms: page.properties.Symptoms.multi_select.map(opt => opt.name.toLowerCase()), // A chave aqui é .multi_select.map
     "Funnel Awareness 1": page.properties["Funnel Awareness 1"]?.rich_text[0]?.plain_text || "",
     "Funnel Awareness 2": page.properties["Funnel Awareness 2"]?.rich_text[0]?.plain_text || "",
     "Funnel Awareness 3": page.properties["Funnel Awareness 3"]?.rich_text[0]?.plain_text || "",
@@ -434,10 +436,37 @@ if (!isFollowUp) {
   }
 }
 
-  // 1. Definição
+  // Recebe o input do usuário e tenta fazer o matching semântico
+let matchedSymptom = userInput.toLowerCase();  // Usa o input direto como valor inicial
+
+try {
+  // 1. Tenta realizar o matching semântico
+  const allNotionRows = await getAllSupplementsAndSymptoms();  // Pega todas as linhas do Notion
+  const nearest = await findMatchingSymptom(userInput, allNotionRows);  // Chama a função de matching semântico
+
+  // 2. Atualiza com o melhor sintoma encontrado
+  matchedSymptom = nearest.Symptoms[0];  // Melhor sintoma encontrado (assumindo que o primeiro é o mais relevante)
+
+  // 3. Atualiza a confiança no matching semântico
+  sessionMemory.sintomaAtual = matchedSymptom;  // Sintoma identificado
+  sessionMemory.similarityScore = nearest.bestScore;  // Score de confiança
+
+  // 4. Marca a confiança baixa se o score for menor que o limiar
+  sessionMemory.lowConfidence = nearest.bestScore < SIMILARITY_THRESHOLD;
+  console.log("Sintoma identificado (semântico):", sessionMemory.sintomaAtual, "Score:", sessionMemory.similarityScore);
+
+} catch (err) {
+  console.error("Erro no matching semântico:", err);
+  sessionMemory.sintomaAtual = userInput.toLowerCase();  // Caso falhe, mantém o valor original
+  sessionMemory.similarityScore = null;
+  sessionMemory.lowConfidence = true;  // Marca como baixa confiança se houver erro
+}
+
+// Definição do sintoma principal para usar nas próximas fases
 const mainSymptom = sessionMemory.sintomaAtual
   ? sessionMemory.sintomaAtual.split(",")[0].trim()
   : sessionMemory.sintomaAtual;
+
 
 // 2. Buscar context
 let context = await getSymptomContext(
