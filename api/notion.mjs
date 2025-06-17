@@ -102,9 +102,9 @@ const allRows = response.results.map(page => ({
   "Funnel Advanced 1": extractRichText(page.properties["Funnel Advanced 1"]),
   "Funnel Advanced 2": extractRichText(page.properties["Funnel Advanced 2"]),
   "Funnel Advanced 3": extractRichText(page.properties["Funnel Advanced 3"]),
-  Links: extractRichText(page.properties["Links "]), // Note o espaço extra aqui!
-}));
-
+  Links: extractRichText(page.properties["Links "]),
+  };
+});
 
     // LOGA TUDO DA PRIMEIRA LINHA DO NOTION
 if (allRows.length > 0) {
