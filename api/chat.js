@@ -469,6 +469,8 @@ if (matchedRow) {
   sessionMemory.notionRow = null;
   sessionMemory.similarityScore = 0;
 }
+  
+console.log("Sintoma identificado (semântico):", sessionMemory.sintomaAtual, "| Score:", sessionMemory.similarityScore);
 
   // 2. Atualiza com o melhor sintoma encontrado
   matchedSymptom = nearest.Symptoms?.[0] || "";
@@ -489,6 +491,7 @@ if (matchedRow) {
 }
 
 const mainSymptom = (sessionMemory.sintomaAtual || userInput).split(",")[0].trim();
+console.log("mainSymptom usado para perguntas:", mainSymptom);
 
 
 // 2. Buscar context
@@ -584,11 +587,11 @@ console.log("Perguntas brutas antes de substituir:", followupQuestions);
 console.log("Sintoma usado para substituir:", sessionMemory.sintomaAtual);
 
 followupQuestions = followupQuestions.map(q =>
-  q.replace(/\[symptom\]/gi, mainSymptom)
-   .replace(/your symptom/gi, `your ${mainSymptom}`)
-   .replace(/the symptom/gi, mainSymptom)
-   .replace(/\bsymptom\b/gi, mainSymptom)
-   .replace(/\byour symptom\b/gi, `your ${mainSymptom}`)
+  q.replace(/\[symptom\]/gi, mainSymptom || userInput)
+   .replace(/your symptom/gi, `your ${mainSymptom || userInput}`)
+   .replace(/the symptom/gi, mainSymptom || userInput)
+   .replace(/\bsymptom\b/gi, mainSymptom || userInput)
+   .replace(/\byour symptom\b/gi, `your ${mainSymptom || userInput}`)
 );
 
 // Monta a resposta do bot
