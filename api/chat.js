@@ -458,10 +458,10 @@ const nearest = await findNearestSymptom(userInput, allSymptoms);
 const matchedRow = allNotionRows.find(row => row.Symptoms.includes(nearest.bestSymptom));
 
 
-if (result) {
-  sessionMemory.sintomaAtual = result.matchedSymptom;
-  sessionMemory.notionRow = result.row;
-  sessionMemory.similarityScore = result.score;
+if (matchedRow) {
+  sessionMemory.sintomaAtual = nearest.bestSymptom;
+  sessionMemory.notionRow = matchedRow;
+  sessionMemory.similarityScore = nearest.bestScore;
 } else {
   sessionMemory.sintomaAtual = userInput;
   sessionMemory.notionRow = null;
