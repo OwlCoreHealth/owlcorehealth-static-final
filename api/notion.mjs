@@ -76,33 +76,27 @@ export async function getSymptomContext(input, funnelPhase, previousSymptom, use
       page_size: 100
     });
 
-const allRows = response.results.map(page => {
-  const symptomsArray = page.properties.Symptoms?.multi_select?.map(opt => opt.name?.toLowerCase()) || [];
-  if (symptomsArray.includes("acne")) {
-    console.log("==== PROPRIEDADES ORIGINAIS DA LINHA QUE TEM ACNE ====");
-    console.log(page.properties); // Aqui você vê tudo cru da linha, inclusive os campos de funil!
-  }
-  return {
-    Supplement: page.properties?.Supplement?.title?.[0]?.plain_text || "",
-    Symptoms: symptomsArray,
-    "Funnel Awareness 1": page.properties["Funnel Awareness 1"], // Veja a estrutura completa!
-    "Funnel Awareness 2": page.properties["Funnel Awareness 2"],
-    "Funnel Awareness 3": page.properties["Funnel Awareness 3"],
-    "Funnel Severity 1": page.properties["Funnel Severity 1"],
-    "Funnel Severity 2": page.properties["Funnel Severity 2"],
-    "Funnel Severity 3": page.properties["Funnel Severity 3"],
-    "Funnel Proof 1": page.properties["Funnel Proof 1"],
-    "Funnel Proof 2": page.properties["Funnel Proof 2"],
-    "Funnel Proof 3": page.properties["Funnel Proof 3"],
-    "Funnel Solution 1": page.properties["Funnel Solution 1"],
-    "Funnel Solution 2": page.properties["Funnel Solution 2"],
-    "Funnel Solution 3": page.properties["Funnel Solution 3"],
-    "Funnel Advanced 1": page.properties["Funnel Advanced 1"],
-    "Funnel Advanced 2": page.properties["Funnel Advanced 2"],
-    "Funnel Advanced 3": page.properties["Funnel Advanced 3"],
-    Links: page.properties["Links"]
-  };
-});
+// 2. Mapeia todas as linhas trazendo sintomas e conteúdos
+    const allRows = response.results.map(page => ({
+      Supplement: page.properties.Supplement?.title?.[0]?.plain_text || "",
+      Symptoms: page.properties.Symptoms?.multi_select?.map(opt => opt.name.toLowerCase()) || [],
+      "Funnel Awareness 1": page.properties["Funnel Awareness 1"]?.rich_text?.[0]?.plain_text || "",
+      "Funnel Awareness 2": page.properties["Funnel Awareness 2"]?.rich_text?.[0]?.plain_text || "",
+      "Funnel Awareness 3": page.properties["Funnel Awareness 3"]?.rich_text?.[0]?.plain_text || "",
+      "Funnel Severity 1": page.properties["Funnel Severity 1"]?.rich_text?.[0]?.plain_text || "",
+      "Funnel Severity 2": page.properties["Funnel Severity 2"]?.rich_text?.[0]?.plain_text || "",
+      "Funnel Severity 3": page.properties["Funnel Severity 3"]?.rich_text?.[0]?.plain_text || "",
+      "Funnel Proof 1": page.properties["Funnel Proof 1"]?.rich_text?.[0]?.plain_text || "",
+      "Funnel Proof 2": page.properties["Funnel Proof 2"]?.rich_text?.[0]?.plain_text || "",
+      "Funnel Proof 3": page.properties["Funnel Proof 3"]?.rich_text?.[0]?.plain_text || "",
+      "Funnel Solution 1": page.properties["Funnel Solution 1"]?.rich_text?.[0]?.plain_text || "",
+      "Funnel Solution 2": page.properties["Funnel Solution 2"]?.rich_text?.[0]?.plain_text || "",
+      "Funnel Solution 3": page.properties["Funnel Solution 3"]?.rich_text?.[0]?.plain_text || "",
+      "Funnel Advanced 1": page.properties["Funnel Advanced 1"]?.rich_text?.[0]?.plain_text || "",
+      "Funnel Advanced 2": page.properties["Funnel Advanced 2"]?.rich_text?.[0]?.plain_text || "",
+      "Funnel Advanced 3": page.properties["Funnel Advanced 3"]?.rich_text?.[0]?.plain_text || "",
+      Links: page.properties["Links"]?.rich_text?.[0]?.plain_text || ""
+    }));
 
     // LOGA TUDO DA PRIMEIRA LINHA DO NOTION
 if (allRows.length > 0) {
