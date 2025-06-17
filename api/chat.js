@@ -434,7 +434,7 @@ const allSymptoms = allNotionRows.flatMap(row => row.Symptoms);
 const nearest = await findNearestSymptom(userInput, allSymptoms);
 const matchedRow = allNotionRows.find(row => row.Symptoms.includes(nearest.bestSymptom));
 
-    sessionMemory.sintomaAtual = nearest.bestSymptom;
+    sessionMemory.sintomaAtual = nearest.bestSymptom || userInput;
 
     sessionMemory.similarityScore = nearest.bestScore;
     console.log("Sintoma identificado (semântico):", sessionMemory.sintomaAtual, "Score:", sessionMemory.similarityScore);
@@ -488,10 +488,7 @@ if (matchedRow) {
   sessionMemory.lowConfidence = true;  // Marca como baixa confiança se houver erro
 }
 
-// Definição do sintoma principal para usar nas próximas fases
-const mainSymptom = sessionMemory.sintomaAtual
-  ? sessionMemory.sintomaAtual.split(",")[0].trim()
-  : sessionMemory.sintomaAtual;
+const mainSymptom = (sessionMemory.sintomaAtual || userInput).split(",")[0].trim();
 
 
 // 2. Buscar context
