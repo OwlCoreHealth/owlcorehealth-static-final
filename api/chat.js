@@ -401,11 +401,20 @@ export default async function handler(req, res) {
       const nearest = await findNearestSymptom(userInput, allSymptoms);
       const matchedRow = allNotionRows.find(row => row.Symptoms.includes(nearest.bestSymptom));
 
-      // Só troca se encontrar algo realmente próximo
-      sessionMemory.sintomaAtual =
-        nearest && nearest.bestScore > 0
-          ? nearest.bestSymptom
-          : sintomaMapeado || userInput.toLowerCase();
+      const HIGH_CONFIDENCE = 0.65; // ou ajuste conforme seu threshold
+
+if (nearest && nearest.bestScore >= HIGH_CONFIDENCE) {
+  sessionMemory.sintomaAtual = nearest.bestSymptom;
+  sessionMemory.similarityScore = nearest.bestScore;
+  sessionMemory.lowConfidence = false;
+  sessionMemory.notionRow = matchedRow || null;
+} else {
+  // Mantém o sintoma informado pelo usuário!
+  sessionMemory.sintomaAtual = sintomaMapeado || userInput.toLowerCase();
+  sessionMemory.similarityScore = nearest?.bestScore ?? 0;
+  sessionMemory.lowConfidence = true;
+  sessionMemory.notionRow = null;
+}
 
       sessionMemory.similarityScore = nearest.bestScore;
       sessionMemory.lowConfidence = nearest.bestScore < 0.3;
