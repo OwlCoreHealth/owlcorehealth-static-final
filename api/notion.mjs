@@ -76,34 +76,33 @@ export async function getSymptomContext(input, funnelPhase, previousSymptom, use
       page_size: 100
     });
 
-    const allRows = response.results.map(page => {
-  // Debug: loga sempre as propriedades da linha
-  if (page.properties.Symptoms?.multi_select?.some(opt => (opt.name || "").toLowerCase().includes("acne"))) {
-    console.log("====== DEBUG: LINHA QUE CONTÉM 'acne' ======");
-    console.log(JSON.stringify(page.properties, null, 2)); // Isso mostra TUDO que veio do Notion!
-  }
+    // Função utilitária para pegar todo texto de um campo rich_text
+function extractRichText(prop) {
+  if (!prop || !Array.isArray(prop.rich_text)) return "";
+  return prop.rich_text.map(rt => rt.plain_text || "").join(" ").trim();
+}
 
-  return {
-    Supplement: page.properties.Supplement?.title?.[0]?.plain_text || "",
-    Symptoms: page.properties.Symptoms?.multi_select?.map(opt => opt.name.toLowerCase()) || [],
-    "Funnel Awareness 1": page.properties["Funnel Awareness 1"],
-    "Funnel Awareness 2": page.properties["Funnel Awareness 2"],
-    "Funnel Awareness 3": page.properties["Funnel Awareness 3"],
-    "Funnel Severity 1": page.properties["Funnel Severity 1"],
-    "Funnel Severity 2": page.properties["Funnel Severity 2"],
-    "Funnel Severity 3": page.properties["Funnel Severity 3"],
-    "Funnel Proof 1": page.properties["Funnel Proof 1"],
-    "Funnel Proof 2": page.properties["Funnel Proof 2"],
-    "Funnel Proof 3": page.properties["Funnel Proof 3"],
-    "Funnel Solution 1": page.properties["Funnel Solution 1"],
-    "Funnel Solution 2": page.properties["Funnel Solution 2"],
-    "Funnel Solution 3": page.properties["Funnel Solution 3"],
-    "Funnel Advanced 1": page.properties["Funnel Advanced 1"],
-    "Funnel Advanced 2": page.properties["Funnel Advanced 2"],
-    "Funnel Advanced 3": page.properties["Funnel Advanced 3"],
-    Links: page.properties["Links"]
-  };
-});
+// 2. Mapeia todas as linhas trazendo sintomas e conteúdos
+const allRows = response.results.map(page => ({
+  Supplement: page.properties.Supplement?.title?.[0]?.plain_text || "",
+  Symptoms: page.properties.Symptoms?.multi_select?.map(opt => opt.name.toLowerCase()) || [],
+  "Funnel Awareness 1": extractRichText(page.properties["Funnel Awareness 1"]),
+  "Funnel Awareness 2": extractRichText(page.properties["Funnel Awareness 2"]),
+  "Funnel Awareness 3": extractRichText(page.properties["Funnel Awareness 3"]),
+  "Funnel Severity 1": extractRichText(page.properties["Funnel Severity 1"]),
+  "Funnel Severity 2": extractRichText(page.properties["Funnel Severity 2"]),
+  "Funnel Severity 3": extractRichText(page.properties["Funnel Severity 3"]),
+  "Funnel Proof 1": extractRichText(page.properties["Funnel Proof 1"]),
+  "Funnel Proof 2": extractRichText(page.properties["Funnel Proof 2"]),
+  "Funnel Proof 3": extractRichText(page.properties["Funnel Proof 3"]),
+  "Funnel Solution 1": extractRichText(page.properties["Funnel Solution 1"]),
+  "Funnel Solution 2": extractRichText(page.properties["Funnel Solution 2"]),
+  "Funnel Solution 3": extractRichText(page.properties["Funnel Solution 3"]),
+  "Funnel Advanced 1": extractRichText(page.properties["Funnel Advanced 1"]),
+  "Funnel Advanced 2": extractRichText(page.properties["Funnel Advanced 2"]),
+  "Funnel Advanced 3": extractRichText(page.properties["Funnel Advanced 3"]),
+  Links: extractRichText(page.properties["Links "]), // Note o espaço extra aqui!
+}));
 
 
     // LOGA TUDO DA PRIMEIRA LINHA DO NOTION
