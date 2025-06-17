@@ -372,19 +372,9 @@ export default async function handler(req, res) {
   sessionMemory.usedQuestions = [];
   // Salva novo sintoma
   // Mapeamento manual só para testar
-const sintomaMapeado = (() => {
-  if (userInput.toLowerCase().includes("acne")) return "acne";
-  if (userInput.toLowerCase().includes("dry skin")) return "dry skin";
-  if (userInput.toLowerCase().includes("rosacea")) return "rosacea";
-  // ...adicione mais conforme seus sintomas do Notion!
-  return userInput.toLowerCase(); // fallback
-})();
+// Aqui NÃO faz mapeamento manual! O sintoma será identificado mais abaixo com a função semântica.
+sessionMemory.sintomaAtual = userInput.toLowerCase(); // valor provisório até matching semântico
 
-sessionMemory.sintomaAtual = sintomaMapeado;
-console.log("Sintoma mapeado para busca:", sessionMemory.sintomaAtual);
-
-  console.log("Sintoma identificado:", sessionMemory.sintomaAtual);
-}
 
   const SIMILARITY_THRESHOLD = 0.3; // valor recomendado para clusters sintomáticos
 
