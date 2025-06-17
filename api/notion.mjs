@@ -83,28 +83,31 @@ function extractRichText(prop) {
 }
 
 // 2. Mapeia todas as linhas trazendo sintomas e conteúdos
-const allRows = response.results.map(page => ({
-  console.log("DADOS DA PÁGINA:", page);
-  Supplement: page.properties.Supplement?.title?.[0]?.plain_text || "",
-  Symptoms: page.properties.Symptoms?.multi_select?.map(opt => opt.name.toLowerCase()) || [],
-  "Funnel Awareness 1": extractRichText(page.properties["Funnel Awareness 1"]),
-  "Funnel Awareness 2": extractRichText(page.properties["Funnel Awareness 2"]),
-  "Funnel Awareness 3": extractRichText(page.properties["Funnel Awareness 3"]),
-  "Funnel Severity 1": extractRichText(page.properties["Funnel Severity 1"]),
-  "Funnel Severity 2": extractRichText(page.properties["Funnel Severity 2"]),
-  "Funnel Severity 3": extractRichText(page.properties["Funnel Severity 3"]),
-  "Funnel Proof 1": extractRichText(page.properties["Funnel Proof 1"]),
-  "Funnel Proof 2": extractRichText(page.properties["Funnel Proof 2"]),
-  "Funnel Proof 3": extractRichText(page.properties["Funnel Proof 3"]),
-  "Funnel Solution 1": extractRichText(page.properties["Funnel Solution 1"]),
-  "Funnel Solution 2": extractRichText(page.properties["Funnel Solution 2"]),
-  "Funnel Solution 3": extractRichText(page.properties["Funnel Solution 3"]),
-  "Funnel Advanced 1": extractRichText(page.properties["Funnel Advanced 1"]),
-  "Funnel Advanced 2": extractRichText(page.properties["Funnel Advanced 2"]),
-  "Funnel Advanced 3": extractRichText(page.properties["Funnel Advanced 3"]),
-  Links: extractRichText(page.properties["Links "]),
+const allRows = response.results.map(page => {
+  console.log("DADOS DA PÁGINA:", page); // Log completo da página para visualização
+  
+  return {
+    Supplement: page.properties.Supplement?.title?.[0]?.plain_text || "",
+    Symptoms: page.properties.Symptoms?.multi_select?.map(opt => opt.name.toLowerCase()) || [],
+    "Funnel Awareness 1": extractRichText(page.properties["Funnel Awareness 1"]),
+    "Funnel Awareness 2": extractRichText(page.properties["Funnel Awareness 2"]),
+    "Funnel Awareness 3": extractRichText(page.properties["Funnel Awareness 3"]),
+    "Funnel Severity 1": extractRichText(page.properties["Funnel Severity 1"]),
+    "Funnel Severity 2": extractRichText(page.properties["Funnel Severity 2"]),
+    "Funnel Severity 3": extractRichText(page.properties["Funnel Severity 3"]),
+    "Funnel Proof 1": extractRichText(page.properties["Funnel Proof 1"]),
+    "Funnel Proof 2": extractRichText(page.properties["Funnel Proof 2"]),
+    "Funnel Proof 3": extractRichText(page.properties["Funnel Proof 3"]),
+    "Funnel Solution 1": extractRichText(page.properties["Funnel Solution 1"]),
+    "Funnel Solution 2": extractRichText(page.properties["Funnel Solution 2"]),
+    "Funnel Solution 3": extractRichText(page.properties["Funnel Solution 3"]),
+    "Funnel Advanced 1": extractRichText(page.properties["Funnel Advanced 1"]),
+    "Funnel Advanced 2": extractRichText(page.properties["Funnel Advanced 2"]),
+    "Funnel Advanced 3": extractRichText(page.properties["Funnel Advanced 3"]),
+    Links: extractRichText(page.properties["Links "]),
   };
 });
+
 
     // LOGA TUDO DA PRIMEIRA LINHA DO NOTION
 if (allRows.length > 0) {
