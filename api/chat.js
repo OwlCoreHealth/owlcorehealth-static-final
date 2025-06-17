@@ -9,32 +9,33 @@ import { Client } from '@notionhq/client'; // Importação do cliente Notion
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
 async function getAllSupplementsAndSymptoms() {
-  const response = await notion.databases.query({
-    database_id: process.env.NOTION_DATABASE_ID,
-    // NUNCA coloque filter aqui! Pegue todas as linhas.
-  });
+  // CERTO para multi-select!
+const response = await notion.databases.query({
+  database_id: process.env.NOTION_DATABASE_ID
+  // SEM FILTER!
+});
 
-  // Retorna a resposta da consulta
-  return response.results.map(page => ({
-    Supplement: page.properties.Supplement.title[0]?.plain_text || "",
-    Symptoms: page.properties.Symptoms.multi_select.map(opt => opt.name.toLowerCase()),
-    "Funnel Awareness 1": page.properties["Funnel Awareness 1"]?.rich_text[0]?.plain_text || "",
-    "Funnel Awareness 2": page.properties["Funnel Awareness 2"]?.rich_text[0]?.plain_text || "",
-    "Funnel Awareness 3": page.properties["Funnel Awareness 3"]?.rich_text[0]?.plain_text || "",
-    "Funnel Severity 1": page.properties["Funnel Severity 1"]?.rich_text[0]?.plain_text || "",
-    "Funnel Severity 2": page.properties["Funnel Severity 2"]?.rich_text[0]?.plain_text || "",
-    "Funnel Severity 3": page.properties["Funnel Severity 3"]?.rich_text[0]?.plain_text || "",
-    "Funnel Proof 1": page.properties["Funnel Proof 1"]?.rich_text[0]?.plain_text || "",
-    "Funnel Proof 2": page.properties["Funnel Proof 2"]?.rich_text[0]?.plain_text || "",
-    "Funnel Proof 3": page.properties["Funnel Proof 3"]?.rich_text[0]?.plain_text || "",
-    "Funnel Solution 1": page.properties["Funnel Solution 1"]?.rich_text[0]?.plain_text || "",
-    "Funnel Solution 2": page.properties["Funnel Solution 2"]?.rich_text[0]?.plain_text || "",
-    "Funnel Solution 3": page.properties["Funnel Solution 3"]?.rich_text[0]?.plain_text || "",
-    "Funnel Advanced 1": page.properties["Funnel Advanced 1"]?.rich_text[0]?.plain_text || "",
-    "Funnel Advanced 2": page.properties["Funnel Advanced 2"]?.rich_text[0]?.plain_text || "",
-    "Funnel Advanced 3": page.properties["Funnel Advanced 3"]?.rich_text[0]?.plain_text || "",
-    // ...adicione outras colunas se necessário...
-  }));
+// Mapeia só uma vez, aqui:
+return response.results.map(page => ({
+  Supplement: page.properties.Supplement.title[0]?.plain_text || "",
+  Symptoms: page.properties.Symptoms.multi_select.map(opt => opt.name.toLowerCase()),
+  "Funnel Awareness 1": page.properties["Funnel Awareness 1"]?.rich_text[0]?.plain_text || "",
+  "Funnel Awareness 2": page.properties["Funnel Awareness 2"]?.rich_text[0]?.plain_text || "",
+  "Funnel Awareness 3": page.properties["Funnel Awareness 3"]?.rich_text[0]?.plain_text || "",
+  "Funnel Severity 1": page.properties["Funnel Severity 1"]?.rich_text[0]?.plain_text || "",
+  "Funnel Severity 2": page.properties["Funnel Severity 2"]?.rich_text[0]?.plain_text || "",
+  "Funnel Severity 3": page.properties["Funnel Severity 3"]?.rich_text[0]?.plain_text || "",
+  "Funnel Proof 1": page.properties["Funnel Proof 1"]?.rich_text[0]?.plain_text || "",
+  "Funnel Proof 2": page.properties["Funnel Proof 2"]?.rich_text[0]?.plain_text || "",
+  "Funnel Proof 3": page.properties["Funnel Proof 3"]?.rich_text[0]?.plain_text || "",
+  "Funnel Solution 1": page.properties["Funnel Solution 1"]?.rich_text[0]?.plain_text || "",
+  "Funnel Solution 2": page.properties["Funnel Solution 2"]?.rich_text[0]?.plain_text || "",
+  "Funnel Solution 3": page.properties["Funnel Solution 3"]?.rich_text[0]?.plain_text || "",
+  "Funnel Advanced 1": page.properties["Funnel Advanced 1"]?.rich_text[0]?.plain_text || "",
+  "Funnel Advanced 2": page.properties["Funnel Advanced 2"]?.rich_text[0]?.plain_text || "",
+  "Funnel Advanced 3": page.properties["Funnel Advanced 3"]?.rich_text[0]?.plain_text || "",
+  // ...adicione outras colunas se necessário...
+}));
 }
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
