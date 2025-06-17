@@ -11,17 +11,12 @@ const notion = new Client({ auth: process.env.NOTION_API_KEY });
 async function getAllSupplementsAndSymptoms() {
   const response = await notion.databases.query({
     database_id: process.env.NOTION_DATABASE_ID,
-    filter: {
-      property: "Symptoms",  // Nome da propriedade na base de dados Notion
-      multi_select: {
-        contains: "acne"  // Use o valor que deseja buscar, por exemplo, "acne"
-      }
-    }
+    // NUNCA coloque filter aqui! Pegue todas as linhas.
   });
 
   // Retorna a resposta da consulta
   return response.results.map(page => ({
-    Supplement: page.properties.Supplement.title[0].plain_text,
+    Supplement: page.properties.Supplement.title[0]?.plain_text || "",
     Symptoms: page.properties.Symptoms.multi_select.map(opt => opt.name.toLowerCase()),
     "Funnel Awareness 1": page.properties["Funnel Awareness 1"]?.rich_text[0]?.plain_text || "",
     "Funnel Awareness 2": page.properties["Funnel Awareness 2"]?.rich_text[0]?.plain_text || "",
@@ -38,7 +33,7 @@ async function getAllSupplementsAndSymptoms() {
     "Funnel Advanced 1": page.properties["Funnel Advanced 1"]?.rich_text[0]?.plain_text || "",
     "Funnel Advanced 2": page.properties["Funnel Advanced 2"]?.rich_text[0]?.plain_text || "",
     "Funnel Advanced 3": page.properties["Funnel Advanced 3"]?.rich_text[0]?.plain_text || "",
-    // Adicione mais fases conforme necessário...
+    // ...adicione outras colunas se necessário...
   }));
 }
 
