@@ -41,6 +41,12 @@ const response = await notion.databases.query({
   database_id: databaseIdClean,
   page_size: 100
 });
+// LOGS PARA DEBUG VISUAL DO NOTION
+response.results.forEach((page, i) => {
+  console.log(`--- Linha #${i + 1} ---`);
+  console.log("Symptoms:", JSON.stringify(page.properties["Symptoms"], null, 2));
+  console.log("Funnel Awareness 1:", JSON.stringify(page.properties["Funnel Awareness 1"], null, 2));
+});
 
 // Debug da estrutura da propriedade Symptoms na primeira página
 if (response.results.length > 0) {
