@@ -3,6 +3,34 @@
 import { getSymptomContext } from "./notion.mjs";
 import { fallbackTextsBySymptom } from "./fallbackTextsBySymptom.js";
 import { findNearestSymptom } from "../findNearestSymptom.js"; // ajuste o caminho se necessário
+// Função para buscar todos os suplementos e sintomas do Notion de uma vez
+async function getAllSupplementsAndSymptoms() {
+  const response = await notion.databases.query({
+    database_id: process.env.NOTION_DATABASE_ID
+  });
+  
+  // Monta a estrutura de dados para usar no matching
+  return response.results.map(page => ({
+    Supplement: page.properties.Supplement.title[0].plain_text,
+    Symptoms: page.properties.Symptoms.multi_select.map(opt => opt.name),
+    "Funnel Awareness 1": page.properties["Funnel Awareness 1"]?.rich_text[0]?.plain_text || "",
+    "Funnel Awareness 2": page.properties["Funnel Awareness 2"]?.rich_text[0]?.plain_text || "",
+    "Funnel Awareness 3": page.properties["Funnel Awareness 3"]?.rich_text[0]?.plain_text || "",
+    "Funnel Severity 1": page.properties["Funnel Severity 1"]?.rich_text[0]?.plain_text || "",
+    "Funnel Severity 2": page.properties["Funnel Severity 2"]?.rich_text[0]?.plain_text || "",
+    "Funnel Severity 3": page.properties["Funnel Severity 3"]?.rich_text[0]?.plain_text || "",
+    "Funnel Proof 1": page.properties["Funnel Proof 1"]?.rich_text[0]?.plain_text || "",
+    "Funnel Proof 2": page.properties["Funnel Proof 2"]?.rich_text[0]?.plain_text || "",
+    "Funnel Proof 3": page.properties["Funnel Proof 3"]?.rich_text[0]?.plain_text || "",
+    "Funnel Solution 1": page.properties["Funnel Solution 1"]?.rich_text[0]?.plain_text || "",
+    "Funnel Solution 2": page.properties["Funnel Solution 2"]?.rich_text[0]?.plain_text || "",
+    "Funnel Solution 3": page.properties["Funnel Solution 3"]?.rich_text[0]?.plain_text || "",
+    "Funnel Advanced 1": page.properties["Funnel Advanced 1"]?.rich_text[0]?.plain_text || "",
+    "Funnel Advanced 2": page.properties["Funnel Advanced 2"]?.rich_text[0]?.plain_text || "",
+    "Funnel Advanced 3": page.properties["Funnel Advanced 3"]?.rich_text[0]?.plain_text || "",
+    // Adicione mais fases conforme necessário...
+  }));
+}
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const GPT_MODEL = "gpt-4o-mini";
@@ -144,7 +172,7 @@ Answer (intent only):`;
 async function rewriteWithGPT(baseText, sintoma, idioma, funnelPhase, categoria) {
   const prompt = idioma === "pt"
     ? `
-Use o seguinte texto como base, mantendo a mensagem central, mas reescrevendo com 30% de liberdade criativa para um tom urgente, científico, provocativo e focado no sintoma: ${sintoma}, e na categoria: ${categoria}.  
+Use o seguinte texto como base, mantendo a mensagem central, mas reescrevendo com 450% de liberdade criativa para um tom urgente, científico, provocativo e focado no sintoma: ${sintoma}, e na categoria: ${categoria}.  
 O texto deve refletir a fase ${funnelPhase} do funil, apresentando:  
 - Na fase 1, explicação clara e científica do sintoma;  
 - Na fase 2, alertas urgentes sobre riscos do sintoma;  
@@ -157,7 +185,7 @@ Texto-base:
 ${baseText}
 `
     : `
-Use the following text as a base, keeping the core message, but rewriting it with 30% creative freedom in an urgent, scientific, provocative tone focused on the symptom: ${sintoma} and category: ${categoria}.  
+Use the following text as a base, keeping the core message, but rewriting it with 45% creative freedom in an urgent, scientific, provocative tone focused on the symptom: ${sintoma} and category: ${categoria}.  
 The text should reflect funnel phase ${funnelPhase}, presenting:  
 - Phase 1: clear scientific explanation of the symptom;  
 - Phase 2: urgent alerts about risks;  
