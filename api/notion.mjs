@@ -75,6 +75,11 @@ export async function getSymptomContext(input, funnelPhase, previousSymptom, use
       database_id: databaseIdClean,
       page_size: 100
     });
+
+    // 2. Mapeia todas as linhas trazendo sintomas e conteúdos
+    const allRows = response.results.map(page => ({
+      Supplement: page.properties.Supplement?.title?.[0]?.plain_text || "",
+      Symptoms: page.properties.Symptoms?.multi_select?.map(opt => opt.name.toLowerCase()) || [],
       "Funnel Awareness 1": page.properties["Funnel Awareness 1"]?.rich_text?.[0]?.plain_text || "",
       "Funnel Awareness 2": page.properties["Funnel Awareness 2"]?.rich_text?.[0]?.plain_text || "",
       "Funnel Awareness 3": page.properties["Funnel Awareness 3"]?.rich_text?.[0]?.plain_text || "",
