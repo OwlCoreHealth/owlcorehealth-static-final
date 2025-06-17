@@ -370,49 +370,46 @@ export default async function handler(req, res) {
 } else {
   sessionMemory.funnelPhase = 1;
   sessionMemory.usedQuestions = [];
-    
-try {
-  const nearest = await findNearestSymptom(userInput);
-  sessionMemory.sintomaAtual = nearest.bestSymptom;
-  sessionMemory.similarityScore = nearest.bestScore;
-  console.log("Sintoma identificado (semântico):", sessionMemory.sintomaAtual, "Score:", sessionMemory.similarityScore);
-} catch (err) {
-  console.error("Erro no matching semântico:", err);
-  sessionMemory.sintomaAtual = userInput.toLowerCase();  // Como fallback, usa o input direto
-  sessionMemory.similarityScore = null;
+  // Salva novo sintoma
+  // Mapeamento manual só para testar
+const sintomaMapeado = (() => {
+  if (userInput.toLowerCase().includes("acne")) return "acne";
+  if (userInput.toLowerCase().includes("dry skin")) return "dry skin";
+  if (userInput.toLowerCase().includes("rosacea")) return "rosacea";
+  // ...adicione mais conforme seus sintomas do Notion!
+  return userInput.toLowerCase(); // fallback
+})();
+
+sessionMemory.sintomaAtual = sintomaMapeado;
+console.log("Sintoma mapeado para busca:", sessionMemory.sintomaAtual);
+
+  console.log("Sintoma identificado:", sessionMemory.sintomaAtual);
 }
 
- const SIMILARITY_THRESHOLD = 0.3; // valor recomendado para clusters sintomáticos
+  const SIMILARITY_THRESHOLD = 0.3; // valor recomendado para clusters sintomáticos
 
 if (!isFollowUp) {
-  // 1. Recebe o input do usuário e tenta fazer o matching semântico
-  let matchedSymptom = userInput.toLowerCase();  // Usa o input direto como valor inicial
-
   try {
-    // 2. Tenta realizar o matching semântico
     const nearest = await findNearestSymptom(userInput);
-    matchedSymptom = nearest.bestSymptom; // Atualiza com o melhor sintoma encontrado
-    sessionMemory.similarityScore = nearest.bestScore; // Salva o score de confiança
+    sessionMemory.sintomaAtual = nearest.bestSymptom;
 
-    // Marca o estado de confiança
+    sessionMemory.similarityScore = nearest.bestScore;
+    console.log("Sintoma identificado (semântico):", sessionMemory.sintomaAtual, "Score:", sessionMemory.similarityScore);
+
+    // NÃO aborta fluxo — apenas registra confiança baixa, para customizar copy se quiser
     sessionMemory.lowConfidence = nearest.bestScore < SIMILARITY_THRESHOLD;
-    console.log("Sintoma identificado (semântico):", matchedSymptom, "Score:", sessionMemory.similarityScore);
-
   } catch (err) {
     console.error("Erro no matching semântico:", err);
+    sessionMemory.sintomaAtual = userInput.toLowerCase();
     sessionMemory.similarityScore = null;
-    sessionMemory.lowConfidence = true; // Marca como baixa confiança se houver erro
+    sessionMemory.lowConfidence = true;
   }
-
-  // 3. Atualiza o valor final de sintoma (seja pelo matching semântico ou pelo fallback)
-  sessionMemory.sintomaAtual = matchedSymptom;
-
-  console.log("Sintoma final para processamento:", sessionMemory.sintomaAtual);
 }
 
-  const mainSymptom = sessionMemory.sintomaAtual
-  ? sessionMemory.sintomaAtual.split(",")[0].trim() // Se tiver vírgula, pega o primeiro sintoma.
-  : sessionMemory.sintomaAtual.trim(); // Caso contrário, apenas usa o sintoma diretamente.
+  // 1. Definição
+const mainSymptom = sessionMemory.sintomaAtual
+  ? sessionMemory.sintomaAtual.split(",")[0].trim()
+  : sessionMemory.sintomaAtual;
 
 // 2. Buscar context
 let context = await getSymptomContext(
