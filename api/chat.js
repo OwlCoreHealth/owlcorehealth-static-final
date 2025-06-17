@@ -390,7 +390,6 @@ if (!isFollowUp) {
   sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
 }
 
-  const isFollowUp = Boolean(selectedQuestion);
   const idioma = "en"; // Sempre usa inglês (US English) como base
 
   // Inputs muito vagos (não tratamos se for follow-up!)
