@@ -429,12 +429,12 @@ if (!isFollowUp) {
 const allSymptoms = allNotionRows.flatMap(row => row.Symptoms);
 
 // 2. Matching semântico: encontra o sintoma mais próximo do input do usuário
+// Antes de usar, adicione esta linha no início do handler:
+const allNotionRows = await getAllSupplementsAndSymptoms(); // <-- chama tua função correta
+// Agora pode usar normalmente:
+const allSymptoms = allNotionRows.flatMap(row => row.Symptoms);
 const nearest = await findNearestSymptom(userInput, allSymptoms);
-
-// 3. Descobre em qual linha esse sintoma aparece
-const matchedRow = allNotionRows.find(row =>
-  row.Symptoms.includes(nearest.bestSymptom)
-);
+const matchedRow = allNotionRows.find(row => row.Symptoms.includes(nearest.bestSymptom));
 
     sessionMemory.sintomaAtual = nearest.bestSymptom;
 
