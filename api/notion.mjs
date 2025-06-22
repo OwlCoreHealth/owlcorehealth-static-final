@@ -70,11 +70,21 @@ const GPT_MODEL = "gpt-4o-mini";
 
 export async function getSymptomContext(input, funnelPhase, previousSymptom, usedQuestions) {
   try {
-    // 1. Busca todas as linhas do banco (sem filtro!)
+    // 1. Busca só as linhas do banco relacionadas ao sintoma informado (filtro direto Notion)
+    const sintomaInput = input.toLowerCase().trim();
+
     const response = await notion.databases.query({
       database_id: databaseIdClean,
-      page_size: 100
+      filter: {
+        property: "Symptoms",
+        multi_select: {
+          contains: sintomaInput
+        }
+      },
+      page_size: 10 // ou mais, se quiser trazer várias sugestões
     });
+
+    // ...continua seu processamento normal daqui!
 
     // Função utilitária para pegar todo texto de um campo rich_text
 function extractRichText(prop) {
