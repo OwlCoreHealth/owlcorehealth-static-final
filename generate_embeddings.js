@@ -52,8 +52,8 @@ async function generateEmbedding(text) {
     }
   }
 
-  fs.writeFileSync(
-  path.join(__dirname, "data", "symptoms_embeddings.json"),
+ fs.writeFileSync(
+  "./data/symptoms_embeddings.json", // relativo à pasta /api
   JSON.stringify(embeddings, null, 2),
   "utf-8"
 );
