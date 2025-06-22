@@ -130,7 +130,6 @@ if (allRows.length > 0) {
 
     // 3. Matching semântico ou exato (troque pelo seu findNearestSymptom se quiser!)
     // Exemplo simples: encontra a linha onde o sintoma existe (ignore case)
-    const sintomaInput = input.toLowerCase().trim();
     const matchedRow = allRows.find(row =>
       row.Symptoms.some(s => sintomaInput.includes(s) || s.includes(sintomaInput))
     );
