@@ -150,7 +150,12 @@ if (allRows.length > 0) {
       };
     }
 
-    // 4. Monta o retorno já usando a linha correta!
+const originalPage = response.results.find(page =>
+      page.properties?.Symptoms?.multi_select?.some(
+        opt => opt.name.toLowerCase() === sintomaInput
+      )
+    );
+
     return {
       gptPromptData: {
         prompt: "You are OwlCoreHealth AI.",
@@ -189,7 +194,8 @@ if (allRows.length > 0) {
           matchedRow["Links"]
         ].filter(Boolean)
       },
-      followupQuestions: []
+      followupQuestions: [],
+      page: originalPage // <-- ESSA LINHA PERMITE USAR OS CAMPOS DINÂMICOS!
     };
 
   } catch (error) {
