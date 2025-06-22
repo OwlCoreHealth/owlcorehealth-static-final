@@ -481,28 +481,21 @@ const currentStep = sessionMemory.funnelPhase; // ou funnelStep, conforme seu fl
 let baseText = null;
 
 // Busca o texto da fase atual no contexto do funil
-if (
-  context.funnelTexts &&
-  context.funnelTexts[mappedKey] &&
-  context.funnelTexts[mappedKey][currentStep]
-) {
-  const texts = context.funnelTexts[mappedKey][currentStep];
+// Busca o texto da fase atual DIRETO do Notion pela propriedade (Funnel Awareness 1, Funnel Severity 2, etc)
+const funnelStepType = sessionMemory.funnelStepType || "Awareness"; // ou adapte de acordo
+const funnelPhase = sessionMemory.funnelPhase || 1;
+const notionFieldName = `Funnel ${funnelStepType} ${funnelPhase}`;
+const notionProps = context?.page?.properties || context?.properties || {};
 
-  if (Array.isArray(texts)) {
-    // Caso tenha vários textos para a fase, sorteia e evita repetição
-    if (!sessionMemory.usedTexts) sessionMemory.usedTexts = [];
-    const availableTexts = texts.filter(text => !sessionMemory.usedTexts.includes(text));
-    if (availableTexts.length > 0) {
-      baseText = availableTexts[Math.floor(Math.random() * availableTexts.length)];
-      sessionMemory.usedTexts.push(baseText);
-    } else {
-      sessionMemory.usedTexts = [];
-      baseText = texts[Math.floor(Math.random() * texts.length)];
-      sessionMemory.usedTexts.push(baseText);
-    }
-  } else {
-    // Se só tem um texto (string), usa direto
-    baseText = texts;
+if (
+  notionProps[notionFieldName] &&
+  notionProps[notionFieldName].rich_text &&
+  notionProps[notionFieldName].rich_text.length > 0
+) {
+  baseText = notionProps[notionFieldName].rich_text.map(rt => rt.text.content).join(' ');
+  if (!sessionMemory.usedTexts) sessionMemory.usedTexts = [];
+  if (!sessionMemory.usedTexts.includes(baseText)) {
+    sessionMemory.usedTexts.push(baseText);
   }
 }
 
