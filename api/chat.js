@@ -468,22 +468,23 @@ if (nearest && nearest.bestScore >= HIGH_CONFIDENCE) {
     sessionMemory.usedQuestions
   );
   const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
-  let funnelTexts = [
-    context.funnelTexts?.[`${funnelKey} 1`] || "",
-    context.funnelTexts?.[`${funnelKey} 2`] || "",
-    context.funnelTexts?.[`${funnelKey} 3`] || ""
-  ].filter(Boolean);
+  const funnelKeyMap = {
+  "Funnel Awareness": "base",
+  "Funnel Severity": "gravidade",
+  "Funnel Proof": "estatisticas",
+  "Funnel Solution": "nutrientes",
+  "Funnel Advanced": "suplemento"
+};
+
+const mappedKey = funnelKeyMap[funnelKey];
+let funnelTexts = context.funnelTexts?.[mappedKey] || [];
 
   if (!sessionMemory.usedTexts) sessionMemory.usedTexts = [];
   funnelTexts = funnelTexts.filter(text => !sessionMemory.usedTexts.includes(text));
-  if (funnelTexts.length === 0 && context.funnelTexts) {
-    sessionMemory.usedTexts = [];
-    funnelTexts = [
-      context.funnelTexts?.[`${funnelKey} 1`] || "",
-      context.funnelTexts?.[`${funnelKey} 2`] || "",
-      context.funnelTexts?.[`${funnelKey} 3`] || ""
-    ].filter(Boolean);
-  }
+ if (funnelTexts.length === 0 && context.funnelTexts && context.funnelTexts[mappedKey]) {
+  sessionMemory.usedTexts = [];
+  funnelTexts = context.funnelTexts[mappedKey] || [];
+}
 
   console.log("Fase atual:", sessionMemory.funnelPhase);
   console.log("funnelKey:", funnelKey);
