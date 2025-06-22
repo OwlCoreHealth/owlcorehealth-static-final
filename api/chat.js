@@ -487,6 +487,9 @@ const funnelPhase = sessionMemory.funnelPhase || 1;
 const notionFieldName = `Funnel ${funnelStepType} ${funnelPhase}`;
 const notionProps = context?.page?.properties || context?.properties || {};
 
+  console.log("notionProps", Object.keys(notionProps));
+console.log("Buscando campo:", notionFieldName);
+
 if (
   notionProps[notionFieldName] &&
   notionProps[notionFieldName].rich_text &&
