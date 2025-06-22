@@ -150,11 +150,13 @@ if (allRows.length > 0) {
       };
     }
 
-const originalPage = response.results.find(page =>
-      page.properties?.Symptoms?.multi_select?.some(
-        opt => opt.name.toLowerCase() === sintomaInput
-      )
-    );
+// Busca mais robusta, cobre casos agrupados ou nomes variantes
+const sintomasBuscados = matchedRow.Symptoms.map(s => s.toLowerCase().trim());
+const originalPage = response.results.find(page => {
+  const pageSymptoms = (page.properties?.Symptoms?.multi_select || []).map(opt => opt.name.toLowerCase().trim());
+  // Se pelo menos UM sintoma bate
+  return sintomasBuscados.some(s => pageSymptoms.includes(s));
+});
 
     return {
       gptPromptData: {
