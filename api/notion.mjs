@@ -75,8 +75,7 @@ export async function getSymptomContext(input, funnelPhase, previousSymptom, use
     const sintomaInput = input.toLowerCase().trim();
 
     // 1. Busca por sintoma exato (filtro direto Notion)
-    let response = await notion.databases.query({ ... });
-
+    let response = await notion.databases.query({
       database_id: databaseIdClean,
       filter: {
         property: "Symptoms",
@@ -120,7 +119,7 @@ export async function getSymptomContext(input, funnelPhase, previousSymptom, use
 
     // 4. Fallback semântico: se não encontrou, busca sintoma mais próximo com embeddings
     if (!matchedRow) {
-      import { findNearestSymptom } from "./findNearestSymptom.js";
+      const { findNearestSymptom } = await import(new URL("./findNearestSymptom.js", import.meta.url));
       const { bestSymptom, bestScore } = await findNearestSymptom(input);
 
       // Busca novamente no Notion com o melhor sintoma encontrado semanticamente
