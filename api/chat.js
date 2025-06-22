@@ -2,7 +2,7 @@
 
 import { getSymptomContext } from "./notion.mjs";
 import { fallbackTextsBySymptom } from "./fallbackTextsBySymptom.js";
-import { findNearestSymptom } from "../findNearestSymptom.js"; // ajuste o caminho se necessário
+import { findNearestSymptom } from "./findNearestSymptom.js";
 import { Client } from '@notionhq/client'; // Importação do cliente Notion
 
 // Inicialize a instância do cliente Notion com sua chave de API
