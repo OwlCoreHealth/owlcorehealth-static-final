@@ -1,3 +1,5 @@
+import { findNearestSymptom } from "./findNearestSymptom.js";
+
 import dotenv from "dotenv";
 dotenv.config(); 
 
@@ -70,73 +72,91 @@ const GPT_MODEL = "gpt-4o-mini";
 
 export async function getSymptomContext(input, funnelPhase, previousSymptom, usedQuestions) {
   try {
-    // 1. Busca só as linhas do banco relacionadas ao sintoma informado (filtro direto Notion)
     const sintomaInput = input.toLowerCase().trim();
 
-    const response = await notion.databases.query({
+    // 1. Busca por sintoma exato (filtro direto Notion)
+    let response = await notion.databases.query({
       database_id: databaseIdClean,
       filter: {
         property: "Symptoms",
-        multi_select: {
-          contains: sintomaInput
-        }
+        multi_select: { contains: sintomaInput }
       },
-      page_size: 10 // ou mais, se quiser trazer várias sugestões
+      page_size: 10
     });
 
-    // ...continua seu processamento normal daqui!
+    // Função para extrair texto dos campos rich_text
+    function extractRichText(prop) {
+      if (!prop || !Array.isArray(prop.rich_text)) return "";
+      return prop.rich_text.map(rt => rt.plain_text || "").join(" ").trim();
+    }
 
-    // Função utilitária para pegar todo texto de um campo rich_text
-function extractRichText(prop) {
-  if (!prop || !Array.isArray(prop.rich_text)) return "";
-  return prop.rich_text.map(rt => rt.plain_text || "").join(" ").trim();
-}
+    // 2. Mapeia linhas do Notion
+    let allRows = response.results.map(page => ({
+      Supplement: page.properties.Supplement?.title?.[0]?.plain_text || "",
+      Symptoms: page.properties.Symptoms?.multi_select?.map(opt => opt.name.toLowerCase()) || [],
+      "Funnel Awareness 1": extractRichText(page.properties["Funnel Awareness 1"]),
+      "Funnel Awareness 2": extractRichText(page.properties["Funnel Awareness 2"]),
+      "Funnel Awareness 3": extractRichText(page.properties["Funnel Awareness 3"]),
+      "Funnel Severity 1": extractRichText(page.properties["Funnel Severity 1"]),
+      "Funnel Severity 2": extractRichText(page.properties["Funnel Severity 2"]),
+      "Funnel Severity 3": extractRichText(page.properties["Funnel Severity 3"]),
+      "Funnel Proof 1": extractRichText(page.properties["Funnel Proof 1"]),
+      "Funnel Proof 2": extractRichText(page.properties["Funnel Proof 2"]),
+      "Funnel Proof 3": extractRichText(page.properties["Funnel Proof 3"]),
+      "Funnel Solution 1": extractRichText(page.properties["Funnel Solution 1"]),
+      "Funnel Solution 2": extractRichText(page.properties["Funnel Solution 2"]),
+      "Funnel Solution 3": extractRichText(page.properties["Funnel Solution 3"]),
+      "Funnel Advanced 1": extractRichText(page.properties["Funnel Advanced 1"]),
+      "Funnel Advanced 2": extractRichText(page.properties["Funnel Advanced 2"]),
+      "Funnel Advanced 3": extractRichText(page.properties["Funnel Advanced 3"]),
+      Links: extractRichText(page.properties["Links "]),
+    }));
 
-// 2. Mapeia todas as linhas trazendo sintomas e conteúdos
-const allRows = response.results.map(page => {
-  console.log("DADOS DA PÁGINA:", page); // Log completo da página para visualização
-  
-  return {
-    Supplement: page.properties.Supplement?.title?.[0]?.plain_text || "",
-    Symptoms: page.properties.Symptoms?.multi_select?.map(opt => opt.name.toLowerCase()) || [],
-    "Funnel Awareness 1": extractRichText(page.properties["Funnel Awareness 1"]),
-    "Funnel Awareness 2": extractRichText(page.properties["Funnel Awareness 2"]),
-    "Funnel Awareness 3": extractRichText(page.properties["Funnel Awareness 3"]),
-    "Funnel Severity 1": extractRichText(page.properties["Funnel Severity 1"]),
-    "Funnel Severity 2": extractRichText(page.properties["Funnel Severity 2"]),
-    "Funnel Severity 3": extractRichText(page.properties["Funnel Severity 3"]),
-    "Funnel Proof 1": extractRichText(page.properties["Funnel Proof 1"]),
-    "Funnel Proof 2": extractRichText(page.properties["Funnel Proof 2"]),
-    "Funnel Proof 3": extractRichText(page.properties["Funnel Proof 3"]),
-    "Funnel Solution 1": extractRichText(page.properties["Funnel Solution 1"]),
-    "Funnel Solution 2": extractRichText(page.properties["Funnel Solution 2"]),
-    "Funnel Solution 3": extractRichText(page.properties["Funnel Solution 3"]),
-    "Funnel Advanced 1": extractRichText(page.properties["Funnel Advanced 1"]),
-    "Funnel Advanced 2": extractRichText(page.properties["Funnel Advanced 2"]),
-    "Funnel Advanced 3": extractRichText(page.properties["Funnel Advanced 3"]),
-    Links: extractRichText(page.properties["Links "]),
-  };
-});
-
-
-    // LOGA TUDO DA PRIMEIRA LINHA DO NOTION
-if (allRows.length > 0) {
-  console.log("---- LOG PRIMEIRA LINHA ----");
-  console.log("Symptoms:", allRows[0].Symptoms);
-  console.log("Funnel Awareness 1:", allRows[0]["Funnel Awareness 1"]);
-  console.log("Funnel Severity 1:", allRows[0]["Funnel Severity 1"]);
-  // Adicione outros campos para debug conforme necessário
-}
-
-    // 3. Matching semântico ou exato (troque pelo seu findNearestSymptom se quiser!)
-    // Exemplo simples: encontra a linha onde o sintoma existe (ignore case)
-    const matchedRow = allRows.find(row =>
+    // 3. Matching exato (caso filtro Notion falhe por variantes)
+    let matchedRow = allRows.find(row =>
       row.Symptoms.some(s => sintomaInput.includes(s) || s.includes(sintomaInput))
     );
 
+    // 4. Fallback semântico: se não encontrou, busca sintoma mais próximo com embeddings
     if (!matchedRow) {
-      // Não encontrou — fallback igual seu código antigo
-      console.warn("❗️Nenhuma entrada encontrada no Notion para o input:", input);
+      const { findNearestSymptom } = await import("./findNearestSymptom.js");
+      const { bestSymptom, bestScore } = await findNearestSymptom(input);
+
+      // Busca novamente no Notion com o melhor sintoma encontrado semanticamente
+      response = await notion.databases.query({
+        database_id: databaseIdClean,
+        filter: {
+          property: "Symptoms",
+          multi_select: { contains: bestSymptom }
+        },
+        page_size: 1
+      });
+
+      allRows = response.results.map(page => ({
+        Supplement: page.properties.Supplement?.title?.[0]?.plain_text || "",
+        Symptoms: page.properties.Symptoms?.multi_select?.map(opt => opt.name.toLowerCase()) || [],
+        "Funnel Awareness 1": extractRichText(page.properties["Funnel Awareness 1"]),
+        "Funnel Awareness 2": extractRichText(page.properties["Funnel Awareness 2"]),
+        "Funnel Awareness 3": extractRichText(page.properties["Funnel Awareness 3"]),
+        "Funnel Severity 1": extractRichText(page.properties["Funnel Severity 1"]),
+        "Funnel Severity 2": extractRichText(page.properties["Funnel Severity 2"]),
+        "Funnel Severity 3": extractRichText(page.properties["Funnel Severity 3"]),
+        "Funnel Proof 1": extractRichText(page.properties["Funnel Proof 1"]),
+        "Funnel Proof 2": extractRichText(page.properties["Funnel Proof 2"]),
+        "Funnel Proof 3": extractRichText(page.properties["Funnel Proof 3"]),
+        "Funnel Solution 1": extractRichText(page.properties["Funnel Solution 1"]),
+        "Funnel Solution 2": extractRichText(page.properties["Funnel Solution 2"]),
+        "Funnel Solution 3": extractRichText(page.properties["Funnel Solution 3"]),
+        "Funnel Advanced 1": extractRichText(page.properties["Funnel Advanced 1"]),
+        "Funnel Advanced 2": extractRichText(page.properties["Funnel Advanced 2"]),
+        "Funnel Advanced 3": extractRichText(page.properties["Funnel Advanced 3"]),
+        Links: extractRichText(page.properties["Links "]),
+      }));
+      matchedRow = allRows[0];
+    }
+
+    // 5. Fallback final (GPT): se ainda não achou, categoriza
+    if (!matchedRow) {
       const fallbackCategory = await identifySymptomCategoryWithGPT(input);
       const categoryMap = {
         gut: "bloating and skin irritation",
@@ -159,14 +179,14 @@ if (allRows.length > 0) {
       };
     }
 
-// Busca mais robusta, cobre casos agrupados ou nomes variantes
-const sintomasBuscados = matchedRow.Symptoms.map(s => s.toLowerCase().trim());
-const originalPage = response.results.find(page => {
-  const pageSymptoms = (page.properties?.Symptoms?.multi_select || []).map(opt => opt.name.toLowerCase().trim());
-  // Se pelo menos UM sintoma bate
-  return sintomasBuscados.some(s => pageSymptoms.includes(s));
-});
+    // Busca página original
+    const sintomasBuscados = matchedRow.Symptoms.map(s => s.toLowerCase().trim());
+    const originalPage = response.results.find(page => {
+      const pageSymptoms = (page.properties?.Symptoms?.multi_select || []).map(opt => opt.name.toLowerCase().trim());
+      return sintomasBuscados.some(s => pageSymptoms.includes(s));
+    });
 
+    // Monta retorno final
     return {
       gptPromptData: {
         prompt: "You are OwlCoreHealth AI.",
@@ -206,9 +226,8 @@ const originalPage = response.results.find(page => {
         ].filter(Boolean)
       },
       followupQuestions: [],
-      page: originalPage // <-- ESSA LINHA PERMITE USAR OS CAMPOS DINÂMICOS!
+      page: originalPage
     };
-
   } catch (error) {
     console.error("Erro ao buscar contexto do sintoma no Notion:", error);
     return {
