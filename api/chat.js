@@ -477,41 +477,57 @@ if (nearest && nearest.bestScore >= HIGH_CONFIDENCE) {
 };
 
 const mappedKey = funnelKeyMap[funnelKey];
-let funnelTexts = context.funnelTexts?.[mappedKey] || [];
+const currentStep = sessionMemory.funnelPhase; // ou funnelStep, conforme seu fluxo!
+let baseText = null;
 
-  if (!sessionMemory.usedTexts) sessionMemory.usedTexts = [];
-  funnelTexts = funnelTexts.filter(text => !sessionMemory.usedTexts.includes(text));
- if (funnelTexts.length === 0 && context.funnelTexts && context.funnelTexts[mappedKey]) {
-  sessionMemory.usedTexts = [];
-  funnelTexts = context.funnelTexts[mappedKey] || [];
+// Busca o texto da fase atual no contexto do funil
+if (
+  context.funnelTexts &&
+  context.funnelTexts[mappedKey] &&
+  context.funnelTexts[mappedKey][currentStep]
+) {
+  const texts = context.funnelTexts[mappedKey][currentStep];
+
+  if (Array.isArray(texts)) {
+    // Caso tenha vários textos para a fase, sorteia e evita repetição
+    if (!sessionMemory.usedTexts) sessionMemory.usedTexts = [];
+    const availableTexts = texts.filter(text => !sessionMemory.usedTexts.includes(text));
+    if (availableTexts.length > 0) {
+      baseText = availableTexts[Math.floor(Math.random() * availableTexts.length)];
+      sessionMemory.usedTexts.push(baseText);
+    } else {
+      sessionMemory.usedTexts = [];
+      baseText = texts[Math.floor(Math.random() * texts.length)];
+      sessionMemory.usedTexts.push(baseText);
+    }
+  } else {
+    // Se só tem um texto (string), usa direto
+    baseText = texts;
+  }
 }
 
-  console.log("Fase atual:", sessionMemory.funnelPhase);
-  console.log("funnelKey:", funnelKey);
-  console.log("funnelTexts:", funnelTexts);
-
-  // Fallback
-  if (!funnelTexts.length) {
-    const fallbackGroup = fallbackTextsBySymptom[mainSymptom];
-    if (fallbackGroup && fallbackGroup[funnelKey] && fallbackGroup[funnelKey].length > 0) {
-      funnelTexts = fallbackGroup[funnelKey];
-      console.log("Usando fallback do arquivo fallbackTextsBySymptom para:", mainSymptom, funnelKey);
-    } else {
-      funnelTexts = [
-        sessionMemory.lowConfidence
-          ? (idioma === "pt"
-            ? `Não consegui identificar seu sintoma de forma precisa, mas aqui está uma explicação baseada em sintomas parecidos ou no cluster mais próximo.`
-            : `I couldn't precisely identify your symptom, but here's an explanation based on similar symptoms or the closest cluster.`)
-          : (idioma === "pt"
-            ? `Desculpe, não temos conteúdo para "${mainSymptom}" nesta fase.`
-            : `Sorry, we don’t have content for "${mainSymptom}" in this phase.`)
-      ];
-      console.log("No Notion or fallbackTextsBySymptom data for:", mainSymptom, funnelKey);
-    }
+// Fallback se não encontrou nada para a fase/step
+if (!baseText) {
+  const fallbackGroup = fallbackTextsBySymptom[mainSymptom];
+  if (
+    fallbackGroup &&
+    fallbackGroup[funnelKey] &&
+    fallbackGroup[funnelKey].length > 0
+  ) {
+    const texts = fallbackGroup[funnelKey];
+    baseText = texts[Math.floor(Math.random() * texts.length)];
+    console.log("Usando fallback do arquivo fallbackTextsBySymptom para:", mainSymptom, funnelKey);
+  } else {
+    baseText = sessionMemory.lowConfidence
+      ? (idioma === "pt"
+        ? `Não consegui identificar seu sintoma de forma precisa, mas aqui está uma explicação baseada em sintomas parecidos ou no cluster mais próximo.`
+        : `I couldn't precisely identify your symptom, but here's an explanation based on similar symptoms or the closest cluster.`)
+      : (idioma === "pt"
+        ? `Desculpe, não temos conteúdo para "${mainSymptom}" nesta fase.`
+        : `Sorry, we don’t have content for "${mainSymptom}" in this phase.`);
+    console.log("No Notion or fallbackTextsBySymptom data for:", mainSymptom, funnelKey);
   }
-
-  const baseText = funnelTexts[Math.floor(Math.random() * funnelTexts.length)];
-  sessionMemory.usedTexts.push(baseText);
+}
 
   const gptResponse = await rewriteWithGPT(
     baseText,
