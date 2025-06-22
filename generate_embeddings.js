@@ -52,11 +52,11 @@ async function generateEmbedding(text) {
     }
   }
 
-  // Salva no arquivo
   fs.writeFileSync(
-    "./data/symptoms_embeddings.json",
-    JSON.stringify(embeddings, null, 2),
-    "utf-8"
-  );
+  path.join(__dirname, "data", "symptoms_embeddings.json"),
+  JSON.stringify(embeddings, null, 2),
+  "utf-8"
+);
+
   console.log("✅ Embeddings salvos em ./data/symptoms_embeddings.json");
 })();
