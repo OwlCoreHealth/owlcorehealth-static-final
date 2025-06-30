@@ -512,14 +512,17 @@ if (
 // Fallback se não encontrou nada para a fase/step
 if (!baseText) {
   const fallbackGroup = fallbackTextsBySymptom[mainSymptom];
-  if (
-    fallbackGroup &&
-    fallbackGroup[funnelKey] &&
-    fallbackGroup[funnelKey].length > 0
-  ) {
-    const texts = fallbackGroup[funnelKey];
-    baseText = texts[Math.floor(Math.random() * texts.length)];
-    console.log("Usando fallback do arquivo fallbackTextsBySymptom para:", mainSymptom, funnelKey);
+  const mappedKey = funnelKeyMap[funnelKey] || funnelKey;
+if (
+  fallbackGroup &&
+  fallbackGroup[mappedKey] &&
+  fallbackGroup[mappedKey].length > 0
+) {
+  const texts = fallbackGroup[mappedKey];
+  baseText = texts[Math.floor(Math.random() * texts.length)];
+  console.log("Usando fallback do arquivo fallbackTextsBySymptom para:", mainSymptom, mappedKey);
+}
+
   } else {
     baseText = sessionMemory.lowConfidence
       ? (idioma === "pt"
