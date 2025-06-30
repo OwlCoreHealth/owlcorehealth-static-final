@@ -534,13 +534,22 @@ if (!baseText) {
   }
 }
 
-  const gptResponse = await rewriteWithGPT(
-    baseText,
-    mainSymptom,
-    idioma,
-    sessionMemory.funnelPhase,
-    sessionMemory.categoriaAtual
-  );
+// === LOG ANTES DO GPT ===
+console.log(
+  "==== DEBUG FUNIL ====",
+  "\nFase do funil:", sessionMemory.funnelPhase,
+  "\nmainSymptom:", mainSymptom,
+  "\nbaseText enviado pro GPT:", baseText
+);
+
+// --- CHAMADA GPT ---
+const gptResponse = await rewriteWithGPT(
+  baseText,
+  mainSymptom,
+  idioma,
+  sessionMemory.funnelPhase,
+  sessionMemory.categoriaAtual
+);
 
   let followupQuestions = await generateFollowUpQuestions(
     { sintoma: mainSymptom, funnelPhase: sessionMemory.funnelPhase },
