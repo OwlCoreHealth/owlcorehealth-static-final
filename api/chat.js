@@ -552,20 +552,28 @@ async function rewriteWithGPT(baseText, sintoma, idioma, funnelPhase, categoria)
   const currentPhase = funnelMap[funnelPhase] || "awareness";
 
   const prompt = idioma === "pt"
-    ? `
-Reescreva o texto a seguir de forma científica, urgente e provocativa para explicar o sintoma "${sintoma}" apenas para a fase do funil: ${currentPhase}.
-**NÃO avance para fases futuras, NÃO inclua estatísticas, nutrientes, soluções ou argumentos de outras fases.**
-Foque SOMENTE nesta etapa e mantenha a resposta curta.
-Exemplo para fase 1: Explique apenas o que é o sintoma e por que é importante.
-Texto-base:
+  ? `
+Reescreva o texto a seguir com até 45% de liberdade criativa, mas SEM adicionar informações novas e SEM avançar de fase do funil. 
+
+- Foque SOMENTE na fase atual: ${currentPhase}
+- NÃO antecipe informações de fases seguintes.
+- NÃO inclua estatísticas, nutrientes, soluções ou nomes de suplemento/planta a menos que o texto-base já traga isso E esta seja a fase correta.
+- Apenas reestruture o texto-base para soar mais claro, científico e urgente, dentro do CONTEXTO DA FASE ATUAL.
+- Exemplo (fase 1): Explique apenas o que é o sintoma e por que é importante.
+
+Texto-base original:
 ${baseText}
 `
-    : `
-Rewrite the following text in a scientific, urgent, and provocative way to explain the symptom "${sintoma}" ONLY for the funnel phase: ${currentPhase}.
-**DO NOT include information, arguments, or content from other funnel phases. DO NOT mention statistics, nutrients, or solutions unless it's the ONLY focus of this phase.**
-Focus STRICTLY on this step and keep the answer short.
-Example for phase 1: Only explain what the symptom is and why it matters.
-Base text:
+  : `
+Rewrite the following text with up to 45% creative freedom, but DO NOT add new information or advance to later funnel phases.
+
+- Focus ONLY on the current funnel phase: ${currentPhase}
+- DO NOT anticipate or mention content from other stages.
+- DO NOT include statistics, nutrients, solutions, or supplement/plant names unless the base text already contains it AND this is the right phase.
+- Just restructure the base text to sound clearer, more scientific and urgent, within the CONTEXT OF THE CURRENT PHASE.
+- Example (phase 1): Only explain what the symptom is and why it matters.
+
+Original base text:
 ${baseText}
 `;
 
