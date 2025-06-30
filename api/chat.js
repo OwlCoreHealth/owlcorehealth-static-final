@@ -137,17 +137,21 @@ export default async function handler(req, res) {
   // Detecta idioma na primeira mensagem
   if (!session.idioma) session.idioma = await detectLanguage(message);
 
-  // Avança fase ou inicia novo sintoma
-  if (!selectedQuestion) {
-    // Novo sintoma
-    session.symptom = await findClosestSymptom(message, session.idioma);
-    session.phase = 1;
-    session.count = 1;
+ if (!selectedQuestion) {
+  // Novo sintoma: tenta fuzzy matching antes do GPT!
+  let fuzzy = fuzzyFindSymptom(message);
+  if (fuzzy) {
+    session.symptom = fuzzy;
   } else {
-    // Avança no funil
-    session.phase = Math.min(session.phase + 1, 5);
-    session.count++;
+    session.symptom = await findClosestSymptom(message, session.idioma);
   }
+  session.phase = 1;
+  session.count = 1;
+} else {
+  // Avança no funil
+  session.phase = Math.min(session.phase + 1, 5);
+  session.count++;
+}
 
   // Limite de perguntas
   if (session.count > QUESTION_LIMIT) {
