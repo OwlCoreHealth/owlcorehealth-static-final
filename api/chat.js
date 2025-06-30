@@ -12,7 +12,7 @@ const GPT_MODEL = "gpt-4o-mini";
 let sessionMemory = {};
 
 // Limite de perguntas por sessão (altere se quiser)
-const QUESTION_LIMIT = 8;
+const QUESTION_LIMIT = 8; 
 
 // === Helper: salva logs ===
 function logEvent(event, data) {
