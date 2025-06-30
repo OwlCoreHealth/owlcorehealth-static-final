@@ -570,7 +570,7 @@ followupQuestions.forEach((q, i) => {
   content += `<div class="clickable-question" data-question="${encodeURIComponent(q)}">${i + 1}. ${q}</div>\n`;
 });
 
-// ... tudo igual até aqui ...
+// ... (todo o bloco anterior)
 
 // === Bloco para sugestão de suplemento/planta ===
 if (symptomToSupplementMap[mainSymptom]) {
