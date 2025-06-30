@@ -19,10 +19,16 @@ let sessionMemory = {};
 // Limite de perguntas por sessão (altere se quiser)
 const QUESTION_LIMIT = 8;
 
+// === Helper: salva logs (compatível com serverless, usando /tmp) ===
+const logsDir = "/tmp/logs";
+if (!fs.existsSync(logsDir)) {
+  try { fs.mkdirSync(logsDir, { recursive: true }); } catch (e) { /* ignora erro */ }
+}
+
 function logEvent(event, data) {
-  const logPath = path.join(logsDir, "chat.log");
+  const logPath = logsDir + "/chat.log";
   const log = `[${new Date().toISOString()}] [${event}] ${JSON.stringify(data)}\n`;
-  fs.appendFileSync(logPath, log);
+  try { fs.appendFileSync(logPath, log); } catch (e) { /* ignora erro */ }
 }
 
 // === Similaridade avançada de sintomas com GPT ===
