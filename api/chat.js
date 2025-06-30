@@ -1,7 +1,12 @@
-// 🚀 chat.js SEM NOTION, multi-idioma, similaridade GPT, logs, limite de sessão
-
 import path from "path";
 import fs from "fs";
+
+// Garantir que a pasta logs exista
+const logsDir = path.join(process.cwd(), "logs");
+if (!fs.existsSync(logsDir)) {
+  fs.mkdirSync(logsDir, { recursive: true });
+}
+
 const catalogPath = path.join(process.cwd(), "api", "data", "symptoms_catalog.json");
 const symptomsCatalog = JSON.parse(fs.readFileSync(catalogPath, "utf8"));
 
@@ -14,10 +19,10 @@ let sessionMemory = {};
 // Limite de perguntas por sessão (altere se quiser)
 const QUESTION_LIMIT = 8;
 
-// === Helper: salva logs ===
 function logEvent(event, data) {
+  const logPath = path.join(logsDir, "chat.log");
   const log = `[${new Date().toISOString()}] [${event}] ${JSON.stringify(data)}\n`;
-  fs.appendFileSync("./logs/chat.log", log);
+  fs.appendFileSync(logPath, log);
 }
 
 // === Similaridade avançada de sintomas com GPT ===
