@@ -175,58 +175,6 @@ Answer (intent only):`;
   }
 }
 
-async function rewriteWithGPT(baseText, sintoma, idioma, funnelPhase, categoria) {
-  const prompt = idioma === "pt"
-    ? `
-Use o seguinte texto como base, mantendo a mensagem central, mas reescrevendo com 450% de liberdade criativa para um tom urgente, científico, provocativo e focado no sintoma: ${sintoma}, e na categoria: ${categoria}.  
-O texto deve refletir a fase ${funnelPhase} do funil, apresentando:  
-- Na fase 1, explicação clara e científica do sintoma;  
-- Na fase 2, alertas urgentes sobre riscos do sintoma;  
-- Na fase 3, estatísticas reais que reforcem a gravidade;  
-- Na fase 4, nutrientes e plantas naturais que ajudam;  
-- Na fase 5, sugestões indiretas de soluções avançadas (sem citar nomes diretamente).  
-Não mude o tema ou aborde assuntos fora do contexto.  
-Mantenha a linguagem simples, direta e com senso de urgência.  
-Texto-base:  
-${baseText}
-`
-    : `
-Use the following text as a base, keeping the core message, but rewriting it with 45% creative freedom in an urgent, scientific, provocative tone focused on the symptom: ${sintoma} and category: ${categoria}.  
-The text should reflect funnel phase ${funnelPhase}, presenting:  
-- Phase 1: clear scientific explanation of the symptom;  
-- Phase 2: urgent alerts about risks;  
-- Phase 3: real statistics reinforcing severity;  
-- Phase 4: nutrients and natural plants that help;  
-- Phase 5: indirect suggestions of advanced solutions (without naming products).  
-Do not change the topic or include unrelated content.  
-Keep language simple, direct, and urgent.  
-Base text:  
-${baseText}
-`;
-
-  try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${OPENAI_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: GPT_MODEL,
-        messages: [{ role: "system", content: prompt }],
-        temperature: 0.65,
-        max_tokens: 600
-      })
-    });
-
-    const data = await response.json();
-    return data.choices?.[0]?.message?.content?.trim() || baseText;
-  } catch (e) {
-    console.error("Erro ao reescrever com GPT:", e);
-    return baseText;
-  }
-}
-
 async function generateFreeTextWithGPT(prompt) {
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -592,22 +540,34 @@ return res.status(200).json({
 }); // <<< ESSA CHAVE FECHA O HANDLER!
 } // <<< NÃO REMOVA ESSA CHAVE! FECHA O export default async function handler
 
-// =====================
-// Função revisada rewriteWithGPT (FORA do handler!)
-// =====================
 async function rewriteWithGPT(baseText, sintoma, idioma, funnelPhase, categoria) {
-  const funnelMap = {
-    1: "awareness",
-    2: "severity",
-    3: "proof/statistics",
-    4: "nutrients/solution",
-    5: "advanced/supplement"
-  };
-  const currentPhase = funnelMap[funnelPhase] || "awareness";
-
   const prompt = idioma === "pt"
-    ? `Reescreva o texto a seguir de forma científica, urgente e provocativa para explicar o sintoma "${sintoma}" apenas para a fase do funil: ${currentPhase} (nunca avance para outras fases). Foque APENAS nesta etapa e mantenha a resposta curta. Texto-base:\n${baseText}`
-    : `Rewrite the following text in a scientific, urgent, and provocative way to explain the symptom "${sintoma}" ONLY for the funnel phase: ${currentPhase} (never advance to later phases). Focus ONLY on this stage and keep the answer short. Base text:\n${baseText}`;
+    ? `
+Use o seguinte texto como base, mantendo a mensagem central, mas reescrevendo com 45% de liberdade criativa para um tom urgente, científico, provocativo e focado no sintoma: ${sintoma}, e na categoria: ${categoria}.  
+O texto deve refletir a fase ${funnelPhase} do funil, apresentando:  
+- Na fase 1, explicação clara e científica do sintoma;  
+- Na fase 2, alertas urgentes sobre riscos do sintoma;  
+- Na fase 3, estatísticas reais que reforcem a gravidade;  
+- Na fase 4, nutrientes e plantas naturais que ajudam;  
+- Na fase 5, sugestões indiretas de soluções avançadas (sem citar nomes diretamente).  
+Não mude o tema ou aborde assuntos fora do contexto.  
+Mantenha a linguagem simples, direta e com senso de urgência.  
+Texto-base:  
+${baseText}
+`
+    : `
+Use the following text as a base, keeping the core message, but rewriting it with 45% creative freedom in an urgent, scientific, provocative tone focused on the symptom: ${sintoma} and category: ${categoria}.  
+The text should reflect funnel phase ${funnelPhase}, presenting:  
+- Phase 1: clear scientific explanation of the symptom;  
+- Phase 2: urgent alerts about risks;  
+- Phase 3: real statistics reinforcing severity;  
+- Phase 4: nutrients and natural plants that help;  
+- Phase 5: indirect suggestions of advanced solutions (without naming products).  
+Do not change the topic or include unrelated content.  
+Keep language simple, direct, and urgent.  
+Base text:  
+${baseText}
+`;
 
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -620,7 +580,7 @@ async function rewriteWithGPT(baseText, sintoma, idioma, funnelPhase, categoria)
         model: GPT_MODEL,
         messages: [{ role: "system", content: prompt }],
         temperature: 0.65,
-        max_tokens: 350
+        max_tokens: 600
       })
     });
 
