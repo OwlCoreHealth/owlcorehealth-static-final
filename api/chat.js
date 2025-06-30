@@ -1,10 +1,9 @@
 // 🚀 chat.js SEM NOTION, multi-idioma, similaridade GPT, logs, limite de sessão
 
-import fs from "fs";
 import path from "path";
-
-const symptomsFile = path.resolve("./data/symptoms_catalog.json");
-const symptomsData = JSON.parse(fs.readFileSync(symptomsFile, "utf-8"));
+import fs from "fs";
+const catalogPath = path.join(process.cwd(), "api", "data", "symptoms_catalog.json");
+const symptomsCatalog = JSON.parse(fs.readFileSync(catalogPath, "utf8"));
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const GPT_MODEL = "gpt-4o-mini";
