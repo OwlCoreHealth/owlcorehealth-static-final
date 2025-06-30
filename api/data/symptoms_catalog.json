@@ -15,3 +15,30 @@
   }
 }
 
+[
+  {
+    "symptom": "abdominal bloating and gas",
+    "phases": {
+      "1": "Bloating and gas are more than discomfort – they're early warning signs...",
+      "2": "Ignoring bloating can cause severe gut issues like...",
+      "3": "Research shows up to 30% of adults have...",
+      "4": "Key natural plants: Ginger, Fennel, Peppermint...",
+      "5": "Advanced natural solutions can help restore gut balance."
+    },
+    "plants": ["Ginger", "Fennel", "Peppermint", "Inulin"],
+    "supplement": "Probiotic Complex"
+  },
+  {
+    "symptom": "acne",
+    "phases": {
+      "1": "...",
+      "2": "...",
+      "3": "...",
+      "4": "...",
+      "5": "..."
+    },
+    "plants": ["Babchi", "Dandelion", "Lion’s Mane"],
+    "supplement": "ClearSkin Advanced"
+  }
+  // ... outros sintomas
+]
