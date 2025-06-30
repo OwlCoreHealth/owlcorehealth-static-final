@@ -551,21 +551,21 @@ const gptResponse = await rewriteWithGPT(
   sessionMemory.categoriaAtual
 );
 
-  let followupQuestions = await generateFollowUpQuestions(
-    { sintoma: mainSymptom, funnelPhase: sessionMemory.funnelPhase },
-    idioma
-  );
+let followupQuestions = await generateFollowUpQuestions(
+  { sintoma: mainSymptom, funnelPhase: sessionMemory.funnelPhase },
+  idioma
+);
 
-  // Substituições finais de placeholder
-  followupQuestions = followupQuestions.map(q =>
-    q.replace(/\[symptom\]/gi, mainSymptom)
-      .replace(/your symptom/gi, `your ${mainSymptom}`)
-      .replace(/the symptom/gi, mainSymptom)
-      .replace(/\bsymptom\b/gi, mainSymptom)
-      .replace(/\byour symptom\b/gi, `your ${mainSymptom}`)
-  );
+// Substituições finais de placeholder
+followupQuestions = followupQuestions.map(q =>
+  q.replace(/\[symptom\]/gi, mainSymptom)
+    .replace(/your symptom/gi, `your ${mainSymptom}`)
+    .replace(/the symptom/gi, mainSymptom)
+    .replace(/\bsymptom\b/gi, mainSymptom)
+    .replace(/\byour symptom\b/gi, `your ${mainSymptom}`)
+);
 
-  let content = gptResponse + `\n\nLet's explore further: Choose one of the options below to continue:\n\n`;
+let content = gptResponse + `\n\nLet's explore further: Choose one of the options below to continue:\n\n`;
 followupQuestions.forEach((q, i) => {
   content += `<div class="clickable-question" data-question="${encodeURIComponent(q)}">${i + 1}. ${q}</div>\n`;
 });
@@ -587,4 +587,44 @@ return res.status(200).json({
     }
   }]
 });
+
+// =====================
+// Função revisada rewriteWithGPT
+// =====================
+async function rewriteWithGPT(baseText, sintoma, idioma, funnelPhase, categoria) {
+  // Mapear nome da fase para contexto do prompt
+  const funnelMap = {
+    1: "awareness",
+    2: "severity",
+    3: "proof/statistics",
+    4: "nutrients/solution",
+    5: "advanced/supplement"
+  };
+  const currentPhase = funnelMap[funnelPhase] || "awareness";
+
+  const prompt = idioma === "pt"
+    ? `Reescreva o texto a seguir de forma científica, urgente e provocativa para explicar o sintoma "${sintoma}" apenas para a fase do funil: ${currentPhase} (nunca avance para outras fases). Foque APENAS nesta etapa e mantenha a resposta curta. Texto-base:\n${baseText}`
+    : `Rewrite the following text in a scientific, urgent, and provocative way to explain the symptom "${sintoma}" ONLY for the funnel phase: ${currentPhase} (never advance to later phases). Focus ONLY on this stage and keep the answer short. Base text:\n${baseText}`;
+
+  try {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: GPT_MODEL,
+        messages: [{ role: "system", content: prompt }],
+        temperature: 0.65,
+        max_tokens: 350
+      })
+    });
+
+    const data = await response.json();
+    return data.choices?.[0]?.message?.content?.trim() || baseText;
+  } catch (e) {
+    console.error("Erro ao reescrever com GPT:", e);
+    return baseText;
+  }
 }
