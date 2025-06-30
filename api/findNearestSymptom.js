@@ -3,17 +3,17 @@ import fetch from "node-fetch";
 import cosineSimilarity from "cosine-similarity";
 import dotenv from "dotenv";
 import path from "path";
-import { fileURLToPath } from "url";         // <--- ADICIONA
-import { dirname } from "path";              // <--- ADICIONA
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
-// Corrige __dirname para ES Modules:   <--- ADICIONA
+// Corrige __dirname para ES Modules:
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 dotenv.config();
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-const EMBEDDING_MODEL = "text-embedding-3-small"; // igual ao anterior
+const EMBEDDING_MODEL = "text-embedding-3-small";
 
 async function generateEmbedding(text) {
   const res = await fetch("https://api.openai.com/v1/embeddings", {
@@ -38,10 +38,10 @@ export async function findNearestSymptom(userInput) {
   // 1. Gerar embedding para o texto do usuário
   const userEmbedding = await generateEmbedding(userInput);
 
- // Supondo que este arquivo está em api/findNearestSymptom.js
-const embeddingsData = JSON.parse(
-  fs.readFileSync(path.join(__dirname, "symptoms_embeddings.json"), "utf-8")
-);
+  // Corrigido: arquivo está na raiz da pasta api!
+  const embeddingsData = JSON.parse(
+    fs.readFileSync(path.join(__dirname, "symptoms_embeddings.json"), "utf-8")
+  );
 
   // 3. Calcular similaridade e pegar o mais próximo
   let bestScore = -Infinity;
