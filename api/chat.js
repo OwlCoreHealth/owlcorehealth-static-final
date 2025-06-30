@@ -1,6 +1,19 @@
 import path from "path";
 import fs from "fs";
+import stringSimilarity from "string-similarity";
 
+function fuzzyFindSymptom(userInput) {
+  const symptomNames = symptomsCatalog.map(s => s.symptom);
+  const { bestMatch, bestMatchIndex } = stringSimilarity.findBestMatch(
+    userInput.toLowerCase(), 
+    symptomNames.map(s => s.toLowerCase())
+  );
+  // Threshold de similaridade: só aceita se for bem parecido
+  if (bestMatch.rating > 0.6) {
+    return symptomNames[bestMatchIndex];
+  }
+  return null;
+}
 // Sempre use /tmp/logs em serverless!
 const logsDir = "/tmp/logs";
 if (!fs.existsSync(logsDir)) {
