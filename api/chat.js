@@ -570,6 +570,8 @@ followupQuestions.forEach((q, i) => {
   content += `<div class="clickable-question" data-question="${encodeURIComponent(q)}">${i + 1}. ${q}</div>\n`;
 });
 
+// ... tudo igual até aqui ...
+
 // === Bloco para sugestão de suplemento/planta ===
 if (symptomToSupplementMap[mainSymptom]) {
   const info = symptomToSupplementMap[mainSymptom];
@@ -579,6 +581,7 @@ if (symptomToSupplementMap[mainSymptom]) {
 }
 // === FIM do bloco de sugestão ===
 
+// === FECHAMENTO FINAL DA HANDLER ===
 return res.status(200).json({
   choices: [{
     message: {
@@ -586,13 +589,13 @@ return res.status(200).json({
       followupQuestions
     }
   }]
-});
+}); // <<< ESSA CHAVE FECHA O HANDLER!
+} // <<< NÃO REMOVA ESSA CHAVE! FECHA O export default async function handler
 
 // =====================
-// Função revisada rewriteWithGPT
+// Função revisada rewriteWithGPT (FORA do handler!)
 // =====================
 async function rewriteWithGPT(baseText, sintoma, idioma, funnelPhase, categoria) {
-  // Mapear nome da fase para contexto do prompt
   const funnelMap = {
     1: "awareness",
     2: "severity",
