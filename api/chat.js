@@ -4,6 +4,7 @@ import { getSymptomContext } from "./notion.mjs";
 import { fallbackTextsBySymptom } from "./fallbackTextsBySymptom.js";
 import { findNearestSymptom } from "./findNearestSymptom.js";
 import { Client } from '@notionhq/client'; // Importação do cliente Notion
+import symptomToSupplementMap from "./data/symptomToSupplementMap.js";
 
 // Inicialize a instância do cliente Notion com sua chave de API
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
@@ -554,16 +555,25 @@ if (!baseText) {
   );
 
   let content = gptResponse + `\n\nLet's explore further: Choose one of the options below to continue:\n\n`;
-  followupQuestions.forEach((q, i) => {
-    content += `<div class="clickable-question" data-question="${encodeURIComponent(q)}">${i + 1}. ${q}</div>\n`;
-  });
+followupQuestions.forEach((q, i) => {
+  content += `<div class="clickable-question" data-question="${encodeURIComponent(q)}">${i + 1}. ${q}</div>\n`;
+});
 
-  return res.status(200).json({
-    choices: [{
-      message: {
-        content,
-        followupQuestions
-      }
-    }]
-  });
+// === Bloco para sugestão de suplemento/planta ===
+if (symptomToSupplementMap[mainSymptom]) {
+  const info = symptomToSupplementMap[mainSymptom];
+  content += idioma === "pt"
+    ? `\n\n<strong>Suplemento sugerido:</strong> ${info.supplement}<br><strong>Plantas ativas:</strong> ${info.plants.join(", ")}<br>`
+    : `\n\n<strong>Recommended Supplement:</strong> ${info.supplement}<br><strong>Active Plants:</strong> ${info.plants.join(", ")}<br>`;
+}
+// === FIM do bloco de sugestão ===
+
+return res.status(200).json({
+  choices: [{
+    message: {
+      content,
+      followupQuestions
+    }
+  }]
+});
 }
