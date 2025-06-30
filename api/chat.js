@@ -1,609 +1,157 @@
-// ✅ chat.js COMPLETO com integração do formulário de subscrição de e-mail (sem NENHUMA remoção do seu código)
+// 🚀 chat.js SEM NOTION, multi-idioma, similaridade GPT, logs, limite de sessão
 
-import { getSymptomContext } from "./notion.mjs";
-import { fallbackTextsBySymptom } from "./fallbackTextsBySymptom.js";
-import { findNearestSymptom } from "./findNearestSymptom.js";
-import { Client } from '@notionhq/client'; // Importação do cliente Notion
-import symptomToSupplementMap from "./data/symptomToSupplementMap.js";
+import fs from "fs";
+import path from "path";
 
-// Inicialize a instância do cliente Notion com sua chave de API
-const notion = new Client({ auth: process.env.NOTION_API_KEY });
-
-async function getAllSupplementsAndSymptoms() {
-  // CERTO para multi-select!
-const response = await notion.databases.query({
-  database_id: process.env.NOTION_DATABASE_ID
-  // SEM FILTER!
-});
-
-// Mapeia só uma vez, aqui:
-return response.results.map(page => ({
-  Supplement: page.properties?.Supplement?.title?.[0]?.plain_text || "",
-  Symptoms: page.properties?.Symptoms?.multi_select?.map(opt => opt.name?.toLowerCase()) || [],
-  "Funnel Awareness 1": page.properties?.["Funnel Awareness 1"]?.rich_text?.[0]?.plain_text || "",
-  "Funnel Awareness 2": page.properties?.["Funnel Awareness 2"]?.rich_text?.[0]?.plain_text || "",
-  "Funnel Awareness 3": page.properties?.["Funnel Awareness 3"]?.rich_text?.[0]?.plain_text || "",
-  "Funnel Severity 1": page.properties?.["Funnel Severity 1"]?.rich_text?.[0]?.plain_text || "",
-  "Funnel Severity 2": page.properties?.["Funnel Severity 2"]?.rich_text?.[0]?.plain_text || "",
-  "Funnel Severity 3": page.properties?.["Funnel Severity 3"]?.rich_text?.[0]?.plain_text || "",
-  "Funnel Proof 1": page.properties?.["Funnel Proof 1"]?.rich_text?.[0]?.plain_text || "",
-  "Funnel Proof 2": page.properties?.["Funnel Proof 2"]?.rich_text?.[0]?.plain_text || "",
-  "Funnel Proof 3": page.properties?.["Funnel Proof 3"]?.rich_text?.[0]?.plain_text || "",
-  "Funnel Solution 1": page.properties?.["Funnel Solution 1"]?.rich_text?.[0]?.plain_text || "",
-  "Funnel Solution 2": page.properties?.["Funnel Solution 2"]?.rich_text?.[0]?.plain_text || "",
-  "Funnel Solution 3": page.properties?.["Funnel Solution 3"]?.rich_text?.[0]?.plain_text || "",
-  "Funnel Advanced 1": page.properties?.["Funnel Advanced 1"]?.rich_text?.[0]?.plain_text || "",
-  "Funnel Advanced 2": page.properties?.["Funnel Advanced 2"]?.rich_text?.[0]?.plain_text || "",
-  "Funnel Advanced 3": page.properties?.["Funnel Advanced 3"]?.rich_text?.[0]?.plain_text || "",
-}));
-}
+const symptomsFile = path.resolve("./data/symptoms_catalog.json");
+const symptomsData = JSON.parse(fs.readFileSync(symptomsFile, "utf-8"));
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const GPT_MODEL = "gpt-4o-mini";
 
-let sessionMemory = {
-  sintomasDetectados: [],
-  respostasUsuario: [],
-  nome: "",
-  idioma: "pt",
-  sintomaAtual: null,
-  categoriaAtual: null,
-  funnelPhase: 1,
-  usedQuestions: [],
-  emailOffered: false
-};
+// Memória de sessão (pode integrar com Redis ou JWT se precisar)
+let sessionMemory = {};
 
-function getFunnelKey(phase) {
-  switch (phase) {
-    case 1: return "Funnel Awareness";
-    case 2: return "Funnel Severity";
-    case 3: return "Funnel Proof";
-    case 4: return "Funnel Solution";
-    case 5: return "Funnel Advanced";
-    default: return "Funnel Awareness";
-  }
+// Limite de perguntas por sessão (altere se quiser)
+const QUESTION_LIMIT = 8;
+
+// === Helper: salva logs ===
+function logEvent(event, data) {
+  const log = `[${new Date().toISOString()}] [${event}] ${JSON.stringify(data)}\n`;
+  fs.appendFileSync("./logs/chat.log", log);
 }
 
-// Função que gera resposta completa para o sintoma
-const generateAnswerForSymptom = async (symptom, idioma) => {
-  const prompt = idioma === "pt" ? promptPT : promptEN;
-  
-  // Chamar a API do GPT para gerar a resposta completa
-  const response = await fetch("https://api.openai.com/v1/chat/completions", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${OPENAI_API_KEY}`
-  },
-  body: JSON.stringify({
-    model: GPT_MODEL,
-    messages: [
-      { role: "system", content: "Você é um assistente de saúde fornecendo explicações científicas e práticas sobre sintomas." },
-      { role: "user", content: prompt }
-    ],
-    temperature: 0.7,
-    max_tokens: 500 // Aumente o número de tokens aqui
-  })
-});
-
-  const data = await response.json();
-console.log("Resposta do servidor:", data); // Adicione este log para inspecionar a resposta completa
-
-  
-  // Retorna o conteúdo gerado pela API
-  return data.choices?.[0]?.message?.content || "Desculpe, não consegui gerar uma resposta no momento.";
-};
-
-function getBotIconHTML() {
-  return `<img src="owl-icon.png" alt="Owl Icon" class="bot-icon" style="width: 28px; margin-right: 12px;" />`;
-}
-
-// ✅ ALTERAÇÃO NO formatHybridResponse para adicionar e-mail após 1ª resposta com perguntas
-function formatHybridResponse(context, gptResponse, followupQuestions, idioma) {
-  const phaseTitle = idioma === "pt" ? "Vamos explorar mais:" : "Let's explore further:";
-  const instruction = idioma === "pt"
-    ? "Escolha uma das opções abaixo para continuarmos:"
-    : "Choose one of the options below to continue:";
-
-  let response = gptResponse?.trim() || "";
-
-  if (followupQuestions.length) {
-    response += `\n\n${phaseTitle}\n${instruction}\n\n`;
-    followupQuestions.slice(0, 3).forEach((q, i) => {
-      response += `<div class="clickable-question" data-question="${encodeURIComponent(q)}" onclick="handleQuestionClick(this)">${i + 1}. ${q}</div>\n`;
-    });
-
-    // ✅ Mostra o formulário de e-mail na primeira vez que houver follow-ups
-    if (!sessionMemory.emailOffered && sessionMemory.funnelPhase === 2) {
-      sessionMemory.emailOffered = true;
-     // response += renderEmailPrompt(idioma);
-    }
-  }
-
-  return response;
-}
-
-async function classifyUserIntent(userInput, idioma) {
+// === Similaridade avançada de sintomas com GPT ===
+async function findClosestSymptom(userInput, idioma = "en") {
+  const symptomNames = symptomsData.map(s => s.symptom);
   const prompt = idioma === "pt"
-    ? `Você é um classificador de intenção. Receberá mensagens de usuários e deve responder com uma das seguintes intenções:
+    ? `A partir da lista: ${symptomNames.join(", ")}\nIdentifique qual sintoma é mais parecido com: "${userInput}". Só responda o nome exato ou "unknown".`
+    : `From this list: ${symptomNames.join(", ")}\nIdentify which symptom most closely matches: "${userInput}". Reply with exact name or "unknown".`;
 
-- sintoma
-- saudação
-- curiosidade
-- pergunta funcional
-- dúvida vaga
-- outro
-
-Mensagem do usuário: "${userInput}"
-Resposta (apenas a intenção):`
-    : `You are an intent classifier. You’ll receive a user message and must reply with one of the following labels:
-
-- symptom
-- greeting
-- curiosity
-- functional_question
-- vague_doubt
-- other
-
-User message: "${userInput}"
-Answer (intent only):`;
-
-  try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${OPENAI_API_KEY}`
-  },
-  body: JSON.stringify({
-    model: GPT_MODEL,
-    messages: [
-      { role: "system", content: "Você é um assistente de saúde fornecendo explicações científicas e práticas sobre sintomas." },
-      { role: "user", content: prompt }
-    ],
-    temperature: 0.7,
-    max_tokens: 300
-  })
-});
-
-    const data = await response.json();
-    const intent = data.choices?.[0]?.message?.content?.trim().toLowerCase() || "outro";
-    return intent;
-  } catch (e) {
-    console.error("Erro ao classificar intenção:", e);
-    return "outro";
-  }
+  const res = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${OPENAI_API_KEY}`
+    },
+    body: JSON.stringify({
+      model: GPT_MODEL,
+      messages: [{ role: "user", content: prompt }],
+      temperature: 0.1,
+      max_tokens: 20
+    })
+  });
+  const data = await res.json();
+  const match = data.choices?.[0]?.message?.content.trim().toLowerCase() || "unknown";
+  return symptomNames.find(s => s.toLowerCase() === match) || "unknown";
 }
 
-async function generateFreeTextWithGPT(prompt) {
-  try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${OPENAI_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: GPT_MODEL,
-        messages: [{ role: "system", content: prompt }],
-        temperature: 0.7,
-        max_tokens: 700
-      })
-    });
-
-    const data = await response.json();
-    return data.choices?.[0]?.message?.content?.trim() || "";
-  } catch (e) {
-    console.error("Erro ao gerar texto livre com GPT:", e);
-    return "";
-  }
+// === Detecção automática de idioma ===
+async function detectLanguage(text) {
+  // Simples: retorna 'pt' se maioria dos chars são PT/BR, senão 'en'
+  return /[áéíóúãõç]/i.test(text) ? "pt" : "en";
 }
 
-async function generateFollowUpQuestions(context, idioma) {
-  const symptom = context.sintoma || "symptom";
-  const phase = context.funnelPhase || 1;
-
- 
-const promptEN = `
-Generate 3 follow-up questions for a sales funnel, focused on the symptom: "${symptom}". ...
-1. PAIN question: highlight a possible negative consequence or worsening of the symptom, with a provocative and alert tone.
-2. CURIOSITY question: bring a surprising fact, myth or little-known connection about the symptom, making the user want to know more.
-3. SOLUTION question: provoke the user about a natural, innovative or little-known solution for the symptom.
-The questions must:
-- Be short, direct and provocative
-- Never generic (always mention the symptom)
-- Focus on advancing the funnel (e.g., "Want to know how to avoid this?", "Would you be surprised by the solution?", etc)
-Format example:
-1. Did you know ignoring ${symptom} can lead to serious health issues?
-2. Have you ever heard about a study linking ${symptom} to unexpected causes?
-3. Have you ever thought about treating ${symptom} naturally and quickly?
-Instead of writing [symptom], ALWAYS insert the exact text "${symptom}".
-Always generate the questions in American English (US English). Do not explain, do not repeat, just return the three numbered questions.
-`;
-
-  try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${OPENAI_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: GPT_MODEL,
-        messages: [
-          { role: "system", content: "You are a health copywriter assistant." },
-          { role: "user", content: promptEN }
-        ],
-        temperature: 0.8,
-        max_tokens: 250
-      })
-    });
-
-    const data = await response.json();
-    let questionsRaw = data.choices?.[0]?.message?.content || "";
-    // Divide as perguntas, ignora vazias, pega as 3 primeiras
-    let questions = questionsRaw.split(/\d+\.\s+/).filter(Boolean).slice(0, 3);
-
-    // Substitui qualquer '[symptom]' pelo sintoma real (caso o GPT não siga a instrução)
-    questions = questions.map(q =>
-  q.replace(/\[symptom\]/gi, symptom)
-   .replace(/your symptom/gi, `your ${symptom}`)
-   .replace(/the symptom/gi, symptom)
-   .replace(/\bsymptom\b/gi, symptom) // <- linha adicionada
-   .replace(/\byour symptom\b/gi, `your ${symptom}`) // redundante, mas cobre variações
-);
-
-    return questions;
-  } catch (err) {
-    // fallback em inglês (sempre usa o sintoma!)
-    return [
-      `Did you know ignoring ${symptom} can lead to chronic health problems?`,
-      `Ever wondered what most people get wrong about ${symptom}?`,
-      `Ready to discover a breakthrough solution for ${symptom}?`
-    ];
-  }
+// === Geração de perguntas follow-up ===
+async function generateFollowUps(symptom, phase, idioma = "en") {
+  const prompt = idioma === "pt"
+    ? `Gere 3 perguntas provocativas para avançar o funil sobre o sintoma "${symptom}", fase ${phase}.\n1. Dor/risco, 2. Curiosidade, 3. Solução natural.`
+    : `Generate 3 provocative follow-up questions for funnel phase ${phase}, about "${symptom}". 1. Pain/risk, 2. Curiosity, 3. Natural solution.`;
+  const res = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${OPENAI_API_KEY}`
+    },
+    body: JSON.stringify({
+      model: GPT_MODEL,
+      messages: [{ role: "user", content: prompt }],
+      temperature: 0.7,
+      max_tokens: 150
+    })
+  });
+  const data = await res.json();
+  const questions = data.choices?.[0]?.message?.content?.split(/\d+\.\s+/).filter(Boolean).slice(0, 3) || [];
+  return questions;
 }
 
-async function identifySymptom(userInput, symptomsList, idioma) {
-  const promptPT = `
-Você é um assistente que identifica o sintoma mais próximo de uma lista dada, a partir do texto do usuário. 
-A lista de sintomas é:
-${symptomsList.join(", ")}
+// === Resposta principal do funil ===
+async function generateFunnelResponse(symptom, phase, idioma = "en") {
+  const catalogItem = symptomsData.find(s => s.symptom.toLowerCase() === symptom.toLowerCase());
+  if (!catalogItem) return idioma === "pt"
+    ? "Desculpe, não consegui identificar seu sintoma. Pode reformular?"
+    : "Sorry, I couldn't identify your symptom. Can you rephrase?";
 
-Dado o texto do usuário:
-"${userInput}"
-
-Responda apenas com o sintoma da lista que melhor corresponde ao texto do usuário ou com o sintoma mais **semelhante** ou **relacionado**. Se não reconhecer, responda "unknown".
-  `;
-
- const promptEN = `
-You are an assistant that identifies the closest symptom from a given list, based on the user's text.
-The list of symptoms is:
-${symptomsList.join(", ")}
-
-Given the user's input:
-"${userInput}"
-
-Answer only with the symptom from the list that best matches or is most similar or related to the user's text. If no match, respond "unknown".
-`;
-
-  const prompt = idioma === "pt" ? promptPT : promptEN;
-
-  try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${OPENAI_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: GPT_MODEL,
-        messages: [
-          { role: "system", content: "You are a precise symptom matcher." },
-          { role: "user", content: prompt }
-        ],
-        temperature: 0,
-        max_tokens: 20
-      })
-    });
-
-    const data = await response.json();
-    const match = data.choices?.[0]?.message?.content.trim() || "unknown";
-    return match.toLowerCase();
-  } catch (e) {
-    console.error("Erro ao identificar sintoma:", e);
-    return "unknown";
-  }
+  const baseText = catalogItem.phases[String(phase)] || catalogItem.phases["1"];
+  // Prompt controlando "vazamento" de fases!
+  const phaseLabel = ["awareness", "severity", "proof", "nutrients", "advanced"][phase - 1];
+  const prompt = idioma === "pt"
+    ? `Reescreva o texto abaixo de forma provocativa, científica e curta, focando apenas na fase: ${phaseLabel}.\nNão avance para outras fases.\nTexto:\n${baseText}`
+    : `Rewrite the following text in a scientific, urgent, and provocative tone, focusing ONLY on phase: ${phaseLabel}.\nDo NOT advance to other phases.\nText:\n${baseText}`;
+  const res = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${OPENAI_API_KEY}`
+    },
+    body: JSON.stringify({
+      model: GPT_MODEL,
+      messages: [{ role: "user", content: prompt }],
+      temperature: 0.45,
+      max_tokens: 300
+    })
+  });
+  const data = await res.json();
+  return data.choices?.[0]?.message?.content.trim() || baseText;
 }
 
-console.log("Entrou na rota /api/chat!");
+// === Handler principal ===
 export default async function handler(req, res) {
-  if (req.method !== "POST") return res.status(405).json({ error: "Método não permitido" });
+  if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
-  const { message, selectedQuestion } = req.body;
-  const isFollowUp = Boolean(selectedQuestion);
+  const { message, selectedQuestion, sessionId } = req.body;
+  // Identificação de sessão simples
+  if (!sessionMemory[sessionId]) sessionMemory[sessionId] = { phase: 1, symptom: null, count: 0, idioma: "en" };
+  const session = sessionMemory[sessionId];
 
-  if (!sessionMemory) sessionMemory = {};
+  // Detecta idioma na primeira mensagem
+  if (!session.idioma) session.idioma = await detectLanguage(message);
 
-  let userInput;
-  if (!isFollowUp) {
-    userInput = (message || "").toString();
-
-    // Mapeamento manual inicial
-    const sintomaMapeado = (() => {
-      if (userInput.toLowerCase().includes("acne")) return "acne";
-      if (userInput.toLowerCase().includes("dry skin")) return "dry skin";
-      if (userInput.toLowerCase().includes("rosacea")) return "rosacea";
-      return userInput.toLowerCase();
-    })();
-
-    sessionMemory.sintomaAtual = sintomaMapeado;
-    sessionMemory.funnelPhase = 1;
-    sessionMemory.usedQuestions = [];
-    console.log("Sintoma mapeado para busca:", sessionMemory.sintomaAtual);
-    console.log("Sintoma identificado:", sessionMemory.sintomaAtual);
-
-    // Matching semântico só na primeira vez!
-    try {
-      const allNotionRows = await getAllSupplementsAndSymptoms();
-      const allSymptoms = allNotionRows.flatMap(row => row.Symptoms);
-      const nearest = await findNearestSymptom(userInput, allSymptoms);
-      const matchedRow = allNotionRows.find(row => row.Symptoms.includes(nearest.bestSymptom));
-
-      const HIGH_CONFIDENCE = 0.65; // ou ajuste conforme seu threshold
-
-if (nearest && nearest.bestScore >= HIGH_CONFIDENCE) {
-  sessionMemory.sintomaAtual = nearest.bestSymptom;
-  sessionMemory.similarityScore = nearest.bestScore;
-  sessionMemory.lowConfidence = false;
-  sessionMemory.notionRow = matchedRow || null;
-} else {
-  // Mantém o sintoma informado pelo usuário!
-  sessionMemory.sintomaAtual = sintomaMapeado || userInput.toLowerCase();
-  sessionMemory.similarityScore = nearest?.bestScore ?? 0;
-  sessionMemory.lowConfidence = true;
-  sessionMemory.notionRow = null;
-}
-
-      sessionMemory.similarityScore = nearest.bestScore;
-      sessionMemory.lowConfidence = nearest.bestScore < 0.3;
-      sessionMemory.notionRow = matchedRow || null;
-      console.log("Sintoma identificado (semântico):", sessionMemory.sintomaAtual, "Score:", sessionMemory.similarityScore);
-    } catch (err) {
-      console.error("Erro no matching semântico:", err);
-      sessionMemory.sintomaAtual = sintomaMapeado || userInput.toLowerCase();
-      sessionMemory.similarityScore = null;
-      sessionMemory.lowConfidence = true;
-      sessionMemory.notionRow = null;
-    }
-
+  // Avança fase ou inicia novo sintoma
+  if (!selectedQuestion) {
+    // Novo sintoma
+    session.symptom = await findClosestSymptom(message, session.idioma);
+    session.phase = 1;
+    session.count = 1;
   } else {
-    // Follow-up: NÃO roda mais matching nem redefine sintoma!
-    userInput = sessionMemory.sintomaAtual || "";
-    sessionMemory.funnelPhase = Math.min((sessionMemory.funnelPhase || 1) + 1, 6);
+    // Avança no funil
+    session.phase = Math.min(session.phase + 1, 5);
+    session.count++;
   }
 
-  // Define sempre o sintoma principal para todas as próximas etapas!
-  let mainSymptom = (sessionMemory.sintomaAtual || userInput || "").split(",")[0].trim();
-  if (!mainSymptom || mainSymptom === "true" || mainSymptom === "symptom") mainSymptom = "symptom_not_identified";
-  console.log("mainSymptom usado para perguntas:", mainSymptom);
-
-  const idioma = "en";
-  const vagueInputs = ["true", "ok", "sim", "não", "nao", ""];
-
-  // Responde para inputs vagos (só na 1ª interação!)
-  if (!isFollowUp && vagueInputs.includes((userInput || "").trim().toLowerCase())) {
-    const fallbackQuestions = [
-      "Did you know small changes can transform your health?",
-      "Want to find out what's sabotaging your progress?",
-      "Have you tried a natural method to fix this?"
-    ];
+  // Limite de perguntas
+  if (session.count > QUESTION_LIMIT) {
     return res.status(200).json({
-      choices: [{
-        message: {
-          content: "Let's explore further:\nChoose one of the options below to continue:\n\n" +
-            fallbackQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n"),
-          followupQuestions: fallbackQuestions
-        }
-      }]
+      content: session.idioma === "pt"
+        ? "Você atingiu o limite de perguntas nesta sessão. Deseja continuar por e-mail?"
+        : "You have reached the question limit for this session. Want to continue by email?",
+      followupQuestions: []
     });
   }
 
-  // Busca context do Notion/fallback, SEMPRE usando mainSymptom
-  let context = await getSymptomContext(
-    mainSymptom,
-    sessionMemory.funnelPhase,
-    mainSymptom,
-    sessionMemory.usedQuestions
-  );
-  const funnelKey = getFunnelKey(sessionMemory.funnelPhase);
-  const funnelKeyMap = {
-  "Funnel Awareness": "base",
-  "Funnel Severity": "gravidade",
-  "Funnel Proof": "estatisticas",
-  "Funnel Solution": "nutrientes",
-  "Funnel Advanced": "suplemento"
-};
+  // Resposta do funil + follow-ups
+  const answer = await generateFunnelResponse(session.symptom, session.phase, session.idioma);
+  const followupQuestions = await generateFollowUps(session.symptom, session.phase, session.idioma);
 
-const mappedKey = funnelKeyMap[funnelKey];
-const currentStep = sessionMemory.funnelPhase; // ou funnelStep, conforme seu fluxo!
-let baseText = null;
+  // Logs
+  logEvent("chat", { sessionId, phase: session.phase, symptom: session.symptom, idioma: session.idioma, message, answer, followupQuestions });
 
-// Busca o texto da fase atual no contexto do funil
-// Busca o texto da fase atual DIRETO do Notion pela propriedade (Funnel Awareness 1, Funnel Severity 2, etc)
-const funnelStepType = sessionMemory.funnelStepType || "Awareness"; // ou adapte de acordo
-const funnelPhase = sessionMemory.funnelPhase || 1;
-const notionFieldName = `Funnel ${funnelStepType} ${funnelPhase}`;
-const notionProps = (context && context.page && context.page.properties)
-  ? context.page.properties
-  : (context && context.properties)
-    ? context.properties
-    : {};
-console.log("notionProps:", Object.keys(notionProps));
-
-  console.log("context:", context);
-console.log("notionProps:", Object.keys(notionProps));
-console.log("Buscando campo:", notionFieldName);
-console.log("Valor encontrado:", notionProps[notionFieldName]);
-if (
-  notionProps[notionFieldName] &&
-  notionProps[notionFieldName].rich_text &&
-  notionProps[notionFieldName].rich_text.length > 0
-) {
-  baseText = notionProps[notionFieldName].rich_text.map(rt => rt.plain_text).join(' ');
-  if (!sessionMemory.usedTexts) sessionMemory.usedTexts = [];
-  if (!sessionMemory.usedTexts.includes(baseText)) {
-    sessionMemory.usedTexts.push(baseText);
-  }
-}
-
-// Fallback se não encontrou nada para a fase/step
-if (!baseText) {
-  const fallbackGroup = fallbackTextsBySymptom[mainSymptom];
-  const mappedKey = funnelKeyMap[funnelKey] || funnelKey;
-  if (
-    fallbackGroup &&
-    fallbackGroup[mappedKey] &&
-    fallbackGroup[mappedKey].length > 0
-  ) {
-    const texts = fallbackGroup[mappedKey];
-    baseText = texts[Math.floor(Math.random() * texts.length)];
-    console.log("Usando fallback do arquivo fallbackTextsBySymptom para:", mainSymptom, mappedKey);
-  } else {
-    // Fallback FINAL — nenhum conteúdo encontrado, nem no Notion, nem no fallback
-    baseText = sessionMemory.lowConfidence
-      ? (idioma === "pt"
-        ? `Não consegui identificar seu sintoma de forma precisa, mas aqui está uma explicação baseada em sintomas parecidos ou no cluster mais próximo.`
-        : `I couldn't precisely identify your symptom, but here's an explanation based on similar symptoms or the closest cluster.`)
-      : (idioma === "pt"
-        ? `Desculpe, não temos conteúdo para "${mainSymptom}" nesta fase.`
-        : `Sorry, we don’t have content for "${mainSymptom}" in this phase.`);
-    console.log("No Notion or fallbackTextsBySymptom data for:", mainSymptom, mappedKey);
-  }
-}
-
-// === LOG ANTES DO GPT ===
-console.log(
-  "==== DEBUG FUNIL ====",
-  "\nFase do funil:", sessionMemory.funnelPhase,
-  "\nmainSymptom:", mainSymptom,
-  "\nbaseText enviado pro GPT:", baseText
-);
-
-// --- CHAMADA GPT ---
-const gptResponse = await rewriteWithGPT(
-  baseText,
-  mainSymptom,
-  idioma,
-  sessionMemory.funnelPhase,
-  sessionMemory.categoriaAtual
-);
-
-let followupQuestions = await generateFollowUpQuestions(
-  { sintoma: mainSymptom, funnelPhase: sessionMemory.funnelPhase },
-  idioma
-);
-
-// Substituições finais de placeholder
-followupQuestions = followupQuestions.map(q =>
-  q.replace(/\[symptom\]/gi, mainSymptom)
-    .replace(/your symptom/gi, `your ${mainSymptom}`)
-    .replace(/the symptom/gi, mainSymptom)
-    .replace(/\bsymptom\b/gi, mainSymptom)
-    .replace(/\byour symptom\b/gi, `your ${mainSymptom}`)
-);
-
-let content = gptResponse + `\n\nLet's explore further: Choose one of the options below to continue:\n\n`;
-followupQuestions.forEach((q, i) => {
-  content += `<div class="clickable-question" data-question="${encodeURIComponent(q)}">${i + 1}. ${q}</div>\n`;
-});
-
-// ... (todo o bloco anterior)
-
-// === Bloco para plantas/suplemento: exibe só na fase correta e SEM NOME COMERCIAL ===
-if (symptomToSupplementMap[mainSymptom]) {
-  const info = symptomToSupplementMap[mainSymptom];
-  // Fase 4 = nutrientes/plantas científicas
-  if (sessionMemory.funnelPhase === 4) {
-    content += idioma === "pt"
-      ? `\n\n<strong>Plantas naturais estudadas:</strong> ${info.plants.join(", ")}<br>`
-      : `\n\n<strong>Scientifically studied plants:</strong> ${info.plants.join(", ")}<br>`;
-  }
-  // Fase 5 = solução avançada, só referência genérica, nunca o nome!
-  if (sessionMemory.funnelPhase === 5) {
-    content += idioma === "pt"
-      ? `\n\n<strong>Soluções naturais avançadas podem ajudar – consulte um especialista para uma recomendação personalizada.</strong><br>`
-      : `\n\n<strong>Advanced natural solutions may help – consult a specialist for a personalized recommendation.</strong><br>`;
-  }
-}
-
-// === FECHAMENTO FINAL DA HANDLER ===
-return res.status(200).json({
-  choices: [{
-    message: {
-      content,
-      followupQuestions
-    }
-  }]
-}); // <<< ESSA CHAVE FECHA O HANDLER!
-} // <<< NÃO REMOVA ESSA CHAVE! FECHA O export default async function handler
-
-async function rewriteWithGPT(baseText, sintoma, idioma, funnelPhase, categoria) {
-  // Mapeia as fases do funil para contexto explicativo
-  const funnelMap = {
-    1: "awareness (describe only what the symptom is and why it matters)",
-    2: "severity (describe only risks and negative consequences)",
-    3: "proof/statistics (show only real statistics about the symptom)",
-    4: "nutrients/solution (only list nutrients or plants, do NOT name supplements)",
-    5: "advanced/supplement (suggest advanced natural solutions without saying brand names)"
-  };
-  const currentPhase = funnelMap[funnelPhase] || "awareness";
-
-  const prompt = idioma === "pt"
-  ? `
-Reescreva o texto a seguir com até 45% de liberdade criativa, mas SEM adicionar informações novas e SEM avançar de fase do funil. 
-
-- Foque SOMENTE na fase atual: ${currentPhase}
-- NÃO antecipe informações de fases seguintes.
-- NÃO inclua estatísticas, nutrientes, soluções ou nomes de suplemento/planta a menos que o texto-base já traga isso E esta seja a fase correta.
-- Apenas reestruture o texto-base para soar mais claro, científico e urgente, dentro do CONTEXTO DA FASE ATUAL.
-- Exemplo (fase 1): Explique apenas o que é o sintoma e por que é importante.
-
-Texto-base original:
-${baseText}
-`
-  : `
-Rewrite the following text with up to 45% creative freedom, but DO NOT add new information or advance to later funnel phases.
-
-- Focus ONLY on the current funnel phase: ${currentPhase}
-- DO NOT anticipate or mention content from other stages.
-- DO NOT include statistics, nutrients, solutions, or supplement/plant names unless the base text already contains it AND this is the right phase.
-- Just restructure the base text to sound clearer, more scientific and urgent, within the CONTEXT OF THE CURRENT PHASE.
-- Example (phase 1): Only explain what the symptom is and why it matters.
-
-Original base text:
-${baseText}
-`;
-
-  try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${OPENAI_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: GPT_MODEL,
-        messages: [{ role: "system", content: prompt }],
-        temperature: 0.35, // Baixa criatividade para evitar "vazamento" de fases
-        max_tokens: 400
-      })
-    });
-
-    const data = await response.json();
-    return data.choices?.[0]?.message?.content?.trim() || baseText;
-  } catch (e) {
-    console.error("Erro ao reescrever com GPT:", e);
-    return baseText;
-  }
+  return res.status(200).json({
+    content: answer + "\n\n" +
+      (followupQuestions.length
+        ? (session.idioma === "pt" ? "Vamos explorar mais:\nEscolha uma opção:\n" : "Let's explore further:\nChoose an option:\n") +
+          followupQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n")
+        : ""),
+    followupQuestions
+  });
 }
