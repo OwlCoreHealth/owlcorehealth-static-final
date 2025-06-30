@@ -20,9 +20,10 @@ function logEvent(event, data) {
   fs.appendFileSync("./logs/chat.log", log);
 }
 
-// === Similaridade avançada de sintomas com GPT ===
 async function findClosestSymptom(userInput, idioma = "en") {
-  const symptomNames = symptomsData.map(s => s.symptom);
+  const symptomNames = symptomsCatalog.map(s => s.symptom); // <--- corrigido
+  // ...
+}
   const prompt = idioma === "pt"
     ? `A partir da lista: ${symptomNames.join(", ")}\nIdentifique qual sintoma é mais parecido com: "${userInput}". Só responda o nome exato ou "unknown".`
     : `From this list: ${symptomNames.join(", ")}\nIdentify which symptom most closely matches: "${userInput}". Reply with exact name or "unknown".`;
@@ -74,9 +75,10 @@ async function generateFollowUps(symptom, phase, idioma = "en") {
   return questions;
 }
 
-// === Resposta principal do funil ===
 async function generateFunnelResponse(symptom, phase, idioma = "en") {
-  const catalogItem = symptomsData.find(s => s.symptom.toLowerCase() === symptom.toLowerCase());
+  const catalogItem = symptomsCatalog.find(s => s.symptom.toLowerCase() === symptom.toLowerCase()); // <--- corrigido
+  // ...
+}
   if (!catalogItem) return idioma === "pt"
     ? "Desculpe, não consegui identificar seu sintoma. Pode reformular?"
     : "Sorry, I couldn't identify your symptom. Can you rephrase?";
