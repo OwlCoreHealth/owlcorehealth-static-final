@@ -520,14 +520,22 @@ followupQuestions.forEach((q, i) => {
 
 // ... (todo o bloco anterior)
 
-// === Bloco para sugestão de suplemento/planta ===
+// === Bloco para plantas/suplemento: exibe só na fase correta e SEM NOME COMERCIAL ===
 if (symptomToSupplementMap[mainSymptom]) {
   const info = symptomToSupplementMap[mainSymptom];
-  content += idioma === "pt"
-    ? `\n\n<strong>Suplemento sugerido:</strong> ${info.supplement}<br><strong>Plantas ativas:</strong> ${info.plants.join(", ")}<br>`
-    : `\n\n<strong>Recommended Supplement:</strong> ${info.supplement}<br><strong>Active Plants:</strong> ${info.plants.join(", ")}<br>`;
+  // Fase 4 = nutrientes/plantas científicas
+  if (sessionMemory.funnelPhase === 4) {
+    content += idioma === "pt"
+      ? `\n\n<strong>Plantas naturais estudadas:</strong> ${info.plants.join(", ")}<br>`
+      : `\n\n<strong>Scientifically studied plants:</strong> ${info.plants.join(", ")}<br>`;
+  }
+  // Fase 5 = solução avançada, só referência genérica, nunca o nome!
+  if (sessionMemory.funnelPhase === 5) {
+    content += idioma === "pt"
+      ? `\n\n<strong>Soluções naturais avançadas podem ajudar – consulte um especialista para uma recomendação personalizada.</strong><br>`
+      : `\n\n<strong>Advanced natural solutions may help – consult a specialist for a personalized recommendation.</strong><br>`;
+  }
 }
-// === FIM do bloco de sugestão ===
 
 // === FECHAMENTO FINAL DA HANDLER ===
 return res.status(200).json({
