@@ -26,12 +26,12 @@ function logEvent(event, data) {
   try { fs.appendFileSync(logPath, log); } catch (e) { /* ignora erro */ }
 }
 
-// === Similaridade avançada de sintomas com GPT ===
 async function findClosestSymptom(userInput, idioma = "en") {
   const symptomNames = symptomsCatalog.map(s => s.symptom);
+
   const prompt = idioma === "pt"
-    ? `A partir da lista: ${symptomNames.join(", ")}\nIdentifique qual sintoma é mais parecido com: "${userInput}". Só responda o nome exato ou "unknown".`
-    : `From this list: ${symptomNames.join(", ")}\nIdentify which symptom most closely matches: "${userInput}". Reply with exact name or "unknown".`;
+    ? `A lista de sintomas é: ${symptomNames.join(", ")}.\nUsuário escreveu: "${userInput}".\nResponda SOMENTE com o nome exato de um sintoma da lista (copie igual!), ou "unknown".`
+    : `The list of symptoms is: ${symptomNames.join(", ")}.\nUser wrote: "${userInput}".\nReply ONLY with the exact symptom name from the list (copy exactly!), or "unknown".`;
 
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
@@ -47,8 +47,10 @@ async function findClosestSymptom(userInput, idioma = "en") {
     })
   });
   const data = await res.json();
-  const match = data.choices?.[0]?.message?.content.trim().toLowerCase() || "unknown";
-  return symptomNames.find(s => s.toLowerCase() === match) || "unknown";
+  const match = data.choices?.[0]?.message?.content?.trim();
+  // DEBUG: veja o que o GPT respondeu
+  console.log({ symptomNames, match });
+  return symptomNames.find(s => s.toLowerCase() === match?.toLowerCase()) || "unknown";
 }
 
 // === Detecção automática de idioma ===
