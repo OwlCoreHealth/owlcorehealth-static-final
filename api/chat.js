@@ -1,19 +1,41 @@
 import path from "path";
 import fs from "fs";
-import stringSimilarity from "string-similarity";
+import cosineSimilarity from "cosine-similarity";
 
-function fuzzyFindSymptom(userInput) {
-  const symptomNames = symptomsCatalog.map(s => s.symptom);
-  const { bestMatch, bestMatchIndex } = stringSimilarity.findBestMatch(
-    userInput.toLowerCase(), 
-    symptomNames.map(s => s.toLowerCase())
-  );
-  // Threshold de similaridade: só aceita se for bem parecido
-  if (bestMatch.rating > 0.6) {
-    return symptomNames[bestMatchIndex];
-  }
-  return null;
+// Função para transformar texto em vetor de frequência simples
+function textToVector(text) {
+  const words = text.toLowerCase().split(/\s+/);
+  const freq = {};
+  words.forEach(w => freq[w] = (freq[w] || 0) + 1);
+  return freq;
 }
+
+// Função para criar um vetor padronizado com todas as palavras
+function makeVector(obj, keys) {
+  return keys.map(k => obj[k] || 0);
+}
+
+// Função para encontrar o sintoma mais próximo usando cosine similarity
+function bestCosineMatch(userInput, symptomsCatalog) {
+  const symptoms = symptomsCatalog.map(s => s.symptom);
+  const userFreq = textToVector(userInput);
+  let bestScore = -1;
+  let bestSymptom = null;
+
+  for (const symptom of symptoms) {
+    const symFreq = textToVector(symptom);
+    const allWords = Array.from(new Set([...Object.keys(userFreq), ...Object.keys(symFreq)]));
+    const userVec = makeVector(userFreq, allWords);
+    const symVec = makeVector(symFreq, allWords);
+    const score = cosineSimilarity(userVec, symVec);
+    if (score > bestScore) {
+      bestScore = score;
+      bestSymptom = symptom;
+    }
+  }
+  return bestScore > 0.5 ? bestSymptom : null; // Ajuste o limiar se necessário
+}
+
 // Sempre use /tmp/logs em serverless!
 const logsDir = "/tmp/logs";
 if (!fs.existsSync(logsDir)) {
