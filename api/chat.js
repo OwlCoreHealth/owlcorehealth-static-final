@@ -513,17 +513,16 @@ if (
 if (!baseText) {
   const fallbackGroup = fallbackTextsBySymptom[mainSymptom];
   const mappedKey = funnelKeyMap[funnelKey] || funnelKey;
-if (
-  fallbackGroup &&
-  fallbackGroup[mappedKey] &&
-  fallbackGroup[mappedKey].length > 0
-) {
-  const texts = fallbackGroup[mappedKey];
-  baseText = texts[Math.floor(Math.random() * texts.length)];
-  console.log("Usando fallback do arquivo fallbackTextsBySymptom para:", mainSymptom, mappedKey);
-}
-
+  if (
+    fallbackGroup &&
+    fallbackGroup[mappedKey] &&
+    fallbackGroup[mappedKey].length > 0
+  ) {
+    const texts = fallbackGroup[mappedKey];
+    baseText = texts[Math.floor(Math.random() * texts.length)];
+    console.log("Usando fallback do arquivo fallbackTextsBySymptom para:", mainSymptom, mappedKey);
   } else {
+    // Fallback FINAL — nenhum conteúdo encontrado, nem no Notion, nem no fallback
     baseText = sessionMemory.lowConfidence
       ? (idioma === "pt"
         ? `Não consegui identificar seu sintoma de forma precisa, mas aqui está uma explicação baseada em sintomas parecidos ou no cluster mais próximo.`
@@ -531,7 +530,7 @@ if (
       : (idioma === "pt"
         ? `Desculpe, não temos conteúdo para "${mainSymptom}" nesta fase.`
         : `Sorry, we don’t have content for "${mainSymptom}" in this phase.`);
-    console.log("No Notion or fallbackTextsBySymptom data for:", mainSymptom, funnelKey);
+    console.log("No Notion or fallbackTextsBySymptom data for:", mainSymptom, mappedKey);
   }
 }
 
