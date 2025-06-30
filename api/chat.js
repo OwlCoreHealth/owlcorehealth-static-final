@@ -1,10 +1,10 @@
 import path from "path";
 import fs from "fs";
 
-// Garantir que a pasta logs exista
-const logsDir = path.join(process.cwd(), "logs");
+// Sempre use /tmp/logs em serverless!
+const logsDir = "/tmp/logs";
 if (!fs.existsSync(logsDir)) {
-  fs.mkdirSync(logsDir, { recursive: true });
+  try { fs.mkdirSync(logsDir, { recursive: true }); } catch (e) { /* ignora erro */ }
 }
 
 const catalogPath = path.join(process.cwd(), "api", "data", "symptoms_catalog.json");
