@@ -819,31 +819,10 @@ function clearContentEditable(el) {
       const typing = responseDiv.querySelector('.typing-indicator');
       if (typing) typing.remove();
 
-    const content = data.reply || data.legacyContent || '';
-const followups = Array.isArray(data.followupQuestions) ? data.followupQuestions : [];
-
-currentLang = detectLanguage(content);
-
-// Converte Markdown para HTML usando marked.js
-const htmlContent = marked.parse(content);
-
-responseDiv.insertAdjacentHTML('beforeend', `
-  <div class="bot-message">
-    <div class="bot-icon">${botIconHTML}</div>
-    <div class="bot-text">${htmlContent}</div>
-  </div>
-`);
-
-// Exibe follow-ups como botões clicáveis
-followups.forEach(q => {
-  const encoded = encodeURIComponent(q);
-  responseDiv.insertAdjacentHTML('beforeend', `
-    <div class="clickable-question" data-question="${encoded}">${q}</div>
-  `);
-});
-
-responseDiv.scrollTop = responseDiv.scrollHeight;
-
+      if (data.choices && data.choices.length > 0) {
+        const content = data.choices[0].message.content;
+        
+        currentLang = detectLanguage(content);
         
         // Converte Markdown para HTML usando marked.js
 const htmlContent = marked.parse(content);
@@ -1034,7 +1013,7 @@ readAloudButton?.addEventListener('click', () => {
         alert('❌ There was an error submitting your email.');
       }
     } catch (err) {
-      alert('⚠️ Connection error. Please try again later.');
+      alert(⚠️ Connection error. Please try again later.');
     }
   }
 </script>
