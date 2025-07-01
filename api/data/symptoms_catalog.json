@@ -1,26 +1,72 @@
 [
   {
-    "symptom": "abdominal bloating and gas",
-    "phases": {
-      "1": "Abdominal bloating and gas are signs that your digestive system may be out of balance, often leading to discomfort and affecting daily life.",
-      "2": "Ignoring bloating and gas may result in chronic inflammation, nutrient deficiencies, and higher risk for digestive disorders.",
-      "3": "Studies show up to 30% of adults regularly experience bloating and gas, impacting quality of life and gut health.",
-      "4": "Natural plants like ginger, black garlic, and inulin can help restore digestive balance and reduce symptoms.",
-      "5": "Advanced probiotic supplements with L-glutamine and targeted botanicals may accelerate recovery and improve gut health."
-    },
-    "plants": ["Ginger", "Fennel", "Peppermint", "Inulin"],
-    "supplement": "Probiotic Complex"
+    "supplementId": "mitolyn",
+    "supplementName": "Mitolyn",
+    "mainCategory": ["Metabolism & Weight", "Weight loss"],
+    "keywords": [
+      "how to lose belly fat fast", "can I reduce stubborn belly fat", "how can I increase my metabolism", "what is the best way to lose weight naturally", "how to burn fat naturally", "can I boost my metabolism with diet", "weight loss plateau", "fatigue and low energy", "metabolic slowdown"
+    ],
+    "symptoms": [
+      "belly fat", "stubborn belly fat", "weight gain around stomach", "difficulty losing weight", "slow metabolism", "fatigue and low energy", "hormonal weight gain", "weight loss plateau", "abdominal bloating", "excess belly fat", "metabolic slowdown", "weight gain despite dieting", "low energy and weight gain"
+    ],
+    "ingredients": [
+      "Maqui Berry", "Astaxanthin", "Rhodiola Rosea", "Schisandra Chinensis", "Amla", "Theobroma Cacao"
+    ]
   },
   {
-    "symptom": "chronic acne",
-    "phases": {
-      "1": "Chronic acne is not just a skin issue; it often signals deeper imbalances in your gut or immune system.",
-      "2": "Persistent acne can lead to emotional distress and may be a sign of ongoing inflammation within the body.",
-      "3": "Research reveals that 54% of individuals with chronic acne have signs of gut dysbiosis or systemic inflammation.",
-      "4": "Herbs like babchi and dandelion, plus probiotics, support clearer skin by targeting the root cause.",
-      "5": "Combining advanced natural compounds and microbiome-supporting supplements offers greater skin improvement."
-    },
-    "plants": ["Babchi", "Dandelion", "Lion’s Mane"],
-    "supplement": "ClearSkin Advanced"
+    "supplementId": "prime_biome",
+    "supplementName": "Prime Biome",
+    "mainCategory": ["Gut health", "Skin Health", "Acne", "Inflammation", "Digestive Issue"],
+    "keywords": [
+      "how to reduce bloating", "how can I get rid of bloating after eating", "abdominal bloating and gas", "abdominal pain", "how to relieve constipation", "what causes bloating and gas", "how to improve bowel movements naturally"
+    ],
+    "symptoms": [
+      "abdominal bloating and gas", "constipation or irregular bowel movements", "frequent diarrhea or irritable bowel syndrome", "abdominal pain", "gut pain", "bloating", "abdominal discomfort", "eczema", "psoriasis", "skin redness", "persistent dry and flaky skin", "melasma", "premature skin aging", "eczema (atopic dermatitis)", "rosacea"
+    ],
+    "ingredients": [
+      "Bacillus Coagulans", "Babchi", "Dandelion", "Fennel", "Inulin", "Fenugreek", "Lemon balm", "Organic Ceylon ginger", "Organic Lion's Mane", "Slippery Elm Bark"
+    ]
+  },
+  {
+    "supplementId": "prodentim",
+    "supplementName": "Prodentim",
+    "mainCategory": ["Oral Hygiene", "Gum Health", "Tooth Sensitivity", "Breath Freshness", "Dental Decay Prevention"],
+    "keywords": [
+      "how to improve oral hygiene naturally", "how to brush teeth properly for better oral hygiene", "how to keep gums healthy naturally", "how to reduce tooth sensitivity naturally", "how to heal bleeding gums naturally", "what causes bad breath", "how to prevent dental decay naturally"
+    ],
+    "symptoms": [
+      "bad breath", "gum inflammation", "tooth sensitivity", "plaque buildup", "tooth decay", "bleeding gums", "dry mouth", "mouth ulcers", "tartar accumulation", "periodontal disease", "tooth grinding"
+    ],
+    "ingredients": [
+      "Lactobacillus paracasei", "Bifidobacterium lactis BL-04", "Lactobacillus reuteri"
+    ]
+  },
+  {
+    "supplementId": "moringa_magic",
+    "supplementName": "Moringa Magic",
+    "mainCategory": ["Energy & Metabolism", "Blood Sugar & Hormonal Balance", "Mental Clarity & Cognitive Support", "Inflammation & Joint Health", "Immune System & Detoxification"],
+    "keywords": [
+      "how to increase energy levels naturally", "how to boost metabolism for weight loss", "how to balance blood sugar naturally", "what foods help regulate hormones", "how to support joint health naturally", "how to detoxify the body naturally"
+    ],
+    "symptoms": [
+      "low energy", "slow metabolism", "mental fog", "premature aging", "blood sugar spikes", "insulin resistance", "cravings", "poor focus", "hormonal imbalance", "chronic inflammation", "joint pain", "digestive issues", "bloating", "weak immunity", "frequent illnesses", "oxidative stress"
+    ],
+    "ingredients": [
+      "Vitamins A", "C", "E", "B1", "B2", "B3", "B6", "Folate", "Calcium", "Magnesium", "Potassium", "Phosphorus", "Iron", "Zinc", "Plant-Based Protein", "Essential amino acids"
+    ]
+  },
+  {
+    "supplementId": "pineal_guardian",
+    "supplementName": "Pineal Guardian",
+    "mainCategory": ["Mental & Physical Fatigue", "Stress & Anxiety Management", "Cognitive Function & Memory", "Sleep Quality & Hormonal Balance", "Emotional & Spiritual Well-being"],
+    "keywords": [
+      "how to overcome mental fatigue naturally", "how to boost energy after mental exhaustion", "how to manage stress naturally", "how to improve cognitive function naturally", "how to improve sleep quality naturally", "how to support emotional health without therapy"
+    ],
+    "symptoms": [
+      "mental fatigue", "physical fatigue", "high stress", "anxiety", "difficulty concentrating", "poor focus", "memory problems", "insomnia", "poor sleep quality", "brain fog", "low motivation", "hormonal imbalances related to sleep", "adrenal fatigue", "low energy levels"
+    ],
+    "ingredients": [
+      "Chlorella", "Fulvic Acid", "Tamarind Extract", "Pine Bark Extract", "Ginkgo Biloba", "Bacopa Monnieri", "Lion's Mane Mushroom", "Moringa"
+    ]
   }
 ]
