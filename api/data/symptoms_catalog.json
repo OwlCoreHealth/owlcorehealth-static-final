@@ -4,13 +4,34 @@
     "supplementName": "Mitolyn",
     "mainCategory": ["Metabolism & Weight", "Weight loss"],
     "keywords": [
-      "how to lose belly fat fast", "can I reduce stubborn belly fat", "how can I increase my metabolism", "what is the best way to lose weight naturally", "how to burn fat naturally", "can I boost my metabolism with diet", "weight loss plateau", "fatigue and low energy", "metabolic slowdown"
+      "how to lose belly fat fast", "can I reduce stubborn belly fat", "how can I increase my metabolism",
+      "what is the best way to lose weight naturally", "how to burn fat naturally", "can I boost my metabolism with diet",
+      "weight loss plateau", "fatigue and low energy", "metabolic slowdown"
     ],
     "symptoms": [
-      "belly fat", "stubborn belly fat", "weight gain around stomach", "difficulty losing weight", "slow metabolism", "fatigue and low energy", "hormonal weight gain", "weight loss plateau", "abdominal bloating", "excess belly fat", "metabolic slowdown", "weight gain despite dieting", "low energy and weight gain"
+      "belly fat", "stubborn belly fat", "weight gain around stomach", "difficulty losing weight", "slow metabolism",
+      "fatigue and low energy", "hormonal weight gain", "weight loss plateau", "abdominal bloating", "excess belly fat",
+      "metabolic slowdown", "weight gain despite dieting", "low energy and weight gain"
     ],
     "ingredients": [
       "Maqui Berry", "Astaxanthin", "Rhodiola Rosea", "Schisandra Chinensis", "Amla", "Theobroma Cacao"
+    ],
+    "benefits": [
+      "Supports faster metabolism and efficient fat burning.",
+      "Helps balance hormones and reduce stubborn belly fat.",
+      "Promotes sustained energy and reduces fatigue."
+    ],
+    "studies": [
+      "Effect of Maqui Berry extract on metabolic rate: J. Nutritional Biochemistry, 2018",
+      "Astaxanthin for fat metabolism and oxidative stress: Int J Mol Sci, 2019"
+    ],
+    "links": {
+      "review": "https://seudominio.com/review-mitolyn",
+      "vsl": "https://seudominio.com/vsl-mitolyn"
+    },
+    "commonObjections": [
+      "I already tried many diets and supplements.",
+      "I have a slow metabolism because of my age."
     ]
   },
   {
@@ -18,13 +39,34 @@
     "supplementName": "Prime Biome",
     "mainCategory": ["Gut health", "Skin Health", "Acne", "Inflammation", "Digestive Issue"],
     "keywords": [
-      "how to reduce bloating", "how can I get rid of bloating after eating", "abdominal bloating and gas", "abdominal pain", "how to relieve constipation", "what causes bloating and gas", "how to improve bowel movements naturally"
+      "how to reduce bloating", "how can I get rid of bloating after eating", "abdominal bloating and gas",
+      "abdominal pain", "how to relieve constipation", "what causes bloating and gas", "how to improve bowel movements naturally"
     ],
     "symptoms": [
-      "abdominal bloating and gas", "constipation or irregular bowel movements", "frequent diarrhea or irritable bowel syndrome", "abdominal pain", "gut pain", "bloating", "abdominal discomfort", "eczema", "psoriasis", "skin redness", "persistent dry and flaky skin", "melasma", "premature skin aging", "eczema (atopic dermatitis)", "rosacea"
+      "abdominal bloating and gas", "constipation or irregular bowel movements", "frequent diarrhea or irritable bowel syndrome",
+      "abdominal pain", "gut pain", "bloating", "abdominal discomfort", "eczema", "psoriasis", "skin redness",
+      "persistent dry and flaky skin", "melasma", "premature skin aging", "eczema (atopic dermatitis)", "rosacea"
     ],
     "ingredients": [
-      "Bacillus Coagulans", "Babchi", "Dandelion", "Fennel", "Inulin", "Fenugreek", "Lemon balm", "Organic Ceylon ginger", "Organic Lion's Mane", "Slippery Elm Bark"
+      "Bacillus Coagulans", "Babchi", "Dandelion", "Fennel", "Inulin", "Fenugreek", "Lemon balm",
+      "Organic Ceylon ginger", "Organic Lion's Mane", "Slippery Elm Bark"
+    ],
+    "benefits": [
+      "Balances the gut microbiome and improves digestion.",
+      "Reduces bloating, abdominal pain, and irregularity.",
+      "Supports clear and healthy skin from the inside out."
+    ],
+    "studies": [
+      "Bacillus Coagulans and gut health: World J Gastroenterol, 2021",
+      "Inulin as a prebiotic for digestive wellness: Br J Nutr, 2015"
+    ],
+    "links": {
+      "review": "https://seudominio.com/review-primebiome",
+      "vsl": "https://seudominio.com/vsl-primebiome"
+    },
+    "commonObjections": [
+      "Probiotics never work for me.",
+      "My bloating always returns after a while."
     ]
   },
   {
@@ -32,41 +74,109 @@
     "supplementName": "Prodentim",
     "mainCategory": ["Oral Hygiene", "Gum Health", "Tooth Sensitivity", "Breath Freshness", "Dental Decay Prevention"],
     "keywords": [
-      "how to improve oral hygiene naturally", "how to brush teeth properly for better oral hygiene", "how to keep gums healthy naturally", "how to reduce tooth sensitivity naturally", "how to heal bleeding gums naturally", "what causes bad breath", "how to prevent dental decay naturally"
+      "how to improve oral hygiene naturally", "how to brush teeth properly for better oral hygiene", "how to keep gums healthy naturally",
+      "how to reduce tooth sensitivity naturally", "how to heal bleeding gums naturally", "what causes bad breath",
+      "how to prevent dental decay naturally"
     ],
     "symptoms": [
-      "bad breath", "gum inflammation", "tooth sensitivity", "plaque buildup", "tooth decay", "bleeding gums", "dry mouth", "mouth ulcers", "tartar accumulation", "periodontal disease", "tooth grinding"
+      "bad breath", "gum inflammation", "tooth sensitivity", "plaque buildup", "tooth decay", "bleeding gums",
+      "dry mouth", "mouth ulcers", "tartar accumulation", "periodontal disease", "tooth grinding"
     ],
     "ingredients": [
       "Lactobacillus paracasei", "Bifidobacterium lactis BL-04", "Lactobacillus reuteri"
+    ],
+    "benefits": [
+      "Improves oral flora and supports gum health.",
+      "Reduces sensitivity and prevents plaque buildup.",
+      "Helps maintain fresh breath naturally."
+    ],
+    "studies": [
+      "Oral probiotics and gum health: J Clin Periodontol, 2020",
+      "Role of Bifidobacterium in dental plaque reduction: Caries Res, 2016"
+    ],
+    "links": {
+      "review": "https://seudominio.com/review-prodentim",
+      "vsl": "https://seudominio.com/vsl-prodentim"
+    },
+    "commonObjections": [
+      "Nothing helps my bleeding gums.",
+      "I'm sensitive to toothpaste and mouthwashes."
     ]
   },
   {
     "supplementId": "moringa_magic",
     "supplementName": "Moringa Magic",
-    "mainCategory": ["Energy & Metabolism", "Blood Sugar & Hormonal Balance", "Mental Clarity & Cognitive Support", "Inflammation & Joint Health", "Immune System & Detoxification"],
+    "mainCategory": [
+      "Energy & Metabolism", "Blood Sugar & Hormonal Balance", "Mental Clarity & Cognitive Support",
+      "Inflammation & Joint Health", "Immune System & Detoxification"
+    ],
     "keywords": [
-      "how to increase energy levels naturally", "how to boost metabolism for weight loss", "how to balance blood sugar naturally", "what foods help regulate hormones", "how to support joint health naturally", "how to detoxify the body naturally"
+      "how to increase energy levels naturally", "how to boost metabolism for weight loss", "how to balance blood sugar naturally",
+      "what foods help regulate hormones", "how to support joint health naturally", "how to detoxify the body naturally"
     ],
     "symptoms": [
-      "low energy", "slow metabolism", "mental fog", "premature aging", "blood sugar spikes", "insulin resistance", "cravings", "poor focus", "hormonal imbalance", "chronic inflammation", "joint pain", "digestive issues", "bloating", "weak immunity", "frequent illnesses", "oxidative stress"
+      "low energy", "slow metabolism", "mental fog", "premature aging", "blood sugar spikes", "insulin resistance",
+      "cravings", "poor focus", "hormonal imbalance", "chronic inflammation", "joint pain", "digestive issues", "bloating",
+      "weak immunity", "frequent illnesses", "oxidative stress"
     ],
     "ingredients": [
-      "Vitamins A", "C", "E", "B1", "B2", "B3", "B6", "Folate", "Calcium", "Magnesium", "Potassium", "Phosphorus", "Iron", "Zinc", "Plant-Based Protein", "Essential amino acids"
+      "Vitamins A", "C", "E", "B1", "B2", "B3", "B6", "Folate", "Calcium", "Magnesium", "Potassium",
+      "Phosphorus", "Iron", "Zinc", "Plant-Based Protein", "Essential amino acids"
+    ],
+    "benefits": [
+      "Boosts energy, focus and metabolism naturally.",
+      "Supports blood sugar control and hormonal balance.",
+      "Reduces inflammation and supports joint health."
+    ],
+    "studies": [
+      "Moringa supplementation for blood sugar and inflammation: Phytother Res, 2020",
+      "Effect of Moringa on energy and fatigue: Nutrients, 2022"
+    ],
+    "links": {
+      "review": "https://seudominio.com/review-moringamagic",
+      "vsl": "https://seudominio.com/vsl-moringamagic"
+    },
+    "commonObjections": [
+      "Natural supplements don’t work for my fatigue.",
+      "I want more energy but nothing helps."
     ]
   },
   {
     "supplementId": "pineal_guardian",
     "supplementName": "Pineal Guardian",
-    "mainCategory": ["Mental & Physical Fatigue", "Stress & Anxiety Management", "Cognitive Function & Memory", "Sleep Quality & Hormonal Balance", "Emotional & Spiritual Well-being"],
+    "mainCategory": [
+      "Mental & Physical Fatigue", "Stress & Anxiety Management", "Cognitive Function & Memory",
+      "Sleep Quality & Hormonal Balance", "Emotional & Spiritual Well-being"
+    ],
     "keywords": [
-      "how to overcome mental fatigue naturally", "how to boost energy after mental exhaustion", "how to manage stress naturally", "how to improve cognitive function naturally", "how to improve sleep quality naturally", "how to support emotional health without therapy"
+      "how to overcome mental fatigue naturally", "how to boost energy after mental exhaustion", "how to manage stress naturally",
+      "how to improve cognitive function naturally", "how to improve sleep quality naturally", "how to support emotional health without therapy"
     ],
     "symptoms": [
-      "mental fatigue", "physical fatigue", "high stress", "anxiety", "difficulty concentrating", "poor focus", "memory problems", "insomnia", "poor sleep quality", "brain fog", "low motivation", "hormonal imbalances related to sleep", "adrenal fatigue", "low energy levels"
+      "mental fatigue", "physical fatigue", "high stress", "anxiety", "difficulty concentrating", "poor focus",
+      "memory problems", "insomnia", "poor sleep quality", "brain fog", "low motivation", "hormonal imbalances related to sleep",
+      "adrenal fatigue", "low energy levels"
     ],
     "ingredients": [
-      "Chlorella", "Fulvic Acid", "Tamarind Extract", "Pine Bark Extract", "Ginkgo Biloba", "Bacopa Monnieri", "Lion's Mane Mushroom", "Moringa"
+      "Chlorella", "Fulvic Acid", "Tamarind Extract", "Pine Bark Extract", "Ginkgo Biloba", "Bacopa Monnieri",
+      "Lion's Mane Mushroom", "Moringa"
+    ],
+    "benefits": [
+      "Reduces mental and physical fatigue.",
+      "Improves sleep quality and emotional well-being.",
+      "Enhances cognitive function and memory."
+    ],
+    "studies": [
+      "Lion’s Mane for cognition and mental fatigue: Phytother Res, 2021",
+      "Bacopa Monnieri and stress management: Evid Based Complement Alternat Med, 2014"
+    ],
+    "links": {
+      "review": "https://seudominio.com/review-pinealguardian",
+      "vsl": "https://seudominio.com/vsl-pinealguardian"
+    },
+    "commonObjections": [
+      "I can’t sleep well no matter what I try.",
+      "Stress always affects my energy and mood."
     ]
   }
 ]
