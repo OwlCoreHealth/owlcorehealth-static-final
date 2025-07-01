@@ -32,7 +32,14 @@
     "commonObjections": [
       "I already tried many diets and supplements.",
       "I have a slow metabolism because of my age."
-    ]
+    ],
+    "funnelPhases": {
+      "1": "Many people struggle to lose stubborn belly fat, even with diet and exercise. This could be due to slow metabolism, stress, or deeper hormonal imbalances. Recognizing the real cause is the first step.",
+      "2": "Ignoring slow metabolism and weight gain can increase visceral fat and risk of metabolic syndrome. Over time, energy drops and health risks rise.",
+      "3": "Research shows up to 65% of adults have metabolic imbalances. Unaddressed, this can lead to permanent metabolic slowdown and higher risk of diabetes, heart disease, and emotional distress.",
+      "4": "Certain natural plants—like Maqui Berry, Astaxanthin, and Rhodiola Rosea—have proven effects on boosting metabolism and reducing fat. Clinical studies (e.g., J. Nutritional Biochemistry 2018) highlight significant results in weight management.",
+      "5": "For a complete solution, a carefully formulated supplement brings together these powerful ingredients. Discover how Mitolyn is helping others regain control—see the full review or watch the VSL for real results."
+    }
   },
   {
     "supplementId": "prime_biome",
@@ -67,7 +74,14 @@
     "commonObjections": [
       "Probiotics never work for me.",
       "My bloating always returns after a while."
-    ]
+    ],
+    "funnelPhases": {
+      "1": "Many people experience frequent bloating, gas, or skin irritation, even when eating 'healthy'. Often, the real problem lies deeper in the gut.",
+      "2": "Untreated gut issues can escalate to chronic inflammation, weakened immunity, and worsening skin problems. Constipation and irregular digestion are warning signs.",
+      "3": "Up to 70% of immune cells reside in the gut, and research links poor gut health to recurring skin conditions and chronic fatigue.",
+      "4": "Natural prebiotics and probiotics—like Bacillus Coagulans, Inulin, and Lion's Mane—can rebalance the gut microbiome and restore skin clarity. Multiple studies prove their effect (e.g., World J Gastroenterol 2021).",
+      "5": "A comprehensive supplement combines these ingredients for maximum effect. Discover how Prime Biome supports gut and skin health—see reviews or the VSL to learn more."
+    }
   },
   {
     "supplementId": "prodentim",
@@ -101,7 +115,14 @@
     "commonObjections": [
       "Nothing helps my bleeding gums.",
       "I'm sensitive to toothpaste and mouthwashes."
-    ]
+    ],
+    "funnelPhases": {
+      "1": "Gum inflammation, sensitivity, and bad breath can signal deeper imbalances in the mouth’s microbiome—issues not solved by brushing alone.",
+      "2": "Ignoring these oral symptoms can lead to bleeding gums, tooth decay, and even greater oral health risks.",
+      "3": "Studies show that poor oral flora can increase risk of periodontal disease and impact overall health (J Clin Periodontol, 2020).",
+      "4": "Oral probiotics like Lactobacillus paracasei and Bifidobacterium lactis BL-04 are clinically shown to rebalance oral flora and support healthy gums.",
+      "5": "Prodentim combines these key probiotics for a complete solution. See how others improved oral health—read reviews or watch the VSL now."
+    }
   },
   {
     "supplementId": "moringa_magic",
@@ -139,7 +160,14 @@
     "commonObjections": [
       "Natural supplements don’t work for my fatigue.",
       "I want more energy but nothing helps."
-    ]
+    ],
+    "funnelPhases": {
+      "1": "Persistent fatigue, low energy, or joint pain may be signs that your body is lacking key nutrients and antioxidant support.",
+      "2": "Leaving low energy and poor metabolism untreated can increase risk of chronic inflammation, hormonal imbalance, and premature aging.",
+      "3": "Studies reveal that oxidative stress and nutrient deficiencies affect over 50% of adults, increasing risk for fatigue, brain fog, and joint problems.",
+      "4": "Natural sources like Moringa, rich in vitamins and amino acids, have proven effects on energy, metabolism, and blood sugar balance (see Phytother Res, 2020).",
+      "5": "For all-in-one support, Moringa Magic combines these nutrients to restore balance. Explore how it helps others—see the review or VSL for details."
+    }
   },
   {
     "supplementId": "pineal_guardian",
@@ -177,6 +205,13 @@
     "commonObjections": [
       "I can’t sleep well no matter what I try.",
       "Stress always affects my energy and mood."
-    ]
+    ],
+    "funnelPhases": {
+      "1": "Mental and physical fatigue, poor sleep, and high stress are increasingly common. They’re often linked to nutrient depletion and overworked nervous systems.",
+      "2": "Neglecting stress and sleep issues can accelerate cognitive decline and worsen hormonal imbalances.",
+      "3": "Clinical evidence shows chronic stress and poor sleep can reduce memory, mental clarity, and energy over time.",
+      "4": "Ingredients like Lion’s Mane, Bacopa Monnieri, and Ginkgo Biloba are clinically proven to support cognition, lower anxiety, and improve sleep (Phytother Res, 2021).",
+      "5": "Pineal Guardian delivers a synergistic blend for maximum mental, physical, and emotional recovery. See how it’s helping others—read reviews or the VSL for details."
+    }
   }
 ]
