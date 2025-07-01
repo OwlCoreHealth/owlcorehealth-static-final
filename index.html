@@ -819,22 +819,32 @@ function clearContentEditable(el) {
       const typing = responseDiv.querySelector('.typing-indicator');
       if (typing) typing.remove();
 
-      if (data.choices && data.choices.length > 0) {
-        const content = data.choices[0].message.content;
-        
-        currentLang = detectLanguage(content);
-        
-        // Converte Markdown para HTML usando marked.js
-const htmlContent = marked.parse(content);
+     let content = "";
+let followupQuestions = [];
+if (data.reply) {
+  content = data.reply;
+  followupQuestions = data.followupQuestions || [];
+} else if (data.choices && data.choices.length > 0) {
+  content = data.choices[0].message.content;
+}
 
-// Cria div temporária para remover perguntas clicáveis, se houver
+currentLang = detectLanguage(content);
+
+let htmlContent = marked.parse(content);
+
+if (followupQuestions.length) {
+  htmlContent += "<div style='margin-top:18px;'>";
+  followupQuestions.forEach(q => {
+    htmlContent += `<div class="clickable-question" data-question="${encodeURIComponent(q)}">${q}</div>`;
+  });
+  htmlContent += "</div>";
+}
+
 const tempDiv = document.createElement('div');
 tempDiv.innerHTML = htmlContent;
-
 const questions = tempDiv.querySelectorAll('.clickable-question');
 questions.forEach(q => q.remove());
 
-// Insere o conteúdo já limpo e convertido
 responseDiv.insertAdjacentHTML('beforeend', `
   <div class="bot-message">
     <div class="bot-icon">${botIconHTML}</div>
@@ -842,32 +852,30 @@ responseDiv.insertAdjacentHTML('beforeend', `
   </div>
 `);
 
-        if (!window.emailPromptShown) {
-          window.emailPromptShown = true;
-          const emailHTML = `
-            <div class="bot-message" id="email-prompt">
-              ${botIconHTML}
-              <div>
-                <p style="margin-bottom: 12px; color: #2f2c63;">Want to receive personalized health tips from Dr. Owl?</p>
-                <input type="email" id="userEmail" placeholder="Enter your email" style="padding: 10px; font-size: 14px; border-radius: 8px; border: 1px solid #ccc; width: 70%; max-width: 300px;" />
-                <button onclick="submitEmail()" style="margin-left: 12px; margin-top: 8px; padding: 10px 16px; font-size: 14px; background-color: #2f2c63; color: white; border: none; border-radius: 8px; cursor: pointer;">Subscribe</button>
-              </div>
-            </div>
-          `;
-          responseDiv.appendChild(document.createRange().createContextualFragment(emailHTML));
-        }
+if (!window.emailPromptShown) {
+  window.emailPromptShown = true;
+  const emailHTML = `
+    <div class="bot-message" id="email-prompt">
+      ${botIconHTML}
+      <div>
+        <p style="margin-bottom: 12px; color: #2f2c63;">Want to receive personalized health tips from Dr. Owl?</p>
+        <input type="email" id="userEmail" placeholder="Enter your email" style="padding: 10px; font-size: 14px; border-radius: 8px; border: 1px solid #ccc; width: 70%; max-width: 300px;" />
+        <button onclick="submitEmail()" style="margin-left: 12px; margin-top: 8px; padding: 10px 16px; font-size: 14px; background-color: #2f2c63; color: white; border: none; border-radius: 8px; cursor: pointer;">Subscribe</button>
+      </div>
+    </div>
+  `;
+  responseDiv.appendChild(document.createRange().createContextualFragment(emailHTML));
+}
 
-        questions.forEach(q => {
-          responseDiv.appendChild(q);
-        });
+questions.forEach(q => {
+  responseDiv.appendChild(q);
+});
 
-        const messages = responseDiv.querySelectorAll('.bot-message');
-        const lastMessage = messages[messages.length - 1];
-        if (lastMessage) {
-          lastMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-
-      }
+const messages = responseDiv.querySelectorAll('.bot-message');
+const lastMessage = messages[messages.length - 1];
+if (lastMessage) {
+  lastMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 
       // Limpa o campo mantendo cursor ativo
       clearContentEditable(input);
