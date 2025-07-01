@@ -215,5 +215,5 @@ async function handler(req, res) {
   });
 }
 
-// Node.js CommonJS export (se usar type: "module", mude para export default)
-module.exports = handler;
+export default handler;
+
