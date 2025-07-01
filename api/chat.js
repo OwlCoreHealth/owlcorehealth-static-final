@@ -2,9 +2,9 @@ import path from "path";
 import fs from "fs";
 import cosineSimilarity from "cosine-similarity";
 
-// Lê symptoms_catalog.json apenas UMA vez!
+// Lê o catalogo de suplementos
 const catalogPath = path.join(process.cwd(), "api", "data", "symptoms_catalog.json");
-const symptomsCatalog = JSON.parse(fs.readFileSync(catalogPath, "utf8"));
+const supplementsCatalog = JSON.parse(fs.readFileSync(catalogPath, "utf8"));
 
 // ==== Funções auxiliares ====
 function textToVector(text) {
@@ -16,10 +16,13 @@ function textToVector(text) {
 }
 
 function fuzzyFindSymptom(userInput) {
-  const symptomNames = symptomsCatalog.flatMap(sup => sup.symptoms);
+  // Busca todos os sintomas de todos suplementos
+  const allSymptoms = supplementsCatalog.flatMap(s => s.symptoms || []);
+  const symptomNames = Array.from(new Set(allSymptoms));
   const userVecObj = textToVector(userInput);
   let bestScore = -1;
   let bestSymptom = null;
+
   for (const symptom of symptomNames) {
     const symVecObj = textToVector(symptom);
     const allKeys = Array.from(new Set([...Object.keys(userVecObj), ...Object.keys(symVecObj)]));
@@ -34,7 +37,6 @@ function fuzzyFindSymptom(userInput) {
   return bestScore > 0.5 ? bestSymptom : null;
 }
 
-// Logs: Sempre use /tmp/logs em serverless!
 const logsDir = "/tmp/logs";
 if (!fs.existsSync(logsDir)) {
   try { fs.mkdirSync(logsDir, { recursive: true }); } catch (e) { /* ignora erro */ }
@@ -48,12 +50,13 @@ function logEvent(event, data) {
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const GPT_MODEL = "gpt-4o-mini";
 
-// Memória de sessão (use Redis ou JWT para produção)
 let sessionMemory = {};
 const QUESTION_LIMIT = 8;
 
+// GPT backup, se fuzzy falhar
 async function findClosestSymptom(userInput, idioma = "en") {
-  const symptomNames = symptomsCatalog.flatMap(sup => sup.symptoms);
+  const allSymptoms = supplementsCatalog.flatMap(s => s.symptoms || []);
+  const symptomNames = Array.from(new Set(allSymptoms));
   const prompt = idioma === "pt"
     ? `A lista de sintomas é: ${symptomNames.join(", ")}.\nUsuário escreveu: "${userInput}".\nResponda SOMENTE com o nome exato de um sintoma da lista (copie igual!), ou "unknown".`
     : `The list of symptoms is: ${symptomNames.join(", ")}.\nUser wrote: "${userInput}".\nReply ONLY with the exact symptom name from the list (copy exactly!), or "unknown".`;
@@ -73,18 +76,20 @@ async function findClosestSymptom(userInput, idioma = "en") {
   });
   const data = await res.json();
   const match = data.choices?.[0]?.message?.content?.trim();
-if (!match) return "unknown";
-return symptomNames.find(s => s.toLowerCase() === match.toLowerCase()) || "unknown";
+  if (!match) return "unknown";
+  return symptomNames.find(s => s.toLowerCase() === match.toLowerCase()) || "unknown";
 }
 
+// Detecta idioma
 async function detectLanguage(text) {
   return /[áéíóúãõç]/i.test(text) ? "pt" : "en";
 }
 
-async function generateFollowUps(symptom, phase, idioma = "en") {
+// Geração de perguntas follow-up
+async function generateFollowUps(supplement, symptom, phase, idioma = "en") {
   const prompt = idioma === "pt"
-    ? `Gere 3 perguntas provocativas para avançar o funil sobre o sintoma "${symptom}", fase ${phase}.\n1. Dor/risco, 2. Curiosidade, 3. Solução natural.`
-    : `Generate 3 provocative follow-up questions for funnel phase ${phase}, about "${symptom}". 1. Pain/risk, 2. Curiosity, 3. Natural solution.`;
+    ? `Considere o suplemento (não cite o nome): "${supplement.supplementName}". Gere 3 perguntas provocativas para avançar o funil sobre o sintoma "${symptom}", fase ${phase}. 1. Dor/risco, 2. Curiosidade, 3. Solução natural. Seja direto, breve e mantenha curiosidade.`
+    : `Consider the supplement (never say its name): "${supplement.supplementName}". Generate 3 provocative follow-up questions for funnel phase ${phase}, about "${symptom}". 1. Pain/risk, 2. Curiosity, 3. Natural solution. Keep it short, direct and curiosity-driven.`;
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: {
@@ -95,7 +100,7 @@ async function generateFollowUps(symptom, phase, idioma = "en") {
       model: GPT_MODEL,
       messages: [{ role: "user", content: prompt }],
       temperature: 0.7,
-      max_tokens: 150
+      max_tokens: 180
     })
   });
   const data = await res.json();
@@ -103,20 +108,16 @@ async function generateFollowUps(symptom, phase, idioma = "en") {
   return questions;
 }
 
-async function generateFunnelResponse(symptom, phase, idioma = "en") {
-  const catalogItem = symptomsCatalog.find(s =>
-  Array.isArray(s.symptoms) &&
-  s.symptoms.some(sym => sym.toLowerCase() === symptom.toLowerCase())
-);
-
-  if (!catalogItem) return idioma === "pt"
+// Resposta do funil - copy dinâmica!
+async function generateFunnelResponse(supplement, symptom, phase, idioma = "en") {
+  if (!supplement) return idioma === "pt"
     ? "Desculpe, não consegui identificar seu sintoma. Pode reformular?"
     : "Sorry, I couldn't identify your symptom. Can you rephrase?";
-  const baseText = catalogItem.phases[String(phase)] || catalogItem.phases["1"];
+
   const phaseLabel = ["awareness", "severity", "proof", "nutrients", "advanced"][phase - 1];
   const prompt = idioma === "pt"
-    ? `Reescreva o texto abaixo de forma provocativa, científica e curta, focando apenas na fase: ${phaseLabel}.\nNão avance para outras fases.\nTexto:\n${baseText}`
-    : `Rewrite the following text in a scientific, urgent, and provocative tone, focusing ONLY on phase: ${phaseLabel}.\nDo NOT advance to other phases.\nText:\n${baseText}`;
+    ? `Considere o suplemento (não cite o nome): "${supplement.supplementName}". Sintoma: "${symptom}". Ingredientes: ${supplement.ingredients.join(", ")}. Geração de copy para funil, fase ${phaseLabel}. Seja humanizado, empático, científico e mantenha tom educativo.`
+    : `Consider the supplement (never say its name): "${supplement.supplementName}". Symptom: "${symptom}". Ingredients: ${supplement.ingredients.join(", ")}. Generate a compelling funnel copy for phase ${phaseLabel}. Keep it empathetic, scientific, humanized, educational.`;
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: {
@@ -127,11 +128,11 @@ async function generateFunnelResponse(symptom, phase, idioma = "en") {
       model: GPT_MODEL,
       messages: [{ role: "user", content: prompt }],
       temperature: 0.45,
-      max_tokens: 300
+      max_tokens: 320
     })
   });
   const data = await res.json();
-  return data.choices?.[0]?.message?.content.trim() || baseText;
+  return data.choices?.[0]?.message?.content.trim() || "";
 }
 
 // === Handler principal ===
@@ -139,13 +140,17 @@ async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
   const { message, selectedQuestion, sessionId } = req.body;
+
   if (!message || typeof message !== "string" || !message.trim()) {
     return res.status(400).json({ error: "Mensagem vazia ou inválida." });
   }
+
   if (!sessionMemory[sessionId]) sessionMemory[sessionId] = { phase: 1, symptom: null, count: 0, idioma: "en" };
   const session = sessionMemory[sessionId];
+
   if (!session.idioma) session.idioma = await detectLanguage(message);
 
+  // Fuzzy matching sintoma, depois GPT se falhar
   if (!selectedQuestion) {
     let fuzzy = fuzzyFindSymptom(message);
     if (fuzzy) {
@@ -169,16 +174,33 @@ async function handler(req, res) {
     });
   }
 
-  const answer = await generateFunnelResponse(session.symptom, session.phase, session.idioma);
-  const followupQuestions = await generateFollowUps(session.symptom, session.phase, session.idioma);
+  // Busca qual suplemento cobre o sintoma detectado
+  const supplement = supplementsCatalog.find(s =>
+    Array.isArray(s.symptoms) &&
+    s.symptoms.some(sym => sym.toLowerCase() === session.symptom?.toLowerCase())
+  );
 
-  logEvent("chat", { sessionId, phase: session.phase, symptom: session.symptom, idioma: session.idioma, message, answer, followupQuestions });
+  const answer = await generateFunnelResponse(supplement, session.symptom, session.phase, session.idioma);
+  const followupQuestions = await generateFollowUps(supplement, session.symptom, session.phase, session.idioma);
+
+  logEvent("chat", {
+    sessionId,
+    phase: session.phase,
+    supplement: supplement?.supplementName,
+    symptom: session.symptom,
+    idioma: session.idioma,
+    message,
+    answer,
+    followupQuestions
+  });
 
   return res.status(200).json({
     reply: answer,
     followupQuestions,
     type: "default",
     metadata: {
+      supplement: supplement?.supplementName,
+      supplementId: supplement?.supplementId,
       symptom: session.symptom,
       phase: session.phase,
       idioma: session.idioma,
@@ -192,5 +214,6 @@ async function handler(req, res) {
         : "")
   });
 }
-export default handler;
 
+// Node.js CommonJS export (se usar type: "module", mude para export default)
+module.exports = handler;
