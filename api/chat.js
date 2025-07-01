@@ -104,7 +104,11 @@ async function generateFollowUps(symptom, phase, idioma = "en") {
 }
 
 async function generateFunnelResponse(symptom, phase, idioma = "en") {
-  const catalogItem = symptomsCatalog.find(s => s.symptom.toLowerCase() === symptom.toLowerCase());
+  const catalogItem = symptomsCatalog.find(s =>
+  Array.isArray(s.symptoms) &&
+  s.symptoms.some(sym => sym.toLowerCase() === symptom.toLowerCase())
+);
+
   if (!catalogItem) return idioma === "pt"
     ? "Desculpe, não consegui identificar seu sintoma. Pode reformular?"
     : "Sorry, I couldn't identify your symptom. Can you rephrase?";
