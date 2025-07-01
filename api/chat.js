@@ -8,12 +8,22 @@ const symptomsCatalog = JSON.parse(fs.readFileSync(catalogPath, "utf8"));
 
 // ==== Funções auxiliares ====
 function textToVector(text) {
+  if (!text || typeof text !== "string") return {}; // <- Protege contra undefined/null/numero/etc
   const words = text.toLowerCase().split(/\s+/);
   const freq = {};
   words.forEach(w => freq[w] = (freq[w] || 0) + 1);
-  // Para cosineSimilarity, retornamos só os valores em ordem
   return freq;
 }
+
+export default async function handler(req, res) {
+  if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
+
+  const { message, selectedQuestion, sessionId } = req.body;
+
+  // ADICIONE ESTA LINHA:
+  if (!message || typeof message !== "string" || !message.trim()) {
+    return res.status(400).json({ error: "Mensagem vazia ou inválida." });
+  }
 
 function fuzzyFindSymptom(userInput) {
   const symptomNames = symptomsCatalog.map(s => s.symptom);
