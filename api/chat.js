@@ -73,7 +73,8 @@ async function findClosestSymptom(userInput, idioma = "en") {
   });
   const data = await res.json();
   const match = data.choices?.[0]?.message?.content?.trim();
-  return symptomNames.find(s => s.toLowerCase() === match?.toLowerCase()) || "unknown";
+if (!match) return "unknown";
+return symptomNames.find(s => s.toLowerCase() === match.toLowerCase()) || "unknown";
 }
 
 async function detectLanguage(text) {
