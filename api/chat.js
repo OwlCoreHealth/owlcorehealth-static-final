@@ -174,12 +174,23 @@ export default async function handler(req, res) {
 
   logEvent("chat", { sessionId, phase: session.phase, symptom: session.symptom, idioma: session.idioma, message, answer, followupQuestions });
 
+    // ==== Estrutura padronizada da resposta ====
   return res.status(200).json({
-    content: answer + "\n\n" +
+    reply: answer, // texto principal
+    followupQuestions, // array de perguntas follow-up (pode estar vazio)
+    type: "default", // pode ser: "default", "limit", "error", etc
+    metadata: {
+      symptom: session.symptom,
+      phase: session.phase,
+      idioma: session.idioma,
+      sessionId,
+      count: session.count
+    },
+    // Extra: texto concatenado se quiser para compatibilidade antiga
+    legacyContent: answer + "\n\n" +
       (followupQuestions.length
         ? (session.idioma === "pt" ? "Vamos explorar mais:\nEscolha uma opção:\n" : "Let's explore further:\nChoose an option:\n") +
           followupQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n")
-        : ""),
-    followupQuestions
+        : "")
   });
 }
