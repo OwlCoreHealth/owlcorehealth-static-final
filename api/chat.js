@@ -108,9 +108,11 @@ async function generateFollowUps(supplement, symptom, phase, idioma = "en") {
   return questions;
 }
 
+// ... (importações e funções auxiliares acima)
+
 async function generateFunnelResponse(symptom, phase, idioma = "en") {
   // Busca o objeto do sintoma/suplemento correspondente
-  const catalogItem = symptomsCatalog.find(item =>
+  const catalogItem = supplementsCatalog.find(item =>
     (item.symptoms && item.symptoms.map(s => s.toLowerCase()).includes(symptom?.toLowerCase())) ||
     (item.keywords && item.keywords.map(k => k.toLowerCase()).includes(symptom?.toLowerCase()))
   );
@@ -121,12 +123,10 @@ async function generateFunnelResponse(symptom, phase, idioma = "en") {
       : "Sorry, I couldn't identify your symptom. Can you rephrase?";
   }
 
-  // Pega informações para enriquecer a resposta se quiser (ex: ingredientes, benefícios, estudos)
-  const supplementName = catalogItem.supplementName;
+  // Campos para enriquecer a resposta
   const ingredients = (catalogItem.ingredients || []).join(", ");
   const benefits = (catalogItem.benefits || []).join(" ");
   const studies = (catalogItem.studies || []).join(" ");
-  // Você pode usar esses campos no prompt se quiser mais contexto.
 
   // Prompts por fase:
   let prompt = "";
@@ -227,8 +227,9 @@ async function handler(req, res) {
     s.symptoms.some(sym => sym.toLowerCase() === session.symptom?.toLowerCase())
   );
 
-  const answer = await generateFunnelResponse(supplement, session.symptom, session.phase, session.idioma);
-  const followupQuestions = await generateFollowUps(supplement, session.symptom, session.phase, session.idioma);
+  // Ajuste: envia sintoma como texto, não objeto, para a função
+  const answer = await generateFunnelResponse(session.symptom, session.phase, session.idioma);
+  const followupQuestions = await generateFollowUps(session.symptom, session.phase, session.idioma);
 
   logEvent("chat", {
     sessionId,
@@ -263,4 +264,3 @@ async function handler(req, res) {
 }
 
 export default handler;
-
