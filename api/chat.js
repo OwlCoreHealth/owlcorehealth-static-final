@@ -146,7 +146,9 @@ async function generateFunnelResponse(symptom, phase, idioma = "en") {
 }
 
 // === Handler principal ===
-export default async function handler(req, res) {
+async function handler(req, res) { ... }
+module.exports = handler;
+
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
   const { message, selectedQuestion, sessionId } = req.body;
