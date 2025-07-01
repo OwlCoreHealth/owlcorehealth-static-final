@@ -16,7 +16,7 @@ function textToVector(text) {
 }
 
 function fuzzyFindSymptom(userInput) {
-  const symptomNames = symptomsCatalog.map(s => s.symptom);
+  const symptomNames = symptomsCatalog.flatMap(sup => sup.symptoms);
   const userVecObj = textToVector(userInput);
   let bestScore = -1;
   let bestSymptom = null;
@@ -53,7 +53,7 @@ let sessionMemory = {};
 const QUESTION_LIMIT = 8;
 
 async function findClosestSymptom(userInput, idioma = "en") {
-  const symptomNames = symptomsCatalog.map(s => s.symptom);
+  const symptomNames = symptomsCatalog.flatMap(sup => sup.symptoms);
   const prompt = idioma === "pt"
     ? `A lista de sintomas é: ${symptomNames.join(", ")}.\nUsuário escreveu: "${userInput}".\nResponda SOMENTE com o nome exato de um sintoma da lista (copie igual!), ou "unknown".`
     : `The list of symptoms is: ${symptomNames.join(", ")}.\nUser wrote: "${userInput}".\nReply ONLY with the exact symptom name from the list (copy exactly!), or "unknown".`;
