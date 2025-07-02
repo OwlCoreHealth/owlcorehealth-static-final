@@ -217,7 +217,7 @@ async function generateFollowUps(supplement, symptom, phase, idioma = "en", user
 }
 
 // Geração da resposta do funil (personalizada)
-async function generateFunnelResponse(symptom, phase, idioma = "en", userName = null) {
+async function generateFunnelResponse(symptom, phase, idioma = "en", userName = null, tipo = null) {
   // Identifica perguntas abertas para respostas do Dr. Owl sobre si
   for (const regex of BOT_TRIGGERS) {
     if (typeof symptom === "string" && regex.test(symptom)) {
@@ -265,38 +265,55 @@ async function generateFunnelResponse(symptom, phase, idioma = "en", userName = 
   const benefits = (catalogItem.benefits || []).join(" ");
   const studies = (catalogItem.studies || []).join(" ");
 
+  // --- ALTERAÇÃO ABAIXO ---
   let prompt = "";
-  switch (phase) {
-    case 1:
-      prompt = idioma === "pt"
-        ? `Você é Dr. Owl, especialista em saúde natural. Fale SOMENTE da FASE 1 do funil (conscientização) para o sintoma: "${symptom}". Comece com uma pergunta provocativa ou frase de impacto curta, gerando empatia. Mostre que muitas pessoas passam por isso sem saber o real motivo, que muitas tentam de tudo mas o sintoma persiste. Explique de forma simples, humana e científica por que esse sintoma é um alerta importante do corpo. NÃO cite ingredientes, soluções, suplementos ou marcas. Finalize com um gancho provocando curiosidade.`
-        : `You are Dr. Owl, a natural health expert. ONLY discuss FUNNEL PHASE 1 (awareness) for the symptom: "${symptom}". Start with a provocative question or impactful statement to create empathy. Mention that thousands struggle without knowing the cause, even after trying everything. Explain simply, empathetically, and scientifically why this symptom is a body signal. DO NOT mention ingredients, solutions, supplements, or brands. End with a curiosity hook.`;
-      break;
-    case 2:
-      prompt = idioma === "pt"
-        ? `Você é Dr. Owl. Fale apenas sobre a gravidade de ignorar o sintoma "${symptom}". Use exemplos reais, nunca exagere. Não cite soluções ou ingredientes. Finalize com uma pergunta provocativa.`
-        : `You are Dr. Owl. Talk only about the risks of ignoring "${symptom}". Use real-world examples, don't exaggerate. Do not mention solutions or ingredients. End with a provocative question.`;
-      break;
-    case 3:
-      prompt = idioma === "pt"
-        ? `Você é Dr. Owl. Prove cientificamente como o sintoma "${symptom}" pode ser revertido ou melhorado. Use dados, estatísticas ou resultados de estudos, de forma breve. NÃO cite suplemento ou solução, só prova.`
-        : `You are Dr. Owl. Provide scientific proof that "${symptom}" can be improved or reversed. Use stats, studies or data, briefly. DO NOT mention supplements or solutions, just proof.`;
-      break;
-    case 4:
-      prompt = idioma === "pt"
-        ? `Você é Dr. Owl. Fale apenas sobre ativos naturais relacionados a "${symptom}". Explique benefícios, fatos curiosos e como eles ajudam, sem citar marcas ou nomes de suplementos.`
-        : `You are Dr. Owl. Speak only about natural actives related to "${symptom}". Explain benefits, curiosities, and how they help, without brand or supplement names.`;
-      break;
-    case 5:
-      prompt = idioma === "pt"
-        ? `Você é Dr. Owl. Apresente, de forma indireta e objetiva, um suplemento natural como solução para "${symptom}" (não cite o nome, só descreva benefícios e ativos: ${ingredients}, ${benefits}).`
-        : `You are Dr. Owl. Present, indirectly and objectively, a natural supplement as a solution for "${symptom}" (don't mention the name, only describe benefits and actives: ${ingredients}, ${benefits}).`;
-      break;
-    default:
-      prompt = idioma === "pt"
-        ? `Explique de forma empática e científica sobre o sintoma: "${symptom}".`
-        : `Explain empathetically and scientifically about the symptom: "${symptom}".`;
+  if (tipo === "historia") {
+    prompt = idioma === "pt"
+      ? `Conte uma história real, interessante e empática sobre uma pessoa que tinha o sintoma "${symptom}" e alcançou grandes melhorias após buscar ajuda natural. Não cite nomes reais, mas faça parecer um caso de sucesso de verdade, com detalhes humanos.`
+      : `Share a real, interesting, and empathetic story about someone who suffered from "${symptom}" and experienced major improvements after seeking natural help. Do not mention real names, but make it feel like a true success case, with human details.`;
+  } else if (tipo === "prova") {
+    prompt = idioma === "pt"
+      ? `Cite um estudo científico ou evidência relevante sobre como o sintoma "${symptom}" pode ser tratado ou melhorado com recursos naturais, mostrando dados ou resultados concretos, de forma didática e fácil de entender.`
+      : `Provide a scientific study or relevant evidence about how "${symptom}" can be treated or improved with natural resources, showing data or concrete results in an educational, easy-to-understand way.`;
+  } else if (tipo === "curiosidade") {
+    prompt = idioma === "pt"
+      ? `Compartilhe uma curiosidade, mito ou fato surpreendente sobre o sintoma "${symptom}" relacionado à saúde natural. Faça a curiosidade prender a atenção, sendo curta e interessante.`
+      : `Share a curiosity, myth, or surprising fact about the symptom "${symptom}" related to natural health. Make the curiosity catchy, short, and interesting.`;
+  } else {
+    // Seu funil original por fase
+    switch (phase) {
+      case 1:
+        prompt = idioma === "pt"
+          ? `Você é Dr. Owl, especialista em saúde natural. Fale SOMENTE da FASE 1 do funil (conscientização) para o sintoma: "${symptom}". Comece com uma pergunta provocativa ou frase de impacto curta, gerando empatia. Mostre que muitas pessoas passam por isso sem saber o real motivo, que muitas tentam de tudo mas o sintoma persiste. Explique de forma simples, humana e científica por que esse sintoma é um alerta importante do corpo. NÃO cite ingredientes, soluções, suplementos ou marcas. Finalize com um gancho provocando curiosidade.`
+          : `You are Dr. Owl, a natural health expert. ONLY discuss FUNNEL PHASE 1 (awareness) for the symptom: "${symptom}". Start with a provocative question or impactful statement to create empathy. Mention that thousands struggle without knowing the cause, even after trying everything. Explain simply, empathetically, and scientifically why this symptom is a body signal. DO NOT mention ingredients, solutions, supplements, or brands. End with a curiosity hook.`;
+        break;
+      case 2:
+        prompt = idioma === "pt"
+          ? `Você é Dr. Owl. Fale apenas sobre a gravidade de ignorar o sintoma "${symptom}". Use exemplos reais, nunca exagere. Não cite soluções ou ingredientes. Finalize com uma pergunta provocativa.`
+          : `You are Dr. Owl. Talk only about the risks of ignoring "${symptom}". Use real-world examples, don't exaggerate. Do not mention solutions or ingredients. End with a provocative question.`;
+        break;
+      case 3:
+        prompt = idioma === "pt"
+          ? `Você é Dr. Owl. Prove cientificamente como o sintoma "${symptom}" pode ser revertido ou melhorado. Use dados, estatísticas ou resultados de estudos, de forma breve. NÃO cite suplemento ou solução, só prova.`
+          : `You are Dr. Owl. Provide scientific proof that "${symptom}" can be improved or reversed. Use stats, studies or data, briefly. DO NOT mention supplements or solutions, just proof.`;
+        break;
+      case 4:
+        prompt = idioma === "pt"
+          ? `Você é Dr. Owl. Fale apenas sobre ativos naturais relacionados a "${symptom}". Explique benefícios, fatos curiosos e como eles ajudam, sem citar marcas ou nomes de suplementos.`
+          : `You are Dr. Owl. Speak only about natural actives related to "${symptom}". Explain benefits, curiosities, and how they help, without brand or supplement names.`;
+        break;
+      case 5:
+        prompt = idioma === "pt"
+          ? `Você é Dr. Owl. Apresente, de forma indireta e objetiva, um suplemento natural como solução para "${symptom}" (não cite o nome, só descreva benefícios e ativos: ${ingredients}, ${benefits}).`
+          : `You are Dr. Owl. Present, indirectly and objectively, a natural supplement as a solution for "${symptom}" (don't mention the name, only describe benefits and actives: ${ingredients}, ${benefits}).`;
+        break;
+      default:
+        prompt = idioma === "pt"
+          ? `Explique de forma empática e científica sobre o sintoma: "${symptom}".`
+          : `Explain empathetically and scientifically about the symptom: "${symptom}".`;
+    }
   }
+  // --- FIM DAS ALTERAÇÕES ---
 
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
