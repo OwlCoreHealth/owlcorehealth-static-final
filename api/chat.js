@@ -246,6 +246,17 @@ async function handler(req, res) {
       followupQuestions: []
     });
   }
+// SE O NOME AINDA NÃO FOI SALVO, TRATE A PRÓXIMA MENSAGEM COMO O NOME
+if (!session.userName && !session.anonymous && message && message.trim().length < 32 && !selectedQuestion) {
+  session.userName = message.trim();
+  // Opcional: Se quiser permitir "pular" o nome
+  if (["não", "prefiro não", "no", "rather not"].includes(session.userName.toLowerCase())) {
+    session.anonymous = true;
+    session.userName = null;
+  }
+  // Responda com uma mensagem acolhedora + já avança para o funil (mostra as perguntas do sintoma)
+  // NÃO RETORNE aqui! Deixe continuar para o funil normalmente!
+}
 
   // SALVA O NOME DO USUÁRIO (segunda rodada)
   if (session.tempMessage && !session.userName && !session.anonymous) {
@@ -301,7 +312,7 @@ async function handler(req, res) {
   );
 
   // Ajuste: envia sintoma como texto, não objeto, para a função
-  const answer = await generateFunnelResponse(session.symptom, session.phase, session.idioma);
+  const answer = await generateFunnelResponse(session.symptom, session.phase, session.idioma, session);
   const followupQuestions = await generateFollowUps(session.symptom, session.phase, session.idioma);
 
   logEvent("chat", {
