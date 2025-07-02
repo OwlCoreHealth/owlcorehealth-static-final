@@ -120,15 +120,22 @@ async function detectLanguage(text) {
 
 async function generateFollowUps(supplement, symptom, phase, idioma = "en", userName = null) {
   if (!symptom || !supplement) return [];
-  let honorific = "";
+
+  let honorific = "", prefixName = "";
+
   if (userName) {
-    // Definição de gênero simples, pode adaptar para lógica mais robusta se quiser
-    honorific = (idioma === "pt")
-      ? (/a$/.test(userName.trim().toLowerCase()) ? "Sra." : "Sr.")
-      : "";
-    userName = userName.charAt(0).toUpperCase() + userName.slice(1);
+    // Tenta detectar gênero com base na terminação do nome
+    const nameTrim = userName.trim();
+    const isFeminine = /a$|ia$|eia$|ita$|ina$|ara$/i.test(nameTrim);
+    const isMasculine = /o$|io$|eo$|ito$|ino$|aro$/i.test(nameTrim);
+
+    if (idioma === "pt") {
+      honorific = isFeminine ? "Sra." : "Sr.";
+    } else {
+      honorific = isFeminine ? "Ms." : "Mr.";
+    }
+    prefixName = `${honorific} ${nameTrim.charAt(0).toUpperCase() + nameTrim.slice(1)}`;
   }
-  const prefixName = userName ? (honorific ? `${honorific} ${userName}` : userName) : "";
 
   const prompt = idioma === "pt"
     ? `Considere o suplemento (não cite o nome): "${supplement}". Crie 3 perguntas curtas, provocativas e pessoais para avançar no funil sobre o sintoma "${symptom}", fase ${phase}. Todas as perguntas DEVEM começar com o nome "${prefixName}". Exemplo de temas: 1. Consequências, 2. Curiosidade pessoal, 3. Solução natural. Não repita o sintoma, não use termos vagos.`
@@ -154,21 +161,19 @@ async function generateFollowUps(supplement, symptom, phase, idioma = "en", user
     .filter(q => q.length > 7 && !/^undefined/i.test(q))
     .slice(0, 3) || [];
 
-  // Pós-processamento: força início com "Sr./Sra. Nome"
+  // Pós-processamento: força início com “Sr./Sra. Nome” ou “Mr./Ms. Name”
   return questions.map(q => {
-    // Limpa qualquer placeholder de nome do modelo
     q = q.replace(/null|User's Name|\[User's Name\]|\[Nome do Usuário\]|\[Nome\]|Nome do Usuário/gi, "")
          .replace(/\s+([,.?!])/g, '$1')
          .replace(/\s{2,}/g, ' ')
          .trim();
     if (prefixName && !q.toLowerCase().startsWith(prefixName.toLowerCase())) {
-      // Evita duplicar pontuação ou espaço
+      // Só adiciona prefixo se ainda não existe
       return `${prefixName}, ${q.charAt(0).toLowerCase()}${q.slice(1)}`;
     }
     return q;
   });
 }
-
 // Geração da resposta do funil (personalizada)
 async function generateFunnelResponse(symptom, phase, idioma = "en", userName = null) {
   const catalogItem = supplementsCatalog.find(item =>
