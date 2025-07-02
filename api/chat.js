@@ -82,7 +82,8 @@ async function findClosestSymptom(userInput, idioma = "en") {
 
 // Detecta idioma
 async function detectLanguage(text) {
-  return /[áéíóúãõç]/i.test(text) ? "pt" : "en";
+  // Se encontrar caracteres típicos do português, retorna "pt-BR", senão "en-US"
+  return /[áéíóúãõç]/i.test(text) ? "pt-BR" : "en-US";
 }
 
 // Geração de perguntas follow-up
@@ -132,7 +133,7 @@ async function generateFunnelResponse(symptom, phase, idioma = "en") {
 let prompt = "";
 switch (phase) {
   case 1: // Awareness
-  prompt = idioma === "pt"
+    prompt = idioma === "pt-BR"
     ? `Você é Dr. Owl, especialista em saúde natural. Fale SOMENTE da FASE 1 do funil (conscientização) para o sintoma: "${symptom}". 
 Comece com uma pergunta provocativa ou frase de impacto curta, gerando empatia: “Você sente que faz tudo certo, mas o cansaço nunca passa?” 
 Mostre que milhares de pessoas passam por isso sem saber o real motivo — que muitas tentam de tudo, mas o sintoma persiste.
@@ -252,9 +253,9 @@ Se não quiser contar, sem problemas: sigo te acompanhando da melhor forma poss�
 
   if (session.count > QUESTION_LIMIT) {
     return res.status(200).json({
-      content: session.idioma === "pt"
-        ? "Você atingiu o limite de perguntas nesta sessão. Deseja continuar por e-mail?"
-        : "You have reached the question limit for this session. Want to continue by email?",
+      content: session.idioma === "pt-BR"
+  ? "Você atingiu o limite de perguntas nesta sessão. Deseja continuar por e-mail?"
+  : "You have reached the question limit for this session. Want to continue by email?",
       followupQuestions: []
     });
   }
