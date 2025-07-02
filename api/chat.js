@@ -440,9 +440,9 @@ if (!session.userName && !session.anonymous) {
 
   // Resposta e perguntas sempre PERSONALIZADAS
   const answer = await generateFunnelResponse(session.symptom, session.phase, session.idioma, session.userName);
-  const followupQuestions = await generateFollowUps(supplement?.supplementName, session.symptom, session.phase, session.idioma, session.userName);
-// ...depois de gerar o array questions
-return questions.map(q => q.replace(/\[User's Name\]/gi, userName || "").replace(/\[Nome do Usuário\]/gi, userName || ""));
+ const followupQuestions = await generateFollowUps(...);
+// NÃO faça return questions.map() aqui!
+// Use diretamente followupQuestions, que já está pronto:
 
   logEvent("chat", {
     sessionId,
