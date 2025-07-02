@@ -330,9 +330,6 @@ if (!session.userName && !session.anonymous) {
     followupQuestions: []
   });
 }
-  // Se passar para cá, já tem nome (ou vai seguir anônimo)
-  // ... segue fluxo abaixo normalmente
-}
 
   // 2. Sintoma: fuzzy > GPT exact > fallback semântico suplemento
   let supplementName = null;
