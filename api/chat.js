@@ -121,21 +121,29 @@ async function detectLanguage(text) {
 async function generateFollowUps(supplement, symptom, phase, idioma = "en", userName = null) {
   if (!symptom || !supplement) return [];
 
-  let honorific = "", prefixName = "";
-
+  // Detecta sexo com base na terminação do nome
+  let sexo = null;
   if (userName) {
-    // Tenta detectar gênero com base na terminação do nome
     const nameTrim = userName.trim();
     const isFeminine = /a$|ia$|eia$|ita$|ina$|ara$/i.test(nameTrim);
     const isMasculine = /o$|io$|eo$|ito$|ino$|aro$/i.test(nameTrim);
-
-    if (idioma === "pt") {
-      honorific = isFeminine ? "Sra." : "Sr.";
-    } else {
-      honorific = isFeminine ? "Ms." : "Mr.";
-    }
-    prefixName = `${honorific} ${nameTrim.charAt(0).toUpperCase() + nameTrim.slice(1)}`;
+    if (isFeminine) sexo = "f";
+    else if (isMasculine) sexo = "m";
   }
+
+  function getTitlePrefix(userName, idioma = "pt", sexo = null) {
+    if (!userName) return "";
+    if (idioma === "pt") {
+      if (sexo === "f") return `Sra. ${userName}`;
+      if (sexo === "m") return `Sr. ${userName}`;
+      return `Sr(a). ${userName}`;
+    } else {
+      if (sexo === "f") return `Ms. ${userName}`;
+      if (sexo === "m") return `Mr. ${userName}`;
+      return `${userName}`;
+    }
+  }
+  const prefixName = getTitlePrefix(userName, idioma, sexo);
 
   const prompt = idioma === "pt"
     ? `Considere o suplemento (não cite o nome): "${supplement}". Crie 3 perguntas curtas, provocativas e pessoais para avançar no funil sobre o sintoma "${symptom}", fase ${phase}. Todas as perguntas DEVEM começar com o nome "${prefixName}". Exemplo de temas: 1. Consequências, 2. Curiosidade pessoal, 3. Solução natural. Não repita o sintoma, não use termos vagos.`
@@ -174,6 +182,7 @@ async function generateFollowUps(supplement, symptom, phase, idioma = "en", user
     return q;
   });
 }
+
 // Geração da resposta do funil (personalizada)
 async function generateFunnelResponse(symptom, phase, idioma = "en", userName = null) {
   const catalogItem = supplementsCatalog.find(item =>
