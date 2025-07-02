@@ -120,12 +120,13 @@ async function detectLanguage(text) {
 
 // Perguntas follow-up, limpando resposta
 async function generateFollowUps(supplement, symptom, phase, idioma = "en", userName = null) {
-  // Se não houver sintoma ou suplemento, devolve vazio
   if (!symptom || !supplement) return [];
-  const prefix = userName ? (idioma === "pt" ? `${userName}, ` : `${userName}, `) : "";
- const prompt = idioma === "pt"
-  ? `Considere o suplemento (não cite o nome): "${supplement}". Crie 3 perguntas curtas, provocativas e pessoais para avançar no funil sobre o sintoma "${symptom}", fase ${phase}. Todas as perguntas DEVEM chamar o usuário pelo nome: "${userName}". Exemplo de temas: 1. Consequências, 2. Curiosidade pessoal, 3. Solução natural. Não repita o sintoma, não use termos vagos.`
-  : `Consider the supplement (never say its name): "${supplement}". Create 3 short, provocative, and personal questions to move forward in the funnel about the symptom "${symptom}", phase ${phase}. All questions MUST use the user's name: "${userName}". Example topics: 1. Consequences, 2. Personal curiosity, 3. Natural solution. Don't repeat the symptom, don't use generic terms.`;
+  // Garante nome sempre definido, ou string vazia se anônimo
+  userName = userName ? userName.charAt(0).toUpperCase() + userName.slice(1) : "";
+  const prompt = idioma === "pt"
+    ? `Considere o suplemento (não cite o nome): "${supplement}". Crie 3 perguntas curtas, provocativas e pessoais para avançar no funil sobre o sintoma "${symptom}", fase ${phase}. Todas as perguntas DEVEM chamar o usuário pelo nome: "${userName}". Exemplo de temas: 1. Consequências, 2. Curiosidade pessoal, 3. Solução natural. Não repita o sintoma, não use termos vagos.`
+    : `Consider the supplement (never say its name): "${supplement}". Create 3 short, provocative, and personal questions to move forward in the funnel about the symptom "${symptom}", phase ${phase}. All questions MUST use the user's name: "${userName}". Example topics: 1. Consequences, 2. Personal curiosity, 3. Natural solution. Don't repeat the symptom, don't use generic terms.`;
+
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: {
@@ -140,19 +141,30 @@ async function generateFollowUps(supplement, symptom, phase, idioma = "en", user
     })
   });
   const data = await res.json();
-  // Limpa a resposta para só pegar frases válidas
- const questions = data.choices?.[0]?.message?.content
-  ?.split(/\d+\.\s*|\n|\r/)
-  .map(q => q.trim())
-  .filter(q => q.length > 7 && !/^undefined/i.test(q))
-  .slice(0, 3) || [];
-return questions.map(q =>
-  q.replace(/\[User's Name\]|\[Nome do Usuário\]|\[Nome\]|User's Name|Nome do Usuário/gi, userName ? userName.charAt(0).toUpperCase() + userName.slice(1) : "")
-  .replace(/\s+([,.?!])/g, '$1') // remove espaço antes de pontuação, se sobrar
-  .replace(/\s{2,}/g, ' ')       // corrige múltiplos espaços
-  .trim()
-);
-
+  const questions = data.choices?.[0]?.message?.content
+    ?.split(/\d+\.\s*|\n|\r/)
+    .map(q => q.trim())
+    .filter(q => q.length > 7 && !/^undefined/i.test(q))
+    .slice(0, 3) || [];
+  // CIRÚRGICO: força uso do nome na pergunta caso GPT não coloque
+  return questions.map(q => {
+    // Remove qualquer "null" por erro
+    q = q.replace(/null/gi, userName);
+    // Substitui placeholders e variantes
+    q = q.replace(/\[User's Name\]|\[Nome do Usuário\]|\[Nome\]|User's Name|Nome do Usuário/gi, userName);
+    // Se ainda não tem o nome do usuário, injeta no início da pergunta:
+    if (userName && !q.toLowerCase().startsWith(userName.toLowerCase())) {
+      if (idioma === "pt") {
+        // Ex: "Maria, " no começo
+        q = `${userName}, ${q.charAt(0).toLowerCase()}${q.slice(1)}`;
+      } else {
+        // Ex: "Maria, " no começo
+        q = `${userName}, ${q.charAt(0).toLowerCase()}${q.slice(1)}`;
+      }
+    }
+    // Limpa espaços extras e retorna
+    return q.replace(/\s+([,.?!])/g, '$1').replace(/\s{2,}/g, ' ').trim();
+  });
 }
 
 // Geração da resposta do funil (personalizada)
