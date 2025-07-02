@@ -234,18 +234,24 @@ async function handler(req, res) {
   if (!session.idioma) session.idioma = await detectLanguage(message);
 
   // 1. Pergunta nome, se ainda não coletou
-  if (!session.userName && !session.anonymous) {
-    if (/^[a-zA-Zà-úÀ-Ú\s']{2,30}$/.test(message.trim())) {
-      session.userName = message.trim().replace(/^\w/, c => c.toUpperCase());
-    } else {
-      return res.status(200).json({
-        reply: session.idioma === "pt"
-          ? `Aqui no consultório do Dr. Owl, cada história é especial.\nMe conta: como você gostaria de ser chamado(a) por mim?\nPode ser seu nome, apelido, até um codinome — prometo guardar com carinho esse segredo!\nSe não quiser contar, sem problemas: sigo te acompanhando da melhor forma possível.`
-          : `Here in Dr. Owl's office, every story is unique. Tell me: how would you like me to call you? It can be your first name, a nickname, or even a secret agent name—I promise to keep it safe! If you prefer not to share, no worries: I'll keep guiding you as best as I can.`,
-        followupQuestions: []
-      });
-    }
+ // Sempre pede nome ANTES de qualquer outra lógica!
+if (!session.userName && !session.anonymous) {
+  // Se a mensagem for um nome válido, registra e segue para o funil
+  if (/^[a-zA-Zà-úÀ-Ú\s']{2,30}$/.test(message.trim())) {
+    session.userName = message.trim().replace(/^\w/, c => c.toUpperCase());
+    // (continua para o fluxo do funil normalmente, não retorna aqui)
+  } else {
+    // Se não, pede o nome SEM seguir para o funil
+    return res.status(200).json({
+      reply: session.idioma === "pt"
+        ? `Aqui no consultório do Dr. Owl, cada história é especial.\nMe conta: como você gostaria de ser chamado(a) por mim?\nPode ser seu nome, apelido, até um codinome — prometo guardar com carinho esse segredo!\nSe não quiser contar, sem problemas: siga como anônimo(a) ou digite "pular".`
+        : `Here in Dr. Owl's office, every story is unique. Tell me: how would you like me to call you? It can be your first name, a nickname, or even a secret agent name—I promise to keep it safe! If you prefer not to share, just type "skip" or "anonymous" and I'll keep guiding you as best as I can.`,
+      followupQuestions: []
+    });
   }
+  // Se passar para cá, já tem nome (ou vai seguir anônimo)
+  // ... segue fluxo abaixo normalmente
+}
 
   // 2. Sintoma: fuzzy > GPT exact > fallback semântico suplemento
   let supplementName = null;
