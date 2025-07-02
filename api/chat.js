@@ -120,10 +120,19 @@ async function detectLanguage(text) {
 
 async function generateFollowUps(supplement, symptom, phase, idioma = "en", userName = null) {
   if (!symptom || !supplement) return [];
-  userName = userName ? userName.charAt(0).toUpperCase() + userName.slice(1) : "";
+  let honorific = "";
+  if (userName) {
+    // Definição de gênero simples, pode adaptar para lógica mais robusta se quiser
+    honorific = (idioma === "pt")
+      ? (/a$/.test(userName.trim().toLowerCase()) ? "Sra." : "Sr.")
+      : "";
+    userName = userName.charAt(0).toUpperCase() + userName.slice(1);
+  }
+  const prefixName = userName ? (honorific ? `${honorific} ${userName}` : userName) : "";
+
   const prompt = idioma === "pt"
-    ? `Considere o suplemento (não cite o nome): "${supplement}". Crie 3 perguntas curtas, provocativas e pessoais para avançar no funil sobre o sintoma "${symptom}", fase ${phase}. Todas as perguntas DEVEM chamar o usuário pelo nome: "${userName}". Exemplo de temas: 1. Consequências, 2. Curiosidade pessoal, 3. Solução natural. Não repita o sintoma, não use termos vagos.`
-    : `Consider the supplement (never say its name): "${supplement}". Create 3 short, provocative, and personal questions to move forward in the funnel about the symptom "${symptom}", phase ${phase}. All questions MUST use the user's name: "${userName}". Example topics: 1. Consequences, 2. Personal curiosity, 3. Natural solution. Don't repeat the symptom, don't use generic terms.`;
+    ? `Considere o suplemento (não cite o nome): "${supplement}". Crie 3 perguntas curtas, provocativas e pessoais para avançar no funil sobre o sintoma "${symptom}", fase ${phase}. Todas as perguntas DEVEM começar com o nome "${prefixName}". Exemplo de temas: 1. Consequências, 2. Curiosidade pessoal, 3. Solução natural. Não repita o sintoma, não use termos vagos.`
+    : `Consider the supplement (never say its name): "${supplement}". Create 3 short, provocative, and personal questions to move forward in the funnel about the symptom "${symptom}", phase ${phase}. All questions MUST start with the name "${prefixName}". Example topics: 1. Consequences, 2. Personal curiosity, 3. Natural solution. Don't repeat the symptom, don't use generic terms.`;
 
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
@@ -144,21 +153,17 @@ async function generateFollowUps(supplement, symptom, phase, idioma = "en", user
     .map(q => q.trim())
     .filter(q => q.length > 7 && !/^undefined/i.test(q))
     .slice(0, 3) || [];
+
+  // Pós-processamento: força início com "Sr./Sra. Nome"
   return questions.map(q => {
-    // Limpa placeholders e possíveis restos
-    q = q.replace(/null/gi, userName)
-         .replace(/\[User's Name\]|\[Nome do Usuário\]|\[Nome\]|User's Name|Nome do Usuário/gi, userName)
+    // Limpa qualquer placeholder de nome do modelo
+    q = q.replace(/null|User's Name|\[User's Name\]|\[Nome do Usuário\]|\[Nome\]|Nome do Usuário/gi, "")
          .replace(/\s+([,.?!])/g, '$1')
          .replace(/\s{2,}/g, ' ')
          .trim();
-    // Se já começa com o nome, retorna
-    if (userName && !q.toLowerCase().startsWith(userName.toLowerCase())) {
-      // Evita duplicar vírgula
-      if (idioma === "pt") {
-        q = `${userName}, ${q.charAt(0).toLowerCase()}${q.slice(1)}`;
-      } else {
-        q = `${userName}, ${q.charAt(0).toLowerCase()}${q.slice(1)}`;
-      }
+    if (prefixName && !q.toLowerCase().startsWith(prefixName.toLowerCase())) {
+      // Evita duplicar pontuação ou espaço
+      return `${prefixName}, ${q.charAt(0).toLowerCase()}${q.slice(1)}`;
     }
     return q;
   });
