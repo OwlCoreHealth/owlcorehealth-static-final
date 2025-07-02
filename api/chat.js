@@ -6,7 +6,25 @@ import cosineSimilarity from "cosine-similarity";
 const catalogPath = path.join(process.cwd(), "api", "data", "symptoms_catalog.json");
 const supplementsCatalog = JSON.parse(fs.readFileSync(catalogPath, "utf8"));
 
-// ==== Funções auxiliares ====
+const logsDir = "/tmp/logs";
+if (!fs.existsSync(logsDir)) {
+  try { fs.mkdirSync(logsDir, { recursive: true }); } catch (e) {}
+}
+function logEvent(event, data) {
+  const logPath = logsDir + "/chat.log";
+  const log = `[${new Date().toISOString()}] [${event}] ${JSON.stringify(data)}\n`;
+  try { fs.appendFileSync(logPath, log); } catch (e) {}
+}
+
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+const GPT_MODEL = "gpt-4o-mini";
+
+let sessionMemory = {};
+const QUESTION_LIMIT = 8;
+
+// ==== FUNÇÕES AUXILIARES ====
+
+// Fuzzy (cosine)
 function textToVector(text) {
   if (!text || typeof text !== "string") return {};
   const words = text.toLowerCase().split(/\s+/);
@@ -14,15 +32,11 @@ function textToVector(text) {
   words.forEach(w => freq[w] = (freq[w] || 0) + 1);
   return freq;
 }
-
 function fuzzyFindSymptom(userInput) {
-  // Busca todos os sintomas de todos suplementos
   const allSymptoms = supplementsCatalog.flatMap(s => s.symptoms || []);
   const symptomNames = Array.from(new Set(allSymptoms));
   const userVecObj = textToVector(userInput);
-  let bestScore = -1;
-  let bestSymptom = null;
-
+  let bestScore = -1, bestSymptom = null;
   for (const symptom of symptomNames) {
     const symVecObj = textToVector(symptom);
     const allKeys = Array.from(new Set([...Object.keys(userVecObj), ...Object.keys(symVecObj)]));
@@ -37,23 +51,7 @@ function fuzzyFindSymptom(userInput) {
   return bestScore > 0.5 ? bestSymptom : null;
 }
 
-const logsDir = "/tmp/logs";
-if (!fs.existsSync(logsDir)) {
-  try { fs.mkdirSync(logsDir, { recursive: true }); } catch (e) { /* ignora erro */ }
-}
-function logEvent(event, data) {
-  const logPath = logsDir + "/chat.log";
-  const log = `[${new Date().toISOString()}] [${event}] ${JSON.stringify(data)}\n`;
-  try { fs.appendFileSync(logPath, log); } catch (e) { /* ignora erro */ }
-}
-
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-const GPT_MODEL = "gpt-4o-mini";
-
-let sessionMemory = {};
-const QUESTION_LIMIT = 8;
-
-// GPT backup, se fuzzy falhar
+// GPT: busca pelo nome exato de sintoma (backup do fuzzy)
 async function findClosestSymptom(userInput, idioma = "en") {
   const allSymptoms = supplementsCatalog.flatMap(s => s.symptoms || []);
   const symptomNames = Array.from(new Set(allSymptoms));
@@ -80,15 +78,19 @@ async function findClosestSymptom(userInput, idioma = "en") {
   return symptomNames.find(s => s.toLowerCase() === match.toLowerCase()) || "unknown";
 }
 
-// NOVA FUNÇÃO: fallback semântico para nunca deixar o usuário sem resposta relevante
-async function semanticSymptomFallback(userInput, idioma = "en") {
+// GPT: fallback semântico e mapeamento ao suplemento mais próximo
+async function semanticSymptomSupplementMatch(userInput, idioma = "en") {
   const allSymptoms = supplementsCatalog.flatMap(s => s.symptoms || []);
-  const allKeywords = supplementsCatalog.flatMap(s => s.keywords || []);
-  const allOptions = Array.from(new Set([...allSymptoms, ...allKeywords]));
+  const allSupplements = supplementsCatalog.map(s => ({
+    name: s.supplementName,
+    symptoms: s.symptoms,
+    keywords: s.keywords,
+    categories: s.mainCategory
+  }));
 
   const prompt = idioma === "pt"
-    ? `O usuário escreveu: "${userInput}". Dentre esta lista: ${allOptions.join(", ")}, qual é o sintoma ou palavra-chave mais relacionado, mesmo que não seja igual? Responda só com a palavra exata da lista, ou "unknown".`
-    : `User wrote: "${userInput}". In this list: ${allOptions.join(", ")}, which is the most semantically related symptom or keyword (even if not exact)? Reply ONLY with the exact word from the list, or "unknown".`;
+    ? `O usuário escreveu: "${userInput}". Dada a lista de sintomas: [${allSymptoms.join(", ")}] e suplementos: ${JSON.stringify(allSupplements)}. Qual sintoma da lista mais se relaciona com o texto do usuário? Qual suplemento cobre esse sintoma? Responda em JSON: {"symptom": "nome do sintoma", "supplement": "nome do suplemento"}.`
+    : `User wrote: "${userInput}". Given this list of symptoms: [${allSymptoms.join(", ")}] and this list of supplements: ${JSON.stringify(allSupplements)}. Which symptom from the list is most related to the user's input? Which supplement best covers this symptom? Reply as JSON: {"symptom": "symptom name", "supplement": "supplement name"}.`;
 
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
@@ -99,14 +101,16 @@ async function semanticSymptomFallback(userInput, idioma = "en") {
     body: JSON.stringify({
       model: GPT_MODEL,
       messages: [{ role: "user", content: prompt }],
-      temperature: 0.15,
-      max_tokens: 20
+      temperature: 0.12,
+      max_tokens: 100
     })
   });
   const data = await res.json();
-  const match = data.choices?.[0]?.message?.content?.trim();
-  if (!match || match === "unknown") return null;
-  return match;
+  try {
+    let result = JSON.parse(data.choices?.[0]?.message?.content);
+    if (result?.symptom && result?.supplement) return result;
+    return null;
+  } catch { return null; }
 }
 
 // Detecta idioma
@@ -114,12 +118,14 @@ async function detectLanguage(text) {
   return /[áéíóúãõç]/i.test(text) ? "pt" : "en";
 }
 
-// Geração de perguntas follow-up
+// Perguntas follow-up, limpando resposta
 async function generateFollowUps(supplement, symptom, phase, idioma = "en", userName = null) {
-  const prefix = userName ? (idioma === "pt" ? `(${userName}), ` : `(${userName}), `) : "";
+  // Se não houver sintoma ou suplemento, devolve vazio
+  if (!symptom || !supplement) return [];
+  const prefix = userName ? (idioma === "pt" ? `${userName}, ` : `${userName}, `) : "";
   const prompt = idioma === "pt"
-    ? `Considere o suplemento (não cite o nome): "${supplement?.supplementName}". Gere 3 perguntas provocativas para avançar o funil sobre o sintoma "${symptom}", fase ${phase}. 1. Dor/risco, 2. Curiosidade, 3. Solução natural. Seja direto, breve e mantenha curiosidade.`
-    : `Consider the supplement (never say its name): "${supplement?.supplementName}". Generate 3 provocative follow-up questions for funnel phase ${phase}, about "${symptom}". 1. Pain/risk, 2. Curiosity, 3. Natural solution. Keep it short, direct and curiosity-driven.`;
+    ? `Considere o suplemento (não cite o nome): "${supplement}". Crie 3 perguntas curtas, provocativas e pessoais para avançar no funil sobre o sintoma "${symptom}", fase ${phase}. Elas devem ser diretas, claras, e usar o nome do usuário (${prefix}) quando fizer sentido. Exemplo de temas: 1. Consequências, 2. Curiosidade pessoal, 3. Solução natural. Não repita o sintoma, não use termos vagos.`
+    : `Consider the supplement (never say its name): "${supplement}". Create 3 short, provocative, and personal questions to move forward in the funnel about the symptom "${symptom}", phase ${phase}. Questions should be direct, clear, and use the user's name (${prefix}) if it makes sense. Example topics: 1. Consequences, 2. Personal curiosity, 3. Natural solution. Don't repeat the symptom, don't use generic terms.`;
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: {
@@ -129,28 +135,28 @@ async function generateFollowUps(supplement, symptom, phase, idioma = "en", user
     body: JSON.stringify({
       model: GPT_MODEL,
       messages: [{ role: "user", content: prompt }],
-      temperature: 0.7,
-      max_tokens: 180
+      temperature: 0.57,
+      max_tokens: 120
     })
   });
   const data = await res.json();
-  const questions = data.choices?.[0]?.message?.content?.split(/\d+\.\s+/).filter(Boolean).slice(0, 3) || [];
+  // Limpa a resposta para só pegar frases válidas
+  const questions = data.choices?.[0]?.message?.content
+    ?.split(/\d+\.\s*|\n|\r/)
+    .map(q => q.trim())
+    .filter(q => q.length > 7 && !/^undefined/i.test(q))
+    .slice(0, 3) || [];
   return questions;
 }
 
-// ALTERADO: recebe userName para personalização
+// Geração da resposta do funil (personalizada)
 async function generateFunnelResponse(symptom, phase, idioma = "en", userName = null) {
   const catalogItem = supplementsCatalog.find(item =>
     (item.symptoms && item.symptoms.map(s => s.toLowerCase()).includes(symptom?.toLowerCase())) ||
     (item.keywords && item.keywords.map(k => k.toLowerCase()).includes(symptom?.toLowerCase()))
   );
-
-  // Prefixo personalizado
   const prefix = userName
-    ? (idioma === "pt"
-        ? `Olá, ${userName}! `
-        : `Hi, ${userName}. `
-      )
+    ? (idioma === "pt" ? `Olá, ${userName}! ` : `Hi, ${userName}. `)
     : "";
 
   if (!catalogItem) {
@@ -167,61 +173,33 @@ async function generateFunnelResponse(symptom, phase, idioma = "en", userName = 
   switch (phase) {
     case 1: // Awareness
       prompt = idioma === "pt"
-        ? `${prefix}Você é Dr. Owl, especialista em saúde natural. Fale SOMENTE da FASE 1 do funil (conscientização) para o sintoma: "${symptom}". 
-Comece com uma pergunta provocativa ou frase de impacto curta, gerando empatia: “Você sente que faz tudo certo, mas o cansaço nunca passa?” 
-Mostre que milhares de pessoas passam por isso sem saber o real motivo — que muitas tentam de tudo, mas o sintoma persiste.
-Explique de forma simples, humana e científica por que esse sintoma é um alerta importante do corpo e não uma fraqueza. 
-NÃO cite ingredientes, soluções, suplementos ou marcas. 
-Finalize com um gancho provocando curiosidade (“Você sabia que ignorar esses sinais pode ser mais perigoso do que parece?”). 
-Não avance para outras fases. Seja persuasivo, humano e incentive o leitor a refletir.`
-        : `${prefix}You are Dr. Owl, a natural health expert. ONLY discuss FUNNEL PHASE 1 (awareness) for the symptom: "${symptom}". 
-Start with a provocative question or impactful statement to create empathy: “Have you ever felt like you’re doing everything right, but nothing changes?” 
-Mention that thousands of people struggle with this without knowing the real cause—even after trying everything, the symptom remains.
-Explain simply, empathetically, and scientifically why this symptom is an important signal from the body—not a weakness.
-DO NOT mention ingredients, solutions, supplements, or brands. 
-End with a hook to spark curiosity (“Did you know ignoring these signals could be more dangerous than it seems?”). 
-Do not move to the next phase. Be persuasive, human, and encourage reflection.`;
+        ? `${prefix}Você é Dr. Owl, especialista em saúde natural. Fale SOMENTE da FASE 1 do funil (conscientização) para o sintoma: "${symptom}". Comece com uma pergunta provocativa ou frase de impacto curta, gerando empatia. Mostre que muitas pessoas passam por isso sem saber o real motivo, que muitas tentam de tudo mas o sintoma persiste. Explique de forma simples, humana e científica por que esse sintoma é um alerta importante do corpo. NÃO cite ingredientes, soluções, suplementos ou marcas. Finalize com um gancho provocando curiosidade.`
+        : `${prefix}You are Dr. Owl, a natural health expert. ONLY discuss FUNNEL PHASE 1 (awareness) for the symptom: "${symptom}". Start with a provocative question or impactful statement to create empathy. Mention that thousands struggle without knowing the cause, even after trying everything. Explain simply, empathetically, and scientifically why this symptom is a body signal. DO NOT mention ingredients, solutions, supplements, or brands. End with a curiosity hook.`;
       break;
     case 2: // Severity
       prompt = idioma === "pt"
-        ? `${prefix}Você é Dr. Owl. Responda SOMENTE sobre a FASE 2 do funil (gravidade) para o sintoma: "${symptom}". Mostre de forma curta e científica os riscos de ignorar esse sintoma, usando estatísticas moderadas e exemplos (“ignorar já causou problemas a milhares de pessoas”). Não cite soluções, nem ingredientes. Termine com gancho (“A ciência já provou o impacto desses sintomas. Quer ver os dados?”). Não avance de fase.`
-        : `${prefix}You are Dr. Owl. ONLY address FUNNEL PHASE 2 (severity) for the symptom: "${symptom}". Briefly and scientifically, describe the risks of ignoring this symptom, using moderate statistics and universal examples (“ignoring this has affected thousands”). Do not mention solutions or ingredients. End with a hook (“Science has already proven the impact. Want to see the data?”). Do not move forward.`;
+        ? `${prefix}Você é Dr. Owl. Fale apenas sobre a gravidade de ignorar o sintoma "${symptom}". Use exemplos reais, nunca exagere. Não cite soluções ou ingredientes. Finalize com uma pergunta provocativa.`
+        : `${prefix}You are Dr. Owl. Talk only about the risks of ignoring "${symptom}". Use real-world examples, don't exaggerate. Do not mention solutions or ingredients. End with a provocative question.`;
       break;
     case 3: // Proof
       prompt = idioma === "pt"
-        ? `${prefix}Você é Dr. Owl. Fale SOMENTE da FASE 3 do funil (prova científica) para o sintoma: "${symptom}". Dê dados reais, resultados de estudos ou estatísticas (“estudos com milhares mostram que…”). NÃO cite suplemento ou solução, só prova. Termine com um gancho (“O que a ciência recomenda para reverter isso?”). Não avance de fase.`
-        : `${prefix}You are Dr. Owl. ONLY talk about FUNNEL PHASE 3 (scientific proof) for the symptom: "${symptom}". Provide real data, study results, or statistics (“studies with thousands have shown…”). DO NOT mention supplements or solutions, only proof. End with a hook (“What does science recommend to reverse this?”). Do not move forward.`;
+        ? `${prefix}Você é Dr. Owl. Prove cientificamente como o sintoma "${symptom}" pode ser revertido ou melhorado. Use dados, estatísticas ou resultados de estudos, de forma breve. NÃO cite suplemento ou solução, só prova.`
+        : `${prefix}You are Dr. Owl. Provide scientific proof that "${symptom}" can be improved or reversed. Use stats, studies or data, briefly. DO NOT mention supplements or solutions, just proof.`;
       break;
     case 4: // Nutrients / Natural Solution
       prompt = idioma === "pt"
-        ? `${prefix}Você é Dr. Owl. Fale SOMENTE da FASE 4 do funil (nutrientes/solução natural) para o sintoma: "${symptom}".
-Mostre por que só mudar a alimentação não basta para resolver esse sintoma. Valorize ao máximo cada planta, ativo ou bactéria citada (${ingredients}):
-- Explique como esses ingredientes são usados há séculos por civilizações, sendo um “segredo milenar” da saúde natural.
-- Conte benefícios únicos para saúde (ex: gengiva, dentes, sensibilidade), usando linguagem acessível e empolgante.
-- Traga curiosidades ou mini-histórias: “Muitos povos já usavam essas substâncias para manter a saúde mesmo sem tecnologia moderna.”
-- Cite descobertas e estudos científicos de modo simples e com resultados práticos (“estudos mostram que esses ativos naturais podem reduzir o sintoma em até X%”).
-- Mostre por que só a alimentação dificilmente atinge esse efeito — é a união de ativos naturais + ciência que faz a diferença.
-Finalize com um gancho: “Milhares já viram resultado com essa abordagem. Quer saber como funciona?”
-NÃO cite marca nem nome de suplemento ainda. Seja persuasivo, fascinante e desperte desejo de saber mais. NÃO avance para outra fase.`
-        : `${prefix}You are Dr. Owl. ONLY answer for FUNNEL PHASE 4 (nutrients/natural solution) for the symptom: "${symptom}".
-Show why diet alone rarely solves this symptom. Fully highlight each plant, active or beneficial bacteria (${ingredients}):
-- Tell how they’ve been used for centuries by civilizations, as an “ancestral secret” for health.
-- Explain their unique benefits for health (e.g., gums, teeth, sensitivity), in an engaging and accessible way.
-- Bring fun facts or universal stories: “Many ancient peoples used these substances to maintain health even without modern technology.”
-- Cite scientific discoveries and studies simply, showing practical results (“studies show these natural actives can reduce the symptom by up to X%”).
-- Explain why diet alone rarely achieves this — it’s the synergy of natural actives + science that makes the difference.
-End with a hook: “Thousands have already seen results with this natural approach. Want to know how it works?”
-DO NOT mention brand or supplement name yet. Be persuasive, fascinating, and spark curiosity. DO NOT move to another phase.`;
+        ? `${prefix}Você é Dr. Owl. Fale apenas sobre ativos naturais relacionados a "${symptom}". Explique benefícios, fatos curiosos e como eles ajudam, sem citar marcas ou nomes de suplementos.`
+        : `${prefix}You are Dr. Owl. Speak only about natural actives related to "${symptom}". Explain benefits, curiosities, and how they help, without brand or supplement names.`;
       break;
     case 5: // Supplement/CTA
       prompt = idioma === "pt"
-        ? `${prefix}Você é Dr. Owl. Responda SOMENTE sobre a FASE 5 do funil (oferta/call-to-action) para o sintoma: "${symptom}". Apresente de forma indireta e sugestiva um suplemento natural como solução completa (NUNCA cite o nome do produto, apenas descreva diferenciais, benefícios e ativos: ${ingredients}, benefícios: ${benefits}). Diga que existem estudos válidos (${studies}) e convide o usuário para ver a avaliação ou vídeo (“Veja a avaliação completa — você vai se surpreender!”). Seja objetivo, não exagere.`
-        : `${prefix}You are Dr. Owl. ONLY talk about FUNNEL PHASE 5 (offer/call-to-action) for the symptom: "${symptom}". Present, indirectly and persuasively, a natural supplement as the complete solution (NEVER mention the product name, just describe benefits and actives: ${ingredients}, benefits: ${benefits}). Say that there are validated studies (${studies}) and invite the user to see the review or video (“See the full review — you’ll be surprised!”). Be direct, do not exaggerate.`;
+        ? `${prefix}Você é Dr. Owl. Apresente, de forma indireta e objetiva, um suplemento natural como solução para "${symptom}" (não cite o nome, só descreva benefícios e ativos: ${ingredients}, ${benefits}).`
+        : `${prefix}You are Dr. Owl. Present, indirectly and objectively, a natural supplement as a solution for "${symptom}" (don't mention the name, only describe benefits and actives: ${ingredients}, ${benefits}).`;
       break;
     default:
       prompt = idioma === "pt"
-        ? `${prefix}Explique de forma empática, científica e curta sobre o sintoma: "${symptom}".`
-        : `${prefix}Explain empathetically, scientifically and concisely about the symptom: "${symptom}".`;
+        ? `${prefix}Explique de forma empática e científica sobre o sintoma: "${symptom}".`
+        : `${prefix}Explain empathetically and scientifically about the symptom: "${symptom}".`;
   }
 
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -233,19 +211,19 @@ DO NOT mention brand or supplement name yet. Be persuasive, fascinating, and spa
     body: JSON.stringify({
       model: GPT_MODEL,
       messages: [{ role: "user", content: prompt }],
-      temperature: 0.45,
-      max_tokens: 300
+      temperature: 0.41,
+      max_tokens: 320
     })
   });
   const data = await res.json();
   return data.choices?.[0]?.message?.content?.trim() || prompt;
 }
 
-// === Handler principal ===
+// ==== HANDLER PRINCIPAL ====
 async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
-  const { message, selectedQuestion, sessionId, userName } = req.body; // userName pode vir do frontend também
+  const { message, selectedQuestion, sessionId, userName } = req.body;
   if (!message || typeof message !== "string" || !message.trim()) {
     return res.status(400).json({ error: "Mensagem vazia ou inválida." });
   }
@@ -255,12 +233,10 @@ async function handler(req, res) {
 
   if (!session.idioma) session.idioma = await detectLanguage(message);
 
-  // 1. Captura do nome na conversa (se não houver userName na sessão)
+  // 1. Pergunta nome, se ainda não coletou
   if (!session.userName && !session.anonymous) {
-    // Checa se o usuário respondeu com o nome após a primeira interação
     if (/^[a-zA-Zà-úÀ-Ú\s']{2,30}$/.test(message.trim())) {
       session.userName = message.trim().replace(/^\w/, c => c.toUpperCase());
-      // Não retorna mensagem extra — segue direto para a jornada do funil
     } else {
       return res.status(200).json({
         reply: session.idioma === "pt"
@@ -271,7 +247,8 @@ async function handler(req, res) {
     }
   }
 
-  // 2. Sintoma sempre reconhecido semanticamente
+  // 2. Sintoma: fuzzy > GPT exact > fallback semântico suplemento
+  let supplementName = null;
   if (!selectedQuestion) {
     let fuzzy = fuzzyFindSymptom(message);
     if (fuzzy) {
@@ -281,11 +258,12 @@ async function handler(req, res) {
       if (gptClosest && gptClosest !== "unknown") {
         session.symptom = gptClosest;
       } else {
-        let semanticFallback = await semanticSymptomFallback(message, session.idioma);
-        if (semanticFallback) {
-          session.symptom = semanticFallback;
+        let fallback = await semanticSymptomSupplementMatch(message, session.idioma);
+        if (fallback && fallback.symptom) {
+          session.symptom = fallback.symptom;
+          supplementName = fallback.supplement;
         } else {
-          session.symptom = message; // nunca trava, segue adiante
+          session.symptom = message;
         }
       }
     }
@@ -305,15 +283,17 @@ async function handler(req, res) {
     });
   }
 
-  // Busca qual suplemento cobre o sintoma detectado
-  const supplement = supplementsCatalog.find(s =>
-    Array.isArray(s.symptoms) &&
-    s.symptoms.some(sym => sym.toLowerCase() === session.symptom?.toLowerCase())
-  );
+  // Busca qual suplemento cobre o sintoma (preferencialmente do fallback, senão fuzzy)
+  let supplement = supplementName
+    ? supplementsCatalog.find(s => s.supplementName === supplementName)
+    : supplementsCatalog.find(s =>
+        Array.isArray(s.symptoms) &&
+        s.symptoms.some(sym => sym.toLowerCase() === session.symptom?.toLowerCase())
+      );
 
-  // Chamada personalizada sempre que houver nome
+  // Resposta e perguntas sempre PERSONALIZADAS
   const answer = await generateFunnelResponse(session.symptom, session.phase, session.idioma, session.userName);
-  const followupQuestions = await generateFollowUps(session.symptom, session.phase, session.idioma, session.userName);
+  const followupQuestions = await generateFollowUps(supplement?.supplementName, session.symptom, session.phase, session.idioma, session.userName);
 
   logEvent("chat", {
     sessionId,
