@@ -225,11 +225,18 @@ async function handler(req, res) {
   const session = sessionMemory[sessionId];
   
   if (!session.userName && !session.anonymous) {
-  return res.status(200).json({
-    reply: `Aqui no consultório do Dr. Owl, cada história é especial.
+  const askName =
+    session.idioma === "pt-BR"
+      ? `Aqui no consultório do Dr. Owl, cada história é especial.
 Me conta: como você gostaria de ser chamado(a) por mim?
 Pode ser seu nome, apelido, até um codinome — prometo guardar com carinho esse segredo!
-Se não quiser contar, sem problemas: sigo te acompanhando da melhor forma possível.`,
+Se não quiser contar, sem problemas: sigo te acompanhando da melhor forma possível.`
+      : `Here in Dr. Owl's office, every story is unique.
+Tell me: how would you like me to call you?
+It can be your first name, a nickname, or even a secret agent name—I promise to keep it safe!
+If you prefer not to share, no worries: I'll keep guiding you as best as I can.`;
+  return res.status(200).json({
+    reply: askName,
     followupQuestions: []
   });
 }
