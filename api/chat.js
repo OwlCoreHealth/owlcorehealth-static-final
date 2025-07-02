@@ -283,7 +283,8 @@ async function generateFunnelResponse(symptom, phase, idioma = "en", userName = 
 }
 
 // ==== HANDLER PRINCIPAL ====
-async function processSymptomFlow(session, message, res) {
+// ==== HANDLER PRINCIPAL ====
+async function processSymptomFlow(session, message, res, sessionId) {
   let fuzzy = fuzzyFindSymptom(message);
   if (fuzzy) {
     session.symptom = fuzzy;
@@ -292,9 +293,9 @@ async function processSymptomFlow(session, message, res) {
     if (gptClosest && gptClosest !== "unknown") {
       session.symptom = gptClosest;
     } else {
-      let semanticFallback = await semanticSymptomFallback(message, session.idioma);
-      if (semanticFallback) {
-        session.symptom = semanticFallback;
+      let semanticFallback = await semanticSymptomSupplementMatch(message, session.idioma);
+      if (semanticFallback && semanticFallback.symptom) {
+        session.symptom = semanticFallback.symptom;
       } else {
         session.symptom = message; // fallback absoluto, nunca trava
       }
@@ -309,33 +310,11 @@ async function processSymptomFlow(session, message, res) {
     s.symptoms.some(sym => sym.toLowerCase() === session.symptom?.toLowerCase())
   );
 
-const answer = await generateFunnelResponse(session.symptom, session.phase, session.idioma, session.userName);
-const followupQuestions = await generateFollowUps(supplement?.supplementName, session.symptom, session.phase, session.idioma, session.userName);
-
-
-return res.status(200).json({
-  reply: answer,
-  followupQuestions,
-  type: "default",
-  metadata: {
-    supplement: supplement?.supplementName,
-    supplementId: supplement?.supplementId,
-    symptom: session.symptom,
-    phase: session.phase,
-    idioma: session.idioma,
-    sessionId,
-    count: session.count,
-    userName: session.userName
-  },
-  legacyContent: answer + "\n\n" +
-    (followupQuestions.length
-      ? (session.idioma === "pt" ? "Vamos explorar mais:\nEscolha uma opção:\n" : "Let's explore further:\nChoose an option:\n") +
-        followupQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n")
-      : "")
-});
+  const answer = await generateFunnelResponse(session.symptom, session.phase, session.idioma, session.userName);
+  const followupQuestions = await generateFollowUps(supplement?.supplementName, session.symptom, session.phase, session.idioma, session.userName);
 
   logEvent("chat", {
-    sessionId: session.sessionId,
+    sessionId,
     phase: session.phase,
     supplement: supplement?.supplementName,
     symptom: session.symptom,
@@ -356,10 +335,15 @@ return res.status(200).json({
       symptom: session.symptom,
       phase: session.phase,
       idioma: session.idioma,
-      sessionId: session.sessionId,
+      sessionId,
       count: session.count,
       userName: session.userName
-    }
+    },
+    legacyContent: answer + "\n\n" +
+      (followupQuestions.length
+        ? (session.idioma === "pt" ? "Vamos explorar mais:\nEscolha uma opção:\n" : "Let's explore further:\nChoose an option:\n") +
+          followupQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n")
+        : "")
   });
 }
 
@@ -371,49 +355,49 @@ async function handler(req, res) {
     return res.status(400).json({ error: "Mensagem vazia ou inválida." });
   }
 
-  if (!sessionMemory[sessionId]) sessionMemory[sessionId] = { phase: 1, symptom: null, count: 0, idioma: "en", userName: null, anonymous: false };
+  if (!sessionMemory[sessionId]) sessionMemory[sessionId] = { phase: 1, symptom: null, count: 0, idioma: "en", userName: null, anonymous: false, sessionId };
   const session = sessionMemory[sessionId];
 
   if (!session.idioma) session.idioma = await detectLanguage(message);
 
   // ==== NOVO BLOCO para captura de nome + sintoma ====
-if (!session.userName && !session.anonymous) {
-  // Se o usuário digitou "skip", "pular", "anônimo", segue sem nome
-  if (/^(skip|pular|anônim[oa]|anonymous)$/i.test(message.trim())) {
-    session.anonymous = true;
-    // Peça o sintoma agora
-    return res.status(200).json({
-      reply: session.idioma === "pt"
-        ? "Pode me contar qual sintoma mais incomoda você? (Exemplo: dores, cansaço, digestão...)"
-        : "Can you tell me which symptom is bothering you the most? (Example: pain, fatigue, digestion...)",
-      followupQuestions: []
-    });
-  }
-  // Se mensagem parece um nome válido, salva e processa o último sintoma informado (se existir)
-  if (/^[a-zA-Zà-úÀ-Ú\s']{2,30}$/.test(message.trim())) {
-    session.userName = message.trim().replace(/^\w/, c => c.toUpperCase());
-    // Se já temos uma mensagem de sintoma armazenada antes do nome, processa o funil com ela!
-    if (session.lastSymptomMessage) {
-      return await processSymptomFlow(session, session.lastSymptomMessage, res);
-    } else {
-      // Se não há histórico de sintoma, peça agora
+  if (!session.userName && !session.anonymous) {
+    // Se o usuário digitou "skip", "pular", "anônimo", segue sem nome
+    if (/^(skip|pular|anônim[oa]|anonymous)$/i.test(message.trim())) {
+      session.anonymous = true;
+      // Peça o sintoma agora
       return res.status(200).json({
         reply: session.idioma === "pt"
-          ? `Obrigado, ${session.userName}! Agora me conte: qual sintoma mais incomoda você?`
-          : `Thank you, ${session.userName}! Now, tell me: which symptom is bothering you the most?`,
+          ? "Pode me contar qual sintoma mais incomoda você? (Exemplo: dores, cansaço, digestão...)"
+          : "Can you tell me which symptom is bothering you the most? (Example: pain, fatigue, digestion...)",
         followupQuestions: []
       });
     }
+    // Se mensagem parece um nome válido, salva e processa o último sintoma informado (se existir)
+    if (/^[a-zA-Zà-úÀ-Ú\s']{2,30}$/.test(message.trim())) {
+      session.userName = message.trim().replace(/^\w/, c => c.toUpperCase());
+      // Se já temos uma mensagem de sintoma armazenada antes do nome, processa o funil com ela!
+      if (session.lastSymptomMessage) {
+        return await processSymptomFlow(session, session.lastSymptomMessage, res, sessionId);
+      } else {
+        // Se não há histórico de sintoma, peça agora
+        return res.status(200).json({
+          reply: session.idioma === "pt"
+            ? `Obrigado, ${session.userName}! Agora me conte: qual sintoma mais incomoda você?`
+            : `Thank you, ${session.userName}! Now, tell me: which symptom is bothering you the most?`,
+          followupQuestions: []
+        });
+      }
+    }
+    // Caso não seja nome nem comando de anonimato, considera a mensagem como possível sintoma e pede o nome
+    session.lastSymptomMessage = message;
+    return res.status(200).json({
+      reply: session.idioma === "pt"
+        ? `Aqui no consultório do Dr. Owl, cada história é especial.\nMe conta: como você gostaria de ser chamado(a) por mim?\nPode ser seu nome, apelido, até um codinome — prometo guardar com carinho esse segredo!\nSe não quiser contar, digite "pular" ou "anônimo(a)".`
+        : `Here in Dr. Owl's office, every story is unique. Tell me: how would you like me to call you? It can be your first name, a nickname, or even a secret agent name—I promise to keep it safe! If you prefer not to share, just type "skip" or "anonymous" and I'll keep guiding you as best as I can.`,
+      followupQuestions: []
+    });
   }
-  // Caso não seja nome nem comando de anonimato, considera a mensagem como possível sintoma e pede o nome
-  session.lastSymptomMessage = message;
-  return res.status(200).json({
-    reply: session.idioma === "pt"
-      ? `Aqui no consultório do Dr. Owl, cada história é especial.\nMe conta: como você gostaria de ser chamado(a) por mim?\nPode ser seu nome, apelido, até um codinome — prometo guardar com carinho esse segredo!\nSe não quiser contar, digite "pular" ou "anônimo(a)".`
-      : `Here in Dr. Owl's office, every story is unique. Tell me: how would you like me to call you? It can be your first name, a nickname, or even a secret agent name—I promise to keep it safe! If you prefer not to share, just type "skip" or "anonymous" and I'll keep guiding you as best as I can.`,
-    followupQuestions: []
-  });
-}
 
   // 2. Sintoma: fuzzy > GPT exact > fallback semântico suplemento
   let supplementName = null;
