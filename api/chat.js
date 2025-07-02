@@ -315,8 +315,23 @@ const followupQuestions = await generateFollowUps(supplement?.supplementName, se
 
 return res.status(200).json({
   reply: answer,
-  followupQuestions, // aqui já vem pronto!
-  // ...outros campos
+  followupQuestions,
+  type: "default",
+  metadata: {
+    supplement: supplement?.supplementName,
+    supplementId: supplement?.supplementId,
+    symptom: session.symptom,
+    phase: session.phase,
+    idioma: session.idioma,
+    sessionId,
+    count: session.count,
+    userName: session.userName
+  },
+  legacyContent: answer + "\n\n" +
+    (followupQuestions.length
+      ? (session.idioma === "pt" ? "Vamos explorar mais:\nEscolha uma opção:\n" : "Let's explore further:\nChoose an option:\n") +
+        followupQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n")
+      : "")
 });
 
   logEvent("chat", {
