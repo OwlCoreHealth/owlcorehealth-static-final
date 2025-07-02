@@ -309,8 +309,9 @@ async function processSymptomFlow(session, message, res) {
     s.symptoms.some(sym => sym.toLowerCase() === session.symptom?.toLowerCase())
   );
 
- const answer = await generateFunnelResponse(...);
-const followupQuestions = await generateFollowUps(...);
+const answer = await generateFunnelResponse(session.symptom, session.phase, session.idioma, session.userName);
+const followupQuestions = await generateFollowUps(supplement?.supplementName, session.symptom, session.phase, session.idioma, session.userName);
+
 
 return res.status(200).json({
   reply: answer,
