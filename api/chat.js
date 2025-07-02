@@ -309,9 +309,14 @@ async function processSymptomFlow(session, message, res) {
     s.symptoms.some(sym => sym.toLowerCase() === session.symptom?.toLowerCase())
   );
 
-  // Resposta funil e perguntas
-  const answer = await generateFunnelResponse(session.symptom, session.phase, session.idioma, session.userName);
-  const followupQuestions = await generateFollowUps(session.symptom, session.phase, session.idioma, session.userName);
+ const answer = await generateFunnelResponse(...);
+const followupQuestions = await generateFollowUps(...);
+
+return res.status(200).json({
+  reply: answer,
+  followupQuestions, // aqui já vem pronto!
+  // ...outros campos
+});
 
   logEvent("chat", {
     sessionId: session.sessionId,
