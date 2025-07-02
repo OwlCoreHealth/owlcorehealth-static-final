@@ -189,14 +189,36 @@ async function generateFunnelResponse(symptom, phase, idioma = "en", userName = 
     (item.symptoms && item.symptoms.map(s => s.toLowerCase()).includes(symptom?.toLowerCase())) ||
     (item.keywords && item.keywords.map(k => k.toLowerCase()).includes(symptom?.toLowerCase()))
   );
-  const prefix = userName
-    ? (idioma === "pt" ? `Olá, ${userName}! ` : `Hi, ${userName}. `)
-    : "";
 
+  // Detecta sexo
+  let sexo = null;
+  if (userName) {
+    const nameTrim = userName.trim();
+    const isFeminine = /a$|ia$|eia$|ita$|ina$|ara$/i.test(nameTrim);
+    const isMasculine = /o$|io$|eo$|ito$|ino$|aro$/i.test(nameTrim);
+    if (isFeminine) sexo = "f";
+    else if (isMasculine) sexo = "m";
+  }
+  function getTitlePrefix(userName, idioma = "pt", sexo = null) {
+    if (!userName) return "";
+    if (idioma === "pt") {
+      if (sexo === "f") return `Sra. ${userName}`;
+      if (sexo === "m") return `Sr. ${userName}`;
+      return `Sr(a). ${userName}`;
+    } else {
+      if (sexo === "f") return `Ms. ${userName}`;
+      if (sexo === "m") return `Mr. ${userName}`;
+      return `${userName}`;
+    }
+  }
+  const prefixName = getTitlePrefix(userName, idioma, sexo);
+
+  // Mensagem fallback se não encontrar o sintoma
   if (!catalogItem) {
-    return idioma === "pt"
-      ? `${prefix}Desculpe, não consegui identificar seu sintoma. Pode reformular?`
-      : `${prefix}Sorry, I couldn't identify your symptom. Can you rephrase?`;
+    const fallback = idioma === "pt"
+      ? `Desculpe, não consegui identificar seu sintoma. Pode reformular?`
+      : `Sorry, I couldn't identify your symptom. Can you rephrase?`;
+    return prefixName ? `${prefixName}, ${fallback.charAt(0).toLowerCase()}${fallback.slice(1)}` : fallback;
   }
 
   const ingredients = (catalogItem.ingredients || []).join(", ");
@@ -205,35 +227,35 @@ async function generateFunnelResponse(symptom, phase, idioma = "en", userName = 
 
   let prompt = "";
   switch (phase) {
-    case 1: // Awareness
+    case 1:
       prompt = idioma === "pt"
-        ? `${prefix}Você é Dr. Owl, especialista em saúde natural. Fale SOMENTE da FASE 1 do funil (conscientização) para o sintoma: "${symptom}". Comece com uma pergunta provocativa ou frase de impacto curta, gerando empatia. Mostre que muitas pessoas passam por isso sem saber o real motivo, que muitas tentam de tudo mas o sintoma persiste. Explique de forma simples, humana e científica por que esse sintoma é um alerta importante do corpo. NÃO cite ingredientes, soluções, suplementos ou marcas. Finalize com um gancho provocando curiosidade.`
-        : `${prefix}You are Dr. Owl, a natural health expert. ONLY discuss FUNNEL PHASE 1 (awareness) for the symptom: "${symptom}". Start with a provocative question or impactful statement to create empathy. Mention that thousands struggle without knowing the cause, even after trying everything. Explain simply, empathetically, and scientifically why this symptom is a body signal. DO NOT mention ingredients, solutions, supplements, or brands. End with a curiosity hook.`;
+        ? `Você é Dr. Owl, especialista em saúde natural. Fale SOMENTE da FASE 1 do funil (conscientização) para o sintoma: "${symptom}". Comece com uma pergunta provocativa ou frase de impacto curta, gerando empatia. Mostre que muitas pessoas passam por isso sem saber o real motivo, que muitas tentam de tudo mas o sintoma persiste. Explique de forma simples, humana e científica por que esse sintoma é um alerta importante do corpo. NÃO cite ingredientes, soluções, suplementos ou marcas. Finalize com um gancho provocando curiosidade.`
+        : `You are Dr. Owl, a natural health expert. ONLY discuss FUNNEL PHASE 1 (awareness) for the symptom: "${symptom}". Start with a provocative question or impactful statement to create empathy. Mention that thousands struggle without knowing the cause, even after trying everything. Explain simply, empathetically, and scientifically why this symptom is a body signal. DO NOT mention ingredients, solutions, supplements, or brands. End with a curiosity hook.`;
       break;
-    case 2: // Severity
+    case 2:
       prompt = idioma === "pt"
-        ? `${prefix}Você é Dr. Owl. Fale apenas sobre a gravidade de ignorar o sintoma "${symptom}". Use exemplos reais, nunca exagere. Não cite soluções ou ingredientes. Finalize com uma pergunta provocativa.`
-        : `${prefix}You are Dr. Owl. Talk only about the risks of ignoring "${symptom}". Use real-world examples, don't exaggerate. Do not mention solutions or ingredients. End with a provocative question.`;
+        ? `Você é Dr. Owl. Fale apenas sobre a gravidade de ignorar o sintoma "${symptom}". Use exemplos reais, nunca exagere. Não cite soluções ou ingredientes. Finalize com uma pergunta provocativa.`
+        : `You are Dr. Owl. Talk only about the risks of ignoring "${symptom}". Use real-world examples, don't exaggerate. Do not mention solutions or ingredients. End with a provocative question.`;
       break;
-    case 3: // Proof
+    case 3:
       prompt = idioma === "pt"
-        ? `${prefix}Você é Dr. Owl. Prove cientificamente como o sintoma "${symptom}" pode ser revertido ou melhorado. Use dados, estatísticas ou resultados de estudos, de forma breve. NÃO cite suplemento ou solução, só prova.`
-        : `${prefix}You are Dr. Owl. Provide scientific proof that "${symptom}" can be improved or reversed. Use stats, studies or data, briefly. DO NOT mention supplements or solutions, just proof.`;
+        ? `Você é Dr. Owl. Prove cientificamente como o sintoma "${symptom}" pode ser revertido ou melhorado. Use dados, estatísticas ou resultados de estudos, de forma breve. NÃO cite suplemento ou solução, só prova.`
+        : `You are Dr. Owl. Provide scientific proof that "${symptom}" can be improved or reversed. Use stats, studies or data, briefly. DO NOT mention supplements or solutions, just proof.`;
       break;
-    case 4: // Nutrients / Natural Solution
+    case 4:
       prompt = idioma === "pt"
-        ? `${prefix}Você é Dr. Owl. Fale apenas sobre ativos naturais relacionados a "${symptom}". Explique benefícios, fatos curiosos e como eles ajudam, sem citar marcas ou nomes de suplementos.`
-        : `${prefix}You are Dr. Owl. Speak only about natural actives related to "${symptom}". Explain benefits, curiosities, and how they help, without brand or supplement names.`;
+        ? `Você é Dr. Owl. Fale apenas sobre ativos naturais relacionados a "${symptom}". Explique benefícios, fatos curiosos e como eles ajudam, sem citar marcas ou nomes de suplementos.`
+        : `You are Dr. Owl. Speak only about natural actives related to "${symptom}". Explain benefits, curiosities, and how they help, without brand or supplement names.`;
       break;
-    case 5: // Supplement/CTA
+    case 5:
       prompt = idioma === "pt"
-        ? `${prefix}Você é Dr. Owl. Apresente, de forma indireta e objetiva, um suplemento natural como solução para "${symptom}" (não cite o nome, só descreva benefícios e ativos: ${ingredients}, ${benefits}).`
-        : `${prefix}You are Dr. Owl. Present, indirectly and objectively, a natural supplement as a solution for "${symptom}" (don't mention the name, only describe benefits and actives: ${ingredients}, ${benefits}).`;
+        ? `Você é Dr. Owl. Apresente, de forma indireta e objetiva, um suplemento natural como solução para "${symptom}" (não cite o nome, só descreva benefícios e ativos: ${ingredients}, ${benefits}).`
+        : `You are Dr. Owl. Present, indirectly and objectively, a natural supplement as a solution for "${symptom}" (don't mention the name, only describe benefits and actives: ${ingredients}, ${benefits}).`;
       break;
     default:
       prompt = idioma === "pt"
-        ? `${prefix}Explique de forma empática e científica sobre o sintoma: "${symptom}".`
-        : `${prefix}Explain empathetically and scientifically about the symptom: "${symptom}".`;
+        ? `Explique de forma empática e científica sobre o sintoma: "${symptom}".`
+        : `Explain empathetically and scientifically about the symptom: "${symptom}".`;
   }
 
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -250,7 +272,14 @@ async function generateFunnelResponse(symptom, phase, idioma = "en", userName = 
     })
   });
   const data = await res.json();
-  return data.choices?.[0]?.message?.content?.trim() || prompt;
+  let response = data.choices?.[0]?.message?.content?.trim() || prompt;
+
+  // Aplica prefixo Sr./Sra./Mr./Ms. Nome, caso ainda não exista na resposta final!
+  if (prefixName && !response.toLowerCase().startsWith(prefixName.toLowerCase())) {
+    response = `${prefixName}, ${response.charAt(0).toLowerCase()}${response.slice(1)}`;
+  }
+
+  return response;
 }
 
 // ==== HANDLER PRINCIPAL ====
