@@ -2,7 +2,7 @@ import path from "path";
 import fs from "fs";
 import cosineSimilarity from "cosine-similarity";
 
-// Lê o catalogo de suplementos
+// Lê o catálogo de suplementos
 const catalogPath = path.join(process.cwd(), "api", "data", "symptoms_catalog.json");
 const supplementsCatalog = JSON.parse(fs.readFileSync(catalogPath, "utf8"));
 
@@ -20,7 +20,72 @@ const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const GPT_MODEL = "gpt-4o-mini";
 
 let sessionMemory = {};
-const QUESTION_LIMIT = 8;
+const QUESTION_LIMIT = 15;
+
+// === Perguntas prontos para cada fase e idioma ===
+const FUNIL_QUESTIONS = {
+  pt: {
+    1: [
+      nome => `Sr(a). ${nome}, já percebeu como pequenos sintomas podem esconder algo maior? Quer saber o que seu corpo está tentando avisar?`,
+      nome => `Sr(a). ${nome}, sabia que muitas pessoas ignoram esses sinais? Quer entender por que isso acontece?`,
+      nome => `Sr(a). ${nome}, você sente que está sempre tentando algo novo, mas nada resolve de verdade? Gostaria de saber o motivo?`
+    ],
+    2: [
+      nome => `Sr(a). ${nome}, você sabia que ignorar esse sintoma pode levar a consequências sérias? Quer conhecer casos reais?`,
+      nome => `Sr(a). ${nome}, alguma vez já pensou nos riscos de deixar esse desconforto para depois? Quer saber como evitar complicações?`,
+      nome => `Sr(a). ${nome}, se esse sintoma piorar, já imaginou como pode impactar seu dia a dia? Gostaria de saber mais?`
+    ],
+    3: [
+      nome => `Sr(a). ${nome}, gostaria de ver provas científicas de que é possível melhorar esse quadro?`,
+      nome => `Sr(a). ${nome}, você quer saber quais estudos comprovam que esse sintoma pode ser revertido?`,
+      nome => `Sr(a). ${nome}, sabia que milhares de pessoas já superaram isso com base em evidências? Quer conhecer exemplos?`
+    ],
+    4: [
+      nome => `Sr(a). ${nome}, quer descobrir quais ativos naturais podem ajudar no seu caso?`,
+      nome => `Sr(a). ${nome}, você gostaria de saber como a natureza pode ser sua aliada nessa jornada?`,
+      nome => `Sr(a). ${nome}, posso te contar quais ingredientes são reconhecidos por melhorar essa condição?`
+    ],
+    5: [
+      nome => `Sr(a). ${nome}, quer saber qual solução natural pode transformar seu bem-estar?`,
+      nome => `Sr(a). ${nome}, posso mostrar um caminho simples para começar a se sentir melhor ainda hoje?`,
+      nome => `Sr(a). ${nome}, está pronto para dar o próximo passo e experimentar uma abordagem diferente?`
+    ]
+  },
+  en: {
+    1: [
+      name => `Mr./Ms. ${name}, have you noticed how small symptoms can hide bigger issues? Want to know what your body is trying to tell you?`,
+      name => `Mr./Ms. ${name}, did you know many people ignore these signals? Curious to find out why?`,
+      name => `Mr./Ms. ${name}, do you feel like you keep trying new things but nothing really works? Want to know the real reason?`
+    ],
+    2: [
+      name => `Mr./Ms. ${name}, did you know ignoring this symptom can lead to serious consequences? Want to hear real stories?`,
+      name => `Mr./Ms. ${name}, have you ever thought about the risks of leaving this discomfort unchecked? Want to learn how to avoid complications?`,
+      name => `Mr./Ms. ${name}, if this gets worse, can you imagine how it might affect your daily life? Want to know more?`
+    ],
+    3: [
+      name => `Mr./Ms. ${name}, would you like to see scientific proof that this can be improved?`,
+      name => `Mr./Ms. ${name}, want to know which studies show this symptom can be reversed?`,
+      name => `Mr./Ms. ${name}, did you know thousands have overcome this based on real evidence? Want to see examples?`
+    ],
+    4: [
+      name => `Mr./Ms. ${name}, want to discover which natural actives can help in your case?`,
+      name => `Mr./Ms. ${name}, would you like to know how nature could be your ally in this journey?`,
+      name => `Mr./Ms. ${name}, can I tell you which ingredients are proven to help this condition?`
+    ],
+    5: [
+      name => `Mr./Ms. ${name}, want to know which natural solution can transform your well-being?`,
+      name => `Mr./Ms. ${name}, can I show you a simple path to start feeling better today?`,
+      name => `Mr./Ms. ${name}, are you ready to take the next step and try a different approach?`
+    ]
+  }
+};
+
+// === Utilitário: sorteia pergunta por fase, idioma e nome ===
+function getRandomQuestion(phase, idioma, userName) {
+  const arr = (FUNIL_QUESTIONS[idioma] && FUNIL_QUESTIONS[idioma][phase]) || [];
+  if (arr.length === 0) return "";
+  return arr[Math.floor(Math.random() * arr.length)](userName || "");
+}
 
 // ==== FUNÇÕES AUXILIARES ====
 
@@ -113,78 +178,53 @@ async function semanticSymptomSupplementMatch(userInput, idioma = "en") {
   } catch { return null; }
 }
 
-// Detecta idioma
+// Detecta idioma (PT padrão para pt-br/pt-pt)
 async function detectLanguage(text) {
-  return /[áéíóúãõç]/i.test(text) ? "pt" : "en";
+  if (/[áéíóúãõçêâôíàéúóàêãõ]/i.test(text)) return "pt";
+  if (/^[a-zA-Z0-9\s,.?!'"\-@]+$/.test(text)) return "en";
+  return "en";
 }
 
+// Responde curiosidade sobre o Dr. Owl ou perguntas abertas do usuário
+function drOwlAbout(idioma = "en") {
+  return idioma === "pt"
+    ? "Eu sou o Dr. Owl, seu especialista virtual em saúde natural e prevenção. Minha missão é ouvir sua história, analisar seus sintomas e, com base em ciência, te ajudar a cuidar do seu corpo de forma inteligente, humana e personalizada. Tudo com empatia, sem julgamentos e sempre pensando no seu bem-estar! Pode perguntar o que quiser — estou aqui para você."
+    : "I'm Dr. Owl, your virtual specialist in natural health and prevention. My mission is to listen to your story, analyze your symptoms, and, based on science, help you take care of your body in a smart, human, and personalized way. Always empathetic, never judgmental, and always focused on your well-being. You can ask me anything—I'm here for you!";
+}
+
+// Arrays de triggers para identificar perguntas abertas de curiosidade ou sobre o bot
+const BOT_TRIGGERS = [
+  /como você pode ajudar/i, /como podes ajudar/i, /como funciona/i, /fala sobre ti/i, /quem é você/i,
+  /who are you/i, /what can you do/i, /how can you help/i, /tell me about yourself/i, /your story/i
+];
+
+// ==== Perguntas por fase (usando arrays prontos)
 async function generateFollowUps(supplement, symptom, phase, idioma = "en", userName = null) {
   if (!symptom || !supplement) return [];
+  if (!userName) userName = ""; // fallback
 
-  // Detecta sexo com base na terminação do nome
-  let sexo = null;
-  if (userName) {
-    const nameTrim = userName.trim();
-    const isFeminine = /a$|ia$|eia$|ita$|ina$|ara$/i.test(nameTrim);
-    const isMasculine = /o$|io$|eo$|ito$|ino$|aro$/i.test(nameTrim);
-    if (isFeminine) sexo = "f";
-    else if (isMasculine) sexo = "m";
-  }
-
-  function getTitlePrefix(userName, idioma = "pt", sexo = null) {
-    if (!userName) return "";
-    if (idioma === "pt") {
-      if (sexo === "f") return `Sra. ${userName}`;
-      if (sexo === "m") return `Sr. ${userName}`;
-      return `Sr(a). ${userName}`;
-    } else {
-      if (sexo === "f") return `Ms. ${userName}`;
-      if (sexo === "m") return `Mr. ${userName}`;
-      return `${userName}`;
+  // Array de perguntas prontos (usando nome!)
+  let perguntasFase = [];
+  if (phase >= 1 && phase <= 5) {
+    perguntasFase.push(getRandomQuestion(phase, idioma, userName));
+    // Você pode adicionar sorteio de 2 a 3 perguntas por vez, se desejar
+    while (perguntasFase.length < 3) {
+      const q = getRandomQuestion(phase, idioma, userName);
+      if (!perguntasFase.includes(q)) perguntasFase.push(q);
     }
   }
-  const prefixName = getTitlePrefix(userName, idioma, sexo);
-
-  const prompt = idioma === "pt"
-    ? `Considere o suplemento (não cite o nome): "${supplement}". Crie 3 perguntas curtas, provocativas e pessoais para avançar no funil sobre o sintoma "${symptom}", fase ${phase}. Todas as perguntas DEVEM começar com o nome "${prefixName}". Exemplo de temas: 1. Consequências, 2. Curiosidade pessoal, 3. Solução natural. Não repita o sintoma, não use termos vagos.`
-    : `Consider the supplement (never say its name): "${supplement}". Create 3 short, provocative, and personal questions to move forward in the funnel about the symptom "${symptom}", phase ${phase}. All questions MUST start with the name "${prefixName}". Example topics: 1. Consequences, 2. Personal curiosity, 3. Natural solution. Don't repeat the symptom, don't use generic terms.`;
-
-  const res = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${OPENAI_API_KEY}`
-    },
-    body: JSON.stringify({
-      model: GPT_MODEL,
-      messages: [{ role: "user", content: prompt }],
-      temperature: 0.57,
-      max_tokens: 120
-    })
-  });
-  const data = await res.json();
-  const questions = data.choices?.[0]?.message?.content
-    ?.split(/\d+\.\s*|\n|\r/)
-    .map(q => q.trim())
-    .filter(q => q.length > 7 && !/^undefined/i.test(q))
-    .slice(0, 3) || [];
-
-  // Pós-processamento: força início com “Sr./Sra. Nome” ou “Mr./Ms. Name”
-  return questions.map(q => {
-    q = q.replace(/null|User's Name|\[User's Name\]|\[Nome do Usuário\]|\[Nome\]|Nome do Usuário/gi, "")
-         .replace(/\s+([,.?!])/g, '$1')
-         .replace(/\s{2,}/g, ' ')
-         .trim();
-    if (prefixName && !q.toLowerCase().startsWith(prefixName.toLowerCase())) {
-      // Só adiciona prefixo se ainda não existe
-      return `${prefixName}, ${q.charAt(0).toLowerCase()}${q.slice(1)}`;
-    }
-    return q;
-  });
+  return perguntasFase.filter(Boolean);
 }
 
 // Geração da resposta do funil (personalizada)
 async function generateFunnelResponse(symptom, phase, idioma = "en", userName = null) {
+  // Identifica perguntas abertas para respostas do Dr. Owl sobre si
+  for (const regex of BOT_TRIGGERS) {
+    if (typeof symptom === "string" && regex.test(symptom)) {
+      return drOwlAbout(idioma);
+    }
+  }
+
   const catalogItem = supplementsCatalog.find(item =>
     (item.symptoms && item.symptoms.map(s => s.toLowerCase()).includes(symptom?.toLowerCase())) ||
     (item.keywords && item.keywords.map(k => k.toLowerCase()).includes(symptom?.toLowerCase()))
@@ -283,7 +323,6 @@ async function generateFunnelResponse(symptom, phase, idioma = "en", userName = 
 }
 
 // ==== HANDLER PRINCIPAL ====
-// ==== HANDLER PRINCIPAL ====
 async function processSymptomFlow(session, message, res, sessionId) {
   let fuzzy = fuzzyFindSymptom(message);
   if (fuzzy) {
@@ -362,10 +401,8 @@ async function handler(req, res) {
 
   // ==== NOVO BLOCO para captura de nome + sintoma ====
   if (!session.userName && !session.anonymous) {
-    // Se o usuário digitou "skip", "pular", "anônimo", segue sem nome
     if (/^(skip|pular|anônim[oa]|anonymous)$/i.test(message.trim())) {
       session.anonymous = true;
-      // Peça o sintoma agora
       return res.status(200).json({
         reply: session.idioma === "pt"
           ? "Pode me contar qual sintoma mais incomoda você? (Exemplo: dores, cansaço, digestão...)"
@@ -373,14 +410,11 @@ async function handler(req, res) {
         followupQuestions: []
       });
     }
-    // Se mensagem parece um nome válido, salva e processa o último sintoma informado (se existir)
     if (/^[a-zA-Zà-úÀ-Ú\s']{2,30}$/.test(message.trim())) {
       session.userName = message.trim().replace(/^\w/, c => c.toUpperCase());
-      // Se já temos uma mensagem de sintoma armazenada antes do nome, processa o funil com ela!
       if (session.lastSymptomMessage) {
         return await processSymptomFlow(session, session.lastSymptomMessage, res, sessionId);
       } else {
-        // Se não há histórico de sintoma, peça agora
         return res.status(200).json({
           reply: session.idioma === "pt"
             ? `Obrigado, ${session.userName}! Agora me conte: qual sintoma mais incomoda você?`
@@ -389,7 +423,6 @@ async function handler(req, res) {
         });
       }
     }
-    // Caso não seja nome nem comando de anonimato, considera a mensagem como possível sintoma e pede o nome
     session.lastSymptomMessage = message;
     return res.status(200).json({
       reply: session.idioma === "pt"
@@ -399,7 +432,7 @@ async function handler(req, res) {
     });
   }
 
-  // 2. Sintoma: fuzzy > GPT exact > fallback semântico suplemento
+  // Sintoma: fuzzy > GPT exact > fallback semântico suplemento
   let supplementName = null;
   if (!selectedQuestion) {
     let fuzzy = fuzzyFindSymptom(message);
@@ -435,7 +468,6 @@ async function handler(req, res) {
     });
   }
 
-  // Busca qual suplemento cobre o sintoma (preferencialmente do fallback, senão fuzzy)
   let supplement = supplementName
     ? supplementsCatalog.find(s => s.supplementName === supplementName)
     : supplementsCatalog.find(s =>
@@ -443,15 +475,15 @@ async function handler(req, res) {
         s.symptoms.some(sym => sym.toLowerCase() === session.symptom?.toLowerCase())
       );
 
-  // Resposta e perguntas sempre PERSONALIZADAS
+  // PERSONALIZAÇÃO
   const answer = await generateFunnelResponse(session.symptom, session.phase, session.idioma, session.userName);
-const followupQuestions = await generateFollowUps(
-  supplement?.supplementName,
-  session.symptom,
-  session.phase,
-  session.idioma,
-  session.userName
-);
+  const followupQuestions = await generateFollowUps(
+    supplement?.supplementName,
+    session.symptom,
+    session.phase,
+    session.idioma,
+    session.userName
+  );
 
   logEvent("chat", {
     sessionId,
