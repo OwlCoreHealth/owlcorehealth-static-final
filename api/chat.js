@@ -2,25 +2,6 @@ import path from "path";
 import fs from "fs";
 import cosineSimilarity from "cosine-similarity";
 
-// === Novo: função de similaridade Levenshtein para tolerância a erro ortográfico ===
-function levenshtein(a, b) {
-  if (a.length === 0) return b.length;
-  if (b.length === 0) return a.length;
-  const matrix = Array.from({ length: a.length + 1 }, () => []);
-  for (let i = 0; i <= a.length; i++) matrix[i][0] = i;
-  for (let j = 0; j <= b.length; j++) matrix[0][j] = j;
-  for (let i = 1; i <= a.length; i++) {
-    for (let j = 1; j <= b.length; j++) {
-      matrix[i][j] = Math.min(
-        matrix[i-1][j] + 1,
-        matrix[i][j-1] + 1,
-        matrix[i-1][j-1] + (a[i-1].toLowerCase() === b[j-1].toLowerCase() ? 0 : 1)
-      );
-    }
-  }
-  return matrix[a.length][b.length];
-}
-
 // Lê o catalogo de suplementos
 const catalogPath = path.join(process.cwd(), "api", "data", "symptoms_catalog.json");
 const supplementsCatalog = JSON.parse(fs.readFileSync(catalogPath, "utf8"));
@@ -51,7 +32,6 @@ function textToVector(text) {
   words.forEach(w => freq[w] = (freq[w] || 0) + 1);
   return freq;
 }
-
 function fuzzyFindSymptom(userInput) {
   const allSymptoms = supplementsCatalog.flatMap(s => s.symptoms || []);
   const symptomNames = Array.from(new Set(allSymptoms));
@@ -68,21 +48,7 @@ function fuzzyFindSymptom(userInput) {
       bestSymptom = symptom;
     }
   }
-  // Novo: menor tolerância (0.4) se cosine falhar mas Levenshtein for aceitável
-  if (bestScore > 0.5) return bestSymptom;
-
-  // ====== Bloco extra para erros ortográficos ======
-  let minDist = 99, closestSymptom = null;
-  for (const symptom of symptomNames) {
-    const dist = levenshtein(userInput.toLowerCase(), symptom.toLowerCase());
-    if (dist < minDist && dist <= 3) { // tolera até 3 letras erradas
-      minDist = dist;
-      closestSymptom = symptom;
-    }
-  }
-  if (closestSymptom) return closestSymptom;
-
-  return null;
+  return bestScore > 0.5 ? bestSymptom : null;
 }
 
 // GPT: busca pelo nome exato de sintoma (backup do fuzzy)
@@ -123,8 +89,8 @@ async function semanticSymptomSupplementMatch(userInput, idioma = "en") {
   }));
 
   const prompt = idioma === "pt"
-    ? `O usuário escreveu: "${userInput}". Dada a lista de sintomas: [${allSymptoms.join(", ")}] e suplementos: ${JSON.stringify(allSupplements)}. Qual sintoma da lista mais se relaciona com o texto do usuário? Qual suplemento cobre esse sintoma? Responda em JSON: {"symptom": "nome do sintoma", "supplement": "nome do suplemento"}. Se não achar nada semelhante, retorne {"symptom":"unknown","supplement":"unknown"}.`
-    : `User wrote: "${userInput}". Given this list of symptoms: [${allSymptoms.join(", ")}] and this list of supplements: ${JSON.stringify(allSupplements)}. Which symptom from the list is most related to the user's input? Which supplement best covers this symptom? Reply as JSON: {"symptom": "symptom name", "supplement": "supplement name"}. If nothing is similar, return {"symptom":"unknown","supplement":"unknown"}.`;
+    ? `O usuário escreveu: "${userInput}". Dada a lista de sintomas: [${allSymptoms.join(", ")}] e suplementos: ${JSON.stringify(allSupplements)}. Qual sintoma da lista mais se relaciona com o texto do usuário? Qual suplemento cobre esse sintoma? Responda em JSON: {"symptom": "nome do sintoma", "supplement": "nome do suplemento"}.`
+    : `User wrote: "${userInput}". Given this list of symptoms: [${allSymptoms.join(", ")}] and this list of supplements: ${JSON.stringify(allSupplements)}. Which symptom from the list is most related to the user's input? Which supplement best covers this symptom? Reply as JSON: {"symptom": "symptom name", "supplement": "supplement name"}.`;
 
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
@@ -142,7 +108,7 @@ async function semanticSymptomSupplementMatch(userInput, idioma = "en") {
   const data = await res.json();
   try {
     let result = JSON.parse(data.choices?.[0]?.message?.content);
-    if (result?.symptom && result.symptom !== "unknown" && result?.supplement) return result;
+    if (result?.symptom && result?.supplement) return result;
     return null;
   } catch { return null; }
 }
@@ -154,11 +120,12 @@ async function detectLanguage(text) {
 
 // Perguntas follow-up, limpando resposta
 async function generateFollowUps(supplement, symptom, phase, idioma = "en", userName = null) {
+  // Se não houver sintoma ou suplemento, devolve vazio
   if (!symptom || !supplement) return [];
   const prefix = userName ? (idioma === "pt" ? `${userName}, ` : `${userName}, `) : "";
-  const prompt = idioma === "pt"
-    ? `Considere o suplemento (não cite o nome): "${supplement}". Crie 3 perguntas curtas, provocativas e pessoais para avançar no funil sobre o sintoma "${symptom}", fase ${phase}. Todas as perguntas DEVEM chamar o usuário pelo nome: "${userName}". Exemplo de temas: 1. Consequências, 2. Curiosidade pessoal, 3. Solução natural. Não repita o sintoma, não use termos vagos.`
-    : `Consider the supplement (never say its name): "${supplement}". Create 3 short, provocative, and personal questions to move forward in the funnel about the symptom "${symptom}", phase ${phase}. All questions MUST use the user's name: "${userName}". Example topics: 1. Consequences, 2. Personal curiosity, 3. Natural solution. Don't repeat the symptom, don't use generic terms.`;
+ const prompt = idioma === "pt"
+  ? `Considere o suplemento (não cite o nome): "${supplement}". Crie 3 perguntas curtas, provocativas e pessoais para avançar no funil sobre o sintoma "${symptom}", fase ${phase}. Todas as perguntas DEVEM chamar o usuário pelo nome: "${userName}". Exemplo de temas: 1. Consequências, 2. Curiosidade pessoal, 3. Solução natural. Não repita o sintoma, não use termos vagos.`
+  : `Consider the supplement (never say its name): "${supplement}". Create 3 short, provocative, and personal questions to move forward in the funnel about the symptom "${symptom}", phase ${phase}. All questions MUST use the user's name: "${userName}". Example topics: 1. Consequences, 2. Personal curiosity, 3. Natural solution. Don't repeat the symptom, don't use generic terms.`;
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: {
@@ -173,17 +140,19 @@ async function generateFollowUps(supplement, symptom, phase, idioma = "en", user
     })
   });
   const data = await res.json();
-  const questions = data.choices?.[0]?.message?.content
-    ?.split(/\d+\.\s*|\n|\r/)
-    .map(q => q.trim())
-    .filter(q => q.length > 7 && !/^undefined/i.test(q))
-    .slice(0, 3) || [];
-  return questions.map(q =>
-    q.replace(/\[User's Name\]|\[Nome do Usuário\]|\[Nome\]|User's Name|Nome do Usuário/gi, userName ? userName.charAt(0).toUpperCase() + userName.slice(1) : "")
-      .replace(/\s+([,.?!])/g, '$1')
-      .replace(/\s{2,}/g, ' ')
-      .trim()
-  );
+  // Limpa a resposta para só pegar frases válidas
+ const questions = data.choices?.[0]?.message?.content
+  ?.split(/\d+\.\s*|\n|\r/)
+  .map(q => q.trim())
+  .filter(q => q.length > 7 && !/^undefined/i.test(q))
+  .slice(0, 3) || [];
+return questions.map(q =>
+  q.replace(/\[User's Name\]|\[Nome do Usuário\]|\[Nome\]|User's Name|Nome do Usuário/gi, userName ? userName.charAt(0).toUpperCase() + userName.slice(1) : "")
+  .replace(/\s+([,.?!])/g, '$1') // remove espaço antes de pontuação, se sobrar
+  .replace(/\s{2,}/g, ' ')       // corrige múltiplos espaços
+  .trim()
+);
+
 }
 
 // Geração da resposta do funil (personalizada)
@@ -208,27 +177,27 @@ async function generateFunnelResponse(symptom, phase, idioma = "en", userName = 
 
   let prompt = "";
   switch (phase) {
-    case 1:
+    case 1: // Awareness
       prompt = idioma === "pt"
         ? `${prefix}Você é Dr. Owl, especialista em saúde natural. Fale SOMENTE da FASE 1 do funil (conscientização) para o sintoma: "${symptom}". Comece com uma pergunta provocativa ou frase de impacto curta, gerando empatia. Mostre que muitas pessoas passam por isso sem saber o real motivo, que muitas tentam de tudo mas o sintoma persiste. Explique de forma simples, humana e científica por que esse sintoma é um alerta importante do corpo. NÃO cite ingredientes, soluções, suplementos ou marcas. Finalize com um gancho provocando curiosidade.`
         : `${prefix}You are Dr. Owl, a natural health expert. ONLY discuss FUNNEL PHASE 1 (awareness) for the symptom: "${symptom}". Start with a provocative question or impactful statement to create empathy. Mention that thousands struggle without knowing the cause, even after trying everything. Explain simply, empathetically, and scientifically why this symptom is a body signal. DO NOT mention ingredients, solutions, supplements, or brands. End with a curiosity hook.`;
       break;
-    case 2:
+    case 2: // Severity
       prompt = idioma === "pt"
         ? `${prefix}Você é Dr. Owl. Fale apenas sobre a gravidade de ignorar o sintoma "${symptom}". Use exemplos reais, nunca exagere. Não cite soluções ou ingredientes. Finalize com uma pergunta provocativa.`
         : `${prefix}You are Dr. Owl. Talk only about the risks of ignoring "${symptom}". Use real-world examples, don't exaggerate. Do not mention solutions or ingredients. End with a provocative question.`;
       break;
-    case 3:
+    case 3: // Proof
       prompt = idioma === "pt"
         ? `${prefix}Você é Dr. Owl. Prove cientificamente como o sintoma "${symptom}" pode ser revertido ou melhorado. Use dados, estatísticas ou resultados de estudos, de forma breve. NÃO cite suplemento ou solução, só prova.`
         : `${prefix}You are Dr. Owl. Provide scientific proof that "${symptom}" can be improved or reversed. Use stats, studies or data, briefly. DO NOT mention supplements or solutions, just proof.`;
       break;
-    case 4:
+    case 4: // Nutrients / Natural Solution
       prompt = idioma === "pt"
         ? `${prefix}Você é Dr. Owl. Fale apenas sobre ativos naturais relacionados a "${symptom}". Explique benefícios, fatos curiosos e como eles ajudam, sem citar marcas ou nomes de suplementos.`
         : `${prefix}You are Dr. Owl. Speak only about natural actives related to "${symptom}". Explain benefits, curiosities, and how they help, without brand or supplement names.`;
       break;
-    case 5:
+    case 5: // Supplement/CTA
       prompt = idioma === "pt"
         ? `${prefix}Você é Dr. Owl. Apresente, de forma indireta e objetiva, um suplemento natural como solução para "${symptom}" (não cite o nome, só descreva benefícios e ativos: ${ingredients}, ${benefits}).`
         : `${prefix}You are Dr. Owl. Present, indirectly and objectively, a natural supplement as a solution for "${symptom}" (don't mention the name, only describe benefits and actives: ${ingredients}, ${benefits}).`;
@@ -266,9 +235,9 @@ async function processSymptomFlow(session, message, res) {
     if (gptClosest && gptClosest !== "unknown") {
       session.symptom = gptClosest;
     } else {
-      let fallback = await semanticSymptomSupplementMatch(message, session.idioma);
-      if (fallback && fallback.symptom && fallback.symptom !== "unknown") {
-        session.symptom = fallback.symptom;
+      let semanticFallback = await semanticSymptomFallback(message, session.idioma);
+      if (semanticFallback) {
+        session.symptom = semanticFallback;
       } else {
         session.symptom = message; // fallback absoluto, nunca trava
       }
@@ -277,13 +246,15 @@ async function processSymptomFlow(session, message, res) {
   session.phase = 1;
   session.count = 1;
 
+  // Busca suplemento relacionado
   const supplement = supplementsCatalog.find(s =>
     Array.isArray(s.symptoms) &&
     s.symptoms.some(sym => sym.toLowerCase() === session.symptom?.toLowerCase())
   );
 
+  // Resposta funil e perguntas
   const answer = await generateFunnelResponse(session.symptom, session.phase, session.idioma, session.userName);
-  const followupQuestions = await generateFollowUps(supplement?.supplementName, session.symptom, session.phase, session.idioma, session.userName);
+  const followupQuestions = await generateFollowUps(session.symptom, session.phase, session.idioma, session.userName);
 
   logEvent("chat", {
     sessionId: session.sessionId,
@@ -322,45 +293,51 @@ async function handler(req, res) {
     return res.status(400).json({ error: "Mensagem vazia ou inválida." });
   }
 
-  if (!sessionMemory[sessionId]) sessionMemory[sessionId] = { phase: 1, symptom: null, count: 0, idioma: "en", userName: null, anonymous: false, sessionId };
+  if (!sessionMemory[sessionId]) sessionMemory[sessionId] = { phase: 1, symptom: null, count: 0, idioma: "en", userName: null, anonymous: false };
   const session = sessionMemory[sessionId];
 
   if (!session.idioma) session.idioma = await detectLanguage(message);
 
   // ==== NOVO BLOCO para captura de nome + sintoma ====
-  if (!session.userName && !session.anonymous) {
-    if (/^(skip|pular|anônim[oa]|anonymous)$/i.test(message.trim())) {
-      session.anonymous = true;
-      return res.status(200).json({
-        reply: session.idioma === "pt"
-          ? "Pode me contar qual sintoma mais incomoda você? (Exemplo: dores, cansaço, digestão...)"
-          : "Can you tell me which symptom is bothering you the most? (Example: pain, fatigue, digestion...)",
-        followupQuestions: []
-      });
-    }
-    if (/^[a-zA-Zà-úÀ-Ú\s']{2,30}$/.test(message.trim())) {
-      session.userName = message.trim().replace(/^\w/, c => c.toUpperCase());
-      if (session.lastSymptomMessage) {
-        return await processSymptomFlow(session, session.lastSymptomMessage, res);
-      } else {
-        return res.status(200).json({
-          reply: session.idioma === "pt"
-            ? `Obrigado, ${session.userName}! Agora me conte: qual sintoma mais incomoda você?`
-            : `Thank you, ${session.userName}! Now, tell me: which symptom is bothering you the most?`,
-          followupQuestions: []
-        });
-      }
-    }
-    session.lastSymptomMessage = message;
+if (!session.userName && !session.anonymous) {
+  // Se o usuário digitou "skip", "pular", "anônimo", segue sem nome
+  if (/^(skip|pular|anônim[oa]|anonymous)$/i.test(message.trim())) {
+    session.anonymous = true;
+    // Peça o sintoma agora
     return res.status(200).json({
       reply: session.idioma === "pt"
-        ? `Aqui no consultório do Dr. Owl, cada história é especial.\nMe conta: como você gostaria de ser chamado(a) por mim?\nPode ser seu nome, apelido, até um codinome — prometo guardar com carinho esse segredo!\nSe não quiser contar, digite "pular" ou "anônimo(a)".`
-        : `Here in Dr. Owl's office, every story is unique. Tell me: how would you like me to call you? It can be your first name, a nickname, or even a secret agent name—I promise to keep it safe! If you prefer not to share, just type "skip" or "anonymous" and I'll keep guiding you as best as I can.`,
+        ? "Pode me contar qual sintoma mais incomoda você? (Exemplo: dores, cansaço, digestão...)"
+        : "Can you tell me which symptom is bothering you the most? (Example: pain, fatigue, digestion...)",
       followupQuestions: []
     });
   }
+  // Se mensagem parece um nome válido, salva e processa o último sintoma informado (se existir)
+  if (/^[a-zA-Zà-úÀ-Ú\s']{2,30}$/.test(message.trim())) {
+    session.userName = message.trim().replace(/^\w/, c => c.toUpperCase());
+    // Se já temos uma mensagem de sintoma armazenada antes do nome, processa o funil com ela!
+    if (session.lastSymptomMessage) {
+      return await processSymptomFlow(session, session.lastSymptomMessage, res);
+    } else {
+      // Se não há histórico de sintoma, peça agora
+      return res.status(200).json({
+        reply: session.idioma === "pt"
+          ? `Obrigado, ${session.userName}! Agora me conte: qual sintoma mais incomoda você?`
+          : `Thank you, ${session.userName}! Now, tell me: which symptom is bothering you the most?`,
+        followupQuestions: []
+      });
+    }
+  }
+  // Caso não seja nome nem comando de anonimato, considera a mensagem como possível sintoma e pede o nome
+  session.lastSymptomMessage = message;
+  return res.status(200).json({
+    reply: session.idioma === "pt"
+      ? `Aqui no consultório do Dr. Owl, cada história é especial.\nMe conta: como você gostaria de ser chamado(a) por mim?\nPode ser seu nome, apelido, até um codinome — prometo guardar com carinho esse segredo!\nSe não quiser contar, digite "pular" ou "anônimo(a)".`
+      : `Here in Dr. Owl's office, every story is unique. Tell me: how would you like me to call you? It can be your first name, a nickname, or even a secret agent name—I promise to keep it safe! If you prefer not to share, just type "skip" or "anonymous" and I'll keep guiding you as best as I can.`,
+    followupQuestions: []
+  });
+}
 
-  // Sintoma: fuzzy > GPT exact > fallback semântico suplemento
+  // 2. Sintoma: fuzzy > GPT exact > fallback semântico suplemento
   let supplementName = null;
   if (!selectedQuestion) {
     let fuzzy = fuzzyFindSymptom(message);
@@ -372,7 +349,7 @@ async function handler(req, res) {
         session.symptom = gptClosest;
       } else {
         let fallback = await semanticSymptomSupplementMatch(message, session.idioma);
-        if (fallback && fallback.symptom && fallback.symptom !== "unknown") {
+        if (fallback && fallback.symptom) {
           session.symptom = fallback.symptom;
           supplementName = fallback.supplement;
         } else {
@@ -396,6 +373,7 @@ async function handler(req, res) {
     });
   }
 
+  // Busca qual suplemento cobre o sintoma (preferencialmente do fallback, senão fuzzy)
   let supplement = supplementName
     ? supplementsCatalog.find(s => s.supplementName === supplementName)
     : supplementsCatalog.find(s =>
@@ -403,8 +381,11 @@ async function handler(req, res) {
         s.symptoms.some(sym => sym.toLowerCase() === session.symptom?.toLowerCase())
       );
 
+  // Resposta e perguntas sempre PERSONALIZADAS
   const answer = await generateFunnelResponse(session.symptom, session.phase, session.idioma, session.userName);
   const followupQuestions = await generateFollowUps(supplement?.supplementName, session.symptom, session.phase, session.idioma, session.userName);
+// ...depois de gerar o array questions
+return questions.map(q => q.replace(/\[User's Name\]/gi, userName || "").replace(/\[Nome do Usuário\]/gi, userName || ""));
 
   logEvent("chat", {
     sessionId,
