@@ -215,33 +215,52 @@ DO NOT mention brand or supplement name yet. Be persuasive, fascinating, and spa
 async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
-  const { message, selectedQuestion, sessionId } = req.body;
+  let { message, selectedQuestion, sessionId } = req.body;
 
   if (!message || typeof message !== "string" || !message.trim()) {
     return res.status(400).json({ error: "Mensagem vazia ou inválida." });
   }
 
-  if (!sessionMemory[sessionId]) sessionMemory[sessionId] = { phase: 1, symptom: null, count: 0, idioma: "en" };
+  if (!sessionMemory[sessionId]) sessionMemory[sessionId] = { phase: 1, symptom: null, count: 0, idioma: "en-US" };
   const session = sessionMemory[sessionId];
-  
-  if (!session.userName && !session.anonymous) {
-  const askName =
-    session.idioma === "pt-BR"
-      ? `Aqui no consultório do Dr. Owl, cada história é especial.
-Me conta: como você gostaria de ser chamado(a) por mim?
-Pode ser seu nome, apelido, até um codinome — prometo guardar com carinho esse segredo!
-Se não quiser contar, sem problemas: sigo te acompanhando da melhor forma possível.`
-      : `Here in Dr. Owl's office, every story is unique.
-Tell me: how would you like me to call you?
-It can be your first name, a nickname, or even a secret agent name—I promise to keep it safe!
-If you prefer not to share, no worries: I'll keep guiding you as best as I can.`;
-  return res.status(200).json({
-    reply: askName,
-    followupQuestions: []
-  });
-}
 
+  // Detecta idioma logo no início
   if (!session.idioma) session.idioma = await detectLanguage(message);
+
+  // PEDIDO DE NOME (primeira rodada)
+  if (!session.userName && !session.anonymous && !session.tempMessage) {
+    // Salva sintoma original para usar depois
+    session.tempMessage = message;
+    return res.status(200).json({
+      reply: session.idioma === "pt-BR"
+        ? `Aqui no consultório do Dr. Owl, cada história é especial.\nMe conta: como você gostaria de ser chamado(a) por mim?\nPode ser seu nome, apelido, até um codinome — prometo guardar com carinho esse segredo!\nSe não quiser contar, sem problemas: sigo te acompanhando da melhor forma possível.`
+        : `Here in Dr. Owl's office, every story is unique.\nTell me: how would you like me to call you?\nIt can be your first name, a nickname, or even a secret agent name—I promise to keep it safe!\nIf you prefer not to share, no worries: I'll keep guiding you as best as I can.`,
+      followupQuestions: []
+    });
+  }
+
+  // SALVA O NOME DO USUÁRIO (segunda rodada)
+  if (session.tempMessage && !session.userName && !session.anonymous) {
+    const nameOrRefuse = message.trim().toLowerCase();
+    // Aqui aceita qualquer coisa como nome, ou trata como anônimo se usuário recusar
+    if (
+      nameOrRefuse === "não" ||
+      nameOrRefuse === "prefiro não informar" ||
+      nameOrRefuse === "anonimo" ||
+      nameOrRefuse === "anonymous" ||
+      nameOrRefuse === "skip" ||
+      nameOrRefuse === "no"
+    ) {
+      session.anonymous = true;
+    } else {
+      session.userName = message.trim();
+    }
+    // Após salvar, pega a mensagem original do sintoma para iniciar o funil
+    message = session.tempMessage;
+    delete session.tempMessage;
+    // (Segue fluxo do funil normal daqui pra baixo)
+  }
+  // --------- (restante do handler segue igual)
 
   // Fuzzy matching sintoma, depois GPT se falhar
   if (!selectedQuestion) {
