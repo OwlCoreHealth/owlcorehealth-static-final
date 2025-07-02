@@ -222,6 +222,16 @@ async function handler(req, res) {
 
   if (!sessionMemory[sessionId]) sessionMemory[sessionId] = { phase: 1, symptom: null, count: 0, idioma: "en" };
   const session = sessionMemory[sessionId];
+  
+  if (!session.userName && !session.anonymous) {
+  return res.status(200).json({
+    reply: `Aqui no consultório do Dr. Owl, cada história é especial.
+Me conta: como você gostaria de ser chamado(a) por mim?
+Pode ser seu nome, apelido, até um codinome — prometo guardar com carinho esse segredo!
+Se não quiser contar, sem problemas: sigo te acompanhando da melhor forma possível.`,
+    followupQuestions: []
+  });
+}
 
   if (!session.idioma) session.idioma = await detectLanguage(message);
 
