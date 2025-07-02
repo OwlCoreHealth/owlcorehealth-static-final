@@ -82,8 +82,7 @@ async function findClosestSymptom(userInput, idioma = "en") {
 
 // Detecta idioma
 async function detectLanguage(text) {
-  // Se encontrar caracteres típicos do português, retorna "pt-BR", senão "en-US"
-  return /[áéíóúãõç]/i.test(text) ? "pt-BR" : "en-US";
+  return /[áéíóúãõç]/i.test(text) ? "pt" : "en";
 }
 
 // Geração de perguntas follow-up
@@ -111,7 +110,7 @@ async function generateFollowUps(supplement, symptom, phase, idioma = "en") {
 
 // ... (importações e funções auxiliares acima)
 
-async function generateFunnelResponse(symptom, phase, idioma = "en", session = {}) {
+async function generateFunnelResponse(symptom, phase, idioma = "en") {
   // Busca o objeto do sintoma/suplemento correspondente
   const catalogItem = supplementsCatalog.find(item =>
     (item.symptoms && item.symptoms.map(s => s.toLowerCase()).includes(symptom?.toLowerCase())) ||
@@ -129,47 +128,39 @@ async function generateFunnelResponse(symptom, phase, idioma = "en", session = {
   const benefits = (catalogItem.benefits || []).join(" ");
   const studies = (catalogItem.studies || []).join(" ");
 
-  // PERSONALIZAÇÃO PELO NOME
-  const userName = session?.userName ? session.userName.trim() : null;
-  const addressUser = userName
-    ? (idioma === "pt"
-        ? `Sempre trate o usuário pelo nome (“${userName}”) nas respostas, de forma natural e acolhedora (ex: “${userName}, muitas pessoas sentem...”, “Fique tranquilo(a), ${userName}...” ). `
-        : `Always address the user by name (“${userName}”) in your answers, naturally and warmly (e.g., “${userName}, many people experience...”, “Don't worry, ${userName}...” ). `)
-    : "";
-
   // Prompts por fase:
-  let prompt = "";
-  switch (phase) {
-    case 1: // Awareness
-      prompt = idioma === "pt"
-        ? `Você é Dr. Owl, especialista em saúde natural. ${addressUser}Fale SOMENTE da FASE 1 do funil (conscientização) para o sintoma: "${symptom}". 
+let prompt = "";
+switch (phase) {
+  case 1: // Awareness
+  prompt = idioma === "pt"
+    ? `Você é Dr. Owl, especialista em saúde natural. Fale SOMENTE da FASE 1 do funil (conscientização) para o sintoma: "${symptom}". 
 Comece com uma pergunta provocativa ou frase de impacto curta, gerando empatia: “Você sente que faz tudo certo, mas o cansaço nunca passa?” 
 Mostre que milhares de pessoas passam por isso sem saber o real motivo — que muitas tentam de tudo, mas o sintoma persiste.
 Explique de forma simples, humana e científica por que esse sintoma é um alerta importante do corpo e não uma fraqueza. 
 NÃO cite ingredientes, soluções, suplementos ou marcas. 
 Finalize com um gancho provocando curiosidade (“Você sabia que ignorar esses sinais pode ser mais perigoso do que parece?”). 
 Não avance para outras fases. Seja persuasivo, humano e incentive o leitor a refletir.`
-        : `You are Dr. Owl, a natural health expert. ${addressUser}ONLY discuss FUNNEL PHASE 1 (awareness) for the symptom: "${symptom}". 
+    : `You are Dr. Owl, a natural health expert. ONLY discuss FUNNEL PHASE 1 (awareness) for the symptom: "${symptom}". 
 Start with a provocative question or impactful statement to create empathy: “Have you ever felt like you’re doing everything right, but nothing changes?” 
 Mention that thousands of people struggle with this without knowing the real cause—even after trying everything, the symptom remains.
 Explain simply, empathetically, and scientifically why this symptom is an important signal from the body—not a weakness.
 DO NOT mention ingredients, solutions, supplements, or brands. 
 End with a hook to spark curiosity (“Did you know ignoring these signals could be more dangerous than it seems?”). 
 Do not move to the next phase. Be persuasive, human, and encourage reflection.`;
-      break;
-    case 2: // Severity
-      prompt = idioma === "pt"
-        ? `Você é Dr. Owl. ${addressUser}Responda SOMENTE sobre a FASE 2 do funil (gravidade) para o sintoma: "${symptom}". Mostre de forma curta e científica os riscos de ignorar esse sintoma, usando estatísticas moderadas e exemplos (“ignorar já causou problemas a milhares de pessoas”). Não cite soluções, nem ingredientes. Termine com gancho (“A ciência já provou o impacto desses sintomas. Quer ver os dados?”). Não avance de fase.`
-        : `You are Dr. Owl. ${addressUser}ONLY address FUNNEL PHASE 2 (severity) for the symptom: "${symptom}". Briefly and scientifically, describe the risks of ignoring this symptom, using moderate statistics and universal examples (“ignoring this has affected thousands”). Do not mention solutions or ingredients. End with a hook (“Science has already proven the impact. Want to see the data?”). Do not move forward.`;
-      break;
-    case 3: // Proof
-      prompt = idioma === "pt"
-        ? `Você é Dr. Owl. ${addressUser}Fale SOMENTE da FASE 3 do funil (prova científica) para o sintoma: "${symptom}". Dê dados reais, resultados de estudos ou estatísticas (“estudos com milhares mostram que…”). NÃO cite suplemento ou solução, só prova. Termine com um gancho (“O que a ciência recomenda para reverter isso?”). Não avance de fase.`
-        : `You are Dr. Owl. ${addressUser}ONLY talk about FUNNEL PHASE 3 (scientific proof) for the symptom: "${symptom}". Provide real data, study results, or statistics (“studies with thousands have shown…”). DO NOT mention supplements or solutions, only proof. End with a hook (“What does science recommend to reverse this?”). Do not move forward.`;
-      break;
-    case 4: // Nutrients / Natural Solution
-      prompt = idioma === "pt"
-        ? `Você é Dr. Owl. ${addressUser}Fale SOMENTE da FASE 4 do funil (nutrientes/solução natural) para o sintoma: "${symptom}".
+  break;
+  case 2: // Severity
+    prompt = idioma === "pt"
+      ? `Você é Dr. Owl. Responda SOMENTE sobre a FASE 2 do funil (gravidade) para o sintoma: "${symptom}". Mostre de forma curta e científica os riscos de ignorar esse sintoma, usando estatísticas moderadas e exemplos (“ignorar já causou problemas a milhares de pessoas”). Não cite soluções, nem ingredientes. Termine com gancho (“A ciência já provou o impacto desses sintomas. Quer ver os dados?”). Não avance de fase.`
+      : `You are Dr. Owl. ONLY address FUNNEL PHASE 2 (severity) for the symptom: "${symptom}". Briefly and scientifically, describe the risks of ignoring this symptom, using moderate statistics and universal examples (“ignoring this has affected thousands”). Do not mention solutions or ingredients. End with a hook (“Science has already proven the impact. Want to see the data?”). Do not move forward.`;
+    break;
+  case 3: // Proof
+    prompt = idioma === "pt"
+      ? `Você é Dr. Owl. Fale SOMENTE da FASE 3 do funil (prova científica) para o sintoma: "${symptom}". Dê dados reais, resultados de estudos ou estatísticas (“estudos com milhares mostram que…”). NÃO cite suplemento ou solução, só prova. Termine com um gancho (“O que a ciência recomenda para reverter isso?”). Não avance de fase.`
+      : `You are Dr. Owl. ONLY talk about FUNNEL PHASE 3 (scientific proof) for the symptom: "${symptom}". Provide real data, study results, or statistics (“studies with thousands have shown…”). DO NOT mention supplements or solutions, only proof. End with a hook (“What does science recommend to reverse this?”). Do not move forward.`;
+    break;
+  case 4: // Nutrients / Natural Solution
+  prompt = idioma === "pt"
+    ? `Você é Dr. Owl. Fale SOMENTE da FASE 4 do funil (nutrientes/solução natural) para o sintoma: "${symptom}".
 Mostre por que só mudar a alimentação não basta para resolver esse sintoma. Valorize ao máximo cada planta, ativo ou bactéria citada (${ingredients}):
 - Explique como esses ingredientes são usados há séculos por civilizações, sendo um “segredo milenar” da saúde natural.
 - Conte benefícios únicos para saúde (ex: gengiva, dentes, sensibilidade), usando linguagem acessível e empolgante.
@@ -178,7 +169,7 @@ Mostre por que só mudar a alimentação não basta para resolver esse sintoma. 
 - Mostre por que só a alimentação dificilmente atinge esse efeito — é a união de ativos naturais + ciência que faz a diferença.
 Finalize com um gancho: “Milhares já viram resultado com essa abordagem. Quer saber como funciona?”
 NÃO cite marca nem nome de suplemento ainda. Seja persuasivo, fascinante e desperte desejo de saber mais. NÃO avance para outra fase.`
-        : `You are Dr. Owl. ${addressUser}ONLY answer for FUNNEL PHASE 4 (nutrients/natural solution) for the symptom: "${symptom}".
+    : `You are Dr. Owl. ONLY answer for FUNNEL PHASE 4 (nutrients/natural solution) for the symptom: "${symptom}".
 Show why diet alone rarely solves this symptom. Fully highlight each plant, active or beneficial bacteria (${ingredients}):
 - Tell how they’ve been used for centuries by civilizations, as an “ancestral secret” for health.
 - Explain their unique benefits for health (e.g., gums, teeth, sensitivity), in an engaging and accessible way.
@@ -187,17 +178,17 @@ Show why diet alone rarely solves this symptom. Fully highlight each plant, acti
 - Explain why diet alone rarely achieves this — it’s the synergy of natural actives + science that makes the difference.
 End with a hook: “Thousands have already seen results with this natural approach. Want to know how it works?”
 DO NOT mention brand or supplement name yet. Be persuasive, fascinating, and spark curiosity. DO NOT move to another phase.`;
-      break;
-    case 5: // Supplement/CTA
-      prompt = idioma === "pt"
-        ? `Você é Dr. Owl. ${addressUser}Responda SOMENTE sobre a FASE 5 do funil (oferta/call-to-action) para o sintoma: "${symptom}". Apresente de forma indireta e sugestiva um suplemento natural como solução completa (NUNCA cite o nome do produto, apenas descreva diferenciais, benefícios e ativos: ${ingredients}, benefícios: ${benefits}). Diga que existem estudos válidos (${studies}) e convide o usuário para ver a avaliação ou vídeo (“Veja a avaliação completa — você vai se surpreender!”). Seja objetivo, não exagere.`
-        : `You are Dr. Owl. ${addressUser}ONLY talk about FUNNEL PHASE 5 (offer/call-to-action) for the symptom: "${symptom}". Present, indirectly and persuasively, a natural supplement as the complete solution (NEVER mention the product name, just describe benefits and actives: ${ingredients}, benefits: ${benefits}). Say that there are validated studies (${studies}) and invite the user to see the review or video (“See the full review — you’ll be surprised!”). Be direct, do not exaggerate.`;
-      break;
-    default: // fallback
-      prompt = idioma === "pt"
-        ? `Explique de forma empática, científica e curta sobre o sintoma: "${symptom}".`
-        : `Explain empathetically, scientifically and concisely about the symptom: "${symptom}".`;
-  }
+  break;
+  case 5: // Supplement/CTA
+    prompt = idioma === "pt"
+      ? `Você é Dr. Owl. Responda SOMENTE sobre a FASE 5 do funil (oferta/call-to-action) para o sintoma: "${symptom}". Apresente de forma indireta e sugestiva um suplemento natural como solução completa (NUNCA cite o nome do produto, apenas descreva diferenciais, benefícios e ativos: ${ingredients}, benefícios: ${benefits}). Diga que existem estudos válidos (${studies}) e convide o usuário para ver a avaliação ou vídeo (“Veja a avaliação completa — você vai se surpreender!”). Seja objetivo, não exagere.`
+      : `You are Dr. Owl. ONLY talk about FUNNEL PHASE 5 (offer/call-to-action) for the symptom: "${symptom}". Present, indirectly and persuasively, a natural supplement as the complete solution (NEVER mention the product name, just describe benefits and actives: ${ingredients}, benefits: ${benefits}). Say that there are validated studies (${studies}) and invite the user to see the review or video (“See the full review — you’ll be surprised!”). Be direct, do not exaggerate.`;
+    break;
+  default: // fallback
+    prompt = idioma === "pt"
+      ? `Explique de forma empática, científica e curta sobre o sintoma: "${symptom}".`
+      : `Explain empathetically, scientifically and concisely about the symptom: "${symptom}".`;
+}
 
   // Chamada para o GPT
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -223,63 +214,16 @@ DO NOT mention brand or supplement name yet. Be persuasive, fascinating, and spa
 async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
-  let { message, selectedQuestion, sessionId } = req.body;
+  const { message, selectedQuestion, sessionId } = req.body;
 
   if (!message || typeof message !== "string" || !message.trim()) {
     return res.status(400).json({ error: "Mensagem vazia ou inválida." });
   }
 
-  if (!sessionMemory[sessionId]) sessionMemory[sessionId] = { phase: 1, symptom: null, count: 0, idioma: "en-US" };
+  if (!sessionMemory[sessionId]) sessionMemory[sessionId] = { phase: 1, symptom: null, count: 0, idioma: "en" };
   const session = sessionMemory[sessionId];
 
-  // Detecta idioma logo no início
   if (!session.idioma) session.idioma = await detectLanguage(message);
-
-  // PEDIDO DE NOME (primeira rodada)
-  if (!session.userName && !session.anonymous && !session.tempMessage) {
-    // Salva sintoma original para usar depois
-    session.tempMessage = message;
-    return res.status(200).json({
-      reply: session.idioma === "pt-BR"
-        ? `Aqui no consultório do Dr. Owl, cada história é especial.\nMe conta: como você gostaria de ser chamado(a) por mim?\nPode ser seu nome, apelido, até um codinome — prometo guardar com carinho esse segredo!\nSe não quiser contar, sem problemas: sigo te acompanhando da melhor forma possível.`
-        : `Here in Dr. Owl's office, every story is unique.\nTell me: how would you like me to call you?\nIt can be your first name, a nickname, or even a secret agent name—I promise to keep it safe!\nIf you prefer not to share, no worries: I'll keep guiding you as best as I can.`,
-      followupQuestions: []
-    });
-  }
-// SE O NOME AINDA NÃO FOI SALVO, TRATE A PRÓXIMA MENSAGEM COMO O NOME
-if (!session.userName && !session.anonymous && message && message.trim().length < 32 && !selectedQuestion) {
-  session.userName = message.trim();
-  // Opcional: Se quiser permitir "pular" o nome
-  if (["não", "prefiro não", "no", "rather not"].includes(session.userName.toLowerCase())) {
-    session.anonymous = true;
-    session.userName = null;
-  }
-  // Responda com uma mensagem acolhedora + já avança para o funil (mostra as perguntas do sintoma)
-  // NÃO RETORNE aqui! Deixe continuar para o funil normalmente!
-}
-
-  // SALVA O NOME DO USUÁRIO (segunda rodada)
-  if (session.tempMessage && !session.userName && !session.anonymous) {
-    const nameOrRefuse = message.trim().toLowerCase();
-    // Aqui aceita qualquer coisa como nome, ou trata como anônimo se usuário recusar
-    if (
-      nameOrRefuse === "não" ||
-      nameOrRefuse === "prefiro não informar" ||
-      nameOrRefuse === "anonimo" ||
-      nameOrRefuse === "anonymous" ||
-      nameOrRefuse === "skip" ||
-      nameOrRefuse === "no"
-    ) {
-      session.anonymous = true;
-    } else {
-      session.userName = message.trim();
-    }
-    // Após salvar, pega a mensagem original do sintoma para iniciar o funil
-    message = session.tempMessage;
-    delete session.tempMessage;
-    // (Segue fluxo do funil normal daqui pra baixo)
-  }
-  // --------- (restante do handler segue igual)
 
   // Fuzzy matching sintoma, depois GPT se falhar
   if (!selectedQuestion) {
@@ -298,9 +242,9 @@ if (!session.userName && !session.anonymous && message && message.trim().length 
 
   if (session.count > QUESTION_LIMIT) {
     return res.status(200).json({
-      content: session.idioma === "pt-BR"
-  ? "Você atingiu o limite de perguntas nesta sessão. Deseja continuar por e-mail?"
-  : "You have reached the question limit for this session. Want to continue by email?",
+      content: session.idioma === "pt"
+        ? "Você atingiu o limite de perguntas nesta sessão. Deseja continuar por e-mail?"
+        : "You have reached the question limit for this session. Want to continue by email?",
       followupQuestions: []
     });
   }
@@ -312,7 +256,7 @@ if (!session.userName && !session.anonymous && message && message.trim().length 
   );
 
   // Ajuste: envia sintoma como texto, não objeto, para a função
-  const answer = await generateFunnelResponse(session.symptom, session.phase, session.idioma, session);
+  const answer = await generateFunnelResponse(session.symptom, session.phase, session.idioma);
   const followupQuestions = await generateFollowUps(session.symptom, session.phase, session.idioma);
 
   logEvent("chat", {
