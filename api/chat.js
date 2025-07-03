@@ -372,124 +372,8 @@ async function processSymptomFlow(session, message, res, sessionId) {
     s.symptoms.some(sym => sym.toLowerCase() === session.symptom?.toLowerCase())
   );
 
-  // 1. MICRO-EMPATIA & HISTÓRICO
-  let empathyMsg = "";
-  if (session.symptom) {
-    if (session.idioma === "pt") {
-      empathyMsg = `Sinto muito que esteja passando por "${session.symptom}". Você não está sozinho(a), muitas pessoas também passam por isso — mas cada caso é único e vamos juntos entender o seu.`;
-    } else {
-      empathyMsg = `I'm sorry you're experiencing "${session.symptom}". You're not alone—many people go through this, but every case is unique and we'll figure out yours together.`;
-    }
-    // Se já houver respostas investigativas anteriores, personalize mais (opcional)
-    if (session.lastCauses) {
-      empathyMsg += session.idioma === "pt"
-        ? ` Você já mencionou: ${session.lastCauses.join(", ")}. Isso me ajuda a te entender melhor.`
-        : ` You previously mentioned: ${session.lastCauses.join(", ")}. That helps me understand you better.`;
-    }
-  }
-
-  // 2. RESPOSTA DO FUNIL
- // === NOVO BLOCO: PERGUNTAS INVESTIGATIVAS AUTOMÁTICAS GPT ===
-
-const dynamicPrompt = session.idioma === "pt"
-  ? `Usuário relatou o sintoma: "${session.symptom}". Liste até 3 possíveis causas comuns desse sintoma e elabore 2 ou 3 perguntas curtas, empáticas, como um profissional humano, para investigar o contexto do usuário. As perguntas devem ser investigativas e empáticas. Responda em JSON: {"causas": [], "perguntas": []}`
-  : `User reported the symptom: "${session.symptom}". List up to 3 possible common causes of this symptom and write 2 or 3 brief, empathetic investigative questions a human professional would ask to better understand the user's context. Reply in JSON: {"causes": [], "questions": []}`;
-
-const gptInvestigativeRes = await fetch("https://api.openai.com/v1/chat/completions", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${OPENAI_API_KEY}`
-  },
-  body: JSON.stringify({
-    model: GPT_MODEL,
-    messages: [{ role: "user", content: dynamicPrompt }],
-    temperature: 0.2,
-    max_tokens: 220
-  })
-});
-const gptInvestigativeData = await gptInvestigativeRes.json();
-
-let causes = [], questions = [];
-try {
-  const parsed = JSON.parse(gptInvestigativeData.choices?.[0]?.message?.content);
-  causes = parsed.causas || parsed.causes || [];
-  questions = parsed.perguntas || parsed.questions || [];
-} catch {}
-
-/// 2. Só exibe perguntas investigativas NA PRIMEIRA interação sobre o sintoma, junto com resposta empática do funil:
-// 2. Só exibe perguntas investigativas NA PRIMEIRA interação sobre o sintoma, junto com resposta empática do funil:
-if (!session.investigationAsked) {
-  session.investigationAsked = true;
-
-  // 1. Resposta empática/consciente sobre o sintoma (Fase 1 do funil)
-  const answer = await generateFunnelResponse(session.symptom, 1, session.idioma, session.userName);
-
-  // 2. Aviso sobre perguntas investigativas
-  let avisoPerguntas = "";
-  if (questions && questions.length) {
-    avisoPerguntas = (session.idioma === "pt"
-      ? "Posso te perguntar algumas coisas para entender melhor e te orientar da melhor forma? Escolha uma das opções abaixo:"
-      : "Can I ask you a few questions to better understand your situation and guide you? Choose one of the options below:");
-  }
-
-  // 3. Aviso ético
-  let ethicalNotice = session.idioma === "pt"
-    ? "\n\nLembrando: minhas respostas não substituem uma consulta médica, mas posso te orientar com informações baseadas em ciência e bem-estar."
-    : "\n\nJust a reminder: my answers do not replace a doctor's visit, but I can guide you with science-based wellness information.";
-
-  // 4. Monta a resposta final (texto)
-  const fullEmpatia = [answer, avisoPerguntas, ethicalNotice].filter(Boolean).join("\n\n");
-
-  // 5. Loga tudo
-  logEvent("chat", {
-    sessionId,
-    phase: session.phase,
-    supplement: supplement?.supplementName,
-    symptom: session.symptom,
-    idioma: session.idioma,
-    userName: session.userName,
-    message,
-    answer: fullEmpatia,
-    followupQuestions: questions
-  });
-
-  // 6. ENVIA AS PERGUNTAS COMO `followupQuestions`
-  return res.status(200).json({
-    reply: fullEmpatia,
-    followupQuestions: questions, // Aqui as perguntas vão como BOTÕES clicáveis
-    type: "investigative",
-    metadata: {
-      supplement: supplement?.supplementName,
-      supplementId: supplement?.supplementId,
-      symptom: session.symptom,
-      phase: session.phase,
-      idioma: session.idioma,
-      sessionId,
-      count: session.count,
-      userName: session.userName
-    },
-    legacyContent: fullEmpatia + "\n\n" +
-      (questions && questions.length
-        ? (session.idioma === "pt" ? "Responda para continuar:\n" : "Answer to continue:\n") +
-          questions.map((q, i) => `${i + 1}. ${q}`).join("\n")
-        : "")
-  });
-}
-
-// Se já respondeu investigativas, segue fluxo normal:
-const answer = await generateFunnelResponse(session.symptom, session.phase, session.idioma, session.userName);
-const followupQuestions = await generateFollowUps(supplement?.supplementName, session.symptom, session.phase, session.idioma, session.userName);
-
-let ethicalNotice = session.idioma === "pt"
-  ? "\n\nLembrando: minhas respostas não substituem uma consulta médica, mas posso te orientar com informações baseadas em ciência e bem-estar."
-  : "\n\nJust a reminder: my answers do not replace a doctor's visit, but I can guide you with science-based wellness information.";
-
-const finalReply = [
-  empathyMsg,
-  answer,
-  ethicalNotice
-].filter(Boolean).join('\n\n');
+  const answer = await generateFunnelResponse(session.symptom, session.phase, session.idioma, session.userName);
+  const followupQuestions = await generateFollowUps(supplement?.supplementName, session.symptom, session.phase, session.idioma, session.userName);
 
   logEvent("chat", {
     sessionId,
@@ -504,7 +388,7 @@ const finalReply = [
   });
 
   return res.status(200).json({
-    reply: finalReply,
+    reply: answer,
     followupQuestions,
     type: "default",
     metadata: {
@@ -517,7 +401,7 @@ const finalReply = [
       count: session.count,
       userName: session.userName
     },
-    legacyContent: finalReply + "\n\n" +
+    legacyContent: answer + "\n\n" +
       (followupQuestions.length
         ? (session.idioma === "pt" ? "Vamos explorar mais:\nEscolha uma opção:\n" : "Let's explore further:\nChoose an option:\n") +
           followupQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n")
@@ -539,47 +423,38 @@ async function handler(req, res) {
  if (!session.idioma) session.idioma = await detectLanguage(message);
 
   // ==== NOVO BLOCO para captura de nome + sintoma ====
- if (!session.userName && !session.anonymous) {
-  // Permite seguir anônimo com qualquer variação básica
-  if (/^(skip|pular|anônim[oa]|anonymous)$/i.test(message.trim())) {
-    session.anonymous = true;
-    // PROCESSA imediatamente o possível sintoma anterior
-    if (session.lastSymptomMessage) {
-      return await processSymptomFlow(session, session.lastSymptomMessage, res, sessionId);
+  if (!session.userName && !session.anonymous) {
+    if (/^(skip|pular|anônim[oa]|anonymous)$/i.test(message.trim())) {
+      session.anonymous = true;
+      return res.status(200).json({
+        reply: session.idioma === "pt"
+          ? "Pode me contar qual sintoma mais incomoda você? (Exemplo: dores, cansaço, digestão...)"
+          : "Can you tell me which symptom is bothering you the most? (Example: pain, fatigue, digestion...)",
+        followupQuestions: []
+      });
     }
-    // Se não tinha nada antes, pergunta pelo sintoma normalmente
+    if (/^[a-zA-Zà-úÀ-Ú\s']{2,30}$/.test(message.trim())) {
+      session.userName = message.trim().replace(/^\w/, c => c.toUpperCase());
+      if (session.lastSymptomMessage) {
+        return await processSymptomFlow(session, session.lastSymptomMessage, res, sessionId);
+      } else {
+        return res.status(200).json({
+          reply: session.idioma === "pt"
+            ? `Obrigado, ${session.userName}! Agora me conte: qual sintoma mais incomoda você?`
+            : `Thank you, ${session.userName}! Now, tell me: which symptom is bothering you the most?`,
+          followupQuestions: []
+        });
+      }
+    }
+    session.lastSymptomMessage = message;
     return res.status(200).json({
       reply: session.idioma === "pt"
-        ? "Pode me contar qual sintoma mais incomoda você? (Exemplo: dores, cansaço, digestão...)"
-        : "Can you tell me which symptom is bothering you the most? (Example: pain, fatigue, digestion...)",
+        ? `Aqui no consultório do Dr. Owl, cada história é especial.\nMe conta: como você gostaria de ser chamado(a) por mim?\nPode ser seu nome, apelido, até um codinome — prometo guardar com carinho esse segredo!\nSe não quiser contar, digite "pular" ou "anônimo(a)".`
+        : `Here in Dr. Owl's office, every story is unique. Tell me: how would you like me to call you? It can be your first name, a nickname, or even a secret agent name—I promise to keep it safe! If you prefer not to share, just type "skip" or "anonymous" and I'll keep guiding you as best as I can.`,
       followupQuestions: []
     });
   }
-  // Aceita nome só se for curto (máx. 2 palavras)
-  if (/^[a-zA-Zà-úÀ-Ú']{2,30}( [a-zA-Zà-úÀ-Ú']{2,30})?$/.test(message.trim())) {
-    session.userName = message.trim().replace(/^\w/, c => c.toUpperCase());
-    // PROCESSA imediatamente o possível sintoma anterior
-    if (session.lastSymptomMessage) {
-      return await processSymptomFlow(session, session.lastSymptomMessage, res, sessionId);
-    }
-    // Se não tinha nada antes, pergunta pelo sintoma normalmente
-    return res.status(200).json({
-      reply: session.idioma === "pt"
-        ? `Obrigado, ${session.userName}! Agora me conte: qual sintoma mais incomoda você?`
-        : `Thank you, ${session.userName}! Now, tell me: which symptom is bothering you the most?`,
-      followupQuestions: []
-    });
-  }
-  // Se não é nome/anônimo, guarda mensagem para processar depois
-  session.lastSymptomMessage = message;
-  // SÓ PEDE O NOME UMA VEZ! (Frontend cuida do clique "continuar sem se identificar")
-  return res.status(200).json({
-    reply: session.idioma === "pt"
-      ? `Aqui no consultório do Dr. Owl, cada história é especial. Me conta: como você gostaria de ser chamado(a) por mim? Pode ser seu nome, apelido, até um codinome — prometo guardar com carinho esse segredo! Se não quiser contar, clique em "Continuar sem se identificar".`
-      : `Here in Dr. Owl's office, every story is unique. Tell me: how would you like me to call you? It can be your first name, a nickname, or even a secret agent name—I promise to keep it safe! If you prefer not to share, just click "Continue without identifying".`,
-    followupQuestions: []
-  });
-}
+
   // Sintoma: fuzzy > GPT exact > fallback semântico suplemento
   let supplementName = null;
   if (!selectedQuestion) {
@@ -645,27 +520,26 @@ async function handler(req, res) {
     followupQuestions
   });
 
- // USE ESTE BLOCO:
-return res.status(200).json({
-  reply: finalReply,          // <<<< AGORA SIM! Aqui vai a resposta humanizada!
-  followupQuestions,
-  type: "default",
-  metadata: {
-    supplement: supplement?.supplementName,
-    supplementId: supplement?.supplementId,
-    symptom: session.symptom,
-    phase: session.phase,
-    idioma: session.idioma,
-    sessionId,
-    count: session.count,
-    userName: session.userName
-  },
-  legacyContent: finalReply + "\n\n" +
-    (followupQuestions.length
-      ? (session.idioma === "pt" ? "Vamos explorar mais:\nEscolha uma opção:\n" : "Let's explore further:\nChoose an option:\n") +
-        followupQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n")
-      : "")
-});
+  return res.status(200).json({
+    reply: answer,
+    followupQuestions,
+    type: "default",
+    metadata: {
+      supplement: supplement?.supplementName,
+      supplementId: supplement?.supplementId,
+      symptom: session.symptom,
+      phase: session.phase,
+      idioma: session.idioma,
+      sessionId,
+      count: session.count,
+      userName: session.userName
+    },
+    legacyContent: answer + "\n\n" +
+      (followupQuestions.length
+        ? (session.idioma === "pt" ? "Vamos explorar mais:\nEscolha uma opção:\n" : "Let's explore further:\nChoose an option:\n") +
+          followupQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n")
+        : "")
+  });
 }
 
 export default handler;
