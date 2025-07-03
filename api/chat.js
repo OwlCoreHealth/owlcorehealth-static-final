@@ -423,38 +423,47 @@ async function handler(req, res) {
  if (!session.idioma) session.idioma = await detectLanguage(message);
 
   // ==== NOVO BLOCO para captura de nome + sintoma ====
-  if (!session.userName && !session.anonymous) {
-    if (/^(skip|pular|anônim[oa]|anonymous)$/i.test(message.trim())) {
-      session.anonymous = true;
-      return res.status(200).json({
-        reply: session.idioma === "pt"
-          ? "Pode me contar qual sintoma mais incomoda você? (Exemplo: dores, cansaço, digestão...)"
-          : "Can you tell me which symptom is bothering you the most? (Example: pain, fatigue, digestion...)",
-        followupQuestions: []
-      });
+ if (!session.userName && !session.anonymous) {
+  // Permite seguir anônimo com qualquer variação básica
+  if (/^(skip|pular|anônim[oa]|anonymous)$/i.test(message.trim())) {
+    session.anonymous = true;
+    // PROCESSA imediatamente o possível sintoma anterior
+    if (session.lastSymptomMessage) {
+      return await processSymptomFlow(session, session.lastSymptomMessage, res, sessionId);
     }
-    if (/^[a-zA-Zà-úÀ-Ú\s']{2,30}$/.test(message.trim())) {
-      session.userName = message.trim().replace(/^\w/, c => c.toUpperCase());
-      if (session.lastSymptomMessage) {
-        return await processSymptomFlow(session, session.lastSymptomMessage, res, sessionId);
-      } else {
-        return res.status(200).json({
-          reply: session.idioma === "pt"
-            ? `Obrigado, ${session.userName}! Agora me conte: qual sintoma mais incomoda você?`
-            : `Thank you, ${session.userName}! Now, tell me: which symptom is bothering you the most?`,
-          followupQuestions: []
-        });
-      }
-    }
-    session.lastSymptomMessage = message;
+    // Se não tinha nada antes, pergunta pelo sintoma normalmente
     return res.status(200).json({
       reply: session.idioma === "pt"
-        ? `Aqui no consultório do Dr. Owl, cada história é especial.\nMe conta: como você gostaria de ser chamado(a) por mim?\nPode ser seu nome, apelido, até um codinome — prometo guardar com carinho esse segredo!\nSe não quiser contar, digite "pular" ou "anônimo(a)".`
-        : `Here in Dr. Owl's office, every story is unique. Tell me: how would you like me to call you? It can be your first name, a nickname, or even a secret agent name—I promise to keep it safe! If you prefer not to share, just type "skip" or "anonymous" and I'll keep guiding you as best as I can.`,
+        ? "Pode me contar qual sintoma mais incomoda você? (Exemplo: dores, cansaço, digestão...)"
+        : "Can you tell me which symptom is bothering you the most? (Example: pain, fatigue, digestion...)",
       followupQuestions: []
     });
   }
-
+  // Aceita nome só se for curto (máx. 2 palavras)
+  if (/^[a-zA-Zà-úÀ-Ú']{2,30}( [a-zA-Zà-úÀ-Ú']{2,30})?$/.test(message.trim())) {
+    session.userName = message.trim().replace(/^\w/, c => c.toUpperCase());
+    // PROCESSA imediatamente o possível sintoma anterior
+    if (session.lastSymptomMessage) {
+      return await processSymptomFlow(session, session.lastSymptomMessage, res, sessionId);
+    }
+    // Se não tinha nada antes, pergunta pelo sintoma normalmente
+    return res.status(200).json({
+      reply: session.idioma === "pt"
+        ? `Obrigado, ${session.userName}! Agora me conte: qual sintoma mais incomoda você?`
+        : `Thank you, ${session.userName}! Now, tell me: which symptom is bothering you the most?`,
+      followupQuestions: []
+    });
+  }
+  // Se não é nome/anônimo, guarda mensagem para processar depois
+  session.lastSymptomMessage = message;
+  // SÓ PEDE O NOME UMA VEZ! (Frontend cuida do clique "continuar sem se identificar")
+  return res.status(200).json({
+    reply: session.idioma === "pt"
+      ? `Aqui no consultório do Dr. Owl, cada história é especial. Me conta: como você gostaria de ser chamado(a) por mim? Pode ser seu nome, apelido, até um codinome — prometo guardar com carinho esse segredo! Se não quiser contar, clique em "Continuar sem se identificar".`
+      : `Here in Dr. Owl's office, every story is unique. Tell me: how would you like me to call you? It can be your first name, a nickname, or even a secret agent name—I promise to keep it safe! If you prefer not to share, just click "Continue without identifying".`,
+    followupQuestions: []
+  });
+}
   // Sintoma: fuzzy > GPT exact > fallback semântico suplemento
   let supplementName = null;
   if (!selectedQuestion) {
