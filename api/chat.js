@@ -447,52 +447,99 @@ if (session.idioma === "pt") {
   }
 
   // 2. RESPOSTA DO FUNIL
-  const answer = await generateFunnelResponse(session.symptom, session.phase, session.idioma, session.userName);
-  const followupQuestions = await generateFollowUps(supplement?.supplementName, session.symptom, session.phase, session.idioma, session.userName);
+ // === NOVO BLOCO: PERGUNTAS INVESTIGATIVAS AUTOMÁTICAS GPT ===
 
-  // 3. EXPLICAÇÃO DO “PORQUÊ” DAS PERGUNTAS & PERGUNTAS INVESTIGATIVAS
-  let askWhy = "";
-  let investigation = [];
-  if (session.symptom && ["headache", "dores de cabeça", "dor de cabeca", "dor de cabeça"].includes(session.symptom.toLowerCase())) {
-    if (session.idioma === "pt") {
-      askWhy = "Quero te fazer algumas perguntas para entender melhor as possíveis causas da sua dor de cabeça. Isso é importante porque fatores como sono, estresse ou alimentação podem influenciar muito.";
-      investigation = [
-        "Você tem dormido bem ultimamente?",
-        "Tem passado por períodos de estresse?",
-        "Percebe que a dor piora após certos alimentos?"
-      ];
-    } else {
-      askWhy = "I'd like to ask you a few questions to better understand the possible causes of your headache. That's important because things like sleep, stress, or diet can have a big influence.";
-      investigation = [
-        "Have you been sleeping well lately?",
-        "Have you been feeling stressed recently?",
-        "Do you notice the pain gets worse after certain foods?"
-      ];
+const dynamicPrompt = session.idioma === "pt"
+  ? `Usuário relatou o sintoma: "${session.symptom}". Liste até 3 possíveis causas comuns desse sintoma e elabore 2 ou 3 perguntas curtas, empáticas, como um profissional humano, para investigar o contexto do usuário. As perguntas devem ser investigativas e empáticas. Responda em JSON: {"causas": [], "perguntas": []}`
+  : `User reported the symptom: "${session.symptom}". List up to 3 possible common causes of this symptom and write 2 or 3 brief, empathetic investigative questions a human professional would ask to better understand the user's context. Reply in JSON: {"causes": [], "questions": []}`;
+
+const gptInvestigativeRes = await fetch("https://api.openai.com/v1/chat/completions", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${OPENAI_API_KEY}`
+  },
+  body: JSON.stringify({
+    model: GPT_MODEL,
+    messages: [{ role: "user", content: dynamicPrompt }],
+    temperature: 0.2,
+    max_tokens: 220
+  })
+});
+const gptInvestigativeData = await gptInvestigativeRes.json();
+
+let causes = [], questions = [];
+try {
+  const parsed = JSON.parse(gptInvestigativeData.choices?.[0]?.message?.content);
+  causes = parsed.causas || parsed.causes || [];
+  questions = parsed.perguntas || parsed.questions || [];
+} catch {}
+
+// 2. Só exibe perguntas investigativas na primeira interação sobre o sintoma:
+if (!session.investigationAsked) {
+  session.investigationAsked = true;
+  let respostaEmpatica = "";
+  if (session.idioma === "pt") {
+    respostaEmpatica += "Cada pessoa é única, e sintomas como o seu podem ter diversas causas.\n";
+    if (causes.length) {
+      respostaEmpatica += `Por exemplo, "${session.symptom}" pode estar ligado a: ${causes.join(", ")}.\n`;
     }
+    respostaEmpatica += "Posso te perguntar algumas coisas para entender melhor e te orientar da melhor forma?\n";
+  } else {
+    respostaEmpatica += "Everyone is unique, and symptoms like yours can have several causes.\n";
+    if (causes.length) {
+      respostaEmpatica += `For example, "${session.symptom}" may be related to: ${causes.join(", ")}.\n`;
+    }
+    respostaEmpatica += "Can I ask you a few questions to better understand your situation and guide you?\n";
   }
 
-  // 4. CHECKPOINT DE BEM-ESTAR
-  let checkpoint = "";
-  if (session.count > 1 && session.count % 3 === 0) {
-    checkpoint = session.idioma === "pt"
-      ? "Está indo tudo bem até aqui? Se quiser, posso responder diretamente ou podemos continuar investigando juntos."
-      : "Is everything okay so far? If you want, I can give you a direct answer now or we can keep investigating together.";
-  }
+  logEvent("chat", {
+    sessionId,
+    phase: session.phase,
+    supplement: supplement?.supplementName,
+    symptom: session.symptom,
+    idioma: session.idioma,
+    userName: session.userName,
+    message,
+    answer: respostaEmpatica,
+    followupQuestions: questions
+  });
 
-  // 5. AVISO ÉTICO
-  let ethicalNotice = session.idioma === "pt"
-    ? "\n\nLembrando: minhas respostas não substituem uma consulta médica, mas posso te orientar com informações baseadas em ciência e bem-estar."
-    : "\n\nJust a reminder: my answers do not replace a doctor's visit, but I can guide you with science-based wellness information.";
+  return res.status(200).json({
+    reply: respostaEmpatica,
+    followupQuestions: questions, // só investigativas
+    type: "investigative",
+    metadata: {
+      supplement: supplement?.supplementName,
+      supplementId: supplement?.supplementId,
+      symptom: session.symptom,
+      phase: session.phase,
+      idioma: session.idioma,
+      sessionId,
+      count: session.count,
+      userName: session.userName
+    },
+    legacyContent: respostaEmpatica + "\n\n" +
+      (questions.length
+        ? (session.idioma === "pt" ? "Responda para continuar:\n" : "Answer to continue:\n") +
+          questions.map((q, i) => `${i + 1}. ${q}`).join("\n")
+        : "")
+  });
+}
 
-  // 6. MONTA RESPOSTA FINAL
-  const finalReply = [
-    empathyMsg,
-    answer,
-    askWhy,
-    ...investigation,
-    checkpoint,
-    ethicalNotice
-  ].filter(Boolean).join('\n\n');
+// Se já respondeu investigativas, segue fluxo normal:
+const answer = await generateFunnelResponse(session.symptom, session.phase, session.idioma, session.userName);
+const followupQuestions = await generateFollowUps(supplement?.supplementName, session.symptom, session.phase, session.idioma, session.userName);
+
+let ethicalNotice = session.idioma === "pt"
+  ? "\n\nLembrando: minhas respostas não substituem uma consulta médica, mas posso te orientar com informações baseadas em ciência e bem-estar."
+  : "\n\nJust a reminder: my answers do not replace a doctor's visit, but I can guide you with science-based wellness information.";
+
+const finalReply = [
+  empathyMsg,
+  answer,
+  ethicalNotice
+].filter(Boolean).join('\n\n');
 
   logEvent("chat", {
     sessionId,
