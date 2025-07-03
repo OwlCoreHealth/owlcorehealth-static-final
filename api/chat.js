@@ -372,8 +372,69 @@ async function processSymptomFlow(session, message, res, sessionId) {
     s.symptoms.some(sym => sym.toLowerCase() === session.symptom?.toLowerCase())
   );
 
+  // 1. MICRO-EMPATIA & HISTÓRICO
+  let empathyMsg = "";
+  if (session.symptom) {
+    if (session.idioma === "pt") {
+      empathyMsg = `Sinto muito que esteja passando por "${session.symptom}". Você não está sozinho(a), muitas pessoas também passam por isso — mas cada caso é único e vamos juntos entender o seu.`;
+    } else {
+      empathyMsg = `I'm sorry you're experiencing "${session.symptom}". You're not alone—many people go through this, but every case is unique and we'll figure out yours together.`;
+    }
+    // Se já houver respostas investigativas anteriores, personalize mais (opcional)
+    if (session.lastCauses) {
+      empathyMsg += session.idioma === "pt"
+        ? ` Você já mencionou: ${session.lastCauses.join(", ")}. Isso me ajuda a te entender melhor.`
+        : ` You previously mentioned: ${session.lastCauses.join(", ")}. That helps me understand you better.`;
+    }
+  }
+
+  // 2. RESPOSTA DO FUNIL
   const answer = await generateFunnelResponse(session.symptom, session.phase, session.idioma, session.userName);
   const followupQuestions = await generateFollowUps(supplement?.supplementName, session.symptom, session.phase, session.idioma, session.userName);
+
+  // 3. EXPLICAÇÃO DO “PORQUÊ” DAS PERGUNTAS & PERGUNTAS INVESTIGATIVAS
+  let askWhy = "";
+  let investigation = [];
+  if (session.symptom && ["headache", "dores de cabeça", "dor de cabeca", "dor de cabeça"].includes(session.symptom.toLowerCase())) {
+    if (session.idioma === "pt") {
+      askWhy = "Quero te fazer algumas perguntas para entender melhor as possíveis causas da sua dor de cabeça. Isso é importante porque fatores como sono, estresse ou alimentação podem influenciar muito.";
+      investigation = [
+        "Você tem dormido bem ultimamente?",
+        "Tem passado por períodos de estresse?",
+        "Percebe que a dor piora após certos alimentos?"
+      ];
+    } else {
+      askWhy = "I'd like to ask you a few questions to better understand the possible causes of your headache. That's important because things like sleep, stress, or diet can have a big influence.";
+      investigation = [
+        "Have you been sleeping well lately?",
+        "Have you been feeling stressed recently?",
+        "Do you notice the pain gets worse after certain foods?"
+      ];
+    }
+  }
+
+  // 4. CHECKPOINT DE BEM-ESTAR
+  let checkpoint = "";
+  if (session.count > 1 && session.count % 3 === 0) {
+    checkpoint = session.idioma === "pt"
+      ? "Está indo tudo bem até aqui? Se quiser, posso responder diretamente ou podemos continuar investigando juntos."
+      : "Is everything okay so far? If you want, I can give you a direct answer now or we can keep investigating together.";
+  }
+
+  // 5. AVISO ÉTICO
+  let ethicalNotice = session.idioma === "pt"
+    ? "\n\nLembrando: minhas respostas não substituem uma consulta médica, mas posso te orientar com informações baseadas em ciência e bem-estar."
+    : "\n\nJust a reminder: my answers do not replace a doctor's visit, but I can guide you with science-based wellness information.";
+
+  // 6. MONTA RESPOSTA FINAL
+  const finalReply = [
+    empathyMsg,
+    answer,
+    askWhy,
+    ...investigation,
+    checkpoint,
+    ethicalNotice
+  ].filter(Boolean).join('\n\n');
 
   logEvent("chat", {
     sessionId,
@@ -388,7 +449,7 @@ async function processSymptomFlow(session, message, res, sessionId) {
   });
 
   return res.status(200).json({
-    reply: answer,
+    reply: finalReply,
     followupQuestions,
     type: "default",
     metadata: {
@@ -401,7 +462,7 @@ async function processSymptomFlow(session, message, res, sessionId) {
       count: session.count,
       userName: session.userName
     },
-    legacyContent: answer + "\n\n" +
+    legacyContent: finalReply + "\n\n" +
       (followupQuestions.length
         ? (session.idioma === "pt" ? "Vamos explorar mais:\nEscolha uma opção:\n" : "Let's explore further:\nChoose an option:\n") +
           followupQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n")
