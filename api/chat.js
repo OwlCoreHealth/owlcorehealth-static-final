@@ -372,64 +372,6 @@ async function processSymptomFlow(session, message, res, sessionId) {
     s.symptoms.some(sym => sym.toLowerCase() === session.symptom?.toLowerCase())
   );
 
-  // Bloco para investigar causas e perguntas automaticamente para QUALQUER sintoma
-
-const dynamicPrompt = session.idioma === "pt"
-  ? `Usuário relatou o sintoma: "${session.symptom}". Liste até 3 possíveis causas comuns desse sintoma e elabore 2 ou 3 perguntas curtas, empáticas, como um profissional humano, para investigar o contexto do usuário. As perguntas devem ser investigativas e empáticas. Responda em JSON: {"causas": [], "perguntas": []}`
-  : `User reported the symptom: "${session.symptom}". List up to 3 possible common causes of this symptom and write 2 or 3 brief, empathetic investigative questions a human professional would ask to better understand the user's context. Reply in JSON: {"causes": [], "questions": []}`;
-
-const gptInvestigativeRes = await fetch("https://api.openai.com/v1/chat/completions", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${OPENAI_API_KEY}`
-  },
-  body: JSON.stringify({
-    model: GPT_MODEL,
-    messages: [{ role: "user", content: dynamicPrompt }],
-    temperature: 0.2,
-    max_tokens: 220
-  })
-});
-const gptInvestigativeData = await gptInvestigativeRes.json();
-
-let causes = [], questions = [];
-try {
-  const parsed = JSON.parse(gptInvestigativeData.choices?.[0]?.message?.content);
-  causes = parsed.causas || parsed.causes || [];
-  questions = parsed.perguntas || parsed.questions || [];
-} catch {}
-
-// MONTA A RESPOSTA EMPÁTICA ANTES DO FUNIL:
-let respostaEmpatica = "";
-if (session.idioma === "pt") {
-  respostaEmpatica += "Cada pessoa é única, e sintomas como o seu podem ter diversas causas.\n";
-  if (causes.length) {
-    respostaEmpatica += `Por exemplo, "${session.symptom}" pode estar ligado a: ${causes.join(", ")}.\n`;
-  }
-  if (questions.length) {
-    respostaEmpatica += "Posso te perguntar algumas coisas para entender melhor e te orientar da melhor forma?\n";
-    questions.forEach((q, i) => {
-      respostaEmpatica += `${i + 1}. ${q}\n`;
-    });
-  }
-  respostaEmpatica += "Suas respostas vão me ajudar a personalizar as orientações para você!\n";
-  respostaEmpatica += "⚠️ Lembre-se: minhas respostas não substituem avaliação médica, mas vou te apoiar com o máximo de informações.\n";
-} else {
-  respostaEmpatica += "Everyone is unique, and symptoms like yours can have several causes.\n";
-  if (causes.length) {
-    respostaEmpatica += `For example, "${session.symptom}" may be related to: ${causes.join(", ")}.\n`;
-  }
-  if (questions.length) {
-    respostaEmpatica += "Can I ask you a few questions to better understand your situation and guide you?\n";
-    questions.forEach((q, i) => {
-      respostaEmpatica += `${i + 1}. ${q}\n`;
-    });
-  }
-  respostaEmpatica += "Your answers will help me personalize my guidance for you!\n";
-  respostaEmpatica += "⚠️ Please remember: my answers do not replace medical evaluation, but I will support you with as much helpful information as possible.\n";
-}
-
   // 1. MICRO-EMPATIA & HISTÓRICO
   let empathyMsg = "";
   if (session.symptom) {
