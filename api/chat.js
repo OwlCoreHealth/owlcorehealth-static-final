@@ -420,15 +420,10 @@ async function handler(req, res) {
   if (!sessionMemory[sessionId]) sessionMemory[sessionId] = { phase: 1, symptom: null, count: 0, idioma: "en", userName: null, anonymous: false, sessionId };
   const session = sessionMemory[sessionId];
 
-// Só detecta idioma na PRIMEIRA mensagem da sessão!
-if (!session.idioma) {
-  session.idioma = await detectLanguage(message);
-}
-
+ if (!session.idioma) session.idioma = await detectLanguage(message);
 
   // ==== NOVO BLOCO para captura de nome + sintoma ====
- if (!session.userName && !session.anonymous) {
-    // Se usuário digita "pular", "anônimo" ou "skip"/"anonymous"
+  if (!session.userName && !session.anonymous) {
     if (/^(skip|pular|anônim[oa]|anonymous)$/i.test(message.trim())) {
       session.anonymous = true;
       return res.status(200).json({
@@ -438,8 +433,7 @@ if (!session.idioma) {
         followupQuestions: []
       });
     }
-    // Só aceita como nome se for uma palavra ou duas (máximo 2 palavras, sem frases longas!)
-    if (/^[a-zA-Zà-úÀ-Ú']{2,30}( [a-zA-Zà-úÀ-Ú']{2,30})?$/.test(message.trim())) {
+    if (/^[a-zA-Zà-úÀ-Ú\s']{2,30}$/.test(message.trim())) {
       session.userName = message.trim().replace(/^\w/, c => c.toUpperCase());
       if (session.lastSymptomMessage) {
         return await processSymptomFlow(session, session.lastSymptomMessage, res, sessionId);
@@ -452,15 +446,14 @@ if (!session.idioma) {
         });
       }
     }
-    // Qualquer outra mensagem (frase longa ou sintoma), sempre pede o nome!
     session.lastSymptomMessage = message;
     return res.status(200).json({
       reply: session.idioma === "pt"
-        ? `Aqui no consultório do Dr. Owl, cada história é especial. Me conta: como você gostaria de ser chamado(a) por mim? Pode ser seu nome, apelido, até um codinome — prometo guardar com carinho esse segredo! Se não quiser contar, digite "pular" ou "anônimo(a)".`
+        ? `Aqui no consultório do Dr. Owl, cada história é especial.\nMe conta: como você gostaria de ser chamado(a) por mim?\nPode ser seu nome, apelido, até um codinome — prometo guardar com carinho esse segredo!\nSe não quiser contar, digite "pular" ou "anônimo(a)".`
         : `Here in Dr. Owl's office, every story is unique. Tell me: how would you like me to call you? It can be your first name, a nickname, or even a secret agent name—I promise to keep it safe! If you prefer not to share, just type "skip" or "anonymous" and I'll keep guiding you as best as I can.`,
       followupQuestions: []
     });
-}
+  }
 
   // Sintoma: fuzzy > GPT exact > fallback semântico suplemento
   let supplementName = null;
