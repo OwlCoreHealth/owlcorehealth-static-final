@@ -417,21 +417,19 @@ try {
   questions = parsed.perguntas || parsed.questions || [];
 } catch {}
 
-// 2. Só exibe perguntas investigativas na primeira interação sobre o sintoma:
-// 2. Só exibe perguntas investigativas NA PRIMEIRA interação sobre o sintoma, junto com resposta empática do funil:
+/// 2. Só exibe perguntas investigativas NA PRIMEIRA interação sobre o sintoma, junto com resposta empática do funil:
 if (!session.investigationAsked) {
   session.investigationAsked = true;
 
   // 1. Resposta empática/consciente sobre o sintoma (Fase 1 do funil)
   const answer = await generateFunnelResponse(session.symptom, 1, session.idioma, session.userName);
 
-  // 2. Monta a parte investigativa com as perguntas do GPT
-  let perguntasText = "";
+  // 2. Texto para avisar sobre as perguntas investigativas
+  let avisoPerguntas = "";
   if (questions.length) {
-    perguntasText = (session.idioma === "pt"
-      ? "Posso te perguntar algumas coisas para entender melhor e te orientar da melhor forma?\n"
-      : "Can I ask you a few questions to better understand your situation and guide you?\n");
-    perguntasText += questions.map((q, i) => `${i + 1}. ${q}`).join("\n");
+    avisoPerguntas = (session.idioma === "pt"
+      ? "Posso te perguntar algumas coisas para entender melhor e te orientar da melhor forma? Clique numa opção abaixo:"
+      : "Can I ask you a few questions to better understand your situation and guide you? Click on one of the options below:");
   }
 
   // 3. Aviso ético
@@ -440,7 +438,7 @@ if (!session.investigationAsked) {
     : "\n\nJust a reminder: my answers do not replace a doctor's visit, but I can guide you with science-based wellness information.";
 
   // 4. Resposta final
-  const fullEmpatia = [answer, perguntasText, ethicalNotice].filter(Boolean).join("\n\n");
+  const fullEmpatia = [answer, avisoPerguntas, ethicalNotice].filter(Boolean).join("\n\n");
 
   logEvent("chat", {
     sessionId,
@@ -456,7 +454,7 @@ if (!session.investigationAsked) {
 
   return res.status(200).json({
     reply: fullEmpatia,
-    followupQuestions: questions, // perguntas investigativas
+    followupQuestions: questions, // PERGUNTAS INVESTIGATIVAS CLIQUE
     type: "investigative",
     metadata: {
       supplement: supplement?.supplementName,
