@@ -180,8 +180,14 @@ async function semanticSymptomSupplementMatch(userInput, idioma = "en") {
 
 // Detecta idioma (PT padrão para pt-br/pt-pt)
 async function detectLanguage(text) {
-  if (/[áéíóúãõçêâôíàéúóàêãõ]/i.test(text)) return "pt";
-  if (/^[a-zA-Z0-9\s,.?!'"\-@]+$/.test(text)) return "en";
+  // Heurística para PT-BR/PT-PT mesmo sem acentos
+  const ptKeywords = [
+    " de ", " que ", "não", "para", "por", "com", "uma", "se ", "tenho", "dor", "dores", "cabeça", "cabeca", "você", "voce", "é ", "esta", "está", "estou", "minha", "meu", "sentindo"
+  ];
+  const hasAccent = /[áéíóúãõçêâôíàéúóàêãõ]/i.test(text);
+  const lower = ` ${text.toLowerCase()} `; // facilita busca por palavra isolada
+  const hasPTKeyword = ptKeywords.some(word => lower.includes(word));
+  if (hasAccent || hasPTKeyword) return "pt";
   return "en";
 }
 
