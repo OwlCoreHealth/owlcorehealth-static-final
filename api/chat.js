@@ -418,18 +418,19 @@ try {
 } catch {}
 
 /// 2. Só exibe perguntas investigativas NA PRIMEIRA interação sobre o sintoma, junto com resposta empática do funil:
+// 2. Só exibe perguntas investigativas NA PRIMEIRA interação sobre o sintoma, junto com resposta empática do funil:
 if (!session.investigationAsked) {
   session.investigationAsked = true;
 
   // 1. Resposta empática/consciente sobre o sintoma (Fase 1 do funil)
   const answer = await generateFunnelResponse(session.symptom, 1, session.idioma, session.userName);
 
-  // 2. Texto para avisar sobre as perguntas investigativas
+  // 2. Aviso sobre perguntas investigativas
   let avisoPerguntas = "";
-  if (questions.length) {
+  if (questions && questions.length) {
     avisoPerguntas = (session.idioma === "pt"
-      ? "Posso te perguntar algumas coisas para entender melhor e te orientar da melhor forma? Clique numa opção abaixo:"
-      : "Can I ask you a few questions to better understand your situation and guide you? Click on one of the options below:");
+      ? "Posso te perguntar algumas coisas para entender melhor e te orientar da melhor forma? Escolha uma das opções abaixo:"
+      : "Can I ask you a few questions to better understand your situation and guide you? Choose one of the options below:");
   }
 
   // 3. Aviso ético
@@ -437,9 +438,10 @@ if (!session.investigationAsked) {
     ? "\n\nLembrando: minhas respostas não substituem uma consulta médica, mas posso te orientar com informações baseadas em ciência e bem-estar."
     : "\n\nJust a reminder: my answers do not replace a doctor's visit, but I can guide you with science-based wellness information.";
 
-  // 4. Resposta final
+  // 4. Monta a resposta final (texto)
   const fullEmpatia = [answer, avisoPerguntas, ethicalNotice].filter(Boolean).join("\n\n");
 
+  // 5. Loga tudo
   logEvent("chat", {
     sessionId,
     phase: session.phase,
@@ -452,9 +454,10 @@ if (!session.investigationAsked) {
     followupQuestions: questions
   });
 
+  // 6. ENVIA AS PERGUNTAS COMO `followupQuestions`
   return res.status(200).json({
     reply: fullEmpatia,
-    followupQuestions: questions, // PERGUNTAS INVESTIGATIVAS CLIQUE
+    followupQuestions: questions, // Aqui as perguntas vão como BOTÕES clicáveis
     type: "investigative",
     metadata: {
       supplement: supplement?.supplementName,
@@ -467,7 +470,7 @@ if (!session.investigationAsked) {
       userName: session.userName
     },
     legacyContent: fullEmpatia + "\n\n" +
-      (questions.length
+      (questions && questions.length
         ? (session.idioma === "pt" ? "Responda para continuar:\n" : "Answer to continue:\n") +
           questions.map((q, i) => `${i + 1}. ${q}`).join("\n")
         : "")
