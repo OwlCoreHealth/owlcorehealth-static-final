@@ -420,7 +420,10 @@ async function handler(req, res) {
   if (!sessionMemory[sessionId]) sessionMemory[sessionId] = { phase: 1, symptom: null, count: 0, idioma: "en", userName: null, anonymous: false, sessionId };
   const session = sessionMemory[sessionId];
 
- if (!session.idioma) session.idioma = await detectLanguage(message);
+// Só detecta idioma na PRIMEIRA mensagem da sessão!
+if (!session.idioma) {
+  session.idioma = await detectLanguage(message);
+}
 
 
   // ==== NOVO BLOCO para captura de nome + sintoma ====
