@@ -418,22 +418,29 @@ try {
 } catch {}
 
 // 2. Só exibe perguntas investigativas na primeira interação sobre o sintoma:
+// 2. Só exibe perguntas investigativas NA PRIMEIRA interação sobre o sintoma, junto com resposta empática do funil:
 if (!session.investigationAsked) {
   session.investigationAsked = true;
-  let respostaEmpatica = "";
-  if (session.idioma === "pt") {
-    respostaEmpatica += "Cada pessoa é única, e sintomas como o seu podem ter diversas causas.\n";
-    if (causes.length) {
-      respostaEmpatica += `Por exemplo, "${session.symptom}" pode estar ligado a: ${causes.join(", ")}.\n`;
-    }
-    respostaEmpatica += "Posso te perguntar algumas coisas para entender melhor e te orientar da melhor forma?\n";
-  } else {
-    respostaEmpatica += "Everyone is unique, and symptoms like yours can have several causes.\n";
-    if (causes.length) {
-      respostaEmpatica += `For example, "${session.symptom}" may be related to: ${causes.join(", ")}.\n`;
-    }
-    respostaEmpatica += "Can I ask you a few questions to better understand your situation and guide you?\n";
+
+  // 1. Resposta empática/consciente sobre o sintoma (Fase 1 do funil)
+  const answer = await generateFunnelResponse(session.symptom, 1, session.idioma, session.userName);
+
+  // 2. Monta a parte investigativa com as perguntas do GPT
+  let perguntasText = "";
+  if (questions.length) {
+    perguntasText = (session.idioma === "pt"
+      ? "Posso te perguntar algumas coisas para entender melhor e te orientar da melhor forma?\n"
+      : "Can I ask you a few questions to better understand your situation and guide you?\n");
+    perguntasText += questions.map((q, i) => `${i + 1}. ${q}`).join("\n");
   }
+
+  // 3. Aviso ético
+  let ethicalNotice = session.idioma === "pt"
+    ? "\n\nLembrando: minhas respostas não substituem uma consulta médica, mas posso te orientar com informações baseadas em ciência e bem-estar."
+    : "\n\nJust a reminder: my answers do not replace a doctor's visit, but I can guide you with science-based wellness information.";
+
+  // 4. Resposta final
+  const fullEmpatia = [answer, perguntasText, ethicalNotice].filter(Boolean).join("\n\n");
 
   logEvent("chat", {
     sessionId,
@@ -443,13 +450,13 @@ if (!session.investigationAsked) {
     idioma: session.idioma,
     userName: session.userName,
     message,
-    answer: respostaEmpatica,
+    answer: fullEmpatia,
     followupQuestions: questions
   });
 
   return res.status(200).json({
-    reply: respostaEmpatica,
-    followupQuestions: questions, // só investigativas
+    reply: fullEmpatia,
+    followupQuestions: questions, // perguntas investigativas
     type: "investigative",
     metadata: {
       supplement: supplement?.supplementName,
@@ -461,7 +468,7 @@ if (!session.investigationAsked) {
       count: session.count,
       userName: session.userName
     },
-    legacyContent: respostaEmpatica + "\n\n" +
+    legacyContent: fullEmpatia + "\n\n" +
       (questions.length
         ? (session.idioma === "pt" ? "Responda para continuar:\n" : "Answer to continue:\n") +
           questions.map((q, i) => `${i + 1}. ${q}`).join("\n")
