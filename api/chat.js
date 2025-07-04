@@ -420,7 +420,13 @@ async function handler(req, res) {
   if (!sessionMemory[sessionId]) sessionMemory[sessionId] = { phase: 1, symptom: null, count: 0, idioma: "en", userName: null, anonymous: false, sessionId };
   const session = sessionMemory[sessionId];
 
- if (!session.idioma) session.idioma = await detectLanguage(message);
+ const idiomaDetectado = await detectLanguage(message);
+if (!session.idioma) {
+  session.idioma = idiomaDetectado;
+} else if (idiomaDetectado !== session.idioma) {
+  // Troca automática (se preferir perguntar, pode ajustar aqui)
+  session.idioma = idiomaDetectado;
+}
 
   // ==== NOVO BLOCO para captura de nome + sintoma ====
  if (!session.userName && !session.anonymous) {
