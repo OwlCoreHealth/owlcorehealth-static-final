@@ -417,7 +417,7 @@ async function handler(req, res) {
     return res.status(400).json({ error: "Mensagem vazia ou inválida." });
   }
 
-  if (!sessionMemory[sessionId]) sessionMemory[sessionId] = { phase: 1, symptom: null, count: 0, idioma: "en", userName: null, anonymous: false, sessionId };
+  if (!sessionMemory[sessionId]) sessionMemory[sessionId] = { phase: 1, symptom: null, count: 0, idioma: null, userName: null, anonymous: false, sessionId };
   const session = sessionMemory[sessionId];
 
 // ==== BLOCO ÚNICO para captura de nome/anônimo/sintoma ====
