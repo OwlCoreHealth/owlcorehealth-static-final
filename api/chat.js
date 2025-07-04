@@ -418,6 +418,10 @@ async function handler(req, res) {
   }
 
   if (!sessionMemory[sessionId]) sessionMemory[sessionId] = { phase: 1, symptom: null, count: 0, idioma: null, userName: null, anonymous: false, sessionId };
+  if (!session.idioma) {
+  session.idioma = await detectLanguage(message);
+}
+
   const session = sessionMemory[sessionId];
 
 // ==== BLOCO ÚNICO para captura de nome/anônimo/sintoma ====
