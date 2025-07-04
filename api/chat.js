@@ -427,8 +427,6 @@ if (!session.idioma) {
   session.idioma = await detectLanguage(message);
 }
 
-  const session = sessionMemory[sessionId];
-
 // ==== BLOCO ÚNICO para captura de nome/anônimo/sintoma ====
 if (!session.userName && !session.anonymous) {
   // Permite seguir anônimo com qualquer variação básica
