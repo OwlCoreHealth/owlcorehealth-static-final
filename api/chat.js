@@ -420,30 +420,14 @@ async function handler(req, res) {
   if (!sessionMemory[sessionId]) sessionMemory[sessionId] = { phase: 1, symptom: null, count: 0, idioma: "en", userName: null, anonymous: false, sessionId };
   const session = sessionMemory[sessionId];
 
-// BLOCO DO NOME/ANÔNIMO
+// ==== BLOCO ÚNICO para captura de nome/anônimo/sintoma ====
 if (!session.userName && !session.anonymous) {
-  // lógica de pedir nome ou anônimo
-  return res.status(200).json({ ... });
-}
-
-// SÓ AQUI, fora do bloco acima, detectLanguage:
-const idiomaDetectado = await detectLanguage(message);
-if (!session.idioma) {
-  session.idioma = idiomaDetectado;
-} else if (idiomaDetectado !== session.idioma) {
-  session.idioma = idiomaDetectado;
-}
-
-  // ==== NOVO BLOCO para captura de nome + sintoma ====
- if (!session.userName && !session.anonymous) {
   // Permite seguir anônimo com qualquer variação básica
   if (/^(skip|pular|anônim[oa]|anonymous)$/i.test(message.trim())) {
     session.anonymous = true;
-    // PROCESSA imediatamente o possível sintoma anterior
     if (session.lastSymptomMessage) {
       return await processSymptomFlow(session, session.lastSymptomMessage, res, sessionId);
     }
-    // Se não tinha nada antes, pergunta pelo sintoma normalmente
     return res.status(200).json({
       reply: session.idioma === "pt"
         ? "Pode me contar qual sintoma mais incomoda você? (Exemplo: dores, cansaço, digestão...)"
@@ -454,11 +438,9 @@ if (!session.idioma) {
   // Aceita nome só se for curto (máx. 2 palavras)
   if (/^[a-zA-Zà-úÀ-Ú']{2,30}( [a-zA-Zà-úÀ-Ú']{2,30})?$/.test(message.trim())) {
     session.userName = message.trim().replace(/^\w/, c => c.toUpperCase());
-    // PROCESSA imediatamente o possível sintoma anterior
     if (session.lastSymptomMessage) {
       return await processSymptomFlow(session, session.lastSymptomMessage, res, sessionId);
     }
-    // Se não tinha nada antes, pergunta pelo sintoma normalmente
     return res.status(200).json({
       reply: session.idioma === "pt"
         ? `Obrigado, ${session.userName}! Agora me conte: qual sintoma mais incomoda você?`
@@ -468,7 +450,6 @@ if (!session.idioma) {
   }
   // Se não é nome/anônimo, guarda mensagem para processar depois
   session.lastSymptomMessage = message;
-  // SÓ PEDE O NOME UMA VEZ! (Frontend cuida do clique "continuar sem se identificar")
   return res.status(200).json({
     reply: session.idioma === "pt"
       ? `Aqui no consultório do Dr. Owl, cada história é especial. Me conta: como você gostaria de ser chamado(a) por mim? Pode ser seu nome, apelido, até um codinome — prometo guardar com carinho esse segredo! Se não quiser contar, clique em "Continuar sem se identificar".`
@@ -476,6 +457,15 @@ if (!session.idioma) {
     followupQuestions: []
   });
 }
+
+// === APENAS AQUI, DEPOIS DO BLOCO ACIMA ===
+const idiomaDetectado = await detectLanguage(message);
+if (!session.idioma) {
+  session.idioma = idiomaDetectado;
+} else if (idiomaDetectado !== session.idioma) {
+  session.idioma = idiomaDetectado;
+}
+
   // Sintoma: fuzzy > GPT exact > fallback semântico suplemento
   let supplementName = null;
   if (!selectedQuestion) {
