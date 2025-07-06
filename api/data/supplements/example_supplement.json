@@ -20,18 +20,27 @@
         "quick_replies_en": [
           "Quick reply in EN 1",
           "Quick reply in EN 2"
+        ],
+        "reflective_questions_pt": [
+          "Pergunta reflexiva em PT 1",
+          "Pergunta reflexiva em PT 2"
+        ],
+        "reflective_questions_en": [
+          "Reflective question in EN 1",
+          "Reflective question in EN 2"
         ]
       },
       "fase_2": {
         "copy_pt": ["..."],
         "copy_en": ["..."],
         "quick_replies_pt": ["..."],
-        "quick_replies_en": ["..."]
+        "quick_replies_en": ["..."],
+        "reflective_questions_pt": ["..."],
+        "reflective_questions_en": ["..."]
       },
       "fase_3": {},
       "fase_4": {},
       "fase_5": {}
     }
- 
   }
 }
