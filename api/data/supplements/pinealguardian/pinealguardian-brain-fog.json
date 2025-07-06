@@ -1,1 +1,232 @@
+{
+  "symptom": "Brain Fog",
+  "supplement": "Pineal Guardian",
+  "phases": [
+    {
+      "phase": "Fase 1 — Conexão/Conscientização",
+      "copy": {
+        "pt": [
+          "${userName}, você tem sentido dificuldades para pensar com clareza ou momentos de confusão mental? O brain fog (nevoeiro mental) pode ser causado por diversos fatores, como uma dieta pobre em nutrientes, alimentos ultraprocessados, solos empobrecidos e carnes tratadas com hormônios. Esses elementos aumentam a inflamação no cérebro e interferem na função cognitiva, causando dificuldade de concentração e perda de clareza mental.",
+          "Você sabia, ${userName}, que uma alimentação inadequada pode afetar diretamente a clareza mental? A combinação de ultraprocessados, solos contaminados e carnes com hormônios está relacionada ao aumento da inflamação no cérebro, contribuindo para o brain fog e dificultando o foco e a concentração.",
+          "Você já percebeu, ${userName}, que sua mente parece ficar embaçada, mesmo sem uma razão aparente? Isso pode ser reflexo dos impactos da alimentação moderna e do ambiente ao seu redor, que afetam diretamente sua capacidade cognitiva e clareza mental."
+        ],
+        "en": [
+          "${userName}, have you been experiencing difficulty thinking clearly or moments of mental confusion? Brain fog can be caused by various factors, such as a poor diet, ultra-processed foods, nutrient-depleted soils, and hormone-treated meats. These elements increase brain inflammation and interfere with cognitive function, causing difficulty concentrating and mental clarity loss.",
+          "Did you know, ${userName}, that an inadequate diet can directly impact mental clarity? The combination of ultra-processed foods, contaminated soils, and hormone-treated meats is linked to increased brain inflammation, contributing to brain fog and making focus and concentration harder.",
+          "Have you noticed, ${userName}, that your mind feels cloudy, even without any clear reason? This could be a reflection of the impacts of modern diets and the environment around you, directly affecting your cognitive ability and mental clarity."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Por que estou com o cérebro tão embaçado?",
+          "Alimentos influenciam clareza mental?",
+          "Solo contaminado afeta a função cognitiva?",
+          "Carnes com hormônios prejudicam o cérebro?",
+          "Quero entender mais sobre brain fog",
+          "Tem estudos científicos sobre isso?",
+          "Como melhorar clareza mental naturalmente?",
+          "Quais sintomas indicam brain fog grave?",
+          "Quero dicas para melhorar o foco",
+          "Estresse piora o brain fog?",
+          "É normal ter dificuldades cognitivas hoje?",
+          "Quando procurar ajuda médica?"
+        ],
+        "en": [
+          "Why is my brain so foggy?",
+          "Do foods affect mental clarity?",
+          "Does contaminated soil affect cognitive function?",
+          "Do hormone-treated meats harm the brain?",
+          "I want to learn more about brain fog",
+          "Are there scientific studies on this?",
+          "How to improve mental clarity naturally?",
+          "What symptoms indicate severe brain fog?",
+          "I want tips to improve focus",
+          "Does stress worsen brain fog?",
+          "Is it normal to have cognitive difficulties nowadays?",
+          "When should I seek medical help?"
+        ]
+      }
+    },
+    {
+      "phase": "Fase 2 — Gravidade/Consequência",
+      "copy": {
+        "pt": [
+          "${userName}, o brain fog persistente pode afetar sua produtividade, memória e até seu humor. Estudos da Harvard Medical School indicam que a inflamação cerebral causada por uma dieta inadequada, alimentos processados e exposição a toxinas ambientais piora esses sintomas, impactando a clareza mental.",
+          "Você sabia, ${userName}, que a exposição contínua a alimentos processados e carnes hormonizadas pode causar inflamação no cérebro e agravar o brain fog? Isso pode levar a transtornos cognitivos e emocionais.",
+          "${userName}, o brain fog não tratado pode evoluir para problemas mais graves, como dificuldades de memória e perda de capacidade cognitiva. Dados do National Institute of Mental Health ressaltam a importância de abordar esses sintomas com soluções naturais e eficazes."
+        ],
+        "en": [
+          "${userName}, persistent brain fog can affect your productivity, memory, and even mood. Harvard Medical School studies indicate that brain inflammation caused by an inadequate diet, processed foods, and exposure to environmental toxins worsens these symptoms, impacting mental clarity.",
+          "Did you know, ${userName}, that continuous exposure to processed foods and hormone-treated meats can cause brain inflammation and worsen brain fog? This may lead to cognitive and emotional disorders.",
+          "${userName}, untreated brain fog can evolve into more serious problems, such as memory difficulties and loss of cognitive ability. National Institute of Mental Health data emphasize the importance of addressing these symptoms with natural and effective solutions."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Brain fog pode piorar?",
+          "Como alimentos afetam a função cognitiva?",
+          "Solo contaminado prejudica o cérebro?",
+          "Carnes hormonizadas afetam o cérebro?",
+          "Quero saber mais sobre cognição e clareza mental",
+          "Brain fog afeta memória?",
+          "Dá para melhorar naturalmente?",
+          "Quais sintomas indicam gravidade?",
+          "Quero dicas para melhorar o foco",
+          "Estresse piora o brain fog?",
+          "Tem estudos científicos sobre isso?",
+          "Quando procurar ajuda médica?"
+        ],
+        "en": [
+          "Can brain fog get worse?",
+          "How do foods affect cognitive function?",
+          "Does contaminated soil harm the brain?",
+          "Do hormone-treated meats affect the brain?",
+          "I want to learn more about cognition and mental clarity",
+          "Does brain fog affect memory?",
+          "Can it be improved naturally?",
+          "What symptoms indicate severity?",
+          "I want tips to improve focus",
+          "Does stress worsen brain fog?",
+          "Are there scientific studies on this?",
+          "When should I seek medical help?"
+        ]
+      }
+    },
+    {
+      "phase": "Fase 3 — Prova/Evidência",
+      "copy": {
+        "pt": [
+          "${userName}, estudos indicam que a **Pineal Guardian** ajuda a reduzir a inflamação cerebral e melhorar as funções cognitivas, favorecendo a clareza mental e o foco. Pesquisas do Frontiers in Pharmacology destacam seu papel neuroprotetor e no suporte mental.",
+          "Pesquisas recentes, ${userName}, confirmam que os antioxidantes e compostos bioativos da **Pineal Guardian** fortalecem a saúde do cérebro, promovendo melhor concentração e clareza mental. Estudos do Journal of Ethnopharmacology reforçam esses efeitos.",
+          "${userName}, estudos do Nutritional Journal mostram que o consumo regular da **Pineal Guardian** está associado à melhora do foco, memória e redução da inflamação cerebral, promovendo maior bem-estar."
+        ],
+        "en": [
+          "${userName}, studies indicate **Pineal Guardian** helps reduce brain inflammation and improve cognitive functions, enhancing mental clarity and focus. Research from Frontiers in Pharmacology highlights its neuroprotective and mental support role.",
+          "Recent research, ${userName}, confirms that **Pineal Guardian**'s antioxidants and bioactives strengthen brain health, promoting better concentration and mental clarity. Studies from the Journal of Ethnopharmacology reinforce these effects.",
+          "${userName}, studies from the Nutritional Journal show regular **Pineal Guardian** use is linked to improved focus, memory, and reduced brain inflammation, promoting greater well-being."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "**Pineal Guardian** ajuda no foco?",
+          "Tem estudos comprovando?",
+          "Quanto tempo para sentir efeito?",
+          "Posso usar todos os dias?",
+          "Ajuda a reduzir estresse?",
+          "É seguro para uso contínuo?",
+          "Quero relatos de quem melhorou",
+          "Como a **Pineal Guardian** age no cérebro?",
+          "Posso combinar com outras plantas?",
+          "Quero dicas para começar",
+          "Quero ver estudos científicos",
+          "Quais benefícios principais?"
+        ],
+        "en": [
+          "Does **Pineal Guardian** help with focus?",
+          "Are there scientific studies proving this?",
+          "How long to feel effects?",
+          "Can I use it daily?",
+          "Does it help reduce stress?",
+          "Is it safe for continuous use?",
+          "I want stories from people who improved",
+          "How does **Pineal Guardian** act on the brain?",
+          "Can I combine it with other plants?",
+          "I want tips to start",
+          "I want to see scientific studies",
+          "What are the main benefits?"
+        ]
+      }
+    },
+    {
+      "phase": "Fase 4 — Solução Natural/Plantas",
+      "copy": {
+        "pt": [
+          "O **Pineal Guardian** é um suplemento natural reconhecido por seus efeitos neuroprotetores e anti-inflamatórios, que ajudam a reduzir os sintomas do brain fog e promovem o equilíbrio emocional. Rico em antioxidantes e nutrientes essenciais, é uma excelente opção para quem busca mais clareza mental.",
+          "${userName}, o **Pineal Guardian** contém compostos que ajudam a regular o sistema nervoso, reduzir a inflamação e melhorar o equilíbrio emocional, auxiliando no alívio do brain fog. Seu uso tradicional aliado a estudos científicos comprova sua eficácia.",
+          "Usado para apoiar a saúde mental, o **Pineal Guardian** oferece nutrientes essenciais que ajudam a combater o brain fog, promovendo relaxamento e bem-estar."
+        ],
+        "en": [
+          "**Pineal Guardian** is a natural supplement recognized for its neuroprotective and anti-inflammatory effects, helping reduce brain fog symptoms and promoting emotional balance. Rich in antioxidants and essential nutrients, it’s an excellent option for those seeking more mental clarity.",
+          "${userName}, **Pineal Guardian** contains compounds that help regulate the nervous system, reduce inflammation, and improve emotional balance, assisting in brain fog relief. Its traditional use combined with scientific studies proves its effectiveness.",
+          "Used to support mental health, **Pineal Guardian** provides essential nutrients that help combat brain fog, promoting relaxation and well-being."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Como usar **Pineal Guardian** para brain fog?",
+          "Tem receita para clareza mental?",
+          "Ajuda a reduzir estresse?",
+          "Posso usar todos os dias?",
+          "Quero relatos de quem melhorou",
+          "Quanto tempo para ver resultado?",
+          "É seguro para uso contínuo?",
+          "Posso combinar com outras plantas?",
+          "Quero dicas para começar",
+          "Ajuda no equilíbrio neurológico?",
+          "Quero ver estudos científicos",
+          "Dá para usar com alimentação variada?"
+        ],
+        "en": [
+          "How to use **Pineal Guardian** for brain fog?",
+          "Any recipe for mental clarity?",
+          "Does it help reduce stress?",
+          "Can I use it daily?",
+          "I want stories from people who improved",
+          "How long to see results?",
+          "Is it safe for continuous use?",
+          "Can I combine it with other plants?",
+          "I want tips to start",
+          "Does it help neurological balance?",
+          "I want to see scientific studies",
+          "Can it be used with varied diet?"
+        ]
+      }
+    },
+    {
+      "phase": "Fase 5 — Próximo Passo",
+      "copy": {
+        "pt": [
+          "${userName}, melhorar a clareza mental naturalmente pode transformar sua rotina e produtividade. Com o **Pineal Guardian** e hábitos conscientes, seu cérebro terá suporte para alcançar mais foco e clareza. Posso ajudar com receitas, dicas e um plano prático para essa transformação.",
+          "A mudança começa com pequenas escolhas, ${userName}. Ao incluir o **Pineal Guardian** na rotina e optar por alimentos naturais, você apoia seu cérebro a funcionar melhor. Estou aqui para guiar você com passos simples e personalizados.",
+          "${userName}, sua jornada para mais clareza mental e foco pode começar agora. Com o **Pineal Guardian** e uma alimentação equilibrada, seu cérebro terá o suporte necessário para atingir seu potencial. Posso fornecer um plano com orientações e cuidados para essa nova fase."
+        ],
+        "en": [
+          "${userName}, improving mental clarity naturally can transform your routine and productivity. With **Pineal Guardian** and conscious habits, your brain will have the support to achieve more focus and clarity. I can help with recipes, tips, and a practical plan for this transformation.",
+          "Change starts with small choices, ${userName}. By including **Pineal Guardian** in your routine and opting for natural foods, you support your brain to function better. I’m here to guide you with simple, personalized steps.",
+          "${userName}, your journey to more mental clarity and focus can start now. With **Pineal Guardian** and a balanced diet, your brain will have the necessary support to reach its potential. I can provide a plan with guidance and care for this new phase."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Quero começar já com **Pineal Guardian**",
+          "Tem receita fácil para clareza mental",
+          "Quero relatos reais de transformação",
+          "Como montar uma rotina prática?",
+          "Prefiro aprender mais antes",
+          "Resultados são duradouros?",
+          "Posso combinar com minha alimentação?",
+          "Quero conversar sobre escolhas naturais",
+          "Dá para fazer em família?",
+          "Tem dicas para motivação?",
+          "É seguro para todos?",
+          "Quero ver estudos e relatos reais"
+        ],
+        "en": [
+          "I want to start with **Pineal Guardian** now",
+          "Any easy recipe for mental clarity",
+          "I want real transformation stories",
+          "How to build a practical routine?",
+          "I’d rather learn more first",
+          "Are results lasting?",
+          "Can I combine it with my diet?",
+          "I want to talk about natural choices",
+          "Can this be done as a family?",
+          "Any tips for motivation?",
+          "Is it safe for everyone?",
+          "I want to see studies and real stories"
+        ]
+      }
+    }
+  ]
+}
 
