@@ -482,10 +482,9 @@
         "reflective_questions_en": [
           "What would make you feel safe to take the next step and try a new routine?",
           "Do you prefer to start gradually or include all suggestions at once?"
-        ]
-      },
-    
-      {
+       ]
+      }, 
+      
   "suplemento": "Mitolyn",
   "sintomas": {
     "metabolismo_lento": {
@@ -950,10 +949,7 @@
           "What first step do you think would be easiest to start this change?",
           "Do you prefer to start with just one plant or try several at once?"
         ]
-      }
-    },
-
-     {
+      },
   "suplemento": "Mitolyn",
   "sintomas": {
     "weight_gain_around_stomach": {
@@ -1358,10 +1354,8 @@
           "What would make you feel more confident to try a natural weight loss routine?",
           "Do you prefer gradual changes or a complete plan from the start?"
         ]
-      }
-    },
+      },
 
-     {
   "suplemento": "Mitolyn",
   "sintomas": {
     "weight_loss_plateau": {
@@ -1766,10 +1760,8 @@
           "What would make you feel more confident to try a natural routine for hormones?",
           "Do you prefer gradual changes or a full plan right away?"
         ]
-      }
-    },
+      },
 
-     {
   "suplemento": "Prime Biome",
   "sintomas": {
     "abdominal_bloating": {
@@ -2174,10 +2166,8 @@
           "What would make you feel safer to try a natural belly fat routine?",
           "Do you prefer gradual changes or want to change everything at once?"
         ]
-      }
-    },
+      },
 
-     {
   "suplemento": "Mitolyn",
   "sintomas": {
     "trouble_losing_belly_fat": {
@@ -2362,7 +2352,6 @@
         ]
       },
 
-      {
   "suplemento": "Mitolyn",
   "sintomas": {
     "fatigue_despite_rest": {
