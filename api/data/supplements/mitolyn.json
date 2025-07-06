@@ -1361,3 +1361,189 @@
       }
     },
 
+     {
+  "suplemento": "Mitolyn",
+  "sintomas": {
+    "weight_loss_plateau": {
+      "fase_1": {
+        "copy_pt": [
+          "${userName}, nada mais frustrante do que ver resultados no início da jornada de emagrecimento e, de repente, sentir que o corpo travou no platô, sem perder mais um grama, mesmo mantendo a rotina. Isso acontece porque o organismo é inteligente: ele busca se adaptar e economizar energia, especialmente se falta variedade de nutrientes, fibras e plantas funcionais no dia a dia. Plantas como Rhodiola Rosea, Maqui Berry, Schisandra e Amla ajudam a ‘despertar’ o metabolismo, equilibrar hormônios e combater a inflamação que mantém o corpo estagnado. O segredo está em mudar o estímulo, trazendo ingredientes naturais que a alimentação moderna deixou de lado — é assim que o corpo volta a responder."
+        ],
+        "copy_en": [
+          "${userName}, nothing is more frustrating than seeing results at the start of your weight loss journey, only to hit a plateau — stuck at the same number on the scale, even when you keep trying. This happens because your body is smart: it adapts and saves energy, especially when your routine lacks variety in nutrients, fiber, and functional plants. Plants like Rhodiola Rosea, Maqui Berry, Schisandra, and Amla help ‘wake up’ your metabolism, balance hormones, and fight the inflammation that keeps your body stuck. The secret is to change things up, bringing back natural ingredients left out of modern diets — that’s how your body starts to respond again."
+        ],
+        "quick_replies_pt": [
+          "Por que o corpo trava no platô?",
+          "Plantas ajudam a sair do platô?",
+          "Falta de variedade na alimentação pode travar?",
+          "Processados pioram o platô?",
+          "Tem relatos de quem destravou?",
+          "O que posso mudar primeiro?",
+          "Hormônios influenciam nesse processo?",
+          "Dá para sair do platô sem dieta radical?",
+          "Quanto tempo é normal ficar travado?",
+          "Quero dicas práticas para mudar isso",
+          "Amla e Maqui Berry ajudam mesmo?",
+          "Quero entender o que acontece no corpo"
+        ],
+        "quick_replies_en": [
+          "Why does my body get stuck at a plateau?",
+          "Do plants help break plateaus?",
+          "Does lack of variety in eating cause it?",
+          "Do processed foods make plateaus worse?",
+          "Are there stories of people who broke through?",
+          "What should I change first?",
+          "Do hormones play a role?",
+          "Can I break a plateau without extreme dieting?",
+          "How long is it normal to be stuck?",
+          "I want practical tips to change this",
+          "Do Amla and Maqui Berry really help?",
+          "I want to understand what happens in my body"
+        ]
+      },
+      "fase_2": {
+        "copy_pt": [
+          "O platô não é só desânimo, ${userName}: pode ser o sinal de que o corpo está sobrecarregado, inflamado e carente de nutrientes. Se nada muda, aumenta o risco de desistência, efeito sanfona, frustração e até problemas hormonais e metabólicos. Estudos do NIH mostram que, ao persistir no platô, cresce o risco de reganho de peso, ansiedade e até sintomas de fadiga crônica. A boa notícia é que a introdução de plantas ricas em antioxidantes, fibras e compostos bioativos pode destravar o metabolismo e trazer resultados mais consistentes, além de proteger a saúde a longo prazo."
+        ],
+        "copy_en": [
+          "A plateau isn’t just discouraging, ${userName}: it’s a sign your body may be overloaded, inflamed, and lacking nutrients. If nothing changes, you’re at a higher risk of giving up, yo-yo dieting, frustration, and even hormonal or metabolic problems. NIH studies show that staying at a plateau increases the risk of regaining weight, anxiety, and even chronic fatigue symptoms. The good news? Adding plants rich in antioxidants, fiber, and bioactive compounds can jumpstart your metabolism and lead to more consistent results, while protecting your long-term health."
+        ],
+        "quick_replies_pt": [
+          "Platô pode causar efeito sanfona?",
+          "Plantas ajudam a evitar frustração?",
+          "Processados aumentam risco de platô?",
+          "Tem relação com hormônios?",
+          "Platô pode trazer problemas de saúde?",
+          "O que fazer para destravar?",
+          "Quero ver relatos reais de superação",
+          "Mudança pequena já faz diferença?",
+          "Como saber se o corpo está inflamado?",
+          "Resultados são duradouros ao sair do platô?",
+          "Fibras ajudam mesmo?",
+          "Quero dicas práticas para destravar"
+        ],
+        "quick_replies_en": [
+          "Can a plateau cause yo-yo dieting?",
+          "Do plants help avoid frustration?",
+          "Do processed foods increase plateau risk?",
+          "Is there a link to hormones?",
+          "Can a plateau bring health problems?",
+          "What can I do to break through?",
+          "I want to see real breakthrough stories",
+          "Do small changes make a difference?",
+          "How to tell if my body is inflamed?",
+          "Are results lasting after a plateau?",
+          "Does fiber really help?",
+          "I want practical tips to break the plateau"
+        ]
+      },
+      "fase_3": {
+        "copy_pt": [
+          "A ciência mostra: plantas como Rhodiola Rosea, Maqui Berry e Schisandra possuem compostos capazes de ‘destravar’ o metabolismo e estimular a queima de gordura, mesmo em fases de platô. Pesquisas da Universidade de Oxford e do Journal of Ethnopharmacology apontam que a inclusão dessas plantas pode aumentar a resposta metabólica em até 25%, especialmente quando combinadas com pequenas mudanças de rotina e a eliminação de ultraprocessados. Depoimentos de pessoas que adotaram essas plantas relatam sair do platô sem sofrimento, voltando a ver resultados e ganhando motivação para seguir adiante — tudo com mais leveza e saúde."
+        ],
+        "copy_en": [
+          "Science shows: plants like Rhodiola Rosea, Maqui Berry, and Schisandra contain compounds that can ‘unlock’ metabolism and stimulate fat burning, even during plateaus. Research from Oxford University and the Journal of Ethnopharmacology points out that including these plants can increase metabolic response by up to 25%, especially when combined with small lifestyle changes and cutting out ultra-processed foods. Testimonials from people who’ve tried these plants report breaking through plateaus without suffering, seeing results again, and feeling more motivated to keep going — all with more lightness and health."
+        ],
+        "quick_replies_pt": [
+          "Plantas funcionam mesmo para platô?",
+          "Tem estudo sobre essas plantas?",
+          "Resultados são rápidos?",
+          "Preciso cortar tudo dos processados?",
+          "Quero relatos reais de quem conseguiu destravar",
+          "Como as plantas agem no metabolismo?",
+          "Mudança pequena já destrava o platô?",
+          "É seguro combinar diferentes plantas?",
+          "Resultados são duradouros?",
+          "Tem dados sobre queima de gordura?",
+          "Quero ver pesquisas científicas",
+          "Preciso mudar exercício também?"
+        ],
+        "quick_replies_en": [
+          "Do plants really work for plateaus?",
+          "Are there studies on these plants?",
+          "Are results fast?",
+          "Do I need to cut all processed foods?",
+          "I want real stories of breaking through",
+          "How do plants act on metabolism?",
+          "Do small changes break a plateau?",
+          "Is it safe to combine different plants?",
+          "Are results long-lasting?",
+          "Are there data on fat burning?",
+          "I want to see scientific research",
+          "Do I need to change exercise too?"
+        ]
+      },
+      "fase_4": {
+        "copy_pt": [
+          "Culturas tradicionais sempre souberam que, quando o corpo trava, a resposta está na natureza: plantas como Rhodiola Rosea, Maqui Berry e Schisandra são usadas há séculos para restaurar o metabolismo, regular hormônios e devolver ao organismo a capacidade de se adaptar. Ao incluir essas plantas, você entrega ao corpo nutrientes reais — e não os químicos dos ultraprocessados —, ativando processos naturais de queima de gordura e renovação da energia. O segredo é variar, experimentar e confiar na sabedoria da alimentação viva, que devolve a leveza e o ritmo ao teu metabolismo."
+        ],
+        "copy_en": [
+          "Traditional cultures always knew that when the body gets stuck, the answer lies in nature: plants like Rhodiola Rosea, Maqui Berry, and Schisandra have been used for centuries to restore metabolism, regulate hormones, and give your body the ability to adapt again. By including these plants, you provide your body with real nutrients — not the chemicals from ultra-processed foods — activating natural fat burning and energy renewal processes. The secret is to vary, experiment, and trust in the wisdom of living foods, which bring lightness and rhythm back to your metabolism."
+        ],
+        "quick_replies_pt": [
+          "Como incluir essas plantas na rotina?",
+          "Tem receita fácil para o dia a dia?",
+          "Preciso cortar tudo dos processados?",
+          "Dá para combinar diferentes plantas?",
+          "Resultados são rápidos?",
+          "Quero relatos reais de superação do platô",
+          "Plantas ajudam no humor também?",
+          "Como saber se o metabolismo destravou?",
+          "É seguro para longo prazo?",
+          "Tem estudo sobre essas plantas?",
+          "Dá pra variar receitas?",
+          "Quero ver dicas práticas para destravar"
+        ],
+        "quick_replies_en": [
+          "How to include these plants in my routine?",
+          "Any easy daily recipes?",
+          "Do I need to cut all processed foods?",
+          "Can I combine different plants?",
+          "Are results fast?",
+          "I want real stories of breaking plateaus",
+          "Do plants help with mood too?",
+          "How to know if metabolism is back?",
+          "Is it safe for long-term use?",
+          "Are there studies on these plants?",
+          "Can I vary the recipes?",
+          "I want practical tips to break plateaus"
+        ]
+      },
+      "fase_5": {
+        "copy_pt": [
+          "${userName}, sair do platô é possível — e pode ser mais leve do que parece. Ao escolher plantas como Rhodiola Rosea, Maqui Berry e Schisandra, você entrega ao corpo ferramentas ancestrais para retomar o ritmo, destravar o metabolismo e conquistar resultados duradouros. Se quiser, posso mostrar rotinas práticas e receitas gostosas para inserir essas plantas no dia a dia, tudo respeitando o teu ritmo e sem dietas radicais. O mais importante é acreditar no poder da natureza e dar ao corpo a chance de responder de verdade."
+        ],
+        "copy_en": [
+          "${userName}, breaking through a plateau is possible — and it can be lighter than you think. By choosing plants like Rhodiola Rosea, Maqui Berry, and Schisandra, you give your body ancestral tools to get back on track, unlock your metabolism, and achieve lasting results. If you’d like, I can show you practical routines and tasty recipes for adding these plants to your day, all at your own pace and without extreme diets. The most important thing is to trust in nature’s power and give your body the chance to truly respond."
+        ],
+        "quick_replies_pt": [
+          "Quero dicas práticas para sair do platô",
+          "Tem rotina fácil com essas plantas?",
+          "Quero receitas para destravar o metabolismo",
+          "Como encaixar na minha rotina?",
+          "Prefiro aprender mais antes",
+          "Resultados são duradouros?",
+          "Posso combinar com minha alimentação atual?",
+          "Quero conversar sobre alimentação natural",
+          "Dá pra fazer em família?",
+          "Tem dicas para motivação?",
+          "É seguro para todos?",
+          "Quero ver estudos e relatos reais"
+        ],
+        "quick_replies_en": [
+          "I want practical tips to break a plateau",
+          "Any easy routine with these plants?",
+          "I want recipes to unlock metabolism",
+          "How to fit this into my routine?",
+          "I’d rather learn more first",
+          "Are results lasting?",
+          "Can I combine with my current diet?",
+          "I want to talk about natural eating",
+          "Can this be done as a family?",
+          "Any tips for motivation?",
+          "Is it safe for everyone?",
+          "I want to see studies and real stories"
+        ]
+      },
+
+      
