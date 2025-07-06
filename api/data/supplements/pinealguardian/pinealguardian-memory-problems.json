@@ -1,1 +1,232 @@
+{
+  "supplement": "Pineal Guardian",
+  "symptom": "Memory Problems",
+  "phases": [
+    {
+      "phase": "Fase 1 — Conexão/Conscientização",
+      "copy": {
+        "pt": [
+          "${userName}, você tem percebido dificuldade para lembrar de coisas simples, como onde colocou algo ou o que fez durante o dia? Os problemas de memória podem ser um sinal de que seu cérebro está sobrecarregado, muitas vezes devido a uma alimentação inadequada, rica em ultraprocessados, solos empobrecidos e carnes com hormônios. Esses fatores aumentam a inflamação cerebral e afetam os neurotransmissores responsáveis pela memória e clareza mental.",
+          "A memória fraca, ${userName}, pode estar ligada a desequilíbrios alimentares e ambientais. Alimentos processados, solos contaminados e carnes hormonizadas comprometem a função cerebral, dificultando o armazenamento e a recuperação de informações.",
+          "Você sabia, ${userName}, que a qualidade da alimentação e do ambiente em que vivemos pode afetar diretamente nossa capacidade de lembrar de coisas do dia a dia? A combinação de alimentos ultraprocessados, solos degradados e carnes com hormônios prejudica o funcionamento do cérebro, impactando negativamente a memória."
+        ],
+        "en": [
+          "${userName}, have you noticed difficulty remembering simple things, like where you placed something or what you did during the day? Memory problems can be a sign that your brain is overloaded, often due to an inadequate diet, rich in ultra-processed foods, nutrient-depleted soils, and hormone-treated meats. These factors increase brain inflammation and affect neurotransmitters responsible for memory and mental clarity.",
+          "Weak memory, ${userName}, may be related to dietary and environmental imbalances. Processed foods, contaminated soils, and hormone-treated meats compromise brain function, making it harder to store and retrieve information.",
+          "Did you know, ${userName}, that the quality of your diet and the environment around you can directly impact your ability to remember everyday things? The combination of ultra-processed foods, degraded soils, and hormone-treated meats impairs brain function, negatively affecting memory."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Por que minha memória piorou?",
+          "Alimentos afetam a memória?",
+          "Solo contaminado prejudica o cérebro?",
+          "Carnes com hormônios influenciam a memória?",
+          "Quero entender mais sobre problemas de memória",
+          "Tem estudos científicos?",
+          "Como melhorar a memória naturalmente?",
+          "Quais sintomas indicam problemas graves de memória?",
+          "Quero dicas para melhorar a memória",
+          "Estresse piora a memória?",
+          "É normal ter problemas de memória hoje?",
+          "Quando procurar ajuda médica?"
+        ],
+        "en": [
+          "Why has my memory worsened?",
+          "Do foods affect memory?",
+          "Does contaminated soil harm the brain?",
+          "Do hormone-treated meats influence memory?",
+          "I want to learn more about memory problems",
+          "Are there scientific studies?",
+          "How to improve memory naturally?",
+          "What symptoms indicate serious memory issues?",
+          "I want tips to improve memory",
+          "Does stress worsen memory?",
+          "Is memory loss common nowadays?",
+          "When to seek medical help?"
+        ]
+      }
+    },
+    {
+      "phase": "Fase 2 — Gravidade/Consequência",
+      "copy": {
+        "pt": [
+          "${userName}, a perda de memória constante pode afetar sua produtividade e qualidade de vida. Estudos mostram que a inflamação cerebral, causada por uma dieta inadequada e a exposição a toxinas ambientais, prejudica as funções cognitivas, dificultando a recuperação de informações e a clareza mental.",
+          "Você sabia, ${userName}, que a perda de memória persistente pode indicar um problema mais sério relacionado a processos inflamatórios no cérebro? Pesquisas indicam que alimentos ultraprocessados e exposição a toxinas ambientais podem acelerar o declínio das funções cognitivas.",
+          "${userName}, quando a perda de memória se torna constante, ela pode evoluir para distúrbios cognitivos mais graves. Dados da Organização Mundial da Saúde indicam que a alimentação inadequada e a poluição ambiental são fatores-chave no agravamento desses sintomas."
+        ],
+        "en": [
+          "${userName}, constant memory loss can affect your productivity and quality of life. Studies show that brain inflammation, caused by poor diet and exposure to environmental toxins, impairs cognitive functions, making it harder to retrieve information and achieve mental clarity.",
+          "Did you know, ${userName}, that persistent memory loss could indicate a more serious problem related to inflammatory processes in the brain? Research shows that ultra-processed foods and exposure to environmental toxins can accelerate the decline of cognitive functions.",
+          "${userName}, when memory loss becomes persistent, it can evolve into more severe cognitive disorders. World Health Organization data indicate that poor diet and environmental pollution are key factors in worsening these symptoms."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Perda de memória pode piorar?",
+          "Como alimentos afetam a memória?",
+          "Solo contaminado prejudica o cérebro?",
+          "Carnes hormonizadas afetam a memória?",
+          "Quero saber mais sobre declínio cognitivo",
+          "Perda de memória afeta a saúde mental?",
+          "Dá para melhorar naturalmente?",
+          "Quais sinais indicam um problema grave?",
+          "Quero dicas para melhorar minha memória",
+          "Estresse piora a memória?",
+          "Tem estudos científicos?",
+          "Quando procurar ajuda?"
+        ],
+        "en": [
+          "Can memory loss get worse?",
+          "How do foods affect memory?",
+          "Does contaminated soil harm the brain?",
+          "Do hormone-treated meats affect memory?",
+          "I want to learn more about cognitive decline",
+          "Does memory loss affect mental health?",
+          "Can it be improved naturally?",
+          "What symptoms indicate a serious problem?",
+          "I want tips to improve my memory",
+          "Does stress worsen memory?",
+          "Are there scientific studies?",
+          "When to seek help?"
+        ]
+      }
+    },
+    {
+      "phase": "Fase 3 — Prova/Evidência",
+      "copy": {
+        "pt": [
+          "${userName}, estudos mostram que certos compostos naturais podem ajudar a reduzir a inflamação cerebral e melhorar a função cognitiva, favorecendo a memória e a clareza mental. Pesquisas publicadas no Frontiers in Pharmacology destacam os benefícios neuroprotetores desses compostos.",
+          "Pesquisas recentes confirmam que os antioxidantes presentes em alguns alimentos ajudam a proteger o cérebro e melhorar a memória. Estudos do Journal of Ethnopharmacology reforçam esses efeitos positivos na saúde mental.",
+          "${userName}, estudos do Nutritional Journal mostram que o consumo regular de compostos naturais pode melhorar a memória e reduzir a inflamação no cérebro, promovendo maior bem-estar."
+        ],
+        "en": [
+          "${userName}, studies show that certain natural compounds can help reduce brain inflammation and improve cognitive function, enhancing memory and mental clarity. Research published in Frontiers in Pharmacology highlights the neuroprotective benefits of these compounds.",
+          "Recent research confirms that antioxidants in some foods help protect the brain and improve memory. Studies from the Journal of Ethnopharmacology reinforce these positive effects on mental health.",
+          "${userName}, studies from the Nutritional Journal show that regular consumption of natural compounds can improve memory and reduce brain inflammation, promoting greater well-being."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Compostos naturais ajudam na memória?",
+          "Tem estudos comprovando?",
+          "Quanto tempo para sentir efeito?",
+          "Posso usar todos os dias?",
+          "Ajuda a melhorar o foco?",
+          "É seguro para uso contínuo?",
+          "Quero relatos de quem melhorou",
+          "Como esses compostos atuam no cérebro?",
+          "Posso combinar com outras plantas?",
+          "Quero dicas para começar",
+          "Quero ver estudos científicos",
+          "Quais benefícios principais?"
+        ],
+        "en": [
+          "Do natural compounds help memory?",
+          "Are there studies proving this?",
+          "How long to feel effects?",
+          "Can I use it daily?",
+          "Does it help improve focus?",
+          "Is it safe for continuous use?",
+          "I want stories from people who improved",
+          "How do these compounds act on the brain?",
+          "Can I combine with other plants?",
+          "I want tips to start",
+          "I want to see scientific studies",
+          "What are the main benefits?"
+        ]
+      }
+    },
+    {
+      "phase": "Fase 4 — Solução Natural/Plantas",
+      "copy": {
+        "pt": [
+          "Plantas e compostos naturais ajudam a melhorar a memória, aumentar a clareza mental e reduzir a inflamação cerebral. Esses compostos protegem o sistema nervoso e promovem o equilíbrio cognitivo.",
+          "A Moringa e outras plantas têm efeitos neuroprotetores que ajudam a melhorar a memória e a saúde cerebral. Seu uso tradicional, aliado a pesquisas científicas, reforça sua eficácia no suporte à memória.",
+          "Compostos naturais oferecem nutrientes essenciais que estimulam a memória e a concentração, promovendo maior qualidade de vida e bem-estar."
+        ],
+        "en": [
+          "Plants and natural compounds help improve memory, increase mental clarity, and reduce brain inflammation. These compounds protect the nervous system and promote cognitive balance.",
+          "Moringa and other plants have neuroprotective effects that help improve memory and brain health. Their traditional use, combined with scientific research, reinforces their effectiveness in supporting memory.",
+          "Natural compounds offer essential nutrients that stimulate memory and concentration, promoting greater quality of life and well-being."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Como usar para melhorar a memória?",
+          "Tem receita para melhorar o foco?",
+          "Ajuda a reduzir estresse?",
+          "Posso usar todos os dias?",
+          "Quero relatos de quem melhorou",
+          "Quanto tempo para ver resultado?",
+          "É seguro para uso contínuo?",
+          "Posso combinar com outras plantas?",
+          "Quero dicas para começar",
+          "Ajuda no equilíbrio neurológico?",
+          "Quero ver estudos científicos",
+          "Dá para usar com alimentação variada?"
+        ],
+        "en": [
+          "How to use to improve memory?",
+          "Any recipe for better focus?",
+          "Does it help reduce stress?",
+          "Can I use it daily?",
+          "I want stories from people who improved",
+          "How long to see results?",
+          "Is it safe for continuous use?",
+          "Can I combine it with other plants?",
+          "I want tips to start",
+          "Does it help with neurological balance?",
+          "I want to see scientific studies",
+          "Can it be used with varied diet?"
+        ]
+      }
+    },
+    {
+      "phase": "Fase 5 — Próximo Passo",
+      "copy": {
+        "pt": [
+          "${userName}, melhorar a memória naturalmente pode transformar sua rotina e produtividade. Com práticas naturais e hábitos saudáveis, seu cérebro terá suporte para melhorar a memória e o foco. Posso ajudar com receitas, dicas e um plano prático para essa transformação.",
+          "A mudança começa com pequenas escolhas, ${userName}. Ao incluir compostos naturais em sua rotina, você ajuda seu cérebro a funcionar melhor. Estou aqui para guiar você com passos simples e personalizados.",
+          "${userName}, sua jornada para melhorar a memória e o foco pode começar agora. Com hábitos saudáveis e práticas naturais, seu cérebro terá o suporte necessário para atingir seu potencial. Posso fornecer um plano com orientações e cuidados para essa nova fase."
+        ],
+        "en": [
+          "${userName}, improving memory naturally can transform your routine and productivity. With natural practices and healthy habits, your brain will have the support to improve memory and focus. I can help with recipes, tips, and a practical plan for this transformation.",
+          "The change begins with small choices, ${userName}. By including natural compounds in your routine, you help your brain function better. I’m here to guide you with simple, personalized steps.",
+          "${userName}, your journey to better memory and focus can start now. With healthy habits and natural practices, your brain will have the support needed to reach its potential. I can provide a plan with guidance and care for this new phase."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Quero começar já",
+          "Tem receita fácil para melhorar a memória",
+          "Quero relatos reais de transformação",
+          "Como montar uma rotina prática?",
+          "Prefiro aprender mais antes",
+          "Resultados são duradouros?",
+          "Posso combinar com minha alimentação?",
+          "Quero conversar sobre escolhas naturais",
+          "Dá para fazer em família?",
+          "Tem dicas para motivação?",
+          "É seguro para todos?",
+          "Quero ver estudos e relatos reais"
+        ],
+        "en": [
+          "I want to start now",
+          "Any easy recipe for better memory",
+          "I want real transformation stories",
+          "How to build a practical routine?",
+          "I’d rather learn more first",
+          "Are results lasting?",
+          "Can I combine with my diet?",
+          "I want to talk about natural choices",
+          "Can this be done as a family?",
+          "Any tips for motivation?",
+          "Is it safe for everyone?",
+          "I want to see studies and real stories"
+        ]
+      }
+    }
+  ]
+}
 
