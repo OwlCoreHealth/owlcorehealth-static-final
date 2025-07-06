@@ -1,1 +1,357 @@
+{
+  "symptom": "Periodontal Disease / Doença Periodontal",
+  "supplement_name": "Prodentim",
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Conexão/Conscientização",
+      "copies_pt": [
+        "A doença periodontal, ${userName}, é uma condição silenciosa que muitas vezes começa sem dor, mas pode causar danos sérios se não for cuidada. É a inflamação das gengivas que, quando não tratada, compromete os tecidos que sustentam os dentes. Prodentim pode ser seu aliado natural para equilibrar a flora bucal, reduzir a inflamação e ajudar a proteger seu sorriso.",
+        "${userName}, sabia que a doença periodontal é uma das principais causas de perda dentária em adultos? Mesmo com cuidados básicos, o desequilíbrio da microbiota pode favorecer essa condição. Com Prodentim, você conta com probióticos que ajudam a restaurar esse equilíbrio e cuidar da saúde das gengivas de forma natural.",
+        "Falar sobre doença periodontal pode ser desconfortável, ${userName}, mas reconhecer os sinais é essencial para evitar complicações. Prodentim oferece uma abordagem natural, baseada em ciência, para ajudar a controlar a inflamação e fortalecer sua saúde bucal."
+      ],
+      "copies_en": [
+        "Periodontal disease, ${userName}, is a silent condition that often starts without pain but can cause serious damage if untreated. It’s the inflammation of gums that, when neglected, affects the tissues supporting your teeth. Prodentim can be your natural ally to balance oral flora, reduce inflammation, and help protect your smile.",
+        "${userName}, did you know periodontal disease is a leading cause of adult tooth loss? Even with basic care, microbiota imbalance can favor this condition. With Prodentim, you get probiotics that help restore balance and care for your gum health naturally.",
+        "Talking about periodontal disease can be uncomfortable, ${userName}, but recognizing the signs is crucial to avoid complications. Prodentim offers a natural, science-based approach to help control inflammation and strengthen your oral health."
+      ],
+      "reflective_questions_pt": [
+        "Por que a doença periodontal acontece mesmo com cuidado?",
+        "Quais os primeiros sinais que devo notar?",
+        "Como Prodentim pode ajudar na inflamação das gengivas?",
+        "Será que minha microbiota está desequilibrada?",
+        "Quero entender os riscos da doença periodontal",
+        "É possível prevenir naturalmente com Prodentim?",
+        "O que a ciência diz sobre probióticos e gengivas?",
+        "Quais hábitos pioram a doença periodontal?",
+        "Posso reverter danos com cuidados naturais?",
+        "Quero ver histórias de quem melhorou naturalmente",
+        "Como identificar a doença periodontal cedo?",
+        "Quais são os benefícios do Prodentim para minha boca?"
+      ],
+      "reflective_questions_en": [
+        "Why does periodontal disease happen even with care?",
+        "What early signs should I notice?",
+        "How can Prodentim help gum inflammation?",
+        "Is my microbiota imbalanced?",
+        "I want to understand periodontal disease risks",
+        "Is natural prevention with Prodentim possible?",
+        "What does science say about probiotics and gums?",
+        "What habits worsen periodontal disease?",
+        "Can natural care reverse damage?",
+        "I want to see stories of natural improvement",
+        "How to identify periodontal disease early?",
+        "What are Prodentim’s benefits for my mouth?"
+      ],
+      "quick_replies_pt": [
+        "Por que a doença periodontal aparece?",
+        "Quais os primeiros sintomas?",
+        "Como Prodentim ajuda na inflamação?",
+        "Posso prevenir com probióticos?",
+        "Doença periodontal é grave?",
+        "Tem relatos de melhora com Prodentim?",
+        "Quanto tempo para ver resultados?",
+        "Quais hábitos prejudicam a saúde bucal?",
+        "É possível reverter a doença?",
+        "Quero dicas para fortalecer gengivas",
+        "Prodentim é seguro para uso diário?",
+        "Como identificar a doença cedo?"
+      ],
+      "quick_replies_en": [
+        "Why does periodontal disease appear?",
+        "What are early symptoms?",
+        "How does Prodentim help inflammation?",
+        "Can I prevent with probiotics?",
+        "Is periodontal disease serious?",
+        "Are there stories of improvement with Prodentim?",
+        "How long to see results?",
+        "What habits harm oral health?",
+        "Is it possible to reverse disease?",
+        "I want tips to strengthen gums",
+        "Is Prodentim safe for daily use?",
+        "How to identify disease early?"
+      ]
+    },
+    {
+      "phase": 2,
+      "name": "Gravidade/Consequência",
+      "copies_pt": [
+        "A doença periodontal não tratada pode levar à perda de dentes, infecções e até afetar a saúde geral, ${userName}. Estudos da Harvard Medical School mostram que bactérias periodontais podem contribuir para doenças cardíacas e diabetes. Prodentim atua para equilibrar a flora bucal, ajudando a reduzir esses riscos.",
+        "${userName}, ignorar a doença periodontal pode causar inflamações profundas, sangramentos e retração gengival. A Associação Americana de Odontologia alerta para os impactos emocionais e sociais, como vergonha ao sorrir. Com Prodentim, você pode proteger sua saúde bucal e seu bem-estar.",
+        "O CDC indica que adultos com doença periodontal não tratada têm maior risco de complicações sistêmicas e perda precoce dos dentes. Prodentim oferece suporte natural para que você cuide da saúde das gengivas e previna agravamentos."
+      ],
+      "copies_en": [
+        "Untreated periodontal disease can lead to tooth loss, infections, and even impact overall health, ${userName}. Harvard Medical School studies show periodontal bacteria may contribute to heart disease and diabetes. Prodentim works to balance oral flora, helping reduce these risks.",
+        "${userName}, ignoring periodontal disease can cause deep inflammation, bleeding, and gum recession. The American Dental Association warns about emotional and social impacts like embarrassment when smiling. With Prodentim, you can protect your oral health and well-being.",
+        "The CDC indicates adults with untreated periodontal disease have higher risk of systemic complications and early tooth loss. Prodentim offers natural support to care for your gums and prevent worsening."
+      ],
+      "reflective_questions_pt": [
+        "Quais os riscos da doença periodontal não tratada?",
+        "Como ela pode afetar minha saúde geral?",
+        "Quando procurar ajuda urgente?",
+        "Como Prodentim ajuda na prevenção de complicações?",
+        "Quero evitar perda dentária e inflamação grave",
+        "Quais os impactos emocionais da doença?",
+        "É possível prevenir problemas sistêmicos?",
+        "Quanto tempo leva para piorar sem tratamento?",
+        "Quais sinais indicam agravamento?",
+        "Prodentim pode ajudar no controle a longo prazo?",
+        "Quero saber mais sobre cuidados preventivos",
+        "Como manter qualidade de vida com a doença?"
+      ],
+      "reflective_questions_en": [
+        "What are risks of untreated periodontal disease?",
+        "How can it affect my overall health?",
+        "When to seek urgent help?",
+        "How does Prodentim help prevent complications?",
+        "I want to avoid tooth loss and severe inflammation",
+        "What are emotional impacts of the disease?",
+        "Is it possible to prevent systemic problems?",
+        "How long to worsen without treatment?",
+        "What signs indicate worsening?",
+        "Can Prodentim help long-term control?",
+        "I want to know more about preventive care",
+        "How to maintain quality of life with disease?"
+      ],
+      "quick_replies_pt": [
+        "Doença periodontal pode causar perda de dentes?",
+        "Quando é urgente procurar dentista?",
+        "Como Prodentim ajuda na prevenção?",
+        "Quanto tempo para piorar sem tratamento?",
+        "Quais os riscos para saúde geral?",
+        "Tem casos reais de complicações?",
+        "É possível controlar a doença naturalmente?",
+        "Quero dicas para reduzir inflamação",
+        "Posso prevenir complicações sistêmicas?",
+        "Quero entender os impactos emocionais",
+        "Prodentim ajuda no controle a longo prazo?",
+        "Como melhorar qualidade de vida com a doença?"
+      ],
+      "quick_replies_en": [
+        "Can periodontal disease cause tooth loss?",
+        "When is urgent to see a dentist?",
+        "How does Prodentim help prevention?",
+        "How long to worsen without treatment?",
+        "What are general health risks?",
+        "Are there real complication cases?",
+        "Is natural disease control possible?",
+        "I want tips to reduce inflammation",
+        "Can I prevent systemic complications?",
+        "I want to understand emotional impacts",
+        "Does Prodentim help long-term control?",
+        "How to improve quality of life with disease?"
+      ]
+    },
+    {
+      "phase": 3,
+      "name": "Prova/Evidência",
+      "copies_pt": [
+        "Estudos mostram que probióticos como os presentes no Prodentim ajudam a reduzir a inflamação gengival e melhorar o equilíbrio da microbiota, essenciais para o controle da doença periodontal.",
+        "Pesquisas do NIH confirmam que rotinas com probióticos e plantas medicinais podem diminuir a progressão da doença periodontal e fortalecer a resposta imune local.",
+        "A Federação Europeia de Periodontologia destaca que soluções naturais, incluindo o uso de Prodentim, trazem benefícios comprovados na saúde gengival e na prevenção de complicações."
+      ],
+      "copies_en": [
+        "Studies show probiotics like those in Prodentim help reduce gum inflammation and improve microbiota balance, essential for controlling periodontal disease.",
+        "NIH research confirms that routines with probiotics and medicinal plants can decrease periodontal disease progression and strengthen local immune response.",
+        "The European Federation of Periodontology highlights that natural solutions, including Prodentim, provide proven benefits in gum health and complication prevention."
+      ],
+      "reflective_questions_pt": [
+        "Prodentim ajuda no controle da doença periodontal?",
+        "Quais estudos comprovam a eficácia?",
+        "Quanto tempo para ver melhora?",
+        "Plantas medicinais ajudam no tratamento?",
+        "Probióticos são seguros para uso contínuo?",
+        "Tem relatos de pacientes satisfeitos?",
+        "Quero entender como funciona o Prodentim",
+        "Posso combinar Prodentim com tratamentos tradicionais?",
+        "Qual o papel dos probióticos na gengivite?",
+        "Quero ver pesquisas científicas confiáveis",
+        "Tem risco de efeitos colaterais?",
+        "Prodentim é indicado para todos os perfis?"
+      ],
+      "reflective_questions_en": [
+        "Does Prodentim help control periodontal disease?",
+        "Which studies prove its efficacy?",
+        "How long to see improvement?",
+        "Do medicinal plants help treatment?",
+        "Are probiotics safe for continuous use?",
+        "Are there satisfied patient reports?",
+        "I want to understand how Prodentim works",
+        "Can I combine Prodentim with traditional treatments?",
+        "What is probiotics’ role in gingivitis?",
+        "I want to see reliable scientific research",
+        "Are there side effect risks?",
+        "Is Prodentim suitable for all profiles?"
+      ],
+      "quick_replies_pt": [
+        "Prodentim ajuda na doença periodontal?",
+        "Tem estudos científicos sobre o produto?",
+        "Quanto tempo para notar melhora?",
+        "Plantas medicinais auxiliam no tratamento?",
+        "É seguro usar probióticos diariamente?",
+        "Tem depoimentos reais de melhora?",
+        "Quero entender funcionamento do Prodentim",
+        "Posso combinar com tratamentos tradicionais?",
+        "Qual papel dos probióticos na gengivite?",
+        "Quero ver pesquisas confiáveis",
+        "Tem risco de efeitos colaterais?",
+        "Prodentim serve para todos os perfis?"
+      ],
+      "quick_replies_en": [
+        "Does Prodentim help periodontal disease?",
+        "Are there scientific studies on the product?",
+        "How long to notice improvement?",
+        "Do medicinal plants help treatment?",
+        "Is it safe to use probiotics daily?",
+        "Are there real improvement testimonials?",
+        "I want to understand how Prodentim works",
+        "Can I combine with traditional treatments?",
+        "What is probiotics’ role in gingivitis?",
+        "I want to see reliable research",
+        "Are there side effect risks?",
+        "Is Prodentim suitable for all profiles?"
+      ]
+    },
+    {
+      "phase": 4,
+      "name": "Solução Natural/Plantas",
+      "copies_pt": [
+        "Plantas como sálvia, gengibre e camomila, combinadas com os probióticos do Prodentim, ajudam a reduzir a inflamação e fortalecer as gengivas, promovendo equilíbrio e saúde bucal.",
+        "${userName}, essa combinação natural estimula a cicatrização, reduz a inflamação e combate bactérias nocivas, facilitando o controle da doença periodontal segundo estudos recentes.",
+        "Com Prodentim, você une o poder das plantas medicinais à ciência dos probióticos, numa rotina prática e eficaz para manter a saúde das gengivas e evitar complicações."
+      ],
+      "copies_en": [
+        "Plants like sage, ginger, and chamomile, combined with Prodentim’s probiotics, help reduce inflammation and strengthen gums, promoting balance and oral health.",
+        "${userName}, this natural combination stimulates healing, reduces inflammation, and fights harmful bacteria, making periodontal disease control easier according to recent studies.",
+        "With Prodentim, you combine the power of medicinal plants and probiotic science in a practical and effective routine to maintain gum health and prevent complications."
+      ],
+      "reflective_questions_pt": [
+        "Quais plantas ajudam na doença periodontal?",
+        "Como Prodentim une plantas e probióticos?",
+        "É seguro usar diariamente?",
+        "Quanto tempo para notar melhora?",
+        "Tem receitas naturais para gengivas?",
+        "Como fortalecer gengivas com plantas?",
+        "Quero saber mais sobre os ingredientes do Prodentim",
+        "Plantas substituem tratamentos convencionais?",
+        "Prodentim é indicado para toda família?",
+        "Quero dicas práticas para saúde natural",
+        "Tem relatos de sucesso com plantas?",
+        "Por que a flora bucal é importante?"
+      ],
+      "reflective_questions_en": [
+        "Which plants help periodontal disease?",
+        "How does Prodentim combine plants and probiotics?",
+        "Is it safe to use daily?",
+        "How long to notice improvement?",
+        "Are there natural recipes for gums?",
+        "How to strengthen gums with plants?",
+        "I want to know more about Prodentim ingredients",
+        "Do plants replace conventional treatments?",
+        "Is Prodentim suitable for the whole family?",
+        "I want practical tips for natural health",
+        "Are there success stories with plants?",
+        "Why is oral flora important?"
+      ],
+      "quick_replies_pt": [
+        "Quais plantas ajudam na doença periodontal?",
+        "Prodentim combina plantas e probióticos?",
+        "Tem receita natural fácil para gengivas?",
+        "Quanto tempo para ver melhora?",
+        "É seguro usar Prodentim diariamente?",
+        "Quero dicas práticas para o dia a dia",
+        "Plantas substituem tratamentos tradicionais?",
+        "Pode usar Prodentim para toda família?",
+        "Tem relatos reais de sucesso com plantas?",
+        "Por que cuidar da flora bucal é importante?",
+        "Como fortalecer gengivas naturalmente?",
+        "Prodentim é eficaz para gengivas?"
+      ],
+      "quick_replies_en": [
+        "Which plants help periodontal disease?",
+        "Does Prodentim combine plants and probiotics?",
+        "Any easy natural recipe for gums?",
+        "How long to see improvement?",
+        "Is it safe to use Prodentim daily?",
+        "I want practical daily tips",
+        "Do plants replace traditional treatments?",
+        "Can Prodentim be used by the whole family?",
+        "Are there real success stories with plants?",
+        "Why is oral flora care important?",
+        "How to strengthen gums naturally?",
+        "Is Prodentim effective for gums?"
+      ]
+    },
+    {
+      "phase": 5,
+      "name": "Apresentação da Solução/Próximo Passo",
+      "copies_pt": [
+        "${userName}, cuidar da doença periodontal com Prodentim é proteger seu sorriso e sua saúde geral. Posso ajudar a criar uma rotina prática, natural e baseada em ciência para fortalecer suas gengivas e prevenir complicações.",
+        "Não espere a doença avançar, ${userName}. Com Prodentim e hábitos simples, você pode controlar a inflamação, proteger seus dentes e manter a saúde bucal. Estou aqui para ajudar a personalizar seu cuidado.",
+        "${userName}, cada passo para cuidar das gengivas é um investimento em qualidade de vida. Prodentim e soluções naturais oferecem proteção e bem-estar. Vamos juntos construir um plano que respeite seu ritmo e valorize sua saúde?"
+      ],
+      "copies_en": [
+        "${userName}, caring for periodontal disease with Prodentim means protecting your smile and overall health. I can help build a practical, natural, and science-based routine to strengthen your gums and prevent complications.",
+        "Don’t wait for disease progression, ${userName}. With Prodentim and simple habits, you can control inflammation, protect your teeth, and maintain oral health. I’m here to help personalize your care.",
+        "${userName}, every step to care for your gums is an investment in quality of life. Prodentim and natural solutions offer protection and well-being. Let’s build a plan together that respects your pace and values your health."
+      ],
+      "reflective_questions_pt": [
+        "Quero experimentar Prodentim para doença periodontal",
+        "Como montar rotina natural para gengivas fortes?",
+        "Quero receitas naturais para saúde bucal",
+        "Como encaixar Prodentim no meu dia a dia?",
+        "Prefiro entender mais antes de decidir",
+        "Quero ver depoimentos reais de melhora",
+        "Prodentim tem outros benefícios?",
+        "Posso combinar Prodentim com escovação?",
+        "Quero conversar mais sobre saúde natural",
+        "O que mais posso fazer para proteger gengivas?",
+        "Prodentim é indicado para toda a família?",
+        "Quero ouvir histórias de sucesso"
+      ],
+      "reflective_questions_en": [
+        "I want to try Prodentim for periodontal disease",
+        "How to build a natural routine for strong gums?",
+        "I want natural recipes for oral health",
+        "How to fit Prodentim into my daily life?",
+        "I prefer to learn more before deciding",
+        "I want to see real improvement testimonials",
+        "Does Prodentim have other benefits?",
+        "Can I combine Prodentim with brushing?",
+        "I want to talk more about natural health",
+        "What else can I do to protect gums?",
+        "Is Prodentim suitable for the whole family?",
+        "I want to hear success stories"
+      ],
+      "quick_replies_pt": [
+        "Quero experimentar Prodentim para gengivas",
+        "Tem rotina fácil para gengivas fortes?",
+        "Quero receitas naturais para saúde bucal",
+        "Como encaixar Prodentim na rotina?",
+        "Prefiro entender mais antes de decidir",
+        "Quero ver depoimentos reais de melhora",
+        "Prodentim tem outros benefícios?",
+        "Posso combinar Prodentim com escovação?",
+        "Quero conversar mais sobre saúde natural",
+        "O que mais posso fazer para proteger gengivas?",
+        "Prodentim serve para toda a família?",
+        "Quero ouvir histórias de sucesso"
+      ],
+      "quick_replies_en": [
+        "I want to try Prodentim for gums",
+        "Any easy routine for strong gums?",
+        "I want natural recipes for oral health",
+        "How to fit Prodentim into my routine?",
+        "I prefer to learn more before deciding",
+        "I want to see real improvement testimonials",
+        "Does Prodentim have other benefits?",
+        "Can I combine Prodentim with brushing?",
+        "I want to talk more about natural health",
+        "What else can I do to protect gums?",
+        "Is Prodentim suitable for the whole family?",
+        "I want to hear success stories"
+      ]
+    }
+  ]
+}
 
