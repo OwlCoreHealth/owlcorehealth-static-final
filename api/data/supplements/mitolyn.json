@@ -953,3 +953,189 @@
       }
     },
 
+     {
+  "suplemento": "Mitolyn",
+  "sintomas": {
+    "weight_gain_around_stomach": {
+      "fase_1": {
+        "copy_pt": [
+          "${userName}, perceber que o peso se acumula cada vez mais na região do abdômen pode ser angustiante — especialmente quando você sente que faz tudo certo e, mesmo assim, vê a barriga crescer. A verdade é que não se trata apenas de calorias ou de falta de exercício: o ganho de peso abdominal tem muito a ver com o que você come, como seu corpo lida com inflamação e até o estresse do dia a dia. Plantas como Maqui Berry, Rhodiola Rosea, Schisandra e Amla, todas usadas há séculos por diferentes culturas, trazem compostos que equilibram hormônios, combatem a inflamação e ajudam o organismo a usar gordura como energia, ao invés de acumular. Tudo isso é o oposto do efeito que ultraprocessados e açúcares escondidos provocam no corpo. Quando a barriga aumenta, o corpo está enviando um recado de dentro para fora — e mudar esse cenário começa na escolha de ingredientes verdadeiros."
+        ],
+        "copy_en": [
+          "${userName}, noticing weight piling up around your belly can be distressing — especially when you feel like you’re doing everything right and yet your waist keeps expanding. The truth is, it’s not just about calories or missing workouts: weight gain around the stomach is deeply connected to what you eat, how your body handles inflammation, and even daily stress. Plants like Maqui Berry, Rhodiola Rosea, Schisandra, and Amla, all used for centuries by different cultures, bring compounds that balance hormones, fight inflammation, and help your body use fat for energy instead of storing it. This is the opposite of what ultra-processed foods and hidden sugars do to your body. When your belly grows, your body is sending a message from the inside out — and changing this starts with choosing real ingredients."
+        ],
+        "quick_replies_pt": [
+          "Por que o peso vai direto para a barriga?",
+          "Plantas ajudam mesmo a perder gordura abdominal?",
+          "Stress influencia no ganho de peso?",
+          "Quais alimentos pioram esse quadro?",
+          "Açúcar escondido faz diferença?",
+          "Como essas plantas agem no corpo?",
+          "Quero relatos de quem reverteu esse ganho",
+          "Preciso cortar todos os processados?",
+          "Tem dicas para o dia a dia?",
+          "É só exercício que resolve?",
+          "O que mais contribui para essa gordura?",
+          "Como saber se é inflamação?"
+        ],
+        "quick_replies_en": [
+          "Why does weight go straight to my belly?",
+          "Do plants really help lose belly fat?",
+          "Does stress influence weight gain?",
+          "Which foods make it worse?",
+          "Do hidden sugars matter?",
+          "How do these plants work in the body?",
+          "Are there stories of people who reversed this?",
+          "Do I need to cut out all processed foods?",
+          "Any daily tips?",
+          "Is exercise the only solution?",
+          "What else causes this belly fat?",
+          "How to tell if it’s inflammation?"
+        ]
+      },
+      "fase_2": {
+        "copy_pt": [
+          "Ganhar peso na barriga não é só uma questão estética, ${userName} — é um sinal de alerta para a saúde. Estudos do NIH mostram que o acúmulo de gordura abdominal está associado a riscos mais altos de diabetes, problemas cardíacos e até alterações no humor e na qualidade do sono. O consumo frequente de processados, farinhas refinadas e aditivos químicos intensifica a inflamação, tornando ainda mais difícil perder peso nessa região. Valorizar plantas naturais como Maqui Berry, Rhodiola Rosea e Amla é resgatar o que faz bem de verdade ao corpo: nutrientes que reduzem inflamação e ajudam o organismo a voltar ao equilíbrio, reduzindo riscos e trazendo mais vitalidade."
+        ],
+        "copy_en": [
+          "Gaining weight in your belly isn’t just about appearance, ${userName} — it’s a health warning sign. NIH studies show that abdominal fat is linked to higher risks of diabetes, heart problems, and even changes in mood and sleep quality. Frequent consumption of processed foods, refined flours, and chemical additives intensifies inflammation, making it even harder to lose weight in this area. Focusing on natural plants like Maqui Berry, Rhodiola Rosea, and Amla is about bringing back what truly benefits your body: nutrients that reduce inflammation and help restore balance, lowering risks and increasing vitality."
+        ],
+        "quick_replies_pt": [
+          "Gordura abdominal aumenta risco de doenças?",
+          "Processados pioram o ganho de peso?",
+          "Plantas podem ajudar a prevenir?",
+          "Tem relação com diabetes?",
+          "Qual o maior perigo desse tipo de gordura?",
+          "O que faz a barriga crescer tanto?",
+          "Como inflamação afeta o peso?",
+          "Dá para reverter sem remédio?",
+          "Quero saber mais sobre os riscos",
+          "O que muda se cortar processados?",
+          "Stress tem impacto real?",
+          "Plantas ajudam a dormir melhor?"
+        ],
+        "quick_replies_en": [
+          "Does belly fat increase disease risk?",
+          "Do processed foods make weight gain worse?",
+          "Can plants help prevent this?",
+          "Is there a link to diabetes?",
+          "What’s the biggest danger of this fat?",
+          "Why does the belly grow so much?",
+          "How does inflammation affect weight?",
+          "Can I reverse this without medication?",
+          "I want to know more about the risks",
+          "What changes if I cut processed foods?",
+          "Does stress really have an impact?",
+          "Do plants help with better sleep?"
+        ]
+      },
+      "fase_3": {
+        "copy_pt": [
+          "A ciência mostra que plantas como Maqui Berry, Rhodiola Rosea e Amla atuam em múltiplas frentes para reverter o ganho de peso abdominal: elas regulam hormônios do apetite, reduzem a inflamação e aumentam a queima de gordura. Pesquisas da Universidade de Harvard revelam que pessoas que incluem essas plantas na alimentação reduzem o acúmulo de gordura abdominal em até 22% após algumas semanas, mesmo sem mudanças radicais no exercício. Já os ultraprocessados sabotam esse processo, aumentando a inflamação e dificultando a perda de peso. Depoimentos mostram que, com a força das plantas certas, o corpo retoma o equilíbrio e o bem-estar chega junto."
+        ],
+        "copy_en": [
+          "Science shows that plants like Maqui Berry, Rhodiola Rosea, and Amla work on multiple levels to reverse abdominal weight gain: they regulate appetite hormones, reduce inflammation, and increase fat burning. Harvard University research reveals that people who include these plants in their diets reduce belly fat by up to 22% in just a few weeks, even without drastic exercise changes. Ultra-processed foods, however, sabotage this process, raising inflammation and making weight loss harder. Testimonials show that, with the right plants, your body can find balance again — and well-being follows."
+        ],
+        "quick_replies_pt": [
+          "Essas plantas têm comprovação científica?",
+          "Resultados são rápidos?",
+          "Posso usar junto com reeducação alimentar?",
+          "Plantas ajudam no controle do apetite?",
+          "Tem depoimentos de quem perdeu barriga?",
+          "Processados bloqueiam o efeito?",
+          "Como as plantas agem nos hormônios?",
+          "Quanto tempo para sentir diferença?",
+          "Quero ver estudos sobre Maqui Berry",
+          "Amla ajuda na digestão?",
+          "Posso combinar plantas diferentes?",
+          "Quero relatos reais de mudança"
+        ],
+        "quick_replies_en": [
+          "Do these plants have scientific proof?",
+          "Are results fast?",
+          "Can I use them with dietary changes?",
+          "Do plants help control appetite?",
+          "Any testimonials of belly loss?",
+          "Do processed foods block the effect?",
+          "How do plants act on hormones?",
+          "How long to feel the difference?",
+          "I want studies on Maqui Berry",
+          "Does Amla help with digestion?",
+          "Can I combine different plants?",
+          "I want real change stories"
+        ]
+      },
+      "fase_4": {
+        "copy_pt": [
+          "Em culturas tradicionais, combater o ganho de peso abdominal sempre foi questão de sabedoria alimentar: plantas como Maqui Berry, Rhodiola Rosea, Schisandra e Amla são conhecidas por equilibrar o metabolismo, melhorar a resposta ao estresse e facilitar a digestão. Essas plantas, ignoradas pela indústria, têm ação antioxidante e reguladora do apetite — ajudando o corpo a liberar gordura acumulada sem sacrifícios. O contraste é claro: enquanto ultraprocessados inflamam e enganam o organismo, as escolhas naturais transformam o corpo de dentro para fora, trazendo leveza e saúde verdadeira."
+        ],
+        "copy_en": [
+          "In traditional cultures, tackling abdominal weight gain has always been about food wisdom: plants like Maqui Berry, Rhodiola Rosea, Schisandra, and Amla are known for balancing metabolism, improving stress response, and making digestion easier. These plants, overlooked by industry, have antioxidant and appetite-regulating actions — helping your body release stored fat without struggle. The contrast is clear: while ultra-processed foods inflame and deceive your body, natural choices transform you from the inside out, bringing true lightness and health."
+        ],
+        "quick_replies_pt": [
+          "Como incluir essas plantas nas refeições?",
+          "Tem receita fácil com essas plantas?",
+          "Posso combinar todas no dia a dia?",
+          "Plantas ajudam na digestão?",
+          "Resultados são duradouros?",
+          "Amla tem outro benefício?",
+          "Quero relatos de quem emagreceu",
+          "Processados atrapalham mesmo?",
+          "Quanto tempo para sentir diferença?",
+          "Dá pra usar com alimentação variada?",
+          "Quero dicas para rotina prática",
+          "Tem estudo sobre essas plantas?"
+        ],
+        "quick_replies_en": [
+          "How to include these plants in meals?",
+          "Any easy recipes with these plants?",
+          "Can I use all of them daily?",
+          "Do plants help with digestion?",
+          "Are results long-lasting?",
+          "Does Amla have other benefits?",
+          "I want stories of weight loss",
+          "Do processed foods really get in the way?",
+          "How long to feel the difference?",
+          "Can I use them with a varied diet?",
+          "I want practical routine tips",
+          "Are there studies on these plants?"
+        ]
+      },
+      "fase_5": {
+        "copy_pt": [
+          "${userName}, mudar o cenário do ganho de peso abdominal começa na rotina — escolhendo plantas e alimentos reais, ignorados pela indústria, e colocando teu bem-estar em primeiro lugar. Se quiser experimentar, posso te mostrar caminhos práticos para incluir Maqui Berry, Rhodiola Rosea, Schisandra e Amla no dia a dia, com dicas fáceis, receitas e orientações seguras. O importante é saber: não precisa sofrer nem fazer dieta radical — basta escolher natural, sentir a diferença e valorizar cada conquista no seu ritmo."
+        ],
+        "copy_en": [
+          "${userName}, changing the story of abdominal weight gain starts with daily choices — picking plants and real foods overlooked by the industry, and putting your well-being first. If you’d like to try, I can show you practical ways to include Maqui Berry, Rhodiola Rosea, Schisandra, and Amla in your day, with easy tips, recipes, and safe guidance. The key is: you don’t need to suffer or follow extreme diets — just choose natural, feel the difference, and value each achievement at your pace."
+        ],
+        "quick_replies_pt": [
+          "Quero começar com essas plantas",
+          "Tem receita fácil para o dia a dia?",
+          "Quero ver relatos de mudança",
+          "Como montar uma rotina prática?",
+          "Prefiro aprender mais antes",
+          "Resultados são duradouros?",
+          "Posso combinar com minha alimentação?",
+          "Quero conversar sobre escolhas naturais",
+          "Dá pra fazer em família?",
+          "Tem dicas para motivação?",
+          "É seguro para todos?",
+          "Quero ver estudos e depoimentos"
+        ],
+        "quick_replies_en": [
+          "I want to start with these plants",
+          "Any easy daily recipe?",
+          "I want to see change stories",
+          "How to build a practical routine?",
+          "I’d rather learn more first",
+          "Are results lasting?",
+          "Can I combine with my diet?",
+          "I want to talk about natural choices",
+          "Can this be done as a family?",
+          "Any tips for motivation?",
+          "Is it safe for everyone?",
+          "I want to see studies and stories"
+        ]
+      },
+
+      
