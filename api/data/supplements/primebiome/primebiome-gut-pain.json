@@ -1,1 +1,245 @@
+{
+  "suplemento": "PRIME BIOME",
+  "titulo": "Gut Pain / Dor Abdominal, Barriga Sensível ou Dor Intestinal",
+  "fase_1": {
+    "pt": [
+      "${userName}, sentir dor abdominal frequente, barriga sensível ou desconforto intestinal pode ser um sinal de que algo mais profundo está acontecendo no seu organismo. Muitas vezes, esse sintoma reflete o impacto de uma alimentação industrializada, rica em ultraprocessados, solos contaminados e exposição diária a toxinas ambientais. Esses fatores alteram não só a microbiota intestinal, mas também a capacidade do corpo de absorver nutrientes, gerar energia e regular a inflamação. Além da dor física, o incômodo intestinal pode afetar seu humor, sono e até sua disposição para as atividades do dia a dia. Olhar para a origem dessas dores é o primeiro passo para transformar o desconforto em qualidade de vida.",
+      "${userName}, a dor intestinal ou abdominal recorrente não deve ser normalizada. Esse desconforto muitas vezes está associado a desequilíbrios na flora intestinal, causados pelo consumo frequente de alimentos pobres em fibras, excesso de açúcar, conservantes e produtos químicos presentes na dieta moderna. Somam-se a isso o estresse e a rotina acelerada, que afetam diretamente o sistema digestivo. Estudos recentes mostram que um intestino inflamado não só causa dor, mas também impacta a imunidade, o equilíbrio hormonal e até a saúde mental. Compreender esses sinais é essencial para buscar alívio real e duradouro.",
+      "Você já percebeu, ${userName}, como o desconforto intestinal aparece nos momentos de maior estresse ou após consumir certos alimentos? Isso acontece porque o intestino é altamente sensível ao que ingerimos e às emoções do cotidiano. A presença constante de dor, gases, inchaço ou sensação de peso pode indicar que seu corpo precisa de um novo equilíbrio. Solos pobres em nutrientes, alimentos ultraprocessados e exposição a toxinas reduzem a capacidade do intestino de se proteger e se regenerar. Identificar padrões, observar seus hábitos e buscar soluções naturais podem ser o início de uma nova relação com sua saúde digestiva."
+    ],
+    "en": [
+      "${userName}, experiencing frequent gut pain, abdominal sensitivity, or intestinal discomfort can be a sign that something deeper is happening in your body. Often, these symptoms reflect the impact of industrialized diets, rich in ultra-processed foods, contaminated soils, and daily exposure to environmental toxins. These factors disrupt not only the gut microbiota but also the body’s ability to absorb nutrients, generate energy, and regulate inflammation. Beyond physical pain, intestinal discomfort can affect your mood, sleep, and even your motivation for daily activities. Looking into the root cause of these pains is the first step towards transforming discomfort into a better quality of life.",
+      "${userName}, recurring gut or abdominal pain should not be normalized. This discomfort is often linked to imbalances in the gut flora caused by frequent consumption of low-fiber foods, excess sugar, preservatives, and chemicals in modern diets. On top of that, stress and a fast-paced routine directly affect the digestive system. Recent studies show that an inflamed gut not only causes pain but also impacts immunity, hormonal balance, and even mental health. Understanding these signs is essential for finding real and lasting relief.",
+      "Have you noticed, ${userName}, how gut discomfort often appears during stressful moments or after eating certain foods? This is because the gut is highly sensitive to what we eat and to everyday emotions. Constant pain, gas, bloating, or heaviness can indicate your body needs a new balance. Nutrient-poor soils, ultra-processed foods, and toxin exposure reduce your gut’s ability to protect and regenerate itself. Identifying patterns, observing your habits, and seeking natural solutions may be the start of a new relationship with your digestive health."
+    ],
+    "quick_replies_pt": [
+      "O que causa dor abdominal?",
+      "Como aliviar a dor intestinal?",
+      "Alimentos pioram o desconforto?",
+      "Estresse influencia no intestino?",
+      "Quero entender mais sobre dor abdominal",
+      "Tem estudos científicos?",
+      "Como equilibrar a flora intestinal?",
+      "Quais sintomas indicam problema grave?",
+      "Quero dicas para saúde digestiva",
+      "Dor abdominal é comum?",
+      "Como melhorar a digestão?",
+      "Quando procurar ajuda?"
+    ],
+    "quick_replies_en": [
+      "What causes gut pain?",
+      "How to relieve intestinal pain?",
+      "Do foods worsen discomfort?",
+      "Does stress affect the gut?",
+      "I want to learn more about gut pain",
+      "Are there scientific studies?",
+      "How to balance gut flora?",
+      "What symptoms indicate a serious problem?",
+      "I want tips for digestive health",
+      "Is gut pain common?",
+      "How to improve digestion?",
+      "When to seek help?"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar um intestino saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek a healthy gut?",
+      "How would you like to start this change in your routine?"
+    ]
+  },
+  "fase_2": {
+    "pt": [
+      "${userName}, ignorar a dor intestinal ou abdominal recorrente pode levar a complicações mais graves, como inflamações crônicas, distúrbios digestivos persistentes, dificuldade de absorção de nutrientes e até problemas sistêmicos, como fadiga, alterações no humor e baixa imunidade. Estudos mostram que quando o intestino sofre por muito tempo, o corpo inteiro sente as consequências. A inflamação local pode se espalhar, aumentando o risco de doenças autoimunes e agravando outras condições preexistentes. Por isso, dar atenção aos sinais do corpo é uma forma de prevenção e autocuidado integral.",
+      "Você sabia, ${userName}, que dores intestinais frequentes são um alerta para o desequilíbrio profundo da microbiota e da barreira intestinal? Se não tratados, esses sintomas podem favorecer infecções, intolerâncias alimentares, aumento da permeabilidade intestinal (leaky gut) e piora da inflamação sistêmica. O ciclo vicioso do desconforto leva à piora da qualidade de vida, com impacto direto sobre o sono, energia e até o funcionamento cerebral. Intervir cedo e de forma global é o caminho para evitar complicações.",
+      "${userName}, muitos acham que dor abdominal é algo normal ou sem importância, mas pesquisas recentes indicam que esse sintoma pode ser precursor de doenças graves como síndrome do intestino irritável, colite ou até doenças inflamatórias intestinais. Ignorar a dor compromete não só a saúde digestiva, mas também a saúde mental e o bem-estar geral. Tratar a raiz do problema, reequilibrando o microbioma e a barreira intestinal, é fundamental para quebrar o ciclo de desconforto e prevenir consequências mais sérias a longo prazo."
+    ],
+    "en": [
+      "${userName}, ignoring recurring gut or abdominal pain can lead to more serious complications, such as chronic inflammation, persistent digestive disorders, difficulty absorbing nutrients, and even systemic problems like fatigue, mood changes, and low immunity. Studies show that when the gut suffers for a long time, the whole body feels the consequences. Local inflammation can spread, increasing the risk of autoimmune diseases and worsening other preexisting conditions. That’s why paying attention to your body’s signals is a powerful form of prevention and holistic self-care.",
+      "Did you know, ${userName}, that frequent intestinal pains are a warning sign of deep imbalances in the microbiota and gut barrier? Left untreated, these symptoms can foster infections, food intolerances, increased gut permeability (leaky gut), and worsening systemic inflammation. This vicious cycle of discomfort lowers quality of life, directly impacting sleep, energy, and even brain function. Early and global intervention is the key to avoiding complications.",
+      "${userName}, many believe abdominal pain is normal or unimportant, but recent research shows this symptom can be an early sign of serious diseases like irritable bowel syndrome, colitis, or even inflammatory bowel disease. Ignoring the pain compromises not just digestive health, but also mental health and overall well-being. Treating the root cause—rebalancing the microbiome and gut barrier—is crucial to break the cycle of discomfort and prevent more serious long-term consequences."
+    ],
+    "quick_replies_pt": [
+      "Dor abdominal pode piorar?",
+      "Quais complicações podem surgir?",
+      "Como evitar inflamação crônica?",
+      "Intestino afeta imunidade?",
+      "Quero saber mais sobre permeabilidade intestinal",
+      "Tem relação com doenças autoimunes?",
+      "Como prevenir complicações?",
+      "Sintomas indicam gravidade?",
+      "Quero dicas para prevenir dores",
+      "Dor afeta saúde mental?",
+      "Tem estudos sobre consequências?",
+      "Quando buscar tratamento?"
+    ],
+    "quick_replies_en": [
+      "Can gut pain get worse?",
+      "What complications can arise?",
+      "How to avoid chronic inflammation?",
+      "Does the gut affect immunity?",
+      "I want to learn more about gut permeability",
+      "Is there a connection to autoimmune diseases?",
+      "How to prevent complications?",
+      "Do symptoms indicate severity?",
+      "I want tips to prevent pain",
+      "Does pain affect mental health?",
+      "Are there studies on consequences?",
+      "When to seek treatment?"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar um intestino saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek a healthy gut?",
+      "How would you like to start this change in your routine?"
+    ]
+  },
+  "fase_3": {
+    "pt": [
+      "${userName}, pesquisas mostram que a restauração do equilíbrio da microbiota intestinal, com o uso de probióticos específicos como Bacillus Coagulans e fibras prebióticas, pode aliviar significativamente a dor e o desconforto intestinal. Esses ingredientes atuam reduzindo a inflamação, melhorando a barreira intestinal e favorecendo a digestão e absorção de nutrientes. Estudos do Journal of Clinical Gastroenterology e do Nutritional Journal comprovam os benefícios do uso combinado de probióticos e plantas anti-inflamatórias, promovendo alívio rápido e duradouro.",
+      "A literatura científica destaca o papel das plantas medicinais, como Dente-de-leão, Funcho e Babchi, no suporte à saúde intestinal e na redução das dores abdominais. Essas plantas possuem compostos ativos que acalmam a mucosa, estimulam a regeneração do tecido intestinal e equilibram a flora, reduzindo episódios de dor, gases e desconforto. Relatos de pacientes e estudos clínicos reforçam que o uso contínuo dessas soluções naturais favorece a melhoria global da saúde digestiva.",
+      "${userName}, além dos probióticos e das plantas, hábitos alimentares ricos em fibras, hidratação adequada e manejo do estresse são aliados poderosos no combate à dor intestinal recorrente. Pesquisas mostram que intervenções naturais, associadas a pequenas mudanças no estilo de vida, reduzem a frequência das crises e melhoram a qualidade de vida dos pacientes. O tratamento de dentro para fora, promovendo a saúde do microbioma, é reconhecido como uma das formas mais eficazes de cuidar do intestino e aliviar a dor abdominal de maneira sustentável."
+    ],
+    "en": [
+      "${userName}, research shows that restoring the balance of the gut microbiota, using specific probiotics such as Bacillus Coagulans and prebiotic fibers, can significantly relieve pain and intestinal discomfort. These ingredients reduce inflammation, strengthen the gut barrier, and improve digestion and nutrient absorption. Studies from the Journal of Clinical Gastroenterology and the Nutritional Journal prove the benefits of combining probiotics and anti-inflammatory plants, providing fast and lasting relief.",
+      "Scientific literature highlights the role of medicinal plants such as Dandelion, Fennel, and Babchi in supporting gut health and reducing abdominal pain. These plants contain active compounds that soothe the mucosa, stimulate intestinal tissue regeneration, and balance the flora, reducing pain episodes, gas, and discomfort. Patient testimonials and clinical studies reinforce that continuous use of these natural solutions supports overall digestive health.",
+      "${userName}, beyond probiotics and plants, fiber-rich dietary habits, proper hydration, and stress management are powerful allies in combating recurrent gut pain. Studies show that natural interventions, combined with small lifestyle changes, reduce the frequency of crises and improve patients’ quality of life. Treating from the inside out—by supporting microbiome health—is recognized as one of the most effective ways to care for the gut and sustainably relieve abdominal pain."
+    ],
+    "quick_replies_pt": [
+      "Probióticos ajudam na dor?",
+      "Quais plantas aliviam o intestino?",
+      "Quanto tempo para sentir alívio?",
+      "É seguro usar sempre?",
+      "Plantas realmente funcionam?",
+      "Quero relatos reais de melhora",
+      "Como probióticos atuam no intestino?",
+      "Tem estudos com plantas e dor abdominal?",
+      "Quero dicas práticas para dor",
+      "Resultados são duradouros?",
+      "Posso combinar estratégias naturais?",
+      "Quero ver estudos científicos"
+    ],
+    "quick_replies_en": [
+      "Do probiotics help gut pain?",
+      "Which plants help the gut?",
+      "How long to feel relief?",
+      "Is it safe for continuous use?",
+      "Do plants really work?",
+      "I want real improvement stories",
+      "How do probiotics work in the gut?",
+      "Are there studies with plants and gut pain?",
+      "I want practical tips for pain",
+      "Are results lasting?",
+      "Can I combine natural strategies?",
+      "I want to see scientific studies"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar um intestino saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek a healthy gut?",
+      "How would you like to start this change in your routine?"
+    ]
+  },
+  "fase_4": {
+    "pt": [
+      "${userName}, o uso de plantas ancestrais como Dente-de-leão, Funcho e Babchi em conjunto com probióticos de alta qualidade representa um avanço real no cuidado natural da dor intestinal. Essas soluções naturais agem de maneira integrada: acalmam a mucosa, reduzem inflamações, restauram o equilíbrio do microbioma e promovem o conforto digestivo de forma segura e progressiva. Incorporar esses elementos na rotina, seja como suplemento ou na alimentação, é um caminho comprovado para aliviar crises e fortalecer o intestino contra agressões futuras.",
+      "As propriedades anti-inflamatórias, cicatrizantes e equilibrantes dessas plantas medicinais têm respaldo científico e são reconhecidas por sua atuação profunda, sem efeitos colaterais comuns em medicamentos convencionais. A associação com Bacillus Coagulans potencializa os resultados, facilitando a digestão, aliviando desconfortos e promovendo saúde integral do sistema digestivo. O segredo está na combinação entre tradição e ciência, adaptando as soluções naturais às necessidades do seu corpo.",
+      "${userName}, optar por um protocolo natural com plantas e probióticos é investir em autocuidado de verdade. Essas estratégias promovem a regeneração da mucosa intestinal, restauram a barreira protetora e tornam o sistema digestivo mais resiliente. Ao cuidar do intestino de dentro para fora, você não apenas alivia dores, mas também previne novos episódios, melhora a absorção de nutrientes e contribui para seu bem-estar geral. Montar uma rotina personalizada pode transformar a sua experiência com a saúde digestiva."
+    ],
+    "en": [
+      "${userName}, using ancestral plants such as Dandelion, Fennel, and Babchi along with high-quality probiotics is a real breakthrough in natural gut pain care. These natural solutions work together: they soothe the mucosa, reduce inflammation, restore microbiome balance, and promote digestive comfort in a safe and progressive way. Incorporating these elements into your routine, whether as supplements or in food, is a proven path to relieve crises and strengthen the gut against future aggressions.",
+      "The anti-inflammatory, healing, and balancing properties of these medicinal plants are scientifically backed and recognized for their deep action, without the common side effects of conventional medications. Combining them with Bacillus Coagulans enhances the results, easing digestion, relieving discomfort, and promoting overall digestive system health. The secret lies in merging tradition and science, adapting natural solutions to your body’s needs.",
+      "${userName}, choosing a natural protocol with plants and probiotics is a true investment in self-care. These strategies support regeneration of the intestinal mucosa, restore the protective barrier, and make the digestive system more resilient. By caring for your gut from the inside out, you not only relieve pain but also prevent new episodes, improve nutrient absorption, and contribute to your overall well-being. Creating a personalized routine can transform your experience with digestive health."
+    ],
+    "quick_replies_pt": [
+      "Como usar plantas para dor intestinal?",
+      "Tem receita prática para o intestino?",
+      "Posso combinar plantas e probióticos?",
+      "Quanto tempo para ver diferença?",
+      "Essas soluções são seguras?",
+      "Quero relatos de sucesso",
+      "Probiótico melhor cápsula ou pó?",
+      "Dá para usar na alimentação?",
+      "Resultados são rápidos?",
+      "Como manter intestino saudável?",
+      "Quero dicas naturais diárias",
+      "Onde encontrar suplementos de qualidade?"
+    ],
+    "quick_replies_en": [
+      "How to use plants for gut pain?",
+      "Any practical recipe for the gut?",
+      "Can I combine plants and probiotics?",
+      "How long to see a difference?",
+      "Are these solutions safe?",
+      "I want success stories",
+      "Is probiotic better in capsule or powder?",
+      "Can I use it in food?",
+      "Are results fast?",
+      "How to keep the gut healthy?",
+      "I want daily natural tips",
+      "Where to find quality supplements?"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar um intestino saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek a healthy gut?",
+      "How would you like to start this change in your routine?"
+    ]
+  },
+  "fase_5": {
+    "pt": [
+      "${userName}, cuidar da dor intestinal de forma natural é o primeiro passo para transformar sua qualidade de vida, disposição e bem-estar. Com plantas ancestrais, probióticos e hábitos saudáveis, você constrói uma rotina personalizada que devolve o equilíbrio ao seu intestino. Posso te ajudar com receitas, dicas práticas e um plano de ação sob medida para aliviar o desconforto e fortalecer sua saúde digestiva de verdade.",
+      "Toda mudança começa com pequenas escolhas, ${userName}. Ao incluir Dente-de-leão, Funcho, Babchi e um probiótico de qualidade na sua rotina, além de rever a alimentação e cuidar do emocional, seu sistema digestivo ganha um suporte real para se recuperar e funcionar melhor. Estou aqui para te orientar, compartilhar relatos reais, dicas de motivação e um plano prático, adaptado à sua rotina e necessidades.",
+      "${userName}, sua jornada para um intestino mais saudável, confortável e sem dores pode começar agora — sem fórmulas milagrosas, mas com ciência, tradição e autocuidado. Com os ingredientes certos, alimentação ajustada e rotina de autocuidado consistente, seu corpo poderá responder de forma positiva. Se quiser, posso te ajudar a montar um plano detalhado, com orientações, receitas e dicas para fortalecer seu equilíbrio intestinal."
+    ],
+    "en": [
+      "${userName}, caring for gut pain naturally is the first step towards transforming your quality of life, energy, and well-being. With ancestral plants, probiotics, and healthy habits, you can build a personalized routine that restores your gut’s balance. I can help with recipes, practical tips, and a step-by-step plan to relieve discomfort and truly strengthen your digestive health.",
+      "Every change starts with small choices, ${userName}. By adding Dandelion, Fennel, Babchi, and a quality probiotic to your routine—plus reviewing your diet and managing your emotions—your digestive system gains real support to recover and function better. I’m here to guide you, share real stories, motivational tips, and a practical plan tailored to your routine and needs.",
+      "${userName}, your journey to a healthier, more comfortable, and pain-free gut can start now—not with miracle solutions, but with science, tradition, and self-care. With the right ingredients, an adjusted diet, and a consistent self-care routine, your body can respond positively. If you wish, I can help you set up a detailed plan, with guidance, recipes, and tips to strengthen your gut balance."
+    ],
+    "quick_replies_pt": [
+      "Quero começar já com plantas e probióticos",
+      "Tem receita fácil para dor intestinal",
+      "Quero relatos reais de melhora",
+      "Como montar uma rotina prática?",
+      "Prefiro aprender mais antes",
+      "Resultados são duradouros?",
+      "Posso combinar com minha alimentação?",
+      "Quero conversar sobre escolhas naturais",
+      "Dá pra fazer em família?",
+      "Tem dicas para motivação?",
+      "É seguro para todos?",
+      "Quero ver estudos e relatos reais"
+    ],
+    "quick_replies_en": [
+      "I want to start with plants and probiotics now",
+      "Any easy recipe for gut pain",
+      "I want real improvement stories",
+      "How to build a practical routine?",
+      "I’d rather learn more first",
+      "Are results lasting?",
+      "Can I combine it with my diet?",
+      "I want to talk about natural choices",
+      "Can this be done as a family?",
+      "Any tips for motivation?",
+      "Is it safe for everyone?",
+      "I want to see studies and real stories"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar um intestino saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek a healthy gut?",
+      "How would you like to start this change in your routine?"
+    ]
+  }
+}
 
