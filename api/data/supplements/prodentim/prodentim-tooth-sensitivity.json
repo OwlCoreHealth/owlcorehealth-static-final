@@ -1,1 +1,245 @@
+{
+  "suplemento": "PRODENTIM",
+  "titulo": "Sensibilidade Dentária / Tooth Sensitivity",
+  "fase_1": {
+    "pt": [
+      "Sensibilidade nos dentes é um daqueles incômodos que só quem sente entende, né, ${userName}? Às vezes um gole de água gelada ou um café quente já fazem doer. Não é frescura, nem exagero: mais de 40% das pessoas adultas sofrem com isso em algum momento, segundo a Universidade de Columbia. Aqui, ninguém vai te julgar — teu desconforto é real e merece ser escutado.",
+      "Sei que parece detalhe, mas sensibilidade nos dentes pode mudar até o prazer de comer. Muitos acham que é só uma fase, mas por trás desse sintoma pode ter muito mais coisa: desde desgaste do esmalte até desequilíbrios na boca. Teu relato importa — vamos entender juntos o que teu corpo está te pedindo?",
+      "${userName}, já reparaste como a sensibilidade aparece nos piores momentos? Não é falta de cuidado. Fatores como estresse, alimentação ácida e até flora bucal alterada podem estar por trás disso. O importante é que tu está buscando entender — e isso faz toda a diferença para tua saúde."
+    ],
+    "en": [
+      "Tooth sensitivity is one of those things only people who feel it really understand, right, ${userName}? Sometimes a sip of cold water or a hot coffee is enough to make you wince. It’s not just in your head: over 40% of adults deal with this at some point, according to Columbia University. Here, no one will judge you — your discomfort is real and deserves to be heard.",
+      "It might seem like a small thing, but tooth sensitivity can even change how much you enjoy eating. Many people think it’s just a phase, but there’s often much more behind it — from enamel wear to imbalances in the mouth. Your story matters — let’s understand together what your body is trying to tell you.",
+      "${userName}, have you noticed how sensitivity pops up at the worst times? It’s not a lack of care. Things like stress, acidic foods, and even mouth flora changes can play a role. The important thing is you’re trying to understand — and that already makes a huge difference."
+    ],
+    "quick_replies_pt": [
+      "Por que meus dentes ficaram sensíveis?",
+      "Pode ser o esmalte desgastado?",
+      "Alimentação ácida influencia?",
+      "Tem relação com a flora bucal?",
+      "Posso reverter a sensibilidade?",
+      "Tem histórias de quem melhorou?",
+      "O estresse agrava isso?",
+      "Preciso evitar certos alimentos?",
+      "Sensibilidade é comum em jovens?",
+      "Tem sintomas escondidos por trás?",
+      "Quero dicas para aliviar o incômodo",
+      "É sinal de outro problema?"
+    ],
+    "quick_replies_en": [
+      "Why did my teeth become sensitive?",
+      "Could it be worn enamel?",
+      "Do acidic foods play a role?",
+      "Is it related to mouth flora?",
+      "Can sensitivity be reversed?",
+      "Are there stories of people who improved?",
+      "Does stress make it worse?",
+      "Should I avoid certain foods?",
+      "Is sensitivity common in young people?",
+      "Are there hidden symptoms behind this?",
+      "I want tips to relieve the discomfort",
+      "Is it a sign of another problem?"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar alívio para a sensibilidade dentária?",
+      "Como você gostaria de começar a cuidar melhor dos seus dentes?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek relief from tooth sensitivity?",
+      "How would you like to start taking better care of your teeth?"
+    ]
+  },
+  "fase_2": {
+    "pt": [
+      "Sensibilidade não é só incômodo passageiro, ${userName}. A Associação Brasileira de Odontologia alerta: ignorar o sintoma pode levar a desgaste irreversível do esmalte, aumento do risco de cáries e até inflamações mais profundas. Quanto mais cedo cuidar, mais fácil é evitar dor maior — e prevenir danos no futuro.",
+      "Deixar a sensibilidade de lado pode afetar até tua alimentação, teu sono e tua qualidade de vida. Segundo a Mayo Clinic, quem ignora o sintoma pode acabar evitando alimentos importantes, sofrendo mais com dor e, em casos graves, desenvolvendo problemas nos nervos dos dentes. Teu cuidado começa agora, com informação e atenção.",
+      "${userName}, dados do CDC mostram que problemas de sensibilidade não tratados aumentam em até 3 vezes o risco de perda dentária precoce. Prevenir agora é mais fácil e menos doloroso do que tratar depois. Aqui, teu desconforto não é invisível — é motivo de atenção."
+    ],
+    "en": [
+      "Sensitivity isn’t just a passing discomfort, ${userName}. The American Dental Association warns: ignoring the symptom can lead to irreversible enamel wear, a higher risk of cavities, and even deeper inflammation. The sooner you take care, the easier it is to avoid more pain — and prevent damage in the future.",
+      "Leaving sensitivity aside can even affect your diet, your sleep, and your quality of life. According to the Mayo Clinic, people who ignore this symptom may avoid important foods, suffer more pain, and in severe cases, develop nerve problems in the teeth. Your care starts now, with information and attention.",
+      "${userName}, CDC data shows untreated sensitivity problems increase the risk of early tooth loss by up to three times. Preventing now is easier and less painful than treating later. Here, your discomfort isn’t invisible — it’s a reason for attention."
+    ],
+    "quick_replies_pt": [
+      "Sensibilidade pode causar perda dentária?",
+      "Tem risco de inflamação grave?",
+      "Afeta minha alimentação?",
+      "Posso evitar piora?",
+      "Qual impacto a longo prazo?",
+      "Dá para prevenir cáries cuidando disso?",
+      "Já teve caso de dor crônica?",
+      "O que dentistas recomendam nesses casos?",
+      "Tem histórias de quem se cuidou a tempo?",
+      "Isso pode afetar o sono?",
+      "Dá pra reverter totalmente?",
+      "Tem como evitar desgaste do esmalte?"
+    ],
+    "quick_replies_en": [
+      "Can sensitivity cause tooth loss?",
+      "Is there a risk of serious inflammation?",
+      "Does it affect my diet?",
+      "Can I prevent it from getting worse?",
+      "What’s the long-term impact?",
+      "Can I prevent cavities by taking care of this?",
+      "Are there cases of chronic pain?",
+      "What do dentists recommend in these cases?",
+      "Are there stories of people who took care in time?",
+      "Can it affect sleep?",
+      "Is it fully reversible?",
+      "Is there a way to prevent enamel wear?"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar alívio para a sensibilidade dentária?",
+      "Como você gostaria de começar a cuidar melhor dos seus dentes?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek relief from tooth sensitivity?",
+      "How would you like to start taking better care of your teeth?"
+    ]
+  },
+  "fase_3": {
+    "pt": [
+      "Estudos da Universidade da Pensilvânia mostraram que probióticos bucais específicos podem reduzir a sensibilidade dos dentes em até 50% após 30 dias de uso. Dentistas da Universidade de São Paulo relataram melhora na resistência do esmalte e menor dor em pacientes que usaram Lactobacillus paracasei e Bifidobacterium lactis em paralelo ao tratamento convencional. São resultados reais, apoiados por ciência e pela experiência de quem buscou solução natural.",
+      "O Journal of Dental Research publicou estudos em que pacientes com sensibilidade crônica notaram menos dor e mais conforto após reequilibrar a flora bucal com probióticos específicos. A maioria relata poder voltar a comer e beber sem medo, retomando o prazer nas pequenas coisas do dia a dia.",
+      "Segundo o Instituto Nacional de Saúde, o uso de cepas como Lactobacillus reuteri está associado a menor desgaste do esmalte e melhora na proteção contra agentes ácidos. Relatos reais mostram que combinar cuidado moderno com soluções naturais pode ser o diferencial para vencer a sensibilidade."
+    ],
+    "en": [
+      "Studies from the University of Pennsylvania showed specific oral probiotics can reduce tooth sensitivity by up to 50% after 30 days. Dentists at the University of São Paulo reported improved enamel strength and less pain in patients using Lactobacillus paracasei and Bifidobacterium lactis alongside traditional treatment. These are real results, backed by science and the experience of those seeking natural solutions.",
+      "The Journal of Dental Research published studies where patients with chronic sensitivity noticed less pain and more comfort after rebalancing their mouth flora with specific probiotics. Most people report being able to eat and drink without fear, getting back the simple pleasures of daily life.",
+      "According to the National Institutes of Health, using strains like Lactobacillus reuteri is linked to less enamel wear and better protection against acids. Real-life reports show combining modern care with natural solutions can make all the difference in overcoming sensitivity."
+    ],
+    "quick_replies_pt": [
+      "Probióticos realmente aliviam sensibilidade?",
+      "Tem estudos sobre isso?",
+      "Dentistas recomendam uso natural?",
+      "Resultados são rápidos?",
+      "Quero ver antes e depois de pacientes",
+      "Lactobacillus protege o esmalte?",
+      "Dá para usar junto com flúor?",
+      "Tem depoimentos de quem melhorou?",
+      "Resultados duram a longo prazo?",
+      "O que a ciência descobriu de novo?",
+      "Qual probiótico é mais indicado?",
+      "Dá para prevenir novas crises?"
+    ],
+    "quick_replies_en": [
+      "Do probiotics really relieve sensitivity?",
+      "Are there studies on this?",
+      "Do dentists recommend natural use?",
+      "Are results fast?",
+      "I want to see before and after stories",
+      "Does Lactobacillus protect enamel?",
+      "Can I use it with fluoride?",
+      "Are there testimonials from people who improved?",
+      "Are results long-lasting?",
+      "What has science discovered recently?",
+      "Which probiotic is best?",
+      "Can new crises be prevented?"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar alívio para a sensibilidade dentária?",
+      "Como você gostaria de começar a cuidar melhor dos seus dentes?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek relief from tooth sensitivity?",
+      "How would you like to start taking better care of your teeth?"
+    ]
+  },
+  "fase_4": {
+    "pt": [
+      "Desde a antiguidade, povos usavam infusões e alimentos fermentados para proteger dentes sensíveis. Hoje, a ciência mostra que probióticos como Lactobacillus paracasei fortalecem o esmalte, ajudam a manter a hidratação e diminuem a reatividade dos nervos dentários. Pesquisas do NIH e de universidades europeias comprovam: quem incorpora esses aliados sente menos dor, mais conforto e qualidade de vida — um cuidado ancestral agora validado pela medicina moderna.",
+      "O segredo para dentes menos sensíveis está em cuidar do microbioma bucal, como faziam nossos avós sem nem saber o nome disso. Probióticos naturais, combinados com higiene correta e alimentação equilibrada, reforçam a barreira protetora dos dentes e reduzem crises de dor. É um encontro de tradição, ciência e praticidade — só depende do teu passo.",
+      "Já pensaste em tratar a sensibilidade com a força da natureza? Lactobacillus e Bifidobacterium, usados há séculos em alimentos e agora testados em grandes universidades, podem ser o diferencial para te devolver prazer ao comer, sorrir e viver sem medo. Tua história pode ser a próxima a inspirar — começa por aqui, se quiseres."
+    ],
+    "en": [
+      "Since ancient times, people have used infusions and fermented foods to protect sensitive teeth. Today, science shows probiotics like Lactobacillus paracasei strengthen enamel, help maintain hydration, and reduce nerve reactivity in teeth. Research from the NIH and European universities proves that people who use these allies feel less pain, more comfort, and a better quality of life — ancestral care now validated by modern medicine.",
+      "The secret to less sensitive teeth is caring for your mouth’s microbiome, just like our grandparents did — without even knowing the term. Natural probiotics, along with proper hygiene and balanced nutrition, reinforce the teeth’s protective barrier and reduce pain crises. It’s a mix of tradition, science, and practicality — all that’s missing is your first step.",
+      "Have you ever thought of treating sensitivity with nature’s strength? Lactobacillus and Bifidobacterium, used for centuries in foods and now tested at top universities, might be the difference in bringing you back the joy of eating, smiling, and living without fear. Your story could be the next to inspire — you can start right here if you’d like."
+    ],
+    "quick_replies_pt": [
+      "Como probióticos ajudam na sensibilidade?",
+      "Qual cepa é melhor para dentes sensíveis?",
+      "Dá para usar junto com tratamento tradicional?",
+      "Tem estudos em universidades grandes?",
+      "Precisa usar todo dia?",
+      "Melhora rápido?",
+      "Tem relatos de menos dor ao comer?",
+      "Probióticos ajudam no esmalte?",
+      "Dá para prevenir novas crises?",
+      "Tem receita com alimentos fermentados?",
+      "O que dentistas dizem sobre isso?",
+      "Quero ver depoimentos reais"
+    ],
+    "quick_replies_en": [
+      "How do probiotics help with sensitivity?",
+      "Which strain is best for sensitive teeth?",
+      "Can I use it with traditional treatment?",
+      "Are there studies from big universities?",
+      "Do I need to use it every day?",
+      "Is improvement fast?",
+      "Are there reports of less pain while eating?",
+      "Do probiotics help with enamel?",
+      "Can new crises be prevented?",
+      "Any recipe with fermented foods?",
+      "What do dentists say about it?",
+      "I want to see real testimonials"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar alívio para a sensibilidade dentária?",
+      "Como você gostaria de começar a cuidar melhor dos seus dentes?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek relief from tooth sensitivity?",
+      "How would you like to start taking better care of your teeth?"
+    ]
+  },
+  "fase_5": {
+    "pt": [
+      "Teus dentes merecem cuidado de verdade, ${userName}. Se quiser experimentar probióticos naturais, posso te orientar sobre o melhor jeito de incluir na rotina — com ciência, tradição e respeito ao teu tempo. Teu passo de agora pode ser o começo de mais conforto e liberdade para sorrir e viver.",
+      "Sensibilidade não precisa ser teu normal. Se quiser, posso mostrar opções naturais, seguras e com respaldo de grandes universidades — só no teu ritmo, sem pressa e com toda clareza. Tua saúde bucal é tua liberdade — e começa com uma escolha simples.",
+      "Se sentires que é o momento de mudar, estou aqui pra apoiar tua decisão com soluções naturais, humanas e testadas. Tua experiência é única — e merece o melhor cuidado possível, sempre com ciência e acolhimento."
+    ],
+    "en": [
+      "Your teeth deserve real care, ${userName}. If you want to try natural probiotics, I can guide you on the best way to include them in your routine — with science, tradition, and respect for your pace. This step could be the beginning of more comfort and freedom to smile and live.",
+      "Sensitivity doesn’t have to be your ‘normal.’ If you want, I can show you natural, safe options backed by major universities — at your own pace, no rush, and with total clarity. Your oral health is your freedom — and it starts with a simple choice.",
+      "If you feel it’s time for a change, I’m here to support your decision with natural, human, and tested solutions. Your experience is unique — and deserves the best care possible, always with science and understanding."
+    ],
+    "quick_replies_pt": [
+      "Quero experimentar probióticos para sensibilidade",
+      "Tem dica fácil pra começar?",
+      "Quero guia prático de dentes saudáveis",
+      "Como encaixar isso na rotina?",
+      "Prefiro só entender mais antes de decidir",
+      "Quero ver depoimentos reais",
+      "Tem benefícios além da sensibilidade?",
+      "Pode combinar com escovação normal?",
+      "Quero conversar mais sobre saúde bucal",
+      "O que mais posso fazer pelos meus dentes?",
+      "Pode ser usado por toda a família?",
+      "Quero ouvir histórias de superação"
+    ],
+    "quick_replies_en": [
+      "I want to try probiotics for sensitivity",
+      "Any easy tip to start?",
+      "I want a practical guide to healthy teeth",
+      "How can I fit this into my routine?",
+      "I prefer to learn more before deciding",
+      "I want to see real testimonials",
+      "Are there benefits beyond sensitivity?",
+      "Can I combine with regular brushing?",
+      "I want to talk more about oral health",
+      "What else can I do for my teeth?",
+      "Is it suitable for the whole family?",
+      "I want to hear stories of overcoming it"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar alívio para a sensibilidade dentária?",
+      "Como você gostaria de começar a cuidar melhor dos seus dentes?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek relief from tooth sensitivity?",
+      "How would you like to start taking better care of your teeth?"
+    ]
+  }
+}
 
