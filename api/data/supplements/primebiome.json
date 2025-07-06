@@ -200,10 +200,9 @@
           "What else can I do for my digestion?",
           "Can I combine these plants with other care?",
           "I want to hear more transformation stories"
-        ]
-      },
+         ]
+  },
 
-      {
   "suplemento": "PRIME BIOME",
   "sintoma": "frequent_diarrhea_or_ib_syndrome",
   "fase_1": {
@@ -407,7 +406,6 @@
     ]
   },
 
-  {
   "suplemento": "PRIME BIOME",
   "symptom": "CONSTIPAÇÃO OU MOVIMENTOS INTESTINAIS IRREGULARES / CONSTIPATION OR IRREGULAR BOWEL MOVEMENTS",
   "phases": [
@@ -614,7 +612,7 @@
         ]
       },   
 
-      {
+  "suplemento": "PRIME BIOME",
   "symptom": "VERMELHIDÃO E IRRITAÇÃO FREQUENTES NA PELE / FREQUENT SKIN REDNESS AND IRRITATION",
   "phases": [
     {
@@ -818,7 +816,7 @@
         ]
       },
 
-      {
+  "suplemento": "PRIME BIOME",
   "symptom": "ADULT OR RECURRENT ACNE / ACNE ADULTO OU RECORRENTE",
   "supplement": "PrimeBiome",
   "phases": {
@@ -938,7 +936,7 @@
       ]
     },
 
-    {
+  "suplemento": "PRIME BIOME",
   "symptom": "PELE SECA E ESCAMOSA PERSISTENTE / PERSISTENT DRY AND FLAKY SKIN",
   "phases": [
     {
