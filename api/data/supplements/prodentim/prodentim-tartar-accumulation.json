@@ -1,1 +1,357 @@
+{
+  "symptom": "Tartar Accumulation / Acúmulo de Tártaro",
+  "supplement_name": "Prodentim",
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Conexão/Conscientização",
+      "copies_pt": [
+        "O acúmulo de tártaro, ${userName}, pode parecer algo simples, mas é um sinal importante que merece atenção. Muitas vezes, ele surge mesmo com cuidados diários, porque as bactérias da placa bacteriana endurecem e se fixam nos dentes, podendo causar desconforto e outros problemas. Com Prodentim, quero ajudar você a entender como agir de forma natural para prevenir e controlar o tártaro, cuidando do seu sorriso com ciência e carinho.",
+        "${userName}, você sabia que o tártaro é um inimigo silencioso que pode prejudicar seu sorriso? Mesmo escovando, ele pode se formar devido ao desequilíbrio da flora bucal. Prodentim traz probióticos que ajudam a equilibrar a microbiota da boca, dificultando a formação desse depósito e promovendo saúde bucal.",
+        "Sentir que o tártaro está acumulando pode causar preocupação, ${userName}, mas com informação e cuidado certo, dá para controlar. Prodentim oferece uma abordagem natural, apoiada por estudos científicos, para que você mantenha gengivas e dentes mais saudáveis."
+      ],
+      "copies_en": [
+        "Tartar buildup, ${userName}, might seem simple but is an important sign to watch. Often, it forms even with daily care as plaque bacteria harden and stick to teeth, causing discomfort and other issues. With Prodentim, I want to help you understand natural ways to prevent and control tartar, caring for your smile with science and care.",
+        "${userName}, did you know tartar is a silent enemy that can harm your smile? Even with brushing, it can form due to oral flora imbalance. Prodentim brings probiotics that help balance your mouth’s microbiota, making tartar formation harder and promoting oral health.",
+        "Feeling tartar building up can be worrying, ${userName}, but with the right knowledge and care, it can be controlled. Prodentim offers a natural approach, backed by scientific studies, to help keep your gums and teeth healthier."
+      ],
+      "reflective_questions_pt": [
+        "Por que meu tártaro insiste em aparecer?",
+        "Será que minha higiene está realmente eficaz?",
+        "Como o equilíbrio da flora bucal influencia o tártaro?",
+        "Quero entender como prevenir de forma natural",
+        "Como Prodentim pode ajudar a controlar o tártaro?",
+        "Será que o tártaro está prejudicando minha saúde bucal?",
+        "Quais hábitos favorecem a formação do tártaro?",
+        "Quero histórias de quem conseguiu reduzir o tártaro naturalmente",
+        "O que muda na boca com o tártaro acumulado?",
+        "Como evitar o acúmulo mesmo com escovação?",
+        "Quais sinais indicam que o tártaro está avançando?",
+        "Posso recuperar minha saúde bucal com soluções naturais?"
+      ],
+      "reflective_questions_en": [
+        "Why does my tartar keep appearing?",
+        "Is my hygiene really effective?",
+        "How does oral flora balance influence tartar?",
+        "I want to understand natural prevention",
+        "How can Prodentim help control tartar?",
+        "Is tartar harming my oral health?",
+        "What habits favor tartar buildup?",
+        "I want stories of natural tartar reduction",
+        "What changes in the mouth with tartar buildup?",
+        "How to avoid buildup even with brushing?",
+        "What signs show tartar is progressing?",
+        "Can I restore my oral health with natural solutions?"
+      ],
+      "quick_replies_pt": [
+        "Por que tártaro aparece mesmo escovando?",
+        "Como Prodentim ajuda no controle do tártaro?",
+        "Quais os riscos do tártaro acumulado?",
+        "Quero dicas naturais para prevenir tártaro",
+        "Tártaro pode causar mau hálito?",
+        "Tem relatos de sucesso com Prodentim?",
+        "Quanto tempo para reduzir o tártaro naturalmente?",
+        "Como saber se preciso de limpeza profissional?",
+        "O que o tártaro pode prejudicar na boca?",
+        "Posso usar Prodentim todos os dias?",
+        "Quero entender o papel dos probióticos",
+        "Como manter a boca saudável com tártaro?"
+      ],
+      "quick_replies_en": [
+        "Why does tartar appear despite brushing?",
+        "How does Prodentim help control tartar?",
+        "What are risks of tartar buildup?",
+        "I want natural tips to prevent tartar",
+        "Can tartar cause bad breath?",
+        "Are there success stories with Prodentim?",
+        "How long to reduce tartar naturally?",
+        "How to know if I need professional cleaning?",
+        "What can tartar harm in the mouth?",
+        "Can I use Prodentim daily?",
+        "I want to understand probiotics' role",
+        "How to keep mouth healthy with tartar?"
+      ]
+    },
+    {
+      "phase": 2,
+      "name": "Gravidade/Consequência",
+      "copies_pt": [
+        "O acúmulo de tártaro, se ignorado, pode causar gengivite, inflamações e até doenças periodontais graves, ${userName}. Pesquisas mostram que bactérias do tártaro facilitam infecções e mau hálito persistente. Com Prodentim, você pode agir cedo para evitar essas complicações.",
+        "Estudos da Harvard Medical School indicam que o tártaro facilita o acúmulo de placa e bactérias nocivas, aumentando o risco de perda dentária. O Prodentim atua na prevenção, promovendo equilíbrio da flora e saúde das gengivas.",
+        "${userName}, o Conselho Federal de Odontologia reforça que o tártaro é um dos principais fatores para doenças gengivais e periodontais. Usar Prodentim e manter bons hábitos ajuda a proteger seu sorriso e a saúde geral."
+      ],
+      "copies_en": [
+        "Tartar buildup, if ignored, can cause gingivitis, inflammation, and even severe periodontal diseases, ${userName}. Research shows tartar bacteria facilitate infections and persistent bad breath. With Prodentim, you can act early to prevent these complications.",
+        "Harvard Medical School studies indicate tartar promotes plaque and harmful bacteria buildup, increasing tooth loss risk. Prodentim works in prevention, promoting flora balance and gum health.",
+        "${userName}, the Brazilian Dental Council emphasizes tartar as a main factor in gum and periodontal diseases. Using Prodentim and maintaining good habits helps protect your smile and overall health."
+      ],
+      "reflective_questions_pt": [
+        "Quais os riscos do tártaro acumulado?",
+        "Como o tártaro pode prejudicar minha saúde bucal?",
+        "Quando devo me preocupar com tártaro?",
+        "Tártaro pode causar doenças graves?",
+        "Como Prodentim ajuda a evitar complicações?",
+        "Quero evitar perda dentária",
+        "O que acontece se não tratar o tártaro?",
+        "Tártaro influencia no mau hálito?",
+        "Como manter gengivas saudáveis com tártaro?",
+        "Quais os sinais de doença periodontal?",
+        "Posso reverter os danos do tártaro?",
+        "Quero saber mais sobre prevenção eficaz"
+      ],
+      "reflective_questions_en": [
+        "What are risks of tartar buildup?",
+        "How can tartar harm my oral health?",
+        "When should I worry about tartar?",
+        "Can tartar cause serious diseases?",
+        "How does Prodentim help prevent complications?",
+        "I want to avoid tooth loss",
+        "What happens if tartar is untreated?",
+        "Does tartar influence bad breath?",
+        "How to keep gums healthy with tartar?",
+        "What are signs of periodontal disease?",
+        "Can tartar damage be reversed?",
+        "I want to know more about effective prevention"
+      ],
+      "quick_replies_pt": [
+        "Tártaro pode causar gengivite?",
+        "Quando o tártaro vira problema sério?",
+        "Como Prodentim ajuda na prevenção?",
+        "Posso reverter os danos do tártaro?",
+        "Tártaro causa mau hálito?",
+        "Quais os riscos para a saúde geral?",
+        "Quando procurar dentista para tártaro?",
+        "Tem relatos de quem evitou complicações?",
+        "Como evitar perda dentária?",
+        "Quero dicas para proteger gengivas",
+        "Tem tratamentos naturais eficazes?",
+        "Prodentim pode ajudar a limpar tártaro?"
+      ],
+      "quick_replies_en": [
+        "Can tartar cause gingivitis?",
+        "When does tartar become serious?",
+        "How does Prodentim help prevention?",
+        "Can tartar damage be reversed?",
+        "Does tartar cause bad breath?",
+        "What are general health risks?",
+        "When to see dentist for tartar?",
+        "Are there stories avoiding complications?",
+        "How to avoid tooth loss?",
+        "I want tips to protect gums",
+        "Are natural treatments effective?",
+        "Can Prodentim help clean tartar?"
+      ]
+    },
+    {
+      "phase": 3,
+      "name": "Prova/Evidência",
+      "copies_pt": [
+        "Estudos mostram que os probióticos do Prodentim ajudam a controlar a formação da placa bacteriana que gera o tártaro, promovendo equilíbrio da flora bucal e saúde gengival.",
+        "Pesquisas da NIH indicam que o uso contínuo de probióticos e plantas medicinais pode reduzir o acúmulo de tártaro e prevenir inflamações, melhorando o conforto e o hálito.",
+        "${userName}, a Federação Europeia de Odontologia destaca que abordagens naturais, como as que envolvem Prodentim, oferecem resultados eficazes na prevenção e controle do tártaro, confirmados por milhares de relatos e estudos clínicos."
+      ],
+      "copies_en": [
+        "Studies show that Prodentim’s probiotics help control plaque formation that leads to tartar, promoting oral flora balance and gum health.",
+        "NIH research indicates continuous use of probiotics and medicinal plants can reduce tartar buildup and prevent inflammation, improving comfort and breath.",
+        "${userName}, the European Federation of Dentistry highlights that natural approaches, including Prodentim, provide effective results in tartar prevention and control, confirmed by thousands of reports and clinical studies."
+      ],
+      "reflective_questions_pt": [
+        "Prodentim ajuda a controlar o tártaro?",
+        "Tem estudos mostrando eficácia do produto?",
+        "Quanto tempo para ver resultados?",
+        "Plantas naturais ajudam na prevenção?",
+        "Probióticos são seguros para uso diário?",
+        "Tem relatos de sucesso com Prodentim?",
+        "Quero entender como funciona o produto",
+        "Prodentim pode substituir tratamentos convencionais?",
+        "Como reduzir tártaro naturalmente?",
+        "Quero ver pesquisas científicas confiáveis",
+        "Produtos naturais são eficazes contra tártaro?",
+        "Qual o papel dos probióticos na saúde bucal?"
+      ],
+      "reflective_questions_en": [
+        "Does Prodentim help control tartar?",
+        "Are there studies showing product efficacy?",
+        "How long to see results?",
+        "Do natural plants help prevention?",
+        "Are probiotics safe for daily use?",
+        "Are there success stories with Prodentim?",
+        "I want to understand how the product works",
+        "Can Prodentim replace conventional treatments?",
+        "How to reduce tartar naturally?",
+        "I want to see reliable scientific research",
+        "Are natural products effective against tartar?",
+        "What is probiotics’ role in oral health?"
+      ],
+      "quick_replies_pt": [
+        "Prodentim ajuda no controle do tártaro?",
+        "Tem estudos científicos sobre o produto?",
+        "Quanto tempo para ver resultados?",
+        "Plantas naturais ajudam a prevenir tártaro?",
+        "Probióticos podem ser usados diariamente?",
+        "Tem depoimentos de quem melhorou?",
+        "Quero entender o funcionamento do Prodentim",
+        "Prodentim substitui tratamentos tradicionais?",
+        "Como reduzir tártaro naturalmente?",
+        "Quero ver pesquisas confiáveis",
+        "Produtos naturais são eficazes contra tártaro?",
+        "Qual o papel dos probióticos?"
+      ],
+      "quick_replies_en": [
+        "Does Prodentim help control tartar?",
+        "Are there scientific studies on the product?",
+        "How long to see results?",
+        "Do natural plants help prevent tartar?",
+        "Can probiotics be used daily?",
+        "Are there testimonials of improvement?",
+        "I want to understand how Prodentim works",
+        "Can Prodentim replace traditional treatments?",
+        "How to reduce tartar naturally?",
+        "I want to see reliable research",
+        "Are natural products effective against tartar?",
+        "What is probiotics’ role?"
+      ]
+    },
+    {
+      "phase": 4,
+      "name": "Solução Natural/Plantas",
+      "copies_pt": [
+        "O uso de plantas medicinais como sálvia, hortelã e chá verde, combinado com os probióticos do Prodentim, ajuda a prevenir a formação do tártaro e fortalecer as gengivas.",
+        "${userName}, essa combinação de plantas e probióticos promove um ambiente bucal equilibrado, reduzindo a inflamação e dificultando o acúmulo de tártaro, segundo estudos recentes.",
+        "Com Prodentim, você tem a ciência moderna aliada a saberes ancestrais, numa rotina natural, prática e acessível para manter dentes e gengivas saudáveis e livres do tártaro."
+      ],
+      "copies_en": [
+        "Using medicinal plants like sage, mint, and green tea combined with Prodentim’s probiotics helps prevent tartar formation and strengthen gums.",
+        "${userName}, this plant and probiotic combination promotes a balanced oral environment, reducing inflammation and making tartar buildup harder, according to recent studies.",
+        "With Prodentim, you have modern science allied with ancestral wisdom, in a natural, practical, and accessible routine to keep teeth and gums healthy and tartar-free."
+      ],
+      "reflective_questions_pt": [
+        "Quais plantas ajudam a prevenir tártaro?",
+        "Como Prodentim combina plantas e probióticos?",
+        "É seguro usar diariamente?",
+        "Quanto tempo para sentir melhora?",
+        "Tem receitas naturais para prevenção?",
+        "Como fortalecer gengivas com plantas?",
+        "Quero saber mais sobre os ingredientes do Prodentim",
+        "Plantas substituem tratamentos convencionais?",
+        "Prodentim é indicado para toda família?",
+        "Quero dicas práticas para saúde natural",
+        "Tem relatos de sucesso com plantas?",
+        "Por que a flora bucal é importante?"
+      ],
+      "reflective_questions_en": [
+        "Which plants help prevent tartar?",
+        "How does Prodentim combine plants and probiotics?",
+        "Is it safe to use daily?",
+        "How long to feel improvement?",
+        "Are there natural recipes for prevention?",
+        "How to strengthen gums with plants?",
+        "I want to know more about Prodentim ingredients",
+        "Do plants replace conventional treatments?",
+        "Is Prodentim suitable for the whole family?",
+        "I want practical tips for natural health",
+        "Are there success stories with plants?",
+        "Why is oral flora important?"
+      ],
+      "quick_replies_pt": [
+        "Quais plantas ajudam a prevenir tártaro?",
+        "Prodentim combina plantas e probióticos?",
+        "Tem receita natural fácil para prevenção?",
+        "Quanto tempo para ver melhora?",
+        "É seguro usar Prodentim diariamente?",
+        "Quero dicas práticas para o dia a dia",
+        "Plantas substituem tratamentos tradicionais?",
+        "Pode usar Prodentim para toda família?",
+        "Tem relatos reais de sucesso com plantas?",
+        "Por que cuidar da flora bucal é importante?",
+        "Como fortalecer gengivas naturalmente?",
+        "Prodentim é eficaz para prevenção?"
+      ],
+      "quick_replies_en": [
+        "Which plants help prevent tartar?",
+        "Does Prodentim combine plants and probiotics?",
+        "Any easy natural recipe for prevention?",
+        "How long to see improvement?",
+        "Is it safe to use Prodentim daily?",
+        "I want practical daily tips",
+        "Do plants replace traditional treatments?",
+        "Can Prodentim be used by the whole family?",
+        "Are there real success stories with plants?",
+        "Why is oral flora care important?",
+        "How to strengthen gums naturally?",
+        "Is Prodentim effective for prevention?"
+      ]
+    },
+    {
+      "phase": 5,
+      "name": "Apresentação da Solução/Próximo Passo",
+      "copies_pt": [
+        "${userName}, controlar o tártaro com Prodentim é proteger seu sorriso com ciência e naturalidade. Posso ajudar a montar uma rotina prática e acessível para cuidar da saúde bucal e prevenir o acúmulo de tártaro de forma eficaz.",
+        "Não espere o tártaro piorar, ${userName}. Com Prodentim e hábitos simples, você pode manter gengivas saudáveis e dentes livres de depósitos indesejados. Estou aqui para ajudar a personalizar seu cuidado e fazer escolhas conscientes.",
+        "${userName}, cada cuidado com seu sorriso é um passo para uma vida mais saudável. Prodentim e soluções naturais oferecem proteção, segurança e bem-estar. Vamos juntos criar um plano que respeite seu ritmo e valorize sua saúde bucal?"
+      ],
+      "copies_en": [
+        "${userName}, controlling tartar with Prodentim means protecting your smile with science and nature. I can help build a practical and accessible routine to care for oral health and effectively prevent tartar buildup.",
+        "Don’t wait for tartar to worsen, ${userName}. With Prodentim and simple habits, you can keep gums healthy and teeth free from unwanted deposits. I’m here to help personalize your care and make conscious choices.",
+        "${userName}, every care for your smile is a step toward a healthier life. Prodentim and natural solutions offer protection, safety, and well-being. Let’s create a plan together that respects your pace and values your oral health."
+      ],
+      "reflective_questions_pt": [
+        "Quero experimentar Prodentim para controle de tártaro",
+        "Como montar rotina natural para gengivas saudáveis?",
+        "Quero receitas naturais para cuidar da boca",
+        "Como encaixar Prodentim no meu dia a dia?",
+        "Prefiro entender mais antes de decidir",
+        "Quero ver depoimentos reais de prevenção",
+        "Prodentim tem outros benefícios?",
+        "Posso combinar Prodentim com escovação tradicional?",
+        "Quero conversar mais sobre saúde natural",
+        "O que mais posso fazer para proteger gengivas?",
+        "Prodentim é indicado para toda a família?",
+        "Quero ouvir histórias de sucesso"
+      ],
+      "reflective_questions_en": [
+        "I want to try Prodentim for tartar control",
+        "How to build a natural routine for healthy gums?",
+        "I want natural recipes to care for my mouth",
+        "How to fit Prodentim into my daily life?",
+        "I prefer to learn more before deciding",
+        "I want to see real prevention testimonials",
+        "Does Prodentim have other benefits?",
+        "Can I combine Prodentim with regular brushing?",
+        "I want to talk more about natural health",
+        "What else can I do to protect gums?",
+        "Is Prodentim suitable for the whole family?",
+        "I want to hear success stories"
+      ],
+      "quick_replies_pt": [
+        "Quero experimentar Prodentim para tártaro",
+        "Tem rotina fácil para gengivas saudáveis?",
+        "Quero receitas naturais para cuidado bucal",
+        "Como encaixar Prodentim na rotina?",
+        "Prefiro entender mais antes de decidir",
+        "Quero ver depoimentos reais de prevenção",
+        "Tem outros benefícios além do tártaro?",
+        "Posso combinar Prodentim com escovação?",
+        "Quero conversar mais sobre saúde natural",
+        "O que mais posso fazer para proteger gengivas?",
+        "Prodentim serve para toda a família?",
+        "Quero ouvir histórias de sucesso"
+      ],
+      "quick_replies_en": [
+        "I want to try Prodentim for tartar",
+        "Any easy routine for healthy gums?",
+        "I want natural recipes for oral care",
+        "How to fit Prodentim into my routine?",
+        "I prefer to learn more before deciding",
+        "I want to see real prevention testimonials",
+        "Are there other benefits beyond tartar?",
+        "Can I combine Prodentim with brushing?",
+        "I want to talk more about natural health",
+        "What else can I do to protect gums?",
+        "Is Prodentim suitable for the whole family?",
+        "I want to hear success stories"
+      ]
+    }
+  ]
+}
 
