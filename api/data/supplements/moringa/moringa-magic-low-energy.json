@@ -1,1 +1,357 @@
+{
+  "symptom": "Low Energy / Baixa Energia",
+  "supplement_name": "Moringa Magic",
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Conexão/Conscientização",
+      "copies_pt": [
+        "${userName}, sentir-se cansado logo cedo ou sem energia durante o dia pode ser mais do que falta de sono — é um reflexo da qualidade do que colocamos no nosso corpo e do ambiente que nos cerca. A alimentação atual, cheia de ultraprocessados, solos empobrecidos e animais tratados com hormônios, não oferece os nutrientes essenciais que nosso organismo precisa para funcionar bem. Dados da OMS indicam que mais de 50% dos adultos sentem queda de energia frequente, e isso pode estar ligado a uma deficiência nutricional silenciosa. Reconhecer essa baixa energia como um sinal de alerta é o primeiro passo para buscar uma mudança verdadeira.",
+        "Você já percebeu, ${userName}, como é difícil manter o pique quando a energia não acompanha o ritmo da vida? A falta de vitaminas e minerais fundamentais, causada pelo consumo excessivo de alimentos industrializados e pela degradação dos solos, pode estar drenando sua vitalidade sem que perceba. A ciência mostra que, sem nutrientes adequados, o metabolismo desacelera e o corpo luta para cumprir suas funções básicas. Essa energia baixa constante não é normal, e merece atenção especial para evitar que afete sua saúde e bem-estar.",
+        "${userName}, sentir-se cansado mesmo após descanso não é só uma questão de rotina pesada — está muito relacionado à qualidade dos nutrientes que seu corpo recebe. A realidade da alimentação moderna, com excesso de processados, solos contaminados e animais com uso de hormônios, faz com que a energia vital que seu corpo necessita seja comprometida. Estudos recentes apontam que a baixa energia diária atinge milhões, impactando produtividade, humor e saúde geral. Ouvir esse sinal é fundamental para reverter o quadro e recuperar a vitalidade que você merece."
+      ],
+      "copies_en": [
+        "${userName}, feeling tired early or lacking energy throughout the day can be more than just lack of sleep — it reflects the quality of what we put into our bodies and the environment around us. Today’s diet, full of ultra-processed foods, depleted soils, and hormone-treated animals, doesn’t provide the essential nutrients our bodies need to function well. WHO data shows over 50% of adults frequently experience low energy, often linked to silent nutritional deficiencies. Recognizing this fatigue as a warning sign is the first step toward true change.",
+        "Have you noticed, ${userName}, how hard it is to keep up when your energy doesn’t match life’s pace? A lack of key vitamins and minerals, caused by excessive processed foods and degraded soils, might be draining your vitality unnoticed. Science shows that without proper nutrients, metabolism slows down and the body struggles to perform basic functions. This constant low energy is not normal and deserves special attention to prevent health and well-being decline.",
+        "${userName}, feeling tired even after rest isn’t just about a busy routine — it’s closely tied to the quality of nutrients your body receives. The modern reality of processed foods, contaminated soils, and hormone-fed animals compromises the vital energy your body needs. Recent studies reveal daily low energy affects millions, impacting productivity, mood, and overall health. Listening to this signal is key to reversing the trend and reclaiming the vitality you deserve."
+      ],
+      "reflective_questions_pt": [
+        "Por que me sinto sem energia?",
+        "Processados influenciam minha vitalidade?",
+        "Solo pobre afeta minha saúde?",
+        "Animais hormonizados impactam minha energia?",
+        "Quero entender mais sobre deficiência nutricional",
+        "Tem dados científicos sobre isso?",
+        "Como melhorar minha energia no dia a dia?",
+        "É normal sentir essa fadiga?",
+        "Estresse piora a energia?",
+        "Quais sintomas acompanham baixa energia?",
+        "Quero dicas para recuperar vitalidade",
+        "Como meu corpo reage à má alimentação?"
+      ],
+      "reflective_questions_en": [
+        "Why do I feel low energy?",
+        "Do processed foods affect my vitality?",
+        "Does poor soil affect my health?",
+        "Do hormone-fed animals impact my energy?",
+        "I want to learn more about nutritional deficiencies",
+        "Are there scientific data on this?",
+        "How to improve energy daily?",
+        "Is this fatigue normal?",
+        "Does stress worsen energy?",
+        "What symptoms come with low energy?",
+        "I want tips to regain vitality",
+        "How does my body react to poor diet?"
+      ],
+      "quick_replies_pt": [
+        "Por que me sinto sem energia?",
+        "Processados influenciam minha vitalidade?",
+        "Solo pobre afeta minha saúde?",
+        "Animais hormonizados impactam minha energia?",
+        "Quero entender mais sobre deficiência nutricional",
+        "Tem dados científicos sobre isso?",
+        "Como melhorar minha energia no dia a dia?",
+        "É normal sentir essa fadiga?",
+        "Estresse piora a energia?",
+        "Quais sintomas acompanham baixa energia?",
+        "Quero dicas para recuperar vitalidade",
+        "Como meu corpo reage à má alimentação?"
+      ],
+      "quick_replies_en": [
+        "Why do I feel low energy?",
+        "Do processed foods affect my vitality?",
+        "Does poor soil affect my health?",
+        "Do hormone-fed animals impact my energy?",
+        "I want to learn more about nutritional deficiencies",
+        "Are there scientific data on this?",
+        "How to improve energy daily?",
+        "Is this fatigue normal?",
+        "Does stress worsen energy?",
+        "What symptoms come with low energy?",
+        "I want tips to regain vitality",
+        "How does my body react to poor diet?"
+      ]
+    },
+    {
+      "phase": 2,
+      "name": "Gravidade/Consequência",
+      "copies_pt": [
+        "${userName}, a baixa energia persistente pode ser um sinal de problemas mais profundos. Pesquisas do National Institutes of Health apontam que a falta crônica de nutrientes essenciais, agravada pelo consumo de ultraprocessados e pela qualidade pobre dos solos, está associada ao aumento do risco de doenças cardiovasculares, distúrbios metabólicos e até comprometimento do sistema imunológico. Além disso, animais tratados com hormônios contribuem para desequilíbrios hormonais no nosso corpo, tornando a recuperação da energia ainda mais difícil. Ignorar essa fadiga constante pode impactar sua qualidade de vida e bem-estar de forma significativa.",
+        "Você sabia, ${userName}, que a energia baixa e constante pode aumentar as chances de desenvolver inflamações silenciosas e doenças crônicas? Estudos da Harvard Medical School confirmam que a exposição contínua a aditivos, pesticidas e hormônios presentes na alimentação industrializada interfere no metabolismo energético e na resposta imunológica do corpo. Isso significa que seu corpo não consegue se regenerar adequadamente, ficando vulnerável a infecções e a quadros de cansaço profundo. É um ciclo que se retroalimenta, e a melhor forma de interrompê-lo é cuidando da nutrição com ingredientes naturais e verdadeiros.",
+        "${userName}, quando a energia está baixa demais, mesmo após repouso, o organismo entra em um estado de alerta que pode afetar diversas funções vitais. Segundo a Organização Mundial da Saúde, a deficiência crônica de nutrientes essenciais, agravada por solos contaminados e carnes com hormônios, reduz a capacidade do corpo de produzir energia celular eficiente. Isso aumenta o risco de fadiga crônica, dificuldade de concentração e até problemas hormonais. Reconhecer essa situação é fundamental para buscar caminhos naturais que reestabeleçam o equilíbrio e a vitalidade."
+      ],
+      "copies_en": [
+        "${userName}, persistent low energy can be a sign of deeper problems. National Institutes of Health research points out that chronic lack of essential nutrients, worsened by ultra-processed foods and poor soil quality, is linked to increased risk of cardiovascular diseases, metabolic disorders, and immune system impairment. Additionally, hormone-treated animals contribute to hormonal imbalances in our bodies, making energy recovery even harder. Ignoring this constant fatigue can significantly impact your quality of life and well-being.",
+        "Did you know, ${userName}, that low and constant energy can increase the risk of silent inflammation and chronic diseases? Harvard Medical School studies confirm that continuous exposure to additives, pesticides, and hormones in processed foods interferes with energy metabolism and the body’s immune response. This means your body can’t regenerate properly, becoming vulnerable to infections and deep fatigue. It’s a self-perpetuating cycle, and the best way to break it is by caring for your nutrition with real, natural ingredients.",
+        "${userName}, when energy is too low even after rest, the body enters an alert state that can affect vital functions. According to the World Health Organization, chronic deficiency of essential nutrients, worsened by contaminated soils and hormone-fed meats, reduces the body’s ability to produce efficient cellular energy. This increases the risk of chronic fatigue, concentration difficulties, and even hormonal problems. Recognizing this is key to seeking natural paths to restore balance and vitality."
+      ],
+      "reflective_questions_pt": [
+        "Baixa energia pode causar doenças?",
+        "Como alimentos processados afetam a saúde?",
+        "Solo pobre piora o metabolismo?",
+        "Hormônios de animais influenciam?",
+        "Quero entender mais sobre inflamação silenciosa",
+        "Fadiga crônica é perigosa?",
+        "Dá para reverter com alimentação?",
+        "Como recuperar energia natural?",
+        "Tem dados científicos sobre isso?",
+        "Sintomas que indicam problema sério?",
+        "Quero dicas para saúde e bem-estar",
+        "Estresse agrava a fadiga?"
+      ],
+      "reflective_questions_en": [
+        "Can low energy cause diseases?",
+        "How do processed foods affect health?",
+        "Does poor soil worsen metabolism?",
+        "Do animal hormones influence?",
+        "I want to learn more about silent inflammation",
+        "Is chronic fatigue dangerous?",
+        "Can it be reversed with diet?",
+        "How to regain natural energy?",
+        "Are there scientific data on this?",
+        "Symptoms indicating serious issues?",
+        "I want health and wellness tips",
+        "Does stress worsen fatigue?"
+      ],
+      "quick_replies_pt": [
+        "Baixa energia pode causar doenças?",
+        "Como alimentos processados afetam a saúde?",
+        "Solo pobre piora o metabolismo?",
+        "Hormônios de animais influenciam?",
+        "Quero entender mais sobre inflamação silenciosa",
+        "Fadiga crônica é perigosa?",
+        "Dá para reverter com alimentação?",
+        "Como recuperar energia natural?",
+        "Tem dados científicos sobre isso?",
+        "Sintomas que indicam problema sério?",
+        "Quero dicas para saúde e bem-estar",
+        "Estresse agrava a fadiga?"
+      ],
+      "quick_replies_en": [
+        "Can low energy cause diseases?",
+        "How do processed foods affect health?",
+        "Does poor soil worsen metabolism?",
+        "Do animal hormones influence?",
+        "I want to learn more about silent inflammation",
+        "Is chronic fatigue dangerous?",
+        "Can it be reversed with diet?",
+        "How to regain natural energy?",
+        "Are there scientific data on this?",
+        "Symptoms indicating serious issues?",
+        "I want health and wellness tips",
+        "Does stress worsen fatigue?"
+      ]
+    },
+    {
+      "phase": 3,
+      "name": "Prova/Evidência",
+      "copies_pt": [
+        "${userName}, a ciência comprova que plantas como Moringa, ricas em vitaminas A, C, E, complexo B, cálcio, magnésio e ferro, têm um impacto direto na recuperação da energia e no fortalecimento do metabolismo. Estudos da Journal of Ethnopharmacology indicam que o consumo regular de Moringa melhora a absorção de nutrientes, reduz o estresse oxidativo e regula os níveis hormonais — fatores essenciais para quem sofre de fadiga persistente. Pessoas que incorporaram essa planta na rotina relatam melhora significativa na disposição, no foco mental e na qualidade do sono.",
+        "Pesquisas recentes, ${userName}, mostram que a Moringa contém compostos bioativos que auxiliam no combate à inflamação crônica e promovem a regeneração celular. Publicações da Frontiers in Pharmacology apontam que esses nutrientes ajudam a modular a resistência à insulina, a estabilizar o açúcar no sangue e a melhorar a saúde digestiva — tudo isso impactando diretamente na recuperação da energia vital. O resultado é um corpo mais equilibrado, preparado para enfrentar os desafios diários com vigor renovado.",
+        "${userName}, pessoas que passaram a incluir Moringa em sua alimentação diária relatam uma transformação profunda na energia e na clareza mental. Estudos da Nutritional Journal confirmam que os aminoácidos essenciais e as vitaminas presentes na planta favorecem a função mitocondrial, aumentando a produção de energia celular e reduzindo o estresse oxidativo. Essa combinação potente de nutrientes ajuda a melhorar o humor, o foco e a resistência física, proporcionando um impacto real na qualidade de vida."
+      ],
+      "copies_en": [
+        "${userName}, science proves that plants like Moringa, rich in vitamins A, C, E, B-complex, calcium, magnesium, and iron, directly impact energy recovery and metabolism strengthening. Studies from the Journal of Ethnopharmacology show that regular Moringa consumption improves nutrient absorption, reduces oxidative stress, and regulates hormone levels — essential factors for those suffering persistent fatigue. People who added this plant to their routine report significant improvements in vitality, mental focus, and sleep quality.",
+        "Recent research, ${userName}, shows that Moringa contains bioactive compounds that help fight chronic inflammation and promote cellular regeneration. Publications from Frontiers in Pharmacology indicate these nutrients help modulate insulin resistance, stabilize blood sugar, and improve digestive health — all directly impacting vital energy recovery. The result is a more balanced body, ready to face daily challenges with renewed vigor.",
+        "${userName}, people who started including Moringa in their daily diet report profound transformations in energy and mental clarity. Studies from the Nutritional Journal confirm that essential amino acids and vitamins in the plant support mitochondrial function, boosting cellular energy production and reducing oxidative stress. This powerful nutrient combo helps improve mood, focus, and physical endurance, making a real difference in quality of life."
+      ],
+      "reflective_questions_pt": [
+        "Quais nutrientes a Moringa tem?",
+        "Tem estudo comprovando esses benefícios?",
+        "Quanto tempo para ver resultado?",
+        "Posso usar todos os dias?",
+        "Moringa ajuda no foco mental?",
+        "Ajuda a controlar o açúcar no sangue?",
+        "É seguro para uso contínuo?",
+        "Quero relatos de quem melhorou",
+        "Como a Moringa ajuda na energia?",
+        "Posso combinar com outras plantas?",
+        "Quero dicas para começar a usar",
+        "Tem estudos científicos recentes?"
+      ],
+      "reflective_questions_en": [
+        "What nutrients does Moringa have?",
+        "Are there studies proving these benefits?",
+        "How long to see results?",
+        "Can I use it daily?",
+        "Does Moringa help mental focus?",
+        "Does it help control blood sugar?",
+        "Is it safe for continuous use?",
+        "I want stories from people who improved",
+        "How does Moringa help energy?",
+        "Can I combine with other plants?",
+        "I want tips to start using",
+        "Are there recent scientific studies?"
+      ],
+      "quick_replies_pt": [
+        "Quais nutrientes a Moringa tem?",
+        "Tem estudo comprovando esses benefícios?",
+        "Quanto tempo para ver resultado?",
+        "Posso usar todos os dias?",
+        "Moringa ajuda no foco mental?",
+        "Ajuda a controlar o açúcar no sangue?",
+        "É seguro para uso contínuo?",
+        "Quero relatos de quem melhorou",
+        "Como a Moringa ajuda na energia?",
+        "Posso combinar com outras plantas?",
+        "Quero dicas para começar a usar",
+        "Tem estudos científicos recentes?"
+      ],
+      "quick_replies_en": [
+        "What nutrients does Moringa have?",
+        "Are there studies proving these benefits?",
+        "How long to see results?",
+        "Can I use it daily?",
+        "Does Moringa help mental focus?",
+        "Does it help control blood sugar?",
+        "Is it safe for continuous use?",
+        "I want stories from people who improved",
+        "How does Moringa help energy?",
+        "Can I combine with other plants?",
+        "I want tips to start using",
+        "Are there recent scientific studies?"
+      ]
+    },
+    {
+      "phase": 4,
+      "name": "Solução Natural/Plantas",
+      "copies_pt": [
+        "A Moringa, conhecida como ‘árvore da vida’, é uma planta ancestral utilizada há milênios em diversas culturas para promover saúde e longevidade. Rica em vitaminas essenciais, minerais e aminoácidos, ela ajuda a combater o estresse oxidativo, regular o metabolismo e fortalecer o sistema imunológico. Estudos atuais, como os da Frontiers in Nutrition, comprovam que a Moringa melhora a absorção de nutrientes e contribui para a regeneração celular, devolvendo energia e vitalidade ao corpo cansado. Incluir a Moringa na rotina é um passo para se reconectar com a sabedoria da natureza e cuidar do seu corpo com ciência e tradição.",
+        "${userName}, as folhas da Moringa são uma fonte concentrada de cálcio, ferro, potássio e vitaminas A, C e E, nutrientes que muitas vezes estão ausentes na alimentação moderna. Essa combinação única ajuda a equilibrar o sistema nervoso, melhorar a qualidade do sono e reduzir a inflamação crônica, fatores que colaboram para o aumento da energia e do foco mental. Usada tradicionalmente em fitoterapias asiáticas e africanas, a Moringa agora conta com comprovações científicas robustas que a colocam como um verdadeiro tesouro natural para quem busca qualidade de vida.",
+        "De raízes milenares, a Moringa tem sido valorizada por sua capacidade de promover equilíbrio corporal e mental. Seus compostos bioativos auxiliam na redução do estresse oxidativo e na melhora da função mitocondrial, o que resulta em mais energia e resistência ao desgaste físico. Pesquisas recentes mostram que a suplementação com Moringa pode aumentar a produção de ATP, a ‘moeda energética’ das células, e melhorar a resposta imunológica. É um presente da natureza para restaurar sua vitalidade com segurança e eficácia."
+      ],
+      "copies_en": [
+        "Moringa, known as the ‘tree of life,’ is an ancient plant used for millennia across cultures to promote health and longevity. Rich in essential vitamins, minerals, and amino acids, it helps fight oxidative stress, regulate metabolism, and strengthen the immune system. Current studies, like those in Frontiers in Nutrition, confirm Moringa improves nutrient absorption and aids cellular regeneration, restoring energy and vitality to tired bodies. Including Moringa in your routine is a step toward reconnecting with nature’s wisdom and caring for your body with science and tradition.",
+        "${userName}, Moringa leaves are a concentrated source of calcium, iron, potassium, and vitamins A, C, and E — nutrients often missing in modern diets. This unique combination helps balance the nervous system, improve sleep quality, and reduce chronic inflammation, all contributing to increased energy and mental focus. Traditionally used in Asian and African herbal medicine, Moringa now has strong scientific backing positioning it as a natural treasure for those seeking quality of life.",
+        "With millennia-old roots, Moringa has been valued for promoting bodily and mental balance. Its bioactive compounds assist in reducing oxidative stress and improving mitochondrial function, resulting in more energy and resistance to physical fatigue. Recent research shows Moringa supplementation can boost ATP production — the cell’s ‘energy currency’ — and enhance immune response. It’s a gift from nature to safely and effectively restore your vitality."
+      ],
+      "reflective_questions_pt": [
+        "Como usar Moringa no dia a dia?",
+        "Tem receita fácil com Moringa?",
+        "Ajuda no sono e na energia?",
+        "Posso usar todos os dias?",
+        "Quero relatos de quem melhorou",
+        "Quanto tempo para sentir efeito?",
+        "Moringa ajuda na imunidade?",
+        "É segura para longo prazo?",
+        "Posso combinar com outras plantas?",
+        "Quero dicas práticas para começar",
+        "Quero ver estudos científicos",
+        "Dá para usar com alimentação variada?"
+      ],
+      "reflective_questions_en": [
+        "How to use Moringa daily?",
+        "Any easy recipe with Moringa?",
+        "Does it help sleep and energy?",
+        "Can I use it every day?",
+        "I want stories from people who improved",
+        "How long to feel effects?",
+        "Does Moringa help immunity?",
+        "Is it safe for long-term use?",
+        "Can I combine with other plants?",
+        "I want practical tips to start",
+        "I want to see scientific studies",
+        "Can it be used with a varied diet?"
+      ],
+      "quick_replies_pt": [
+        "Como usar Moringa no dia a dia?",
+        "Tem receita fácil com Moringa?",
+        "Ajuda no sono e na energia?",
+        "Posso usar todos os dias?",
+        "Quero relatos de quem melhorou",
+        "Quanto tempo para sentir efeito?",
+        "Moringa ajuda na imunidade?",
+        "É segura para longo prazo?",
+        "Posso combinar com outras plantas?",
+        "Quero dicas práticas para começar",
+        "Quero ver estudos científicos",
+        "Dá para usar com alimentação variada?"
+      ],
+      "quick_replies_en": [
+        "How to use Moringa daily?",
+        "Any easy recipe with Moringa?",
+        "Does it help sleep and energy?",
+        "Can I use it every day?",
+        "I want stories from people who improved",
+        "How long to feel effects?",
+        "Does Moringa help immunity?",
+        "Is it safe for long-term use?",
+        "Can I combine with other plants?",
+        "I want practical tips to start",
+        "I want to see scientific studies",
+        "Can it be used with a varied diet?"
+      ]
+    },
+    {
+      "phase": 5,
+      "name": "Próximo Passo",
+      "copies_pt": [
+        "${userName}, você pode começar hoje mesmo a recuperar sua energia e vitalidade com a ajuda da Moringa Magic e escolhas alimentares conscientes. Incorporar essa planta milenar na sua rotina é devolver ao corpo os nutrientes que ele perdeu com a alimentação moderna, aumentando seu foco, disposição e resistência. Posso te ajudar com orientações práticas, receitas e dicas para que essa transformação seja leve e sustentável, respeitando seu ritmo e estilo de vida.",
+        "A transformação começa com pequenas escolhas, ${userName}. Ao incluir a Moringa Magic na sua alimentação diária e optar por ingredientes naturais, você está oferecendo ao seu corpo a chance de restaurar a energia, fortalecer o sistema imunológico e melhorar o bem-estar geral. Estou aqui para te guiar com passos simples e eficazes, para que você sinta os benefícios da natureza de forma prática e prazerosa.",
+        "${userName}, a sua jornada para mais energia e saúde pode ser iniciada agora. Com a Moringa Magic e uma alimentação equilibrada, seu corpo encontrará o equilíbrio necessário para recuperar a vitalidade e a clareza mental. Se desejar, posso te fornecer um plano personalizado com receitas, dicas e informações para que essa mudança aconteça com segurança e prazer."
+      ],
+      "copies_en": [
+        "${userName}, you can start today to regain your energy and vitality with Moringa Magic and conscious food choices. Incorporating this millenary plant into your routine restores the nutrients your body lost with modern diets, boosting focus, stamina, and resilience. I can help you with practical guidance, recipes, and tips to make this transformation gentle and sustainable, respecting your pace and lifestyle.",
+        "Transformation begins with small choices, ${userName}. By including Moringa Magic in your daily diet and choosing natural ingredients, you give your body the chance to restore energy, strengthen immunity, and improve overall well-being. I’m here to guide you with simple, effective steps so you can experience nature’s benefits practically and enjoyably.",
+        "${userName}, your journey to more energy and health can start now. With Moringa Magic and balanced nutrition, your body will find the balance it needs to regain vitality and mental clarity. If you want, I can provide a personalized plan with recipes, tips, and information to ensure this change happens safely and joyfully."
+      ],
+      "reflective_questions_pt": [
+        "Quero começar já com Moringa Magic",
+        "Tem receita fácil para rotina?",
+        "Quero relatos reais de transformação",
+        "Como montar uma rotina prática?",
+        "Prefiro aprender mais antes",
+        "Resultados são duradouros?",
+        "Posso combinar com minha alimentação?",
+        "Quero conversar sobre escolhas naturais",
+        "Dá pra fazer em família?",
+        "Tem dicas para motivação?",
+        "É seguro para todos?",
+        "Quero ver estudos e relatos reais"
+      ],
+      "reflective_questions_en": [
+        "I want to start with Moringa Magic now",
+        "Any easy recipe for my routine?",
+        "I want real transformation stories",
+        "How to build a practical routine?",
+        "I’d rather learn more first",
+        "Are results lasting?",
+        "Can I combine with my diet?",
+        "I want to talk about natural choices",
+        "Can this be done as a family?",
+        "Any tips for motivation?",
+        "Is it safe for everyone?",
+        "I want to see studies and real stories"
+      ],
+      "quick_replies_pt": [
+        "Quero começar já com Moringa Magic",
+        "Tem receita fácil para rotina?",
+        "Quero relatos reais de transformação",
+        "Como montar uma rotina prática?",
+        "Prefiro aprender mais antes",
+        "Resultados são duradouros?",
+        "Posso combinar com minha alimentação?",
+        "Quero conversar sobre escolhas naturais",
+        "Dá pra fazer em família?",
+        "Tem dicas para motivação?",
+        "É seguro para todos?",
+        "Quero ver estudos e relatos reais"
+      ],
+      "quick_replies_en": [
+        "I want to start with Moringa Magic now",
+        "Any easy recipe for my routine?",
+        "I want real transformation stories",
+        "How to build a practical routine?",
+        "I’d rather learn more first",
+        "Are results lasting?",
+        "Can I combine with my diet?",
+        "I want to talk about natural choices",
+        "Can this be done as a family?",
+        "Any tips for motivation?",
+        "Is it safe for everyone?",
+        "I want to see studies and real stories"
+      ]
+    }
+  ]
+}
 
