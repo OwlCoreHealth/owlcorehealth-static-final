@@ -1,1 +1,245 @@
+{
+  "suplemento": "PRIME BIOME",
+  "titulo": "Premature Skin Aging (Wrinkles and Loss of Elasticity) / Envelhecimento Precoce da Pele (Rugas e Perda de Elasticidade)",
+  "fase_1": {
+    "pt": [
+      "${userName}, perceber rugas e perda de elasticidade antes do esperado pode ser um sinal de que sua pele está sofrendo com agressões internas e externas que vão além do tempo. A alimentação moderna, repleta de alimentos ultraprocessados, solos empobrecidos e a exposição constante a toxinas ambientais, compromete a capacidade natural da pele de se regenerar e manter sua firmeza. Esses fatores aceleram o envelhecimento precoce, deixando marcas visíveis e afetando a autoestima.",
+      "${userName}, o envelhecimento da pele não é apenas uma questão de idade, mas de como cuidamos dela e do nosso organismo. O consumo frequente de alimentos processados, junto com a exposição a produtos químicos e a deterioração do solo, pode acelerar a perda de elasticidade e o surgimento precoce das rugas, refletindo um desgaste interno que sua pele revela.",
+      "Você já reparou, ${userName}, que apesar da idade, sua pele parece cansada, com linhas e menos firmeza? Isso pode ser resultado do impacto negativo da alimentação industrializada, solos contaminados e poluição, que causam inflamação crônica e estresse oxidativo, prejudicando a renovação celular e acelerando o envelhecimento."
+    ],
+    "en": [
+      "${userName}, noticing wrinkles and loss of elasticity earlier than expected can be a sign your skin is suffering internal and external aggressions beyond time. Modern diets full of ultra-processed foods, nutrient-depleted soils, and constant exposure to environmental toxins compromise your skin’s natural ability to regenerate and maintain firmness. These factors accelerate premature aging, leaving visible marks and affecting self-esteem.",
+      "${userName}, skin aging is not just about age but how we care for it and our body. Frequent consumption of processed foods, exposure to chemicals, and soil degradation can speed up elasticity loss and early wrinkles, reflecting internal wear your skin reveals.",
+      "Have you noticed, ${userName}, that despite your age, your skin looks tired, lined, and less firm? This may result from the negative impact of industrialized foods, contaminated soils, and pollution, causing chronic inflammation and oxidative stress, impairing cell renewal and speeding aging."
+    ],
+    "quick_replies_pt": [
+      "O que causa envelhecimento precoce?",
+      "Como evitar rugas?",
+      "Alimentos pioram a pele?",
+      "Solo contaminado afeta pele?",
+      "Quero entender mais sobre envelhecimento",
+      "Tem estudos científicos?",
+      "Como cuidar da pele naturalmente?",
+      "Quais sintomas indicam problema sério?",
+      "Quero dicas para pele jovem",
+      "Estresse piora envelhecimento?",
+      "Rugas aparecem cedo?",
+      "Quando procurar ajuda?"
+    ],
+    "quick_replies_en": [
+      "What causes premature aging?",
+      "How to prevent wrinkles?",
+      "Do foods worsen skin?",
+      "Does contaminated soil affect skin?",
+      "I want to learn more about aging",
+      "Are there scientific studies?",
+      "How to care for skin naturally?",
+      "What symptoms indicate serious problem?",
+      "I want tips for youthful skin",
+      "Does stress worsen aging?",
+      "Do wrinkles appear early?",
+      "When to seek help?"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar uma pele saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy skin?",
+      "How would you like to start this change in your routine?"
+    ]
+  },
+  "fase_2": {
+    "pt": [
+      "${userName}, o envelhecimento precoce da pele pode levar a uma perda significativa da firmeza, textura irregular, além do surgimento de rugas profundas que afetam a aparência e a autoestima. Pesquisas indicam que o estresse oxidativo e a inflamação crônica, resultado da alimentação industrializada e exposição ambiental, são os principais fatores que aceleram esses processos.",
+      "Você sabia, ${userName}, que a combinação de toxinas ambientais e dieta pobre em nutrientes favorece o envelhecimento celular? Isso não só impacta a pele, mas também compromete a saúde geral do organismo, refletindo no seu aspecto e vitalidade.",
+      "${userName}, ignorar os sinais de envelhecimento precoce pode agravar o quadro, levando a danos irreversíveis na pele. Estudos do Journal of Dermatological Science destacam a importância da prevenção e dos cuidados naturais para manter a saúde cutânea."
+    ],
+    "en": [
+      "${userName}, premature skin aging can lead to significant firmness loss, uneven texture, and deep wrinkles that affect appearance and self-esteem. Research shows oxidative stress and chronic inflammation, caused by industrial diets and environmental exposure, are major accelerators.",
+      "Did you know, ${userName}, that the combination of environmental toxins and nutrient-poor diets favors cellular aging? This not only impacts skin but also compromises overall health, reflecting in your appearance and vitality.",
+      "${userName}, ignoring signs of premature aging can worsen the condition, leading to irreversible skin damage. Studies from Journal of Dermatological Science highlight the importance of prevention and natural care to maintain skin health."
+    ],
+    "quick_replies_pt": [
+      "Rugas podem piorar?",
+      "Como evitar perda de firmeza?",
+      "O que causa textura irregular?",
+      "Dieta influencia envelhecimento?",
+      "Quero saber mais sobre inflamação",
+      "Tem tratamentos naturais?",
+      "Dá para melhorar naturalmente?",
+      "Quais sinais indicam gravidade?",
+      "Quero dicas para pele jovem",
+      "Estresse piora envelhecimento?",
+      "Tem estudos científicos?",
+      "Quando procurar ajuda?"
+    ],
+    "quick_replies_en": [
+      "Can wrinkles get worse?",
+      "How to prevent firmness loss?",
+      "What causes uneven texture?",
+      "Does diet influence aging?",
+      "I want to learn more about inflammation",
+      "Are there natural treatments?",
+      "Can it improve naturally?",
+      "What signs indicate severity?",
+      "I want tips for youthful skin",
+      "Does stress worsen aging?",
+      "Are there scientific studies?",
+      "When to seek help?"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar uma pele saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy skin?",
+      "How would you like to start this change in your routine?"
+    ]
+  },
+  "fase_3": {
+    "pt": [
+      "${userName}, estudos mostram que plantas como Dente-de-leão, Funcho e Babchi são ricas em compostos antioxidantes que combatem o estresse oxidativo, auxiliando na regeneração da pele e na prevenção do envelhecimento precoce.",
+      "Pesquisas recentes, ${userName}, comprovam que os compostos bioativos dessas plantas têm efeito positivo na firmeza, elasticidade e na saúde da pele, conforme demonstrado em estudos do Phytotherapy Research.",
+      "${userName}, estudos do Nutritional Journal confirmam que o uso contínuo dessas plantas está relacionado à melhora da textura da pele e redução das rugas."
+    ],
+    "en": [
+      "${userName}, studies show that plants like Dandelion, Fennel, and Babchi are rich in antioxidant compounds that fight oxidative stress, aiding skin regeneration and preventing premature aging.",
+      "Recent research, ${userName}, confirms bioactive compounds from these plants have positive effects on skin firmness, elasticity, and health, as shown in studies from Phytotherapy Research.",
+      "${userName}, studies from Nutritional Journal confirm that continued use of these plants is linked to improved skin texture and wrinkle reduction."
+    ],
+    "quick_replies_pt": [
+      "Dente-de-leão ajuda rugas?",
+      "Funcho melhora elasticidade?",
+      "Quanto tempo para ver diferença?",
+      "Posso usar todos os dias?",
+      "Babchi é seguro para uso contínuo?",
+      "Quero relatos reais de quem rejuvenesceu",
+      "Como essas plantas atuam na pele?",
+      "Dá para combinar com outras plantas?",
+      "Quero dicas para manter firmeza",
+      "Quero ver estudos científicos",
+      "Resultados são visíveis rapidamente?",
+      "Quais benefícios principais dessas plantas?"
+    ],
+    "quick_replies_en": [
+      "Does Dandelion help with wrinkles?",
+      "Does Fennel improve elasticity?",
+      "How long to see a difference?",
+      "Can I use it daily?",
+      "Is Babchi safe for continuous use?",
+      "I want real stories of rejuvenation",
+      "How do these plants act on the skin?",
+      "Can I combine with other plants?",
+      "I want tips for keeping skin firm",
+      "I want to see scientific studies",
+      "Are results visible quickly?",
+      "What are the main benefits of these plants?"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar uma pele saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy skin?",
+      "How would you like to start this change in your routine?"
+    ]
+  },
+  "fase_4": {
+    "pt": [
+      "${userName}, as plantas ancestrais Dente-de-leão, Funcho e Babchi possuem uma combinação poderosa de antioxidantes e nutrientes que ajudam a combater o envelhecimento precoce da pele. Elas atuam fortalecendo a barreira cutânea, promovendo a regeneração celular e melhorando a elasticidade. Usadas há séculos, essas plantas têm sua eficácia comprovada por estudos científicos modernos, oferecendo uma alternativa natural e eficaz para cuidar da sua pele de forma delicada e profunda.",
+      "${userName}, imagine poder nutrir sua pele com o poder de plantas que a humanidade utiliza há gerações. O Dente-de-leão, Funcho e Babchi são fontes ricas em compostos que neutralizam os radicais livres, diminuem a inflamação e estimulam a renovação celular, devolvendo firmeza e vitalidade à sua pele. A ciência confirma que essa combinação ancestral é uma das mais eficazes para combater os sinais do tempo.",
+      "${userName}, essas plantas naturais atuam em vários níveis para proteger sua pele do envelhecimento precoce. Além de antioxidantes, elas possuem propriedades anti-inflamatórias que ajudam a reduzir os danos causados por agentes externos, promovendo uma pele mais jovem, firme e saudável. Incorporar esses ingredientes na sua rotina é investir em um cuidado natural que alia tradição e ciência."
+    ],
+    "en": [
+      "${userName}, ancestral plants like Dandelion, Fennel, and Babchi contain a powerful combination of antioxidants and nutrients that help fight premature skin aging. They strengthen the skin barrier, promote cell regeneration, and improve elasticity. Used for centuries, these plants have their efficacy confirmed by modern scientific studies, offering a natural and effective alternative to care for your skin gently and deeply.",
+      "${userName}, imagine nourishing your skin with the power of plants humanity has used for generations. Dandelion, Fennel, and Babchi are rich sources of compounds that neutralize free radicals, reduce inflammation, and stimulate cell renewal, restoring firmness and vitality to your skin. Science confirms this ancestral combination as one of the most effective to combat signs of aging.",
+      "${userName}, these natural plants act on multiple levels to protect your skin from premature aging. Besides antioxidants, they have anti-inflammatory properties that help reduce damage caused by external agents, promoting younger, firmer, and healthier skin. Incorporating these ingredients into your routine is investing in natural care that blends tradition and science."
+    ],
+    "quick_replies_pt": [
+      "Como usar essas plantas para rejuvenescimento?",
+      "Tem receita fácil para pele jovem?",
+      "Posso usar todos os dias?",
+      "É seguro para todos?",
+      "Resultados aparecem rápido?",
+      "Quero relatos reais de rejuvenescimento",
+      "Dá para combinar com alimentação?",
+      "Quanto tempo para ver diferença?",
+      "Plantas ajudam a manter firmeza?",
+      "Quero dicas práticas para elasticidade",
+      "Quero ver estudos sobre rejuvenescimento",
+      "Plantas funcionam mais que cremes?"
+    ],
+    "quick_replies_en": [
+      "How to use these plants for rejuvenation?",
+      "Any easy recipe for youthful skin?",
+      "Can I use it daily?",
+      "Is it safe for everyone?",
+      "Are results fast?",
+      "I want real rejuvenation stories",
+      "Can I combine with my diet?",
+      "How long to see a difference?",
+      "Do plants help maintain firmness?",
+      "I want practical tips for elasticity",
+      "I want to see studies on rejuvenation",
+      "Do plants work better than creams?"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar uma pele saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy skin?",
+      "How would you like to start this change in your routine?"
+    ]
+  },
+  "fase_5": {
+    "pt": [
+      "${userName}, cuidar da sua pele contra o envelhecimento precoce naturalmente pode renovar sua confiança e beleza. Com o poder das plantas ancestrais e hábitos saudáveis, sua pele terá suporte para se manter jovem, firme e radiante. Posso ajudar com dicas, receitas e um plano prático para essa transformação.",
+      "A mudança começa com escolhas conscientes, ${userName}. Ao incluir plantas como Dente-de-leão, Funcho e Babchi na sua rotina e manter uma alimentação equilibrada, você apoia sua pele para resistir aos sinais do tempo. Estou aqui para guiar você com passos simples e personalizados.",
+      "${userName}, sua jornada para uma pele jovem, firme e saudável pode começar agora. Com essa combinação natural e cuidados consistentes, seu corpo terá o suporte necessário para manter a beleza e vitalidade da pele. Posso fornecer um plano com orientações para essa nova fase."
+    ],
+    "en": [
+      "${userName}, caring for your skin against premature aging naturally can renew your confidence and beauty. With the power of ancestral plants and healthy habits, your skin will be supported to stay young, firm, and radiant. I can help with tips, recipes, and a practical plan for this transformation.",
+      "Change begins with conscious choices, ${userName}. By including plants like Dandelion, Fennel, and Babchi in your routine and maintaining a balanced diet, you help your skin resist signs of aging. I’m here to guide you with simple, personalized steps.",
+      "${userName}, your journey to youthful, firm, and healthy skin can start now. With this natural combination and consistent care, your body will have the support it needs to keep skin beautiful and vital. I can provide a plan with guidance for this new phase."
+    ],
+    "quick_replies_pt": [
+      "Quero começar já com plantas naturais",
+      "Tem receita fácil para pele jovem",
+      "Quero relatos reais de transformação",
+      "Como montar uma rotina prática?",
+      "Prefiro aprender mais antes",
+      "Resultados são duradouros?",
+      "Posso combinar com minha alimentação?",
+      "Quero conversar sobre escolhas naturais",
+      "Dá pra fazer em família?",
+      "Tem dicas para motivação?",
+      "É seguro para todos?",
+      "Quero ver estudos e relatos reais"
+    ],
+    "quick_replies_en": [
+      "I want to start with natural plants now",
+      "Any easy recipe for youthful skin",
+      "I want real transformation stories",
+      "How to build a practical routine?",
+      "I’d rather learn more first",
+      "Are results lasting?",
+      "Can I combine it with my diet?",
+      "I want to talk about natural choices",
+      "Can this be done as a family?",
+      "Any tips for motivation?",
+      "Is it safe for everyone?",
+      "I want to see studies and real stories"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar uma pele saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy skin?",
+      "How would you like to start this change in your routine?"
+    ]
+  }
+}
 
