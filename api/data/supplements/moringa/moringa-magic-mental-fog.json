@@ -1,1 +1,217 @@
+{
+  "supplement": "Moringa Magic",
+  "symptom": "Mental Fog / Névoa Mental",
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Conexão/Conscientização",
+      "copies_pt": [
+        "${userName}, você já sentiu aquela sensação de cabeça ‘embassada’, como se fosse difícil pensar com clareza ou se concentrar nas tarefas do dia? Isso é mais comum do que imagina e está diretamente ligado ao que consumimos diariamente. A alimentação moderna, cheia de ultraprocessados, solos degradados e carnes com hormônios, pode afetar a qualidade dos nutrientes que chegam ao cérebro, dificultando a clareza mental e a concentração. Estudos indicam que essa ‘névoa mental’ é um sinal que seu corpo está pedindo ajuda — e ouvir esses sinais é o primeiro passo para retomar o controle da sua mente.",
+        "Sentir a mente confusa ou cansada, ${userName}, não é apenas uma questão de estresse ou falta de descanso. Muitos não percebem, mas o que você come, a qualidade do solo onde os alimentos são cultivados e a origem da carne podem impactar diretamente a saúde do seu cérebro. O consumo contínuo de alimentos industrializados e contaminados pode diminuir a absorção dos nutrientes essenciais para o funcionamento cerebral, causando essa sensação de névoa que atrapalha seu dia a dia.",
+        "${userName}, a dificuldade para manter o foco e pensar com clareza é um sintoma que afeta milhões de pessoas hoje, resultado do estilo de vida e da alimentação que adotamos. Os ultraprocessados, solos empobrecidos e carnes tratadas com hormônios interferem na saúde do cérebro, prejudicando funções cognitivas essenciais. A ciência já aponta que essa ‘névoa mental’ é um alerta do corpo para a necessidade de reequilíbrio, e o primeiro passo é reconhecer esse sinal e buscar alternativas."
+      ],
+      "copies_en": [
+        "${userName}, have you felt that ‘foggy’ head sensation, like it’s hard to think clearly or focus on daily tasks? It’s more common than you think and is directly linked to what we consume daily. Modern diets full of ultra-processed foods, degraded soils, and hormone-treated meats can affect the quality of nutrients reaching your brain, making mental clarity and concentration difficult. Studies indicate this ‘brain fog’ is a sign your body is asking for help — and listening to these signals is the first step to regain control of your mind.",
+        "Feeling confused or mentally tired, ${userName}, isn’t just about stress or lack of rest. Many don’t realize that what you eat, the quality of soil where foods grow, and the source of your meat can directly impact brain health. Continuous consumption of industrialized and contaminated foods can reduce absorption of essential nutrients needed for brain function, causing that foggy feeling that disrupts your day.",
+        "${userName}, difficulty focusing and thinking clearly is a symptom affecting millions today, stemming from our lifestyle and diet choices. Ultra-processed foods, depleted soils, and hormone-treated meats interfere with brain health, impairing key cognitive functions. Science points to this ‘brain fog’ as a body alert signaling the need for rebalance, and the first step is recognizing this sign and seeking alternatives."
+      ],
+      "quick_replies_pt": [
+        "Por que sinto essa névoa mental?",
+        "Alimentos influenciam minha concentração?",
+        "Solo pobre afeta a mente?",
+        "Hormônios na carne prejudicam o cérebro?",
+        "Quero entender mais sobre névoa mental",
+        "Tem estudos científicos?",
+        "Como melhorar o foco naturalmente?",
+        "Estresse piora essa sensação?",
+        "Quais sintomas acompanham a névoa?",
+        "Posso reverter esse quadro?",
+        "Quero dicas para clareza mental",
+        "É normal sentir isso hoje em dia?"
+      ],
+      "quick_replies_en": [
+        "Why do I feel brain fog?",
+        "Do foods affect my concentration?",
+        "Does poor soil affect the mind?",
+        "Do hormones in meat harm the brain?",
+        "I want to learn more about brain fog",
+        "Are there scientific studies?",
+        "How to improve focus naturally?",
+        "Does stress worsen this feeling?",
+        "What symptoms come with brain fog?",
+        "Can I reverse this condition?",
+        "I want tips for mental clarity",
+        "Is this normal nowadays?"
+      ]
+    },
+    {
+      "phase": 2,
+      "name": "Gravidade/Consequência",
+      "copies_pt": [
+        "${userName}, a névoa mental persistente pode indicar problemas mais profundos no funcionamento do cérebro. Pesquisas da Universidade de Harvard mostram que a falta de nutrientes essenciais e a exposição a toxinas presentes em alimentos ultraprocessados e animais tratados com hormônios estão associados ao declínio cognitivo precoce, perda de memória e dificuldades de concentração. Ignorar esses sinais pode levar a problemas mais sérios, afetando sua qualidade de vida e saúde mental.",
+        "Você sabia, ${userName}, que a névoa mental pode ser um sinal inicial de inflamação cerebral? Estudos recentes indicam que os aditivos químicos, pesticidas e contaminantes presentes na alimentação industrializada causam inflamação silenciosa no cérebro, prejudicando sua capacidade de funcionar plenamente. Além disso, a qualidade ruim dos alimentos devido à degradação do solo e uso de hormônios pode intensificar esse processo. Reconhecer esse problema é o primeiro passo para a saúde cerebral.",
+        "${userName}, quando a mente fica constantemente ‘embassada’, isso pode afetar seu humor, memória e produtividade. Dados da Organização Mundial da Saúde alertam que a exposição prolongada a substâncias químicas e a ingestão de alimentos processados estão ligados a quadros de ansiedade, depressão e outros transtornos cognitivos. Cuidar da saúde do cérebro e da alimentação é fundamental para evitar que esses sintomas se agravem."
+      ],
+      "copies_en": [
+        "${userName}, persistent brain fog can indicate deeper problems with brain function. Harvard University research shows lack of essential nutrients and exposure to toxins in ultra-processed foods and hormone-treated animals are linked to early cognitive decline, memory loss, and concentration difficulties. Ignoring these signs can lead to more serious problems, affecting your quality of life and mental health.",
+        "Did you know, ${userName}, that brain fog can be an early sign of brain inflammation? Recent studies indicate chemicals, pesticides, and contaminants in industrialized food cause silent inflammation in the brain, harming its ability to function fully. Also, poor food quality due to soil degradation and hormone use can worsen this. Recognizing the problem is the first step to brain health.",
+        "${userName}, when the mind feels constantly ‘foggy’, it can impact your mood, memory, and productivity. World Health Organization data warn prolonged exposure to chemicals and processed foods is linked to anxiety, depression, and other cognitive disorders. Caring for brain health and nutrition is vital to prevent worsening symptoms."
+      ],
+      "quick_replies_pt": [
+        "Névoa mental pode ser grave?",
+        "Processados causam inflamação cerebral?",
+        "Solo contaminado afeta o cérebro?",
+        "Hormônios prejudicam a saúde mental?",
+        "Quero saber mais sobre inflamação cerebral",
+        "Como prevenir o declínio cognitivo?",
+        "Dá para reverter a névoa mental?",
+        "Quais os sintomas mais comuns?",
+        "Quero dicas para melhorar memória",
+        "Estresse piora o quadro?",
+        "Tem dados científicos?",
+        "Como a alimentação influencia a mente?"
+      ],
+      "quick_replies_en": [
+        "Can brain fog be serious?",
+        "Do processed foods cause brain inflammation?",
+        "Does contaminated soil affect the brain?",
+        "Do hormones harm mental health?",
+        "I want to learn more about brain inflammation",
+        "How to prevent cognitive decline?",
+        "Can brain fog be reversed?",
+        "What are common symptoms?",
+        "I want tips to improve memory",
+        "Does stress worsen the condition?",
+        "Are there scientific data?",
+        "How does diet affect the mind?"
+      ]
+    },
+    {
+      "phase": 3,
+      "name": "Prova/Evidência",
+      "copies_pt": [
+        "${userName}, pesquisas recentes confirmam que nutrientes presentes na Moringa, como vitaminas do complexo B, ferro, cálcio e antioxidantes, ajudam a proteger o cérebro dos efeitos da inflamação e do estresse oxidativo, dois grandes responsáveis pela névoa mental. Estudos publicados na Journal of Ethnopharmacology mostram que a Moringa melhora a função cognitiva e a memória, ajudando a restaurar o foco e a clareza mental.",
+        "A ciência indica, ${userName}, que os compostos bioativos da Moringa têm efeito neuroprotetor, auxiliando na redução da inflamação cerebral e promovendo a regeneração celular. Publicações da Frontiers in Pharmacology destacam o papel da Moringa no combate ao estresse oxidativo e na melhora do desempenho cognitivo, fundamentais para quem sofre de névoa mental.",
+        "${userName}, estudos do International Journal of Molecular Sciences comprovam que o consumo regular de Moringa favorece a neuroplasticidade e a saúde cerebral, aumentando a capacidade de concentração e a memória. Seus aminoácidos e vitaminas atuam na melhora da função mitocondrial, que é crucial para o bom funcionamento das células nervosas e para combater a fadiga mental."
+      ],
+      "copies_en": [
+        "${userName}, recent research confirms that nutrients in Moringa — like B vitamins, iron, calcium, and antioxidants — help protect the brain from inflammation and oxidative stress, two major causes of brain fog. Studies published in the Journal of Ethnopharmacology show Moringa improves cognitive function and memory, helping restore focus and mental clarity.",
+        "Science indicates, ${userName}, that Moringa’s bioactive compounds have neuroprotective effects, aiding in reducing brain inflammation and promoting cellular regeneration. Publications in Frontiers in Pharmacology highlight Moringa’s role in fighting oxidative stress and improving cognitive performance, essential for those suffering from brain fog.",
+        "${userName}, studies from the International Journal of Molecular Sciences confirm that regular Moringa consumption supports neuroplasticity and brain health, boosting concentration and memory. Its amino acids and vitamins enhance mitochondrial function, crucial for proper nerve cell function and fighting mental fatigue."
+      ],
+      "quick_replies_pt": [
+        "Moringa ajuda a clarear a mente?",
+        "Tem estudo comprovando isso?",
+        "Quanto tempo para sentir efeito?",
+        "Posso usar todos os dias?",
+        "Moringa ajuda na memória?",
+        "Ajuda a reduzir inflamação cerebral?",
+        "É seguro para uso contínuo?",
+        "Quero relatos de quem melhorou névoa mental",
+        "Como a Moringa age no cérebro?",
+        "Posso combinar com outras plantas?",
+        "Quero dicas para começar",
+        "Quero ver estudos científicos"
+      ],
+      "quick_replies_en": [
+        "Does Moringa help clear the mind?",
+        "Are there studies proving this?",
+        "How long to feel effects?",
+        "Can I use it daily?",
+        "Does Moringa help memory?",
+        "Does it help reduce brain inflammation?",
+        "Is it safe for continuous use?",
+        "I want stories from people who improved brain fog",
+        "How does Moringa act on the brain?",
+        "Can I combine it with other plants?",
+        "I want tips to start",
+        "I want to see scientific studies"
+      ]
+    },
+    {
+      "phase": 4,
+      "name": "Solução Natural/Plantas",
+      "copies_pt": [
+        "A Moringa é uma planta ancestral usada há séculos para fortalecer a saúde cerebral. Rica em antioxidantes, vitaminas do complexo B, ferro e cálcio, ela ajuda a proteger as células nervosas contra o estresse oxidativo e a inflamação, responsáveis pela névoa mental. Estudos atuais, como os da Frontiers in Nutrition, comprovam que a Moringa melhora a função cognitiva e promove mais clareza e foco no dia a dia. Incorporar a Moringa na rotina é abraçar a sabedoria da natureza e da ciência para cuidar do seu cérebro.",
+        "${userName}, a força da Moringa está em seus compostos bioativos que atuam como neuroprotetores naturais, reduzindo inflamações e promovendo a regeneração celular no cérebro. Essa planta milenar tem sido utilizada em diversas tradições medicinais para melhorar a memória, o foco e a saúde mental. Pesquisas recentes reforçam sua eficácia, tornando a Moringa uma aliada valiosa para quem busca combater a névoa mental e recuperar a vitalidade cognitiva.",
+        "Com suas raízes em antigas tradições, a Moringa oferece um conjunto único de vitaminas, minerais e antioxidantes que apoiam a neuroplasticidade e a saúde cerebral. Suas propriedades ajudam a reduzir o estresse oxidativo e a melhorar a produção de energia nas células nervosas, fatores decisivos para superar a névoa mental. Estudos da Nutritional Journal indicam que o uso regular da Moringa contribui para maior concentração e resistência mental."
+      ],
+      "copies_en": [
+        "Moringa is an ancient plant used for centuries to strengthen brain health. Rich in antioxidants, B vitamins, iron, and calcium, it helps protect nerve cells from oxidative stress and inflammation — key causes of brain fog. Current studies, like those from Frontiers in Nutrition, confirm Moringa improves cognitive function and promotes greater clarity and focus daily. Incorporating Moringa into your routine embraces nature’s and science’s wisdom to care for your brain.",
+        "${userName}, Moringa’s strength lies in its bioactive compounds that act as natural neuroprotectors, reducing inflammation and promoting brain cell regeneration. This millenary plant has been used in many medicinal traditions to improve memory, focus, and mental health. Recent research reinforces its effectiveness, making Moringa a valuable ally for those seeking to combat brain fog and regain cognitive vitality.",
+        "With roots in ancient traditions, Moringa offers a unique set of vitamins, minerals, and antioxidants supporting neuroplasticity and brain health. Its properties help reduce oxidative stress and improve energy production in nerve cells — crucial factors for overcoming brain fog. Studies from the Nutritional Journal indicate regular Moringa use contributes to better concentration and mental endurance."
+      ],
+      "quick_replies_pt": [
+        "Como usar Moringa para o cérebro?",
+        "Tem receita fácil para clareza mental?",
+        "Moringa ajuda na memória?",
+        "Posso usar todos os dias?",
+        "Quero relatos de quem melhorou névoa mental",
+        "Quanto tempo para ver resultado?",
+        "É seguro para uso contínuo?",
+        "Posso combinar com outras plantas?",
+        "Quero dicas práticas para começar",
+        "Moringa ajuda no foco?",
+        "Quero ver estudos científicos",
+        "Dá para usar com alimentação variada?"
+      ],
+      "quick_replies_en": [
+        "How to use Moringa for the brain?",
+        "Any easy recipe for mental clarity?",
+        "Does Moringa help memory?",
+        "Can I use it daily?",
+        "I want stories from people who improved brain fog",
+        "How long to see results?",
+        "Is it safe for continuous use?",
+        "Can I combine it with other plants?",
+        "I want practical tips to start",
+        "Does Moringa help focus?",
+        "I want to see scientific studies",
+        "Can it be used with varied diet?"
+      ]
+    },
+    {
+      "phase": 5,
+      "name": "Próximo Passo",
+      "copies_pt": [
+        "${userName}, dar o próximo passo para recuperar a clareza mental é simples e acessível. Com a Moringa e uma alimentação natural e balanceada, seu cérebro terá o suporte necessário para funcionar com mais foco e energia. Posso te ajudar com receitas, dicas e orientações para que essa transformação aconteça de forma leve e sustentável, respeitando seu ritmo e estilo de vida.",
+        "Transformar a névoa mental em clareza e foco, ${userName}, é possível com escolhas naturais e conscientes. Ao incluir Moringa na sua rotina, você oferece ao cérebro nutrientes essenciais para melhorar a concentração e o bem-estar mental. Estou aqui para te guiar com passos práticos e personalizados para que você sinta os benefícios da natureza de forma real e duradoura.",
+        "${userName}, sua jornada para um cérebro mais saudável e focado pode começar agora. A Moringa é uma aliada poderosa para restaurar a energia mental e o equilíbrio cognitivo. Se quiser, posso te fornecer um plano prático com receitas, dicas e informações para que essa mudança aconteça com segurança e prazer."
+      ],
+      "copies_en": [
+        "${userName}, dar o próximo passo para recuperar a clareza mental é simples e acessível. Com a Moringa e uma alimentação natural e balanceada, seu cérebro terá o suporte necessário para funcionar com mais foco e energia. Posso te ajudar com receitas, dicas e orientações para que essa transformação aconteça de forma leve e sustentável, respeitando seu ritmo e estilo de vida.",
+        "Transformar a névoa mental em clareza e foco, ${userName}, é possível com escolhas naturais e conscientes. Ao incluir Moringa na sua rotina, você oferece ao cérebro nutrientes essenciais para melhorar a concentração e o bem-estar mental. Estou aqui para te guiar com passos práticos e personalizados para que você sinta os benefícios da natureza de forma real e duradoura.",
+        "${userName}, sua jornada para um cérebro mais saudável e focado pode começar agora. A Moringa é uma aliada poderosa para restaurar a energia mental e o equilíbrio cognitivo. Se quiser, posso te fornecer um plano prático com receitas, dicas e informações para que essa mudança aconteça com segurança e prazer."
+      ],
+      "quick_replies_pt": [
+        "Quero começar já com Moringa",
+        "Tem receita fácil para foco mental",
+        "Quero relatos reais de transformação",
+        "Como montar uma rotina prática?",
+        "Prefiro aprender mais antes",
+        "Resultados são duradouros?",
+        "Posso combinar com minha alimentação?",
+        "Quero conversar sobre escolhas naturais",
+        "Dá pra fazer em família?",
+        "Tem dicas para motivação?",
+        "É seguro para todos?",
+        "Quero ver estudos e relatos reais"
+      ],
+      "quick_replies_en": [
+        "I want to start with Moringa now",
+        "Any easy recipe for mental focus",
+        "I want real transformation stories",
+        "How to build a practical routine?",
+        "I’d rather learn more first",
+        "Are results lasting?",
+        "Can I combine with my diet?",
+        "I want to talk about natural choices",
+        "Can this be done as a family?",
+        "Any tips for motivation?",
+        "Is it safe for everyone?",
+        "I want to see studies and real stories"
+      ]
+    }
+  ]
+}
 
