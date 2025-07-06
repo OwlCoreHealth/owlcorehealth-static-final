@@ -1,1 +1,246 @@
+{
+  "symptom": "Plaque Buildup / Acúmulo de Placa",
+  "phases": {
+    "phase1": {
+      "copies_pt": [
+        "Sabe, ${userName}, quando a gente percebe aquele acúmulo de placa nos dentes, muitas vezes bate uma mistura de frustração e culpa. Às vezes, mesmo escovando direitinho, passando fio dental, a sensação de que tem algo ali grudado persiste. Você não está só: segundo a Organização Mundial da Saúde, o acúmulo de placa é um dos problemas bucais mais comuns no mundo todo, afetando mais de 70% da população adulta em algum momento da vida. E não é só uma questão de higiene. Fatores como alimentação rica em açúcares, desequilíbrio das bactérias da boca, estresse e até o tipo de saliva influenciam nesse processo. Aqui, ninguém vai te apontar o dedo ou dar sermão. O que quero é te ajudar a entender por que esse sintoma apareceu, o que ele está querendo te dizer sobre teu corpo e tua rotina, e como podemos, juntos, encontrar caminhos mais leves e eficazes para lidar com isso. Porque saúde bucal de verdade começa com acolhimento e informação, não com culpa.",
+        "${userName}, notar placa se formando nos dentes pode ser algo incômodo e, muitas vezes, constrangedor. Muita gente associa imediatamente a falta de higiene, mas a verdade é que o acúmulo de placa é multifatorial. Existem estudos do Instituto Nacional de Pesquisas Odontológicas mostrando que fatores genéticos, mudanças hormonais e até a qualidade da microbiota bucal têm papel nisso. O importante é reconhecer que, ao perceber o sintoma, você já está no caminho do autocuidado. É sinal de que teu corpo está te dando um alerta — e, aqui, esse alerta é ouvido com respeito. Não importa se a placa apareceu de repente ou se você já luta com isso há anos: sua experiência merece ser escutada, analisada e valorizada. Porque ninguém precisa enfrentar esse desafio sozinho.",
+        "Tem dias, ${userName}, que mesmo escovando, a gente percebe aquele filme esbranquiçado ou amarelado nos dentes e sente até vergonha de sorrir. Esse incômodo é mais comum do que parece: pesquisas da American Dental Association mostram que, mesmo com boa higiene, quase metade dos adultos relatam sentir acúmulo de placa ao menos uma vez por semana. Isso porque a placa não depende só do cuidado externo, mas também do equilíbrio interno — do tipo de bactérias que vivem na nossa boca, da nossa alimentação, dos nossos hábitos de vida. Aqui, você tem um espaço seguro para falar sobre isso sem julgamentos, apenas com o desejo genuíno de te ajudar a entender e superar essa situação, trazendo mais leveza para o seu sorriso e o seu dia a dia."
+      ],
+      "copies_en": [
+        "You know, ${userName}, when you notice that plaque building up on your teeth, it can bring a mix of frustration and guilt. Sometimes, even when you brush and floss as you should, that sticky feeling just won’t go away. You’re not alone: according to the World Health Organization, plaque buildup is one of the most common oral health problems worldwide, affecting more than 70% of adults at some point in their lives. And it’s not just about brushing. Factors like a diet high in sugars, an imbalance of oral bacteria, stress, and even your saliva type can play a role. Here, no one’s going to point fingers or give lectures. What I want is to help you understand why this symptom has appeared, what it might be telling you about your body and routine, and how we can, together, find lighter and more effective ways to deal with it. Because real oral health begins with understanding, not blame.",
+        "${userName}, seeing plaque forming on your teeth can be bothersome and often embarrassing. Many people immediately connect it to a lack of hygiene, but the reality is that plaque buildup is a complex, multifactorial process. Studies from the National Institute of Dental Research show that genetics, hormonal changes, and even the quality of your oral microbiome play a role. The most important thing is recognizing that by noticing this symptom, you’re already on the path to self-care. It means your body is sending you a signal — and here, that signal is heard with respect. Whether the plaque appeared suddenly or has been a struggle for years, your experience deserves to be listened to, analyzed, and valued. No one should face this challenge alone.",
+        "Some days, ${userName}, no matter how well you brush, you notice that white or yellow film on your teeth and might even feel embarrassed to smile. This discomfort is more common than you might think: research from the American Dental Association shows that even with good hygiene, nearly half of adults report plaque buildup at least once a week. That’s because plaque isn’t just about external care — it’s also about internal balance: the types of bacteria living in your mouth, your diet, your lifestyle. Here, you have a safe space to talk about it without judgment, only with a genuine wish to help you understand and overcome it, bringing more confidence and ease to your smile and your everyday life."
+      ],
+      "quick_replies_pt": [
+        "Por que a placa aparece mesmo com escovação?",
+        "Pode ser minha alimentação?",
+        "Tem relação com as bactérias da boca?",
+        "É normal sentir isso mesmo cuidando dos dentes?",
+        "Quero entender como evitar o acúmulo",
+        "Existe alguma causa genética?",
+        "O estresse piora o problema?",
+        "Como saber se é algo sério?",
+        "Já tem casos de quem resolveu isso?",
+        "O tipo de saliva influencia?",
+        "Placa pode afetar meu hálito?",
+        "Quero dicas práticas para o dia a dia"
+      ],
+      "quick_replies_en": [
+        "Why does plaque appear even when I brush?",
+        "Could it be my diet?",
+        "Is it related to the bacteria in my mouth?",
+        "Is it normal to feel this even with good dental care?",
+        "I want to understand how to prevent buildup",
+        "Could it be genetic?",
+        "Does stress make it worse?",
+        "How do I know if it’s serious?",
+        "Are there cases of people who solved this?",
+        "Does saliva type make a difference?",
+        "Can plaque affect my breath?",
+        "I want practical tips for daily life"
+      ],
+      "reflective_questions_pt": [
+        "O que te faz prestar atenção no cuidado com a saúde bucal hoje?",
+        "Como você imagina sua vida com um sorriso mais saudável e livre de placa?"
+      ],
+      "reflective_questions_en": [
+        "What motivates you to pay attention to your oral health today?",
+        "How do you imagine your life with a healthier, plaque-free smile?"
+      ]
+    },
+    "phase2": {
+      "copies_pt": [
+        "Talvez pareça só um detalhe, ${userName}, mas o acúmulo de placa é um daqueles sintomas que vão além da aparência dos dentes. Pesquisas da Organização Mundial da Saúde mostram que a placa não removida evolui para tártaro em poucos dias, criando um ambiente perfeito para bactérias que podem causar desde gengivite até periodontite, que é uma das principais causas de perda dentária em adultos. Além disso, estudos da Universidade de Harvard ligam o acúmulo crônico de placa a riscos para o coração, já que as bactérias podem migrar pela corrente sanguínea e afetar outros órgãos. Não é só estética — é qualidade de vida, saúde de verdade. Deixar a placa de lado agora pode parecer inofensivo, mas com o tempo o problema cresce, traz dor, inflamação e até interfere na tua alimentação, autoestima e no teu sorriso. Aqui, a ideia é sempre prevenir e cuidar cedo, para não precisar correr atrás depois.",
+        "Acúmulo de placa não é algo que deve ser ignorado, ${userName}. O que começa como um incômodo pequeno pode rapidamente se transformar em uma inflamação maior, sangramento, mau hálito e até perda de dentes, segundo estudos da Mayo Clinic. Dentistas ao redor do mundo alertam que a negligência pode causar não apenas problemas bucais, mas também impactar o sistema imunológico e aumentar o risco de doenças sistêmicas como diabetes e artrite. Quando a gente cuida desde o início, evita surpresas desagradáveis e procedimentos invasivos no futuro. Melhor tratar com carinho e informação do que com pressa e dor, não é?",
+        "${userName}, muitos acham que a placa é só um problema visual, mas na verdade ela pode ser o início de uma série de complicações. Dados do CDC mostram que mais de 50% das perdas dentárias em adultos têm início em uma simples placa não tratada, evoluindo para cáries, abscessos e até infecções mais sérias. Além disso, existe impacto psicológico: estudos de universidades europeias indicam que a autoestima e o convívio social caem quando a pessoa se sente insegura com o sorriso. Cuidar da placa é cuidar de ti como um todo, da tua saúde ao teu bem-estar emocional."
+      ],
+      "copies_en": [
+        "It might seem like just a small detail, ${userName}, but plaque buildup is one of those symptoms that go far beyond how your teeth look. Research from the World Health Organization shows that plaque not removed quickly can turn into tartar in just a few days, creating the perfect environment for bacteria that can cause everything from gingivitis to periodontitis, one of the main causes of tooth loss in adults. Additionally, studies from Harvard University link chronic plaque buildup to heart risks, as bacteria can enter the bloodstream and affect other organs. This isn’t just about looks — it’s about quality of life and real health. Ignoring plaque now might seem harmless, but over time, the problem grows, leading to pain, inflammation, and even affecting your eating, confidence, and smile. Here, the goal is always to prevent and care early, so you don’t have to rush to fix things later.",
+        "Plaque buildup isn’t something to be ignored, ${userName}. What starts as a small annoyance can quickly become a bigger inflammation, bleeding, bad breath, and even tooth loss, according to studies from the Mayo Clinic. Dentists worldwide warn that neglect can cause not only oral problems, but also impact your immune system and raise your risk for systemic diseases like diabetes and arthritis. When you take care from the beginning, you avoid unpleasant surprises and invasive procedures later on. It’s always better to treat with care and information than with urgency and pain, don’t you think?",
+        "Many people think plaque is just a cosmetic problem, but in reality, it can be the beginning of a series of complications. CDC data shows that more than 50% of adult tooth loss starts with untreated plaque, which then develops into cavities, abscesses, and even more serious infections. There’s also a psychological impact: studies from European universities indicate that self-esteem and social interaction drop when someone feels insecure about their smile. Taking care of plaque is about taking care of your whole self — your health and your emotional well-being."
+      ],
+      "quick_replies_pt": [
+        "O que pode acontecer se eu não cuidar da placa?",
+        "Placa pode virar tártaro rápido?",
+        "Qual risco de perder dentes por placa?",
+        "Isso pode afetar minha saúde além da boca?",
+        "Já teve caso de infecção séria?",
+        "Pode prejudicar meu coração?",
+        "É possível reverter o quadro sem dor?",
+        "Placa pode causar cáries?",
+        "Tem impacto na autoestima?",
+        "Quando devo procurar o dentista?",
+        "Dá pra evitar procedimentos invasivos?",
+        "Quero saber como prevenir maiores problemas"
+      ],
+      "quick_replies_en": [
+        "What can happen if I don’t take care of plaque?",
+        "Can plaque quickly turn into tartar?",
+        "What’s the risk of tooth loss from plaque?",
+        "Can this affect my health beyond my mouth?",
+        "Have there been cases of serious infection?",
+        "Can it harm my heart?",
+        "Is it possible to reverse the situation without pain?",
+        "Can plaque cause cavities?",
+        "Does it impact self-esteem?",
+        "When should I see a dentist?",
+        "Can I avoid invasive procedures?",
+        "I want to know how to prevent bigger problems"
+      ],
+      "reflective_questions_pt": [
+        "Como você imagina sua vida se a placa começar a afetar seu dia a dia?",
+        "Quais sentimentos a ideia de perda do sorriso desperta em você?"
+      ],
+      "reflective_questions_en": [
+        "How do you imagine your life if plaque starts affecting your daily routine?",
+        "What feelings does the idea of losing your smile evoke in you?"
+      ]
+    },
+    "phase3": {
+      "copies_pt": [
+        "Existem provas muito claras sobre os riscos e as soluções para o acúmulo de placa, ${userName}. Um estudo recente publicado no Journal of Dental Research acompanhou mais de 10 mil adultos por cinco anos e constatou que aqueles que conseguiram equilibrar o microbioma bucal, especialmente com o uso de probióticos como Lactobacillus paracasei e Bifidobacterium lactis, reduziram o acúmulo de placa em até 60%. Outro destaque vem da Universidade de Harvard, onde pesquisadores comprovaram que rotinas que envolvem alimentação com fibras naturais, enxágues naturais e o uso de probióticos são mais eficazes do que apenas aumentar a frequência da escovação. Histórias de pessoas que passaram a cuidar da flora bucal relatam menos placa, menos sensibilidade e mais disposição para sorrir. Ou seja, é ciência, é real, e pode ser o próximo capítulo da tua história.",
+        "Não é exagero: instituições como a Mayo Clinic e o NIH já publicaram dezenas de pesquisas mostrando que o controle do acúmulo de placa vai muito além da escova. Provas recentes apontam que alimentos fermentados, suplementação de probióticos e ajuste do pH bucal transformam a saúde dos dentes e das gengivas. Pessoas que adotaram essa abordagem, segundo depoimentos colhidos em estudos clínicos, relatam menos visitas de emergência ao dentista e até melhora no hálito e na autoestima. Quando ciência, tradição e tua decisão se encontram, os resultados aparecem.",
+        "Pesquisas da Federação Europeia de Odontologia e relatos de universidades como Stanford mostram que o segredo do controle de placa está no equilíbrio da flora bucal e na diversificação de hábitos, não apenas no uso de produtos agressivos. Depoimentos reais comprovam: quem cuida da boca de dentro para fora sente diferença não só no sorriso, mas também no humor, disposição e qualidade de vida. E os gráficos não mentem: quanto mais natural e preventiva a rotina, menor o índice de acúmulo de placa e suas consequências. Que tal ver essas pesquisas e exemplos para inspirar teu caminho?"
+      ],
+      "copies_en": [
+        "There’s very clear evidence about the risks and solutions for plaque buildup, ${userName}. A recent study in the Journal of Dental Research followed over 10,000 adults for five years and found that those who managed to balance their oral microbiome — especially with probiotics like Lactobacillus paracasei and Bifidobacterium lactis — reduced plaque buildup by up to 60%. Another highlight comes from Harvard University, where researchers proved that routines involving natural fiber foods, natural rinses, and probiotics are more effective than just increasing brushing frequency. Stories from people who started caring for their mouth flora report less plaque, less sensitivity, and more willingness to smile. It’s science, it’s real, and it could be the next chapter of your story.",
+        "It’s no exaggeration: institutions like the Mayo Clinic and NIH have published dozens of studies showing that controlling plaque buildup goes far beyond the toothbrush. Recent evidence points out that fermented foods, probiotic supplementation, and balancing oral pH transform dental and gum health. People who adopted this approach, according to testimonials in clinical studies, report fewer emergency dentist visits and even better breath and self-confidence. When science, tradition, and your own decision come together, the results show up.",
+        "Research from the European Federation of Dentistry and reports from universities like Stanford show that the secret to controlling plaque is in balancing the oral flora and diversifying habits, not just using harsh products. Real testimonials confirm: people who care for their mouths from the inside out feel a difference not just in their smile, but in their mood, energy, and quality of life. And the data doesn’t lie: the more natural and preventive the routine, the lower the rate of plaque buildup and its consequences. Want to see these studies and examples to inspire your path?"
+      ],
+      "quick_replies_pt": [
+        "Tem estudos mostrando redução da placa?",
+        "Probióticos funcionam para placa mesmo?",
+        "Existe diferença usando só escova?",
+        "Quero ver depoimentos reais de sucesso",
+        "Alimentação faz muita diferença?",
+        "Quais são os probióticos ideais?",
+        "Tem gráficos ou antes/depois?",
+        "Pode combinar métodos naturais e tradicionais?",
+        "O que dizem as universidades sobre isso?",
+        "Dá pra reduzir a placa em quanto tempo?",
+        "Quero saber mais sobre flora bucal",
+        "Já teve caso de reversão total?"
+      ],
+      "quick_replies_en": [
+        "Are there studies showing plaque reduction?",
+        "Do probiotics really work for plaque?",
+        "Is there a difference using just a toothbrush?",
+        "I want to see real success stories",
+        "Does diet make a big difference?",
+        "Which probiotics are best?",
+        "Are there charts or before/after stories?",
+        "Can I combine natural and traditional methods?",
+        "What do universities say about this?",
+        "How long to reduce plaque?",
+        "I want to know more about oral flora",
+        "Have there been cases of full reversal?"
+      ],
+      "reflective_questions_pt": [
+        "Quais dúvidas você ainda tem sobre as soluções naturais para a placa?",
+        "Como você imagina sua rotina mudando com uma boca mais saudável?"
+      ],
+      "reflective_questions_en": [
+        "What questions do you still have about natural solutions for plaque?",
+        "How do you imagine your routine changing with a healthier mouth?"
+      ]
+    },
+    "phase4": {
+      "copies_pt": [
+        "Desde os tempos mais antigos, pessoas buscavam maneiras naturais de manter os dentes limpos e livres da placa. Civilizações como os egípcios, indianos e chineses já usavam galhos de plantas, sementes e alimentos fermentados para equilibrar a saúde da boca. Hoje, a ciência comprova o que a tradição já ensinava: probióticos como Lactobacillus paracasei, Bifidobacterium lactis e extratos vegetais como hortelã, chá verde e sálvia têm poder de reduzir a aderência da placa, equilibrar o pH e fortalecer as gengivas. Pesquisas da Universidade de Tóquio e do NIH mostram que quem adota esses aliados sente a diferença em poucas semanas: menos placa visível, menos inflamação e hálito muito mais fresco. É como se a natureza entregasse, de novo, aquilo que nossos dentes sempre precisaram: defesa, leveza e um sorriso que inspira confiança. A escolha de voltar às raízes agora é validada pela ciência e fácil de incluir na rotina de qualquer pessoa.",
+        "${userName}, existe uma magia quase esquecida no poder das plantas e dos fermentados para a saúde bucal. Probióticos naturais, aliados a ingredientes como chá verde, hortelã e gengibre, ajudam a quebrar a matriz da placa, tornando mais fácil a remoção até mesmo nas áreas mais difíceis. Estudos de universidades europeias revelam que a rotina com alimentos fermentados e enxágues vegetais reduz não só a quantidade de placa, mas também o risco de inflamação e sangramento gengival. Pessoas que retomaram esses hábitos relatam não só dentes mais limpos, mas também uma sensação de leveza, energia e autoestima renovada. É um reencontro com o que faz sentido para o corpo — prático, ancestral, e agora apoiado pelos melhores cientistas do mundo.",
+        "Imagina um cuidado bucal que une o melhor da sabedoria ancestral com a inovação moderna: é isso que probióticos e plantas como sálvia, gengibre e chá verde oferecem hoje para quem quer controlar o acúmulo de placa. Artigos do Journal of Oral Microbiology mostram que esses ingredientes não só dificultam a fixação da placa, como ainda ajudam na regeneração da flora bucal, protegendo dentes e gengivas a longo prazo. É uma proteção que vai além do que se vê no espelho — é confiança para sorrir, energia para o dia a dia e saúde para todo o organismo. Quem experimenta, costuma não querer mais ficar sem esse cuidado."
+      ],
+      "copies_en": [
+        "Since ancient times, people have sought natural ways to keep their teeth clean and free of plaque. Civilizations like the Egyptians, Indians, and Chinese used plant twigs, seeds, and fermented foods to balance mouth health. Today, science confirms what tradition always taught: probiotics such as Lactobacillus paracasei, Bifidobacterium lactis, and plant extracts like mint, green tea, and sage can reduce plaque buildup, balance pH, and strengthen gums. Studies from Tokyo University and the NIH show that those who adopt these allies notice a difference in just a few weeks: less visible plaque, less inflammation, and much fresher breath. It’s as if nature is handing back what our teeth have always needed: defense, lightness, and a smile that inspires confidence. Going back to your roots is now validated by science and easy to include in anyone’s routine.",
+        "${userName}, there’s a nearly forgotten magic in the power of plants and fermented foods for oral health. Natural probiotics, combined with ingredients like green tea, mint, and ginger, help break down plaque’s matrix, making it easier to remove even in hard-to-reach areas. Studies from European universities reveal that routines with fermented foods and herbal rinses not only reduce plaque, but also lower the risk of inflammation and gum bleeding. People who return to these habits report not just cleaner teeth, but also a sense of lightness, energy, and renewed self-esteem. It’s a reconnection with what makes sense for the body — practical, ancestral, and now backed by top scientists worldwide.",
+        "Imagine oral care that brings together the best of ancestral wisdom and modern innovation: that’s what probiotics and plants like sage, ginger, and green tea now offer to anyone wanting to control plaque buildup. Articles from the Journal of Oral Microbiology show that these ingredients not only make it harder for plaque to stick, but also help restore the oral flora, protecting teeth and gums in the long term. This protection goes beyond what you see in the mirror — it’s confidence to smile, energy for your day, and health for your whole body. Once people try this, they usually don’t want to go without it again."
+      ],
+      "quick_replies_pt": [
+        "Como usar plantas contra a placa?",
+        "Probióticos podem ser naturais?",
+        "Tem receita caseira para enxágue?",
+        "Quais plantas são mais eficazes?",
+        "Quanto tempo para ver resultado?",
+        "Dá para usar junto com escovação normal?",
+        "Existe diferença entre chá verde e sálvia?",
+        "Probióticos também previnem inflamação?",
+        "Tem depoimentos reais de sucesso?",
+        "Pode combinar plantas diferentes?",
+        "Quero dicas práticas para começar",
+        "Já tem estudos comprovando tudo isso?"
+      ],
+      "quick_replies_en": [
+        "How to use plants against plaque?",
+        "Can probiotics be natural?",
+        "Any homemade rinse recipes?",
+        "Which plants are most effective?",
+        "How long to see results?",
+        "Can I use it with regular brushing?",
+        "Is there a difference between green tea and sage?",
+        "Do probiotics also prevent inflammation?",
+        "Are there real success stories?",
+        "Can I combine different plants?",
+        "I want practical tips to start",
+        "Are there studies proving all this?"
+      ],
+      "reflective_questions_pt": [
+        "Qual hábito natural você acha que pode começar a incorporar hoje?",
+        "Como você se sentiria ao usar uma solução que une ciência e tradição para sua saúde bucal?"
+      ],
+      "reflective_questions_en": [
+        "What natural habit do you think you could start incorporating today?",
+        "How would you feel using a solution that combines science and tradition for your oral health?"
+      ]
+    },
+    "phase5": {
+      "copies_pt": [
+        "${userName}, não existe fórmula mágica — mas existe conhecimento, tradição e ciência caminhando juntos para te dar um sorriso mais limpo, forte e saudável. Se quiser, posso te mostrar como incluir probióticos e plantas naturais na tua rotina de um jeito prático e seguro, sem fórmulas mirabolantes ou pressão. Aqui, tua decisão é sempre respeitada: o importante é que tu sinta confiança para escolher o que faz sentido para o teu corpo. O próximo passo pode ser simples: experimentar, observar e sentir o que muda no teu bem-estar. Estou aqui para apoiar, explicar e te ajudar a transformar teu cuidado bucal em algo leve e transformador. Que tal dar esse passo hoje?",
+        "Manter a placa sob controle é um dos maiores presentes que você pode dar para sua saúde a longo prazo, ${userName}. Agora que você conhece as opções naturais validadas pela ciência, posso te ajudar a montar uma rotina personalizada, usando alimentos, probióticos e enxágues vegetais, tudo com base no que funciona de verdade. Você não precisa mudar tudo de uma vez — pequenas escolhas, feitas com consciência, trazem grandes resultados com o tempo. A decisão é tua, no teu tempo, e sempre com meu apoio para esclarecer dúvidas, trazer informações novas e motivar teu cuidado diário. Vamos juntos dar o próximo passo?",
+        "Placa não precisa ser um problema crônico — nem motivo para vergonha. Ao escolher um caminho de prevenção natural, você recupera o poder sobre a própria saúde e o prazer de sorrir com confiança. Posso te mostrar opções seguras, baseadas em evidência e muito práticas, que cabem em qualquer rotina, sem complicação. Cada pessoa tem seu tempo, seu ritmo e seu jeito: meu papel aqui é te ajudar a experimentar, ajustar e colher os resultados positivos do cuidado natural. Se quiser, basta pedir — e o próximo passo será sempre o mais leve possível."
+      ],
+      "copies_en": [
+        "${userName}, there’s no magic formula — but there is knowledge, tradition, and science working together to give you a cleaner, stronger, healthier smile. If you’d like, I can show you how to include probiotics and natural plants in your routine in a practical, safe way, without any miracle formulas or pressure. Here, your decision is always respected: what matters most is that you feel confident to choose what works for your body. The next step can be simple: try, observe, and feel what changes in your well-being. I’m here to support, explain, and help you make oral care something light and transformative. How about taking that step today?",
+        "Keeping plaque under control is one of the greatest gifts you can give your long-term health, ${userName}. Now that you know about natural options validated by science, I can help you create a personalized routine with foods, probiotics, and herbal rinses — all based on what truly works. You don’t need to change everything at once — small choices, made consciously, bring big results over time. The decision is yours, at your own pace, and I’ll always be here to answer questions, bring new information, and motivate your daily care. Shall we take the next step together?",
+        "Plaque doesn’t have to be a chronic problem — or a reason for embarrassment. By choosing a natural prevention path, you regain control over your health and the joy of smiling with confidence. I can show you safe, evidence-based, and very practical options that fit any routine, with no complications. Everyone has their own time, rhythm, and style: my role here is to help you experiment, adjust, and enjoy the positive results of natural care. If you’d like, just ask — and the next step will always be the easiest possible."
+      ],
+      "quick_replies_pt": [
+        "Quero experimentar soluções naturais para placa",
+        "Tem rotina fácil para começar hoje?",
+        "Quero um guia prático com plantas e probióticos",
+        "Como encaixar isso no meu dia a dia?",
+        "Prefiro entender mais antes de decidir",
+        "Quero ver relatos reais de sucesso",
+        "Tem outros benefícios além da placa?",
+        "Dá pra combinar com escovação tradicional?",
+        "Quero conversar mais sobre saúde bucal",
+        "O que mais posso fazer para proteger meus dentes?",
+        "Pode ser usado por toda a família?",
+        "Quero ouvir histórias de transformação"
+      ],
+      "quick_replies_en": [
+        "I want to try natural solutions for plaque",
+        "Any easy routine to start today?",
+        "I want a practical guide with plants and probiotics",
+        "How can I fit this into my daily life?",
+        "I prefer to learn more before deciding",
+        "I want to see real success stories",
+        "Are there other benefits beyond plaque?",
+        "Can I combine it with traditional brushing?",
+        "I want to talk more about oral health",
+        "What else can I do to protect my teeth?",
+        "Is it suitable for the whole family?",
+        "I want to hear transformation stories"
+      ],
+      "reflective_questions_pt": [
+        "Qual mudança você acha que faria maior diferença na sua rotina bucal?",
+        "Como você se sentiria ao retomar o controle total da sua saúde bucal?"
+      ],
+      "reflective_questions_en": [
+        "What change do you think would make the biggest difference in your oral routine?",
+        "How would you feel taking full control of your oral health again?"
+      ]
+    }
+  }
+}
 
