@@ -1,1 +1,245 @@
+{
+  "suplemento": "PRIME BIOME",
+  "titulo": "Persistent Dry and Flaky Skin / Pele Seca e Escamosa Persistente",
+  "fase_1": {
+    "pt": [
+      "${userName}, a sensação constante de pele seca e escamosa pode ser mais do que um incômodo superficial; é um sinal de que sua pele está desidratada e fragilizada. A alimentação moderna, cheia de ultraprocessados, solos empobrecidos e carnes tratadas com hormônios, pode contribuir para a falta de nutrientes essenciais que a pele precisa para se manter saudável e protegida.",
+      "${userName}, pele seca e descamativa frequentemente refletem desequilíbrios internos causados por dietas pobres em nutrientes e exposição a toxinas ambientais. Esses fatores comprometem a barreira cutânea, tornando a pele vulnerável a irritações e ressecamento.",
+      "Você já notou, ${userName}, que sua pele parece sempre seca e sem vida? A combinação de alimentos industrializados, solos contaminados e produtos químicos pode agravar esse quadro, prejudicando a hidratação natural e a saúde da pele."
+    ],
+    "en": [
+      "${userName}, the constant feeling of dry and flaky skin can be more than a superficial nuisance; it’s a sign your skin is dehydrated and weakened. Modern diets full of ultra-processed foods, nutrient-depleted soils, and hormone-treated meats may contribute to a lack of essential nutrients your skin needs to stay healthy and protected.",
+      "${userName}, dry and flaky skin often reflects internal imbalances caused by nutrient-poor diets and exposure to environmental toxins. These factors compromise the skin barrier, making skin vulnerable to irritation and dryness.",
+      "Have you noticed, ${userName}, that your skin often feels dry and lifeless? The combination of industrialized foods, contaminated soils, and chemicals can worsen this condition, impairing natural hydration and skin health."
+    ],
+    "quick_replies_pt": [
+      "Por que minha pele está seca?",
+      "Como hidratar pele naturalmente?",
+      "Alimentos influenciam na pele?",
+      "Solo contaminado afeta pele?",
+      "Quero entender mais sobre saúde da pele",
+      "Tem estudos científicos?",
+      "Como fortalecer a barreira cutânea?",
+      "Quais sintomas indicam problema sério?",
+      "Quero dicas para pele saudável",
+      "Estresse piora ressecamento?",
+      "Pele seca é comum?",
+      "Quando procurar ajuda?"
+    ],
+    "quick_replies_en": [
+      "Why is my skin dry?",
+      "How to hydrate skin naturally?",
+      "Do foods influence skin?",
+      "Does contaminated soil affect skin?",
+      "I want to learn more about skin health",
+      "Are there scientific studies?",
+      "How to strengthen skin barrier?",
+      "What symptoms indicate serious problem?",
+      "I want tips for healthy skin",
+      "Does stress worsen dryness?",
+      "Is dry skin common?",
+      "When to seek help?"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar uma pele saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy skin?",
+      "How would you like to start this change in your routine?"
+    ]
+  },
+  "fase_2": {
+    "pt": [
+      "${userName}, a pele seca e escamosa persistente pode levar a fissuras, irritações e até infecções, comprometendo a proteção natural do corpo. Pesquisas indicam que desequilíbrios nutricionais e exposições tóxicas intensificam esse quadro.",
+      "Você sabia, ${userName}, que a pele fragilizada é mais suscetível a agressões ambientais e pode desenvolver inflamações crônicas? A dieta pobre em nutrientes e a exposição a químicos pioram a saúde da pele.",
+      "${userName}, ignorar a pele seca persistente pode agravar irritações e inflamações, levando a problemas dermatológicos mais sérios. Estudos do Journal of Dermatological Science reforçam a importância de cuidados naturais."
+    ],
+    "en": [
+      "${userName}, persistent dry and flaky skin can lead to cracks, irritation, and even infections, compromising the body’s natural protection. Research indicates nutritional imbalances and toxic exposures worsen this condition.",
+      "Did you know, ${userName}, weakened skin is more susceptible to environmental damage and can develop chronic inflammation? Nutrient-poor diets and chemical exposure worsen skin health.",
+      "${userName}, ignoring persistent dry skin can aggravate irritation and inflammation, leading to more serious dermatological issues. Studies from Journal of Dermatological Science emphasize the importance of natural care."
+    ],
+    "quick_replies_pt": [
+      "Quais os riscos de pele seca persistente?",
+      "Pele seca pode causar infecções?",
+      "Como prevenir complicações na pele?",
+      "Desequilíbrio nutricional afeta muito?",
+      "Inflamação crônica pode surgir?",
+      "Tem relatos de melhora natural?",
+      "Quando procurar um dermatologista?",
+      "Estresse interfere no quadro?",
+      "Pele seca pode virar eczema?",
+      "Barreira da pele se recupera?",
+      "Tem estudos sobre isso?",
+      "Como evitar piora da pele?"
+    ],
+    "quick_replies_en": [
+      "What are the risks of persistent dry skin?",
+      "Can dry skin cause infections?",
+      "How to prevent skin complications?",
+      "Does nutritional imbalance affect a lot?",
+      "Can chronic inflammation develop?",
+      "Are there stories of natural improvement?",
+      "When to see a dermatologist?",
+      "Does stress interfere with this?",
+      "Can dry skin become eczema?",
+      "Can the skin barrier recover?",
+      "Are there studies on this?",
+      "How to avoid worsening skin?"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar uma pele saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy skin?",
+      "How would you like to start this change in your routine?"
+    ]
+  },
+  "fase_3": {
+    "pt": [
+      "${userName}, estudos mostram que plantas como Dente-de-leão, Funcho e Babchi possuem propriedades hidratantes e regeneradoras, que ajudam a restaurar a barreira cutânea e melhorar a hidratação da pele.",
+      "Pesquisas recentes, ${userName}, indicam que esses ingredientes naturais promovem a saúde da pele e aliviam sintomas de ressecamento e descamação, conforme evidenciado em estudos do Phytotherapy Research.",
+      "${userName}, estudos do Nutritional Journal confirmam que o uso regular dessas plantas está associado à melhora da hidratação e da textura da pele."
+    ],
+    "en": [
+      "${userName}, studies show plants like Dandelion, Fennel, and Babchi have moisturizing and regenerative properties that help restore the skin barrier and improve skin hydration.",
+      "Recent research, ${userName}, indicates these natural ingredients promote skin health and relieve dryness and flakiness symptoms, as evidenced in studies from Phytotherapy Research.",
+      "${userName}, studies from Nutritional Journal confirm regular use of these plants is linked to improved hydration and skin texture."
+    ],
+    "quick_replies_pt": [
+      "Essas plantas têm comprovação científica?",
+      "Resultados aparecem rápido?",
+      "Como usar essas plantas na rotina?",
+      "Elas servem para qualquer pele?",
+      "Tem relatos de transformação?",
+      "Hidratação natural é eficaz?",
+      "Funcho hidrata mesmo?",
+      "Qual a dose ideal?",
+      "Dente-de-leão regenera pele?",
+      "Pele seca precisa de suplementos?",
+      "Tem pesquisas recentes?",
+      "Quero saber sobre textura da pele."
+    ],
+    "quick_replies_en": [
+      "Are these plants scientifically proven?",
+      "Do results show up quickly?",
+      "How to use these plants daily?",
+      "Are they suitable for any skin?",
+      "Any transformation stories?",
+      "Is natural hydration effective?",
+      "Does fennel really hydrate?",
+      "What’s the ideal dose?",
+      "Does dandelion regenerate skin?",
+      "Does dry skin need supplements?",
+      "Any recent research?",
+      "I want to know about skin texture."
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar uma pele saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy skin?",
+      "How would you like to start this change in your routine?"
+    ]
+  },
+  "fase_4": {
+    "pt": [
+      "Plantas ancestrais como Dente-de-leão, Funcho e Babchi são aliadas naturais para hidratar, regenerar e fortalecer a barreira da pele, promovendo uma aparência saudável e equilibrada.",
+      "${userName}, essas plantas naturais auxiliam na restauração da hidratação e na proteção da pele contra agressões externas, garantindo vitalidade e conforto.",
+      "Utilizadas há séculos, essas plantas fornecem nutrientes essenciais para fortalecer a pele, combater o ressecamento e melhorar a textura, mantendo-a saudável."
+    ],
+    "en": [
+      "Ancestral plants like Dandelion, Fennel, and Babchi are natural allies to hydrate, regenerate, and strengthen the skin barrier, promoting a healthy and balanced appearance.",
+      "${userName}, these natural plants help restore hydration and protect skin from external aggressors, ensuring vitality and comfort.",
+      "Used for centuries, these plants provide essential nutrients to strengthen skin, combat dryness, and improve texture, keeping it healthy."
+    ],
+    "quick_replies_pt": [
+      "Como incluir essas plantas no dia a dia?",
+      "Tem receita fácil para pele seca?",
+      "Plantas ajudam na textura da pele?",
+      "É seguro para todos?",
+      "Resultados são rápidos?",
+      "Quero relatos reais de sucesso",
+      "Dá para usar com alimentação variada?",
+      "Quanto tempo para ver diferença?",
+      "Plantas ajudam no brilho da pele?",
+      "Quero dicas práticas",
+      "Quero ver estudos sobre essas plantas",
+      "Plantas hidratam mais que cremes?"
+    ],
+    "quick_replies_en": [
+      "How to include these plants daily?",
+      "Any easy recipe for dry skin?",
+      "Do plants help with skin texture?",
+      "Is it safe for everyone?",
+      "Are results fast?",
+      "I want real success stories",
+      "Can I use with a varied diet?",
+      "How long to see a difference?",
+      "Do plants help with skin glow?",
+      "I want practical tips",
+      "I want to see studies on these plants",
+      "Do plants hydrate more than creams?"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar uma pele saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy skin?",
+      "How would you like to start this change in your routine?"
+    ]
+  },
+  "fase_5": {
+    "pt": [
+      "${userName}, cuidar da pele seca naturalmente pode trazer alívio e renovação. Com plantas ancestrais e hábitos saudáveis, sua pele terá o suporte para recuperar a hidratação e a vitalidade. Posso ajudar com receitas, dicas e um plano prático para essa transformação.",
+      "A mudança começa com pequenas escolhas, ${userName}. Ao incluir plantas como Dente-de-leão, Funcho e Babchi na sua rotina e manter uma alimentação equilibrada, você apoia sua pele para ficar hidratada e saudável. Estou aqui para guiar você com passos simples e personalizados.",
+      "${userName}, sua jornada para uma pele hidratada e saudável pode começar agora. Com essa combinação natural e cuidados consistentes, sua pele terá o suporte necessário para renovar sua vitalidade. Posso fornecer um plano com orientações para essa nova fase."
+    ],
+    "en": [
+      "${userName}, taking care of dry skin naturally can bring relief and renewal. With ancestral plants and healthy habits, your skin will have the support to restore hydration and vitality. I can help with recipes, tips, and a practical plan for this transformation.",
+      "Change starts with small choices, ${userName}. By including plants like Dandelion, Fennel, and Babchi in your routine and maintaining a balanced diet, you support your skin to stay hydrated and healthy. I am here to guide you with simple and personalized steps.",
+      "${userName}, your journey to hydrated and healthy skin can start now. With this natural combination and consistent care, your skin will have the necessary support to renew its vitality. I can provide a plan with guidance for this new phase."
+    ],
+    "quick_replies_pt": [
+      "Quero começar já com plantas naturais",
+      "Tem receita fácil para pele seca",
+      "Quero relatos reais de transformação",
+      "Como montar uma rotina prática?",
+      "Prefiro aprender mais antes",
+      "Resultados são duradouros?",
+      "Posso combinar com minha alimentação?",
+      "Quero conversar sobre escolhas naturais",
+      "Dá pra fazer em família?",
+      "Tem dicas para motivação?",
+      "É seguro para todos?",
+      "Quero ver estudos e relatos reais"
+    ],
+    "quick_replies_en": [
+      "I want to start with natural plants now",
+      "Any easy recipe for dry skin",
+      "I want real transformation stories",
+      "How to build a practical routine?",
+      "I’d rather learn more first",
+      "Are results lasting?",
+      "Can I combine it with my diet?",
+      "I want to talk about natural choices",
+      "Can this be done as a family?",
+      "Any tips for motivation?",
+      "Is it safe for everyone?",
+      "I want to see studies and real stories"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar uma pele saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy skin?",
+      "How would you like to start this change in your routine?"
+    ]
+  }
+}
 
