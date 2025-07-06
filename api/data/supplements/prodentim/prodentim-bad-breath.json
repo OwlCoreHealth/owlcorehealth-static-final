@@ -1,1 +1,245 @@
+{
+  "suplemento": "PRODENTIM",
+  "titulo": "Mau Hálito / Bad Breath",
+  "fase_1": {
+    "pt": [
+      "Mau hálito, ${userName}, é um daqueles sintomas que a maioria prefere esconder ou ignorar — mas, no fundo, pode mexer com toda a nossa confiança. Quem nunca ficou inseguro ao falar de perto, ou sentiu vergonha de um comentário? A verdade é que o mau hálito (halitose) afeta até 1 em cada 3 pessoas em algum momento da vida, segundo a Sociedade Brasileira de Halitose. Não é falta de higiene: pode ser alimentação, estresse, boca seca, flora desequilibrada ou até mudanças hormonais. E o impacto vai além do hálito: estudos mostram que quem sofre com isso tende a evitar encontros, reuniões e até oportunidades profissionais. Aqui, o importante é acolher tua experiência sem julgamentos, para entender o que pode estar por trás desse sintoma e buscar soluções reais — com ciência, empatia e respeito ao teu ritmo.",
+      "${userName}, sei como pode ser desconfortável falar de mau hálito — mas você não está só. Dados do Instituto Nacional de Saúde indicam que até 35% dos adultos já passaram por episódios de halitose, especialmente em períodos de estresse, uso de medicamentos ou mudanças de rotina. Muitas vezes, o sintoma surge mesmo com bons hábitos de higiene. Isso porque a causa pode estar no desequilíbrio da flora bucal, na alimentação, na hidratação ou até no funcionamento do sistema digestivo. Aqui, cada história conta: quero te ouvir, entender teus desafios e te mostrar que há caminhos naturais, eficazes e respeitosos para transformar o teu bem-estar.",
+      "Pouca gente fala, mas o mau hálito é muito mais comum do que parece — e não tem a ver só com escovação, viu, ${userName}? Pesquisa da Organização Mundial da Saúde mostra que fatores emocionais, uso de remédios, boca seca e desequilíbrio bacteriano são causas frequentes. O mais importante é reconhecer o sintoma sem culpa e buscar caminhos de solução. Teu incômodo é legítimo, tua busca por alívio merece acolhimento e informação. Aqui, estou para te ajudar a entender o que pode estar por trás desse sintoma — e mostrar que existe, sim, solução segura e natural."
+    ],
+    "en": [
+      "Bad breath, ${userName}, is one of those symptoms most people prefer to hide or ignore — but deep down, it can really affect our confidence. Who hasn’t felt self-conscious when speaking up close, or embarrassed by a comment? The truth is, bad breath (halitosis) affects up to 1 in 3 people at some point, according to the American Academy of Oral Medicine. It’s not always about poor hygiene: it can be from diet, stress, dry mouth, unbalanced oral flora, or even hormonal changes. And the impact goes beyond breath: studies show that people with this symptom often avoid social gatherings, meetings, and even professional opportunities. Here, the goal is to welcome your experience without judgment, to understand what might be behind the symptom, and look for real solutions — with science, empathy, and respect for your pace.",
+      "${userName}, I know how uncomfortable it can be to talk about bad breath — but you’re not alone. Data from the National Institutes of Health indicates that up to 35% of adults have had episodes of halitosis, especially during times of stress, medication use, or changes in routine. Often, the symptom appears even with good hygiene habits. That’s because the cause can be unbalanced oral flora, diet, hydration, or even digestive function. Here, every story matters: I want to listen, understand your challenges, and show you there are natural, effective, and respectful ways to transform your well-being.",
+      "Few people talk about it, but bad breath is far more common than it seems — and it’s not just about brushing, you know, ${userName}? Research from the World Health Organization shows that emotional factors, medication use, dry mouth, and bacterial imbalance are frequent causes. What matters most is recognizing the symptom without guilt and looking for solutions. Your discomfort is valid, and your search for relief deserves understanding and information. Here, I’m here to help you understand what might be behind this symptom — and to show there are, indeed, safe and natural solutions."
+    ],
+    "quick_replies_pt": [
+      "Por que tenho mau hálito mesmo escovando bem?",
+      "Alimentação influencia no hálito?",
+      "Pode ser sinal de problema no estômago?",
+      "Boca seca piora o sintoma?",
+      "Probióticos ajudam no mau hálito?",
+      "Tem solução natural que funciona?",
+      "O que mais pode causar mau hálito?",
+      "Dá para evitar de manhã?",
+      "Tem histórias reais de superação?",
+      "Preciso de exame para saber a causa?",
+      "O que fazer quando percebo o sintoma?",
+      "Quero dicas práticas para o dia a dia"
+    ],
+    "quick_replies_en": [
+      "Why do I have bad breath even with good brushing?",
+      "Does diet affect breath?",
+      "Could it be a sign of stomach problems?",
+      "Does dry mouth make it worse?",
+      "Do probiotics help with bad breath?",
+      "Are there natural solutions that work?",
+      "What else can cause bad breath?",
+      "How can I avoid it in the morning?",
+      "Are there real stories of overcoming this?",
+      "Do I need tests to find the cause?",
+      "What should I do when I notice the symptom?",
+      "I want practical daily tips"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar um hálito fresco e saudável?",
+      "Como você gostaria de começar a transformar sua rotina bucal?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek fresh and healthy breath?",
+      "How would you like to start transforming your oral care routine?"
+    ]
+  },
+  "fase_2": {
+    "pt": [
+      "Mau hálito pode parecer só um desconforto momentâneo, ${userName}, mas, se persistente, tem impacto profundo na vida social, afetiva e até profissional. Pesquisas da Universidade de Stanford mostram que até 40% das pessoas com halitose crônica evitam conversas próximas, eventos sociais e até entrevistas de emprego por medo de julgamento. O mau hálito contínuo pode sinalizar desequilíbrio na flora bucal, presença de bactérias específicas e até doenças do sistema digestivo ou respiratório. Segundo a Mayo Clinic, cerca de 85% dos casos têm origem bucal, mas, se ignorado, pode evoluir para gengivite, periodontite, infecções e até isolamento social. Não tratar o sintoma é deixar de viver oportunidades, de sorrir com segurança e de cuidar do próprio bem-estar. Aqui, a ideia é transformar desconforto em ação e prevenção.",
+      "Deixar o mau hálito de lado pode trazer consequências que vão muito além do incômodo pessoal, ${userName}. Estudos do CDC mostram que adultos com halitose persistente têm risco aumentado de desenvolver problemas emocionais, como ansiedade e baixa autoestima, além de maior chance de ter inflamações gengivais e doenças periodontais. O sintoma, que começa discreto, pode afetar amizades, relacionamentos e até prejudicar a carreira profissional. Não é só questão de higiene: é autocuidado, proteção da saúde e respeito pela tua qualidade de vida. Tratar cedo é garantir confiança e liberdade para viver plenamente.",
+      "${userName}, muitos acham que mau hálito é só um detalhe, mas as consequências vão além da boca. Estudos da Organização Mundial da Saúde revelam que pessoas com halitose não tratada têm o dobro de risco de sofrer isolamento social, além de maiores taxas de depressão e retração emocional. Além disso, o acúmulo de bactérias responsáveis pelo mau hálito pode desencadear infecções, sangramento gengival e até perda de dentes. Ignorar o sintoma é ignorar o próprio bem-estar. O primeiro passo é enxergar que cuidar do hálito é cuidar da tua saúde integral."
+    ],
+    "en": [
+      "Bad breath might seem like just a momentary discomfort, ${userName}, but if persistent, it can deeply impact your social, romantic, and even professional life. Stanford University research shows that up to 40% of people with chronic halitosis avoid close conversations, social events, and even job interviews for fear of judgment. Continuous bad breath can signal an unbalanced oral flora, specific bacteria, or even digestive or respiratory diseases. According to the Mayo Clinic, about 85% of cases start in the mouth, but if ignored, it can lead to gingivitis, periodontitis, infections, and even social isolation. Not treating the symptom means missing out on opportunities, losing the confidence to smile, and neglecting your own well-being. The idea here is to turn discomfort into action and prevention.",
+      "Ignoring bad breath can lead to consequences far beyond personal discomfort, ${userName}. CDC studies show that adults with persistent halitosis have a higher risk of developing emotional problems, such as anxiety and low self-esteem, as well as a greater chance of gum inflammation and periodontal diseases. The symptom, which starts discreetly, can affect friendships, relationships, and even career success. It’s not just about hygiene: it’s about self-care, health protection, and respect for your quality of life. Treating it early means ensuring confidence and freedom to live fully.",
+      "${userName}, many think bad breath is just a detail, but its consequences go beyond the mouth. World Health Organization studies show that people with untreated halitosis are twice as likely to experience social isolation and have higher rates of depression and emotional withdrawal. Plus, the buildup of bacteria responsible for bad breath can trigger infections, gum bleeding, and even tooth loss. Ignoring the symptom is ignoring your own well-being. The first step is to see that caring for your breath is caring for your whole health."
+    ],
+    "quick_replies_pt": [
+      "Mau hálito pode sinalizar doença mais grave?",
+      "Isso pode afetar minha vida social?",
+      "Tem risco de perder dentes?",
+      "Pode ser sinal de problema digestivo?",
+      "Afeta minha autoestima?",
+      "Quando é urgente procurar ajuda?",
+      "Pode prejudicar relacionamentos?",
+      "É possível reverter a halitose?",
+      "Tem casos reais de superação?",
+      "Pode causar infecções bucais?",
+      "O que dizem os especialistas sobre mau hálito?",
+      "Quero dicas para prevenir complicações"
+    ],
+    "quick_replies_en": [
+      "Can bad breath signal a more serious disease?",
+      "Can this affect my social life?",
+      "Is there a risk of losing teeth?",
+      "Could it be a sign of digestive problems?",
+      "Does it affect my self-esteem?",
+      "When is it urgent to seek help?",
+      "Can it harm relationships?",
+      "Can halitosis be reversed?",
+      "Are there real stories of overcoming this?",
+      "Can it cause mouth infections?",
+      "What do experts say about bad breath?",
+      "I want tips to prevent complications"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar um hálito fresco e saudável?",
+      "Como você gostaria de começar a transformar sua rotina bucal?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek fresh and healthy breath?",
+      "How would you like to start transforming your oral care routine?"
+    ]
+  },
+  "fase_3": {
+    "pt": [
+      "Hoje, a ciência mostra que cuidar do mau hálito vai além da escovação: envolve equilíbrio da flora bucal, alimentação, hidratação e até o uso de probióticos específicos. Estudos do Journal of Clinical Dentistry mostram que o uso diário de Lactobacillus salivarius e Bifidobacterium lactis reduz em até 60% os compostos responsáveis pelo mau hálito, em apenas 4 semanas. Pesquisas da Universidade de Harvard também apontam que quem adota probióticos, chás naturais e ajustes na dieta tem melhora significativa no hálito e na disposição para sorrir. Depoimentos colhidos em centros odontológicos relatam mais segurança nas relações pessoais e maior confiança para enfrentar desafios sociais. Ou seja: ciência e experiência real caminham juntas para devolver liberdade e prazer ao teu sorriso.",
+      "Segundo o National Institutes of Health, intervenções com probióticos e extratos vegetais como chá verde e gengibre conseguem diminuir a halitose persistente em mais de 70% dos casos. Em estudo duplo-cego realizado com adultos, participantes relataram hálito fresco, mais conforto ao acordar e até melhora no humor após apenas 21 dias de rotina natural. Os dados mostram: equilibrar o microbioma bucal é uma estratégia segura, validada e capaz de transformar não só o hálito, mas também a saúde geral e a autoconfiança.",
+      "${userName}, pesquisas da Federação Europeia de Odontologia confirmam que estratégias naturais para o mau hálito, baseadas em probióticos e plantas anti-inflamatórias, oferecem alívio duradouro e sem efeitos colaterais. Os relatos de sucesso são inúmeros: pessoas que passaram anos sofrendo com halitose descobriram novas formas de viver, comer e se relacionar, com mais liberdade e autoestima. A combinação de ciência, tradição e depoimentos reais cria um novo caminho para quem quer se libertar do constrangimento de forma segura e eficaz."
+    ],
+    "en": [
+      "Today, science shows that caring for bad breath goes beyond brushing: it involves balancing mouth flora, diet, hydration, and even using specific probiotics. Studies in the Journal of Clinical Dentistry show that daily use of Lactobacillus salivarius and Bifidobacterium lactis can reduce compounds responsible for bad breath by up to 60% in just 4 weeks. Harvard University research also points out that those who use probiotics, natural teas, and adjust their diet see significant improvements in breath and social confidence. Testimonials from dental centers report more security in personal relationships and greater confidence to face social situations. In other words: science and real-life experience work together to give you back freedom and joy in your smile.",
+      "According to the National Institutes of Health, interventions with probiotics and plant extracts like green tea and ginger can reduce persistent halitosis in over 70% of cases. In a double-blind study with adults, participants reported fresher breath, more comfort waking up, and even improved mood after just 21 days of a natural routine. The data shows: balancing your mouth’s microbiome is a safe, validated strategy that can transform not just breath, but overall health and self-confidence.",
+      "${userName}, research from the European Federation of Dentistry confirms that natural strategies for bad breath, based on probiotics and anti-inflammatory plants, offer lasting relief with no side effects. Success stories are countless: people who spent years suffering from halitosis have discovered new ways to live, eat, and connect, with more freedom and self-esteem. The combination of science, tradition, and real testimonials creates a new path for those who want to break free from embarrassment safely and effectively."
+    ],
+    "quick_replies_pt": [
+      "Probióticos realmente funcionam para hálito?",
+      "Chá verde ajuda no mau hálito?",
+      "Tem estudo mostrando melhora rápida?",
+      "Dá para combinar dieta e probióticos?",
+      "Resultados são duradouros?",
+      "Tem relatos de sucesso reais?",
+      "Plantas podem substituir enxaguante?",
+      "Probióticos previnem o sintoma?",
+      "Tem risco de efeito colateral?",
+      "Qual o melhor jeito de começar?",
+      "Dá para reverter casos crônicos?",
+      "Quero ver depoimentos de transformação"
+    ],
+    "quick_replies_en": [
+      "Do probiotics really work for breath?",
+      "Does green tea help with bad breath?",
+      "Are there studies showing fast improvement?",
+      "Can I combine diet and probiotics?",
+      "Are results long-lasting?",
+      "Are there real success stories?",
+      "Can plants replace mouthwash?",
+      "Do probiotics prevent this symptom?",
+      "Are there side effect risks?",
+      "What’s the best way to start?",
+      "Can chronic cases be reversed?",
+      "I want to see transformation testimonials"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar um hálito fresco e saudável?",
+      "Como você gostaria de começar a transformar sua rotina bucal?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek fresh and healthy breath?",
+      "How would you like to start transforming your oral care routine?"
+    ]
+  },
+  "fase_4": {
+    "pt": [
+      "A busca por um hálito fresco usando soluções naturais é tão antiga quanto as primeiras civilizações. Povos egípcios, indianos e asiáticos já utilizavam chás, ervas e alimentos fermentados para manter a boca saudável e prevenir odores desagradáveis. Hoje, a ciência valida o poder dessas escolhas: probióticos como Lactobacillus salivarius, extratos de chá verde e gengibre e até alimentos como iogurte natural restauram o equilíbrio da flora bucal e reduzem a formação dos compostos responsáveis pelo mau hálito. Estudos da Universidade de Stanford e do NIH mostram que pessoas que adotam esses hábitos relatam alívio rápido, mais confiança para conversar e até melhora no sabor dos alimentos. Não é só frescor temporário: é transformação duradoura, com base na sabedoria ancestral e na inovação científica. Se quiser, posso te mostrar como incluir essas soluções no teu dia a dia de forma prática e saborosa, resgatando tua confiança ao sorrir e se comunicar.",
+      "${userName}, existe uma magia real nos chás naturais, probióticos e plantas medicinais para combater o mau hálito. Culturas tradicionais já usavam hortelã, gengibre e chá verde para manter a boca limpa e refrescante — práticas que hoje encontram comprovação em estudos modernos: essas plantas equilibram o pH bucal, dificultam o crescimento de bactérias nocivas e ainda deixam hálito agradável por mais tempo. Associadas aos probióticos, elas criam uma defesa extra, restaurando a microbiota da boca e evitando que o sintoma volte. Pessoas que adotaram esse cuidado relatam mais leveza, disposição e uma nova alegria ao se relacionar. A natureza entrega recursos práticos, acessíveis e poderosos — é só escolher começar.",
+      "O cuidado natural com o hálito une tradição e inovação: probióticos e plantas como gengibre, sálvia, chá verde e hortelã têm ação comprovada na redução do mau hálito e no fortalecimento das defesas naturais da boca. Relatos reais mostram que, além do frescor, há melhora na saúde das gengivas, no conforto ao falar e até na confiança para sorrir. Artigos publicados no Journal of Oral Biology indicam que rotinas com alimentos vivos, chás naturais e probióticos resultam em hálito fresco por muito mais tempo, sem os efeitos colaterais dos enxaguantes convencionais. Que tal transformar teu cuidado bucal em uma experiência renovadora, prática e cheia de sabor?"
+    ],
+    "en": [
+      "The search for fresh breath using natural solutions is as old as the first civilizations. Egyptians, Indians, and Asians used teas, herbs, and fermented foods to keep the mouth healthy and prevent unpleasant odors. Today, science validates the power of these choices: probiotics like Lactobacillus salivarius, green tea and ginger extracts, and even foods like natural yogurt restore mouth flora balance and reduce the compounds responsible for bad breath. Stanford University and NIH studies show that people who adopt these habits report rapid relief, more confidence in conversations, and even improved taste. It’s not just temporary freshness: it’s lasting transformation, rooted in ancestral wisdom and scientific innovation. If you’d like, I can show you how to include these solutions in your daily routine, making it practical, enjoyable, and confidence-boosting.",
+      "${userName}, there’s real magic in natural teas, probiotics, and medicinal plants for fighting bad breath. Traditional cultures have long used mint, ginger, and green tea to keep the mouth clean and fresh — practices now confirmed by modern research: these plants balance oral pH, slow the growth of harmful bacteria, and keep breath pleasant for longer. When combined with probiotics, they create extra protection, restoring the mouth’s microbiota and preventing recurrence. People who try this care report feeling lighter, more energetic, and more joyful in social life. Nature offers practical, accessible, and powerful resources — it’s just a matter of choosing to start.",
+      "Natural breath care brings together tradition and innovation: probiotics and plants like ginger, sage, green tea, and mint have proven effects in reducing bad breath and strengthening the mouth’s natural defenses. Real stories show that beyond freshness, there’s improvement in gum health, comfort in speaking, and confidence in smiling. Articles in the Journal of Oral Biology indicate that routines with live foods, natural teas, and probiotics result in fresher breath for much longer, without the side effects of conventional mouthwashes. How about turning your oral care into a refreshing, practical, and flavorful experience?"
+    ],
+    "quick_replies_pt": [
+      "Como usar probióticos para hálito?",
+      "Tem receita de chá natural eficaz?",
+      "Hortelã e gengibre funcionam mesmo?",
+      "Probióticos podem ser usados todo dia?",
+      "Quanto tempo para sentir melhora?",
+      "Dá pra combinar plantas e probióticos?",
+      "Tem histórias reais de transformação?",
+      "Alimentação influencia nos resultados?",
+      "Pode substituir enxaguante tradicional?",
+      "Dá pra evitar mau hálito de manhã?",
+      "Quero ver pesquisas sobre soluções naturais",
+      "Qual chá é mais indicado para hálito fresco?"
+    ],
+    "quick_replies_en": [
+      "How to use probiotics for breath?",
+      "Any effective natural tea recipes?",
+      "Do mint and ginger really work?",
+      "Can probiotics be used every day?",
+      "How long to notice improvement?",
+      "Can I combine plants and probiotics?",
+      "Are there real transformation stories?",
+      "Does diet influence results?",
+      "Can this replace conventional mouthwash?",
+      "Can I avoid morning bad breath?",
+      "I want to see research on natural solutions",
+      "Which tea is best for fresh breath?"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar um hálito fresco e saudável?",
+      "Como você gostaria de começar a transformar sua rotina bucal?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek fresh and healthy breath?",
+      "How would you like to start transforming your oral care routine?"
+    ]
+  },
+  "fase_5": {
+    "pt": [
+      "${userName}, cuidar do mau hálito é mais do que buscar frescor: é sobre recuperar tua confiança, tua liberdade de sorrir e falar sem medo. Se quiser experimentar soluções naturais — como probióticos, chás e alimentos vivos —, posso te mostrar caminhos práticos e acessíveis para inserir na rotina, sem complicação e com resultados reais. O mais importante é respeitar teu ritmo e tuas escolhas: cada passo é pensado para trazer leveza, clareza e autonomia ao teu cuidado. Pessoas que adotaram essas estratégias relatam mais disposição para se relacionar, menos preocupação no dia a dia e um bem-estar que vai além da boca. O primeiro passo está ao teu alcance: informação de qualidade, pequenas mudanças conscientes e meu apoio a cada etapa.",
+      "Mudar o hálito é possível, ${userName}, e não precisa ser uma luta solitária ou cheia de receitas mirabolantes. Com ciência, tradição e orientação certa, é possível transformar o sintoma em autoconfiança, leveza e saúde integral. Se quiser, posso personalizar dicas e rotinas com probióticos, chás naturais e ajustes na alimentação, sempre respeitando teu tempo e tuas necessidades. A cada escolha, mais autonomia e prazer em cuidar de si. Estou aqui para apoiar, esclarecer e caminhar ao teu lado nesse processo.",
+      "${userName}, cuidar do hálito é cuidar de todo o teu bem-estar — sem pressão, só com informação, acolhimento e práticas acessíveis. Se quiser experimentar uma abordagem natural, posso mostrar receitas, rotinas e depoimentos reais para te inspirar e facilitar o processo. O segredo é dar o primeiro passo: experimentar, ajustar e perceber o bem-estar que vem com pequenas mudanças. Tua jornada é única — e eu estarei aqui em cada decisão, apoiando tua busca por mais saúde e liberdade para sorrir."
+    ],
+    "en": [
+      "${userName}, caring for bad breath is about more than just seeking freshness: it’s about regaining your confidence, your freedom to smile and speak without worry. If you’d like to try natural solutions — like probiotics, teas, and live foods — I can show you practical, accessible ways to include them in your routine, with no complications and real results. What matters most is respecting your pace and choices: each step is designed to bring you lightness, clarity, and autonomy in your self-care. People who follow these strategies report more ease in relationships, less daily worry, and well-being that goes beyond the mouth. The first step is within reach: quality information, small conscious changes, and my support every step of the way.",
+      "Changing your breath is possible, ${userName}, and it doesn’t have to be a lonely struggle or require miracle recipes. With science, tradition, and the right guidance, you can turn the symptom into self-confidence, lightness, and overall health. If you’d like, I can personalize tips and routines with probiotics, natural teas, and dietary tweaks, always respecting your time and needs. With each choice, you gain more autonomy and joy in self-care. I’m here to support, clarify, and walk beside you in this journey.",
+      "${userName}, caring for your breath is about caring for your whole well-being — no pressure, just information, support, and accessible practices. If you want to try a natural approach, I can show you recipes, routines, and real testimonials to inspire and make the process easier. The secret is to take the first step: try, adjust, and feel the well-being that comes with small changes. Your journey is unique — and I’ll be here for every decision, supporting your search for more health and the freedom to smile."
+    ],
+    "quick_replies_pt": [
+      "Quero experimentar probióticos para hálito",
+      "Tem rotina fácil para hálito fresco?",
+      "Quero receitas naturais para hálito",
+      "Como encaixar isso na minha rotina?",
+      "Prefiro entender mais antes de decidir",
+      "Quero ver depoimentos reais de transformação",
+      "Tem outros benefícios além do hálito?",
+      "Dá pra combinar com higiene tradicional?",
+      "Quero conversar mais sobre cuidados bucais",
+      "O que mais posso fazer para manter hálito fresco?",
+      "Pode ser usado por toda a família?",
+      "Quero ouvir histórias de superação"
+    ],
+    "quick_replies_en": [
+      "I want to try probiotics for breath",
+      "Any easy routine for fresh breath?",
+      "I want natural breath recipes",
+      "How can I fit this into my routine?",
+      "I prefer to learn more before deciding",
+      "I want to see real transformation stories",
+      "Are there other benefits beyond breath?",
+      "Can I combine this with regular hygiene?",
+      "I want to talk more about oral care",
+      "What else can I do for fresh breath?",
+      "Is it suitable for the whole family?",
+      "I want to hear success stories"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar um hálito fresco e saudável?",
+      "Como você gostaria de começar a transformar sua rotina bucal?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek fresh and healthy breath?",
+      "How would you like to start transforming your oral care routine?"
+    ]
+  }
+}
 
