@@ -1,1 +1,161 @@
+{
+  "supplement": "PRIME BIOME",
+  "symptom": "frequent-diarrhea-or-irritable-bowel-syndrome",
+  "phases": [
+    {
+      "fase": "Fase 1",
+      "title": "Conexão/Conscientização",
+      "copies_pt": [
+        "${userName}, lidar com diarreia frequente ou síndrome do intestino irritável pode ser frustrante e impactar sua qualidade de vida. Muitas vezes, esses sintomas estão ligados a um desequilíbrio na microbiota intestinal, causado por dietas ricas em ultraprocessados, solos degradados e a exposição a toxinas ambientais. Esse desequilíbrio compromete a função digestiva natural, gerando desconforto e alterações intestinais.",
+        "${userName}, a síndrome do intestino irritável e a diarreia frequente são sinais de que seu sistema digestivo está sobrecarregado e desregulado. A alimentação industrializada, associada a solos contaminados e o uso excessivo de alimentos com aditivos, afeta o equilíbrio da flora intestinal e pode causar esses sintomas persistentes.",
+        "Você já percebeu, ${userName}, que os episódios de diarreia constante podem estar relacionados a fatores ambientais e alimentares? A combinação de alimentos processados, solos contaminados e produtos químicos altera sua microbiota e prejudica seu intestino."
+      ],
+      "copies_en": [
+        "${userName}, dealing with frequent diarrhea or irritable bowel syndrome can be frustrating and impact your quality of life. Often, these symptoms are linked to an imbalance in gut microbiota caused by diets high in ultra-processed foods, degraded soils, and exposure to environmental toxins. This imbalance impairs natural digestive function, causing discomfort and intestinal changes.",
+        "${userName}, irritable bowel syndrome and frequent diarrhea are signs your digestive system is overloaded and dysregulated. Industrialized food, combined with contaminated soils and excessive use of additives, disrupts gut flora balance and may cause these persistent symptoms.",
+        "Have you noticed, ${userName}, that frequent diarrhea episodes may relate to environmental and dietary factors? The combination of processed foods, contaminated soils, and chemicals alters your microbiota and harms your gut."
+      ],
+      "quick_replies_pt": [
+        "O que causa diarreia frequente?",
+        "Como aliviar intestino irritável?",
+        "Alimentos pioram sintomas?",
+        "Microbiota influencia?",
+        "Quero entender mais sobre digestão",
+        "Tem estudos científicos?",
+        "Como equilibrar a flora intestinal?",
+        "Quais sintomas indicam problema sério?",
+        "Quero dicas para controlar sintomas",
+        "Estresse piora a diarreia?",
+        "Síndrome do intestino irritável é comum?",
+        "Quando procurar ajuda?"
+      ],
+      "quick_replies_en": [
+        "What causes frequent diarrhea?",
+        "How to relieve irritable bowel?",
+        "Do foods worsen symptoms?",
+        "Does microbiota influence?",
+        "I want to learn more about digestion",
+        "Are there scientific studies?",
+        "How to balance gut flora?",
+        "What symptoms indicate serious problem?",
+        "I want tips to control symptoms",
+        "Does stress worsen diarrhea?",
+        "Is irritable bowel syndrome common?",
+        "When to seek help?"
+      ]
+    },
+    {
+      "fase": "Fase 2",
+      "title": "Gravidade/Consequência",
+      "copies_pt": [
+        "${userName}, a diarreia frequente e a síndrome do intestino irritável podem causar desidratação, perda de nutrientes essenciais e enfraquecimento do sistema imunológico. Estudos indicam que a inflamação intestinal provocada por desequilíbrios na microbiota, agravados por dietas industrializadas e ambientes tóxicos, está diretamente ligada ao agravamento desses sintomas.",
+        "Você sabia, ${userName}, que esses problemas digestivos podem levar a complicações como inflamações crônicas, fadiga e até distúrbios autoimunes? A exposição contínua a alimentos ultraprocessados, solos contaminados e químicos aumenta o risco de agravamento.",
+        "${userName}, ignorar esses sintomas pode comprometer sua qualidade de vida e saúde a longo prazo. Pesquisas da American Journal of Gastroenterology reforçam a importância de cuidar do equilíbrio intestinal para prevenir complicações."
+      ],
+      "copies_en": [
+        "${userName}, frequent diarrhea and irritable bowel syndrome can cause dehydration, loss of essential nutrients, and weakened immune system. Studies indicate that intestinal inflammation caused by microbiota imbalances, worsened by industrial diets and toxic environments, is directly linked to symptom severity.",
+        "Did you know, ${userName}, these digestive problems can lead to complications like chronic inflammation, fatigue, and even autoimmune disorders? Continuous exposure to ultra-processed foods, contaminated soils, and chemicals increases risk.",
+        "${userName}, ignoring these symptoms can compromise your quality of life and long-term health. Research from American Journal of Gastroenterology emphasizes the importance of gut balance to prevent complications."
+      ],
+      "quick_replies_pt": [
+        "Diarreia pode piorar?",
+        "Quais complicações podem ocorrer?",
+        "Como evitar desidratação?",
+        "Microbiota influencia?",
+        "Quero saber mais sobre inflamação intestinal",
+        "Sintomas indicam algo grave?",
+        "Dá para melhorar naturalmente?",
+        "Quais sinais pedem ajuda médica?",
+        "Quero dicas para controlar sintomas",
+        "Estresse piora a diarreia?",
+        "Tem estudos científicos?",
+        "Quando procurar ajuda?"
+      ],
+      "quick_replies_en": [
+        "Can diarrhea get worse?",
+        "What complications can occur?",
+        "How to avoid dehydration?",
+        "Does microbiota influence?",
+        "I want to learn more about intestinal inflammation",
+        "Do symptoms indicate something serious?",
+        "Can it be improved naturally?",
+        "What signs require medical help?",
+        "I want tips to control symptoms",
+        "Does stress worsen diarrhea?",
+        "Are there scientific studies?",
+        "When to seek help?"
+      ]
+    },
+    {
+      "fase": "Fase 3",
+      "title": "Prova/Evidência",
+      "copies_pt": [
+        "${userName}, estudos mostram que o Bacillus Coagulans é um probiótico que ajuda a restaurar o equilíbrio da microbiota intestinal, reduzindo a frequência e intensidade da diarreia e dos sintomas da síndrome do intestino irritável. Pesquisas do Journal of Clinical Gastroenterology confirmam sua eficácia.",
+        "Pesquisas recentes, ${userName}, indicam que plantas como Babchi, Dente-de-leão e Funcho possuem propriedades que aliviam os sintomas digestivos, promovendo conforto e equilíbrio intestinal. Estudos do Phytotherapy Research reforçam esses benefícios.",
+        "${userName}, estudos do Nutritional Journal mostram que a Inulina contribui para a saúde da microbiota e a regulação do trânsito intestinal, ajudando a reduzir sintomas como diarreia e desconforto."
+      ],
+      "copies_en": [
+        "${userName}, studies show Bacillus Coagulans is a probiotic that helps restore gut microbiota balance, reducing frequency and severity of diarrhea and irritable bowel symptoms. Research published in Journal of Clinical Gastroenterology confirms its effectiveness.",
+        "Recent research, ${userName}, indicates plants like Babchi, Dandelion, and Fennel have properties that relieve digestive symptoms, promoting comfort and gut balance. Studies from Phytotherapy Research reinforce these benefits.",
+        "${userName}, studies from Nutritional Journal show Inulin contributes to microbiota health and bowel transit regulation, helping reduce symptoms like diarrhea and discomfort."
+      ]
+    },
+    {
+      "fase": "Fase 4",
+      "title": "Solução Natural/Plantas",
+      "copies_pt": [
+        "O Bacillus Coagulans é um probiótico natural que fortalece sua microbiota intestinal, auxiliando no equilíbrio do sistema digestivo e na redução dos sintomas de diarreia e intestino irritável. Combinado com plantas como Babchi, Dente-de-leão e Funcho, ele cria um ambiente intestinal saudável e confortável.",
+        "${userName}, plantas ancestrais como Babchi e Dente-de-leão são conhecidas por suas propriedades anti-inflamatórias e calmantes digestivos. Juntamente com probióticos como Bacillus Coagulans e fibras como Inulina, formam uma solução natural eficaz para o seu bem-estar intestinal.",
+        "A Inulina atua como fibra prebiótica, nutrindo a flora intestinal e facilitando o trânsito. Aliada às plantas e probióticos, ajuda a reduzir sintomas e melhorar sua saúde digestiva."
+      ],
+      "copies_en": [
+        "Bacillus Coagulans is a natural probiotic that strengthens your gut microbiota, aiding digestive system balance and reducing symptoms of diarrhea and irritable bowel. Combined with plants like Babchi, Dandelion, and Fennel, it creates a healthy and comfortable gut environment.",
+        "${userName}, ancestral plants like Babchi and Dandelion are known for their anti-inflammatory and digestive calming properties. Together with probiotics like Bacillus Coagulans and fibers such as Inulin, they form an effective natural solution for your gut well-being.",
+        "Inulin acts as a prebiotic fiber, nourishing gut flora and facilitating transit. Paired with plants and probiotics, it helps reduce symptoms and improve digestive health."
+      ]
+    },
+    {
+      "fase": "Fase 5",
+      "title": "Próximo Passo",
+      "copies_pt": [
+        "${userName}, cuidar do seu sistema digestivo naturalmente pode transformar sua qualidade de vida. Com probióticos e plantas ancestrais, seu corpo terá suporte para um intestino equilibrado e menos desconfortos. Posso ajudar com receitas, dicas e um plano prático para essa transformação.",
+        "A mudança começa com escolhas conscientes, ${userName}. Ao incluir probióticos como Bacillus Coagulans e plantas como Babchi e Dente-de-leão na sua rotina, você apoia seu sistema digestivo para funcionar melhor. Estou aqui para guiar você com passos simples e personalizados.",
+        "${userName}, sua jornada para um sistema digestivo saudável pode começar agora. Com essa combinação natural e uma alimentação equilibrada, seu corpo terá o suporte necessário para melhorar sua qualidade de vida. Posso fornecer um plano com orientações para essa nova fase."
+      ],
+      "copies_en": [
+        "${userName}, caring for your digestive system naturally can transform your quality of life. With probiotics and ancestral plants, your body will have the support for a balanced gut and less discomfort. I can help with recipes, tips, and a practical plan for this transformation.",
+        "Change starts with conscious choices, ${userName}. By including probiotics like Bacillus Coagulans and plants like Babchi and Dandelion in your routine, you support your digestive system to work better. I am here to guide you with simple, personalized steps.",
+        "${userName}, your journey to a healthy digestive system can start now. With this natural combination and a balanced diet, your body will have the necessary support to improve your quality of life. I can provide a plan with guidance for this new phase."
+      ],
+      "quick_replies_pt": [
+        "Quero começar já com probióticos",
+        "Tem receita fácil para digestão",
+        "Quero relatos reais de transformação",
+        "Como montar uma rotina prática?",
+        "Prefiro aprender mais antes",
+        "Resultados são duradouros?",
+        "Posso combinar com minha alimentação?",
+        "Quero conversar sobre escolhas naturais",
+        "Dá pra fazer em família?",
+        "Tem dicas para motivação?",
+        "É seguro para todos?",
+        "Quero ver estudos e relatos reais"
+      ],
+      "quick_replies_en": [
+        "I want to start with probiotics now",
+        "Any easy recipe for digestion",
+        "I want real transformation stories",
+        "How to build a practical routine?",
+        "I’d rather learn more first",
+        "Are results lasting?",
+        "Can I combine it with my diet?",
+        "I want to talk about natural choices",
+        "Can this be done as a family?",
+        "Any tips for motivation?",
+        "Is it safe for everyone?",
+        "I want to see studies and real stories"
+      ]
+    }
+  ]
+}
 
