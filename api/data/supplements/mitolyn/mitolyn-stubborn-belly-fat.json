@@ -1,1 +1,208 @@
+{
+  "suplemento": "MITOLYN",
+  "sintomas": {
+    "gordura_abdominal_resistente": {
+      "fase_1": {
+        "copy_pt": [
+          "Sabe, ${userName}, nem sempre é fácil falar sobre a barriga que insiste em ficar, né? Às vezes, a gente faz de tudo certinho e ela não some. Não é só questão de dieta ou treino… Tem dias que dá vontade até de desistir.\n Quero que saibas: isso não é culpa tua. Muitas pessoas passam por isso, e cada corpo tem seu tempo e seus motivos. Aqui, a gente pode olhar para esse sintoma sem pressa, sem pressão, só buscando entender juntos o que teu corpo quer te dizer.",
+          "Oi, ${userName}. Só de admitir que a gordura na barriga incomoda já mostra o quanto tu te importas contigo. Não é fácil — principalmente quando parece que nada funciona e a comparação com os outros pesa ainda mais.\n Teu corpo não está te sabotando; ele está tentando te proteger de algum jeito que talvez tu ainda não tenha entendido.\n Aqui, ninguém vai te julgar ou dizer que é falta de esforço. Vamos caminhar juntos para entender o que realmente está acontecendo contigo.",
+          "${userName}, posso te contar uma coisa?\n Muitas vezes, a gente sente vergonha de falar sobre a barriga — como se fosse só uma questão de força de vontade. Mas não é.\n Às vezes é o cansaço, o estresse, hormônios bagunçados, ou só aquele peso de viver correndo o tempo todo.\n Se isso tem te incomodado, quero que te sintas à vontade aqui. Pode confiar: tua história é importante e merece ser escutada com respeito e atenção."
+        ],
+        "copy_en": [
+          "You know, ${userName}, it’s not always easy to talk about that belly that just won’t go away. Sometimes you do everything right and it’s still there. It’s not just about diet or working out… Some days it’s enough to make you want to give up.\n I want you to know: this isn’t your fault. So many people go through this, and every body has its own timing and reasons. Here, we can look at this symptom together, without pressure, just trying to listen to what your body is trying to say.",
+          "Hey, ${userName}. Just admitting that belly fat bothers you already shows how much you care about yourself. It’s not easy — especially when nothing seems to work and comparing yourself to others just makes it worse.\n Your body isn’t sabotaging you; it’s probably trying to protect you in ways you don’t yet understand.\n No one here is going to judge you or say it’s a lack of effort. We’re here to walk this path together and really get to the bottom of what’s happening with you.",
+          "Can I share something with you, ${userName}?\n A lot of times, we feel embarrassed to talk about belly fat — like it’s just a willpower issue. But it’s not.\n Sometimes it’s exhaustion, stress, hormones out of whack, or just the weight of living life in a rush.\n If this has been bothering you, I want you to feel at home here. Your story matters, and it deserves to be heard with respect and care."
+        ],
+        "quick_replies_pt": [
+          "Quero entender por que acumulo gordura na barriga mesmo me cuidando",
+          "O que pode estar impedindo meu corpo de queimar essa gordura?",
+          "Existe alguma causa oculta para essa gordura abdominal?",
+          "Será que o estresse influencia nisso?",
+          "Hábitos que podem estar dificultando minha perda de barriga?",
+          "Queria ver histórias de quem passou por isso",
+          "Pode ser meu metabolismo?",
+          "Tem algo hormonal envolvido?",
+          "Quero dicas para entender melhor meu corpo",
+          "Meu corpo está tentando me dizer algo?",
+          "A alimentação moderna piora esse sintoma?",
+          "Quero saber como posso agir daqui pra frente"
+        ],
+        "quick_replies_en": [
+          "I want to understand why I store belly fat even when I try hard",
+          "What could be stopping my body from burning this fat?",
+          "Is there a hidden cause behind my belly fat?",
+          "Could stress have anything to do with it?",
+          "Are there habits making it harder for me to lose belly fat?",
+          "I’d like to see stories from people who went through this",
+          "Could it be my metabolism?",
+          "Is it something hormonal?",
+          "I want tips to better understand my body",
+          "Is my body trying to tell me something?",
+          "Does modern food make this worse?",
+          "I want to know how I can take action from here"
+        ]
+      },
+      "fase_2": {
+        "copy_pt": [
+          "Talvez tu nem percebas, ${userName}, mas a gordura abdominal pode ser mais que um incômodo estético. Ela pode afetar tua saúde de várias formas — desde o sono, o humor, até aumentar o risco de outros problemas mais sérios.\n O difícil é que, enquanto a gente adia o cuidado, esse sintoma vai crescendo, silencioso. Tu não precisas carregar essa preocupação sozinho.\n Vamos juntos entender o que pode acontecer se nada mudar?",
+          "${userName}, às vezes a gente vai empurrando com a barriga — literalmente — e esquece que o corpo vai dando sinais de alerta.\n A gordura abdominal é um deles. Com o tempo, pode impactar tua energia, teu coração, até tua autoestima e disposição pra viver.\n Mas sempre há tempo de ouvir esses sinais antes que se tornem algo maior.",
+          "Sabe, ${userName}, muitas pessoas só se preocupam com a barriga quando ela começa a incomodar no espelho, mas por dentro ela pode estar trazendo outras consequências.\n Ignorar esse sintoma é como deixar uma panela no fogo baixo: parece inofensivo, mas pode virar algo mais sério se não olharmos com carinho agora.\n Aqui, tu tens espaço para prevenir — e não apenas remediar."
+        ],
+        "copy_en": [
+          "You might not even notice, ${userName}, but belly fat can be more than just an aesthetic nuisance. It can affect your health in so many ways — from your sleep and mood to increasing your risk of more serious issues.\n The hard part is, while we keep putting it off, this symptom keeps quietly growing. You don’t have to carry this worry alone.\n Let’s try to understand together what could happen if nothing changes?",
+          "Sometimes, ${userName}, we keep putting things off — literally — and forget that our body is sending out warning signs.\n Belly fat is one of them. Over time, it can impact your energy, your heart, even your self-esteem and your motivation for life.\n But there’s always time to listen to these signs before they turn into something bigger.",
+          "You know, ${userName}, a lot of people only worry about their belly when it starts bothering them in the mirror, but inside, it can be bringing other consequences.\n Ignoring this symptom is like leaving a pot on low heat: it seems harmless, but it can become something more serious if we don’t pay attention now.\n Here, you have a space to prevent, not just treat."
+        ],
+        "quick_replies_pt": [
+          "Quais riscos posso ter ao ignorar a gordura abdominal?",
+          "Isso pode afetar minha saúde de verdade?",
+          "O que pode acontecer se eu não cuidar disso agora?",
+          "Existe chance de outros problemas surgirem?",
+          "Quero entender as consequências de deixar como está",
+          "Pode mexer com meus hormônios ou metabolismo?",
+          "Pode afetar meu coração ou energia?",
+          "Já teve gente que ignorou e depois se arrependeu?",
+          "Qual impacto disso a longo prazo?",
+          "Isso interfere na autoestima também?",
+          "Dá para prevenir problemas maiores agindo agora?",
+          "Quero saber quando é urgente procurar ajuda"
+        ],
+        "quick_replies_en": [
+          "What risks could I face if I ignore belly fat?",
+          "Can it really affect my health?",
+          "What might happen if I don’t deal with this now?",
+          "Could this lead to other problems?",
+          "I want to understand the consequences of letting it be",
+          "Can it mess with my hormones or metabolism?",
+          "Can it affect my heart or energy?",
+          "Have people ignored this and regretted it later?",
+          "What’s the long-term impact?",
+          "Does it affect self-esteem too?",
+          "Can I prevent bigger problems by acting now?",
+          "When should I really worry and seek help?"
+        ]
+      },
+      "fase_3": {
+        "copy_pt": [
+          "${userName}, tu não és o único: milhares de pessoas já passaram por esse desafio da gordura abdominal.\n Estudos mostram que fatores como inflamação, estresse crônico e até poluentes na comida atual dificultam a queima dessa gordura.\n O mais incrível? Quem começa a tratar a raiz do problema, e não só o sintoma, percebe resultados reais e duradouros. Aqui, não tem promessa mágica — tem ciência, tem história e tem pessoas reais vencendo isso todos os dias.",
+          "Sabe, ${userName}, não é lenda: há comprovação científica de que a gordura abdominal está ligada a processos do metabolismo que fogem do nosso controle.\n Mas também existem relatos de quem mudou pequenas rotinas, apostou em plantas como Maqui Berry e Rhodiola, e conseguiu transformar o próprio corpo.\n Queres saber mais sobre as pesquisas e histórias por trás dessas mudanças?",
+          "Existe muita informação por aí, ${userName}, mas também muita história de gente real.\n A ciência já mostrou que o acúmulo de gordura na barriga responde melhor quando combinamos mudanças naturais, alimentação e certos nutrientes poderosos.\n Aqui, posso te mostrar não só estudos, mas relatos de quem já passou exatamente pelo que tu estás vivendo agora."
+        ],
+        "copy_en": [
+          "You’re not alone, ${userName}: thousands of people have faced this same challenge with belly fat.\n Studies show that things like inflammation, chronic stress, and even toxins in today’s foods make burning this fat much harder.\n But the amazing part? People who treat the root of the problem, not just the symptom, see real, lasting results. No magic promises here — just science, stories, and real people winning this battle every day.",
+          "You know, ${userName}, it’s not a myth: there’s scientific proof that belly fat is linked to metabolic processes beyond our control.\n But there are also stories of people who changed small habits, started using plants like Maqui Berry and Rhodiola, and managed to transform their bodies.\n Would you like to hear more about the research and real-life stories behind these changes?",
+          "There’s a lot of info out there, ${userName}, but also a lot of real stories.\n Science has already shown that belly fat responds best when we combine natural changes, nutrition, and some powerful nutrients.\n Here, I can show you not just studies, but testimonials from people who’ve gone through exactly what you’re going through now."
+        ],
+        "quick_replies_pt": [
+          "Quero ver estudos sobre gordura abdominal",
+          "Tem casos reais de quem venceu isso?",
+          "Quais plantas já têm comprovação científica?",
+          "O que os médicos dizem sobre gordura na barriga?",
+          "Posso ver depoimentos de sucesso?",
+          "Essas mudanças realmente funcionam?",
+          "Existem números ou gráficos que mostram melhora?",
+          "Que nutrientes fazem diferença comprovada?",
+          "Quero saber o que a ciência diz sobre Maqui Berry",
+          "Tem alguém parecido comigo que já melhorou?",
+          "Qual a experiência de quem tentou soluções naturais?",
+          "Quero ver resultados de mudanças reais"
+        ],
+        "quick_replies_en": [
+          "I want to see studies on belly fat",
+          "Are there real cases of people overcoming this?",
+          "Which plants have scientific proof?",
+          "What do doctors say about belly fat?",
+          "Can I see success stories?",
+          "Do these changes really work?",
+          "Are there charts or numbers showing improvements?",
+          "Which nutrients have proven effects?",
+          "I want to know what science says about Maqui Berry",
+          "Has anyone like me already improved?",
+          "What’s the experience of those who tried natural solutions?",
+          "I want to see real results from real changes"
+        ]
+      },
+      "fase_4": {
+        "copy_pt": [
+          "Sabias, ${userName}, que algumas plantas têm o poder de transformar o corpo de dentro pra fora?\n Maqui Berry, Astaxantina, Rhodiola… Elas não são só nomes bonitos: têm substâncias que ajudam o corpo a equilibrar hormônios, reduzir inflamação e reprogramar o metabolismo.\n Essas plantas foram usadas por gerações e, hoje, a ciência mostra que podem ser aliadas na luta contra a gordura abdominal. Nada de fórmulas mágicas — só natureza e cuidado de verdade.",
+          "${userName}, talvez tu nunca tenhas ouvido falar, mas ingredientes como Amla e Schisandra já ajudaram muita gente a dar a volta por cima.\n Elas agem nos pontos certos do corpo: limpam toxinas, equilibram o stress, ativam o metabolismo e até ajudam no controle da fome.\n É como dar um reset, só que sem extremos ou sacrifícios. Te interessa descobrir mais sobre como usar esses aliados naturais?",
+          "Aqui na OwlCore, acreditamos no poder da natureza — e temos motivos pra isso.\n O Theobroma Cacao, por exemplo, vai além do sabor: ele ativa substâncias que ajudam na queima de gordura e dão energia sem ansiedade.\n Plantas são pontes entre tradição e ciência, e podem ser a diferença que faltava pra tua rotina. Que tal descobrir como trazer isso pro teu dia a dia, ${userName}?"
+        ],
+        "copy_en": [
+          "Did you know, ${userName}, that some plants have the power to transform your body from the inside out?\n Maqui Berry, Astaxanthin, Rhodiola… They’re more than just fancy names: they contain substances that help balance hormones, reduce inflammation, and reset your metabolism.\n These plants have been used for generations, and now science shows they can be real allies in the fight against belly fat. No magic formulas — just real nature and care.",
+          "You might never have heard of them, ${userName}, but ingredients like Amla and Schisandra have helped many people turn things around.\n They work in all the right places: detoxifying, balancing stress, revving up metabolism, and even helping control hunger.\n It’s like a reset for your body — no extremes or crazy sacrifices. Interested in learning more about how these natural allies work?",
+          "At OwlCore, we truly believe in the power of nature — and we have good reason.\n Take Theobroma Cacao, for example: beyond being delicious, it triggers compounds that help burn fat and boost energy without jitters.\n Plants are bridges between tradition and science, and could be the missing piece in your routine. How about finding out how to bring them into your life, ${userName}?"
+        ],
+        "quick_replies_pt": [
+          "Quero saber como Maqui Berry pode ajudar na barriga",
+          "O que faz a Astaxantina no corpo?",
+          "Rhodiola realmente acelera o metabolismo?",
+          "Como usar Schisandra no dia a dia?",
+          "Tem receita fácil com Amla?",
+          "Theobroma Cacao ajuda mesmo a queimar gordura?",
+          "Quero aprender formas naturais de aliviar gordura abdominal",
+          "Qual dessas plantas serve mais pra mim?",
+          "Existem estudos sobre essas plantas?",
+          "Tem dica prática pra começar hoje?",
+          "Como elas atuam juntas no organismo?",
+          "Quero ver exemplos de como usar na rotina"
+        ],
+        "quick_replies_en": [
+          "How can Maqui Berry help with belly fat?",
+          "What does Astaxanthin do in the body?",
+          "Does Rhodiola really speed up metabolism?",
+          "How do I use Schisandra in daily life?",
+          "Any easy recipes with Amla?",
+          "Does Theobroma Cacao really help burn fat?",
+          "I want natural ways to deal with belly fat",
+          "Which of these plants fits me best?",
+          "Are there studies about these plants?",
+          "Any practical tips to start today?",
+          "How do they work together in the body?",
+          "I want to see examples of using them in routine"
+        ]
+      },
+      "fase_5": {
+        "copy_pt": [
+          "${userName}, não existe solução única pra todo mundo — mas existe o caminho que faz sentido pra ti.\n Se quiser, posso te mostrar opções naturais que concentram todo o poder dessas plantas, com segurança e cuidado.\n Aqui, tua decisão é sempre respeitada. Queres explorar juntos possibilidades para tua saúde e bem-estar?",
+          "Agora que já sabes mais sobre como essas plantas podem ajudar, ${userName}, fica mais fácil escolher por onde começar.\n Teu corpo merece o melhor — e só tu podes decidir o ritmo. Se quiser, posso indicar alternativas para incorporar esses aliados naturais na tua rotina, sem pressão e no teu tempo.",
+          "Se sentires que é a hora de dar um passo a mais, ${userName}, estou aqui pra te ajudar a transformar informação em ação.\n Nada de fórmulas milagrosas — só sugestões práticas, baseadas em ciência e respeito pelo teu momento.\n Como gostarias de seguir a partir daqui?"
+        ],
+        "copy_en": [
+          "There’s no one-size-fits-all solution, ${userName} — but there is a path that makes sense for you.\n If you’d like, I can show you natural options that concentrate all the power of these plants, with safety and care.\n Here, your choice is always respected. Would you like to explore together the possibilities for your health and well-being?",
+          "Now that you know more about how these plants can help, ${userName}, it’s easier to choose where to begin.\n Your body deserves the best — and only you can decide the pace. If you want, I can suggest ways to incorporate these natural allies into your daily life, with no pressure and in your own time.",
+          "If you feel it’s time to take the next step, ${userName}, I’m here to help you turn knowledge into action.\n No miracle formulas — just practical suggestions, based on science and respect for your moment.\n How would you like to move forward from here?"
+        ],
+        "quick_replies_pt": [
+          "Quero conhecer opções naturais pra minha barriga",
+          "Tem sugestão fácil pra começar hoje?",
+          "Quero ver um guia prático dessas plantas",
+          "Como posso usar isso na rotina?",
+          "Prefiro só entender mais antes de decidir",
+          "Quero ver depoimentos de quem já testou",
+          "Existem mais benefícios além da barriga?",
+          "Como encaixar essas dicas no meu dia a dia?",
+          "Quero conversar mais sobre saúde natural",
+          "O que mais posso fazer pra melhorar meu corpo?",
+          "Dá pra combinar essas plantas com alimentação?",
+          "Quero só ouvir mais histórias de transformação"
+        ],
+        "quick_replies_en": [
+          "I want to see natural options for belly fat",
+          "Is there an easy tip I can start today?",
+          "I’d like a practical guide on these plants",
+          "How can I use this in my daily life?",
+          "I prefer to just learn more before deciding",
+          "I want to see testimonials from real people",
+          "Are there other benefits besides belly fat?",
+          "How do I fit these tips into my routine?",
+          "I want to talk more about natural health",
+          "What else can I do to improve my body?",
+          "Can I combine these plants with my diet?",
+          "I just want to hear more transformation stories"
+        ]
+      }
+    }
+  }
+}
 
