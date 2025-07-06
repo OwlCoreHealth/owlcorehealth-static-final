@@ -39,6 +39,14 @@
       "Does stress worsen acne?",
       "Is adult acne common?",
       "When to seek help?"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar uma pele saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy skin?",
+      "How would you like to start this change in your routine?"
     ]
   },
   "fase_2": {
@@ -51,6 +59,42 @@
       "${userName}, recurrent acne can leave deep physical and emotional scars, impacting your self-esteem and skin health. Research shows inflammation caused by hormonal imbalances and environmental toxins is central to this problem.",
       "Did you know, ${userName}, untreated acne can lead to permanent scars and chronic inflammatory conditions? Ultra-processed diets and exposure to contaminated soils worsen these effects.",
       "${userName}, ignoring recurrent acne can increase risk of infections and skin health deterioration. Studies from Journal of Dermatological Science emphasize the importance of natural interventions."
+    ],
+    "quick_replies_pt": [
+      "Por que minha acne volta sempre?",
+      "Alimentos influenciam na acne?",
+      "Solo contaminado afeta pele?",
+      "Carnes hormonizadas pioram acne?",
+      "Quero entender mais sobre acne",
+      "Tem estudos científicos?",
+      "Como cuidar da pele naturalmente?",
+      "Quais sintomas indicam problema sério?",
+      "Quero dicas para pele saudável",
+      "Estresse piora a acne?",
+      "Acne adulta é comum?",
+      "Quando procurar ajuda?"
+    ],
+    "quick_replies_en": [
+      "Why does my acne keep coming back?",
+      "Do foods influence acne?",
+      "Does contaminated soil affect skin?",
+      "Do hormone-treated meats worsen acne?",
+      "I want to learn more about acne",
+      "Are there scientific studies?",
+      "How to care for skin naturally?",
+      "What symptoms indicate serious problem?",
+      "I want tips for healthy skin",
+      "Does stress worsen acne?",
+      "Is adult acne common?",
+      "When to seek help?"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar uma pele saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy skin?",
+      "How would you like to start this change in your routine?"
     ]
   },
   "fase_3": {
@@ -63,6 +107,42 @@
       "${userName}, studies show Dandelion, Fennel, and Babchi contain anti-inflammatory and antioxidant compounds that help reduce skin inflammation and promote regeneration, benefiting those with acne.",
       "Recent research, ${userName}, shows these natural ingredients aid hormonal balance and skin health improvement, as evidenced in studies from Phytotherapy Research.",
       "${userName}, studies from Nutritional Journal confirm regular use of these plants is linked to acne improvement and reduced inflammatory outbreaks."
+    ],
+    "quick_replies_pt": [
+      "Por que minha acne volta sempre?",
+      "Alimentos influenciam na acne?",
+      "Solo contaminado afeta pele?",
+      "Carnes hormonizadas pioram acne?",
+      "Quero entender mais sobre acne",
+      "Tem estudos científicos?",
+      "Como cuidar da pele naturalmente?",
+      "Quais sintomas indicam problema sério?",
+      "Quero dicas para pele saudável",
+      "Estresse piora a acne?",
+      "Acne adulta é comum?",
+      "Quando procurar ajuda?"
+    ],
+    "quick_replies_en": [
+      "Why does my acne keep coming back?",
+      "Do foods influence acne?",
+      "Does contaminated soil affect skin?",
+      "Do hormone-treated meats worsen acne?",
+      "I want to learn more about acne",
+      "Are there scientific studies?",
+      "How to care for skin naturally?",
+      "What symptoms indicate serious problem?",
+      "I want tips for healthy skin",
+      "Does stress worsen acne?",
+      "Is adult acne common?",
+      "When to seek help?"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar uma pele saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy skin?",
+      "How would you like to start this change in your routine?"
     ]
   },
   "fase_4": {
@@ -75,6 +155,42 @@
       "Ancestral plants like Dandelion, Fennel, and Babchi are powerful allies in fighting adult acne, possessing anti-inflammatory, antioxidant, and hormone-regulating properties that promote skin health and cell regeneration.",
       "${userName}, these natural plants help reduce skin inflammation and hormonal imbalance, creating an ideal environment for skin renewal and protection, reducing acne outbreaks.",
       "Used for centuries, these plants provide nutrients that strengthen the skin, fight inflammation, and promote a healthy, renewed appearance, making them essential for those seeking natural and effective care."
+    ],
+    "quick_replies_pt": [
+      "Por que minha acne volta sempre?",
+      "Alimentos influenciam na acne?",
+      "Solo contaminado afeta pele?",
+      "Carnes hormonizadas pioram acne?",
+      "Quero entender mais sobre acne",
+      "Tem estudos científicos?",
+      "Como cuidar da pele naturalmente?",
+      "Quais sintomas indicam problema sério?",
+      "Quero dicas para pele saudável",
+      "Estresse piora a acne?",
+      "Acne adulta é comum?",
+      "Quando procurar ajuda?"
+    ],
+    "quick_replies_en": [
+      "Why does my acne keep coming back?",
+      "Do foods influence acne?",
+      "Does contaminated soil affect skin?",
+      "Do hormone-treated meats worsen acne?",
+      "I want to learn more about acne",
+      "Are there scientific studies?",
+      "How to care for skin naturally?",
+      "What symptoms indicate serious problem?",
+      "I want tips for healthy skin",
+      "Does stress worsen acne?",
+      "Is adult acne common?",
+      "When to seek help?"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar uma pele saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy skin?",
+      "How would you like to start this change in your routine?"
     ]
   },
   "fase_5": {
@@ -115,7 +231,14 @@
       "Any tips for motivation?",
       "Is it safe for everyone?",
       "I want to see studies and real stories"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar uma pele saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy skin?",
+      "How would you like to start this change in your routine?"
     ]
   }
 }
-
