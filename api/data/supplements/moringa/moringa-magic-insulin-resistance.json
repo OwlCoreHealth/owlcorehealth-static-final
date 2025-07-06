@@ -1,1 +1,217 @@
+{
+  "supplement": "Moringa Magic",
+  "symptom": "Insulin Resistance / Resistência à Insulina",
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Conexão/Conscientização",
+      "copies_pt": [
+        "${userName}, você já sentiu que seu corpo não responde bem à insulina, mesmo sem um diagnóstico formal? A resistência à insulina é uma condição silenciosa que afeta milhões e está fortemente relacionada à alimentação moderna cheia de ultraprocessados, açúcares refinados, solos empobrecidos e carnes tratadas com hormônios. Esses fatores comprometem a capacidade do organismo de usar a insulina corretamente, causando desequilíbrios metabólicos que afetam sua saúde geral.",
+        "A resistência à insulina, ${userName}, pode ser um sinal de que seu corpo está lutando para controlar o açúcar no sangue devido à má qualidade dos alimentos consumidos. Alimentos industrializados, cultivados em solos degradados e carnes hormonizadas interferem na sensibilidade das células à insulina, dificultando o controle glicêmico e elevando riscos de doenças metabólicas. Reconhecer esse sintoma é fundamental para agir antes que se torne um problema maior.",
+        "${userName}, quando o corpo não responde bem à insulina, ele precisa produzir mais para manter o açúcar no sangue estável. Isso acontece com frequência hoje em dia devido ao consumo excessivo de alimentos processados e contaminados, que comprometem o metabolismo e a saúde celular. A ciência já mostra que essa condição silenciosa pode levar a problemas sérios, por isso é importante estar atento aos sinais e buscar alternativas naturais."
+      ],
+      "copies_en": [
+        "${userName}, have you felt your body isn’t responding well to insulin, even without a formal diagnosis? Insulin resistance is a silent condition affecting millions and is strongly linked to modern diets full of ultra-processed foods, refined sugars, depleted soils, and hormone-treated meats. These factors impair your body’s ability to use insulin properly, causing metabolic imbalances that affect your overall health.",
+        "Insulin resistance, ${userName}, can be a sign your body struggles to control blood sugar due to poor food quality. Industrialized foods grown in degraded soils and hormone-treated meats interfere with cells’ insulin sensitivity, making glycemic control difficult and increasing metabolic disease risks. Recognizing this symptom is key to acting before it becomes a bigger problem.",
+        "${userName}, when the body doesn’t respond well to insulin, it needs to produce more to keep blood sugar stable. This happens frequently today due to excessive consumption of processed and contaminated foods that compromise metabolism and cell health. Science shows this silent condition can lead to serious problems, so it’s important to watch for signs and seek natural alternatives."
+      ],
+      "quick_replies_pt": [
+        "O que é resistência à insulina?",
+        "Como alimentação influencia isso?",
+        "Solo contaminado piora a resistência?",
+        "Carnes com hormônios afetam?",
+        "Quero entender mais sobre resistência à insulina",
+        "Tem estudos científicos?",
+        "Quais sintomas devo observar?",
+        "Dá para reverter naturalmente?",
+        "É normal hoje em dia?",
+        "Quero dicas para melhorar a sensibilidade",
+        "Estresse piora a condição?",
+        "Como controlar isso no dia a dia?"
+      ],
+      "quick_replies_en": [
+        "What is insulin resistance?",
+        "How does diet influence it?",
+        "Does contaminated soil worsen resistance?",
+        "Do hormone-treated meats affect it?",
+        "I want to learn more about insulin resistance",
+        "Are there scientific studies?",
+        "What symptoms should I watch for?",
+        "Can it be reversed naturally?",
+        "Is it common nowadays?",
+        "I want tips to improve sensitivity",
+        "Does stress worsen the condition?",
+        "How to manage it daily?"
+      ]
+    },
+    {
+      "phase": 2,
+      "name": "Gravidade/Consequência",
+      "copies_pt": [
+        "${userName}, a resistência à insulina pode evoluir para problemas metabólicos graves, como diabetes tipo 2 e síndrome metabólica. Estudos da American Diabetes Association alertam que a má alimentação, com ultraprocessados, solos empobrecidos e carnes com hormônios, acelera esse processo, aumentando a inflamação e comprometendo órgãos vitais. Ignorar esse quadro pode comprometer sua saúde a longo prazo.",
+        "Você sabia, ${userName}, que a resistência à insulina está associada a maiores riscos de doenças cardíacas, obesidade e problemas hepáticos? Pesquisas da Harvard Medical School confirmam que a exposição contínua a alimentos industrializados e contaminados, além de carnes hormonizadas, intensifica a inflamação sistêmica e prejudica o metabolismo. Cuidar dessa condição é essencial para prevenir complicações sérias.",
+        "${userName}, quando o corpo se torna resistente à insulina, ele sofre um estresse metabólico que afeta a capacidade de regular o açúcar no sangue. Dados da Organização Mundial da Saúde indicam que essa condição está ligada ao aumento da inflamação crônica, à diminuição da imunidade e ao surgimento de doenças crônicas. Melhorar a alimentação e cuidar da saúde celular são passos decisivos para reverter esse quadro."
+      ],
+      "copies_en": [
+        "${userName}, insulin resistance can progress to serious metabolic problems like type 2 diabetes and metabolic syndrome. American Diabetes Association studies warn that poor diets with ultra-processed foods, depleted soils, and hormone-treated meats accelerate this process, increasing inflammation and compromising vital organs. Ignoring this condition can harm your long-term health.",
+        "Did you know, ${userName}, insulin resistance is linked to higher risks of heart disease, obesity, and liver problems? Harvard Medical School research confirms continuous exposure to industrialized and contaminated foods, plus hormone-treated meats, intensifies systemic inflammation and harms metabolism. Caring for this condition is essential to prevent serious complications.",
+        "${userName}, when the body becomes insulin resistant, it undergoes metabolic stress affecting blood sugar regulation. World Health Organization data link this condition to increased chronic inflammation, decreased immunity, and chronic disease onset. Improving diet and cellular health care are crucial steps to reverse this."
+      ],
+      "quick_replies_pt": [
+        "Resistência à insulina é grave?",
+        "Alimentos processados pioram?",
+        "Solo contaminado afeta?",
+        "Carnes hormonizadas prejudicam?",
+        "Quero saber mais sobre inflamação",
+        "Resistência afeta imunidade?",
+        "Dá para reverter?",
+        "Quais sintomas devo observar?",
+        "Quero dicas para melhorar",
+        "Estresse piora a resistência?",
+        "Tem estudos confiáveis?",
+        "Como cuidar no dia a dia?"
+      ],
+      "quick_replies_en": [
+        "Is insulin resistance serious?",
+        "Do processed foods worsen it?",
+        "Does contaminated soil affect it?",
+        "Do hormone-treated meats harm?",
+        "I want to learn more about inflammation",
+        "Does resistance affect immunity?",
+        "Can it be reversed?",
+        "What symptoms should I watch for?",
+        "I want tips to improve",
+        "Does stress worsen resistance?",
+        "Are there reliable studies?",
+        "How to manage daily?"
+      ]
+    },
+    {
+      "phase": 3,
+      "name": "Prova/Evidência",
+      "copies_pt": [
+        "${userName}, a Moringa é reconhecida por seus compostos que ajudam a melhorar a sensibilidade à insulina e reduzir a inflamação. Estudos publicados no Frontiers in Pharmacology mostram que a planta auxilia no equilíbrio glicêmico, protegendo o organismo dos efeitos negativos da resistência à insulina e promovendo saúde metabólica.",
+        "Pesquisas recentes, ${userName}, indicam que os antioxidantes e nutrientes da Moringa atuam para reduzir a resistência à insulina, melhorar o metabolismo da glicose e diminuir a inflamação crônica. Publicações do Journal of Ethnopharmacology reforçam seu potencial como aliado natural na prevenção e controle de doenças metabólicas.",
+        "${userName}, estudos do Nutritional Journal confirmam que a Moringa melhora a função celular e a produção de energia, auxiliando no controle do açúcar no sangue e na resistência insulínica. Pessoas que incorporaram Moringa em sua rotina relatam maior disposição e equilíbrio metabólico."
+      ],
+      "copies_en": [
+        "${userName}, Moringa is recognized for compounds that improve insulin sensitivity and reduce inflammation. Studies published in Frontiers in Pharmacology show the plant helps balance glucose levels, protecting the body from the negative effects of insulin resistance and promoting metabolic health.",
+        "Recent research, ${userName}, indicates Moringa’s antioxidants and nutrients reduce insulin resistance, improve glucose metabolism, and decrease chronic inflammation. Publications from the Journal of Ethnopharmacology reinforce its potential as a natural ally in preventing and managing metabolic diseases.",
+        "${userName}, studies from the Nutritional Journal confirm Moringa improves cell function and energy production, aiding blood sugar control and insulin resistance. People who incorporated Moringa into their routine report increased vitality and metabolic balance."
+      ],
+      "quick_replies_pt": [
+        "Moringa ajuda na resistência à insulina?",
+        "Tem estudos comprovando?",
+        "Quanto tempo para sentir resultado?",
+        "Posso usar todos os dias?",
+        "Ajuda a reduzir inflamação?",
+        "Moringa melhora metabolismo?",
+        "É seguro para uso contínuo?",
+        "Quero relatos de quem melhorou",
+        "Como a Moringa age no corpo?",
+        "Posso combinar com outras plantas?",
+        "Quero dicas para começar",
+        "Quero ver estudos científicos"
+      ],
+      "quick_replies_en": [
+        "Does Moringa help insulin resistance?",
+        "Are there studies proving this?",
+        "How long to feel results?",
+        "Can I use it daily?",
+        "Does it help reduce inflammation?",
+        "Does Moringa improve metabolism?",
+        "Is it safe for continuous use?",
+        "I want stories from people who improved",
+        "How does Moringa act in the body?",
+        "Can I combine it with other plants?",
+        "I want tips to start",
+        "I want to see scientific studies"
+      ]
+    },
+    {
+      "phase": 4,
+      "name": "Solução Natural/Plantas",
+      "copies_pt": [
+        "A Moringa é rica em nutrientes que auxiliam a melhorar a sensibilidade à insulina, equilibrar os níveis de glicose e reduzir a inflamação crônica, fatores essenciais para quem enfrenta resistência insulínica. Estudos da Frontiers in Nutrition comprovam que seu consumo regular fortalece o metabolismo e protege o organismo contra os danos metabólicos.",
+        "${userName}, os compostos bioativos da Moringa ajudam a regular o metabolismo da glicose, promovendo equilíbrio hormonal e melhorando a resposta das células à insulina. Tradicionalmente utilizada para controlar o açúcar no sangue, a planta agora tem respaldo científico como uma poderosa aliada para a saúde metabólica.",
+        "Originária de usos ancestrais, a Moringa oferece um conjunto de vitaminas, minerais e antioxidantes que combatem a inflamação e fortalecem a função pancreática. Com seu uso regular, é possível melhorar a sensibilidade à insulina, promovendo maior estabilidade glicêmica e bem-estar."
+      ],
+      "copies_en": [
+        "Moringa is rich in nutrients that help improve insulin sensitivity, balance glucose levels, and reduce chronic inflammation — essential factors for those facing insulin resistance. Studies from Frontiers in Nutrition confirm regular consumption strengthens metabolism and protects the body from metabolic damage.",
+        "${userName}, Moringa’s bioactive compounds help regulate glucose metabolism, promote hormonal balance, and improve cell response to insulin. Traditionally used to control blood sugar, the plant now has scientific backing as a powerful ally for metabolic health.",
+        "With ancestral uses, Moringa offers a combination of vitamins, minerals, and antioxidants that fight inflammation and strengthen pancreatic function. Regular use can improve insulin sensitivity, promoting better glycemic stability and well-being."
+      ],
+      "quick_replies_pt": [
+        "Como usar Moringa para resistência insulínica?",
+        "Tem receita para controlar açúcar?",
+        "Ajuda na prevenção de diabetes?",
+        "Posso usar todos os dias?",
+        "Quero relatos de quem melhorou",
+        "Quanto tempo para ver resultados?",
+        "É seguro para uso contínuo?",
+        "Posso combinar com outras plantas?",
+        "Quero dicas para começar",
+        "Ajuda no metabolismo?",
+        "Quero ver estudos científicos",
+        "Dá para usar com alimentação variada?"
+      ],
+      "quick_replies_en": [
+        "How to use Moringa for insulin resistance?",
+        "Any recipe to control sugar?",
+        "Does it help prevent diabetes?",
+        "Can I use it daily?",
+        "I want stories from people who improved",
+        "How long to see results?",
+        "Is it safe for continuous use?",
+        "Can I combine with other plants?",
+        "I want tips to start",
+        "Does it help metabolism?",
+        "I want to see scientific studies",
+        "Can it be used with varied diet?"
+      ]
+    },
+    {
+      "phase": 5,
+      "name": "Próximo Passo",
+      "copies_pt": [
+        "${userName}, iniciar um cuidado natural com a resistência à insulina é simples e eficaz com a Moringa e uma alimentação equilibrada. Essa planta vai ajudar seu corpo a recuperar a sensibilidade à insulina, controlar o açúcar no sangue e melhorar sua saúde geral. Posso te ajudar com orientações práticas, receitas e um plano acessível para essa transformação.",
+        "A transformação começa com pequenas mudanças, ${userName}. Ao incluir a Moringa na rotina e optar por alimentos naturais, você oferece ao corpo suporte para reverter a resistência insulínica e promover o equilíbrio metabólico. Estou aqui para te guiar com passos simples que respeitam seu ritmo e estilo de vida.",
+        "${userName}, sua jornada para uma saúde metabólica melhor pode começar agora. Com Moringa e escolhas alimentares conscientes, seu corpo terá o suporte necessário para restaurar a sensibilidade à insulina e manter os níveis de açúcar estáveis. Posso fornecer um plano personalizado com receitas, dicas e cuidados para essa nova fase."
+      ],
+      "copies_en": [
+        "${userName}, starting a natural care routine for insulin resistance is simple and effective with Moringa and balanced nutrition. This plant will help your body recover insulin sensitivity, control blood sugar, and improve your overall health. I can help with practical guidance, recipes, and an accessible plan for this transformation.",
+        "Transformation begins with small changes, ${userName}. By including Moringa in your routine and choosing natural foods, you give your body support to reverse insulin resistance and promote metabolic balance. I’m here to guide you with simple steps that respect your pace and lifestyle.",
+        "${userName}, your journey to better metabolic health can start now. With Moringa and conscious food choices, your body will have the support needed to restore insulin sensitivity and maintain stable sugar levels. I can provide a personalized plan with recipes, tips, and care for this new phase."
+      ],
+      "quick_replies_pt": [
+        "Quero começar já com Moringa",
+        "Tem receita fácil para resistência insulínica",
+        "Quero relatos reais de transformação",
+        "Como montar uma rotina prática?",
+        "Prefiro aprender mais antes",
+        "Resultados são duradouros?",
+        "Posso combinar com minha alimentação?",
+        "Quero conversar sobre escolhas naturais",
+        "Dá pra fazer em família?",
+        "Tem dicas para motivação?",
+        "É seguro para todos?",
+        "Quero ver estudos e relatos reais"
+      ],
+      "quick_replies_en": [
+        "I want to start with Moringa now",
+        "Any easy recipe for insulin resistance",
+        "I want real transformation stories",
+        "How to build a practical routine?",
+        "I’d rather learn more first",
+        "Are results lasting?",
+        "Can I combine with my diet?",
+        "I want to talk about natural choices",
+        "Can this be done as a family?",
+        "Any tips for motivation?",
+        "Is it safe for everyone?",
+        "I want to see studies and real stories"
+      ]
+    }
+  ]
+}
 
