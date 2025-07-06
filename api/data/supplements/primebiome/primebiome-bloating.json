@@ -1,1 +1,237 @@
+{
+  "supplement": "PRIME BIOME",
+  "symptom": "abdominal-bloating-and-gas",
+  "phases": [
+    {
+      "id": 1,
+      "title": "Conexão/Conscientização",
+      "copies": {
+        "pt": [
+          "Olha, ${userName}, falar sobre inchaço e gases não é fácil, mas ninguém merece sentir desconforto todos os dias. Às vezes parece que o estômago está sempre cheio, pesado, mesmo comendo pouco. Muita gente sente vergonha ou acha que é normal, mas teu corpo está só pedindo para ser ouvido de verdade. Aqui não tem julgamento, só vontade de entender o que está te incomodando.",
+          "Tem dias que a barriga incha tanto, né, ${userName}? Dá até vontade de fugir das roupas apertadas ou dos compromissos. Não precisa carregar isso sozinho. Esse desconforto pode ser sinal de algo simples, mas que está pedindo atenção faz tempo. A gente pode olhar pra isso juntos, sem pressão e sem tabu.",
+          "${userName}, sei como é difícil lidar com o inchaço — às vezes parece que nada funciona e que ninguém entende direito como incomoda. Mas quero te dizer: tua experiência importa. Aqui, cada detalhe do teu sintoma pode ser o começo de um caminho pra mais leveza e bem-estar."
+        ],
+        "en": [
+          "Look, ${userName}, talking about bloating and gas isn’t easy, but no one deserves to feel uncomfortable every day. Sometimes your stomach just feels heavy and full, even when you haven’t eaten much. A lot of people feel embarrassed or think it’s normal, but your body is just asking to be heard. Here, there’s no judgment — just a real desire to understand what’s bothering you.",
+          "Some days that bloating just won’t go away, right, ${userName}? It makes you want to avoid tight clothes or even social events. You don’t have to deal with this alone. This discomfort could be a sign of something simple, but your body’s been asking for attention for a while. We can look at this together, no pressure, no shame.",
+          "${userName}, I know how hard it is to deal with bloating — sometimes nothing seems to work and no one really gets how much it bothers you. But I want you to know: your experience matters. Here, every detail of your symptom could be the start of a journey to more lightness and well-being."
+        ]
+      },
+      "quickReplies": {
+        "pt": [
+          "Quero entender o que causa tanto inchaço",
+          "Pode ser algo na alimentação?",
+          "Por que os gases aparecem tão fácil?",
+          "Será que tenho intolerância a algum alimento?",
+          "Já tentei de tudo e nada melhora, o que fazer?",
+          "Tem relação com estresse?",
+          "O que o corpo está tentando avisar?",
+          "Como saber se é algo sério?",
+          "Existem histórias de quem venceu o inchaço?",
+          "Pode ser problema de flora intestinal?",
+          "O que posso mudar na rotina?",
+          "Quero dicas para aliviar o desconforto"
+        ],
+        "en": [
+          "I want to understand what causes all this bloating",
+          "Could it be something in my diet?",
+          "Why do I get gas so easily?",
+          "Could I be intolerant to a certain food?",
+          "I’ve tried everything and nothing helps, what now?",
+          "Is it related to stress?",
+          "What is my body trying to tell me?",
+          "How do I know if it’s something serious?",
+          "Are there stories of people who overcame bloating?",
+          "Could it be a gut flora problem?",
+          "What can I change in my routine?",
+          "I want tips to ease the discomfort"
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "title": "Gravidade/Consequência",
+      "copies": {
+        "pt": [
+          "${userName}, ignorar o inchaço abdominal pode parecer uma saída fácil, mas com o tempo ele pode trazer mais do que desconforto — pode mexer com tua digestão, teu humor, teu sono e até tua imunidade. Deixar pra lá hoje pode virar um problema maior amanhã. Aqui, a ideia é cuidar cedo, para não precisar correr depois.",
+          "Sei que às vezes a gente tenta acostumar e finge que não sente nada, ${userName}. Mas o corpo sempre encontra um jeito de cobrar depois: mais cansaço, irritação, até outros sintomas digestivos e de pele. Vale a pena dar atenção agora para evitar dores de cabeça lá na frente, não acha?",
+          "O inchaço pode parecer só um detalhe, ${userName}, mas pode ser sinal de que o organismo está sobrecarregado. Quando o corpo não elimina direito o que não serve, a sensação ruim vai acumulando e pode afetar várias áreas da saúde. Não precisa esperar piorar pra começar a cuidar de ti."
+        ],
+        "en": [
+          "${userName}, ignoring bloating might seem like the easiest way out, but over time it can bring more than discomfort — it can mess with your digestion, your mood, your sleep, even your immunity. Putting it off today could mean a bigger problem tomorrow. Here, the idea is to care early, so you don’t have to rush later.",
+          "Sometimes we try to get used to it and pretend it’s not there, ${userName}. But the body always finds a way to let us know: more tiredness, irritation, even other digestive and skin symptoms. It’s worth paying attention now to avoid bigger headaches later, don’t you think?",
+          "Bloating may seem like just a detail, ${userName}, but it can be a sign that your body is overloaded. When your system can’t eliminate what it doesn’t need, that uncomfortable feeling just builds up and can affect lots of areas of your health. You don’t have to wait for things to get worse to start taking care of yourself."
+        ]
+      },
+      "quickReplies": {
+        "pt": [
+          "Isso pode afetar outros órgãos?",
+          "Se eu ignorar, pode virar algo sério?",
+          "Como o inchaço pode mexer com minha imunidade?",
+          "Pode influenciar no meu humor e energia?",
+          "Já teve gente que piorou por não cuidar?",
+          "Pode trazer outros sintomas digestivos?",
+          "Isso atrapalha o sono?",
+          "Qual o impacto a longo prazo?",
+          "Dá para evitar complicações cuidando cedo?",
+          "Quais riscos se não tratar?",
+          "Como sei se é hora de buscar ajuda?",
+          "Tem histórias de quem se sentiu melhor só mudando um hábito?"
+        ],
+        "en": [
+          "Can this affect other organs?",
+          "If I ignore it, could it become serious?",
+          "How can bloating affect my immunity?",
+          "Can it impact my mood and energy?",
+          "Has anyone gotten worse by not taking care of it?",
+          "Can it lead to other digestive symptoms?",
+          "Does it interfere with sleep?",
+          "What’s the long-term impact?",
+          "Can I avoid complications by taking care early?",
+          "What are the risks if I don’t treat it?",
+          "How do I know if it’s time to seek help?",
+          "Are there stories of people who improved just by changing a habit?"
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "title": "Prova/Evidência",
+      "copies": {
+        "pt": [
+          "Tu não está sozinho, ${userName}. Muita gente já passou (e superou) esse incômodo. Hoje, estudos mostram que o inchaço abdominal muitas vezes está ligado a um desequilíbrio de bactérias no intestino, alimentação industrializada, ou até ao estresse acumulado. Mas a boa notícia é que, ao restaurar o equilíbrio natural do corpo, muita coisa pode mudar — e há cada vez mais histórias de quem conseguiu transformar esse desconforto em leveza.",
+          "Pode confiar: já tem pesquisa séria comprovando que cuidar do intestino pode reduzir não só o inchaço, mas melhorar energia, pele e até o humor. Probióticos como o Bacillus Coagulans e fibras naturais já foram testados em milhares de pessoas, trazendo resultados reais. Tu podes ser a próxima história de superação, ${userName}.",
+          "Não é só impressão tua, ${userName}. A ciência já descobriu que o desconforto abdominal e os gases têm explicação — e solução. Depoimentos mostram que, com pequenas mudanças e o apoio de ingredientes certos, a vida pode ficar mais leve, o corpo menos reativo e a mente mais tranquila. Posso te mostrar alguns desses estudos ou relatos se quiser."
+        ],
+        "en": [
+          "You’re not alone, ${userName}. Many people have been through (and overcome) this discomfort. Today, studies show that abdominal bloating is often linked to an imbalance of gut bacteria, processed foods, or even built-up stress. But the good news is that when you restore your body’s natural balance, everything can start to change — and more and more people are sharing their success stories.",
+          "Trust me, there’s solid research proving that taking care of your gut can reduce not just bloating, but boost energy, skin, and even your mood. Probiotics like Bacillus Coagulans and natural fibers have been tested in thousands of people, bringing real results. You could be the next success story, ${userName}.",
+          "It’s not just your imagination, ${userName}. Science has already discovered that abdominal discomfort and gas have explanations — and solutions. Testimonials show that with small changes and the right ingredients, life can get lighter, your body less reactive, and your mind more at ease. I can show you some of these studies or stories if you’d like."
+        ]
+      },
+      "quickReplies": {
+        "pt": [
+          "Quero ver pesquisas sobre inchaço abdominal",
+          "Existem estudos sobre probióticos e gases?",
+          "Tem casos reais de quem superou isso?",
+          "O que dizem os médicos?",
+          "Bacillus Coagulans funciona mesmo?",
+          "Qual papel da alimentação nesses casos?",
+          "Mudanças pequenas realmente ajudam?",
+          "Tem gráficos de melhora com probióticos?",
+          "Fibra natural faz diferença?",
+          "Quero saber mais sobre as experiências reais",
+          "Probióticos ajudam mesmo no dia a dia?",
+          "Histórias de quem mudou a rotina intestinal"
+        ],
+        "en": [
+          "I want to see research on abdominal bloating",
+          "Are there studies on probiotics and gas?",
+          "Are there real cases of people overcoming this?",
+          "What do doctors say?",
+          "Does Bacillus Coagulans really work?",
+          "What role does diet play in these cases?",
+          "Do small changes really help?",
+          "Are there charts showing improvement with probiotics?",
+          "Does natural fiber make a difference?",
+          "I want to know more about real-life experiences",
+          "Do probiotics really help in daily life?",
+          "Stories of people who changed their gut routine"
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "title": "Solução Natural/Plantas",
+      "copies": {
+        "pt": [
+          "${userName}, já pensou que a resposta pode estar em ingredientes que teus avós usavam sem nem saber a palavra 'probiótico'? Bacillus Coagulans, por exemplo, é uma bactéria amiga que fortalece tua flora intestinal e te protege de dentro pra fora — e hoje a ciência mostra que quem usa tem menos inchaço, mais imunidade e até mais energia. Babchi, Dente-de-leão, Funcho, Inulina… todas plantas com história, respeitadas há gerações em culturas que nunca abriram mão do cuidado natural. Não é só tradição: são estudos, resultados e histórias de gente real transformando saúde com a força dessas plantas.",
+          "Quando a barriga pesa, a gente só quer se sentir leve de novo, né, ${userName}? Plantas como Babchi e Funcho eram os “remédios” naturais dos povos antigos para digestão e desconforto, muito antes de qualquer farmácia existir. Hoje, pesquisas comprovam que elas acalmam o intestino, reduzem gases e ainda equilibram a pele e o humor. É impressionante como algo tão simples pode fazer tanta diferença — e tu podes experimentar esse cuidado agora.",
+          "O segredo não está só nos suplementos modernos, ${userName} — está na sabedoria de quem aprendeu a cuidar do corpo ouvindo a natureza. Lemon Balm, Gengibre Ceylon orgânico, Lion’s Mane… cada ingrediente tem uma função única: proteger, limpar, equilibrar. Os estudos mostram que usar essas plantas não é só tradição, é ciência aplicada. Quem começa, sente a diferença — e muitos dizem que não querem mais viver sem esse cuidado."
+        ],
+        "en": [
+          "${userName}, have you ever thought that the answer could be in ingredients your grandparents used, long before anyone said ‘probiotic’? Bacillus Coagulans, for example, is a friendly bacteria that strengthens your gut flora and protects you from the inside out — and today, science shows that those who use it have less bloating, better immunity, even more energy. Babchi, Dandelion, Fennel, Inulin… all plants with history, respected for generations in cultures that never let go of natural care. It’s not just tradition: there are studies, real results, and stories of real people transforming their health with the power of these plants.",
+          "When your belly feels heavy, all you want is to feel light again, right, ${userName}? Plants like Babchi and Fennel were the natural ‘remedies’ used by ancient peoples for digestion and discomfort, long before pharmacies existed. Today, research proves that they calm the gut, reduce gas, and even help balance your skin and mood. It’s amazing how something so simple can make such a difference — and you can try this care now.",
+          "The secret isn’t just in modern supplements, ${userName} — it’s in the wisdom of people who learned to care for their bodies by listening to nature. Lemon balm, organic Ceylon ginger, Lion’s Mane… every ingredient has a unique function: protecting, cleansing, balancing. Studies show that using these plants isn’t just tradition, it’s science in action. People who start using them say they never want to live without this care again."
+        ]
+      },
+      "quickReplies": {
+        "pt": [
+          "Como posso usar Bacillus Coagulans no meu dia a dia?",
+          "Qual planta é melhor para gases e inchaço?",
+          "Tem receita fácil com dente-de-leão?",
+          "Inulina é segura para todos?",
+          "Lion’s Mane ajuda mesmo na digestão?",
+          "Quero entender o papel do Funcho",
+          "Como as plantas podem ajudar minha pele também?",
+          "Probióticos naturais funcionam mesmo?",
+          "Qual diferença entre gengibre comum e Ceylon?",
+          "Tem alguma dica de preparo com Lemon Balm?",
+          "Já tem estudos mostrando a eficácia dessas plantas?",
+          "Quero começar hoje, por onde começo?"
+        ],
+        "en": [
+          "How can I use Bacillus Coagulans daily?",
+          "Which plant works best for gas and bloating?",
+          "Any easy recipe with dandelion?",
+          "Is inulin safe for everyone?",
+          "Does Lion’s Mane really help with digestion?",
+          "I want to understand fennel’s role",
+          "How can these plants help my skin too?",
+          "Do natural probiotics really work?",
+          "What’s the difference between common ginger and Ceylon?",
+          "Any tips for using lemon balm?",
+          "Are there studies proving these plants work?",
+          "I want to start today, where do I begin?"
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "title": "Apresentação da Solução/Próximo Passo",
+      "copies": {
+        "pt": [
+          "Se sentires que chegou tua hora de cuidar de verdade, ${userName}, posso te mostrar opções naturais que concentram tudo que há de melhor nessas plantas e ingredientes, de forma prática, segura e respeitosa. Aqui, teu ritmo e tua escolha vêm sempre em primeiro lugar. Como gostarias de dar o próximo passo para sentir leveza de verdade?",
+          "Agora que já conheces mais sobre o poder dessas plantas, fica mais fácil decidir por onde começar. O mais importante é que teu corpo e tua saúde importam — e tu não precisas fazer isso sozinho. Se quiser, posso indicar formas naturais e seguras de incorporar esses aliados na tua rotina, do teu jeito.",
+          "Ninguém precisa viver sentindo desconforto, ${userName}. Se quiser dar um passo adiante, estou aqui pra te ajudar a transformar esse cuidado em parte da tua vida, sem pressa, sem pressão, só com respeito e conhecimento. Como quer seguir daqui pra frente?"
+        ],
+        "en": [
+          "If you feel it’s time to truly care for yourself, ${userName}, I can show you natural options that bring together all the best from these plants and ingredients — in a practical, safe, and respectful way. Here, your pace and your choice always come first. How would you like to take the next step to real lightness?",
+          "Now that you know more about the power of these plants, it’s easier to decide where to start. What matters most is that your body and health are important — and you don’t have to do this alone. If you want, I can point out natural and safe ways to bring these allies into your routine, your way.",
+          "No one needs to live with discomfort, ${userName}. If you want to take the next step, I’m here to help you make this care a real part of your life — no rush, no pressure, just respect and knowledge. How would you like to move forward from here?"
+        ]
+      },
+      "quickReplies": {
+        "pt": [
+          "Quero experimentar essas plantas no meu dia a dia",
+          "Tem sugestão fácil pra começar?",
+          "Quero um guia prático com essas plantas",
+          "Como encaixar isso na rotina?",
+          "Prefiro só entender mais antes de decidir",
+          "Quero ver histórias de quem usou",
+          "Existem outros benefícios além do inchaço?",
+          "Tem dicas para incluir na alimentação?",
+          "Quero conversar mais sobre saúde intestinal",
+          "O que mais posso fazer pela minha digestão?",
+          "Dá pra combinar essas plantas com outros cuidados?",
+          "Quero ouvir mais relatos de transformação"
+        ],
+        "en": [
+          "I want to try these plants in my daily life",
+          "Any easy suggestions to get started?",
+          "I’d like a practical guide on these plants",
+          "How can I fit this into my routine?",
+          "I prefer to just learn more before deciding",
+          "I want to see stories from people who used them",
+          "Are there benefits besides reducing bloating?",
+          "Any tips for including them in my diet?",
+          "I want to talk more about gut health",
+          "What else can I do for my digestion?",
+          "Can I combine these plants with other care?",
+          "I want to hear more transformation stories"
+        ]
+      }
+    }
+  ]
+}
 
