@@ -482,9 +482,9 @@
         "reflective_questions_en": [
           "What would make you feel safe to take the next step and try a new routine?",
           "Do you prefer to start gradually or include all suggestions at once?"
-       ]
-      }, 
-      
+        ]
+      },
+    
   "suplemento": "Mitolyn",
   "sintomas": {
     "metabolismo_lento": {
@@ -950,6 +950,7 @@
           "Do you prefer to start with just one plant or try several at once?"
         ]
       },
+
   "suplemento": "Mitolyn",
   "sintomas": {
     "weight_gain_around_stomach": {
