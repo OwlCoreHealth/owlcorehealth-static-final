@@ -1,1 +1,232 @@
+{
+  "supplement": "Pineal Guardian",
+  "symptom": "Mental Fatigue",
+  "phases": [
+    {
+      "phase": "Fase 1 — Conexão/Conscientização",
+      "copy": {
+        "pt": [
+          "${userName}, você tem se sentido exausto mentalmente, mesmo sem grandes esforços? A fadiga mental é um sinal de que seu cérebro está sobrecarregado e precisa de apoio para se recuperar. A alimentação moderna, cheia de ultraprocessados, solos empobrecidos e carnes hormonizadas pode aumentar a inflamação cerebral, dificultando o desempenho cognitivo e o foco.",
+          "Quando a fadiga mental se torna constante, ${userName}, isso pode estar relacionado ao impacto negativo da alimentação e do ambiente ao seu redor. A ingestão de alimentos processados, solos degradados e carnes com hormônios pode estar interferindo diretamente no seu nível de energia mental e clareza.",
+          "Você sabia, ${userName}, que a sensação de cansaço mental pode ser causada por desequilíbrios alimentares e ambientais? A combinação de dietas industrializadas e exposição a toxinas pode prejudicar a função cerebral, resultando em um cansaço mental excessivo."
+        ],
+        "en": [
+          "${userName}, have you been feeling mentally exhausted, even without major efforts? Mental fatigue is a sign that your brain is overloaded and needs support to recover. Modern diets full of ultra-processed foods, nutrient-depleted soils, and hormone-treated meats can increase brain inflammation, hindering cognitive performance and focus.",
+          "When mental fatigue becomes constant, ${userName}, it may be related to the negative impact of diet and the environment around you. Consumption of processed foods, degraded soils, and hormone-treated meats may be directly interfering with your mental energy and clarity.",
+          "Did you know, ${userName}, that mental fatigue can be caused by dietary and environmental imbalances? The combination of industrial diets and exposure to toxins can harm brain function, leading to excessive mental exhaustion."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Por que estou tão cansado mentalmente?",
+          "Alimentos afetam a energia mental?",
+          "Solo contaminado prejudica o cérebro?",
+          "Carnes com hormônios influenciam?",
+          "Quero entender mais sobre fadiga mental",
+          "Tem estudos científicos?",
+          "Como melhorar a energia mental naturalmente?",
+          "Quais sintomas indicam fadiga mental grave?",
+          "Quero dicas para aliviar o cansaço mental",
+          "Estresse piora a fadiga mental?",
+          "É normal sentir isso hoje?",
+          "Quando procurar ajuda médica?"
+        ],
+        "en": [
+          "Why am I so mentally tired?",
+          "Do foods affect mental energy?",
+          "Does contaminated soil harm the brain?",
+          "Do hormone-treated meats influence?",
+          "I want to learn more about mental fatigue",
+          "Are there scientific studies?",
+          "How to improve mental energy naturally?",
+          "What symptoms indicate serious mental fatigue?",
+          "I want tips to relieve mental fatigue",
+          "Does stress worsen mental fatigue?",
+          "Is this normal nowadays?",
+          "When to seek medical help?"
+        ]
+      }
+    },
+    {
+      "phase": "Fase 2 — Gravidade/Consequência",
+      "copy": {
+        "pt": [
+          "${userName}, a fadiga mental persistente pode afetar sua capacidade de concentração, produtividade e até seu humor, prejudicando a qualidade de vida. Estudos mostram que a inflamação cerebral causada por uma alimentação inadequada e exposição a toxinas ambientais pode agravar esses sintomas.",
+          "Você sabia, ${userName}, que a fadiga mental constante pode desencadear uma série de problemas cognitivos, como dificuldade de concentração e perda de memória? A exposição a alimentos processados e toxinas pode intensificar esses problemas.",
+          "${userName}, quando a fadiga mental se prolonga, ela pode evoluir para transtornos cognitivos mais graves. Dados da Organização Mundial da Saúde indicam que maus hábitos alimentares e ambientais são fatores chave que agravam esse quadro."
+        ],
+        "en": [
+          "${userName}, persistent mental fatigue can affect your concentration, productivity, and even your mood, compromising quality of life. Studies show that brain inflammation caused by poor diet and exposure to environmental toxins can worsen these symptoms.",
+          "Did you know, ${userName}, that constant mental fatigue can trigger a series of cognitive issues like difficulty concentrating and memory loss? Exposure to processed foods and toxins can intensify these problems.",
+          "${userName}, when mental fatigue persists, it can evolve into more severe cognitive disorders. World Health Organization data shows that poor dietary and environmental habits are key factors in worsening this condition."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Fadiga mental pode piorar?",
+          "Como alimentos afetam a fadiga mental?",
+          "Solo contaminado prejudica o cérebro?",
+          "Carnes hormonizadas afetam?",
+          "Quero saber mais sobre cansaço mental",
+          "Fadiga mental afeta a saúde mental?",
+          "Dá para melhorar naturalmente?",
+          "Quais sinais indicam gravidade?",
+          "Quero dicas para melhorar a energia mental",
+          "Estresse piora a fadiga mental?",
+          "Tem estudos científicos?",
+          "Quando procurar ajuda?"
+        ],
+        "en": [
+          "Can mental fatigue get worse?",
+          "How do foods affect mental fatigue?",
+          "Does contaminated soil harm the brain?",
+          "Do hormone-treated meats affect?",
+          "I want to learn more about mental exhaustion",
+          "Does mental fatigue affect mental health?",
+          "Can it be improved naturally?",
+          "What symptoms indicate severity?",
+          "I want tips to improve mental energy",
+          "Does stress worsen mental fatigue?",
+          "Are there scientific studies?",
+          "When to seek help?"
+        ]
+      }
+    },
+    {
+      "phase": "Fase 3 — Prova/Evidência",
+      "copy": {
+        "pt": [
+          "${userName}, estudos indicam que certos compostos naturais podem ajudar a reduzir a inflamação cerebral e melhorar as funções cognitivas, combatendo a fadiga mental. Pesquisas publicadas no Frontiers in Pharmacology destacam o papel neuroprotetor desses compostos.",
+          "Pesquisas recentes confirmam que os antioxidantes e compostos bioativos de algumas plantas ajudam a reduzir o estresse e a inflamação cerebral, proporcionando alívio para a fadiga mental. Estudos do Journal of Ethnopharmacology reforçam esses efeitos positivos.",
+          "${userName}, estudos do Nutritional Journal mostram que o consumo regular de compostos naturais pode ajudar a reduzir a fadiga mental, melhorar a clareza mental e promover o bem-estar."
+        ],
+        "en": [
+          "${userName}, studies indicate that certain natural compounds can help reduce brain inflammation and improve cognitive functions, combating mental fatigue. Research published in Frontiers in Pharmacology highlights the neuroprotective role of these compounds.",
+          "Recent research confirms that antioxidants and bioactive compounds from some plants help reduce stress and brain inflammation, providing relief from mental fatigue. Studies from the Journal of Ethnopharmacology reinforce these positive effects.",
+          "${userName}, studies from the Nutritional Journal show that regular consumption of natural compounds can help reduce mental fatigue, improve mental clarity, and promote well-being."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Compostos naturais ajudam a reduzir a fadiga mental?",
+          "Tem estudos comprovando?",
+          "Quanto tempo para sentir efeito?",
+          "Posso usar todos os dias?",
+          "Ajuda a melhorar o foco?",
+          "É seguro para uso contínuo?",
+          "Quero relatos de quem melhorou",
+          "Como esses compostos atuam no cérebro?",
+          "Posso combinar com outras plantas?",
+          "Quero dicas para começar",
+          "Quero ver estudos científicos",
+          "Quais benefícios principais?"
+        ],
+        "en": [
+          "Do natural compounds help reduce mental fatigue?",
+          "Are there studies proving this?",
+          "How long to feel effects?",
+          "Can I use it daily?",
+          "Does it help improve focus?",
+          "Is it safe for continuous use?",
+          "I want stories from people who improved",
+          "How do these compounds act on the brain?",
+          "Can I combine with other plants?",
+          "I want tips to start",
+          "I want to see scientific studies",
+          "What are the main benefits?"
+        ]
+      }
+    },
+    {
+      "phase": "Fase 4 — Solução Natural/Plantas",
+      "copy": {
+        "pt": [
+          "Plantas e compostos naturais ajudam a combater a fadiga mental, reduzir a inflamação cerebral e melhorar a clareza mental. Esses compostos protegem o sistema nervoso e promovem o equilíbrio cognitivo.",
+          "A Moringa e outras plantas possuem efeitos neuroprotetores que ajudam a melhorar a energia mental e a saúde cerebral. Seu uso tradicional, aliado a estudos científicos, reforça sua eficácia na redução da fadiga mental.",
+          "Compostos naturais oferecem nutrientes essenciais que ajudam a aumentar o foco e reduzir a fadiga mental, promovendo maior bem-estar."
+        ],
+        "en": [
+          "Plants and natural compounds help combat mental fatigue, reduce brain inflammation, and improve mental clarity. These compounds protect the nervous system and promote cognitive balance.",
+          "Moringa and other plants have neuroprotective effects that help improve mental energy and brain health. Their traditional use, combined with scientific research, reinforces their effectiveness in reducing mental fatigue.",
+          "Natural compounds offer essential nutrients that help increase focus and reduce mental fatigue, promoting greater well-being."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Como usar para melhorar a energia mental?",
+          "Tem receita para aliviar a fadiga mental?",
+          "Ajuda a reduzir estresse?",
+          "Posso usar todos os dias?",
+          "Quero relatos de quem melhorou",
+          "Quanto tempo para ver resultado?",
+          "É seguro para uso contínuo?",
+          "Posso combinar com outras plantas?",
+          "Quero dicas para começar",
+          "Ajuda no equilíbrio neurológico?",
+          "Quero ver estudos científicos",
+          "Dá para usar com alimentação variada?"
+        ],
+        "en": [
+          "How to use to improve mental energy?",
+          "Any recipe to relieve mental fatigue?",
+          "Does it help reduce stress?",
+          "Can I use it daily?",
+          "I want stories from people who improved",
+          "How long to see results?",
+          "Is it safe for continuous use?",
+          "Can I combine with other plants?",
+          "I want tips to start",
+          "Does it help with neurological balance?",
+          "I want to see scientific studies",
+          "Can it be used with varied diet?"
+        ]
+      }
+    },
+    {
+      "phase": "Fase 5 — Próximo Passo",
+      "copy": {
+        "pt": [
+          "${userName}, combater a fadiga mental naturalmente pode transformar sua produtividade e qualidade de vida. Com práticas naturais e hábitos saudáveis, seu cérebro terá suporte para melhorar a clareza mental e o foco. Posso ajudar com receitas, dicas e um plano prático para essa transformação.",
+          "A mudança começa com pequenas escolhas, ${userName}. Ao incluir compostos naturais em sua rotina, você ajuda seu cérebro a funcionar melhor. Estou aqui para guiar você com passos simples e personalizados.",
+          "${userName}, sua jornada para melhorar a energia mental pode começar agora. Com hábitos saudáveis e práticas naturais, seu cérebro terá o suporte necessário para atingir seu potencial. Posso fornecer um plano com orientações e cuidados para essa nova fase."
+        ],
+        "en": [
+          "${userName}, combating mental fatigue naturally can transform your productivity and quality of life. With natural practices and healthy habits, your brain will have the support to improve mental clarity and focus. I can help with recipes, tips, and a practical plan for this transformation.",
+          "The change begins with small choices, ${userName}. By including natural compounds in your routine, you help your brain function better. I’m here to guide you with simple, personalized steps.",
+          "${userName}, your journey to improving mental energy can start now. With healthy habits and natural practices, your brain will have the support needed to reach its potential. I can provide a plan with guidance and care for this new phase."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Quero começar já",
+          "Tem receita fácil para melhorar a energia mental",
+          "Quero relatos reais de transformação",
+          "Como montar uma rotina prática?",
+          "Prefiro aprender mais antes",
+          "Resultados são duradouros?",
+          "Posso combinar com minha alimentação?",
+          "Quero conversar sobre escolhas naturais",
+          "Dá para fazer em família?",
+          "Tem dicas para motivação?",
+          "É seguro para todos?",
+          "Quero ver estudos e relatos reais"
+        ],
+        "en": [
+          "I want to start now",
+          "Any easy recipe for mental energy",
+          "I want real transformation stories",
+          "How to build a practical routine?",
+          "I’d rather learn more first",
+          "Are results lasting?",
+          "Can I combine with my diet?",
+          "I want to talk about natural choices",
+          "Can this be done as a family?",
+          "Any tips for motivation?",
+          "Is it safe for everyone?",
+          "I want to see studies and real stories"
+        ]
+      }
+    }
+  ]
+}
 
