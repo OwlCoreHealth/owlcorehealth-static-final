@@ -32,7 +32,6 @@
       "fase_4": {},
       "fase_5": {}
     }
-    // Adicione outros sintomas aqui seguindo o mesmo padrão
+    /* Para adicionar outros sintomas, repita este bloco seguindo o mesmo padrão */
   }
 }
-
