@@ -1,117 +1,231 @@
 {
-  "symptom": "Dificuldade de Concentração",
   "supplement": "Pineal Guardian",
+  "symptom": "Difficulty Concentrating",
   "phases": [
     {
       "phase": "Fase 1 — Conexão/Conscientização",
-      "copy": [
-        "${userName}, você já sentiu que a mente está dispersa, mesmo quando tenta focar? A dificuldade de concentração pode ser um sinal de que seu cérebro está sobrecarregado por fatores silenciosos, como a alimentação moderna cheia de ultraprocessados, solos empobrecidos e carnes tratadas com hormônios. Esses elementos aumentam a inflamação cerebral e afetam os neurotransmissores responsáveis pelo foco e clareza mental.",
-        "${userName}, a mente dispersa e a falta de foco podem estar relacionadas à exposição constante a alimentos processados, solos contaminados e carnes hormonizadas, que comprometem o equilíbrio neurológico. Reconhecer isso é essencial para buscar soluções naturais e eficazes.",
-        "Você sabia, ${userName}, que os alimentos e o ambiente que nos cercam influenciam diretamente nossa capacidade de concentração? A combinação de dieta industrializada, solos degradados e carnes com hormônios afeta a função cerebral e pode deixar seu foco prejudicado."
-      ],
-      "quick_replies": [
-        "Por que minha concentração cai?",
-        "Alimentos pioram o foco?",
-        "Solo contaminado afeta cérebro?",
-        "Carnes com hormônios influenciam?",
-        "Quero entender mais sobre concentração",
-        "Tem estudos científicos?",
-        "Como melhorar foco naturalmente?",
-        "Quais sintomas indicam problema sério?",
-        "Quero dicas para aumentar concentração",
-        "Estresse piora concentração?",
-        "Falta de foco é comum hoje?",
-        "Quando procurar ajuda?"
-      ]
+      "copy": {
+        "pt": [
+          "${userName}, você já percebeu que, apesar de tentar se concentrar, sua mente parece estar sempre dispersa? A dificuldade de concentração pode ser um sinal de que sua mente e corpo estão sobrecarregados. Fatores como uma alimentação inadequada, rica em alimentos ultraprocessados, solos empobrecidos e carnes tratadas com hormônios aumentam a inflamação cerebral e afetam os neurotransmissores responsáveis pelo foco.",
+          "A mente dispersa pode ser resultado de um desequilíbrio causado por uma dieta rica em alimentos processados, solos contaminados e carnes hormonizadas. Esses fatores influenciam diretamente a função cerebral, prejudicando o foco e a clareza mental. Reconhecer essas causas pode ser o primeiro passo para restabelecer seu equilíbrio.",
+          "Você sabia, ${userName}, que a qualidade do que você consome e o ambiente ao seu redor podem impactar diretamente sua capacidade de se concentrar? A alimentação moderna, cheia de produtos ultraprocessados, solos degradados e carnes hormonizadas, pode prejudicar o funcionamento cerebral, dificultando a clareza mental."
+        ],
+        "en": [
+          "${userName}, have you noticed that despite trying to focus, your mind seems to always be scattered? Difficulty concentrating may be a sign that your mind and body are overloaded. Factors such as an inadequate diet, rich in ultra-processed foods, nutrient-depleted soils, and hormone-treated meats increase brain inflammation and affect neurotransmitters responsible for focus.",
+          "A scattered mind may result from an imbalance caused by a diet rich in processed foods, contaminated soils, and hormone-treated meats. These factors directly influence brain function, impairing focus and mental clarity. Recognizing these causes may be the first step toward restoring your balance.",
+          "Did you know, ${userName}, that the quality of what you consume and the environment around you directly impact your ability to concentrate? The modern diet, full of ultra-processed foods, degraded soils, and hormone-treated meats, may impair brain function, making mental clarity harder to achieve."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Por que minha concentração cai?",
+          "Alimentos pioram o foco?",
+          "Solo contaminado afeta cérebro?",
+          "Carnes com hormônios influenciam?",
+          "Quero entender mais sobre concentração",
+          "Tem estudos científicos?",
+          "Como melhorar foco naturalmente?",
+          "Quais sintomas indicam problema sério?",
+          "Quero dicas para aumentar concentração",
+          "Estresse piora concentração?",
+          "Falta de foco é comum hoje?",
+          "Quando procurar ajuda?"
+        ],
+        "en": [
+          "Why does my concentration drop?",
+          "Do foods worsen focus?",
+          "Does contaminated soil affect the brain?",
+          "Do hormone-treated meats influence?",
+          "I want to learn more about concentration",
+          "Are there scientific studies?",
+          "How to improve focus naturally?",
+          "What symptoms indicate serious problem?",
+          "I want tips to increase concentration",
+          "Does stress worsen focus?",
+          "Is lack of focus common nowadays?",
+          "When to seek help?"
+        ]
+      }
     },
     {
       "phase": "Fase 2 — Gravidade/Consequência",
-      "copy": [
-        "${userName}, a dificuldade de concentração constante pode afetar sua produtividade, memória e até o humor, impactando a qualidade de vida. Estudos da Harvard Medical School mostram que dietas ricas em ultraprocessados e exposição a toxinas ambientais aumentam a inflamação cerebral, prejudicando o foco.",
-        "Você sabia, ${userName}, que a exposição contínua a alimentos processados, solos contaminados e carnes hormonizadas pode causar inflamação no cérebro e agravar a dificuldade de concentração? Isso pode levar a transtornos cognitivos e emocionais.",
-        "${userName}, a falta de foco persistente é um sinal de alerta que pode evoluir para problemas mais graves se não tratado. Dados do National Institute of Mental Health ressaltam a importância de cuidar do cérebro com abordagens naturais."
-      ],
-      "quick_replies": [
-        "Falta de foco pode piorar?",
-        "Como alimentos afetam o foco?",
-        "Solo contaminado prejudica?",
-        "Carnes hormonizadas influenciam?",
-        "Quero saber mais sobre concentração",
-        "Falta de foco afeta memória?",
-        "Dá para melhorar naturalmente?",
-        "Quais sintomas indicam gravidade?",
-        "Quero dicas para aumentar foco",
-        "Estresse piora concentração?",
-        "Tem estudos científicos?",
-        "Quando procurar ajuda?"
-      ]
+      "copy": {
+        "pt": [
+          "${userName}, a dificuldade de concentração constante pode prejudicar sua produtividade, memória e até o bem-estar emocional. Estudos da Harvard Medical School mostram que a dieta rica em ultraprocessados e exposição a toxinas ambientais aumentam a inflamação cerebral, prejudicando o foco e a capacidade cognitiva.",
+          "Você sabia, ${userName}, que a exposição contínua a alimentos processados, solos contaminados e carnes hormonizadas pode prejudicar seu cérebro e agravar a dificuldade de concentração? Isso pode afetar diretamente sua saúde mental e qualidade de vida.",
+          "${userName}, a falta de foco persistente pode ser sinal de problemas mais graves. Dados do National Institute of Mental Health ressaltam a importância de manter uma alimentação equilibrada para cuidar da saúde cerebral e da função cognitiva."
+        ],
+        "en": [
+          "${userName}, constant difficulty concentrating can impair your productivity, memory, and even emotional well-being. Harvard Medical School studies show that diets rich in ultra-processed foods and exposure to environmental toxins increase brain inflammation, harming focus and cognitive ability.",
+          "Did you know, ${userName}, that continuous exposure to processed foods, contaminated soils, and hormone-treated meats can harm your brain and worsen concentration difficulties? This can directly affect your mental health and quality of life.",
+          "${userName}, persistent lack of focus may signal more serious problems. National Institute of Mental Health data highlight the importance of maintaining a balanced diet to support brain health and cognitive function."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Falta de foco pode piorar?",
+          "Como alimentos afetam o foco?",
+          "Solo contaminado prejudica?",
+          "Carnes hormonizadas influenciam?",
+          "Quero saber mais sobre concentração",
+          "Falta de foco afeta memória?",
+          "Dá para melhorar naturalmente?",
+          "Quais sintomas indicam gravidade?",
+          "Quero dicas para aumentar foco",
+          "Estresse piora concentração?",
+          "Tem estudos científicos?",
+          "Quando procurar ajuda?"
+        ],
+        "en": [
+          "Can lack of focus get worse?",
+          "How do foods affect focus?",
+          "Does contaminated soil harm?",
+          "Do hormone-treated meats influence?",
+          "I want to learn more about concentration",
+          "Does lack of focus affect memory?",
+          "Can it be improved naturally?",
+          "What symptoms indicate severity?",
+          "I want tips to increase focus",
+          "Does stress worsen concentration?",
+          "Are there scientific studies?",
+          "When to seek help?"
+        ]
+      }
     },
     {
       "phase": "Fase 3 — Prova/Evidência",
-      "copy": [
-        "${userName}, estudos indicam que o **Pineal Guardian** contém compostos que ajudam a reduzir a inflamação cerebral e melhorar as funções cognitivas, favorecendo o foco e a memória. Pesquisas publicadas no Frontiers in Pharmacology mostram seu papel neuroprotetor e no suporte mental.",
-        "Pesquisas recentes, ${userName}, confirmam que os antioxidantes e bioativos do **Pineal Guardian** fortalecem a saúde do cérebro, promovendo melhor concentração e clareza mental. Estudos do Journal of Ethnopharmacology reforçam esses efeitos.",
-        "${userName}, estudos do Nutritional Journal mostram que o consumo regular de **Pineal Guardian** está associado à melhora do foco, memória e redução da inflamação cerebral, promovendo mais bem-estar."
-      ],
-      "quick_replies": [
-        "Pineal Guardian ajuda no foco?",
-        "Tem estudos científicos?",
-        "Quanto tempo para sentir efeito?",
-        "Posso usar todos os dias?",
-        "Ajuda a melhorar memória?",
-        "É seguro para uso contínuo?",
-        "Quero relatos de quem melhorou",
-        "Como o Pineal Guardian age no cérebro?",
-        "Posso combinar com outras plantas?",
-        "Quero dicas para começar",
-        "Quero ver estudos científicos",
-        "Quais benefícios principais?"
-      ]
+      "copy": {
+        "pt": [
+          "${userName}, estudos indicam que certos compostos naturais podem ajudar a reduzir a inflamação cerebral e melhorar as funções cognitivas, favorecendo o foco e a memória. Pesquisas publicadas no Frontiers in Pharmacology destacam seu papel neuroprotetor e no suporte mental.",
+          "Pesquisas recentes confirmam que antioxidantes e compostos bioativos ajudam a fortalecer a saúde do cérebro, promovendo melhor concentração e clareza mental. Estudos do Journal of Ethnopharmacology reforçam esses efeitos.",
+          "${userName}, estudos do Nutritional Journal mostram que o consumo regular de alimentos naturais está associado à melhora do foco, memória e redução da inflamação cerebral, promovendo mais bem-estar."
+        ],
+        "en": [
+          "${userName}, studies indicate that certain natural compounds can help reduce brain inflammation and improve cognitive functions, enhancing focus and memory. Research published in Frontiers in Pharmacology highlights its neuroprotective role and mental support.",
+          "Recent research confirms that antioxidants and bioactive compounds help strengthen brain health, promoting better concentration and mental clarity. Studies from the Journal of Ethnopharmacology reinforce these effects.",
+          "${userName}, studies from the Nutritional Journal show that regular consumption of natural foods is linked to improved focus, memory, and reduced brain inflammation, promoting greater well-being."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Moringa ajuda no foco?",
+          "Tem estudos científicos?",
+          "Quanto tempo para sentir efeito?",
+          "Posso usar todos os dias?",
+          "Ajuda a melhorar memória?",
+          "É seguro para uso contínuo?",
+          "Quero relatos de quem melhorou",
+          "Como a Moringa age no cérebro?",
+          "Posso combinar com outras plantas?",
+          "Quero dicas para começar",
+          "Quero ver estudos científicos",
+          "Quais benefícios principais?"
+        ],
+        "en": [
+          "Does Moringa help focus?",
+          "Are there scientific studies?",
+          "How long to feel effects?",
+          "Can I use it daily?",
+          "Does it help improve memory?",
+          "Is it safe for continuous use?",
+          "I want stories from people who improved",
+          "How does Moringa act on the brain?",
+          "Can I combine it with other plants?",
+          "I want tips to start",
+          "I want to see scientific studies",
+          "What are the main benefits?"
+        ]
+      }
     },
     {
       "phase": "Fase 4 — Solução Natural/Plantas",
-      "copy": [
-        "O **Pineal Guardian** é um suplemento neuroprotetor que ajuda a reduzir a inflamação cerebral, favorecendo a melhora da concentração e memória. Rico em antioxidantes e nutrientes essenciais, é uma aliada natural para quem busca clareza mental e foco.",
-        "${userName}, o **Pineal Guardian** contém compostos que protegem o cérebro, reduzem a inflamação e promovem o equilíbrio neurológico, favorecendo a concentração. Seu uso tradicional aliado a estudos científicos reforça sua eficácia.",
-        "Usado há séculos, o **Pineal Guardian** oferece nutrientes que fortalecem a saúde cerebral, promovem a clareza mental e o bem-estar, ajudando a manter o foco e a produtividade."
-      ],
-      "quick_replies": [
-        "Como usar Pineal Guardian para concentração?",
-        "Tem receita para foco e memória?",
-        "Ajuda a reduzir estresse?",
-        "Posso usar todos os dias?",
-        "Quero relatos de quem melhorou",
-        "Quanto tempo para ver resultado?",
-        "É seguro para uso contínuo?",
-        "Posso combinar com outras plantas?",
-        "Quero dicas para começar",
-        "Ajuda no equilíbrio neurológico?",
-        "Quero ver estudos científicos",
-        "Dá para usar com alimentação variada?"
-      ]
+      "copy": {
+        "pt": [
+          "Certas plantas e nutrientes naturais são conhecidos por seus efeitos neuroprotetores e anti-inflamatórios, ajudando na melhora da concentração e memória. Elas podem promover maior clareza mental e foco.",
+          "${userName}, algumas folhas naturais contêm compostos que ajudam a proteger o cérebro, reduzir a inflamação e promover o equilíbrio neurológico, favorecendo a concentração. Seu uso tradicional, aliado a estudos científicos, reforça sua eficácia.",
+          "Utilizada há séculos, essa planta oferece nutrientes que fortalecem a saúde cerebral, promovem a clareza mental e o bem-estar, ajudando a manter o foco e a produtividade."
+        ],
+        "en": [
+          "Certain plants and natural nutrients are known for their neuroprotective and anti-inflammatory effects, helping improve concentration and memory. They can promote greater mental clarity and focus.",
+          "${userName}, some natural leaves contain compounds that help protect the brain, reduce inflammation, and promote neurological balance, favoring concentration. Their traditional use, combined with scientific studies, reinforces their effectiveness.",
+          "Used for centuries, this plant offers nutrients that strengthen brain health, promote mental clarity and well-being, helping maintain focus and productivity."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Como usar Moringa para concentração?",
+          "Tem receita para foco e memória?",
+          "Ajuda a reduzir estresse?",
+          "Posso usar todos os dias?",
+          "Quero relatos de quem melhorou",
+          "Quanto tempo para ver resultado?",
+          "É seguro para uso contínuo?",
+          "Posso combinar com outras plantas?",
+          "Quero dicas para começar",
+          "Ajuda no equilíbrio neurológico?",
+          "Quero ver estudos científicos",
+          "Dá para usar com alimentação variada?"
+        ],
+        "en": [
+          "How to use Moringa for concentration?",
+          "Any recipe for focus and memory?",
+          "Does it help reduce stress?",
+          "Can I use it daily?",
+          "I want stories from people who improved",
+          "How long to see results?",
+          "Is it safe for continuous use?",
+          "Can I combine it with other plants?",
+          "I want tips to start",
+          "Does it help neurological balance?",
+          "I want to see scientific studies",
+          "Can it be used with varied diet?"
+        ]
+      }
     },
     {
       "phase": "Fase 5 — Próximo Passo",
-      "copy": [
-        "${userName}, melhorar sua concentração naturalmente pode transformar sua rotina e produtividade. Com o **Pineal Guardian** e hábitos conscientes, seu cérebro terá suporte para alcançar mais foco e clareza. Posso ajudar com receitas, dicas e um plano prático para essa transformação.",
-        "A mudança começa com pequenas escolhas, ${userName}. Ao incluir o **Pineal Guardian** na rotina e optar por alimentos naturais, você apoia seu cérebro para funcionar melhor. Estou aqui para guiar você com passos simples e personalizados.",
-        "${userName}, sua jornada para mais foco e clareza mental pode começar agora. Com o **Pineal Guardian** e uma alimentação equilibrada, seu cérebro terá o suporte necessário para atingir seu potencial. Posso fornecer um plano com orientações e cuidados para essa nova fase."
-      ],
-      "quick_replies": [
-        "Quero começar já com Pineal Guardian",
-        "Tem receita fácil para foco",
-        "Quero relatos reais de transformação",
-        "Como montar uma rotina prática?",
-        "Prefiro aprender mais antes",
-        "Resultados são duradouros?",
-        "Posso combinar com minha alimentação?",
-        "Quero conversar sobre escolhas naturais",
-        "Dá para fazer em família?",
-        "Tem dicas para motivação?",
-        "É seguro para todos?",
-        "Quero ver estudos e relatos reais"
-      ]
+      "copy": {
+        "pt": [
+          "${userName}, melhorar sua concentração de forma natural pode transformar sua rotina e produtividade. Ao adotar hábitos alimentares saudáveis e práticas naturais, você pode alcançar mais foco e clareza. Posso ajudar com receitas, dicas e um plano prático para essa transformação.",
+          "A mudança começa com pequenas escolhas, ${userName}. Ao incluir alimentos naturais e balanceados na sua dieta, você apoia seu cérebro para funcionar melhor. Estou aqui para guiar você com passos simples e personalizados.",
+          "${userName}, sua jornada para mais foco e clareza mental pode começar agora. Ao adotar hábitos saudáveis e uma alimentação equilibrada, seu cérebro terá o suporte necessário para atingir seu potencial. Posso fornecer um plano com orientações e cuidados para essa nova fase."
+        ],
+        "en": [
+          "${userName}, improving your concentration naturally can transform your routine and productivity. By adopting healthy eating habits and natural practices, you can achieve more focus and clarity. I can help with recipes, tips, and a practical plan for this transformation.",
+          "The change begins with small choices, ${userName}. By including natural and balanced foods in your diet, you support your brain to function better. I am here to guide you with simple, personalized steps.",
+          "${userName}, your journey to more focus and mental clarity can start now. By adopting healthy habits and a balanced diet, your brain will have the necessary support to reach its potential. I can provide a plan with guidance and care for this new phase."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Quero começar já com Moringa",
+          "Tem receita fácil para foco",
+          "Quero relatos reais de transformação",
+          "Como montar uma rotina prática?",
+          "Prefiro aprender mais antes",
+          "Resultados são duradouros?",
+          "Posso combinar com minha alimentação?",
+          "Quero conversar sobre escolhas naturais",
+          "Dá para fazer em família?",
+          "Tem dicas para motivação?",
+          "É seguro para todos?",
+          "Quero ver estudos e relatos reais"
+        ],
+        "en": [
+          "I want to start with Moringa now",
+          "Any easy recipe for focus",
+          "I want real transformation stories",
+          "How to build a practical routine?",
+          "I’d rather learn more first",
+          "Are results lasting?",
+          "Can I combine with my diet?",
+          "I want to talk about natural choices",
+          "Can this be done as a family?",
+          "Any tips for motivation?",
+          "Is it safe for everyone?",
+          "I want to see studies and real stories"
+        ]
+      }
     }
   ]
 }
-
