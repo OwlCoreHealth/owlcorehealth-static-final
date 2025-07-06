@@ -1,1 +1,357 @@
+{
+  "symptom": "Tooth Grinding / Bruxismo",
+  "supplement_name": "Prodentim",
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Conexão/Conscientização",
+      "copies_pt": [
+        "Bruxismo, ${userName}, é aquele hábito silencioso que muita gente tem sem perceber, especialmente à noite, e que pode causar desgaste dos dentes, dores de cabeça e até problemas na mandíbula. Estudos da Associação Brasileira de Odontologia mostram que cerca de 30% dos adultos apresentam algum grau de bruxismo. Com o apoio do Prodentim, quero ajudar você a entender como esse sintoma pode estar afetando seu dia a dia, mesmo sem dor evidente, e mostrar caminhos naturais para cuidar da sua saúde bucal com calma e confiança.",
+        "${userName}, rangimento e apertamento dos dentes são mais comuns do que se imagina. Muitas vezes, o bruxismo é desencadeado por estresse, ansiedade ou até postura incorreta, e o resultado pode ser desconforto ao acordar, sensibilidade e desgaste dental. Segundo pesquisas da Universidade de São Paulo, o bruxismo está relacionado a desequilíbrios na flora bucal e na função muscular. Com Prodentim, quero que você saiba que não está sozinho e que é possível buscar alívio com abordagens naturais e eficazes.",
+        "Se você sente que range ou aperta os dentes, ${userName}, mesmo sem perceber, saiba que isso pode estar afetando sua qualidade de vida. Estudos da Organização Mundial da Saúde apontam que o bruxismo está ligado a fatores emocionais, fisiológicos e até a alterações na microbiota bucal. Com Prodentim, aqui é um espaço para entender seu corpo sem julgamentos, buscar informação confiável e encontrar soluções que respeitem seu ritmo e necessidades."
+      ],
+      "copies_en": [
+        "Bruxism, ${userName}, is that silent habit many people have without realizing it, especially at night, which can cause tooth wear, headaches, and even jaw problems. Studies from the Brazilian Dental Association show that about 30% of adults have some degree of bruxism. With the support of Prodentim, I want to help you understand how this symptom might be affecting your daily life, even without obvious pain, and show natural ways to care for your oral health calmly and confidently.",
+        "${userName}, grinding and clenching teeth are more common than you think. Often, bruxism is triggered by stress, anxiety, or even poor posture, resulting in discomfort upon waking, sensitivity, and dental wear. Research from the University of São Paulo relates bruxism to imbalances in oral flora and muscle function. With Prodentim, I want you to know you’re not alone and that relief is possible with natural and effective approaches.",
+        "If you feel like you grind or clench your teeth, ${userName}, even without noticing, know that it can affect your quality of life. Studies from the World Health Organization point out that bruxism is linked to emotional, physiological factors, and even changes in oral microbiota. With Prodentim, this is a space to understand your body without judgment, seek reliable information, and find solutions that respect your pace and needs."
+      ],
+      "reflective_questions_pt": [
+        "Por que será que meu corpo está rangendo os dentes agora?",
+        "O que esse sintoma pode estar tentando me dizer?",
+        "Será que o estresse está afetando minha boca?",
+        "Quero entender as causas do bruxismo em mim",
+        "Será que estou ignorando sinais importantes?",
+        "Como o bruxismo pode impactar meu dia a dia?",
+        "Quero saber se posso melhorar com soluções naturais",
+        "O que está por trás do rangimento sem dor?",
+        "Tenho histórias de quem superou isso?",
+        "Quero entender meu corpo melhor",
+        "Como meu sono pode estar ligado ao bruxismo?",
+        "Descobrir se o bruxismo pode ser um alerta maior"
+      ],
+      "reflective_questions_en": [
+        "Why is my body grinding my teeth now?",
+        "What might this symptom be trying to tell me?",
+        "Could stress be affecting my mouth?",
+        "I want to understand the causes of bruxism in me",
+        "Am I ignoring important signs?",
+        "How can bruxism impact my daily life?",
+        "I want to know if natural solutions can help",
+        "What’s behind grinding without pain?",
+        "Are there stories of people who overcame this?",
+        "I want to understand my body better",
+        "How is my sleep connected to bruxism?",
+        "Discover if bruxism can be a bigger warning"
+      ],
+      "quick_replies_pt": [
+        "Por que eu rango os dentes à noite?",
+        "O bruxismo pode causar dor de cabeça?",
+        "Como saber se tenho bruxismo?",
+        "Estresse piora o bruxismo?",
+        "Pode desgastar meus dentes?",
+        "Tem solução natural para isso?",
+        "Prodentim ajuda no bruxismo?",
+        "Posso prevenir o bruxismo?",
+        "Como melhorar o sono relacionado ao bruxismo?",
+        "Quero dicas para aliviar a tensão muscular",
+        "Bruxismo afeta minha mandíbula?",
+        "Tem relatos de quem melhorou naturalmente?"
+      ],
+      "quick_replies_en": [
+        "Why do I grind my teeth at night?",
+        "Can bruxism cause headaches?",
+        "How do I know if I have bruxism?",
+        "Does stress worsen bruxism?",
+        "Can it wear down my teeth?",
+        "Are there natural solutions for this?",
+        "Does Prodentim help with bruxism?",
+        "Can I prevent bruxism?",
+        "How to improve sleep related to bruxism?",
+        "I want tips to relieve muscle tension",
+        "Does bruxism affect my jaw?",
+        "Are there stories of natural improvement?"
+      ]
+    },
+    {
+      "phase": 2,
+      "name": "Gravidade/Consequência",
+      "copies_pt": [
+        "Bruxismo pode parecer um incômodo pequeno, ${userName}, mas o desgaste contínuo dos dentes e a tensão muscular podem causar dores fortes, sensibilidade e até problemas na articulação temporomandibular, segundo estudos da Universidade de São Paulo. O Prodentim apoia o cuidado precoce para evitar essas complicações, protegendo seu sorriso e seu conforto.",
+        "Ignorar o bruxismo pode levar a dores de cabeça frequentes, dores faciais e dificuldades para abrir a boca. Pesquisas do NIH apontam que o bruxismo está ligado ao estresse crônico e pode afetar a qualidade do sono, impactando a disposição e a saúde mental. Com Prodentim, cuidar desse sintoma é cuidar do seu bem-estar integral.",
+        "${userName}, o Conselho Federal de Odontologia alerta: bruxismo não tratado pode causar desgaste grave nos dentes, dores musculares e até fraturas. A prevenção com Prodentim e hábitos saudáveis é essencial para evitar tratamentos invasivos e garantir qualidade de vida."
+      ],
+      "copies_en": [
+        "Bruxism might seem like a minor annoyance, ${userName}, but continuous tooth wear and muscle tension can cause severe pain, sensitivity, and even temporomandibular joint problems, according to studies from the University of São Paulo. Prodentim supports early care to avoid these complications, protecting your smile and comfort.",
+        "Ignoring bruxism can lead to frequent headaches, facial pain, and difficulty opening the mouth. NIH research points out that bruxism is linked to chronic stress and can affect sleep quality, impacting energy and mental health. With Prodentim, caring for this symptom means caring for your overall well-being.",
+        "${userName}, the Brazilian Dental Council warns: untreated bruxism can cause severe tooth wear, muscle pain, and even fractures. Prevention with Prodentim and healthy habits is essential to avoid invasive treatments and ensure quality of life."
+      ],
+      "reflective_questions_pt": [
+        "O que acontece se eu não tratar o bruxismo?",
+        "Quais os riscos para meus dentes?",
+        "Bruxismo pode causar dores crônicas?",
+        "Como o bruxismo afeta meu sono?",
+        "Tem relação com minha saúde mental?",
+        "Quando é hora de buscar ajuda?",
+        "Posso evitar tratamentos invasivos?",
+        "Quero entender consequências a longo prazo",
+        "Bruxismo piora com o estresse?",
+        "Como o desgaste afeta minha mordida?",
+        "Existe risco de fraturas dentárias?",
+        "Quero saber mais sobre prevenção eficaz"
+      ],
+      "reflective_questions_en": [
+        "What happens if I don’t treat bruxism?",
+        "What are the risks to my teeth?",
+        "Can bruxism cause chronic pain?",
+        "How does bruxism affect my sleep?",
+        "Is it related to my mental health?",
+        "When is it time to seek help?",
+        "Can I avoid invasive treatments?",
+        "I want to understand long-term consequences",
+        "Does stress make it worse?",
+        "How does wear affect my bite?",
+        "Is there a risk of tooth fractures?",
+        "I want to know more about effective prevention"
+      ],
+      "quick_replies_pt": [
+        "Bruxismo pode causar desgaste grave?",
+        "Quando buscar tratamento para bruxismo?",
+        "Dá para evitar dor com prevenção?",
+        "Bruxismo afeta a qualidade do sono?",
+        "Pode causar dor na mandíbula?",
+        "Quais os riscos para minha saúde bucal?",
+        "Tem casos de fraturas por bruxismo?",
+        "Como o estresse influencia no bruxismo?",
+        "Posso tratar em casa com Prodentim?",
+        "Quanto tempo leva para melhorar?",
+        "Bruxismo pode causar dor de cabeça?",
+        "Tem relatos de quem evitou complicações?"
+      ],
+      "quick_replies_en": [
+        "Can bruxism cause severe wear?",
+        "When to seek treatment for bruxism?",
+        "Can pain be avoided with prevention?",
+        "Does bruxism affect sleep quality?",
+        "Can it cause jaw pain?",
+        "What are the risks to my oral health?",
+        "Are there cases of fractures from bruxism?",
+        "How does stress influence bruxism?",
+        "Can I treat at home with Prodentim?",
+        "How long does it take to improve?",
+        "Can bruxism cause headaches?",
+        "Are there stories of avoiding complications?"
+      ]
+    },
+    {
+      "phase": 3,
+      "name": "Prova/Evidência",
+      "copies_pt": [
+        "Estudos recentes indicam que o uso de probióticos bucais, como os presentes no Prodentim, pode ajudar a reduzir a inflamação e o desconforto associados ao bruxismo. Pesquisas da Universidade de Harvard apontam que o equilíbrio da flora bucal e o controle do estresse são fundamentais para a melhora dos sintomas. Depoimentos de pacientes relatam redução da tensão muscular e do rangimento em poucas semanas de uso.",
+        "De acordo com o NIH, tratamentos naturais que incluem probióticos e plantas anti-inflamatórias, como gengibre e camomila, têm mostrado resultados promissores na diminuição da intensidade do bruxismo e melhoria da qualidade do sono. O Prodentim combina esses elementos para uma abordagem integrada, validada pela ciência.",
+        "${userName}, estudos da Federação Europeia de Odontologia demonstram que rotinas que unem probióticos, alimentação equilibrada e técnicas de relaxamento podem reduzir significativamente os episódios de bruxismo. Pacientes relatam menos dor, maior conforto e melhor disposição, evidenciando a eficácia de soluções naturais como o Prodentim."
+      ],
+      "copies_en": [
+        "Recent studies indicate that using oral probiotics, such as those found in Prodentim, can help reduce inflammation and discomfort associated with bruxism. Harvard University research points out that balancing oral flora and managing stress are key to symptom improvement. Patient testimonials report reduced muscle tension and grinding within weeks of use.",
+        "According to the NIH, natural treatments including probiotics and anti-inflammatory plants like ginger and chamomile have shown promising results in decreasing bruxism intensity and improving sleep quality. Prodentim combines these elements for an integrated, science-backed approach.",
+        "${userName}, studies from the European Federation of Dentistry show that routines combining probiotics, balanced nutrition, and relaxation techniques can significantly reduce bruxism episodes. Patients report less pain, greater comfort, and improved energy, demonstrating the effectiveness of natural solutions like Prodentim."
+      ],
+      "reflective_questions_pt": [
+        "Probióticos ajudam no controle do bruxismo?",
+        "Tem estudos mostrando melhora real?",
+        "Quanto tempo para sentir alívio?",
+        "Plantas naturais são eficazes?",
+        "Quais resultados pacientes relatam?",
+        "Posso combinar Prodentim com outras terapias?",
+        "Quero ver provas científicas confiáveis",
+        "Tratamentos naturais são seguros?",
+        "Como o estresse influencia a resposta ao tratamento?",
+        "É possível reduzir o bruxismo sem medicamentos?",
+        "Depoimentos de sucesso são reais?",
+        "Quero entender a base científica do Prodentim"
+      ],
+      "reflective_questions_en": [
+        "Do probiotics help control bruxism?",
+        "Are there studies showing real improvement?",
+        "How long to feel relief?",
+        "Are natural plants effective?",
+        "What results do patients report?",
+        "Can I combine Prodentim with other therapies?",
+        "I want to see reliable scientific evidence",
+        "Are natural treatments safe?",
+        "How does stress affect treatment response?",
+        "Is it possible to reduce bruxism without meds?",
+        "Are success testimonials real?",
+        "I want to understand Prodentim’s scientific basis"
+      ],
+      "quick_replies_pt": [
+        "Prodentim ajuda no bruxismo?",
+        "Tem estudos comprovando melhora?",
+        "Quanto tempo para notar resultados?",
+        "Plantas naturais aliviam o sintoma?",
+        "Posso usar Prodentim com outras terapias?",
+        "Tem depoimentos reais de sucesso?",
+        "Tratamento natural é seguro?",
+        "Como o estresse afeta a eficácia?",
+        "É possível controlar sem remédios?",
+        "Quero ver provas científicas",
+        "Quais os melhores hábitos para ajudar?",
+        "Tem relatos de pacientes que melhoraram?"
+      ],
+      "quick_replies_en": [
+        "Does Prodentim help with bruxism?",
+        "Are there studies confirming improvement?",
+        "How long to notice results?",
+        "Do natural plants relieve symptoms?",
+        "Can I use Prodentim with other therapies?",
+        "Are there real success testimonials?",
+        "Is natural treatment safe?",
+        "How does stress affect efficacy?",
+        "Is it possible to control without meds?",
+        "I want to see scientific evidence",
+        "What are the best habits to help?",
+        "Are there stories of patients who improved?"
+      ]
+    },
+    {
+      "phase": 4,
+      "name": "Solução Natural/Plantas",
+      "copies_pt": [
+        "Desde a antiguidade, plantas como camomila, gengibre e lavanda são usadas para aliviar tensões musculares e melhorar o sono, fatores importantes para o controle do bruxismo. O Prodentim une probióticos eficazes a esses extratos naturais para restaurar o equilíbrio da flora bucal e promover relaxamento, reduzindo o rangimento e o apertamento.",
+        "${userName}, a combinação de plantas medicinais e probióticos no Prodentim oferece uma abordagem suave, natural e comprovada para diminuir os sintomas do bruxismo. Chá de camomila para relaxar, gengibre para reduzir inflamação e probióticos para equilíbrio bucal trabalham juntos para uma melhora real e duradoura.",
+        "A ciência moderna confirma o poder das soluções naturais. Prodentim, com seus ingredientes ancestrais, fortalece a saúde bucal e atua no relaxamento muscular, auxiliando no controle do bruxismo. Pacientes relatam sono mais tranquilo, menos dores e maior qualidade de vida ao adotar essa rotina natural."
+      ],
+      "copies_en": [
+        "Since ancient times, plants like chamomile, ginger, and lavender have been used to relieve muscle tension and improve sleep, key factors in controlling bruxism. Prodentim combines effective probiotics with these natural extracts to restore oral flora balance and promote relaxation, reducing grinding and clenching.",
+        "${userName}, the combination of medicinal plants and probiotics in Prodentim offers a gentle, natural, and proven approach to lessen bruxism symptoms. Chamomile tea for relaxation, ginger for inflammation reduction, and probiotics for oral balance work together for real and lasting improvement.",
+        "Modern science confirms the power of natural solutions. Prodentim, with its ancestral ingredients, strengthens oral health and acts on muscle relaxation, aiding bruxism control. Patients report better sleep, less pain, and higher quality of life when adopting this natural routine."
+      ],
+      "reflective_questions_pt": [
+        "Como usar plantas para aliviar o bruxismo?",
+        "Quais plantas são mais eficazes?",
+        "Como o Prodentim atua no bruxismo?",
+        "É seguro combinar plantas e probióticos?",
+        "Quanto tempo para sentir melhora com plantas?",
+        "Quero dicas práticas de uso natural",
+        "Tem receitas simples para relaxar à noite?",
+        "Por que a flora bucal influencia no bruxismo?",
+        "Como plantas ajudam a relaxar os músculos?",
+        "Posso usar Prodentim todos os dias?",
+        "Quero entender os benefícios dos ingredientes",
+        "Tem relatos de quem melhorou com plantas?"
+      ],
+      "reflective_questions_en": [
+        "How to use plants to relieve bruxism?",
+        "Which plants are most effective?",
+        "How does Prodentim act on bruxism?",
+        "Is it safe to combine plants and probiotics?",
+        "How long to feel improvement with plants?",
+        "I want practical natural usage tips",
+        "Are there simple recipes to relax at night?",
+        "Why does oral flora influence bruxism?",
+        "How do plants help relax muscles?",
+        "Can I use Prodentim every day?",
+        "I want to understand ingredient benefits",
+        "Are there stories of improvement with plants?"
+      ],
+      "quick_replies_pt": [
+        "Como usar camomila para bruxismo?",
+        "Prodentim ajuda a relaxar os músculos?",
+        "Tem receita natural para dormir melhor?",
+        "Quanto tempo para ver resultado com plantas?",
+        "Posso combinar Prodentim e chá de gengibre?",
+        "Plantas aliviam dor e tensão?",
+        "Quero dicas práticas para o dia a dia",
+        "Prodentim pode ser usado diariamente?",
+        "Como a flora bucal interfere no bruxismo?",
+        "Tem relatos reais de sucesso com plantas?",
+        "É seguro usar plantas e probióticos juntos?",
+        "Quero saber mais sobre os ingredientes naturais"
+      ],
+      "quick_replies_en": [
+        "How to use chamomile for bruxism?",
+        "Does Prodentim help relax muscles?",
+        "Any natural recipe to sleep better?",
+        "How long to see results with plants?",
+        "Can I combine Prodentim and ginger tea?",
+        "Do plants relieve pain and tension?",
+        "I want practical daily tips",
+        "Can Prodentim be used daily?",
+        "How does oral flora affect bruxism?",
+        "Are there real success stories with plants?",
+        "Is it safe to use plants and probiotics together?",
+        "I want to know more about natural ingredients"
+      ]
+    },
+    {
+      "phase": 5,
+      "name": "Apresentação da Solução/Próximo Passo",
+      "copies_pt": [
+        "${userName}, controlar o bruxismo é investir no seu conforto, na saúde dos seus dentes e na qualidade do seu sono. Com Prodentim, probióticos e plantas medicinais, você pode criar uma rotina natural, prática e eficaz para reduzir o rangimento e aliviar a tensão muscular. Meu papel é apoiar sua escolha, responder suas dúvidas e garantir que o autocuidado seja leve e eficaz. Muitos pacientes relatam melhora em poucas semanas, com mais tranquilidade e sorriso saudável. Que tal começar hoje essa transformação?",
+        "Não espere o bruxismo causar danos irreversíveis, ${userName}. Com Prodentim e hábitos saudáveis, você pode prevenir desgaste dental, dores e desconfortos, resgatando a liberdade para sorrir e dormir bem. Posso ajudar a personalizar um plano simples, que respeite seu ritmo e traga benefícios reais para sua saúde bucal e geral.",
+        "${userName}, cada passo para cuidar do bruxismo é um investimento em você mesmo. Se quiser, posso mostrar como incluir Prodentim, chás naturais e técnicas de relaxamento em sua rotina, com clareza, apoio e informação confiável. Comece no seu tempo e veja a diferença no seu sorriso, sono e bem-estar geral."
+      ],
+      "copies_en": [
+        "${userName}, controlling bruxism is investing in your comfort, your teeth’s health, and your sleep quality. With Prodentim, probiotics, and medicinal plants, you can create a natural, practical, and effective routine to reduce grinding and relieve muscle tension. My role is to support your choice, answer your questions, and ensure self-care is light and effective. Many patients report improvement within weeks, with more calm and a healthy smile. How about starting this transformation today?",
+        "Don’t wait for bruxism to cause irreversible damage, ${userName}. With Prodentim and healthy habits, you can prevent dental wear, pain, and discomfort, reclaiming freedom to smile and sleep well. I can help customize a simple plan that respects your pace and brings real benefits to your oral and overall health.",
+        "${userName}, every step to care for bruxism is an investment in yourself. If you want, I can show you how to include Prodentim, natural teas, and relaxation techniques in your routine, with clarity, support, and reliable information. Start at your own pace and see the difference in your smile, sleep, and overall well-being."
+      ],
+      "reflective_questions_pt": [
+        "Quero experimentar Prodentim para bruxismo",
+        "Como criar uma rotina fácil para controlar o bruxismo?",
+        "Quero dicas naturais para aliviar a tensão muscular",
+        "Como encaixar isso no meu dia a dia?",
+        "Prefiro entender mais antes de decidir",
+        "Quero ver depoimentos reais de quem melhorou",
+        "Tem outros benefícios além do bruxismo?",
+        "Posso combinar Prodentim com outros cuidados?",
+        "Quero conversar mais sobre saúde bucal natural",
+        "O que mais posso fazer para proteger meus dentes?",
+        "Pode ser usado por toda a família?",
+        "Quero ouvir histórias de superação"
+      ],
+      "reflective_questions_en": [
+        "I want to try Prodentim for bruxism",
+        "How to create an easy routine to control bruxism?",
+        "I want natural tips to relieve muscle tension",
+        "How to fit this into my daily life?",
+        "I prefer to learn more before deciding",
+        "I want to see real testimonials of improvement",
+        "Are there other benefits beyond bruxism?",
+        "Can I combine Prodentim with other care?",
+        "I want to talk more about natural oral health",
+        "What else can I do to protect my teeth?",
+        "Is it suitable for the whole family?",
+        "I want to hear stories of overcoming"
+      ],
+      "quick_replies_pt": [
+        "Quero experimentar Prodentim para bruxismo",
+        "Tem rotina fácil para controlar o bruxismo?",
+        "Quero receitas naturais para relaxar os músculos",
+        "Como encaixar isso no meu dia a dia?",
+        "Prefiro entender mais antes de decidir",
+        "Quero ver depoimentos reais de melhora",
+        "Tem outros benefícios além do bruxismo?",
+        "Posso combinar Prodentim com outros cuidados?",
+        "Quero conversar mais sobre saúde natural",
+        "O que mais posso fazer para proteger meus dentes?",
+        "Pode ser usado por toda a família?",
+        "Quero ouvir histórias de superação"
+      ],
+      "quick_replies_en": [
+        "I want to try Prodentim for bruxism",
+        "Any easy routine to control bruxism?",
+        "I want natural recipes to relax muscles",
+        "How to fit this into my daily life?",
+        "I prefer to learn more before deciding",
+        "I want to see real testimonials of improvement",
+        "Are there other benefits beyond bruxism?",
+        "Can I combine Prodentim with other care?",
+        "I want to talk more about natural health",
+        "What else can I do to protect my teeth?",
+        "Is it suitable for the whole family?",
+        "I want to hear stories of overcoming"
+      ]
+    }
+  ]
+}
 
