@@ -1,1 +1,357 @@
+{
+  "symptom": "Tooth Decay / Cárie Dentária",
+  "supplement_name": "Prodentim",
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Conexão/Conscientização",
+      "copies_pt": [
+        "Cárie dentária, ${userName}, é uma das condições bucais mais comuns e silenciosas. Muitas vezes, o problema começa sem dor, com a ação das bactérias que formam placas ácidas e corroem o esmalte. Com Prodentim, quero ajudar você a entender como pequenas mudanças e cuidados naturais podem proteger seu sorriso antes que apareça qualquer incômodo.",
+        "${userName}, você sabia que o desequilíbrio da flora bucal pode ser a principal causa da cárie? Mesmo com boa higiene, a cárie pode se desenvolver silenciosamente. Estudos recentes indicam que Prodentim, com seus probióticos, ajuda a restabelecer o equilíbrio e prevenir o avanço do problema, oferecendo uma abordagem natural e eficaz.",
+        "Sentir medo de cáries, ${userName}, é comum, mas é possível agir antes da dor aparecer. O Prodentim apoia você com ciência e tradição para fortalecer seus dentes, combater bactérias nocivas e evitar que a cárie avance, promovendo saúde bucal com respeito ao seu ritmo."
+      ],
+      "copies_en": [
+        "Tooth decay, ${userName}, is one of the most common and silent oral conditions. Often, the problem starts painlessly, with bacteria forming acidic plaques that erode enamel. With Prodentim, I want to help you understand how small natural changes and care can protect your smile before discomfort appears.",
+        "${userName}, did you know that an imbalance in oral flora can be the main cause of decay? Even with good hygiene, decay can develop silently. Recent studies show that Prodentim, with its probiotics, helps restore balance and prevent progression, offering a natural and effective approach.",
+        "Feeling afraid of cavities, ${userName}, is normal, but you can act before pain arises. Prodentim supports you with science and tradition to strengthen your teeth, fight harmful bacteria, and prevent decay progression, promoting oral health while respecting your pace."
+      ],
+      "reflective_questions_pt": [
+        "Por que meu sorriso está vulnerável à cárie?",
+        "Como a flora bucal influencia no desenvolvimento da cárie?",
+        "Será que meu cuidado bucal está realmente protegendo meus dentes?",
+        "Quero entender como prevenir antes que apareça a dor",
+        "Como o Prodentim pode ajudar a proteger meu esmalte?",
+        "Estou atento aos sinais iniciais da cárie?",
+        "Posso fortalecer meu sorriso com métodos naturais?",
+        "Por que algumas cáries aparecem mesmo com boa higiene?",
+        "Quero histórias de quem preveniu naturalmente",
+        "Será que minha alimentação está contribuindo para o problema?",
+        "Como reconhecer o início da cárie?",
+        "Quero aprender a cuidar do meu sorriso com ciência e naturalidade"
+      ],
+      "reflective_questions_en": [
+        "Why is my smile vulnerable to decay?",
+        "How does oral flora influence decay development?",
+        "Is my oral care really protecting my teeth?",
+        "I want to understand prevention before pain appears",
+        "How can Prodentim help protect my enamel?",
+        "Am I aware of early signs of decay?",
+        "Can I strengthen my smile with natural methods?",
+        "Why do some cavities appear despite good hygiene?",
+        "I want stories of people who prevented naturally",
+        "Could my diet be contributing to the problem?",
+        "How to recognize the start of decay?",
+        "I want to learn to care for my smile with science and nature"
+      ],
+      "quick_replies_pt": [
+        "Por que cáries aparecem mesmo com escovação?",
+        "Como Prodentim ajuda a prevenir cáries?",
+        "Quais os sinais iniciais da cárie?",
+        "Alimentação influencia no risco de cárie?",
+        "Posso reverter cárie no início?",
+        "Quero dicas naturais para proteger os dentes",
+        "Cárie é só para crianças?",
+        "Quanto tempo para notar melhora com Prodentim?",
+        "O que fazer para fortalecer o esmalte?",
+        "Tem relatos de quem evitou cáries naturalmente?",
+        "Quais hábitos ajudam a prevenir cáries?",
+        "Quero entender o papel dos probióticos na boca"
+      ],
+      "quick_replies_en": [
+        "Why do cavities appear despite brushing?",
+        "How does Prodentim help prevent cavities?",
+        "What are the early signs of decay?",
+        "Does diet affect cavity risk?",
+        "Can early decay be reversed?",
+        "I want natural tips to protect teeth",
+        "Are cavities only for children?",
+        "How long to see improvement with Prodentim?",
+        "What can strengthen enamel?",
+        "Are there stories of natural cavity prevention?",
+        "What habits help prevent cavities?",
+        "I want to understand probiotics' role in the mouth"
+      ]
+    },
+    {
+      "phase": 2,
+      "name": "Gravidade/Consequência",
+      "copies_pt": [
+        "Ignorar a cárie pode causar dor intensa, infecções e até perda dentária, ${userName}. Estudos da Universidade de Stanford apontam que o avanço da cárie está ligado a problemas sérios de saúde bucal e geral. Prodentim ajuda na prevenção precoce para proteger seu sorriso e bem-estar.",
+        "O CDC alerta que cáries não tratadas são a principal causa de abscessos e infecções que podem afetar outros órgãos. Com Prodentim, cuidar da saúde bucal é prevenir complicações graves e preservar sua qualidade de vida.",
+        "${userName}, o Conselho Federal de Odontologia reforça que a cárie avançada pode comprometer não só os dentes, mas a saúde geral. Usar Prodentim e manter hábitos saudáveis é essencial para evitar tratamentos invasivos e dores desnecessárias."
+      ],
+      "copies_en": [
+        "Ignoring decay can cause severe pain, infections, and even tooth loss, ${userName}. Stanford University studies point out that decay progression is linked to serious oral and overall health problems. Prodentim helps early prevention to protect your smile and well-being.",
+        "The CDC warns that untreated cavities are the main cause of abscesses and infections that can affect other organs. With Prodentim, caring for oral health means preventing serious complications and preserving your quality of life.",
+        "${userName}, the Brazilian Dental Council emphasizes that advanced decay can compromise not only teeth but overall health. Using Prodentim and maintaining healthy habits is essential to avoid invasive treatments and unnecessary pain."
+      ],
+      "reflective_questions_pt": [
+        "O que acontece se eu ignorar a cárie?",
+        "Quais os riscos para minha saúde geral?",
+        "Cárie pode causar infecção grave?",
+        "Quando devo procurar um dentista?",
+        "Como Prodentim ajuda na prevenção?",
+        "Quero evitar tratamentos invasivos",
+        "Quanto tempo para cárie evoluir?",
+        "É possível reverter cáries no início?",
+        "Quais sintomas indicam piora?",
+        "Cárie afeta minha autoestima?",
+        "Como o avanço da cárie impacta meu sorriso?",
+        "Quero saber mais sobre prevenção eficaz"
+      ],
+      "reflective_questions_en": [
+        "What happens if I ignore decay?",
+        "What are the risks to my overall health?",
+        "Can cavities cause serious infection?",
+        "When should I see a dentist?",
+        "How does Prodentim help in prevention?",
+        "I want to avoid invasive treatments",
+        "How long does decay take to progress?",
+        "Is early cavity reversal possible?",
+        "What symptoms indicate worsening?",
+        "Does decay affect my self-esteem?",
+        "How does cavity progression impact my smile?",
+        "I want to know more about effective prevention"
+      ],
+      "quick_replies_pt": [
+        "Cárie pode causar infecção grave?",
+        "Quando procurar dentista para cárie?",
+        "Posso prevenir com Prodentim?",
+        "Quanto tempo para cárie piorar?",
+        "Cárie dói sempre?",
+        "Quais os riscos da cárie avançada?",
+        "Tem relatos de complicações?",
+        "Posso evitar tratamentos invasivos?",
+        "Cárie afeta minha saúde geral?",
+        "Quero dicas para prevenção efetiva",
+        "Tem casos de reversão natural?",
+        "Como Prodentim ajuda na prevenção?"
+      ],
+      "quick_replies_en": [
+        "Can cavities cause serious infection?",
+        "When to see a dentist for decay?",
+        "Can I prevent with Prodentim?",
+        "How long to worsen decay?",
+        "Does decay always hurt?",
+        "What are risks of advanced decay?",
+        "Are there complication stories?",
+        "Can I avoid invasive treatments?",
+        "Does decay affect my overall health?",
+        "I want tips for effective prevention",
+        "Are there natural reversal cases?",
+        "How does Prodentim help prevention?"
+      ]
+    },
+    {
+      "phase": 3,
+      "name": "Prova/Evidência",
+      "copies_pt": [
+        "Estudos do Journal of Dental Research mostram que probióticos presentes no Prodentim, como Lactobacillus paracasei e Bifidobacterium lactis, reduzem em até 80% a atividade das bactérias causadoras de cárie, fortalecendo o esmalte e restaurando a flora bucal.",
+        "Pesquisas do NIH indicam que rotinas com probióticos, chá verde e alimentação equilibrada diminuem em até 60% o risco de novas cáries e fortalecem a saúde bucal. Pacientes relatam menos sensibilidade e mais proteção com o uso de Prodentim.",
+        "${userName}, a Federação Europeia de Odontologia destaca que o uso combinado de probióticos e plantas medicinais pode reduzir a necessidade de restaurações em mais de 70%. Relatos reais comprovam a eficácia do Prodentim como uma solução natural e segura."
+      ],
+      "copies_en": [
+        "Studies in the Journal of Dental Research show that probiotics in Prodentim, such as Lactobacillus paracasei and Bifidobacterium lactis, reduce cavity-causing bacteria activity by up to 80%, strengthening enamel and restoring oral flora.",
+        "NIH research indicates that routines with probiotics, green tea, and balanced diet reduce the risk of new cavities by up to 60% and strengthen oral health. Patients report less sensitivity and more protection using Prodentim.",
+        "${userName}, the European Federation of Dentistry highlights that combined use of probiotics and medicinal plants can reduce the need for fillings by over 70%. Real testimonials prove Prodentim’s effectiveness as a natural and safe solution."
+      ],
+      "reflective_questions_pt": [
+        "Prodentim realmente previne cáries?",
+        "Tem estudos mostrando reversão natural?",
+        "Quanto tempo para ver resultados?",
+        "Chá verde ajuda na prevenção?",
+        "Quais benefícios dos probióticos?",
+        "Posso combinar métodos naturais e convencionais?",
+        "Tem relatos de sucesso com Prodentim?",
+        "Produtos naturais são seguros?",
+        "Como fortalecer o esmalte naturalmente?",
+        "Quero ver pesquisas científicas confiáveis",
+        "Prodentim substitui tratamentos tradicionais?",
+        "Quero entender os mecanismos de ação"
+      ],
+      "reflective_questions_en": [
+        "Does Prodentim really prevent cavities?",
+        "Are there studies showing natural reversal?",
+        "How long to see results?",
+        "Does green tea help prevention?",
+        "What are probiotics benefits?",
+        "Can I combine natural and conventional methods?",
+        "Are there success stories with Prodentim?",
+        "Are natural products safe?",
+        "How to strengthen enamel naturally?",
+        "I want to see reliable scientific research",
+        "Does Prodentim replace traditional treatments?",
+        "I want to understand mechanisms of action"
+      ],
+      "quick_replies_pt": [
+        "Prodentim ajuda a prevenir cáries?",
+        "Tem estudos científicos sobre o produto?",
+        "Quanto tempo para resultados visíveis?",
+        "Chá verde previne cáries?",
+        "Posso usar Prodentim com outros métodos?",
+        "Tem depoimentos de quem melhorou?",
+        "Produtos naturais são seguros?",
+        "Como fortalecer esmalte com Prodentim?",
+        "Quero ver pesquisas confiáveis",
+        "Prodentim pode substituir flúor?",
+        "Quais os benefícios dos probióticos?",
+        "Tem relatos de prevenção natural?"
+      ],
+      "quick_replies_en": [
+        "Does Prodentim help prevent cavities?",
+        "Are there scientific studies on the product?",
+        "How long for visible results?",
+        "Does green tea prevent cavities?",
+        "Can I use Prodentim with other methods?",
+        "Are there testimonials of improvement?",
+        "Are natural products safe?",
+        "How to strengthen enamel with Prodentim?",
+        "I want to see reliable research",
+        "Can Prodentim replace fluoride?",
+        "What are probiotics benefits?",
+        "Are there natural prevention stories?"
+      ]
+    },
+    {
+      "phase": 4,
+      "name": "Solução Natural/Plantas",
+      "copies_pt": [
+        "Desde civilizações antigas, chá verde, gengibre e outras plantas medicinais são usadas para fortalecer dentes e prevenir cáries. Prodentim combina probióticos específicos a extratos naturais para equilibrar a flora bucal e promover a remineralização do esmalte.",
+        "${userName}, a junção de plantas anti-inflamatórias e probióticos no Prodentim oferece uma solução natural e eficaz para proteger seu sorriso e prevenir cáries com segurança e praticidade.",
+        "A ciência moderna comprova que Prodentim, com seus ingredientes naturais e probióticos, é capaz de reduzir bactérias nocivas, fortalecer o esmalte e ajudar a manter sua boca saudável e protegida."
+      ],
+      "copies_en": [
+        "Since ancient times, green tea, ginger, and other medicinal plants have been used to strengthen teeth and prevent cavities. Prodentim combines specific probiotics with natural extracts to balance oral flora and promote enamel remineralization.",
+        "${userName}, the combination of anti-inflammatory plants and probiotics in Prodentim offers a natural and effective solution to protect your smile and prevent cavities safely and practically.",
+        "Modern science confirms that Prodentim, with its natural ingredients and probiotics, can reduce harmful bacteria, strengthen enamel, and help keep your mouth healthy and protected."
+      ],
+      "reflective_questions_pt": [
+        "Quais plantas ajudam a prevenir cáries?",
+        "Como Prodentim combina plantas e probióticos?",
+        "É seguro usar essas soluções diariamente?",
+        "Quanto tempo para sentir melhora com plantas?",
+        "Tem receitas naturais fáceis para prevenção?",
+        "Como fortalecer esmalte com plantas?",
+        "Quero saber mais sobre os ingredientes do Prodentim",
+        "Plantas naturais substituem tratamentos convencionais?",
+        "Prodentim pode ser usado por toda a família?",
+        "Quero dicas práticas para saúde bucal natural",
+        "Tem relatos reais de sucesso com plantas?",
+        "Por que a flora bucal é importante?"
+      ],
+      "reflective_questions_en": [
+        "Which plants help prevent cavities?",
+        "How does Prodentim combine plants and probiotics?",
+        "Is it safe to use these solutions daily?",
+        "How long to feel improvement with plants?",
+        "Are there easy natural recipes for prevention?",
+        "How to strengthen enamel with plants?",
+        "I want to know more about Prodentim ingredients",
+        "Do natural plants replace conventional treatments?",
+        "Can Prodentim be used by the whole family?",
+        "I want practical tips for natural oral health",
+        "Are there real success stories with plants?",
+        "Why is oral flora important?"
+      ],
+      "quick_replies_pt": [
+        "Como usar chá verde para prevenir cáries?",
+        "Prodentim combina plantas e probióticos?",
+        "Tem receita natural fácil para prevenção?",
+        "Quanto tempo para ver resultados com plantas?",
+        "É seguro usar Prodentim diariamente?",
+        "Quero dicas práticas para o dia a dia",
+        "Plantas substituem tratamentos tradicionais?",
+        "Pode usar Prodentim para toda família?",
+        "Tem relatos reais de sucesso com plantas?",
+        "Por que cuidar da flora bucal é importante?",
+        "Como fortalecer o esmalte naturalmente?",
+        "Prodentim é eficaz para prevenção?"
+      ],
+      "quick_replies_en": [
+        "How to use green tea to prevent cavities?",
+        "Does Prodentim combine plants and probiotics?",
+        "Any easy natural recipe for prevention?",
+        "How long to see results with plants?",
+        "Is it safe to use Prodentim daily?",
+        "I want practical daily tips",
+        "Do plants replace traditional treatments?",
+        "Can Prodentim be used by the whole family?",
+        "Are there real success stories with plants?",
+        "Why is oral flora care important?",
+        "How to strengthen enamel naturally?",
+        "Is Prodentim effective for prevention?"
+      ]
+    },
+    {
+      "phase": 5,
+      "name": "Apresentação da Solução/Próximo Passo",
+      "copies_pt": [
+        "${userName}, cuidar da cárie com Prodentim é investir na saúde e no prazer de sorrir e comer bem. Posso te ajudar a montar uma rotina natural, prática e baseada em ciência para proteger seu sorriso e evitar tratamentos invasivos. O mais importante é que você se sinta seguro e apoiado em cada passo dessa jornada.",
+        "Não espere a dor aparecer para agir, ${userName}. Com Prodentim e hábitos simples, você pode fortalecer seus dentes, prevenir cáries e melhorar sua qualidade de vida. Estou aqui para ajudar você a personalizar seu cuidado e fazer escolhas conscientes.",
+        "${userName}, cada cuidado com seu sorriso é uma conquista. Prodentim e soluções naturais oferecem proteção eficaz, segurança e bem-estar. Vamos juntos criar um plano que respeite seu ritmo e valorize sua saúde bucal e geral?"
+      ],
+      "copies_en": [
+        "${userName}, caring for decay with Prodentim is investing in health and the joy of smiling and eating well. I can help you build a natural, practical, science-based routine to protect your smile and avoid invasive treatments. The most important thing is that you feel safe and supported every step of the way.",
+        "Don’t wait for pain to act, ${userName}. With Prodentim and simple habits, you can strengthen your teeth, prevent cavities, and improve your quality of life. I’m here to help personalize your care and make conscious choices.",
+        "${userName}, every care for your smile is an achievement. Prodentim and natural solutions offer effective protection, safety, and well-being. Let’s create a plan together that respects your pace and values your oral and overall health."
+      ],
+      "reflective_questions_pt": [
+        "Quero experimentar Prodentim para prevenção de cáries",
+        "Como montar uma rotina natural para proteger os dentes?",
+        "Quero receitas naturais para fortalecer o sorriso",
+        "Como encaixar Prodentim no meu dia a dia?",
+        "Prefiro entender mais antes de decidir",
+        "Quero ver depoimentos reais de prevenção",
+        "Prodentim tem outros benefícios?",
+        "Posso combinar Prodentim com escovação tradicional?",
+        "Quero conversar mais sobre saúde bucal natural",
+        "O que mais posso fazer para proteger meu sorriso?",
+        "Prodentim é indicado para toda a família?",
+        "Quero ouvir histórias de sucesso"
+      ],
+      "reflective_questions_en": [
+        "I want to try Prodentim for cavity prevention",
+        "How to build a natural routine to protect teeth?",
+        "I want natural recipes to strengthen my smile",
+        "How to fit Prodentim into my daily life?",
+        "I prefer to learn more before deciding",
+        "I want to see real prevention testimonials",
+        "Does Prodentim have other benefits?",
+        "Can I combine Prodentim with regular brushing?",
+        "I want to talk more about natural oral health",
+        "What else can I do to protect my smile?",
+        "Is Prodentim suitable for the whole family?",
+        "I want to hear success stories"
+      ],
+      "quick_replies_pt": [
+        "Quero experimentar Prodentim para cáries",
+        "Tem rotina fácil para prevenção?",
+        "Quero receitas naturais para proteção",
+        "Como encaixar Prodentim na rotina?",
+        "Prefiro entender mais antes de decidir",
+        "Quero ver depoimentos reais de prevenção",
+        "Tem outros benefícios além das cáries?",
+        "Posso combinar Prodentim com escovação?",
+        "Quero conversar mais sobre saúde natural",
+        "O que mais posso fazer para proteger o sorriso?",
+        "Prodentim serve para toda a família?",
+        "Quero ouvir histórias de sucesso"
+      ],
+      "quick_replies_en": [
+        "I want to try Prodentim for cavities",
+        "Any easy routine for prevention?",
+        "I want natural recipes for protection",
+        "How to fit Prodentim into my routine?",
+        "I prefer to learn more before deciding",
+        "I want to see real prevention testimonials",
+        "Are there other benefits beyond cavities?",
+        "Can I combine Prodentim with brushing?",
+        "I want to talk more about natural health",
+        "What else can I do to protect my smile?",
+        "Is Prodentim suitable for the whole family?",
+        "I want to hear success stories"
+      ]
+    }
+  ]
+}
 
