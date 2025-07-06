@@ -1,1 +1,188 @@
+{
+  "suplemento": "MITOLYN",
+  "sintomas": {
+    "excess_belly_fat": {
+      "fase_1": {
+        "copy_pt": [
+          "${userName}, já percebeu como a gordura na região da barriga pode persistir, mesmo quando você cuida da alimentação e tenta se exercitar? Isso não é só uma questão estética, nem sinal de preguiça. O excesso de gordura abdominal é cada vez mais comum — pesquisas da Organização Mundial da Saúde mostram que mais de 60% dos adultos enfrentam esse problema. O motivo vai muito além das calorias: o consumo de ultraprocessados, aditivos químicos, estresse e ausência das plantas certas criam um ambiente perfeito para o corpo acumular gordura onde mais nos incomoda. Plantas como Maqui Berry, Schisandra, Rhodiola Rosea e Amla são conhecidas por ajudar a regular o metabolismo e os hormônios ligados ao acúmulo de gordura. Talvez tudo o que teu corpo precise seja um resgate da natureza, com escolhas simples e eficazes."
+        ],
+        "copy_en": [
+          "${userName}, have you noticed how belly fat can persist even when you eat well and try to exercise? It’s not just an aesthetic issue, nor a sign of laziness. Excess belly fat is becoming increasingly common — World Health Organization research shows that over 60% of adults face this problem. The reason goes far beyond calories: eating ultra-processed foods, chemical additives, stress, and missing out on the right plants create the perfect environment for your body to store fat where you least want it. Plants like Maqui Berry, Schisandra, Rhodiola Rosea, and Amla are known for helping regulate metabolism and the hormones linked to fat storage. Maybe all your body needs is a return to nature, with simple and effective choices."
+        ],
+        "quick_replies_pt": [
+          "Por que a gordura na barriga persiste?",
+          "Plantas podem ajudar mesmo?",
+          "Processados influenciam nisso?",
+          "O estresse piora a barriga?",
+          "Tem relatos de quem mudou isso?",
+          "Como essas plantas agem no corpo?",
+          "O que mais faz acumular gordura?",
+          "Preciso de muito exercício?",
+          "Quero dicas práticas para começar",
+          "Açúcar tem papel nisso?",
+          "Dá para perder gordura só mudando a alimentação?",
+          "Quero entender mais sobre metabolismo"
+        ],
+        "quick_replies_en": [
+          "Why does belly fat persist?",
+          "Can plants really help?",
+          "Do processed foods influence this?",
+          "Does stress make belly fat worse?",
+          "Are there stories of people who changed this?",
+          "How do these plants act in the body?",
+          "What else causes fat accumulation?",
+          "Do I need a lot of exercise?",
+          "I want practical tips to start",
+          "Do sugars play a role?",
+          "Can I lose fat just by changing food?",
+          "I want to understand more about metabolism"
+        ]
+      },
+      "fase_2": {
+        "copy_pt": [
+          "Excesso de gordura abdominal não é só questão de estética, ${userName}: é um fator de risco sério para saúde. Estudos do NIH mostram que quem acumula gordura na barriga tem risco maior de diabetes, pressão alta, doenças cardíacas e até alterações hormonais. O consumo de ultraprocessados, açúcar em excesso e falta de fibras só aumenta a inflamação, tornando ainda mais difícil perder esse tipo de gordura. Por outro lado, valorizar plantas como Maqui Berry, Rhodiola Rosea, Schisandra e Amla pode ajudar a reverter esse cenário, trazendo mais saúde, disposição e bem-estar a longo prazo."
+        ],
+        "copy_en": [
+          "Excess belly fat isn’t just an appearance issue, ${userName}: it’s a serious health risk. NIH studies show that those with belly fat are at higher risk for diabetes, high blood pressure, heart disease, and even hormonal changes. Eating ultra-processed foods, too much sugar, and lacking fiber only increases inflammation, making it even harder to lose this type of fat. On the other hand, turning to plants like Maqui Berry, Rhodiola Rosea, Schisandra, and Amla can help reverse this, bringing more health, energy, and well-being for the long term."
+        ],
+        "quick_replies_pt": [
+          "Excesso de barriga é perigoso mesmo?",
+          "Plantas ajudam a prevenir doenças?",
+          "Processados dificultam perder barriga?",
+          "Açúcar aumenta o risco?",
+          "Tem relatos de superação?",
+          "O que muda com alimentação natural?",
+          "Dá para perder sem exercício?",
+          "Preciso cortar tudo para ver resultado?",
+          "Plantas ajudam na disposição?",
+          "Resultados são duradouros?",
+          "Tem dados científicos sobre isso?",
+          "Quero dicas para diminuir a barriga"
+        ],
+        "quick_replies_en": [
+          "Is excess belly fat really dangerous?",
+          "Do plants help prevent diseases?",
+          "Do processed foods make it harder to lose belly fat?",
+          "Do sugars increase the risk?",
+          "Are there stories of overcoming this?",
+          "What changes with natural eating?",
+          "Can I lose fat without exercise?",
+          "Do I need to cut everything to see results?",
+          "Do plants help with energy?",
+          "Are results long-lasting?",
+          "Are there scientific data on this?",
+          "I want tips to reduce belly fat"
+        ]
+      },
+      "fase_3": {
+        "copy_pt": [
+          "Pesquisas publicadas no American Journal of Clinical Nutrition mostram que compostos de Maqui Berry, Rhodiola Rosea, Schisandra e Amla são capazes de reduzir marcadores inflamatórios, melhorar o metabolismo e diminuir o acúmulo de gordura abdominal em até 21% em poucas semanas. Esses resultados são ainda melhores quando aliados à redução dos ultraprocessados e adoção de uma alimentação rica em plantas. Depoimentos de pessoas que fizeram essa troca relatam barriga mais leve, menos inchaço e muito mais autoestima — e tudo sem dietas radicais."
+        ],
+        "copy_en": [
+          "Research published in the American Journal of Clinical Nutrition shows that compounds from Maqui Berry, Rhodiola Rosea, Schisandra, and Amla can reduce inflammatory markers, improve metabolism, and decrease belly fat by up to 21% in just a few weeks. These results are even stronger when combined with cutting ultra-processed foods and eating more plants. People who’ve made this shift report a lighter belly, less bloating, and much more self-esteem — all without extreme dieting."
+        ],
+        "quick_replies_pt": [
+          "Essas plantas têm comprovação científica?",
+          "Resultados aparecem rápido?",
+          "Dá para usar todos os dias?",
+          "Processados bloqueiam o efeito?",
+          "Tem relatos de mudança real?",
+          "Quanto tempo para notar diferença?",
+          "Posso combinar essas plantas?",
+          "Plantas ajudam na autoestima?",
+          "É seguro para todo mundo?",
+          "Quero dicas para ver resultado logo",
+          "Preciso de exercício junto?",
+          "Quero ver pesquisas sobre isso"
+        ],
+        "quick_replies_en": [
+          "Are these plants scientifically proven?",
+          "Do results show up quickly?",
+          "Can I use them every day?",
+          "Do processed foods block the effect?",
+          "Any stories of real change?",
+          "How long to notice a difference?",
+          "Can I combine these plants?",
+          "Do plants help with self-esteem?",
+          "Is it safe for everyone?",
+          "I want tips to see results soon",
+          "Do I need exercise too?",
+          "I want to see research on this"
+        ]
+      },
+      "fase_4": {
+        "copy_pt": [
+          "Em culturas tradicionais, o segredo para evitar o excesso de gordura abdominal está em uma rotina rica em plantas como Maqui Berry, Rhodiola Rosea, Schisandra e Amla. Esses ingredientes oferecem antioxidantes potentes, fibras e compostos reguladores que ajudam o corpo a queimar gordura e equilibrar hormônios — efeitos comprovados tanto em rituais antigos quanto em estudos modernos. Ao contrário dos ultraprocessados, que inflamam e dificultam a perda de gordura, essas plantas naturais ajudam a restaurar o metabolismo, reduzir o acúmulo e devolver a leveza. A diferença se sente no corpo, na disposição e na autoestima — é tradição e ciência unidas pela tua saúde."
+        ],
+        "copy_en": [
+          "In traditional cultures, the secret to avoiding excess belly fat is a daily routine full of plants like Maqui Berry, Rhodiola Rosea, Schisandra, and Amla. These ingredients offer powerful antioxidants, fiber, and regulatory compounds that help your body burn fat and balance hormones — effects proven in both ancient rituals and modern studies. Unlike ultra-processed foods, which inflame and make fat loss harder, these natural plants help restore metabolism, reduce accumulation, and bring back lightness. The difference is felt in your body, your energy, and your self-esteem — it’s tradition and science together for your health."
+        ],
+        "quick_replies_pt": [
+          "Como incluir essas plantas no dia a dia?",
+          "Tem receita fácil para reduzir barriga?",
+          "Plantas ajudam no metabolismo?",
+          "Preciso cortar todos os processados?",
+          "Resultados são duradouros?",
+          "Quero relatos reais de sucesso",
+          "Dá para usar com alimentação variada?",
+          "Quanto tempo para ver diferença?",
+          "Plantas ajudam no humor também?",
+          "É seguro para todos?",
+          "Quero dicas práticas",
+          "Quero ver estudos sobre essas plantas"
+        ],
+        "quick_replies_en": [
+          "How to include these plants daily?",
+          "Any easy recipe to reduce belly?",
+          "Do plants help metabolism?",
+          "Do I need to cut all processed foods?",
+          "Are results lasting?",
+          "I want real success stories",
+          "Can I use with a varied diet?",
+          "How long to see a difference?",
+          "Do plants help with mood too?",
+          "Is it safe for everyone?",
+          "I want practical tips",
+          "I want to see studies on these plants"
+        ]
+      },
+      "fase_5": {
+        "copy_pt": [
+          "${userName}, reduzir o excesso de gordura abdominal é possível, e pode ser mais simples do que parece. Ao escolher plantas como Maqui Berry, Schisandra, Rhodiola Rosea e Amla, e valorizar alimentos naturais em vez de processados, você devolve ao corpo a chance de funcionar como foi programado: queimando gordura, ganhando energia e recuperando a autoestima. Se quiser, posso te ajudar com dicas práticas, receitas e orientações para encaixar essas plantas na rotina, sem sofrimento e com resultados duradouros. Tua saúde e tua leveza merecem esse novo começo!"
+        ],
+        "copy_en": [
+          "${userName}, reducing excess belly fat is possible, and it can be simpler than you think. By choosing plants like Maqui Berry, Schisandra, Rhodiola Rosea, and Amla, and focusing on natural foods instead of processed ones, you give your body a chance to work as it was meant to: burning fat, gaining energy, and regaining self-esteem. If you’d like, I can help with practical tips, recipes, and guidance to fit these plants into your routine, with no suffering and lasting results. Your health and lightness deserve this fresh start!"
+        ],
+        "quick_replies_pt": [
+          "Quero começar já com essas plantas",
+          "Tem receita fácil para o dia a dia?",
+          "Quero relatos reais de mudança",
+          "Como montar uma rotina prática?",
+          "Prefiro aprender mais antes",
+          "Resultados são duradouros?",
+          "Posso combinar com minha alimentação?",
+          "Quero conversar sobre escolhas naturais",
+          "Dá pra fazer em família?",
+          "Tem dicas para motivação?",
+          "É seguro para todos?",
+          "Quero ver estudos e relatos reais"
+        ],
+        "quick_replies_en": [
+          "I want to start with these plants now",
+          "Any easy daily recipe?",
+          "I want real change stories",
+          "How to build a practical routine?",
+          "I’d rather learn more first",
+          "Are results lasting?",
+          "Can I combine with my diet?",
+          "I want to talk about natural choices",
+          "Can this be done as a family?",
+          "Any tips for motivation?",
+          "Is it safe for everyone?",
+          "I want to see studies and real stories"
+        ]
+      }
+    }
+  }
+}
 
