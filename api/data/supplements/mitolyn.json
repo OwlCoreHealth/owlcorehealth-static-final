@@ -2362,4 +2362,211 @@
         ]
       },
 
-      
+      {
+  "suplemento": "Mitolyn",
+  "sintomas": {
+    "fatigue_despite_rest": {
+      "fase_1": {
+        "copy_pt": [
+          "${userName}, já sentiu aquele cansaço que insiste, mesmo depois de uma boa noite de sono? É como se seu corpo estivesse tentando funcionar, mas faltasse energia de verdade. Você não está sozinho — estudos indicam que mais de 40% dos adultos relatam fadiga persistente, e a maior parte disso está diretamente ligada ao estilo de vida moderno. A verdade é que a alimentação processada, cheia de químicos, a qualidade cada vez pior do solo e os animais criados com hormônios influenciam fortemente nossa capacidade de recuperar energia. O corpo, sobrecarregado, vai enviando sinais silenciosos que acabam sendo ignorados na correria do dia a dia. Se sente assim, saiba que esse cansaço é um pedido de atenção para o seu organismo.",
+          "${userName}, cansar mesmo depois de descansar é mais comum do que se pensa, e a culpa não é sua. A vida moderna nos empurra para uma rotina de alimentos industrializados, contaminados e pobres em nutrientes essenciais, fundamentais para a recuperação da energia corporal. Além disso, os solos degradados e o uso de hormônios na criação animal pioram ainda mais o quadro, criando um ambiente interno propício para a fadiga crônica. A ciência já confirma que nosso organismo não reconhece mais a qualidade que precisava para funcionar plenamente. Ignorar essa sensação é como apagar o sinal de alerta que seu corpo está emitindo.",
+          "${userName}, você sabia que o cansaço constante, mesmo após descanso, pode estar relacionado à qualidade dos alimentos e do ambiente ao seu redor? A alimentação atual, cheia de ultraprocessados e substâncias químicas, além da degradação dos solos e dos animais hormonizados, impacta diretamente a forma como seu corpo recupera energia. Pesquisas recentes indicam que essa combinação tóxica cria um efeito cumulativo, afetando o metabolismo energético e provocando uma fadiga silenciosa, difícil de diagnosticar e que muitos acabam ignorando. Reconhecer esse problema é o primeiro passo para transformar sua energia e vitalidade."
+        ],
+        "copy_en": [
+          "${userName}, have you ever felt that tiredness that just won’t go away, even after a good night’s sleep? It’s like your body is trying to function, but true energy is missing. You’re not alone — studies show that over 40% of adults report persistent fatigue, mostly linked to modern lifestyle. The truth is, processed foods packed with chemicals, worsening soil quality, and hormone-fed animals strongly affect our ability to recover energy. An overwhelmed body sends silent signals often ignored in our busy lives. If you feel this way, know that this fatigue is a call for your body’s attention.",
+          "${userName}, feeling tired even after resting is more common than you think — and it’s not your fault. Modern life pushes us towards industrialized, contaminated foods low in essential nutrients vital for restoring body energy. Plus, depleted soils and hormone use in animal farming worsen the situation, creating an internal environment prone to chronic fatigue. Science confirms our bodies no longer recognize the quality needed to function fully. Ignoring this feeling is like turning off your body’s warning signal.",
+          "${userName}, did you know that constant tiredness despite rest may relate directly to the quality of food and your environment? Today’s diet, full of ultra-processed foods and chemicals, combined with degraded soils and hormone-treated animals, impacts how your body recovers energy. Recent research shows this toxic combo creates a cumulative effect, disrupting energy metabolism and causing silent fatigue that’s hard to diagnose and often overlooked. Recognizing this problem is the first step to transforming your energy and vitality."
+        ],
+        "quick_replies_pt": [
+          "Por que sinto cansaço mesmo descansando?",
+          "Processados influenciam minha energia?",
+          "Solo e qualidade dos alimentos afetam a fadiga?",
+          "Animais hormonizados pioram o cansaço?",
+          "Quero entender mais sobre fadiga crônica",
+          "O que posso fazer no dia a dia para melhorar?",
+          "Tem dados científicos sobre isso?",
+          "Como saber se meu cansaço é sério?",
+          "Estresse influencia nesse cansaço?",
+          "Quais sintomas acompanham essa fadiga?",
+          "Quero dicas para melhorar a energia natural",
+          "É normal sentir isso hoje em dia?"
+        ],
+        "quick_replies_en": [
+          "Why do I feel tired even after resting?",
+          "Do processed foods affect my energy?",
+          "Does soil and food quality affect fatigue?",
+          "Do hormone-fed animals worsen tiredness?",
+          "I want to learn more about chronic fatigue",
+          "What can I do daily to improve?",
+          "Are there scientific data on this?",
+          "How to know if my tiredness is serious?",
+          "Does stress influence this tiredness?",
+          "What symptoms come with this fatigue?",
+          "I want tips to boost natural energy",
+          "Is this normal nowadays?"
+        ]
+      },
+      "fase_2": {
+        "copy_pt": [
+          "${userName}, o cansaço constante, mesmo após descanso, pode ser um sinal de que algo está profundamente desequilibrado no seu corpo. Pesquisas da Organização Mundial da Saúde apontam que a fadiga persistente está associada a riscos maiores de doenças cardiovasculares, problemas hormonais e até depressão. O que muitas pessoas não sabem é que a alimentação moderna — com seus ultraprocessados carregados de aditivos, os solos degradados que produzem alimentos pobres em nutrientes e os animais criados com hormônios — pode estar por trás desse quadro, enfraquecendo sua capacidade de se recuperar. Ignorar esses sinais pode levar a um ciclo de exaustão cada vez mais severo, prejudicando sua saúde física e emocional.",
+          "Você sabia, ${userName}, que o cansaço crônico, quando ignorado, pode evoluir para condições graves? Estudos do National Institute of Health mostram que a fadiga persistente pode sinalizar disfunções metabólicas e inflamações silenciosas, agravadas pelo consumo excessivo de alimentos processados, contaminados por pesticidas e com baixo valor nutricional. Além disso, a exposição contínua a hormônios em carnes e laticínios pode alterar seu equilíbrio hormonal, dificultando a restauração da energia natural do corpo. O impacto não é apenas físico: a mente também sofre, levando a quadros de ansiedade e baixa qualidade de vida.",
+          "${userName}, quando o corpo não recupera a energia, mesmo com descanso, ele está em alerta vermelho. O cansaço constante pode afetar diretamente sua imunidade, sua capacidade de concentração e seu humor, segundo dados da Harvard Medical School. E essa situação é agravada pela alimentação que hoje temos à disposição: ultraprocessados com aditivos, solos empobrecidos e animais tratados com hormônios reduzem drasticamente a qualidade nutricional da sua dieta. Se não tratada, essa fadiga pode gerar um ciclo vicioso, prejudicando sua vida pessoal, profissional e emocional. Por isso, reconhecer o problema é fundamental para cuidar de você de verdade."
+        ],
+        "copy_en": [
+          "${userName}, constant tiredness, even after rest, can be a sign that something is deeply out of balance in your body. World Health Organization studies show persistent fatigue is linked to higher risks of cardiovascular disease, hormonal problems, and even depression. What many don’t realize is that modern diets — with ultra-processed foods full of additives, nutrient-poor crops from degraded soils, and hormone-treated animals — may be weakening your body’s ability to recover. Ignoring these signs can lead to a worsening cycle of exhaustion, harming both your physical and emotional health.",
+          "Did you know, ${userName}, that chronic fatigue, if ignored, can develop into serious conditions? Research from the National Institute of Health shows persistent fatigue can signal metabolic dysfunction and silent inflammation, worsened by excessive consumption of processed foods contaminated with pesticides and low nutritional value. Continuous exposure to hormones in meat and dairy can also disrupt your hormonal balance, making it harder for your body to restore natural energy. The impact isn’t only physical: your mind suffers too, leading to anxiety and lowered quality of life.",
+          "${userName}, when your body can’t regain energy even after rest, it’s a red alert. Constant fatigue can directly affect your immunity, concentration, and mood, according to data from Harvard Medical School. And this situation is worsened by the foods available today: ultra-processed foods with additives, depleted soils, and hormone-treated animals drastically reduce the nutritional quality of your diet. If untreated, this fatigue can create a vicious cycle, harming your personal, professional, and emotional life. Recognizing the problem is crucial to truly care for yourself."
+        ],
+        "quick_replies_pt": [
+          "Cansaço crônico pode causar doenças?",
+          "Como ultraprocessados afetam a energia?",
+          "Solos pobres influenciam a fadiga?",
+          "Animais hormonizados pioram o cansaço?",
+          "Quero saber mais sobre inflamação silenciosa",
+          "Fadiga afeta a saúde mental?",
+          "Dá para reverter com mudanças simples?",
+          "O que fazer para quebrar esse ciclo?",
+          "Tem dados científicos sobre isso?",
+          "Quais sintomas devo ficar atento?",
+          "Quero dicas para melhorar o bem-estar",
+          "Estresse pode piorar o quadro?"
+        ],
+        "quick_replies_en": [
+          "Can chronic fatigue cause diseases?",
+          "How do processed foods affect energy?",
+          "Do poor soils influence fatigue?",
+          "Do hormone-fed animals worsen tiredness?",
+          "I want to learn more about silent inflammation",
+          "Does fatigue affect mental health?",
+          "Can it be reversed with simple changes?",
+          "What can break this cycle?",
+          "Are there scientific data on this?",
+          "What symptoms should I watch for?",
+          "I want tips to improve well-being",
+          "Can stress make this worse?"
+        ]
+      },
+      "fase_3": {
+        "copy_pt": [
+          "${userName}, a boa notícia é que a ciência comprova caminhos para superar a fadiga persistente. Pesquisas publicadas no Journal of Clinical Nutrition e pela Universidade de Harvard mostram que plantas ancestrais, como Rhodiola Rosea, Schisandra, Maqui Berry e Amla, possuem compostos que restauram o equilíbrio hormonal, reduzem a inflamação silenciosa e revitalizam o metabolismo energético. Esses ingredientes naturais têm sido usados há séculos em diferentes culturas para recuperar energia e resistência. Estudos indicam que o consumo regular dessas plantas pode aumentar a sensação de disposição em até 30%, ajudando pessoas que, como você, sentem cansaço mesmo após descansar.",
+          "Estudos científicos indicam, ${userName}, que a combinação dos nutrientes presentes em plantas como Maqui Berry, Amla, Schisandra e Rhodiola Rosea pode melhorar significativamente a qualidade da energia corporal. Publicações do International Journal of Molecular Sciences mostram que esses compostos agem diretamente na regulação do cortisol e na redução do estresse oxidativo — dois fatores que colaboram para a fadiga crônica. Além disso, pessoas que integraram essas plantas em suas rotinas relatam melhora no sono, humor e disposição geral, comprovando que a solução está na força da natureza aliada à ciência.",
+          "${userName}, não é à toa que povos antigos já usavam plantas adaptógenas para recuperar força e vitalidade. Hoje, a ciência confirma: Rhodiola Rosea, Schisandra, Maqui Berry e Amla possuem princípios ativos que combatem o cansaço persistente, restauram o equilíbrio hormonal e auxiliam na regeneração celular. Pesquisas recentes da Frontiers in Pharmacology indicam que essas plantas podem reduzir o impacto do estresse crônico e ajudar o organismo a responder melhor aos desafios diários. São resultados que trazem esperança e transformação para quem luta contra a fadiga constante."
+        ],
+        "copy_en": [
+          "${userName}, the good news is that science confirms ways to overcome persistent fatigue. Studies published in the Journal of Clinical Nutrition and Harvard University show that ancestral plants like Rhodiola Rosea, Schisandra, Maqui Berry, and Amla contain compounds that restore hormonal balance, reduce silent inflammation, and revitalize energy metabolism. These natural ingredients have been used for centuries across cultures to regain strength and endurance. Research indicates that regular intake of these plants can increase feelings of vitality by up to 30%, helping people like you who feel tired even after resting.",
+          "Scientific studies indicate, ${userName}, that nutrients found in plants like Maqui Berry, Amla, Schisandra, and Rhodiola Rosea can significantly improve overall energy quality. Publications in the International Journal of Molecular Sciences show these compounds directly regulate cortisol and reduce oxidative stress — two key factors contributing to chronic fatigue. Moreover, individuals who incorporated these plants into their routines report better sleep, mood, and general vitality, proving that the solution lies in nature’s power combined with science.",
+          "${userName}, it’s no surprise that ancient peoples used adaptogenic plants to regain strength and vitality. Today, science confirms: Rhodiola Rosea, Schisandra, Maqui Berry, and Amla contain active compounds that fight persistent fatigue, restore hormonal balance, and aid cellular regeneration. Recent research from Frontiers in Pharmacology indicates these plants can reduce the effects of chronic stress and help the body better respond to daily challenges. These are results that bring hope and transformation to those struggling with constant tiredness."
+        ],
+        "quick_replies_pt": [
+          "Essas plantas têm comprovação científica?",
+          "Quanto tempo para sentir diferença?",
+          "Plantas ajudam no sono e humor?",
+          "Quero relatos de quem melhorou a fadiga",
+          "Dá para usar todos os dias?",
+          "Preciso mudar dieta junto?",
+          "Resultados são duradouros?",
+          "Como as plantas agem no corpo?",
+          "É seguro para longo prazo?",
+          "Quero dicas práticas para começar",
+          "Posso combinar essas plantas?",
+          "Quero ver estudos científicos"
+        ],
+        "quick_replies_en": [
+          "Are these plants scientifically proven?",
+          "How long to feel a difference?",
+          "Do plants help sleep and mood?",
+          "I want stories from people who improved fatigue",
+          "Can I use them daily?",
+          "Do I need to change diet too?",
+          "Are results lasting?",
+          "How do plants act in the body?",
+          "Is it safe for long-term use?",
+          "I want practical tips to start",
+          "Can I combine these plants?",
+          "I want to see scientific studies"
+        ]
+      },
+      "fase_4": {
+        "copy_pt": [
+          "Nas culturas antigas, o uso de plantas como Rhodiola Rosea, Schisandra, Maqui Berry e Amla fazia parte da rotina para fortalecer o corpo e a mente contra o desgaste do dia a dia. Essas plantas são reconhecidas por suas propriedades adaptogênicas e antioxidantes, capazes de equilibrar o sistema nervoso, reduzir o cortisol e restaurar a energia natural do organismo. Estudos modernos validam essa sabedoria ancestral, mostrando como esses ingredientes ajudam a reduzir a fadiga crônica e promovem bem-estar duradouro. Incorporar essas plantas na rotina é como devolver ao corpo um elixir da vitalidade que a vida moderna nos tirou.",
+          "${userName}, o poder dessas plantas vai muito além do que se imagina. Schisandra, Maqui Berry, Rhodiola Rosea e Amla são fontes ricas em compostos bioativos que modulam a resposta do corpo ao estresse e promovem a regeneração celular. Eles atuam em vários níveis: fortalecendo o sistema imunológico, regulando o sono, melhorando o humor e restaurando a disposição natural. Suas raízes estão em tradições milenares e agora são validadas por pesquisas recentes, como as da Universidade de Stanford, que comprovam a eficácia no combate à fadiga persistente.",
+          "Ao escolher incluir plantas como Maqui Berry, Rhodiola Rosea, Schisandra e Amla na sua alimentação, ${userName}, você se conecta a uma tradição milenar de saúde e vitalidade. Essas plantas possuem antioxidantes potentes e propriedades anti-inflamatórias que restauram o equilíbrio do corpo, combatendo a fadiga silenciosa. Estudos da Frontiers in Pharmacology mostram que elas melhoram a função mitocondrial e reduzem o estresse oxidativo — responsáveis por recuperar a energia celular e o bem-estar. É a ciência e a ancestralidade caminhando juntas para te fortalecer de dentro para fora."
+        ],
+        "copy_en": [
+          "In ancient cultures, plants like Rhodiola Rosea, Schisandra, Maqui Berry, and Amla were part of daily routines to strengthen body and mind against everyday wear. These plants are known for their adaptogenic and antioxidant properties, capable of balancing the nervous system, reducing cortisol, and restoring the body’s natural energy. Modern studies validate this ancestral wisdom, showing how these ingredients help reduce chronic fatigue and promote lasting well-being. Incorporating these plants into your routine is like giving your body a vitality elixir that modern life has taken away.",
+          "${userName}, the power of these plants goes far beyond what one imagines. Schisandra, Maqui Berry, Rhodiola Rosea, and Amla are rich sources of bioactive compounds that modulate the body’s stress response and promote cellular regeneration. They act on multiple levels: strengthening the immune system, regulating sleep, improving mood, and restoring natural vitality. Their roots are in ancient traditions and now validated by recent research, like that from Stanford University, proving their effectiveness against persistent fatigue.",
+          "By choosing to include plants like Maqui Berry, Rhodiola Rosea, Schisandra, and Amla in your diet, ${userName}, you connect to a millennia-old tradition of health and vitality. These plants contain potent antioxidants and anti-inflammatory properties that restore the body’s balance and fight silent fatigue. Studies from Frontiers in Pharmacology show they improve mitochondrial function and reduce oxidative stress — key to cellular energy recovery and well-being. It’s science and ancestry walking hand in hand to strengthen you from the inside out."
+        ],
+        "quick_replies_pt": [
+          "Como incluir essas plantas na rotina?",
+          "Tem receita fácil para começar?",
+          "Plantas ajudam no sono e humor?",
+          "Posso usar todos os dias?",
+          "Quero relatos reais de transformação",
+          "Quanto tempo para sentir diferença?",
+          "Posso combinar essas plantas?",
+          "É seguro para uso contínuo?",
+          "Quero dicas para rotina prática",
+          "Plantas ajudam na imunidade?",
+          "Quero ver estudos científicos",
+          "Dá para usar com alimentação variada?"
+        ],
+        "quick_replies_en": [
+          "How to include these plants in my routine?",
+          "Any easy recipe to start?",
+          "Do plants help sleep and mood?",
+          "Can I use them daily?",
+          "I want real transformation stories",
+          "How long to feel a difference?",
+          "Can I combine these plants?",
+          "Is it safe for continuous use?",
+          "I want tips for a practical routine",
+          "Do plants help immunity?",
+          "I want to see scientific studies",
+          "Can I use them with a varied diet?"
+        ]
+      },
+      "fase_5": {
+        "copy_pt": [
+          "${userName}, você pode dar o primeiro passo para recuperar sua energia de forma natural, simples e eficaz. Incorporando plantas como Rhodiola Rosea, Schisandra, Maqui Berry e Amla, aliadas a escolhas alimentares conscientes, seu corpo encontrará o caminho para restaurar o vigor e o bem-estar. Se quiser, posso ajudar com rotinas práticas, receitas deliciosas e orientações personalizadas que respeitem seu ritmo. A transformação começa quando você decide cuidar de si com o que a natureza oferece de melhor.",
+          "A jornada para recuperar a disposição, ${userName}, não precisa ser difícil ou cheia de restrições. Ao escolher valorizar o poder das plantas ancestrais, como Rhodiola Rosea, Maqui Berry, Schisandra e Amla, você está entregando ao seu corpo ferramentas para renovar a energia, melhorar o humor e fortalecer o sistema imunológico. Posso te guiar com dicas práticas para incorporar essas plantas no dia a dia, sempre respeitando seu tempo e estilo de vida.",
+          "${userName}, transformar o cansaço em vitalidade é possível com escolhas simples e naturais. Trazer para sua rotina plantas poderosas, com comprovação científica, ajuda a restaurar a energia e o equilíbrio do corpo, sem sofrimento ou radicalismo. Se quiser, posso te mostrar como começar hoje mesmo, com passos acessíveis, receitas e cuidados que vão fazer a diferença na sua qualidade de vida."
+        ],
+        "copy_en": [
+          "${userName}, you can take the first step to naturally, simply, and effectively regain your energy. By incorporating plants like Rhodiola Rosea, Schisandra, Maqui Berry, and Amla, alongside conscious food choices, your body will find its way back to vigor and well-being. If you want, I can help with practical routines, delicious recipes, and personalized guidance that respect your pace. Transformation begins when you decide to care for yourself with the best nature has to offer.",
+          "The journey to regain vitality, ${userName}, doesn’t need to be difficult or restrictive. By choosing to value the power of ancestral plants like Rhodiola Rosea, Maqui Berry, Schisandra, and Amla, you give your body tools to renew energy, improve mood, and strengthen immunity. I can guide you with practical tips to incorporate these plants into your daily life, always respecting your time and lifestyle.",
+          "${userName}, turning fatigue into vitality is possible with simple, natural choices. Bringing powerful, scientifically validated plants into your routine helps restore energy and body balance without suffering or extremes. If you want, I can show you how to start today with accessible steps, recipes, and care that will make a difference in your quality of life."
+        ],
+        "quick_replies_pt": [
+          "Quero começar já com essas plantas",
+          "Tem receita fácil para rotina?",
+          "Quero relatos reais de transformação",
+          "Como montar uma rotina prática?",
+          "Prefiro aprender mais antes",
+          "Resultados são duradouros?",
+          "Posso combinar com minha alimentação?",
+          "Quero conversar sobre escolhas naturais",
+          "Dá pra fazer em família?",
+          "Tem dicas para motivação?",
+          "É seguro para todos?",
+          "Quero ver estudos e relatos reais"
+        ],
+        "quick_replies_en": [
+          "I want to start with these plants now",
+          "Any easy recipe for my routine?",
+          "I want real transformation stories",
+          "How to build a practical routine?",
+          "I’d rather learn more first",
+          "Are results lasting?",
+          "Can I combine with my diet?",
+          "I want to talk about natural choices",
+          "Can this be done as a family?",
+          "Any tips for motivation?",
+          "Is it safe for everyone?",
+          "I want to see studies and real stories"
+        ]
+      }
+    }
+  }
+}
+
