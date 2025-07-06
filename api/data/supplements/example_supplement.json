@@ -1,57 +1,135 @@
 {
-  "suplemento": "MITOLYN",
+  "suplemento": "NOME_DO_SUPLEMENTO",
   "sintomas": {
-    "gordura_abdominal_resistente": {
+    "sintoma_exemplo": {
       "fase_1": {
         "copy_pt": [
-          "Você já notou como a gordura abdominal pode ser difícil de eliminar, não é? Às vezes, mesmo com dieta e exercício, ela persiste.",
-          "A gordura na barriga não é apenas uma questão estética, mas pode estar relacionada ao equilíbrio hormonal e ao estresse."
+          "Texto introdutório da Fase 1 em português...",
+          "Outro texto ou explicação da Fase 1 em português..."
         ],
         "copy_en": [
-          "Have you noticed how stubborn belly fat can be? Sometimes, even with diet and exercise, it persists.",
-          "Belly fat is not just an aesthetic issue; it might be linked to hormonal balance and stress."
+          "Introductory text for Phase 1 in English...",
+          "Another explanation or text for Phase 1 in English..."
         ],
         "quick_replies_pt": [
-          "Como reduzir a gordura na barriga?",
-          "Quais são as causas da gordura abdominal?"
+          "Resposta rápida 1 Fase 1",
+          "Resposta rápida 2 Fase 1"
         ],
         "quick_replies_en": [
-          "How to reduce belly fat?",
-          "What are the causes of belly fat?"
+          "Quick reply 1 Phase 1",
+          "Quick reply 2 Phase 1"
         ],
         "reflective_questions_pt": [
-          "Você já tentou alguma estratégia que ajudou a reduzir a gordura abdominal?",
-          "O que mais tem influenciado no seu processo de emagrecimento?"
+          "Pergunta reflexiva 1 Fase 1",
+          "Pergunta reflexiva 2 Fase 1"
         ],
         "reflective_questions_en": [
-          "Have you tried any strategy that helped reduce belly fat?",
-          "What has been influencing your weight loss process the most?"
+          "Reflective question 1 Phase 1",
+          "Reflective question 2 Phase 1"
         ]
       },
       "fase_2": {
         "copy_pt": [
-          "É importante observar o impacto do estresse no seu corpo. O cortisol, o hormônio do estresse, pode contribuir para o acúmulo de gordura abdominal.",
-          "Uma alimentação balanceada, rica em fibras e com pouco açúcar, é essencial para começar a reduzir a gordura na barriga."
+          "Texto da Fase 2 em português...",
+          "Outro texto ou explicação da Fase 2 em português..."
         ],
         "copy_en": [
-          "It's important to notice the impact of stress on your body. Cortisol, the stress hormone, can contribute to belly fat accumulation.",
-          "A balanced diet, rich in fiber and low in sugar, is essential to start reducing belly fat."
+          "Text for Phase 2 in English...",
+          "Another explanation or text for Phase 2 in English..."
         ],
         "quick_replies_pt": [
-          "Como controlar o estresse?",
-          "Quais alimentos ajudam na redução da gordura abdominal?"
+          "Resposta rápida 1 Fase 2",
+          "Resposta rápida 2 Fase 2"
         ],
         "quick_replies_en": [
-          "How to control stress?",
-          "What foods help reduce belly fat?"
+          "Quick reply 1 Phase 2",
+          "Quick reply 2 Phase 2"
         ],
         "reflective_questions_pt": [
-          "Quais ações você pode tomar para controlar o estresse?",
-          "Como você pode ajustar sua alimentação para melhorar a saúde?"
+          "Pergunta reflexiva 1 Fase 2",
+          "Pergunta reflexiva 2 Fase 2"
         ],
         "reflective_questions_en": [
-          "What actions can you take to control stress?",
-          "How can you adjust your diet to improve health?"
+          "Reflective question 1 Phase 2",
+          "Reflective question 2 Phase 2"
+        ]
+      },
+      "fase_3": {
+        "copy_pt": [
+          "Texto da Fase 3 em português...",
+          "Outro texto ou explicação da Fase 3 em português..."
+        ],
+        "copy_en": [
+          "Text for Phase 3 in English...",
+          "Another explanation or text for Phase 3 in English..."
+        ],
+        "quick_replies_pt": [
+          "Resposta rápida 1 Fase 3",
+          "Resposta rápida 2 Fase 3"
+        ],
+        "quick_replies_en": [
+          "Quick reply 1 Phase 3",
+          "Quick reply 2 Phase 3"
+        ],
+        "reflective_questions_pt": [
+          "Pergunta reflexiva 1 Fase 3",
+          "Pergunta reflexiva 2 Fase 3"
+        ],
+        "reflective_questions_en": [
+          "Reflective question 1 Phase 3",
+          "Reflective question 2 Phase 3"
+        ]
+      },
+      "fase_4": {
+        "copy_pt": [
+          "Texto da Fase 4 em português...",
+          "Outro texto ou explicação da Fase 4 em português..."
+        ],
+        "copy_en": [
+          "Text for Phase 4 in English...",
+          "Another explanation or text for Phase 4 in English..."
+        ],
+        "quick_replies_pt": [
+          "Resposta rápida 1 Fase 4",
+          "Resposta rápida 2 Fase 4"
+        ],
+        "quick_replies_en": [
+          "Quick reply 1 Phase 4",
+          "Quick reply 2 Phase 4"
+        ],
+        "reflective_questions_pt": [
+          "Pergunta reflexiva 1 Fase 4",
+          "Pergunta reflexiva 2 Fase 4"
+        ],
+        "reflective_questions_en": [
+          "Reflective question 1 Phase 4",
+          "Reflective question 2 Phase 4"
+        ]
+      },
+      "fase_5": {
+        "copy_pt": [
+          "Texto da Fase 5 em português...",
+          "Outro texto ou explicação da Fase 5 em português..."
+        ],
+        "copy_en": [
+          "Text for Phase 5 in English...",
+          "Another explanation or text for Phase 5 in English..."
+        ],
+        "quick_replies_pt": [
+          "Resposta rápida 1 Fase 5",
+          "Resposta rápida 2 Fase 5"
+        ],
+        "quick_replies_en": [
+          "Quick reply 1 Phase 5",
+          "Quick reply 2 Phase 5"
+        ],
+        "reflective_questions_pt": [
+          "Pergunta reflexiva 1 Fase 5",
+          "Pergunta reflexiva 2 Fase 5"
+        ],
+        "reflective_questions_en": [
+          "Reflective question 1 Phase 5",
+          "Reflective question 2 Phase 5"
         ]
       }
     }
