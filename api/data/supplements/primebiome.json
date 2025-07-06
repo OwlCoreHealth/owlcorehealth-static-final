@@ -818,4 +818,125 @@
         ]
       },
 
-      
+      {
+  "symptom": "ADULT OR RECURRENT ACNE / ACNE ADULTO OU RECORRENTE",
+  "supplement": "PrimeBiome",
+  "phases": {
+    "phase1": {
+      "copies_pt": [
+        "${userName}, a acne adulta ou recorrente pode ser mais do que um problema estético; é um sinal de que seu corpo está reagindo a desequilíbrios internos. A alimentação moderna, rica em ultraprocessados, solos empobrecidos e carnes tratadas com hormônios, pode alterar o equilíbrio hormonal e a saúde da pele, desencadeando essas crises persistentes.",
+        "${userName}, sentir que a acne não desaparece ou retorna constantemente pode ser resultado de uma microbiota cutânea desequilibrada, influenciada pela dieta industrializada e pela exposição a toxinas ambientais. Essas condições impactam a inflamação e a regeneração da pele.",
+        "Você já percebeu, ${userName}, que a pele reflete o que acontece dentro do corpo? A combinação de alimentos processados, solos contaminados e produtos químicos pode agravar inflamações e crises de acne, afetando sua autoestima e bem-estar."
+      ],
+      "copies_en": [
+        "${userName}, adult or recurrent acne can be more than a cosmetic issue; it signals your body reacting to internal imbalances. Modern diets rich in ultra-processed foods, nutrient-depleted soils, and hormone-treated meats can disrupt hormonal balance and skin health, triggering persistent outbreaks.",
+        "${userName}, feeling like acne won’t go away or keeps returning may result from an imbalanced skin microbiota influenced by industrialized diet and environmental toxin exposure. These conditions affect inflammation and skin regeneration.",
+        "Have you noticed, ${userName}, that your skin reflects what’s happening inside your body? The combination of processed foods, contaminated soils, and chemicals can worsen inflammation and acne outbreaks, impacting your self-esteem and well-being."
+      ],
+      "quick_replies_pt": [
+        "Por que minha acne volta sempre?",
+        "Alimentos influenciam na acne?",
+        "Solo contaminado afeta pele?",
+        "Carnes hormonizadas pioram acne?",
+        "Quero entender mais sobre acne",
+        "Tem estudos científicos?",
+        "Como cuidar da pele naturalmente?",
+        "Quais sintomas indicam problema sério?",
+        "Quero dicas para pele saudável",
+        "Estresse piora a acne?",
+        "Acne adulta é comum?",
+        "Quando procurar ajuda?"
+      ],
+      "quick_replies_en": [
+        "Why does my acne keep coming back?",
+        "Do foods influence acne?",
+        "Does contaminated soil affect skin?",
+        "Do hormone-treated meats worsen acne?",
+        "I want to learn more about acne",
+        "Are there scientific studies?",
+        "How to care for skin naturally?",
+        "What symptoms indicate serious problem?",
+        "I want tips for healthy skin",
+        "Does stress worsen acne?",
+        "Is adult acne common?",
+        "When to seek help?"
+      ]
+    },
+    "phase2": {
+      "copies_pt": [
+        "${userName}, a acne recorrente pode deixar marcas físicas e emocionais profundas, afetando sua autoestima e saúde da pele. Pesquisas mostram que a inflamação causada por desequilíbrios hormonais e tóxicos ambientais está no centro desse problema.",
+        "Você sabia, ${userName}, que a acne não tratada pode evoluir para cicatrizes permanentes e quadros inflamatórios crônicos? A alimentação ultraprocessada e a exposição a solos contaminados agravam esses efeitos.",
+        "${userName}, ignorar a acne recorrente pode aumentar o risco de infecções e deterioração da saúde cutânea. Estudos do Journal of Dermatological Science reforçam a importância de intervenções naturais."
+      ],
+      "copies_en": [
+        "${userName}, recurrent acne can leave deep physical and emotional scars, impacting your self-esteem and skin health. Research shows inflammation caused by hormonal imbalances and environmental toxins is central to this problem.",
+        "Did you know, ${userName}, untreated acne can lead to permanent scars and chronic inflammatory conditions? Ultra-processed diets and exposure to contaminated soils worsen these effects.",
+        "${userName}, ignoring recurrent acne can increase risk of infections and skin health deterioration. Studies from Journal of Dermatological Science emphasize the importance of natural interventions."
+      ]
+    },
+    "phase3": {
+      "copies_pt": [
+        "${userName}, estudos indicam que o Dente-de-leão, Funcho e Babchi possuem compostos anti-inflamatórios e antioxidantes que ajudam a reduzir a inflamação cutânea e promover a regeneração da pele, beneficiando quem sofre com acne.",
+        "Pesquisas recentes, ${userName}, mostram que esses ingredientes naturais auxiliam no equilíbrio hormonal e na melhora da saúde da pele, conforme evidenciado em estudos do Phytotherapy Research.",
+        "${userName}, estudos do Nutritional Journal confirmam que o uso regular dessas plantas está associado à melhora da acne e redução das crises inflamatórias."
+      ],
+      "copies_en": [
+        "${userName}, studies show Dandelion, Fennel, and Babchi contain anti-inflammatory and antioxidant compounds that help reduce skin inflammation and promote regeneration, benefiting those with acne.",
+        "Recent research, ${userName}, shows these natural ingredients aid hormonal balance and skin health improvement, as evidenced in studies from Phytotherapy Research.",
+        "${userName}, studies from Nutritional Journal confirm regular use of these plants is linked to acne improvement and reduced inflammatory outbreaks."
+      ]
+    },
+    "phase4": {
+      "copies_pt": [
+        "Plantas ancestrais como Dente-de-leão, Funcho e Babchi são poderosas aliadas na luta contra a acne adulta, pois possuem propriedades anti-inflamatórias, antioxidantes e reguladoras hormonais que promovem a saúde da pele e a regeneração celular.",
+        "${userName}, essas plantas naturais auxiliam na redução da inflamação cutânea e no equilíbrio hormonal, criando um ambiente ideal para a pele se renovar e se proteger, diminuindo as crises de acne.",
+        "Utilizadas há séculos, essas plantas oferecem nutrientes que fortalecem a pele, combatem a inflamação e promovem uma aparência saudável e renovada, tornando-se essenciais para quem busca um cuidado natural e eficaz."
+      ],
+      "copies_en": [
+        "Ancestral plants like Dandelion, Fennel, and Babchi are powerful allies in fighting adult acne, possessing anti-inflammatory, antioxidant, and hormone-regulating properties that promote skin health and cell regeneration.",
+        "${userName}, these natural plants help reduce skin inflammation and hormonal imbalance, creating an ideal environment for skin renewal and protection, reducing acne outbreaks.",
+        "Used for centuries, these plants provide nutrients that strengthen the skin, fight inflammation, and promote a healthy, renewed appearance, making them essential for those seeking natural and effective care."
+      ]
+    },
+    "phase5": {
+      "copies_pt": [
+        "${userName}, cuidar da sua pele naturalmente pode transformar sua autoestima e qualidade de vida. Com plantas ancestrais e hábitos saudáveis, sua pele terá o suporte para se renovar e se proteger. Posso ajudar com dicas, receitas e um plano prático para essa transformação.",
+        "A mudança começa com pequenas escolhas, ${userName}. Ao incluir plantas como Dente-de-leão, Funcho e Babchi na rotina e optar por uma alimentação equilibrada, você apoia sua pele para ficar saudável e bonita. Estou aqui para guiar você com passos simples e personalizados.",
+        "${userName}, sua jornada para uma pele saudável e livre da acne pode começar agora. Com essa combinação natural e cuidados consistentes, sua pele terá o suporte necessário para brilhar. Posso fornecer um plano com orientações e cuidados para essa nova fase."
+      ],
+      "copies_en": [
+        "${userName}, caring for your skin naturally can transform your self-esteem and quality of life. With ancestral plants and healthy habits, your skin will have support to renew and protect itself. I can help with tips, recipes, and a practical plan for this transformation.",
+        "Change begins with small choices, ${userName}. By including plants like Dandelion, Fennel, and Babchi in your routine and opting for a balanced diet, you support your skin to become healthy and beautiful. I am here to guide you with simple, personalized steps.",
+        "${userName}, your journey to healthy, acne-free skin can start now. With this natural combination and consistent care, your skin will have the support it needs to shine. I can provide a plan with guidance and care for this new phase."
+      ],
+      "quick_replies_pt": [
+        "Quero começar já com plantas naturais",
+        "Tem receita fácil para acne",
+        "Quero relatos reais de transformação",
+        "Como montar uma rotina prática?",
+        "Prefiro aprender mais antes",
+        "Resultados são duradouros?",
+        "Posso combinar com minha alimentação?",
+        "Quero conversar sobre escolhas naturais",
+        "Dá pra fazer em família?",
+        "Tem dicas para motivação?",
+        "É seguro para todos?",
+        "Quero ver estudos e relatos reais"
+      ],
+      "quick_replies_en": [
+        "I want to start with natural plants now",
+        "Any easy recipe for acne",
+        "I want real transformation stories",
+        "How to build a practical routine?",
+        "I’d rather learn more first",
+        "Are results lasting?",
+        "Can I combine it with my diet?",
+        "I want to talk about natural choices",
+        "Can this be done as a family?",
+        "Any tips for motivation?",
+        "Is it safe for everyone?"
+      ]
+    },
+
+    
+  
