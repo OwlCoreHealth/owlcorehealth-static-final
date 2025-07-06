@@ -1,1 +1,245 @@
+{
+  "suplemento": "PRIME BIOME",
+  "titulo": "Rosacea / Rosácea",
+  "fase_1": {
+    "pt": [
+      "${userName}, conviver com rosácea é lidar com uma pele sensível que pode ficar vermelha, irritada e até dolorida diante de qualquer estímulo — calor, alimentos, estresse ou mesmo simples mudanças climáticas. Muitas vezes, a rosácea vai além do desconforto físico e impacta o emocional, prejudicando a autoestima e a vontade de se expor em situações sociais. Por trás desse quadro, está um processo inflamatório silencioso, frequentemente agravado por dietas industrializadas, solos empobrecidos e contato constante com toxinas ambientais, que alteram o microbioma da pele e do intestino. Entender que a rosácea reflete desequilíbrios internos é o primeiro passo para buscar uma solução mais profunda, indo além de apenas esconder os sintomas.",
+      "Você sente que sua pele reage facilmente e a vermelhidão aparece sem aviso? Isso pode ser sinal de que seu organismo está sobrecarregado, especialmente pelo consumo de alimentos ultraprocessados, exposição a poluição e falta de nutrientes essenciais para a barreira cutânea. Estudos apontam que o desequilíbrio do microbioma, tanto intestinal quanto da pele, é um dos grandes gatilhos para crises de rosácea. Essa condição também está ligada a processos inflamatórios sistêmicos, mostrando que tratar só por fora não resolve de verdade. Olhar para dentro, identificar gatilhos alimentares, ambientais e emocionais é fundamental para o autocuidado.",
+      "${userName}, a rosácea é um lembrete de que sua pele está em constante diálogo com o resto do corpo. Cada surto, cada desconforto, pode estar te mostrando que algo não vai bem no seu equilíbrio interno. Além do incômodo estético, muitas pessoas relatam ardência, sensação de calor e até pequenas lesões. Tudo isso pode ser intensificado por um estilo de vida moderno: comidas industrializadas, solos contaminados, exposição a produtos químicos e estresse do dia a dia. Não se culpe: a rosácea não é resultado de falta de higiene ou cuidado, mas sim de um contexto mais amplo, que exige empatia e informação para ser tratado de maneira global."
+    ],
+    "en": [
+      "${userName}, living with rosacea means dealing with sensitive skin that can turn red, irritated, and even painful in response to everyday triggers—heat, certain foods, stress, or simple weather changes. Often, rosacea goes beyond physical discomfort and affects emotional well-being, lowering self-esteem and making social situations feel daunting. Behind these symptoms lies a silent inflammatory process, frequently worsened by industrialized diets, nutrient-depleted soils, and constant exposure to environmental toxins that disrupt both the skin and gut microbiome. Recognizing that rosacea reflects internal imbalances is the first step towards finding deeper solutions, moving beyond just covering up the redness.",
+      "Do you feel your skin reacts easily and redness appears without warning? This could be a sign your body is overwhelmed—especially by ultra-processed foods, pollution, and lack of essential nutrients for skin barrier health. Studies suggest that imbalances in the microbiome, both gut and skin, are major triggers for rosacea flare-ups. This condition is also linked to systemic inflammation, showing that treating the surface alone is not enough. Looking inward, identifying dietary, environmental, and emotional triggers is essential for true self-care and lasting relief.",
+      "${userName}, rosacea is a reminder that your skin is in constant conversation with the rest of your body. Each flare-up or discomfort may be showing you something is off with your internal balance. Besides the cosmetic discomfort, many people experience burning, heat, or even small lesions—often intensified by modern lifestyles: processed foods, contaminated soils, chemical exposure, and daily stress. Don’t blame yourself; rosacea is not caused by lack of hygiene or care but by a much broader context that requires empathy and information for a comprehensive approach."
+    ],
+    "quick_replies_pt": [
+      "O que causa rosácea?",
+      "Como aliviar a vermelhidão?",
+      "Alimentos pioram rosácea?",
+      "Poluição afeta minha pele?",
+      "Quero entender mais sobre rosácea",
+      "Tem estudos científicos?",
+      "Como fortalecer a barreira da pele?",
+      "Quais sintomas indicam agravamento?",
+      "Quero dicas para pele sensível",
+      "Estresse piora minha rosácea?",
+      "Rosácea é comum?",
+      "Quando procurar ajuda?"
+    ],
+    "quick_replies_en": [
+      "What causes rosacea?",
+      "How to relieve redness?",
+      "Do foods worsen rosacea?",
+      "Does pollution affect my skin?",
+      "I want to learn more about rosacea",
+      "Are there scientific studies?",
+      "How to strengthen skin barrier?",
+      "What symptoms indicate worsening?",
+      "I want tips for sensitive skin",
+      "Does stress worsen my rosacea?",
+      "Is rosacea common?",
+      "When to seek help?"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar uma pele saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy skin?",
+      "How would you like to start this change in your routine?"
+    ]
+  },
+  "fase_2": {
+    "pt": [
+      "${userName}, ignorar a rosácea pode trazer consequências que vão além do desconforto diário. Quando a inflamação se mantém ativa, a pele fica mais vulnerável a infecções, surgimento de pústulas, sensação constante de ardor e até espessamento da pele em casos graves. Além disso, a rosácea pode indicar processos inflamatórios mais profundos, ligados ao intestino e ao sistema imunológico, afetando o corpo de forma global. Pesquisas mostram que controlar apenas os sintomas visíveis não basta para evitar complicações: é preciso olhar para os fatores que mantêm essa inflamação acesa e buscar soluções integrativas, desde a alimentação até o controle do estresse.",
+      "Você sabia, ${userName}, que crises de rosácea não tratadas podem comprometer a saúde e autoestima ao longo do tempo? O ciclo inflamatório tende a se agravar com repetidas exposições a gatilhos alimentares, ambientais e emocionais, podendo deixar marcas permanentes, vasos dilatados e desconforto crônico. A literatura científica reforça a importância de intervir cedo, com mudanças no estilo de vida e suporte ao equilíbrio da microbiota, prevenindo consequências como infecções secundárias e agravamento das lesões. Cuidar da pele é cuidar do corpo como um todo.",
+      "${userName}, muitos ignoram que a rosácea pode sinalizar desequilíbrios sistêmicos — não só na pele, mas em todo o organismo. Inflamações recorrentes favorecem o envelhecimento precoce, reduzem a capacidade de regeneração da pele e até alteram o bem-estar emocional, com aumento de ansiedade ou constrangimento social. Pesquisas do Journal of Dermatological Science e do World Journal of Clinical Cases destacam que atuar nas causas e não apenas nos efeitos da rosácea pode ser decisivo para a saúde cutânea e sistêmica no longo prazo. Prevenção e tratamento integrativo são sempre os melhores caminhos."
+    ],
+    "en": [
+      "${userName}, ignoring rosacea can have consequences that go far beyond daily discomfort. When inflammation persists, skin becomes more vulnerable to infections, the appearance of pustules, a constant burning sensation, and even thickening of the skin in severe cases. Additionally, rosacea may signal deeper inflammatory processes connected to the gut and immune system, impacting your overall health. Research shows that managing only visible symptoms is not enough to prevent complications: you need to address the factors that keep inflammation active and seek integrative solutions, from nutrition to stress control.",
+      "Did you know, ${userName}, that untreated rosacea flare-ups can compromise both health and self-esteem over time? The inflammatory cycle tends to worsen with repeated exposure to dietary, environmental, and emotional triggers, which can lead to permanent marks, dilated vessels, and chronic discomfort. Scientific literature emphasizes the importance of early intervention, with lifestyle changes and support for microbiota balance, to prevent secondary infections and worsening of lesions. Caring for your skin is caring for your whole body.",
+      "${userName}, many people overlook that rosacea can signal systemic imbalances—not just in the skin, but throughout the body. Recurrent inflammation can accelerate premature aging, reduce skin regeneration capacity, and even impact emotional well-being, increasing anxiety or social embarrassment. Research from the Journal of Dermatological Science and the World Journal of Clinical Cases highlights that addressing the root causes—not just the effects—of rosacea is crucial for long-term skin and systemic health. Prevention and integrative treatment are always the best path."
+    ],
+    "quick_replies_pt": [
+      "Rosácea pode piorar?",
+      "Como evitar complicações?",
+      "Quais consequências da inflamação crônica?",
+      "Como prevenir lesões graves?",
+      "Qual o impacto na autoestima?",
+      "Tem risco de infecção?",
+      "Como a microbiota influencia?",
+      "Rosácea pode deixar marcas?",
+      "Quero saber mais sobre inflamação sistêmica",
+      "Estresse piora minha condição?",
+      "Tem estudos sobre consequências?",
+      "Quando procurar tratamento?"
+    ],
+    "quick_replies_en": [
+      "Can rosacea get worse?",
+      "How to avoid complications?",
+      "What are the consequences of chronic inflammation?",
+      "How to prevent severe lesions?",
+      "What’s the impact on self-esteem?",
+      "Is there a risk of infection?",
+      "How does the microbiome influence?",
+      "Can rosacea leave marks?",
+      "I want to learn more about systemic inflammation",
+      "Does stress worsen my condition?",
+      "Are there studies on consequences?",
+      "When to seek treatment?"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar uma pele saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy skin?",
+      "How would you like to start this change in your routine?"
+    ]
+  },
+  "fase_3": {
+    "pt": [
+      "${userName}, estudos recentes demonstram que a restauração do equilíbrio da microbiota intestinal e cutânea pode reduzir a frequência e a intensidade das crises de rosácea. Pesquisas com probióticos específicos, como Bacillus Coagulans, mostram melhora significativa na barreira da pele e diminuição da inflamação, enquanto ingredientes botânicos como Dente-de-leão, Funcho e Babchi apresentam propriedades anti-inflamatórias e antioxidantes que ajudam a acalmar e proteger a pele sensível.",
+      "A literatura científica evidencia que estratégias naturais, incluindo uso regular de plantas medicinais e suporte probiótico, favorecem a redução da vermelhidão, da sensibilidade e do desconforto típico da rosácea. Estudos do Journal of Clinical Gastroenterology e do Phytotherapy Research mostram resultados promissores ao integrar dieta rica em fibras, plantas anti-inflamatórias e manejo do estresse como parte do tratamento. Os relatos de pacientes reforçam que pequenas mudanças podem transformar o bem-estar.",
+      "${userName}, relatos clínicos e pesquisas de campo confirmam que o uso combinado de plantas ancestrais e probióticos não apenas atenua sintomas visíveis, mas promove a saúde integral da pele. O Nutritional Journal destaca a melhora progressiva na textura, hidratação e redução de lesões após a introdução dessas estratégias naturais na rotina, demonstrando que tratar de dentro para fora traz resultados reais e duradouros para quem sofre com rosácea."
+    ],
+    "en": [
+      "${userName}, recent studies show that restoring the balance of the gut and skin microbiome can reduce both the frequency and intensity of rosacea flare-ups. Research on specific probiotics such as Bacillus Coagulans demonstrates significant improvements in skin barrier function and reduced inflammation, while botanical ingredients like Dandelion, Fennel, and Babchi possess anti-inflammatory and antioxidant properties that help calm and protect sensitive skin.",
+      "Scientific literature highlights that natural strategies, including the regular use of medicinal plants and probiotic support, contribute to decreased redness, sensitivity, and discomfort typical of rosacea. Studies in the Journal of Clinical Gastroenterology and Phytotherapy Research show promising results when integrating a fiber-rich diet, anti-inflammatory plants, and stress management as part of the treatment plan. Patient testimonials reinforce that small changes can make a big difference in well-being.",
+      "${userName}, clinical reports and field research confirm that the combined use of ancestral plants and probiotics not only alleviates visible symptoms but also promotes holistic skin health. The Nutritional Journal underscores progressive improvements in texture, hydration, and reduction of lesions after these natural strategies are adopted, proving that treating from the inside out brings real and lasting results for those living with rosacea."
+    ],
+    "quick_replies_pt": [
+      "Probióticos ajudam rosácea?",
+      "Quais plantas são indicadas?",
+      "Quanto tempo para ver resultados?",
+      "É seguro para uso diário?",
+      "Plantas realmente funcionam?",
+      "Quero relatos reais de melhora",
+      "Como probióticos atuam na pele?",
+      "Tem estudos com plantas e rosácea?",
+      "Quero dicas práticas de tratamento",
+      "Resultados são duradouros?",
+      "Posso combinar estratégias naturais?",
+      "Quero ver estudos científicos"
+    ],
+    "quick_replies_en": [
+      "Do probiotics help rosacea?",
+      "Which plants are recommended?",
+      "How long to see results?",
+      "Is it safe for daily use?",
+      "Do plants really work?",
+      "I want real improvement stories",
+      "How do probiotics work on skin?",
+      "Are there studies with plants and rosacea?",
+      "I want practical treatment tips",
+      "Are results lasting?",
+      "Can I combine natural strategies?",
+      "I want to see scientific studies"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar uma pele saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy skin?",
+      "How would you like to start this change in your routine?"
+    ]
+  },
+  "fase_4": {
+    "pt": [
+      "${userName}, o uso de plantas ancestrais como Dente-de-leão, Funcho e Babchi representa um avanço no cuidado da rosácea porque atuam de forma profunda: diminuem a inflamação, fortalecem a barreira da pele e auxiliam no reequilíbrio do microbioma cutâneo. Integrar essas plantas à rotina, seja em suplementos ou receitas naturais, pode promover uma pele mais calma, menos reativa e com menos episódios de vermelhidão, sem recorrer a tratamentos agressivos ou químicos que irritam ainda mais a pele sensível.",
+      "Essas plantas naturais têm sido utilizadas há séculos para tratar distúrbios cutâneos, graças ao seu poder anti-inflamatório, antioxidante e de regeneração celular. Quando associadas a probióticos como Bacillus Coagulans e uma dieta rica em fibras e nutrientes, elas potencializam a recuperação da pele afetada pela rosácea, tornando-a mais resistente e equilibrada. Estudos mostram que a sabedoria tradicional alinhada à ciência moderna é um dos caminhos mais eficazes para restaurar o bem-estar da pele.",
+      "${userName}, adotar o cuidado natural com plantas e probióticos não significa abandonar a medicina convencional, mas sim somar forças no combate à rosácea. Ao nutrir o corpo e a pele de dentro para fora, você fortalece mecanismos naturais de defesa, reduz inflamação e melhora a aparência da pele de maneira progressiva e sustentável. Incorporar Dente-de-leão, Funcho, Babchi e suplementos de qualidade é um passo decisivo para transformar sua relação com a pele, tornando os sintomas cada vez menos frequentes e intensos."
+    ],
+    "en": [
+      "${userName}, the use of ancestral plants like Dandelion, Fennel, and Babchi marks a breakthrough in rosacea care because they work deeply: they reduce inflammation, strengthen the skin barrier, and help rebalance the skin microbiome. Integrating these plants into your routine, whether through supplements or natural recipes, can lead to calmer, less reactive skin with fewer redness episodes—without resorting to harsh treatments or chemicals that further irritate sensitive skin.",
+      "These natural plants have been used for centuries to address skin disorders, thanks to their anti-inflammatory, antioxidant, and cell-regenerating power. When combined with probiotics like Bacillus Coagulans and a diet rich in fiber and nutrients, they enhance the recovery of skin affected by rosacea, making it more resilient and balanced. Studies show that aligning traditional wisdom with modern science is among the most effective paths to restore skin well-being.",
+      "${userName}, adopting natural care with plants and probiotics doesn’t mean abandoning conventional medicine but rather joining forces in fighting rosacea. By nourishing your body and skin from the inside out, you strengthen natural defense mechanisms, reduce inflammation, and progressively improve your skin’s appearance. Incorporating Dandelion, Fennel, Babchi, and quality supplements is a decisive step in transforming your relationship with your skin, making flare-ups less frequent and intense."
+    ],
+    "quick_replies_pt": [
+      "Como usar essas plantas na rotina?",
+      "Tem receita prática para rosácea?",
+      "Posso combinar plantas e probióticos?",
+      "Quanto tempo para ver diferença?",
+      "Plantas são seguras para uso contínuo?",
+      "Quero relatos de sucesso",
+      "É melhor cápsula ou chá?",
+      "Dá para usar na alimentação?",
+      "Resultados são rápidos?",
+      "Como manter a pele equilibrada?",
+      "Quero dicas naturais diárias",
+      "Onde encontrar suplementos de qualidade?"
+    ],
+    "quick_replies_en": [
+      "How to use these plants in the routine?",
+      "Any practical recipe for rosacea?",
+      "Can I combine plants and probiotics?",
+      "How long to see a difference?",
+      "Are plants safe for continuous use?",
+      "I want success stories",
+      "Is capsule or tea better?",
+      "Can I use it in food?",
+      "Are results fast?",
+      "How to keep skin balanced?",
+      "I want daily natural tips",
+      "Where to find quality supplements?"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar uma pele saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy skin?",
+      "How would you like to start this change in your routine?"
+    ]
+  },
+  "fase_5": {
+    "pt": [
+      "${userName}, cuidar da rosácea naturalmente é um convite à transformação do seu bem-estar, da sua autoestima e da sua rotina. Com as plantas ancestrais, probióticos e hábitos saudáveis, você pode construir uma rotina personalizada que devolva à sua pele o equilíbrio, o conforto e a confiança perdidos durante tanto tempo. Estou aqui para te orientar com receitas, sugestões práticas e um plano passo a passo que respeita o seu tempo e seu contexto.",
+      "A mudança começa com escolhas pequenas e conscientes, ${userName}. Ao introduzir plantas como Dente-de-leão, Funcho, Babchi e bons probióticos, além de ajustar sua alimentação e cuidar do emocional, sua pele ganha suporte verdadeiro para se renovar. Você não está sozinho(a) nesse processo: juntos, podemos construir um caminho mais leve, onde cada vitória é celebrada. Posso te mostrar relatos reais, dicas diárias e um plano completo para tornar esse caminho possível.",
+      "${userName}, sua jornada para uma pele mais calma, bonita e saudável pode começar agora — sem milagres, mas com ciência, tradição e autocuidado. Com a força dos ingredientes naturais certos, escolhas alimentares adequadas e uma rotina de autocuidado consistente, sua pele poderá responder de forma positiva. Se quiser, posso te ajudar a montar um plano com dicas práticas, receitas e orientações para fortalecer sua confiança e qualidade de vida."
+    ],
+    "en": [
+      "${userName}, caring for rosacea naturally is an invitation to transform your well-being, self-esteem, and daily routine. With ancestral plants, probiotics, and healthy habits, you can build a personalized routine that restores your skin’s balance, comfort, and confidence—long lost through flare-ups. I’m here to guide you with recipes, practical suggestions, and a step-by-step plan that respects your pace and context.",
+      "Change begins with small, conscious choices, ${userName}. By introducing plants like Dandelion, Fennel, Babchi, and quality probiotics, as well as adjusting your diet and managing emotions, your skin gains real support to renew itself. You are not alone in this process: together, we can create an easier journey where every victory is celebrated. I can share real stories, daily tips, and a complete plan to make this path possible.",
+      "${userName}, your journey to calmer, more beautiful, and healthier skin can start now—not with miracles, but with science, tradition, and self-care. With the right natural ingredients, proper dietary choices, and a consistent self-care routine, your skin can respond positively. If you want, I can help you assemble a plan with practical tips, recipes, and guidance to boost your confidence and quality of life."
+    ],
+    "quick_replies_pt": [
+      "Quero começar já com plantas e probióticos",
+      "Tem receita fácil para rosácea",
+      "Quero relatos reais de superação",
+      "Como montar uma rotina prática?",
+      "Prefiro aprender mais antes",
+      "Resultados são duradouros?",
+      "Posso combinar com minha alimentação?",
+      "Quero conversar sobre escolhas naturais",
+      "Dá pra fazer em família?",
+      "Tem dicas para motivação?",
+      "É seguro para todos?",
+      "Quero ver estudos e relatos reais"
+    ],
+    "quick_replies_en": [
+      "I want to start with plants and probiotics now",
+      "Any easy recipe for rosacea",
+      "I want real stories of overcoming rosacea",
+      "How to build a practical routine?",
+      "I’d rather learn more first",
+      "Are results lasting?",
+      "Can I combine it with my diet?",
+      "I want to talk about natural choices",
+      "Can this be done as a family?",
+      "Any tips for motivation?",
+      "Is it safe for everyone?",
+      "I want to see studies and real stories"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar uma pele saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy skin?",
+      "How would you like to start this change in your routine?"
+    ]
+  }
+}
 
