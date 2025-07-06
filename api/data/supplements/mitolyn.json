@@ -730,4 +730,226 @@
         ]
       },
     
-      
+          "stubborn_belly_fat": {
+      "fase_1": {
+        "copy_pt": [
+          "${userName}, sentir que a gordura na barriga simplesmente não vai embora, mesmo com esforço, pode ser muito frustrante. Não é só estética: é o corpo mostrando que existe um desequilíbrio profundo. Estudos da Universidade de Stanford mostram que o acúmulo de gordura abdominal resistente está cada vez mais ligado à alimentação industrializada, excesso de açúcar escondido, falta de fibras e ausência das plantas certas na rotina. Plantas como Maqui Berry, Rhodiola Rosea e Schisandra, ricas em antioxidantes, ajudam a reduzir a inflamação e equilibrar hormônios ligados ao acúmulo de gordura. O que parece só um detalhe é, na verdade, o corpo pedindo socorro e uma oportunidade de recomeçar — com escolhas mais naturais e inteligentes."
+        ],
+        "copy_en": [
+          "${userName}, feeling like belly fat just won’t go away, no matter what you do, can be so frustrating. It’s not just about looks: it’s your body showing a deeper imbalance. Stanford University studies reveal that stubborn belly fat is increasingly tied to industrialized food, hidden sugars, lack of fiber, and missing the right plants in daily life. Plants like Maqui Berry, Rhodiola Rosea, and Schisandra, rich in antioxidants, help reduce inflammation and balance hormones that drive fat storage. What may seem like a small detail is actually your body crying for help — and a real chance to start fresh with smarter, more natural choices."
+        ],
+        "quick_replies_pt": [
+          "Por que a gordura na barriga é tão difícil de perder?",
+          "Plantas podem ajudar de verdade?",
+          "O que atrapalha a queima dessa gordura?",
+          "Açúcar escondido influencia?",
+          "Tem relatos de quem superou isso?",
+          "Alimentos processados pioram esse quadro?",
+          "Como incluir essas plantas no dia a dia?",
+          "O que mais faz a barriga ficar resistente?",
+          "Stress atrapalha?",
+          "Tem dicas práticas para começar já?",
+          "Preciso cortar tudo da dieta?",
+          "Quero entender os sinais do meu corpo"
+        ],
+        "quick_replies_en": [
+          "Why is belly fat so hard to lose?",
+          "Can plants really help?",
+          "What gets in the way of burning this fat?",
+          "Do hidden sugars play a role?",
+          "Are there stories of people overcoming this?",
+          "Do processed foods make it worse?",
+          "How can I add these plants to my day?",
+          "What else makes belly fat stubborn?",
+          "Does stress matter?",
+          "Any practical tips to start right away?",
+          "Do I have to cut everything from my diet?",
+          "I want to understand my body’s signals"
+        ],
+        "reflective_questions_pt": [
+          "Quando você percebeu que a gordura abdominal estava resistente, mesmo com esforço?",
+          "O que você já tentou mudar e sentiu que não trouxe resultado?"
+        ],
+        "reflective_questions_en": [
+          "When did you realize belly fat was stubborn, even with effort?",
+          "What have you tried to change that didn’t bring results?"
+        ]
+      },
+      "fase_2": {
+        "copy_pt": [
+          "Ignorar a gordura abdominal resistente pode ser mais perigoso do que parece, ${userName}. Pesquisas da Harvard Medical School apontam que esse tipo de gordura está diretamente ligada ao risco aumentado de diabetes, doenças cardíacas e até alterações hormonais importantes. E o que agrava a situação? O consumo frequente de ultraprocessados, corantes e conservantes, que inflamam ainda mais o organismo. O segredo está em resgatar a força das plantas e alimentos reais, que ajudam a reequilibrar o corpo de dentro para fora e reduzem o risco de complicações sérias a longo prazo."
+        ],
+        "copy_en": [
+          "Ignoring stubborn belly fat can be more dangerous than it seems, ${userName}. Harvard Medical School research shows this kind of fat is directly linked to a higher risk of diabetes, heart disease, and even important hormonal changes. What makes it worse? Regular consumption of ultra-processed foods, artificial colors, and preservatives, which make the body even more inflamed. The secret is to bring back the power of real plants and foods, which help rebalance the body from the inside out and reduce the risk of serious long-term complications."
+        ],
+        "quick_replies_pt": [
+          "Gordura abdominal traz risco real?",
+          "Como evitar doenças ligadas a isso?",
+          "Quais alimentos inflamam mais o corpo?",
+          "Plantas podem prevenir complicações?",
+          "Tem relatos de quem reverteu o quadro?",
+          "O que faz a gordura ficar ainda mais resistente?",
+          "Processados têm ligação com diabetes?",
+          "Stress piora a situação?",
+          "Quanto tempo leva para melhorar?",
+          "Mudança pequena já ajuda?",
+          "Como saber se estou no risco?",
+          "Quero ver dados científicos sobre o tema"
+        ],
+        "quick_replies_en": [
+          "Is belly fat really risky?",
+          "How can I avoid diseases linked to it?",
+          "Which foods inflame the body most?",
+          "Can plants prevent complications?",
+          "Are there stories of people who turned things around?",
+          "What makes stubborn fat even worse?",
+          "Are processed foods linked to diabetes?",
+          "Does stress make it worse?",
+          "How long does it take to improve?",
+          "Do small changes help?",
+          "How can I know if I’m at risk?",
+          "I want to see scientific data on this"
+        ],
+        "reflective_questions_pt": [
+          "Você já percebeu algum sintoma de saúde associado à gordura abdominal?",
+          "O que mais te preocupa: saúde, estética ou as consequências a longo prazo?"
+        ],
+        "reflective_questions_en": [
+          "Have you noticed any health symptoms linked to belly fat?",
+          "What worries you most: health, looks, or long-term consequences?"
+        ]
+      },
+      "fase_3": {
+        "copy_pt": [
+          "A ciência já comprovou que plantas como Maqui Berry, Rhodiola Rosea e Schisandra têm efeito direto sobre a inflamação abdominal e o equilíbrio dos hormônios que dificultam a perda de gordura. Estudos da European Journal of Nutrition mostram que o uso dessas plantas pode reduzir a gordura visceral em até 19%, além de melhorar a sensibilidade à insulina. Ao contrário, dietas cheias de ultraprocessados inibem a ação natural do organismo e aumentam o risco de complicações. Depoimentos reais mostram: quem aposta nessas plantas sente a barriga desinchar, a energia voltar e até o humor melhorar — sem dietas radicais ou sofrimento."
+        ],
+        "copy_en": [
+          "Science has proven that plants like Maqui Berry, Rhodiola Rosea, and Schisandra directly affect abdominal inflammation and balance the hormones that make belly fat hard to lose. European Journal of Nutrition studies show that these plants can reduce visceral fat by up to 19%, as well as improve insulin sensitivity. On the other hand, diets full of ultra-processed foods block the body’s natural action and increase the risk of complications. Real stories show that people who use these plants see their belly shrink, energy come back, and even their mood improve — without extreme diets or suffering."
+        ],
+        "quick_replies_pt": [
+          "Essas plantas funcionam mesmo?",
+          "Tem estudo sobre Maqui Berry?",
+          "Resultados são rápidos?",
+          "Processados travam mesmo o resultado?",
+          "Plantas ajudam no equilíbrio hormonal?",
+          "Reduzem também a inflamação?",
+          "Quero relatos reais de mudança",
+          "É seguro para longo prazo?",
+          "Plantas substituem dietas radicais?",
+          "Quanto tempo para ver resultado?",
+          "Tem dados sobre gordura visceral?",
+          "Quero ver depoimentos de sucesso"
+        ],
+        "quick_replies_en": [
+          "Do these plants really work?",
+          "Are there studies on Maqui Berry?",
+          "Are results fast?",
+          "Do processed foods block results?",
+          "Do plants help with hormone balance?",
+          "Do they reduce inflammation too?",
+          "I want real change stories",
+          "Is it safe long-term?",
+          "Can plants replace crash diets?",
+          "How long to see results?",
+          "Are there data on visceral fat?",
+          "I want to see success stories"
+        ],
+        "reflective_questions_pt": [
+          "Você já experimentou alguma dessas plantas ou fez mudanças na alimentação para tentar perder gordura abdominal?",
+          "Qual depoimento ou dado científico te deixaria mais confiante para apostar nessas soluções?"
+        ],
+        "reflective_questions_en": [
+          "Have you ever tried any of these plants or changed your diet to lose belly fat?",
+          "What testimonial or scientific data would make you more confident to try these solutions?"
+        ]
+      },
+      "fase_4": {
+        "copy_pt": [
+          "O segredo das culturas ancestrais está no uso diário de plantas potentes, como Maqui Berry, Rhodiola Rosea e Schisandra. Essas plantas, esquecidas pela indústria moderna, oferecem compostos antioxidantes, reguladores hormonais e anti-inflamatórios que o corpo reconhece como aliados. Estudos mostram que essas plantas ajudam a desinchar a barriga, regular o metabolismo e desbloquear a queima de gordura resistente, sem depender de restrições extremas. Enquanto os ultraprocessados sabotam a saúde, essas escolhas naturais entregam bem-estar real, energia e autoestima renovada — um resgate do que há de melhor na natureza."
+        ],
+        "copy_en": [
+          "The secret of ancestral cultures lies in daily use of powerful plants like Maqui Berry, Rhodiola Rosea, and Schisandra. These plants, forgotten by the modern industry, provide antioxidant, hormone-balancing, and anti-inflammatory compounds your body sees as true allies. Studies show they help shrink belly fat, regulate metabolism, and unlock stubborn fat burning, with no need for extreme restrictions. While ultra-processed foods sabotage your health, these natural choices bring real well-being, renewed energy, and self-esteem — a rescue of nature’s best."
+        ],
+        "quick_replies_pt": [
+          "Como usar essas plantas no dia a dia?",
+          "Maqui Berry é fácil de achar?",
+          "Tem receita simples com Schisandra?",
+          "Plantas substituem restrição radical?",
+          "Quanto tempo para sentir diferença?",
+          "Posso combinar todas as plantas?",
+          "Plantas ajudam no humor também?",
+          "Quero depoimentos reais de sucesso",
+          "Dá pra incluir em qualquer dieta?",
+          "Tem efeito a longo prazo?",
+          "Quero ver estudos sobre essas plantas",
+          "Processados atrapalham mesmo?"
+        ],
+        "quick_replies_en": [
+          "How to use these plants every day?",
+          "Is Maqui Berry easy to find?",
+          "Any simple recipe with Schisandra?",
+          "Can plants replace extreme restriction?",
+          "How long to feel the difference?",
+          "Can I combine all these plants?",
+          "Do plants help with mood too?",
+          "I want real success stories",
+          "Can I add them to any diet?",
+          "Is the effect long-lasting?",
+          "I want to see studies on these plants",
+          "Do processed foods really hurt?"
+        ],
+        "reflective_questions_pt": [
+          "Você já incluiu alguma dessas plantas na sua rotina? Como foi?",
+          "O que facilitaria para você começar a usar essas plantas?"
+        ],
+        "reflective_questions_en": [
+          "Have you ever added any of these plants to your routine? How was it?",
+          "What would make it easier for you to start using these plants?"
+        ]
+      },
+      "fase_5": {
+        "copy_pt": [
+          "${userName}, transformar a gordura abdominal resistente é possível — e não exige sofrimento, mas escolhas inteligentes. Incluir plantas como Maqui Berry, Rhodiola Rosea e Schisandra na rotina, preferindo alimentos reais e naturais, já faz uma diferença enorme. Se quiser, posso te ajudar a criar uma rotina simples, prazerosa e baseada em ciência para conquistar mais leveza, energia e confiança, sem atalhos perigosos ou dietas radicais. O importante é saber: teu corpo responde rápido quando recebe o que precisa de verdade."
+        ],
+        "copy_en": [
+          "${userName}, changing stubborn belly fat is possible — and it doesn’t require suffering, just smarter choices. Including plants like Maqui Berry, Rhodiola Rosea, and Schisandra in your daily life, preferring real and natural foods, already makes a huge difference. If you’d like, I can help you build a simple, enjoyable, science-based routine to achieve more lightness, energy, and confidence — without risky shortcuts or extreme diets. The key is knowing: your body responds quickly when it gets what it truly needs."
+        ],
+        "quick_replies_pt": [
+          "Quero dicas práticas com essas plantas",
+          "Tem rotina fácil para o dia a dia?",
+          "Quero receitas naturais para usar já",
+          "Como encaixar na minha rotina?",
+          "Prefiro saber mais antes de começar",
+          "Quero relatos reais de transformação",
+          "Posso combinar com outras mudanças?",
+          "Quero conversar mais sobre alimentação natural",
+          "É seguro a longo prazo?",
+          "Resultados são duradouros?",
+          "Dá pra usar em qualquer idade?",
+          "Quero ver estudos sobre resultados"
+        ],
+        "quick_replies_en": [
+          "I want practical tips with these plants",
+          "Any easy daily routine?",
+          "I want natural recipes to use now",
+          "How to fit it into my routine?",
+          "I’d like to learn more before starting",
+          "I want real transformation stories",
+          "Can I combine this with other changes?",
+          "I want to talk more about natural eating",
+          "Is it safe long-term?",
+          "Are the results lasting?",
+          "Can I use it at any age?",
+          "I want to see studies on results"
+        ],
+        "reflective_questions_pt": [
+          "Qual o primeiro passo que você acha mais fácil para começar essa mudança?",
+          "Prefere começar com uma planta só ou experimentar várias de uma vez?"
+        ],
+        "reflective_questions_en": [
+          "What first step do you think would be easiest to start this change?",
+          "Do you prefer to start with just one plant or try several at once?"
+        ]
+      }
+    },
+
