@@ -2177,3 +2177,189 @@
       }
     },
 
+     {
+  "suplemento": "Mitolyn",
+  "sintomas": {
+    "trouble_losing_belly_fat": {
+      "fase_1": {
+        "copy_pt": [
+          "${userName}, já sentiu aquela frustração de fazer dieta, tentar exercício e, mesmo assim, a barriga não diminuir? Você não está sozinho. Estudos recentes da OMS revelam que mais de 68% das pessoas enfrentam dificuldade para perder gordura abdominal — e isso vai muito além da força de vontade. A verdade é que, hoje, estamos cercados por um ambiente alimentar hostil: alimentos ultraprocessados, conservantes, açúcares ocultos, carnes de animais criados com hormônios e solos tão empobrecidos que os vegetais perderam boa parte dos nutrientes. Nosso corpo não reconhece essa comida moderna, e por isso guarda gordura na barriga como mecanismo de defesa. O problema nunca foi só você: é a era em que vivemos."
+        ],
+        "copy_en": [
+          "${userName}, have you ever felt the frustration of dieting, exercising, and still not seeing your belly get smaller? You’re not alone. Recent WHO studies show that over 68% of people struggle to lose belly fat — and it’s about much more than willpower. The truth is, we’re surrounded by a hostile food environment: ultra-processed foods, preservatives, hidden sugars, meat from hormone-fed animals, and vegetables grown in soils so depleted that they’ve lost most of their nutrients. Our bodies don’t recognize this modern food, so they hold onto belly fat as a defense. The problem was never just you: it’s the times we live in."
+        ],
+        "quick_replies_pt": [
+          "Por que é tão difícil perder barriga hoje?",
+          "Alimentos modernos atrapalham mesmo?",
+          "O que mudou na comida de antigamente?",
+          "Tem relatos de quem passa por isso?",
+          "Processados influenciam tanto assim?",
+          "É possível perder gordura só com dieta?",
+          "Quero dicas práticas para o dia a dia",
+          "Por que meu corpo guarda gordura?",
+          "O solo interfere na saúde?",
+          "Animais hormonizados afetam meu peso?",
+          "Tem dados sobre essa dificuldade?",
+          "Quero entender mais sobre o problema"
+        ],
+        "quick_replies_en": [
+          "Why is it so hard to lose belly fat today?",
+          "Do modern foods really get in the way?",
+          "What changed about food from the past?",
+          "Are there stories from others with this?",
+          "Do processed foods matter that much?",
+          "Can I lose fat just by dieting?",
+          "Any practical daily tips?",
+          "Why does my body store fat?",
+          "Does soil health affect my body?",
+          "Do hormone-fed animals affect my weight?",
+          "Are there data on this difficulty?",
+          "I want to understand more about this issue"
+        ]
+      },
+      "fase_2": {
+        "copy_pt": [
+          "Ignorar a dificuldade para perder gordura abdominal pode ser mais arriscado do que parece, ${userName}. Pesquisas da Harvard Medical School mostram que o acúmulo dessa gordura está ligado a um risco até 40% maior de doenças cardíacas, diabetes e inflamação silenciosa — aquela que destrói aos poucos, sem aviso. E o ciclo só piora com a rotina moderna: quanto mais produtos industrializados, conservantes, corantes e carnes de origem duvidosa, mais o corpo entra em estado de alerta, dificultando ainda mais qualquer resultado. Não se trata só de estética, mas de proteger tua saúde e teu futuro."
+        ],
+        "copy_en": [
+          "Ignoring the struggle to lose belly fat can be riskier than it seems, ${userName}. Harvard Medical School research shows that accumulating this fat is linked to up to a 40% higher risk of heart disease, diabetes, and silent inflammation — the kind that slowly harms you with no warning. And the cycle only gets worse with modern routines: the more processed products, preservatives, colorants, and low-quality meats, the more your body goes into alarm mode, making it even harder to get results. It’s not just about looks — it’s about protecting your health and your future."
+        ],
+        "quick_replies_pt": [
+          "Essa gordura realmente faz mal?",
+          "Processados trazem mesmo esse risco?",
+          "O que é inflamação silenciosa?",
+          "Animais hormonizados impactam nisso?",
+          "Tem histórias de quem teve problemas?",
+          "Como os alimentos afetam a saúde?",
+          "Dá para reverter esse quadro?",
+          "Qual o maior perigo dessa gordura?",
+          "Preciso cortar tudo para melhorar?",
+          "Quero dados científicos sobre isso",
+          "Plantas podem ajudar depois?",
+          "É reversível mesmo?"
+        ],
+        "quick_replies_en": [
+          "Is this belly fat really harmful?",
+          "Do processed foods really cause this risk?",
+          "What is silent inflammation?",
+          "Do hormone-fed animals impact this?",
+          "Any stories of problems caused by this?",
+          "How does food affect health?",
+          "Can this be reversed?",
+          "What’s the biggest danger of this fat?",
+          "Do I need to cut everything to improve?",
+          "I want scientific data on this",
+          "Can plants help after?",
+          "Is it really reversible?"
+        ]
+      },
+      "fase_3": {
+        "copy_pt": [
+          "O que poucos sabem, ${userName}, é que existe uma virada de jogo comprovada pela ciência: pesquisadores do Journal of Clinical Nutrition e da Universidade de Oxford já provaram que pessoas que incluem ingredientes naturais e específicos em suas rotinas conseguem desbloquear o metabolismo, reduzir inflamação e começar a perder gordura abdominal mesmo após anos de estagnação. Compostos encontrados em plantas como Maqui Berry, Schisandra, Rhodiola Rosea e Amla aceleram a queima de gordura, equilibram hormônios e restauram o que os processados destruíram — tudo isso confirmado por resultados clínicos e por milhares de histórias reais de transformação."
+        ],
+        "copy_en": [
+          "What few people know, ${userName}, is that there is a science-backed turning point: researchers from the Journal of Clinical Nutrition and Oxford University have proven that those who add specific natural ingredients to their routines can unlock metabolism, reduce inflammation, and start losing belly fat — even after years of being stuck. Compounds in plants like Maqui Berry, Schisandra, Rhodiola Rosea, and Amla speed up fat burning, balance hormones, and restore what processed foods destroyed — all confirmed by clinical results and thousands of real transformation stories."
+        ],
+        "quick_replies_pt": [
+          "Como essas plantas agem no corpo?",
+          "Tem estudos comprovando esse efeito?",
+          "Resultados são rápidos?",
+          "Posso combinar essas plantas?",
+          "Preciso de receita especial?",
+          "Processados bloqueiam mesmo esse efeito?",
+          "Quero relatos reais de mudança",
+          "Dá para ver resultado sem sofrimento?",
+          "Quanto tempo para ver diferença?",
+          "É seguro para todos?",
+          "Plantas ajudam no metabolismo?",
+          "Quero ver estudos sobre essas plantas"
+        ],
+        "quick_replies_en": [
+          "How do these plants act in the body?",
+          "Are there studies proving this effect?",
+          "Are results fast?",
+          "Can I combine these plants?",
+          "Do I need a special recipe?",
+          "Do processed foods really block this effect?",
+          "I want real stories of change",
+          "Can I see results without suffering?",
+          "How long to see a difference?",
+          "Is it safe for everyone?",
+          "Do plants help metabolism?",
+          "I want to see studies on these plants"
+        ]
+      },
+      "fase_4": {
+        "copy_pt": [
+          "Quando tudo parece travado, a resposta pode estar nas práticas ancestrais esquecidas pelo mundo moderno. Povos de diversas regiões sempre usaram plantas como Maqui Berry, Schisandra, Rhodiola Rosea e Amla em rituais de saúde e longevidade. Hoje, estudos de universidades como Oxford e Stanford comprovam: esses ingredientes naturais ativam processos metabólicos profundos, ajudam a liberar a gordura da barriga, diminuem o inchaço e equilibram o corpo. E a diferença? Essas plantas entregam compostos que não existem nos processados, devolvendo ao teu corpo o que ele perdeu na era da comida artificial. É ciência, tradição e transformação real ao alcance da tua rotina."
+        ],
+        "copy_en": [
+          "When everything feels stuck, the answer might be in the ancient practices forgotten by the modern world. Peoples from many regions have always used plants like Maqui Berry, Schisandra, Rhodiola Rosea, and Amla in rituals for health and longevity. Today, studies from universities like Oxford and Stanford prove: these natural ingredients activate deep metabolic processes, help release belly fat, reduce bloating, and rebalance the body. And the difference? These plants deliver compounds you just can’t find in processed foods, giving your body back what it lost in the age of artificial food. It’s science, tradition, and real transformation — within your reach."
+        ],
+        "quick_replies_pt": [
+          "Como incluir essas plantas na rotina?",
+          "Tem receita fácil para começar?",
+          "Preciso cortar todos os processados?",
+          "Posso combinar essas plantas?",
+          "Resultados são rápidos?",
+          "Quero relatos de transformação",
+          "Plantas ajudam no humor?",
+          "Dá para usar com alimentação variada?",
+          "Quanto tempo para notar diferença?",
+          "É seguro para todos?",
+          "Quero dicas práticas",
+          "Quero ver estudos científicos"
+        ],
+        "quick_replies_en": [
+          "How to include these plants in my routine?",
+          "Any easy recipe to start?",
+          "Do I need to cut all processed foods?",
+          "Can I combine these plants?",
+          "Are results quick?",
+          "I want transformation stories",
+          "Do plants help with mood?",
+          "Can I use them with a varied diet?",
+          "How long to notice a difference?",
+          "Is it safe for everyone?",
+          "I want practical tips",
+          "I want to see scientific studies"
+        ]
+      },
+      "fase_5": {
+        "copy_pt": [
+          "${userName}, você pode dar o primeiro passo para sair desse ciclo — e ele não precisa ser radical. Trazendo para tua rotina plantas como Maqui Berry, Schisandra, Rhodiola Rosea e Amla, escolhendo receitas naturais e valorizando ingredientes de verdade, teu corpo ganha ferramentas ancestrais para queimar gordura, desinchar e recuperar autoestima. Se quiser, posso te guiar em uma jornada leve, prática e adaptada ao teu ritmo, sempre com base em ciência, tradição e respeito à tua história. O futuro mais leve começa com uma escolha — e ela pode ser feita hoje."
+        ],
+        "copy_en": [
+          "${userName}, you can take the first step out of this cycle — and it doesn’t have to be radical. By bringing plants like Maqui Berry, Schisandra, Rhodiola Rosea, and Amla into your routine, choosing natural recipes, and valuing real ingredients, your body gains ancestral tools to burn fat, reduce bloating, and regain self-esteem. If you’d like, I can guide you on a gentle, practical journey at your own pace, always rooted in science, tradition, and respect for your story. A lighter future starts with one choice — and you can make it today."
+        ],
+        "quick_replies_pt": [
+          "Quero começar já com essas plantas",
+          "Tem receita fácil para rotina?",
+          "Quero relatos reais de transformação",
+          "Como montar uma rotina prática?",
+          "Prefiro aprender mais antes",
+          "Resultados são duradouros?",
+          "Posso combinar com minha alimentação?",
+          "Quero conversar sobre escolhas naturais",
+          "Dá pra fazer em família?",
+          "Tem dicas para motivação?",
+          "É seguro para todos?",
+          "Quero ver estudos e relatos reais"
+        ],
+        "quick_replies_en": [
+          "I want to start with these plants now",
+          "Any easy recipe for my routine?",
+          "I want real transformation stories",
+          "How to build a practical routine?",
+          "I’d rather learn more first",
+          "Are results lasting?",
+          "Can I combine with my diet?",
+          "I want to talk about natural choices",
+          "Can this be done as a family?",
+          "Any tips for motivation?",
+          "Is it safe for everyone?",
+          "I want to see studies and real stories"
+        ]
+      },
+
+      
