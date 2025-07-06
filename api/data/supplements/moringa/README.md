@@ -1,24 +1,30 @@
-# Pasta Prime Biome
+# Pasta Moringa
 
-Esta pasta contém arquivos JSON relacionados ao suplemento **Prime Biome**. Cada arquivo descreve um sintoma específico e as fases de interação do chatbot para esse sintoma.
+Esta pasta contém arquivos JSON relacionados ao suplemento **Moringa Magic**. Cada arquivo descreve um sintoma específico e as fases de interação do chatbot para esse sintoma.
 
 ## Sintomas abordados na pasta:
 
-- **Inchaço abdominal e gases**
-- **Constipação ou movimentos intestinais irregulares**
-- **Diarreia frequente ou síndrome do intestino irritável (IBS)**
-- **Dor abdominal**
-- **Problemas intestinais**
-- **Eczema**
-- **Psoríase**
-- **Vermelhidão da pele**
-- **Pele seca e escamosa persistente**
+- Baixa energia
+- Metabolismo lento
+- Névoa mental
+- Envelhecimento precoce
+- Picos de açúcar no sangue
+- Resistência à insulina
+- Desejo por doces
+- Falta de foco
+- Desequilíbrio hormonal
+- Inflamação crônica
+- Dor nas articulações
+- Problemas digestivos e inchaço
+- Imunidade baixa
+- Doenças frequentes
+- Estresse oxidativo
 
 Cada um desses sintomas tem seu próprio arquivo JSON correspondente, como:
 
-- `primebiome-abdominal-bloating-and-gas.json`
-- `primebiome-constipation-or-irregular-bowel-movements.json`
-- `primebiome-skin-redness.json`
+- `moringa-low-energy.json`
+- `moringa-slow-metabolism.json`
+- `moringa-oxidative-stress.json`
 - ... e assim por diante.
 
 ## Como Usar:
@@ -27,5 +33,4 @@ Cada um desses sintomas tem seu próprio arquivo JSON correspondente, como:
 2. **Siga o formato padrão** para garantir consistência e funcionalidade no sistema.
 3. **Validação**: Valide os arquivos JSON usando ferramentas como [JSONLint](https://jsonlint.com).
 
-Esta pasta é essencial para o funcionamento do chatbot relacionado ao Prime Biome.
-
+Esta pasta é essencial para o funcionamento do chatbot relacionado ao Moringa Magic.
