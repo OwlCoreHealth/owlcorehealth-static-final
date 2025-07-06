@@ -1,1 +1,38 @@
+{
+  "suplemento": "NOME_DO_SUPLEMENTO",
+  "sintomas": {
+    "nome_sintoma_sem_acentos": {
+      "fase_1": {
+        "copy_pt": [
+          "Exemplo de copy em português 1.",
+          "Exemplo de copy em português 2.",
+          "Exemplo de copy em português 3."
+        ],
+        "copy_en": [
+          "Sample copy in English 1.",
+          "Sample copy in English 2.",
+          "Sample copy in English 3."
+        ],
+        "quick_replies_pt": [
+          "Pergunta rápida em PT 1",
+          "Pergunta rápida em PT 2"
+        ],
+        "quick_replies_en": [
+          "Quick reply in EN 1",
+          "Quick reply in EN 2"
+        ]
+      },
+      "fase_2": {
+        "copy_pt": ["..."],
+        "copy_en": ["..."],
+        "quick_replies_pt": ["..."],
+        "quick_replies_en": ["..."]
+      },
+      "fase_3": {},
+      "fase_4": {},
+      "fase_5": {}
+    }
+    // Adicione outros sintomas aqui seguindo o mesmo padrão
+  }
+}
 
