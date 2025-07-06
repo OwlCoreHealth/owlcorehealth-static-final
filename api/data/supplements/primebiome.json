@@ -938,5 +938,197 @@
       ]
     },
 
-    
+    {
+  "symptom": "PELE SECA E ESCAMOSA PERSISTENTE / PERSISTENT DRY AND FLAKY SKIN",
+  "phases": [
+    {
+      "phase": "FASE 1 — CONEXÃO/CONSCIENTIZAÇÃO",
+      "copies": [
+        {
+          "lang": "PT",
+          "text": "${userName}, a sensação constante de pele seca e escamosa pode ser mais do que um incômodo superficial; é um sinal de que sua pele está desidratada e fragilizada. A alimentação moderna, cheia de ultraprocessados, solos empobrecidos e carnes tratadas com hormônios, pode contribuir para a falta de nutrientes essenciais que a pele precisa para se manter saudável e protegida."
+        },
+        {
+          "lang": "EN",
+          "text": "${userName}, the constant feeling of dry and flaky skin can be more than a superficial nuisance; it’s a sign your skin is dehydrated and weakened. Modern diets full of ultra-processed foods, nutrient-depleted soils, and hormone-treated meats may contribute to a lack of essential nutrients your skin needs to stay healthy and protected."
+        }
+      ],
+      "quickReplies": {
+        "PT": [
+          "Por que minha pele está seca?",
+          "Como hidratar pele naturalmente?",
+          "Alimentos influenciam na pele?",
+          "Solo contaminado afeta pele?",
+          "Quero entender mais sobre saúde da pele",
+          "Tem estudos científicos?",
+          "Como fortalecer a barreira cutânea?",
+          "Quais sintomas indicam problema sério?",
+          "Quero dicas para pele saudável",
+          "Estresse piora ressecamento?",
+          "Pele seca é comum?",
+          "Quando procurar ajuda?"
+        ],
+        "EN": [
+          "Why is my skin dry?",
+          "How to hydrate skin naturally?",
+          "Do foods influence skin?",
+          "Does contaminated soil affect skin?",
+          "I want to learn more about skin health",
+          "Are there scientific studies?",
+          "How to strengthen skin barrier?",
+          "What symptoms indicate serious problem?",
+          "I want tips for healthy skin",
+          "Does stress worsen dryness?",
+          "Is dry skin common?",
+          "When to seek help?"
+        ]
+      }
+    },
+    {
+      "phase": "FASE 2 — GRAVIDADE/CONSEQUÊNCIA",
+      "copies": [
+        {
+          "lang": "PT",
+          "text": "${userName}, a pele seca e escamosa persistente pode levar a fissuras, irritações e até infecções, comprometendo a proteção natural do corpo. Pesquisas indicam que desequilíbrios nutricionais e exposições tóxicas intensificam esse quadro."
+        },
+        {
+          "lang": "EN",
+          "text": "${userName}, persistent dry and flaky skin can lead to cracks, irritation, and even infections, compromising the body’s natural protection. Research indicates nutritional imbalances and toxic exposures worsen this condition."
+        }
+      ],
+      "quickReplies": {
+        "PT": [
+          "Isso pode causar fissuras?",
+          "Como evitar infecções na pele?",
+          "Quais riscos a longo prazo?",
+          "O que piora o ressecamento?",
+          "Tem relação com a alimentação?",
+          "Como fortalecer a barreira da pele?",
+          "Quais sintomas indicam gravidade?",
+          "Quero dicas para hidratação natural",
+          "Estresse pode piorar?",
+          "Quando procurar ajuda médica?"
+        ],
+        "EN": [
+          "Can this cause cracks?",
+          "How to avoid skin infections?",
+          "What are long-term risks?",
+          "What worsens dryness?",
+          "Is it related to diet?",
+          "How to strengthen skin barrier?",
+          "What symptoms indicate severity?",
+          "I want tips for natural hydration",
+          "Can stress worsen it?",
+          "When to seek medical help?"
+        ]
+      }
+    },
+    {
+      "phase": "FASE 3 — PROVA/EVIDÊNCIA",
+      "copies": [
+        {
+          "lang": "PT",
+          "text": "${userName}, estudos mostram que plantas como Dente-de-leão, Funcho e Babchi possuem propriedades hidratantes e regeneradoras, que ajudam a restaurar a barreira cutânea e melhorar a hidratação da pele."
+        },
+        {
+          "lang": "EN",
+          "text": "${userName}, studies show plants like Dandelion, Fennel, and Babchi have moisturizing and regenerative properties that help restore the skin barrier and improve skin hydration."
+        }
+      ],
+      "quickReplies": {
+        "PT": [
+          "Essas plantas realmente hidratam?",
+          "Quanto tempo para ver resultados?",
+          "Posso usar todos os dias?",
+          "Tem relatos de quem melhorou?",
+          "É seguro para pele sensível?",
+          "Quero dicas para começar",
+          "Como funcionam as propriedades regeneradoras?"
+        ],
+        "EN": [
+          "Do these plants really hydrate?",
+          "How long to see results?",
+          "Can I use daily?",
+          "Are there stories of improvement?",
+          "Is it safe for sensitive skin?",
+          "I want tips to start",
+          "How do regenerative properties work?"
+        ]
+      }
+    },
+    {
+      "phase": "FASE 4 — SOLUÇÃO NATURAL/PLANTAS",
+      "copies": [
+        {
+          "lang": "PT",
+          "text": "Plantas ancestrais como Dente-de-leão, Funcho e Babchi são aliadas naturais para hidratar, regenerar e fortalecer a barreira da pele, promovendo uma aparência saudável e equilibrada."
+        },
+        {
+          "lang": "EN",
+          "text": "Ancestral plants like Dandelion, Fennel, and Babchi are natural allies to hydrate, regenerate, and strengthen the skin barrier, promoting a healthy and balanced appearance."
+        }
+      ],
+      "quickReplies": {
+        "PT": [
+          "Como usar essas plantas na pele?",
+          "Posso combinar as plantas?",
+          "Tem receita fácil para pele seca?",
+          "Essas plantas têm efeitos colaterais?",
+          "Como aplicar na rotina diária?",
+          "É seguro usar a longo prazo?"
+        ],
+        "EN": [
+          "How to use these plants on skin?",
+          "Can I combine the plants?",
+          "Any easy recipe for dry skin?",
+          "Do these plants have side effects?",
+          "How to apply in daily routine?",
+          "Is it safe for long-term use?"
+        ]
+      }
+    },
+    {
+      "phase": "FASE 5 — PRÓXIMO PASSO",
+      "copies": [
+        {
+          "lang": "PT",
+          "text": "${userName}, cuidar da pele seca naturalmente pode trazer alívio e renovação. Com plantas ancestrais e hábitos saudáveis, sua pele terá o suporte para recuperar a hidratação e a vitalidade. Posso ajudar com receitas, dicas e um plano prático para essa transformação."
+        },
+        {
+          "lang": "EN",
+          "text": "${userName}, caring for dry skin naturally can bring relief and renewal. With ancestral plants and healthy habits, your skin will have the support to regain hydration and vitality. I can help with recipes, tips, and a practical plan for this transformation."
+        }
+      ],
+      "quickReplies": {
+        "PT": [
+          "Quero começar já com plantas naturais",
+          "Tem receita fácil para pele seca",
+          "Quero relatos reais de transformação",
+          "Como montar uma rotina prática?",
+          "Prefiro aprender mais antes",
+          "Resultados são duradouros?",
+          "Posso combinar com minha alimentação?",
+          "Quero conversar sobre escolhas naturais",
+          "Dá pra fazer em família?",
+          "Tem dicas para motivação?",
+          "É seguro para todos?",
+          "Quero ver estudos e relatos reais"
+        ],
+        "EN": [
+          "I want to start with natural plants now",
+          "Any easy recipe for dry skin",
+          "I want real transformation stories",
+          "How to build a practical routine?",
+          "I’d rather learn more first",
+          "Are results lasting?",
+          "Can I combine it with my diet?",
+          "I want to talk about natural choices",
+          "Can this be done as a family?",
+          "Any tips for motivation?",
+          "Is it safe for everyone?",
+          "I want to see studies and real stories"
+        ]
+      },
+
+      
   
