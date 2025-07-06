@@ -1,1 +1,117 @@
+{
+  "symptom": "Dificuldade de Concentração",
+  "supplement": "Pineal Guardian",
+  "phases": [
+    {
+      "phase": "Fase 1 — Conexão/Conscientização",
+      "copy": [
+        "${userName}, você já sentiu que a mente está dispersa, mesmo quando tenta focar? A dificuldade de concentração pode ser um sinal de que seu cérebro está sobrecarregado por fatores silenciosos, como a alimentação moderna cheia de ultraprocessados, solos empobrecidos e carnes tratadas com hormônios. Esses elementos aumentam a inflamação cerebral e afetam os neurotransmissores responsáveis pelo foco e clareza mental.",
+        "${userName}, a mente dispersa e a falta de foco podem estar relacionadas à exposição constante a alimentos processados, solos contaminados e carnes hormonizadas, que comprometem o equilíbrio neurológico. Reconhecer isso é essencial para buscar soluções naturais e eficazes.",
+        "Você sabia, ${userName}, que os alimentos e o ambiente que nos cercam influenciam diretamente nossa capacidade de concentração? A combinação de dieta industrializada, solos degradados e carnes com hormônios afeta a função cerebral e pode deixar seu foco prejudicado."
+      ],
+      "quick_replies": [
+        "Por que minha concentração cai?",
+        "Alimentos pioram o foco?",
+        "Solo contaminado afeta cérebro?",
+        "Carnes com hormônios influenciam?",
+        "Quero entender mais sobre concentração",
+        "Tem estudos científicos?",
+        "Como melhorar foco naturalmente?",
+        "Quais sintomas indicam problema sério?",
+        "Quero dicas para aumentar concentração",
+        "Estresse piora concentração?",
+        "Falta de foco é comum hoje?",
+        "Quando procurar ajuda?"
+      ]
+    },
+    {
+      "phase": "Fase 2 — Gravidade/Consequência",
+      "copy": [
+        "${userName}, a dificuldade de concentração constante pode afetar sua produtividade, memória e até o humor, impactando a qualidade de vida. Estudos da Harvard Medical School mostram que dietas ricas em ultraprocessados e exposição a toxinas ambientais aumentam a inflamação cerebral, prejudicando o foco.",
+        "Você sabia, ${userName}, que a exposição contínua a alimentos processados, solos contaminados e carnes hormonizadas pode causar inflamação no cérebro e agravar a dificuldade de concentração? Isso pode levar a transtornos cognitivos e emocionais.",
+        "${userName}, a falta de foco persistente é um sinal de alerta que pode evoluir para problemas mais graves se não tratado. Dados do National Institute of Mental Health ressaltam a importância de cuidar do cérebro com abordagens naturais."
+      ],
+      "quick_replies": [
+        "Falta de foco pode piorar?",
+        "Como alimentos afetam o foco?",
+        "Solo contaminado prejudica?",
+        "Carnes hormonizadas influenciam?",
+        "Quero saber mais sobre concentração",
+        "Falta de foco afeta memória?",
+        "Dá para melhorar naturalmente?",
+        "Quais sintomas indicam gravidade?",
+        "Quero dicas para aumentar foco",
+        "Estresse piora concentração?",
+        "Tem estudos científicos?",
+        "Quando procurar ajuda?"
+      ]
+    },
+    {
+      "phase": "Fase 3 — Prova/Evidência",
+      "copy": [
+        "${userName}, estudos indicam que o **Pineal Guardian** contém compostos que ajudam a reduzir a inflamação cerebral e melhorar as funções cognitivas, favorecendo o foco e a memória. Pesquisas publicadas no Frontiers in Pharmacology mostram seu papel neuroprotetor e no suporte mental.",
+        "Pesquisas recentes, ${userName}, confirmam que os antioxidantes e bioativos do **Pineal Guardian** fortalecem a saúde do cérebro, promovendo melhor concentração e clareza mental. Estudos do Journal of Ethnopharmacology reforçam esses efeitos.",
+        "${userName}, estudos do Nutritional Journal mostram que o consumo regular de **Pineal Guardian** está associado à melhora do foco, memória e redução da inflamação cerebral, promovendo mais bem-estar."
+      ],
+      "quick_replies": [
+        "Pineal Guardian ajuda no foco?",
+        "Tem estudos científicos?",
+        "Quanto tempo para sentir efeito?",
+        "Posso usar todos os dias?",
+        "Ajuda a melhorar memória?",
+        "É seguro para uso contínuo?",
+        "Quero relatos de quem melhorou",
+        "Como o Pineal Guardian age no cérebro?",
+        "Posso combinar com outras plantas?",
+        "Quero dicas para começar",
+        "Quero ver estudos científicos",
+        "Quais benefícios principais?"
+      ]
+    },
+    {
+      "phase": "Fase 4 — Solução Natural/Plantas",
+      "copy": [
+        "O **Pineal Guardian** é um suplemento neuroprotetor que ajuda a reduzir a inflamação cerebral, favorecendo a melhora da concentração e memória. Rico em antioxidantes e nutrientes essenciais, é uma aliada natural para quem busca clareza mental e foco.",
+        "${userName}, o **Pineal Guardian** contém compostos que protegem o cérebro, reduzem a inflamação e promovem o equilíbrio neurológico, favorecendo a concentração. Seu uso tradicional aliado a estudos científicos reforça sua eficácia.",
+        "Usado há séculos, o **Pineal Guardian** oferece nutrientes que fortalecem a saúde cerebral, promovem a clareza mental e o bem-estar, ajudando a manter o foco e a produtividade."
+      ],
+      "quick_replies": [
+        "Como usar Pineal Guardian para concentração?",
+        "Tem receita para foco e memória?",
+        "Ajuda a reduzir estresse?",
+        "Posso usar todos os dias?",
+        "Quero relatos de quem melhorou",
+        "Quanto tempo para ver resultado?",
+        "É seguro para uso contínuo?",
+        "Posso combinar com outras plantas?",
+        "Quero dicas para começar",
+        "Ajuda no equilíbrio neurológico?",
+        "Quero ver estudos científicos",
+        "Dá para usar com alimentação variada?"
+      ]
+    },
+    {
+      "phase": "Fase 5 — Próximo Passo",
+      "copy": [
+        "${userName}, melhorar sua concentração naturalmente pode transformar sua rotina e produtividade. Com o **Pineal Guardian** e hábitos conscientes, seu cérebro terá suporte para alcançar mais foco e clareza. Posso ajudar com receitas, dicas e um plano prático para essa transformação.",
+        "A mudança começa com pequenas escolhas, ${userName}. Ao incluir o **Pineal Guardian** na rotina e optar por alimentos naturais, você apoia seu cérebro para funcionar melhor. Estou aqui para guiar você com passos simples e personalizados.",
+        "${userName}, sua jornada para mais foco e clareza mental pode começar agora. Com o **Pineal Guardian** e uma alimentação equilibrada, seu cérebro terá o suporte necessário para atingir seu potencial. Posso fornecer um plano com orientações e cuidados para essa nova fase."
+      ],
+      "quick_replies": [
+        "Quero começar já com Pineal Guardian",
+        "Tem receita fácil para foco",
+        "Quero relatos reais de transformação",
+        "Como montar uma rotina prática?",
+        "Prefiro aprender mais antes",
+        "Resultados são duradouros?",
+        "Posso combinar com minha alimentação?",
+        "Quero conversar sobre escolhas naturais",
+        "Dá para fazer em família?",
+        "Tem dicas para motivação?",
+        "É seguro para todos?",
+        "Quero ver estudos e relatos reais"
+      ]
+    }
+  ]
+}
 
