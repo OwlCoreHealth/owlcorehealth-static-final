@@ -407,5 +407,210 @@
     ]
   },
 
-      
+  {
+  "suplemento": "PRIME BIOME",
+  "symptom": "CONSTIPAÇÃO OU MOVIMENTOS INTESTINAIS IRREGULARES / CONSTIPATION OR IRREGULAR BOWEL MOVEMENTS",
+  "phases": [
+    {
+      "phase": "FASE 1 — CONEXÃO/CONSCIENTIZAÇÃO",
+      "copies": [
+        {
+          "lang": "PT",
+          "text": "${userName}, sentir dificuldade para ir ao banheiro ou ter evacuações irregulares é um desconforto que vai além do corpo — mexe com seu humor, disposição e até com sua autoestima. Muitas vezes, essa condição está ligada a um desequilíbrio da microbiota intestinal causado por alimentos industrializados, solos empobrecidos e excesso de conservantes, que atrapalham a digestão natural."
+        },
+        {
+          "lang": "EN",
+          "text": "${userName}, experiencing difficulty with bowel movements or irregularity isn’t just uncomfortable physically — it affects your mood, energy, and even your confidence. Often, this condition is linked to gut microbiota imbalance caused by industrialized foods, nutrient-depleted soils, and an overload of preservatives that disrupt natural digestion."
+        }
+      ],
+      "quickReplies": {
+        "PT": [
+          "O que causa constipação?",
+          "Como melhorar o trânsito intestinal?",
+          "Alimentos pioram a constipação?",
+          "Microbiota influencia intestino?",
+          "Quero entender mais sobre digestão",
+          "Tem estudos científicos?",
+          "Como equilibrar a flora intestinal?",
+          "Quais sintomas indicam problema sério?",
+          "Quero dicas para intestino saudável",
+          "Estresse piora constipação?",
+          "Constipação é comum?",
+          "Quando procurar ajuda?"
+        ],
+        "EN": [
+          "What causes constipation?",
+          "How to improve bowel transit?",
+          "Do foods worsen constipation?",
+          "Does microbiota influence intestine?",
+          "I want to learn more about digestion",
+          "Are there scientific studies?",
+          "How to balance gut flora?",
+          "What symptoms indicate serious problem?",
+          "I want tips for healthy intestine",
+          "Does stress worsen constipation?",
+          "Is constipation common?",
+          "When to seek help?"
+        ]
+      }
+    },
+    {
+      "phase": "FASE 2 — GRAVIDADE/CONSEQUÊNCIA",
+      "copies": [
+        {
+          "lang": "PT",
+          "text": "${userName}, a constipação persistente pode desencadear problemas sérios como hemorroidas, fissuras anais e infecções. Além disso, a retenção prolongada favorece o crescimento de bactérias nocivas, comprometendo sua saúde intestinal e geral. Manter o equilíbrio da microbiota é fundamental para evitar essas complicações."
+        },
+        {
+          "lang": "EN",
+          "text": "${userName}, persistent constipation can lead to serious issues like hemorrhoids, anal fissures, and infections. Prolonged waste retention also favors harmful bacterial growth, impairing intestinal and overall health. Maintaining microbiota balance is crucial to prevent these complications."
+        }
+      ],
+      "quickReplies": {
+        "PT": [
+          "Constipação pode piorar?",
+          "Quais complicações pode causar?",
+          "Como evitar hemorroidas?",
+          "Flora intestinal influencia?",
+          "Quero saber mais sobre disbiose",
+          "Constipação afeta imunidade?",
+          "Dá para melhorar naturalmente?",
+          "Quais sintomas indicam gravidade?",
+          "Quero dicas para intestino saudável",
+          "Estresse piora constipação?",
+          "Tem estudos científicos?",
+          "Quando procurar ajuda?"
+        ],
+        "EN": [
+          "Can constipation get worse?",
+          "What complications can it cause?",
+          "How to avoid hemorrhoids?",
+          "Does gut flora influence?",
+          "I want to learn more about dysbiosis",
+          "Does constipation affect immunity?",
+          "Can it be improved naturally?",
+          "What symptoms indicate severity?",
+          "I want tips for healthy intestine",
+          "Does stress worsen constipation?",
+          "Are there scientific studies?",
+          "When to seek help?"
+        ]
+      }
+    },
+    {
+      "phase": "FASE 3 — PROVA/EVIDÊNCIA",
+      "copies": [
+        {
+          "lang": "PT",
+          "text": "${userName}, estudos mostram que o probiótico Bacillus Coagulans é eficaz para regular o trânsito intestinal e reduzir a constipação. Pesquisas do Journal of Clinical Gastroenterology comprovam melhorias significativas em pacientes com problemas intestinais."
+        },
+        {
+          "lang": "EN",
+          "text": "${userName}, studies show that the probiotic Bacillus Coagulans is effective in regulating bowel transit and reducing constipation. Research from the Journal of Clinical Gastroenterology demonstrates significant improvements in patients with intestinal issues."
+        }
+      ],
+      "quickReplies": {
+        "PT": [
+          "Quero ver pesquisas sobre probióticos",
+          "Bacillus Coagulans funciona mesmo?",
+          "Plantas podem ajudar também?",
+          "Quanto tempo para sentir diferença?",
+          "Posso usar todos os dias?",
+          "Resultados são duradouros?",
+          "Tem relatos de quem melhorou?",
+          "É seguro para longo prazo?",
+          "Quero dicas práticas para começar"
+        ],
+        "EN": [
+          "I want to see research on probiotics",
+          "Does Bacillus Coagulans really work?",
+          "Can plants help too?",
+          "How long to feel a difference?",
+          "Can I use daily?",
+          "Are results lasting?",
+          "Are there stories of improvement?",
+          "Is it safe long-term?",
+          "I want practical tips to start"
+        ]
+      }
+    },
+    {
+      "phase": "FASE 4 — SOLUÇÃO NATURAL/PLANTAS",
+      "copies": [
+        {
+          "lang": "PT",
+          "text": "Bacillus Coagulans é um probiótico natural que ajuda a regular o trânsito intestinal, promovendo a digestão saudável e aliviando a constipação. Plantas como Babchi, Dente-de-leão e Funcho fortalecem o sistema digestivo e restauram o equilíbrio da flora intestinal, tornando essa combinação um caminho natural eficaz para o bem-estar."
+        },
+        {
+          "lang": "EN",
+          "text": "Bacillus Coagulans is a natural probiotic that helps regulate bowel transit, promoting healthy digestion and relieving constipation. Plants like Babchi, Dandelion, and Fennel strengthen the digestive system and restore gut flora balance, making this combination an effective natural path to well-being."
+        }
+      ],
+      "quickReplies": {
+        "PT": [
+          "Como usar Bacillus Coagulans?",
+          "Quais plantas ajudam na digestão?",
+          "Babchi é seguro para todos?",
+          "Funcho alivia constipação?",
+          "Inulina faz diferença?",
+          "Quero receita fácil com essas plantas",
+          "Posso combinar probióticos e plantas?",
+          "Tem estudos que comprovam?",
+          "Quero começar hoje"
+        ],
+        "EN": [
+          "How to use Bacillus Coagulans?",
+          "Which plants help digestion?",
+          "Is Babchi safe for everyone?",
+          "Does Fennel relieve constipation?",
+          "Does Inulin make a difference?",
+          "I want an easy recipe with these plants",
+          "Can I combine probiotics and plants?",
+          "Are there studies proving this?",
+          "I want to start today"
+        ]
+      }
+    },
+    {
+      "phase": "FASE 5 — PRÓXIMO PASSO",
+      "copies": [
+        {
+          "lang": "PT",
+          "text": "${userName}, cuidar do funcionamento intestinal de forma natural pode transformar seu bem-estar. Com probióticos e plantas ancestrais, seu corpo terá suporte para uma digestão equilibrada e saudável. Posso ajudar com dicas, receitas e um plano prático para essa transformação."
+        },
+        {
+          "lang": "EN",
+          "text": "${userName}, caring for your intestinal function naturally can transform your well-being. With probiotics and ancestral plants, your body will get the support it needs for balanced and healthy digestion. I can help with tips, recipes, and a practical plan for this transformation."
+        }
+      ],
+      "quickReplies": {
+        "PT": [
+          "Quero começar já com probióticos",
+          "Tem receita fácil para intestino",
+          "Quero relatos reais de transformação",
+          "Como montar uma rotina prática?",
+          "Prefiro aprender mais antes",
+          "Resultados são duradouros?",
+          "Posso combinar com minha alimentação?",
+          "Quero conversar sobre escolhas naturais",
+          "Dá pra fazer em família?",
+          "Tem dicas para motivação?",
+          "É seguro para todos?",
+          "Quero ver estudos e relatos reais"
+        ],
+        "EN": [
+          "I want to start with probiotics now",
+          "Any easy recipe for intestine health",
+          "I want real transformation stories",
+          "How to build a practical routine?",
+          "I’d rather learn more first",
+          "Are results lasting?",
+          "Can I combine it with my diet?",
+          "I want to talk about natural choices",
+          "Can this be done as a family?",
+          "Any tips for motivation?",
+          "Is it safe for everyone?",
+          "I want to see studies and real stories"
+        ]
+      },   
 
