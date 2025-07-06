@@ -1,46 +1,59 @@
 {
-  "suplemento": "NOME_DO_SUPLEMENTO",
+  "suplemento": "MITOLYN",
   "sintomas": {
-    "nome_sintoma_sem_acentos": {
+    "gordura_abdominal_resistente": {
       "fase_1": {
         "copy_pt": [
-          "Exemplo de copy em português 1.",
-          "Exemplo de copy em português 2.",
-          "Exemplo de copy em português 3."
+          "Você já notou como a gordura abdominal pode ser difícil de eliminar, não é? Às vezes, mesmo com dieta e exercício, ela persiste.",
+          "A gordura na barriga não é apenas uma questão estética, mas pode estar relacionada ao equilíbrio hormonal e ao estresse."
         ],
         "copy_en": [
-          "Sample copy in English 1.",
-          "Sample copy in English 2.",
-          "Sample copy in English 3."
+          "Have you noticed how stubborn belly fat can be? Sometimes, even with diet and exercise, it persists.",
+          "Belly fat is not just an aesthetic issue; it might be linked to hormonal balance and stress."
         ],
         "quick_replies_pt": [
-          "Pergunta rápida em PT 1",
-          "Pergunta rápida em PT 2"
+          "Como reduzir a gordura na barriga?",
+          "Quais são as causas da gordura abdominal?"
         ],
         "quick_replies_en": [
-          "Quick reply in EN 1",
-          "Quick reply in EN 2"
+          "How to reduce belly fat?",
+          "What are the causes of belly fat?"
         ],
         "reflective_questions_pt": [
-          "Pergunta reflexiva em PT 1",
-          "Pergunta reflexiva em PT 2"
+          "Você já tentou alguma estratégia que ajudou a reduzir a gordura abdominal?",
+          "O que mais tem influenciado no seu processo de emagrecimento?"
         ],
         "reflective_questions_en": [
-          "Reflective question in EN 1",
-          "Reflective question in EN 2"
+          "Have you tried any strategy that helped reduce belly fat?",
+          "What has been influencing your weight loss process the most?"
         ]
       },
       "fase_2": {
-        "copy_pt": ["..."],
-        "copy_en": ["..."],
-        "quick_replies_pt": ["..."],
-        "quick_replies_en": ["..."],
-        "reflective_questions_pt": ["..."],
-        "reflective_questions_en": ["..."]
-      },
-      "fase_3": {},
-      "fase_4": {},
-      "fase_5": {}
+        "copy_pt": [
+          "É importante observar o impacto do estresse no seu corpo. O cortisol, o hormônio do estresse, pode contribuir para o acúmulo de gordura abdominal.",
+          "Uma alimentação balanceada, rica em fibras e com pouco açúcar, é essencial para começar a reduzir a gordura na barriga."
+        ],
+        "copy_en": [
+          "It's important to notice the impact of stress on your body. Cortisol, the stress hormone, can contribute to belly fat accumulation.",
+          "A balanced diet, rich in fiber and low in sugar, is essential to start reducing belly fat."
+        ],
+        "quick_replies_pt": [
+          "Como controlar o estresse?",
+          "Quais alimentos ajudam na redução da gordura abdominal?"
+        ],
+        "quick_replies_en": [
+          "How to control stress?",
+          "What foods help reduce belly fat?"
+        ],
+        "reflective_questions_pt": [
+          "Quais ações você pode tomar para controlar o estresse?",
+          "Como você pode ajustar sua alimentação para melhorar a saúde?"
+        ],
+        "reflective_questions_en": [
+          "What actions can you take to control stress?",
+          "How can you adjust your diet to improve health?"
+        ]
+      }
     }
   }
 }
