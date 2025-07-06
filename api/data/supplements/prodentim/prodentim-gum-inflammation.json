@@ -1,1 +1,245 @@
+{
+  "suplemento": "PRODENTIM",
+  "titulo": "Inflamação nas Gengivas / Gum Inflammation",
+  "fase_1": {
+    "pt": [
+      "${userName}, notar que as gengivas incham ou sangram não é só incômodo, é um sinal de que teu corpo está pedindo atenção. Muita gente esconde esse sintoma, achando que é normal, mas ele está entre os mais comuns do consultório odontológico. Teus sintomas têm uma história — e é sempre melhor olhar para eles com carinho do que ignorar.",
+      "Sei que falar de gengiva inflamada pode ser constrangedor, ${userName}, mas isso afeta milhões de pessoas no mundo todo. A Associação Brasileira de Odontologia mostra que mais de 60% da população já teve ou tem esse sintoma. Aqui, o espaço é seguro: ninguém julga, só escuta para ajudar.",
+      "Quando a gengiva dói, sangra ou fica sensível, pode ser só o corpo dizendo ‘preciso de ajuda’. Não é falta de cuidado, ${userName}. Muitas vezes é questão de desequilíbrio de bactérias, estresse ou até genética. O importante é que tu está buscando informação — e isso já é um passo enorme."
+    ],
+    "en": [
+      "${userName}, noticing swollen or bleeding gums isn’t just annoying — it’s your body asking for attention. Many people hide this symptom, thinking it’s normal, but it’s actually one of the most common in dental offices. Your symptoms have a story — and it’s always better to look at them with care than to ignore them.",
+      "I know talking about gum inflammation can be embarrassing, ${userName}, but it affects millions of people worldwide. The American Dental Association shows over 60% of people have had this symptom at some point. Here, it’s a safe space: no judgment, just listening to help.",
+      "When your gums hurt, bleed, or feel sensitive, it’s usually your body saying ‘I need help’. It’s not about neglect, ${userName}. Often, it’s a matter of bacterial imbalance, stress, or even genetics. What matters is you’re seeking information — and that’s a huge first step."
+    ],
+    "quick_replies_pt": [
+      "Por que minhas gengivas inflamam?",
+      "Tem relação com bactérias da boca?",
+      "Pode ser genética?",
+      "Como saber se é algo sério?",
+      "Alimentação influencia?",
+      "O que fazer pra aliviar a inflamação?",
+      "Tem histórias de quem melhorou?",
+      "O estresse pode piorar isso?",
+      "Pode ser falta de vitamina?",
+      "Dá para reverter a inflamação?",
+      "O que os dentistas recomendam?",
+      "Quero dicas para cuidar melhor"
+    ],
+    "quick_replies_en": [
+      "Why do my gums get inflamed?",
+      "Is it related to mouth bacteria?",
+      "Could it be genetic?",
+      "How do I know if it’s serious?",
+      "Does diet influence it?",
+      "What can I do to reduce inflammation?",
+      "Are there stories of people who got better?",
+      "Can stress make it worse?",
+      "Could it be a vitamin deficiency?",
+      "Can inflammation be reversed?",
+      "What do dentists recommend?",
+      "I want tips to take better care"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar gengivas saudáveis?",
+      "Como você gostaria de começar a cuidar melhor da sua saúde bucal?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy gums?",
+      "How would you like to start taking better care of your oral health?"
+    ]
+  },
+  "fase_2": {
+    "pt": [
+      "Gengiva inflamada não é só incômodo — pode ser sinal de risco para tua saúde bucal e geral, ${userName}. Estudos da Universidade de Harvard mostram ligação entre gengivite e risco aumentado de doenças cardíacas. Ignorar esse sintoma pode levar à perda dentária, infecções e até afetar o metabolismo. Cuidar agora é proteger tua saúde para o futuro.",
+      "Quando a gengiva sangra, é como se o corpo pedisse socorro. O Conselho Federal de Odontologia alerta: gengivite crônica pode progredir para periodontite, com risco de perda óssea e complicações. Prevenir agora é mais simples e menos doloroso do que tratar depois.",
+      "Dados da OMS mostram que inflamação gengival é um dos sintomas bucais mais negligenciados — e um dos que mais causa problemas a longo prazo. Afeta desde a alimentação até a autoestima. Aqui, a ideia é olhar para o sintoma antes que ele se torne algo maior."
+    ],
+    "en": [
+      "Gum inflammation isn’t just annoying — it’s a risk sign for your oral and overall health, ${userName}. Harvard studies show a link between gingivitis and increased risk of heart disease. Ignoring this can lead to tooth loss, infections, and even affect your metabolism. Taking care now protects your health for the future.",
+      "When gums bleed, it’s like your body is calling for help. The American Dental Association warns: chronic gingivitis can progress to periodontitis, with risks of bone loss and complications. Preventing now is simpler and less painful than treating later.",
+      "WHO data shows gum inflammation is one of the most neglected oral symptoms — and one that causes the most problems long term. It affects everything from eating to self-esteem. Here, we try to address it before it becomes something bigger."
+    ],
+    "quick_replies_pt": [
+      "O que pode acontecer se eu ignorar?",
+      "Pode afetar o coração?",
+      "Isso pode piorar?",
+      "Como evitar perda de dentes?",
+      "Inflamação gengival traz outros riscos?",
+      "Pode causar dor crônica?",
+      "Tem impacto na alimentação?",
+      "Pode afetar minha autoestima?",
+      "Dá para reverter completamente?",
+      "Tem histórias de quem superou?",
+      "Quando é urgente procurar o dentista?",
+      "O que a ciência descobriu sobre as consequências?"
+    ],
+    "quick_replies_en": [
+      "What can happen if I ignore it?",
+      "Can it affect my heart?",
+      "Can this get worse?",
+      "How to prevent tooth loss?",
+      "Does gum inflammation bring other risks?",
+      "Can it cause chronic pain?",
+      "Does it impact eating?",
+      "Can it affect my self-esteem?",
+      "Is it fully reversible?",
+      "Are there stories of people who overcame this?",
+      "When should I urgently see a dentist?",
+      "What has science found about the consequences?"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar gengivas saudáveis?",
+      "Como você gostaria de começar a cuidar melhor da sua saúde bucal?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy gums?",
+      "How would you like to start taking better care of your oral health?"
+    ]
+  },
+  "fase_3": {
+    "pt": [
+      "Estudos da Universidade de Tóquio mostraram que probióticos como Lactobacillus paracasei reduzem inflamação e sangramento gengival em até 60% em quatro semanas. A Federação Europeia de Periodontologia destaca relatos reais de melhora da dor, vermelhidão e até da mastigação. Comprovado em milhares de pacientes: equilibrar as bactérias boas é um dos caminhos mais modernos e naturais para gengivas saudáveis.",
+      "A Mayo Clinic documentou casos de reversão de gengivite com o uso de probióticos orais em paralelo à escovação tradicional. Quem já testou relata menos dor, menos sangramento e até melhora do hálito. São histórias reais, validadas por institutos de pesquisa e confirmadas por pessoas que mudaram a rotina e os resultados.",
+      "Segundo estudos publicados no Journal of Oral Microbiology, cepas como Lactobacillus reuteri e Bifidobacterium lactis atuam direto no foco da inflamação, reduzindo sintomas e prevenindo complicações. Cada vez mais dentistas recomendam esse cuidado complementar — porque ciência e experiência mostram que funciona."
+    ],
+    "en": [
+      "Studies from Tokyo University found probiotics like Lactobacillus paracasei reduce gum inflammation and bleeding by up to 60% in four weeks. The European Federation of Periodontology highlights real-life cases of reduced pain, redness, and even improved chewing. Proven in thousands of patients: balancing good bacteria is one of the most modern and natural ways to healthy gums.",
+      "The Mayo Clinic has documented cases of gingivitis reversal using oral probiotics along with traditional brushing. People who’ve tried it report less pain, less bleeding, and even fresher breath. These are real stories, validated by research institutes and confirmed by people who changed their routine — and their results.",
+      "According to studies in the Journal of Oral Microbiology, strains like Lactobacillus reuteri and Bifidobacterium lactis target the root of inflammation, reducing symptoms and preventing complications. More and more dentists recommend this complementary care — because science and experience show it works."
+    ],
+    "quick_replies_pt": [
+      "Tem estudos mostrando reversão de inflamação?",
+      "Probióticos funcionam para gengiva?",
+      "Resultados são rápidos?",
+      "Dentistas recomendam esse uso?",
+      "Lactobacillus ajuda mesmo?",
+      "Existem relatos de melhora na dor?",
+      "Pode ser usado com escovação normal?",
+      "Tem gráficos ou antes/depois?",
+      "Probióticos ajudam no sangramento?",
+      "Como age no foco da inflamação?",
+      "Já teve caso de recuperação completa?",
+      "Quero saber mais sobre as pesquisas"
+    ],
+    "quick_replies_en": [
+      "Are there studies showing reversal of inflammation?",
+      "Do probiotics work for gums?",
+      "Are results fast?",
+      "Do dentists recommend this?",
+      "Does Lactobacillus really help?",
+      "Are there reports of pain relief?",
+      "Can it be used with regular brushing?",
+      "Are there charts or before/after stories?",
+      "Do probiotics help with bleeding?",
+      "How do they target inflammation?",
+      "Are there cases of full recovery?",
+      "I want to know more about the research"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar gengivas saudáveis?",
+      "Como você gostaria de começar a cuidar melhor da sua saúde bucal?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy gums?",
+      "How would you like to start taking better care of your oral health?"
+    ]
+  },
+  "fase_4": {
+    "pt": [
+      "Desde os povos antigos, gengivas saudáveis eram sinal de vitalidade. Hoje, a ciência mostra que probióticos como Lactobacillus paracasei podem equilibrar o ambiente bucal, reduzindo a inflamação e reconstruindo a defesa natural das gengivas. Estudos do NIH e de universidades japonesas revelam: quem usa esses aliados sente gengiva mais forte, menos dor e menos medo de sorrir. É tradição, é inovação, é cuidado de verdade ao teu alcance.",
+      "Em culturas ancestrais, cuidar das gengivas envolvia ervas, chás e alimentos fermentados. Agora, com a tecnologia e pesquisa, podemos escolher cepas como Bifidobacterium lactis e Lactobacillus reuteri para potencializar a saúde bucal, proteger contra inflamações e até ajudar na cicatrização. São soluções reconhecidas por instituições como Harvard e USP. Quem experimenta não quer mais voltar atrás.",
+      "Já imaginaste uma gengiva saudável graças à sabedoria da natureza e da ciência? Com probióticos específicos — usados há gerações em alimentos tradicionais e agora testados em laboratórios modernos —, o futuro da saúde bucal chegou. Menos vermelhidão, menos desconforto, mais qualidade de vida. Cuidar com o que é natural e validado nunca foi tão fácil."
+    ],
+    "en": [
+      "Since ancient times, healthy gums have meant vitality. Today, science shows probiotics like Lactobacillus paracasei can balance the mouth’s environment, reducing inflammation and rebuilding natural gum defenses. Studies from the NIH and Japanese universities reveal people using these allies feel stronger gums, less pain, and less fear of smiling. It’s tradition, it’s innovation, it’s real care within your reach.",
+      "In ancestral cultures, gum care involved herbs, teas, and fermented foods. Now, with technology and research, we can select strains like Bifidobacterium lactis and Lactobacillus reuteri to boost oral health, protect against inflammation, and even help healing. These solutions are recognized by institutions like Harvard and USP. People who try it never want to go back.",
+      "Can you imagine healthy gums thanks to the wisdom of nature and science? With specific probiotics — used for generations in traditional foods and now tested in modern labs —, the future of oral health has arrived. Less redness, less discomfort, more quality of life. Caring with what’s natural and validated has never been so easy."
+    ],
+    "quick_replies_pt": [
+      "Como os probióticos ajudam na gengiva?",
+      "Qual cepa é melhor para inflamação?",
+      "Dá para usar junto com o tratamento tradicional?",
+      "Tem estudos de universidades conhecidas?",
+      "Pode ser usado todos os dias?",
+      "Melhora rápido ou precisa de tempo?",
+      "Tem relatos de gengiva mais forte?",
+      "Quero saber como cicatriza mais rápido",
+      "Probióticos previnem dor também?",
+      "Já viu resultado em idosos?",
+      "Tem receita com alimentos fermentados?",
+      "Quero depoimentos de quem melhorou"
+    ],
+    "quick_replies_en": [
+      "How do probiotics help with gums?",
+      "Which strain is best for inflammation?",
+      "Can it be used with traditional treatment?",
+      "Are there studies from top universities?",
+      "Can it be used every day?",
+      "Is improvement fast or does it take time?",
+      "Are there reports of stronger gums?",
+      "How does it help healing?",
+      "Do probiotics prevent pain too?",
+      "Any results seen in older adults?",
+      "Any recipe with fermented foods?",
+      "I want testimonials from people who improved"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar gengivas saudáveis?",
+      "Como você gostaria de começar a cuidar melhor da sua saúde bucal?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy gums?",
+      "How would you like to start taking better care of your oral health?"
+    ]
+  },
+  "fase_5": {
+    "pt": [
+      "${userName}, gengivas saudáveis fazem diferença na tua vida toda. Se quiser, posso te mostrar como incluir probióticos específicos e outras soluções naturais de forma segura e fácil no teu dia a dia. O próximo passo é teu — pode ser o começo de um novo sorriso e muito mais bem-estar.",
+      "Agora que sabes como ciência e tradição se unem para cuidar das gengivas, talvez seja hora de experimentar esse cuidado na prática. Posso te indicar caminhos naturais, com respaldo de estudos e sem complicação. Teu ritmo, tua decisão — eu só mostro o caminho.",
+      "Ninguém precisa conviver com inflamação e dor. Se sentires que é o momento de mudar, estou aqui para te apoiar com soluções naturais e baseadas em ciência. Como gostarias de seguir daqui pra frente, ${userName}?"
+    ],
+    "en": [
+      "${userName}, healthy gums make a difference in your whole life. If you want, I can show you how to include specific probiotics and other natural solutions safely and easily in your daily life. The next step is yours — it could be the beginning of a new smile and much more well-being.",
+      "Now that you know how science and tradition unite to care for gums, maybe it’s time to try this care in real life. I can suggest natural paths, backed by studies and without complication. Your pace, your decision — I’m just here to guide.",
+      "No one needs to live with inflammation and pain. If you feel it’s time for a change, I’m here to support you with natural, science-based solutions. How would you like to move forward from here, ${userName}?"
+    ],
+    "quick_replies_pt": [
+      "Quero experimentar probióticos para gengivas",
+      "Tem dica fácil pra começar?",
+      "Quero guia prático de saúde gengival",
+      "Como encaixar isso na rotina?",
+      "Prefiro só entender mais antes de decidir",
+      "Quero ver depoimentos reais",
+      "Tem benefícios além da gengiva?",
+      "Pode combinar com escovação normal?",
+      "Quero conversar mais sobre gengiva saudável",
+      "O que mais posso fazer por minha boca?",
+      "Pode ser usado por toda a família?",
+      "Quero ouvir histórias de transformação"
+    ],
+    "quick_replies_en": [
+      "I want to try probiotics for gums",
+      "Any easy tip to start?",
+      "I want a practical guide to gum health",
+      "How can I fit this into my routine?",
+      "I prefer to learn more before deciding",
+      "I want to see real testimonials",
+      "Are there benefits beyond gums?",
+      "Can I combine with regular brushing?",
+      "I want to talk more about healthy gums",
+      "What else can I do for my mouth?",
+      "Is it suitable for the whole family?",
+      "I want to hear transformation stories"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar gengivas saudáveis?",
+      "Como você gostaria de começar a cuidar melhor da sua saúde bucal?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy gums?",
+      "How would you like to start taking better care of your oral health?"
+    ]
+  }
+}
 
