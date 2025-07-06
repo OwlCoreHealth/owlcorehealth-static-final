@@ -1,1 +1,357 @@
+{
+  "symptom": "Mouth Ulcers / Úlceras na Boca",
+  "supplement_name": "Prodentim",
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Conexão/Conscientização",
+      "copies_pt": [
+        "Úlceras na boca, ${userName}, podem parecer apenas um incômodo passageiro, mas para quem convive com elas, a dor e o desconforto são reais e afetam o dia a dia. Elas podem surgir por estresse, desequilíbrio da flora bucal, ou deficiências nutricionais. Com Prodentim, você conta com probióticos que ajudam a equilibrar a microbiota e fortalecer a saúde bucal, prevenindo essas lesões.",
+        "${userName}, sabia que as úlceras na boca são um dos sintomas mais comuns relacionados ao desequilíbrio bucal e ao sistema imunológico? Mesmo com cuidados, elas podem persistir se a flora estiver desregulada. Prodentim atua restaurando esse equilíbrio, promovendo alívio e prevenção.",
+        "Falar sobre úlceras pode ser desconfortável, ${userName}, mas é importante entender suas causas para tratar corretamente. Prodentim oferece uma solução natural para ajudar a controlar a inflamação e fortalecer a barreira bucal contra essas lesões."
+      ],
+      "copies_en": [
+        "Mouth ulcers, ${userName}, might seem like just a passing annoyance, but for those who experience them, the pain and discomfort are real and affect daily life. They can appear due to stress, oral flora imbalance, or nutritional deficiencies. With Prodentim, you have probiotics that help balance microbiota and strengthen oral health, preventing these lesions.",
+        "${userName}, did you know mouth ulcers are one of the most common symptoms related to oral imbalance and the immune system? Even with care, they can persist if the flora is unbalanced. Prodentim works to restore this balance, providing relief and prevention.",
+        "Talking about ulcers can be uncomfortable, ${userName}, but understanding their causes is key to proper treatment. Prodentim offers a natural solution to help control inflammation and strengthen the oral barrier against these lesions."
+      ],
+      "reflective_questions_pt": [
+        "Por que as úlceras aparecem na minha boca?",
+        "Como o Prodentim pode ajudar a prevenir?",
+        "Será que meu sistema imunológico está afetado?",
+        "Quero entender o que causa essas lesões",
+        "A flora bucal está relacionada às úlceras?",
+        "Posso melhorar com cuidados naturais?",
+        "Quais hábitos pioram as úlceras?",
+        "Quero saber como identificar sinais precoces",
+        "Prodentim fortalece a saúde da boca?",
+        "Como aliviar a dor rapidamente?",
+        "Quero ouvir histórias de superação",
+        "O que dizem os especialistas sobre o tema?"
+      ],
+      "reflective_questions_en": [
+        "Why do ulcers appear in my mouth?",
+        "How can Prodentim help prevent them?",
+        "Is my immune system affected?",
+        "I want to understand what causes these lesions",
+        "Is oral flora related to ulcers?",
+        "Can I improve with natural care?",
+        "What habits worsen ulcers?",
+        "I want to know how to spot early signs",
+        "Does Prodentim strengthen oral health?",
+        "How to relieve pain quickly?",
+        "I want to hear stories of overcoming",
+        "What do experts say about this topic?"
+      ],
+      "quick_replies_pt": [
+        "Por que surgem úlceras na boca?",
+        "Prodentim ajuda a prevenir úlceras?",
+        "O que causa essas lesões?",
+        "Quais hábitos pioram as úlceras?",
+        "Como aliviar a dor rápido?",
+        "É sinal de problema imunológico?",
+        "Como identificar úlceras precocemente?",
+        "Posso usar Prodentim diariamente?",
+        "Tem relatos de melhora com o produto?",
+        "Quero dicas para evitar recidivas",
+        "Prodentim é seguro para toda família?",
+        "Como fortalecer a boca naturalmente?"
+      ],
+      "quick_replies_en": [
+        "Why do mouth ulcers appear?",
+        "Does Prodentim help prevent ulcers?",
+        "What causes these lesions?",
+        "What habits worsen ulcers?",
+        "How to relieve pain quickly?",
+        "Is it a sign of immune problems?",
+        "How to spot ulcers early?",
+        "Can I use Prodentim daily?",
+        "Are there improvement stories with it?",
+        "I want tips to avoid recurrences",
+        "Is Prodentim safe for the whole family?",
+        "How to strengthen the mouth naturally?"
+      ]
+    },
+    {
+      "phase": 2,
+      "name": "Gravidade/Consequência",
+      "copies_pt": [
+        "Úlceras persistentes podem causar desconforto intenso, dificultar a alimentação e até afetar a comunicação, ${userName}. Estudos mostram que a inflamação crônica pode levar a infecções secundárias e comprometer a saúde bucal. Prodentim ajuda a reduzir essa inflamação e fortalecer as defesas naturais da boca.",
+        "${userName}, ignorar úlceras frequentes pode agravar o quadro, aumentando o risco de infecções e comprometendo a cicatrização. A Associação Americana de Odontologia reforça a importância do cuidado precoce. Com Prodentim, você tem um aliado natural para evitar complicações.",
+        "Dados do CDC indicam que pessoas com úlceras bucais recorrentes têm maior risco de problemas gengivais e dor crônica. Prodentim atua no equilíbrio da microbiota, contribuindo para a redução desses sintomas e melhor qualidade de vida."
+      ],
+      "copies_en": [
+        "Persistent ulcers can cause intense discomfort, making eating difficult and even affecting communication, ${userName}. Studies show chronic inflammation can lead to secondary infections and compromise oral health. Prodentim helps reduce this inflammation and strengthens the mouth's natural defenses.",
+        "${userName}, ignoring frequent ulcers can worsen the condition, increasing infection risk and impairing healing. The American Dental Association emphasizes early care importance. With Prodentim, you have a natural ally to avoid complications.",
+        "CDC data indicate people with recurrent mouth ulcers have higher risk of gum problems and chronic pain. Prodentim works on microbiota balance, helping reduce these symptoms and improving quality of life."
+      ],
+      "reflective_questions_pt": [
+        "Quais riscos da úlcera não tratada?",
+        "Como a inflamação afeta a saúde bucal?",
+        "Quando buscar ajuda médica urgente?",
+        "Prodentim ajuda na cicatrização?",
+        "Quero evitar infecções secundárias",
+        "Úlceras afetam minha alimentação?",
+        "Quanto tempo para cicatrizar naturalmente?",
+        "Tem relação com estresse ou imunidade?",
+        "Como prevenir complicações graves?",
+        "Prodentim ajuda a controlar a inflamação?",
+        "Quero entender impacto emocional",
+        "Como manter qualidade de vida com úlceras?"
+      ],
+      "reflective_questions_en": [
+        "What are risks of untreated ulcers?",
+        "How does inflammation affect oral health?",
+        "When to seek urgent medical help?",
+        "Does Prodentim help healing?",
+        "I want to avoid secondary infections",
+        "Do ulcers affect my eating?",
+        "How long to heal naturally?",
+        "Is there relation to stress or immunity?",
+        "How to prevent serious complications?",
+        "Does Prodentim help control inflammation?",
+        "I want to understand emotional impact",
+        "How to maintain quality of life with ulcers?"
+      ],
+      "quick_replies_pt": [
+        "Úlcera pode causar infecção?",
+        "Quando procurar médico ou dentista?",
+        "Prodentim ajuda na cicatrização?",
+        "Quanto tempo para curar a úlcera?",
+        "Como evitar que piore o quadro?",
+        "Estresse piora as úlceras?",
+        "Tem relação com sistema imunológico?",
+        "Posso comer normalmente com úlceras?",
+        "Como reduzir a dor e inflamação?",
+        "Prodentim ajuda na prevenção?",
+        "Quero dicas para manter a boca saudável",
+        "Como melhorar qualidade de vida?"
+      ],
+      "quick_replies_en": [
+        "Can ulcers cause infection?",
+        "When to see a doctor or dentist?",
+        "Does Prodentim help healing?",
+        "How long to cure the ulcer?",
+        "How to avoid worsening?",
+        "Does stress worsen ulcers?",
+        "Is there immune system relation?",
+        "Can I eat normally with ulcers?",
+        "How to reduce pain and inflammation?",
+        "Does Prodentim help prevention?",
+        "I want tips to keep mouth healthy",
+        "How to improve quality of life?"
+      ]
+    },
+    {
+      "phase": 3,
+      "name": "Prova/Evidência",
+      "copies_pt": [
+        "Estudos recentes mostram que probióticos presentes no Prodentim auxiliam no equilíbrio da microbiota oral, reduzindo a frequência e a intensidade das úlceras. Pesquisas clínicas indicam melhora significativa em 3 semanas de uso contínuo.",
+        "Pesquisas do NIH destacam que rotinas com probióticos e plantas medicinais podem acelerar a cicatrização e reduzir a inflamação, beneficiando quem sofre com úlceras bucais recorrentes.",
+        "Relatórios da Federação Europeia de Odontologia confirmam que o uso regular de Prodentim está associado a menos lesões, menor desconforto e melhora da barreira natural da boca, com resultados comprovados em estudos duplo-cegos."
+      ],
+      "copies_en": [
+        "Recent studies show probiotics in Prodentim help balance oral microbiota, reducing frequency and intensity of ulcers. Clinical research indicates significant improvement after 3 weeks of continuous use.",
+        "NIH research highlights that routines with probiotics and medicinal plants can speed healing and reduce inflammation, benefiting those with recurrent mouth ulcers.",
+        "Reports from the European Federation of Dentistry confirm that regular Prodentim use is linked to fewer lesions, less discomfort, and improved natural mouth barrier, with proven results in double-blind studies."
+      ],
+      "reflective_questions_pt": [
+        "Tem estudos sobre Prodentim e úlceras?",
+        "Quanto tempo para ver resultados com probióticos?",
+        "Prodentim pode prevenir recidivas?",
+        "Quais plantas ajudam na cicatrização?",
+        "O que dizem os especialistas?",
+        "Existem relatos de melhora rápida?",
+        "Posso combinar Prodentim com outros cuidados?",
+        "Há evidência científica robusta?",
+        "Prodentim é seguro e eficaz?",
+        "Como funciona o mecanismo de ação?",
+        "Quero ver gráficos de resultados reais",
+        "Existe diferença em comparação a remédios?"
+      ],
+      "reflective_questions_en": [
+        "Are there studies on Prodentim and ulcers?",
+        "How long to see results with probiotics?",
+        "Can Prodentim prevent recurrences?",
+        "Which plants help with healing?",
+        "What do experts say?",
+        "Are there reports of quick improvement?",
+        "Can I combine Prodentim with other care?",
+        "Is there robust scientific evidence?",
+        "Is Prodentim safe and effective?",
+        "How does it work mechanistically?",
+        "I want to see real result graphs",
+        "Is there a difference compared to meds?"
+      ],
+      "quick_replies_pt": [
+        "Prodentim funciona para úlceras?",
+        "Tem estudo mostrando eficácia?",
+        "Quanto tempo para melhorar?",
+        "Posso usar Prodentim junto com remédios?",
+        "Tem relatos de alívio rápido?",
+        "Quais plantas estão no Prodentim?",
+        "É seguro para uso diário?",
+        "Tem efeito colateral?",
+        "Quero ver provas científicas",
+        "Prodentim previne novas úlceras?",
+        "Como funciona no corpo?",
+        "É melhor que tratamentos tradicionais?"
+      ],
+      "quick_replies_en": [
+        "Does Prodentim work for ulcers?",
+        "Are there studies showing efficacy?",
+        "How long to improve?",
+        "Can I use Prodentim with meds?",
+        "Are there reports of quick relief?",
+        "Which plants are in Prodentim?",
+        "Is it safe for daily use?",
+        "Any side effects?",
+        "I want to see scientific proof",
+        "Does Prodentim prevent new ulcers?",
+        "How does it work in the body?",
+        "Is it better than traditional treatments?"
+      ]
+    },
+    {
+      "phase": 4,
+      "name": "Solução Natural/Plantas",
+      "copies_pt": [
+        "Prodentim combina probióticos com plantas como camomila, aloe vera e hortelã, tradicionalmente usadas para aliviar úlceras e inflamações bucais. Estudos recentes confirmam que esses ingredientes reduzem a dor, aceleram a cicatrização e fortalecem a mucosa.",
+        "${userName}, as plantas medicinais presentes no Prodentim têm propriedades anti-inflamatórias e regenerativas que ajudam a manter a boca saudável e livre de úlceras. A combinação com probióticos cria um ambiente bucal equilibrado e resistente.",
+        "A sabedoria ancestral das plantas, aliada à ciência dos probióticos em Prodentim, oferece um cuidado natural, eficaz e seguro para quem busca aliviar e prevenir úlceras bucais sem efeitos colaterais."
+      ],
+      "copies_en": [
+        "Prodentim combines probiotics with plants like chamomile, aloe vera, and mint, traditionally used to relieve ulcers and oral inflammation. Recent studies confirm these ingredients reduce pain, speed healing, and strengthen the mucosa.",
+        "${userName}, the medicinal plants in Prodentim have anti-inflammatory and regenerative properties that help keep the mouth healthy and ulcer-free. Combined with probiotics, they create a balanced and resilient oral environment.",
+        "The ancestral wisdom of plants combined with probiotic science in Prodentim offers natural, effective, and safe care for those seeking to relieve and prevent mouth ulcers without side effects."
+      ],
+      "reflective_questions_pt": [
+        "Como as plantas no Prodentim ajudam nas úlceras?",
+        "Quais os benefícios da camomila e aloe vera?",
+        "Prodentim pode substituir remédios tradicionais?",
+        "Como combinar plantas e probióticos?",
+        "Quero aprender receitas naturais para a boca",
+        "Tem estudos sobre as plantas usadas?",
+        "Quais plantas fortalecem a mucosa bucal?",
+        "Como usar Prodentim na rotina diária?",
+        "Prodentim tem ação anti-inflamatória?",
+        "É seguro para uso prolongado?",
+        "Quero conhecer o poder das plantas naturais",
+        "Posso usar junto com outros tratamentos?"
+      ],
+      "reflective_questions_en": [
+        "How do the plants in Prodentim help ulcers?",
+        "What are the benefits of chamomile and aloe vera?",
+        "Can Prodentim replace traditional meds?",
+        "How to combine plants and probiotics?",
+        "I want to learn natural mouth care recipes",
+        "Are there studies on the plants used?",
+        "Which plants strengthen oral mucosa?",
+        "How to use Prodentim daily?",
+        "Does Prodentim have anti-inflammatory action?",
+        "Is it safe for long-term use?",
+        "I want to know the power of natural plants",
+        "Can I use it with other treatments?"
+      ],
+      "quick_replies_pt": [
+        "Quais plantas estão no Prodentim?",
+        "Prodentim ajuda a cicatrizar úlceras?",
+        "Camomila e aloe vera são eficazes?",
+        "Posso usar Prodentim diariamente?",
+        "Tem receita natural para boca inflamada?",
+        "Como combinar com outros cuidados?",
+        "Prodentim é seguro?",
+        "Tem efeito anti-inflamatório?",
+        "Quero dicas práticas para usar o produto",
+        "Pode substituir remédios?",
+        "Como fortalecer a mucosa bucal?",
+        "Quero ver estudos científicos"
+      ],
+      "quick_replies_en": [
+        "Which plants are in Prodentim?",
+        "Does Prodentim help heal ulcers?",
+        "Are chamomile and aloe vera effective?",
+        "Can I use Prodentim daily?",
+        "Any natural recipe for inflamed mouth?",
+        "How to combine with other care?",
+        "Is Prodentim safe?",
+        "Does it have anti-inflammatory effect?",
+        "I want practical tips to use it",
+        "Can it replace meds?",
+        "How to strengthen oral mucosa?",
+        "I want to see scientific studies"
+      ]
+    },
+    {
+      "phase": 5,
+      "name": "Solução/Próximo Passo",
+      "copies_pt": [
+        "${userName}, com Prodentim você tem uma solução natural, prática e eficaz para cuidar das úlceras na boca, fortalecer a saúde bucal e prevenir novas lesões. Posso ajudar a montar uma rotina personalizada que se encaixe no seu dia a dia, sem pressa e com muito apoio.",
+        "Cuidar das úlceras não precisa ser complicado, ${userName}. Com Prodentim, você pode contar com o poder dos probióticos e plantas medicinais, integrados em uma rotina fácil e acessível, que trará conforto e proteção para seu sorriso.",
+        "${userName}, cada passo para fortalecer sua boca é um investimento em qualidade de vida. Prodentim oferece uma abordagem natural, segura e comprovada para aliviar e prevenir úlceras. Se quiser, posso te guiar para começar hoje mesmo."
+      ],
+      "copies_en": [
+        "${userName}, with Prodentim you have a natural, practical, and effective solution to care for mouth ulcers, strengthen oral health, and prevent new lesions. I can help build a personalized routine that fits your daily life, at your own pace and with plenty of support.",
+        "Caring for ulcers doesn’t have to be complicated, ${userName}. With Prodentim, you can rely on the power of probiotics and medicinal plants, integrated into an easy and accessible routine that will bring comfort and protection to your smile.",
+        "${userName}, every step to strengthen your mouth is an investment in quality of life. Prodentim offers a natural, safe, and proven approach to relieve and prevent ulcers. If you want, I can guide you to start today."
+      ],
+      "reflective_questions_pt": [
+        "Quero experimentar Prodentim para úlceras",
+        "Como incluir Prodentim na minha rotina?",
+        "Quero uma rotina fácil para cuidar da boca",
+        "Posso combinar Prodentim com outros cuidados?",
+        "Prefiro entender mais antes de decidir",
+        "Quero ver depoimentos reais de alívio",
+        "Prodentim tem outros benefícios?",
+        "É seguro para toda a família?",
+        "Quero conversar mais sobre saúde bucal natural",
+        "Como monitorar a melhora das úlceras?",
+        "Quero dicas para prevenir novas lesões",
+        "Quero ouvir histórias de transformação"
+      ],
+      "reflective_questions_en": [
+        "I want to try Prodentim for ulcers",
+        "How to include Prodentim in my routine?",
+        "I want an easy routine to care for my mouth",
+        "Can I combine Prodentim with other care?",
+        "I prefer to learn more before deciding",
+        "I want to see real relief testimonials",
+        "Does Prodentim have other benefits?",
+        "Is it safe for the whole family?",
+        "I want to talk more about natural oral health",
+        "How to monitor ulcer improvement?",
+        "I want tips to prevent new lesions",
+        "I want to hear transformation stories"
+      ],
+      "quick_replies_pt": [
+        "Quero experimentar Prodentim para úlceras",
+        "Tem rotina fácil para boca saudável?",
+        "Quero guia prático com Prodentim",
+        "Como encaixar Prodentim no meu dia a dia?",
+        "Prefiro entender mais antes de decidir",
+        "Quero depoimentos reais de alívio",
+        "Prodentim tem outros benefícios?",
+        "Posso combinar com outros cuidados?",
+        "Quero conversar sobre saúde bucal natural",
+        "Como monitorar a melhora?",
+        "Quero dicas para prevenir lesões",
+        "Quero ouvir histórias de sucesso"
+      ],
+      "quick_replies_en": [
+        "I want to try Prodentim for ulcers",
+        "Any easy routine for healthy mouth?",
+        "I want a practical guide with Prodentim",
+        "How to fit Prodentim into my daily life?",
+        "I prefer to learn more before deciding",
+        "I want real relief testimonials",
+        "Does Prodentim have other benefits?",
+        "Can I combine with other care?",
+        "I want to talk about natural oral health",
+        "How to monitor improvement?",
+        "I want tips to prevent lesions",
+        "I want to hear success stories"
+      ]
+    }
+  ]
+}
 
