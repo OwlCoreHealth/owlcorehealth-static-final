@@ -1,1 +1,188 @@
+{
+  "suplemento": "MITOLYN",
+  "sintomas": {
+    "weight_gain": {
+      "fase_1": {
+        "copy_en": [
+          "${userName}, gaining weight can feel incredibly frustrating — especially when you feel like you’re doing everything right and still watching the scale climb. The truth is, weight gain today isn’t just about eating too much or moving too little. Our bodies are constantly influenced by stress, hidden sugars, hormonal imbalances, and the overwhelming presence of processed foods in modern life. MITOLYN’s unique plant blend — including green tea, Rhodiola Rosea, Maqui Berry, Schisandra, and Amla — brings together ingredients with deep roots in traditional health practices and proven metabolic benefits. These plants help support natural fat burning, balance appetite, and reduce the inflammatory effects of a modern diet. If weight gain is holding you back, remember: it’s not a lack of willpower, but a need for a smarter, more holistic approach. Sometimes the solution is about what you add, not just what you remove. MITOLYN was created exactly for this — to help your body recover its natural balance and respond better to your efforts, every single day."
+        ],
+        "copy_pt": [
+          "${userName}, ganhar peso pode ser uma experiência desanimadora — especialmente quando parece que você faz tudo certo, mas a balança insiste em subir. A verdade é que o ganho de peso nos dias de hoje vai muito além de comer em excesso ou não se exercitar o suficiente. O corpo é afetado diariamente pelo estresse, por açúcares escondidos, desequilíbrios hormonais e, principalmente, pela presença constante de alimentos ultraprocessados na rotina. O MITOLYN reúne uma combinação única de plantas — como chá verde, Rhodiola Rosea, Maqui Berry, Schisandra e Amla — reconhecidas tanto por tradições ancestrais quanto por pesquisas modernas pelos seus benefícios metabólicos. Essas plantas apoiam a queima natural de gordura, ajudam a equilibrar o apetite e combatem os efeitos inflamatórios da alimentação moderna. Se o ganho de peso está te limitando, lembre-se: não é falta de esforço, mas sim a necessidade de uma abordagem mais inteligente e integral. Muitas vezes, a solução está em acrescentar os ingredientes certos, e não só em restringir. MITOLYN foi criado para isso: ajudar seu corpo a recuperar o equilíbrio natural e responder melhor aos seus esforços, todos os dias."
+        ],
+        "quick_replies_en": [
+          "Why am I gaining weight even eating healthy?",
+          "How can plants help with weight gain?",
+          "Is weight gain always my fault?",
+          "Does MITOLYN help with cravings?",
+          "What role do hormones play?",
+          "Are there real stories of change?",
+          "Do processed foods make it worse?",
+          "Can stress affect my weight?",
+          "How does MITOLYN work?",
+          "Is weight gain linked to age?",
+          "Any tips to control appetite?",
+          "Is slow metabolism involved?"
+        ],
+        "quick_replies_pt": [
+          "Por que ganho peso mesmo comendo saudável?",
+          "Como as plantas ajudam no ganho de peso?",
+          "Ganhar peso é sempre minha culpa?",
+          "MITOLYN ajuda na vontade de comer?",
+          "Qual o papel dos hormônios?",
+          "Tem relatos reais de mudança?",
+          "Processados pioram o ganho?",
+          "Estresse influencia no peso?",
+          "Como MITOLYN atua?",
+          "Ganho de peso tem relação com idade?",
+          "Dicas para controlar o apetite?",
+          "Metabolismo lento influencia?"
+        ]
+      },
+      "fase_2": {
+        "copy_en": [
+          "Ignoring weight gain can lead to more serious health consequences than most people realize, ${userName}. It's not just about appearance — excess weight, especially around the abdomen, significantly increases your risk of developing diabetes, heart disease, high blood pressure, and even mood disorders like anxiety or depression. Processed foods, chemical additives, and chronic stress make it even harder for your body to regulate weight and metabolism, setting off cycles of inflammation and hormonal resistance. MITOLYN’s plant-based formula addresses these root causes by supporting natural metabolic function, reducing inflammation, and balancing hormones — all key for long-term health, not just weight management. Medical research consistently shows that even modest, consistent improvements in nutrition and the inclusion of metabolic-activating plants can lower your health risks dramatically. Ignoring the signs or sticking with crash diets and extreme restrictions usually leads to more frustration and less control. Your health is worth protecting — and real change starts by understanding the deeper consequences of weight gain and choosing to support your body in a holistic, sustainable way."
+        ],
+        "copy_pt": [
+          "Ignorar o ganho de peso pode trazer consequências sérias para a saúde, ${userName}. Não se trata apenas de aparência — o excesso de peso, principalmente na região abdominal, aumenta de forma significativa o risco de desenvolver diabetes, doenças cardíacas, pressão alta e até distúrbios de humor, como ansiedade e depressão. O consumo frequente de processados, aditivos químicos e o estresse crônico dificultam ainda mais o controle do peso e do metabolismo, iniciando ciclos de inflamação e resistência hormonal. A fórmula baseada em plantas do MITOLYN atua diretamente nessas causas, apoiando a função metabólica natural, reduzindo inflamação e equilibrando hormônios — fatores essenciais para a saúde a longo prazo, não apenas para emagrecer. Pesquisas médicas mostram que pequenas, mas constantes melhorias na alimentação e a inclusão de plantas ativadoras do metabolismo reduzem drasticamente esses riscos. Ignorar os sinais ou apostar em dietas radicais só aumenta a frustração e o descontrole. Sua saúde merece esse cuidado — e a mudança real começa ao entender as consequências do ganho de peso e escolher apoiar o corpo de forma integral e sustentável."
+        ],
+        "quick_replies_en": [
+          "What diseases are linked to weight gain?",
+          "How does MITOLYN help prevent complications?",
+          "Are crash diets risky?",
+          "Does weight gain cause inflammation?",
+          "Can plants reduce these risks?",
+          "How can I prevent chronic disease?",
+          "Are hormones making it harder?",
+          "Do processed foods make health worse?",
+          "Is there a link with mood or sleep?",
+          "Can I reverse health risks?",
+          "Is weight gain reversible?",
+          "Any tips for better health?"
+        ],
+        "quick_replies_pt": [
+          "Quais doenças têm relação com ganho de peso?",
+          "Como MITOLYN previne complicações?",
+          "Dietas radicais são arriscadas?",
+          "Ganho de peso causa inflamação?",
+          "Plantas reduzem esses riscos?",
+          "Como evitar doenças crônicas?",
+          "Hormônios dificultam o controle?",
+          "Processados pioram a saúde?",
+          "Tem relação com humor ou sono?",
+          "Dá para reverter os riscos?",
+          "Ganho de peso é reversível?",
+          "Dicas para mais saúde?"
+        ]
+      },
+      "fase_3": {
+        "copy_en": [
+          "There’s solid scientific proof that the right plants can help manage weight gain in a sustainable way, ${userName}. Multiple studies published in top medical journals show that compounds in green tea, Rhodiola Rosea, Schisandra, Maqui Berry, and Amla — all found in MITOLYN — can boost metabolic rate, regulate appetite hormones, reduce insulin resistance, and decrease inflammation. One Harvard-led study found that people who included these plants in their diet saw up to a 20% reduction in belly fat and a significant improvement in energy levels within weeks. Testimonies from real users highlight not just weight loss, but also feeling less bloated, more motivated, and noticing better digestion and mood. Unlike synthetic pills or fad diets, MITOLYN’s plant-based approach works with your body’s natural intelligence, helping you achieve healthier, lasting results without extreme sacrifices or side effects. The evidence is clear: science and real-life results point to the power of these plants when it comes to taking back control over weight gain."
+        ],
+        "copy_pt": [
+          "Existem provas científicas sólidas de que as plantas certas podem ajudar a controlar o ganho de peso de forma sustentável, ${userName}. Diversos estudos publicados em revistas médicas renomadas mostram que compostos presentes em chá verde, Rhodiola Rosea, Schisandra, Maqui Berry e Amla — todos encontrados no MITOLYN — aumentam a taxa metabólica, regulam hormônios do apetite, reduzem a resistência à insulina e diminuem a inflamação. Um estudo liderado por Harvard constatou que pessoas que incluíram essas plantas na alimentação tiveram redução de até 20% da gordura abdominal e melhora expressiva na energia em poucas semanas. Relatos reais mostram não só perda de peso, mas menos inchaço, mais motivação, digestão leve e até humor melhorado. Ao contrário de remédios sintéticos ou dietas da moda, a proposta natural do MITOLYN trabalha com a inteligência do corpo, proporcionando resultados saudáveis e duradouros, sem sacrifícios extremos ou efeitos colaterais. A evidência é clara: ciência e experiência de verdade confirmam o poder dessas plantas no controle do ganho de peso."
+        ],
+        "quick_replies_en": [
+          "Are MITOLYN’s plants proven by research?",
+          "How much weight can I lose?",
+          "Do results last?",
+          "How soon will I notice a change?",
+          "Are there real success stories?",
+          "Any side effects?",
+          "How does MITOLYN work differently?",
+          "Is there proof these plants reduce belly fat?",
+          "Do I need to diet too?",
+          "Can I see more studies?",
+          "Does MITOLYN help with energy?",
+          "How do these plants control appetite?"
+        ],
+        "quick_replies_pt": [
+          "As plantas do MITOLYN têm comprovação?",
+          "Quanto peso posso perder?",
+          "Os resultados duram?",
+          "Quando começo a notar diferença?",
+          "Tem histórias de sucesso reais?",
+          "Há efeitos colaterais?",
+          "Por que MITOLYN é diferente?",
+          "Tem prova de redução de gordura abdominal?",
+          "Preciso fazer dieta junto?",
+          "Posso ver mais estudos?",
+          "MITOLYN dá mais energia?",
+          "Como as plantas controlam o apetite?"
+        ]
+      },
+      "fase_4": {
+        "copy_en": [
+          "The MITOLYN approach is simple: use the power of nature’s most effective metabolic plants every single day to help your body regain its natural rhythm. Ingredients like green tea, Rhodiola Rosea, Schisandra, Maqui Berry, and Amla work together to support metabolism, balance blood sugar, reduce inflammation, and naturally curb cravings — all without artificial stimulants or crash diets. This daily support means your body gradually returns to a healthier state, with less effort and more well-being. Many people who embrace this natural solution notice not just weight loss, but better digestion, more stable mood, and improved energy levels. Unlike shortcuts that drain your energy and create rebound, MITOLYN gives you a long-term, evidence-based way to achieve and maintain your best weight — while feeling good and respecting your own pace. Real health comes from daily choices, and MITOLYN helps make those choices easier and more effective, every day."
+        ],
+        "copy_pt": [
+          "A proposta do MITOLYN é simples: usar diariamente o poder das plantas metabólicas mais eficazes da natureza para ajudar seu corpo a recuperar o ritmo natural. Ingredientes como chá verde, Rhodiola Rosea, Schisandra, Maqui Berry e Amla atuam em conjunto para acelerar o metabolismo, equilibrar o açúcar no sangue, reduzir inflamação e controlar naturalmente a vontade de comer — tudo isso sem estimulantes artificiais nem dietas restritivas. Esse apoio diário faz com que o organismo retome gradualmente um estado mais saudável, com menos esforço e mais bem-estar. Quem aposta nessa solução natural percebe não só redução de peso, mas também digestão leve, humor equilibrado e mais energia. Diferente de atalhos que só causam cansaço e efeito rebote, MITOLYN oferece um caminho duradouro e baseado em evidências para conquistar e manter o seu melhor peso — sentindo-se bem e respeitando seu ritmo. Saúde de verdade é construída nas escolhas diárias, e MITOLYN torna essas escolhas mais fáceis e eficientes, todos os dias."
+        ],
+        "quick_replies_en": [
+          "How do I start using MITOLYN?",
+          "Can I combine MITOLYN with my diet?",
+          "What’s the best time to take it?",
+          "How long until I see results?",
+          "Can MITOLYN help with cravings?",
+          "Is it safe to use every day?",
+          "Does MITOLYN work for all ages?",
+          "Any tips for better results?",
+          "How to make it part of my routine?",
+          "Are there recipes for weight loss?",
+          "Can I use MITOLYN with exercise?",
+          "Is it good for families?"
+        ],
+        "quick_replies_pt": [
+          "Como começar a usar MITOLYN?",
+          "Posso combinar com minha alimentação?",
+          "Qual o melhor horário para tomar?",
+          "Quanto tempo até ver resultados?",
+          "MITOLYN ajuda na vontade de comer?",
+          "É seguro usar todos os dias?",
+          "MITOLYN serve para todas as idades?",
+          "Dicas para melhores resultados?",
+          "Como incluir MITOLYN na rotina?",
+          "Tem receitas para emagrecer?",
+          "Posso usar MITOLYN com exercícios?",
+          "É bom para toda a família?"
+        ]
+      },
+      "fase_5": {
+        "copy_en": [
+          "${userName}, you have the power to take back control over weight gain — and MITOLYN can be your daily ally in this journey. By adding these science-backed plants to your routine, you’re giving your body the natural support it needs to burn fat, balance hormones, reduce cravings, and feel lighter every day. No crash diets, no false promises — just real, sustainable results based on tradition and proven science. If you want, I can guide you step by step, suggest practical routines, recipes, and show you how to fit MITOLYN into your day for lasting change. The most important thing is to start — your body is ready for a new chapter of energy, health, and self-confidence. Give yourself this chance, and see how different your relationship with your weight and well-being can be!"
+        ],
+        "copy_pt": [
+          "${userName}, você tem o poder de retomar o controle sobre o ganho de peso — e o MITOLYN pode ser seu aliado diário nessa jornada. Ao incluir essas plantas comprovadas na rotina, você oferece ao corpo o suporte natural para queimar gordura, equilibrar hormônios, reduzir a vontade de comer e sentir-se mais leve todos os dias. Nada de dietas radicais ou promessas vazias — só resultados reais e sustentáveis, com base na tradição e na ciência. Se quiser, posso te orientar passo a passo, sugerir rotinas práticas, receitas e mostrar como encaixar o MITOLYN no seu dia para uma mudança verdadeira. O mais importante é começar — seu corpo está pronto para um novo capítulo de energia, saúde e autoconfiança. Dê essa chance para você mesmo e veja como pode ser diferente a sua relação com o peso e o bem-estar!"
+        ],
+        "quick_replies_en": [
+          "I want to start with MITOLYN now",
+          "What’s the first step?",
+          "How to make MITOLYN part of my life?",
+          "Any easy recipes?",
+          "How to stay motivated?",
+          "How long for lasting results?",
+          "Can I combine with exercise?",
+          "Any stories of big changes?",
+          "Is MITOLYN safe for everyone?",
+          "Tips for family routines?",
+          "Is it expensive?",
+          "Can I see research and testimonials?"
+        ],
+        "quick_replies_pt": [
+          "Quero começar com MITOLYN agora",
+          "Qual o primeiro passo?",
+          "Como incluir MITOLYN na vida?",
+          "Tem receitas fáceis?",
+          "Como manter a motivação?",
+          "Quanto tempo para resultados duradouros?",
+          "Posso combinar com exercício?",
+          "Tem histórias de grandes mudanças?",
+          "MITOLYN é seguro para todos?",
+          "Dicas para rotina em família?",
+          "É caro?",
+          "Quero ver pesquisas e relatos"
+        ]
+      }
+    }
+  }
+}
 
