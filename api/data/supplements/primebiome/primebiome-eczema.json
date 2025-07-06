@@ -1,1 +1,245 @@
+{
+  "suplemento": "PRIME BIOME",
+  "titulo": "Eczema (Atopic Dermatitis) / Eczema (Dermatite Atópica)",
+  "fase_1": {
+    "pt": [
+      "${userName}, conviver com eczema, também conhecido como dermatite atópica, vai além do incômodo físico. A coceira constante, as lesões e a sensibilidade da pele podem impactar sua autoestima, sono e até o humor no dia a dia. O eczema é frequentemente resultado de uma combinação de predisposição genética, alimentação pobre em nutrientes, contato com toxinas ambientais e um sistema imunológico desregulado. A dieta moderna, repleta de ultraprocessados, solos contaminados e exposição a poluentes, prejudica a microbiota intestinal e cutânea, intensificando as crises. Entender que o eczema é um reflexo do equilíbrio interno é fundamental para buscar soluções naturais e integrativas que restauram a saúde da pele de dentro para fora.",
+      "${userName}, se as lesões, a vermelhidão e a coceira não dão trégua, saiba que o eczema não é apenas uma condição superficial. Ele está profundamente relacionado ao estado do seu sistema imune, à flora intestinal e ao ambiente ao seu redor. A ingestão frequente de alimentos processados, aliados ao estresse e ao uso excessivo de produtos químicos, compromete as defesas naturais da pele. Isso abre espaço para inflamações, sensibilidade e dificuldade de regeneração. Compreender esses gatilhos é o primeiro passo para um autocuidado verdadeiro e para o controle do eczema de maneira sustentável.",
+      "Você já percebeu, ${userName}, que o eczema costuma piorar em períodos de maior estresse, mudanças de clima ou após contato com determinados alimentos? Isso acontece porque a pele é um órgão altamente sensível ao ambiente interno e externo. O desequilíbrio da microbiota, aliado a deficiências nutricionais e toxinas ambientais, desencadeia crises de dermatite e dificuldade de cicatrização. Observar os padrões do seu corpo, rever hábitos alimentares e buscar estratégias naturais pode transformar seu relacionamento com a pele e devolver o conforto perdido."
+    ],
+    "en": [
+      "${userName}, living with eczema, also known as atopic dermatitis, goes beyond physical discomfort. Persistent itching, lesions, and sensitive skin can impact your self-esteem, sleep, and even your mood daily. Eczema is often the result of a combination of genetic predisposition, nutrient-poor diet, exposure to environmental toxins, and a dysregulated immune system. Modern diets full of ultra-processed foods, contaminated soils, and exposure to pollutants harm both the skin and gut microbiota, intensifying flare-ups. Understanding that eczema reflects internal balance is key to seeking natural, integrative solutions that restore skin health from the inside out.",
+      "${userName}, if lesions, redness, and itching don’t let up, know that eczema is not just a surface condition. It’s closely tied to your immune system, gut flora, and the environment around you. Frequent intake of processed foods, combined with stress and excessive use of chemicals, compromises the skin’s natural defenses. This paves the way for inflammation, sensitivity, and slow regeneration. Understanding these triggers is the first step toward true self-care and sustainable eczema control.",
+      "Have you noticed, ${userName}, that eczema often worsens during stressful periods, climate changes, or after contact with certain foods? That’s because skin is highly sensitive to both internal and external environments. Imbalanced microbiota, combined with nutritional deficiencies and environmental toxins, triggers dermatitis flare-ups and poor healing. Observing your body’s patterns, reviewing dietary habits, and seeking natural strategies can transform your relationship with your skin and restore lost comfort."
+    ],
+    "quick_replies_pt": [
+      "O que causa eczema?",
+      "Como aliviar a coceira?",
+      "Alimentos influenciam eczema?",
+      "Solo contaminado afeta pele?",
+      "Quero entender mais sobre dermatite",
+      "Tem estudos científicos?",
+      "Como cuidar da pele naturalmente?",
+      "Quais sintomas indicam problema sério?",
+      "Quero dicas para pele saudável",
+      "Estresse piora eczema?",
+      "Eczema é comum?",
+      "Quando procurar ajuda?"
+    ],
+    "quick_replies_en": [
+      "What causes eczema?",
+      "How to relieve itching?",
+      "Do foods influence eczema?",
+      "Does contaminated soil affect skin?",
+      "I want to learn more about dermatitis",
+      "Are there scientific studies?",
+      "How to care for skin naturally?",
+      "What symptoms indicate a serious problem?",
+      "I want tips for healthy skin",
+      "Does stress worsen eczema?",
+      "Is eczema common?",
+      "When to seek help?"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar uma pele saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy skin?",
+      "How would you like to start this change in your routine?"
+    ]
+  },
+  "fase_2": {
+    "pt": [
+      "${userName}, ignorar o eczema ou tratá-lo apenas de forma superficial pode resultar em crises cada vez mais intensas, feridas que demoram a cicatrizar, risco aumentado de infecções e até prejuízos emocionais, como ansiedade e baixa autoestima. A inflamação crônica na pele é um sinal de que o organismo precisa de atenção e reequilíbrio. Pesquisas apontam que o desequilíbrio da microbiota intestinal está ligado ao agravamento da dermatite, tornando o quadro mais resistente aos tratamentos convencionais. Por isso, cuidar da raiz do problema é fundamental para interromper o ciclo de crises e desconfortos.",
+      "Você sabia, ${userName}, que o eczema crônico pode abrir portas para infecções bacterianas e virais na pele, além de potencializar o risco de outras alergias e doenças autoimunes? O uso repetido de pomadas e medicamentos sem rever os hábitos alimentares e o ambiente apenas mascara o sintoma, mas não resolve a causa. A inflamação persistente compromete a qualidade de vida e pode gerar dependência de tratamentos agressivos, quando a solução mais sustentável está em restaurar o equilíbrio interno.",
+      "${userName}, além do desconforto físico, o impacto emocional do eczema não pode ser subestimado. Dores constantes, coceira e insegurança com a aparência afetam as relações sociais, o sono e até o rendimento profissional. Pesquisas do Journal of Dermatological Science reforçam que o tratamento natural, aliado ao cuidado do microbioma, promove não apenas alívio dos sintomas, mas uma melhora global na saúde da pele, autoestima e bem-estar."
+    ],
+    "en": [
+      "${userName}, ignoring eczema or treating it only superficially can result in increasingly intense flare-ups, slow-healing wounds, higher risk of infections, and even emotional issues such as anxiety and low self-esteem. Chronic skin inflammation is a sign that your body needs attention and rebalancing. Studies show that gut microbiota imbalance is linked to worsening dermatitis, making the condition more resistant to conventional treatments. Addressing the root cause is essential to break the cycle of flare-ups and discomfort.",
+      "Did you know, ${userName}, that chronic eczema can pave the way for bacterial and viral skin infections, and increase the risk of other allergies and autoimmune diseases? Repeated use of creams and medications without reviewing dietary and environmental habits only masks the symptoms, but doesn’t solve the cause. Persistent inflammation lowers quality of life and may lead to reliance on harsh treatments, when the most sustainable solution is restoring internal balance.",
+      "${userName}, beyond physical discomfort, the emotional impact of eczema should not be underestimated. Constant pain, itching, and insecurity about appearance affect social life, sleep, and even work performance. Research from the Journal of Dermatological Science highlights that natural treatment, combined with microbiome care, promotes not just symptom relief, but global improvement in skin health, self-esteem, and well-being."
+    ],
+    "quick_replies_pt": [
+      "Eczema pode piorar?",
+      "Quais complicações podem surgir?",
+      "Como evitar infecções?",
+      "Microbiota influencia eczema?",
+      "Quero saber mais sobre inflamação",
+      "Tem relação com doenças autoimunes?",
+      "Como evitar crises?",
+      "Sintomas indicam gravidade?",
+      "Quero dicas para prevenção",
+      "Eczema afeta emocional?",
+      "Tem estudos sobre consequências?",
+      "Quando buscar tratamento?"
+    ],
+    "quick_replies_en": [
+      "Can eczema get worse?",
+      "What complications can arise?",
+      "How to avoid infections?",
+      "Does microbiota influence eczema?",
+      "I want to learn more about inflammation",
+      "Is there a connection to autoimmune diseases?",
+      "How to avoid flare-ups?",
+      "Do symptoms indicate severity?",
+      "I want tips for prevention",
+      "Does eczema affect emotions?",
+      "Are there studies on consequences?",
+      "When to seek treatment?"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar uma pele saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy skin?",
+      "How would you like to start this change in your routine?"
+    ]
+  },
+  "fase_3": {
+    "pt": [
+      "${userName}, estudos científicos demonstram que o uso de probióticos específicos, como Bacillus Coagulans, associado a plantas medicinais como Dente-de-leão, Funcho e Babchi, pode reduzir crises de eczema, fortalecer a barreira cutânea e modular a inflamação. Pesquisas publicadas no Journal of Clinical Gastroenterology e Nutritional Journal mostram que essa abordagem integrada melhora a resistência da pele, diminui a coceira e acelera a cicatrização das lesões, promovendo resultados consistentes a longo prazo.",
+      "A literatura médica evidencia que a restauração da microbiota intestinal é fundamental para o controle do eczema. Ingredientes naturais, ricos em compostos anti-inflamatórios e antioxidantes, promovem o equilíbrio do sistema imune e reduzem a sensibilidade da pele. Relatos clínicos e estudos com pacientes comprovam que a introdução dessas soluções naturais pode transformar o quadro, tornando as crises mais espaçadas e brandas, e favorecendo o conforto diário.",
+      "${userName}, além do suporte científico, relatos reais de pessoas que adotaram probióticos e plantas medicinais mostram que a melhora da saúde intestinal reflete diretamente na pele. O uso regular dessas estratégias auxilia não apenas na remissão do eczema, mas também no aumento da vitalidade, sono de qualidade e autoestima. A ciência reforça: cuidar do eixo intestino-pele é a base para resultados duradouros e para restaurar a confiança no seu próprio corpo."
+    ],
+    "en": [
+      "${userName}, scientific studies demonstrate that using specific probiotics such as Bacillus Coagulans, together with medicinal plants like Dandelion, Fennel, and Babchi, can reduce eczema flare-ups, strengthen the skin barrier, and modulate inflammation. Research published in the Journal of Clinical Gastroenterology and Nutritional Journal shows this integrated approach improves skin resistance, reduces itching, and accelerates lesion healing, providing consistent long-term results.",
+      "Medical literature shows that restoring the gut microbiota is key to eczema control. Natural ingredients, rich in anti-inflammatory and antioxidant compounds, balance the immune system and reduce skin sensitivity. Clinical reports and patient studies prove that introducing these natural solutions can transform the condition, making flare-ups more spaced out and milder, and supporting daily comfort.",
+      "${userName}, beyond scientific support, real stories from people who have adopted probiotics and medicinal plants show that improved gut health directly reflects on the skin. Regular use of these strategies helps not only in reducing eczema but also in increasing vitality, quality sleep, and self-esteem. Science confirms: caring for the gut-skin axis is the foundation for lasting results and restoring confidence in your own body."
+    ],
+    "quick_replies_pt": [
+      "Probióticos ajudam no eczema?",
+      "Quais plantas acalmam a pele?",
+      "Quanto tempo para sentir alívio?",
+      "É seguro usar sempre?",
+      "Plantas realmente funcionam?",
+      "Quero relatos reais de melhora",
+      "Como probióticos atuam no eczema?",
+      "Tem estudos com plantas e eczema?",
+      "Quero dicas práticas para pele",
+      "Resultados são duradouros?",
+      "Posso combinar estratégias naturais?",
+      "Quero ver estudos científicos"
+    ],
+    "quick_replies_en": [
+      "Do probiotics help eczema?",
+      "Which plants soothe the skin?",
+      "How long to feel relief?",
+      "Is it safe for continuous use?",
+      "Do plants really work?",
+      "I want real improvement stories",
+      "How do probiotics act on eczema?",
+      "Are there studies with plants and eczema?",
+      "I want practical tips for skin",
+      "Are results lasting?",
+      "Can I combine natural strategies?",
+      "I want to see scientific studies"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar uma pele saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy skin?",
+      "How would you like to start this change in your routine?"
+    ]
+  },
+  "fase_4": {
+    "pt": [
+      "${userName}, incorporar plantas ancestrais como Dente-de-leão, Funcho e Babchi, junto a probióticos, é uma estratégia poderosa para restaurar o equilíbrio da pele e do intestino. Essas soluções naturais têm ação anti-inflamatória, cicatrizante e protetora, promovendo a regeneração da barreira cutânea e alívio duradouro das crises. Montar uma rotina com esses ingredientes — seja por meio de suplementos, chás ou receitas — pode transformar sua experiência com o eczema e fortalecer o corpo contra novos episódios.",
+      "A ciência comprova: as plantas medicinais aliadas ao uso de probióticos de alta qualidade modulam a resposta imune, equilibram o microbioma intestinal e reduzem a sensibilidade da pele aos agentes irritantes. Incorporar esses hábitos naturais na rotina é uma forma gentil e eficaz de aliviar sintomas, promover conforto e aumentar a confiança na própria saúde. O segredo está na regularidade e na adaptação das estratégias às necessidades do seu corpo.",
+      "${userName}, investir em autocuidado com soluções naturais é dar à sua pele o suporte que ela merece. Probióticos, fibras prebióticas e plantas ancestrais agem de dentro para fora, reconstruindo a defesa da pele e facilitando a cicatrização. Montar uma rotina individualizada, respeitando seu estilo de vida, é a chave para controlar o eczema e recuperar o prazer de viver sem desconfortos constantes."
+    ],
+    "en": [
+      "${userName}, incorporating ancestral plants like Dandelion, Fennel, and Babchi, together with probiotics, is a powerful strategy to restore the balance of skin and gut. These natural solutions have anti-inflammatory, healing, and protective actions, promoting skin barrier regeneration and lasting relief from flare-ups. Creating a routine with these ingredients—through supplements, teas, or recipes—can transform your eczema experience and strengthen your body against new episodes.",
+      "Science proves: medicinal plants combined with high-quality probiotics modulate immune responses, balance the gut microbiome, and reduce skin sensitivity to irritants. Including these natural habits in your routine is a gentle and effective way to relieve symptoms, promote comfort, and boost confidence in your own health. The secret lies in regularity and adapting strategies to your body’s needs.",
+      "${userName}, investing in self-care with natural solutions gives your skin the support it deserves. Probiotics, prebiotic fibers, and ancestral plants work from the inside out, rebuilding the skin’s defense and aiding healing. Building an individualized routine that fits your lifestyle is key to controlling eczema and regaining the joy of living without constant discomfort."
+    ],
+    "quick_replies_pt": [
+      "Como usar plantas para eczema?",
+      "Tem receita prática para pele?",
+      "Posso combinar plantas e probióticos?",
+      "Quanto tempo para ver diferença?",
+      "Essas soluções são seguras?",
+      "Quero relatos de sucesso",
+      "Probiótico melhor cápsula ou pó?",
+      "Dá para usar na alimentação?",
+      "Resultados são rápidos?",
+      "Como manter pele saudável?",
+      "Quero dicas naturais diárias",
+      "Onde encontrar suplementos de qualidade?"
+    ],
+    "quick_replies_en": [
+      "How to use plants for eczema?",
+      "Any practical recipe for skin?",
+      "Can I combine plants and probiotics?",
+      "How long to see a difference?",
+      "Are these solutions safe?",
+      "I want success stories",
+      "Is probiotic better in capsule or powder?",
+      "Can I use it in food?",
+      "Are results fast?",
+      "How to keep skin healthy?",
+      "I want daily natural tips",
+      "Where to find quality supplements?"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar uma pele saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy skin?",
+      "How would you like to start this change in your routine?"
+    ]
+  },
+  "fase_5": {
+    "pt": [
+      "${userName}, cuidar do eczema naturalmente é investir em saúde, conforto e autoestima. Com o apoio de plantas ancestrais, probióticos e mudanças simples de hábitos, você pode montar uma rotina personalizada que devolve o equilíbrio à sua pele. Posso te ajudar com receitas, dicas práticas e um plano de ação sob medida para aliviar a coceira e fortalecer sua saúde cutânea de verdade.",
+      "A transformação começa com pequenas escolhas, ${userName}. Ao incluir Dente-de-leão, Funcho, Babchi e um probiótico de qualidade no seu dia a dia, além de rever a alimentação e reduzir o estresse, sua pele ganha suporte para se regenerar e resistir aos gatilhos do eczema. Estou aqui para compartilhar orientações, dicas de motivação e relatos reais para inspirar seu autocuidado.",
+      "${userName}, sua jornada para uma pele mais saudável e menos sensível pode começar agora — com ciência, tradição e autocuidado. Com os ingredientes certos, alimentação ajustada e uma rotina consistente, você verá a diferença no conforto e na vitalidade da pele. Se quiser, posso te ajudar a montar um plano detalhado, com orientações, receitas e dicas para fortalecer sua rotina de autocuidado."
+    ],
+    "en": [
+      "${userName}, caring for eczema naturally is an investment in health, comfort, and self-esteem. With ancestral plants, probiotics, and simple lifestyle changes, you can build a personalized routine that brings balance back to your skin. I can help with recipes, practical tips, and a tailored action plan to relieve itching and truly strengthen your skin health.",
+      "Transformation starts with small choices, ${userName}. By including Dandelion, Fennel, Babchi, and a quality probiotic in your daily life—plus reviewing your diet and reducing stress—your skin gets support to regenerate and resist eczema triggers. I’m here to share guidance, motivational tips, and real stories to inspire your self-care.",
+      "${userName}, your journey to healthier, less sensitive skin can start now—with science, tradition, and self-care. With the right ingredients, an adjusted diet, and a consistent routine, you’ll see the difference in comfort and skin vitality. If you’d like, I can help you set up a detailed plan, with guidance, recipes, and tips to strengthen your self-care routine."
+    ],
+    "quick_replies_pt": [
+      "Quero começar já com plantas e probióticos",
+      "Tem receita fácil para pele sensível",
+      "Quero relatos reais de melhora",
+      "Como montar uma rotina prática?",
+      "Prefiro aprender mais antes",
+      "Resultados são duradouros?",
+      "Posso combinar com minha alimentação?",
+      "Quero conversar sobre escolhas naturais",
+      "Dá pra fazer em família?",
+      "Tem dicas para motivação?",
+      "É seguro para todos?",
+      "Quero ver estudos e relatos reais"
+    ],
+    "quick_replies_en": [
+      "I want to start with plants and probiotics now",
+      "Any easy recipe for sensitive skin",
+      "I want real improvement stories",
+      "How to build a practical routine?",
+      "I’d rather learn more first",
+      "Are results lasting?",
+      "Can I combine it with my diet?",
+      "I want to talk about natural choices",
+      "Can this be done as a family?",
+      "Any tips for motivation?",
+      "Is it safe for everyone?",
+      "I want to see studies and real stories"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar uma pele saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy skin?",
+      "How would you like to start this change in your routine?"
+    ]
+  }
+}
 
