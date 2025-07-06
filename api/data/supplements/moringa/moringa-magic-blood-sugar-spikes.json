@@ -1,1 +1,217 @@
+{
+  "supplement": "Moringa Magic",
+  "symptom": "Blood Sugar Spikes / Picos de Açúcar no Sangue",
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Conexão/Conscientização",
+      "copies_pt": [
+        "${userName}, já sentiu aquela sensação de energia que sobe e desce rapidamente, como se seu corpo estivesse numa montanha-russa? Esses picos de açúcar no sangue são comuns hoje devido à alimentação carregada de açúcares refinados, ultraprocessados e alimentos cultivados em solos pobres, que não fornecem os nutrientes necessários para o controle glicêmico. Além disso, o consumo de carnes tratadas com hormônios pode afetar negativamente a regulação hormonal do corpo, agravando o problema. Reconhecer esses sinais é fundamental para evitar complicações maiores.",
+        "Você sabia, ${userName}, que os picos repentinos de açúcar no sangue podem causar cansaço, irritabilidade e até dificuldade de concentração? A origem desses sintomas está na alimentação moderna, rica em açúcares ocultos, ultraprocessados e alimentos de baixa qualidade nutricional, devido aos solos empobrecidos e aos hormônios presentes nas carnes. Estes fatores afetam diretamente o equilíbrio do seu corpo e sua saúde metabólica.",
+        "${userName}, sentir seu açúcar no sangue oscilar rapidamente é um sinal de que seu metabolismo está em alerta. Isso acontece porque o corpo está tentando lidar com a má qualidade dos alimentos que consumimos, muitos deles industrializados, cultivados em solos degradados e com carnes contendo hormônios. A ciência aponta que esses desequilíbrios podem prejudicar a saúde a médio e longo prazo, e por isso é importante estar atento aos sinais."
+      ],
+      "copies_en": [
+        "${userName}, have you felt that energy rush up and down quickly, like your body is on a roller coaster? Blood sugar spikes are common today due to diets high in refined sugars, ultra-processed foods, and foods grown in nutrient-poor soils that fail to support proper glycemic control. Additionally, consuming hormone-treated meats can negatively affect your body’s hormonal regulation, worsening the problem. Recognizing these signs is crucial to avoid bigger complications.",
+        "Did you know, ${userName}, that sudden blood sugar spikes can cause fatigue, irritability, and even concentration difficulties? These symptoms originate from modern diets rich in hidden sugars, ultra-processed foods, and low-nutrient foods due to depleted soils and hormones in meats. These factors directly affect your body’s balance and metabolic health.",
+        "${userName}, feeling your blood sugar fluctuate rapidly signals that your metabolism is on alert. This happens because your body struggles to manage the poor quality of foods we consume — many industrialized, grown in degraded soils, and meat with hormones. Science shows these imbalances can harm health in the medium and long term, so paying attention to the signs is important."
+      ],
+      "quick_replies_pt": [
+        "Por que tenho esses picos de açúcar?",
+        "Como os alimentos processados influenciam?",
+        "Solo pobre afeta o controle glicêmico?",
+        "Hormônios em carnes pioram o problema?",
+        "Quero entender mais sobre picos de açúcar",
+        "Tem estudos científicos?",
+        "Como evitar essas oscilações?",
+        "Esses sintomas são normais?",
+        "Picos de açúcar causam fadiga?",
+        "Quero dicas para controlar o açúcar",
+        "Estresse influencia os níveis de açúcar?",
+        "Quais sintomas indicam problema sério?"
+      ],
+      "quick_replies_en": [
+        "Why do I have these sugar spikes?",
+        "How do processed foods influence this?",
+        "Does poor soil affect glycemic control?",
+        "Do hormones in meat worsen the problem?",
+        "I want to learn more about sugar spikes",
+        "Are there scientific studies?",
+        "How to avoid these fluctuations?",
+        "Are these symptoms normal?",
+        "Do sugar spikes cause fatigue?",
+        "I want tips to control sugar",
+        "Does stress affect sugar levels?",
+        "What symptoms indicate serious problems?"
+      ]
+    },
+    {
+      "phase": 2,
+      "name": "Gravidade/Consequência",
+      "copies_pt": [
+        "${userName}, os picos constantes de açúcar no sangue podem levar a sérias consequências para sua saúde. Estudos da American Diabetes Association indicam que essas oscilações aumentam o risco de diabetes tipo 2, resistência à insulina e problemas cardiovasculares. A alimentação com ultraprocessados, solos contaminados e carnes com hormônios aumenta ainda mais esses riscos, promovendo inflamação crônica e prejudicando o metabolismo. Ignorar esses sinais é comprometer sua qualidade de vida no futuro.",
+        "Você sabia, ${userName}, que picos repetidos de açúcar causam um desgaste acelerado do pâncreas e dificultam a regulação hormonal? Pesquisas da Harvard Medical School mostram que o consumo excessivo de açúcares ocultos e alimentos processados, além de carnes hormonizadas, está ligado a inflamação sistêmica e falha metabólica. Por isso, controlar esses picos é essencial para evitar doenças crônicas e manter a saúde em dia.",
+        "${userName}, quando o açúcar no sangue oscila demais, o corpo passa por um estresse constante que pode prejudicar órgãos vitais, como fígado e rins. Dados da Organização Mundial da Saúde apontam que essas flutuações estão associadas a maiores índices de obesidade, pressão alta e problemas cardíacos. A má qualidade alimentar — com processados, solos degradados e hormônios — agrava esse quadro, tornando urgente o cuidado com sua saúde."
+      ],
+      "copies_en": [
+        "${userName}, frequent blood sugar spikes can lead to serious health consequences. Studies from the American Diabetes Association show these fluctuations increase risk of type 2 diabetes, insulin resistance, and cardiovascular problems. Diets high in ultra-processed foods, contaminated soils, and hormone-treated meats further increase these risks by promoting chronic inflammation and impairing metabolism. Ignoring these signs compromises your future quality of life.",
+        "Did you know, ${userName}, repeated sugar spikes cause accelerated pancreatic wear and disrupt hormonal regulation? Harvard Medical School research shows excessive hidden sugars and processed foods, plus hormone-treated meats, are linked to systemic inflammation and metabolic failure. Controlling these spikes is essential to prevent chronic diseases and maintain health.",
+        "${userName}, when blood sugar fluctuates too much, the body undergoes constant stress that can damage vital organs like liver and kidneys. World Health Organization data link these fluctuations to higher rates of obesity, high blood pressure, and heart problems. Poor diet — processed foods, degraded soils, and hormones — worsens this, making health care urgent."
+      ],
+      "quick_replies_pt": [
+        "Picos de açúcar causam diabetes?",
+        "Como alimentos processados pioram o quadro?",
+        "Solo contaminado afeta a saúde?",
+        "Hormônios nas carnes prejudicam?",
+        "Quero saber mais sobre inflamação crônica",
+        "Picos de açúcar afetam órgãos?",
+        "Dá para evitar doenças crônicas?",
+        "Quais os sinais de alerta?",
+        "Quero dicas para regular açúcar",
+        "Estresse piora os picos?",
+        "Tem estudos científicos?",
+        "Como melhorar o metabolismo?"
+      ],
+      "quick_replies_en": [
+        "Do sugar spikes cause diabetes?",
+        "How do processed foods worsen it?",
+        "Does contaminated soil affect health?",
+        "Do hormones in meat harm?",
+        "I want to learn more about chronic inflammation",
+        "Do sugar spikes affect organs?",
+        "Can chronic diseases be prevented?",
+        "What are warning signs?",
+        "I want tips to regulate sugar",
+        "Does stress worsen spikes?",
+        "Are there scientific studies?",
+        "How to improve metabolism?"
+      ]
+    },
+    {
+      "phase": 3,
+      "name": "Prova/Evidência",
+      "copies_pt": [
+        "${userName}, a Moringa é reconhecida por seus nutrientes que ajudam a controlar os níveis de açúcar no sangue e melhorar a sensibilidade à insulina. Estudos publicados na Frontiers in Pharmacology mostram que seus compostos bioativos reduzem a resistência insulínica, combatem a inflamação e promovem a saúde metabólica, tornando-a uma poderosa aliada para quem sofre com picos glicêmicos.",
+        "Pesquisas recentes, ${userName}, indicam que a Moringa contém antioxidantes e vitaminas que estabilizam os níveis de glicose, ajudam a reduzir a inflamação crônica e melhoram a função pancreática. Publicações do Journal of Ethnopharmacology reforçam seu papel na prevenção de diabetes tipo 2 e outras doenças metabólicas, trazendo benefícios comprovados para o equilíbrio do corpo.",
+        "${userName}, estudos da Nutritional Journal confirmam que os aminoácidos, minerais e vitaminas da Moringa auxiliam na regulação do açúcar no sangue, fortalecendo o metabolismo energético e reduzindo o estresse oxidativo. Pessoas que integraram Moringa em suas rotinas relatam melhora na estabilidade glicêmica e maior disposição."
+      ],
+      "copies_en": [
+        "${userName}, Moringa is known for its nutrients that help control blood sugar levels and improve insulin sensitivity. Studies published in Frontiers in Pharmacology show its bioactive compounds reduce insulin resistance, fight inflammation, and promote metabolic health, making it a powerful ally for those struggling with glycemic spikes.",
+        "Recent research, ${userName}, indicates Moringa contains antioxidants and vitamins that stabilize glucose levels, help reduce chronic inflammation, and improve pancreatic function. Publications from the Journal of Ethnopharmacology reinforce its role in preventing type 2 diabetes and other metabolic diseases, offering proven benefits for body balance.",
+        "${userName}, studies from the Nutritional Journal confirm Moringa’s amino acids, minerals, and vitamins aid in blood sugar regulation, strengthen energy metabolism, and reduce oxidative stress. People who incorporated Moringa into their routines report improved glycemic stability and increased vitality."
+      ],
+      "quick_replies_pt": [
+        "Moringa ajuda a controlar açúcar?",
+        "Tem estudos comprovando isso?",
+        "Quanto tempo para ver resultados?",
+        "Posso usar todos os dias?",
+        "Moringa previne diabetes?",
+        "Ajuda na sensibilidade à insulina?",
+        "É segura para uso contínuo?",
+        "Quero relatos de quem melhorou glicemia",
+        "Como a Moringa age no corpo?",
+        "Posso combinar com outras plantas?",
+        "Quero dicas para começar",
+        "Quero ver estudos científicos"
+      ],
+      "quick_replies_en": [
+        "Does Moringa help control sugar?",
+        "Are there studies proving this?",
+        "How long to see results?",
+        "Can I use it daily?",
+        "Does Moringa prevent diabetes?",
+        "Does it help insulin sensitivity?",
+        "Is it safe for continuous use?",
+        "I want stories from people who improved glycemia",
+        "How does Moringa act in the body?",
+        "Can I combine it with other plants?",
+        "I want tips to start",
+        "I want to see scientific studies"
+      ]
+    },
+    {
+      "phase": 4,
+      "name": "Solução Natural/Plantas",
+      "copies_pt": [
+        "A Moringa é uma fonte concentrada de vitaminas, minerais e antioxidantes que ajudam a regular os níveis de açúcar no sangue e a combater a inflamação crônica, fatores que levam aos picos glicêmicos. Estudos da Frontiers in Nutrition mostram que seu consumo regular melhora a saúde metabólica e protege o corpo contra os efeitos nocivos das flutuações de glicose.",
+        "${userName}, as folhas da Moringa possuem compostos bioativos que fortalecem o pâncreas, melhoram a resposta à insulina e reduzem o estresse oxidativo. Tradicionalmente usada para estabilizar o açúcar no sangue, a Moringa agora é reconhecida pela ciência por seus benefícios comprovados na prevenção de doenças metabólicas e na promoção da saúde geral.",
+        "De origem ancestral, a Moringa é uma planta poderosa para quem busca equilíbrio glicêmico. Rica em aminoácidos essenciais, vitaminas e minerais, ela ajuda a reduzir a inflamação e a melhorar o metabolismo energético, promovendo maior estabilidade nos níveis de açúcar e mais disposição para o dia a dia."
+      ],
+      "copies_en": [
+        "Moringa is a concentrated source of vitamins, minerals, and antioxidants that help regulate blood sugar levels and fight chronic inflammation, factors that cause glycemic spikes. Studies from Frontiers in Nutrition show regular consumption improves metabolic health and protects the body from harmful glucose fluctuations.",
+        "${userName}, Moringa leaves contain bioactive compounds that strengthen the pancreas, improve insulin response, and reduce oxidative stress. Traditionally used to stabilize blood sugar, Moringa is now scientifically recognized for its proven benefits in preventing metabolic diseases and promoting overall health.",
+        "With ancestral origins, Moringa is a powerful plant for those seeking glycemic balance. Rich in essential amino acids, vitamins, and minerals, it helps reduce inflammation and improve energy metabolism, promoting more stable blood sugar levels and increased daily vitality."
+      ],
+      "quick_replies_pt": [
+        "Como usar Moringa para controlar açúcar?",
+        "Tem receita para estabilizar glicose?",
+        "Ajuda na prevenção do diabetes?",
+        "Posso usar todos os dias?",
+        "Quero relatos de quem melhorou glicemia",
+        "Quanto tempo para sentir efeito?",
+        "É seguro para uso contínuo?",
+        "Posso combinar com outras plantas?",
+        "Quero dicas para começar",
+        "Moringa ajuda no metabolismo?",
+        "Quero ver estudos científicos",
+        "Dá para usar com alimentação variada?"
+      ],
+      "quick_replies_en": [
+        "How to use Moringa to control sugar?",
+        "Any recipe to stabilize glucose?",
+        "Does it help prevent diabetes?",
+        "Can I use it daily?",
+        "I want stories from people who improved glycemia",
+        "How long to feel effects?",
+        "Is it safe for continuous use?",
+        "Can I combine with other plants?",
+        "I want tips to start",
+        "Does Moringa help metabolism?",
+        "I want to see scientific studies",
+        "Can it be used with varied diet?"
+      ]
+    },
+    {
+      "phase": 5,
+      "name": "Próximo Passo",
+      "copies_pt": [
+        "${userName}, iniciar o cuidado com seus níveis de açúcar pode ser simples com o apoio da Moringa e escolhas alimentares naturais. Incorporar essa planta na sua rotina é uma forma eficaz de regular o metabolismo, reduzir inflamações e melhorar sua saúde geral. Posso te ajudar com orientações práticas, receitas e um plano acessível para essa transformação.",
+        "A transformação começa com pequenas escolhas, ${userName}. Ao incluir a Moringa na alimentação diária e optar por alimentos naturais, você oferece ao corpo suporte para controlar os picos de açúcar, fortalecer o metabolismo e promover o bem-estar. Estou aqui para guiar você com passos simples que respeitam seu ritmo.",
+        "${userName}, cuidar da glicemia é essencial para sua saúde a longo prazo. Com Moringa e uma alimentação equilibrada, seu corpo terá os nutrientes necessários para manter os níveis estáveis e evitar complicações. Posso fornecer um plano personalizado com receitas, dicas e cuidados para essa nova fase."
+      ],
+      "copies_en": [
+        "${userName}, starting to care for your sugar levels can be simple with Moringa support and natural food choices. Incorporating this plant into your routine is an effective way to regulate metabolism, reduce inflammation, and improve your overall health. I can help with practical guidance, recipes, and an accessible plan for this transformation.",
+        "Transformation begins with small choices, ${userName}. By including Moringa in your daily diet and opting for natural foods, you provide your body support to control sugar spikes, strengthen metabolism, and promote well-being. I’m here to guide you with simple steps that respect your pace.",
+        "${userName}, caring for your glycemia is essential for long-term health. With Moringa and balanced nutrition, your body will have the nutrients needed to keep levels stable and avoid complications. I can provide a personalized plan with recipes, tips, and care for this new phase."
+      ],
+      "quick_replies_pt": [
+        "Quero começar já com Moringa",
+        "Tem receita fácil para controlar açúcar",
+        "Quero relatos reais de transformação",
+        "Como montar uma rotina prática?",
+        "Prefiro aprender mais antes",
+        "Resultados são duradouros?",
+        "Posso combinar com minha alimentação?",
+        "Quero conversar sobre escolhas naturais",
+        "Dá pra fazer em família?",
+        "Tem dicas para motivação?",
+        "É seguro para todos?",
+        "Quero ver estudos e relatos reais"
+      ],
+      "quick_replies_en": [
+        "I want to start with Moringa now",
+        "Any easy recipe to control sugar",
+        "I want real transformation stories",
+        "How to build a practical routine?",
+        "I’d rather learn more first",
+        "Are results lasting?",
+        "Can I combine with my diet?",
+        "I want to talk about natural choices",
+        "Can this be done as a family?",
+        "Any tips for motivation?",
+        "Is it safe for everyone?",
+        "I want to see studies and real stories"
+      ]
+    }
+  ]
+}
 
