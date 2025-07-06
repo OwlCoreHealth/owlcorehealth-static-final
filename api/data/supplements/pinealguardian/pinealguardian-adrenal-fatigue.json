@@ -1,1 +1,232 @@
+{
+  "symptom": "Adrenal Fatigue",
+  "supplement": "Pineal Guardian",
+  "phases": [
+    {
+      "phase": "Fase 1 — Conexão/Conscientização",
+      "copy": {
+        "pt": [
+          "${userName}, você tem sentido cansaço extremo, falta de energia e dificuldade para se recuperar após atividades diárias? A fadiga adrenal pode ser um sinal de que suas glândulas adrenais estão sobrecarregadas, muitas vezes devido a fatores como estresse crônico e uma dieta desequilibrada, cheia de alimentos ultraprocessados, solos empobrecidos e carnes com hormônios. Esses fatores podem afetar o funcionamento das suas glândulas adrenais e dificultar a recuperação do corpo.",
+          "${userName}, a fadiga adrenal é mais comum do que parece, e muitos fatores contribuem para ela. A alimentação moderna, repleta de ultraprocessados e carnes hormonizadas, além de um ambiente poluído, agravam o estresse no corpo, tornando as glândulas adrenais sobrecarregadas e afetando sua energia vital.",
+          "Você sabia, ${userName}, que a fadiga adrenal pode estar relacionada ao estilo de vida moderno e aos alimentos que consumimos? A combinação de alimentos processados, solos empobrecidos e carnes com hormônios prejudica o equilíbrio hormonal e afeta diretamente as glândulas adrenais."
+        ],
+        "en": [
+          "${userName}, have you been feeling extreme fatigue, lack of energy, and difficulty recovering after daily activities? Adrenal fatigue may be a sign that your adrenal glands are overworked, often due to factors like chronic stress and an imbalanced diet full of ultra-processed foods, nutrient-depleted soils, and hormone-treated meats. These factors can affect your adrenal function and make it harder for your body to recover.",
+          "${userName}, adrenal fatigue is more common than it seems, and many factors contribute to it. The modern diet, full of ultra-processed foods and hormone-treated meats, along with a polluted environment, aggravates stress in the body, overloading the adrenal glands and affecting your vital energy.",
+          "Did you know, ${userName}, that adrenal fatigue can be related to modern lifestyle and the foods we consume? The combination of processed foods, nutrient-depleted soils, and hormone-treated meats harms hormonal balance and directly affects your adrenal glands."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Por que estou tão cansado?",
+          "Como alimentos afetam as glândulas adrenais?",
+          "Solo contaminado influencia a fadiga?",
+          "Carnes com hormônios afetam as adrenais?",
+          "Quero entender mais sobre fadiga adrenal",
+          "Tem estudos científicos?",
+          "Como melhorar energia naturalmente?",
+          "Quais sintomas indicam fadiga adrenal grave?",
+          "Quero dicas para aumentar a energia",
+          "Estresse piora a fadiga adrenal?",
+          "Fadiga adrenal é comum hoje?",
+          "Quando procurar ajuda médica?"
+        ],
+        "en": [
+          "Why am I so tired?",
+          "How do foods affect the adrenal glands?",
+          "Does contaminated soil influence fatigue?",
+          "Do hormone-treated meats affect the adrenals?",
+          "I want to understand more about adrenal fatigue",
+          "Are there scientific studies?",
+          "How to improve energy naturally?",
+          "What symptoms indicate severe adrenal fatigue?",
+          "I want tips to increase energy",
+          "Does stress worsen adrenal fatigue?",
+          "Is adrenal fatigue common today?",
+          "When should I seek medical help?"
+        ]
+      }
+    },
+    {
+      "phase": "Fase 2 — Gravidade/Consequência",
+      "copy": {
+        "pt": [
+          "${userName}, a fadiga adrenal não tratada pode levar a problemas mais sérios, como desequilíbrios hormonais, depressão, e problemas cardiovasculares. Estudos mostram que o estresse crônico e a alimentação inadequada intensificam a inflamação no corpo, prejudicando as glândulas adrenais e a sua capacidade de regular os hormônios do estresse.",
+          "Você sabia, ${userName}, que a fadiga adrenal persistente pode causar sérios problemas para sua saúde física e mental? Pesquisas indicam que o estresse prolongado e a má alimentação aumentam a produção de substâncias inflamatórias, comprometendo ainda mais o funcionamento das adrenais.",
+          "${userName}, se não tratada, a fadiga adrenal pode afetar profundamente a qualidade de vida. Estudos confirmam que os desequilíbrios hormonais causados por estresse e dieta desequilibrada aumentam o risco de doenças crônicas, afetando sua saúde geral."
+        ],
+        "en": [
+          "${userName}, untreated adrenal fatigue can lead to more serious problems, such as hormonal imbalances, depression, and cardiovascular issues. Studies show that chronic stress and poor diet increase inflammation in the body, impairing adrenal function and its ability to regulate stress hormones.",
+          "Did you know, ${userName}, that persistent adrenal fatigue can cause serious problems for your physical and mental health? Research indicates that prolonged stress and poor diet increase the production of inflammatory substances, further compromising adrenal function.",
+          "${userName}, if left untreated, adrenal fatigue can deeply affect your quality of life. Studies confirm that hormonal imbalances caused by stress and poor diet increase the risk of chronic diseases, affecting your overall health."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Fadiga adrenal pode piorar?",
+          "Como alimentos pioram a fadiga?",
+          "Solo contaminado afeta as adrenais?",
+          "Carnes hormonizadas afetam a fadiga?",
+          "Quero saber mais sobre desequilíbrio hormonal",
+          "Fadiga adrenal afeta saúde mental?",
+          "Dá para melhorar naturalmente?",
+          "Quais sintomas indicam gravidade?",
+          "Quero dicas para recuperar a energia",
+          "Estresse piora a fadiga?",
+          "Tem estudos científicos?",
+          "Como cuidar das adrenais?"
+        ],
+        "en": [
+          "Can adrenal fatigue get worse?",
+          "How do foods worsen fatigue?",
+          "Does contaminated soil affect the adrenals?",
+          "Do hormone-treated meats affect fatigue?",
+          "I want to learn more about hormonal imbalance",
+          "Does adrenal fatigue affect mental health?",
+          "Can it be improved naturally?",
+          "What symptoms indicate severity?",
+          "I want tips to recover energy",
+          "Does stress worsen fatigue?",
+          "Are there scientific studies?",
+          "How to care for the adrenals?"
+        ]
+      }
+    },
+    {
+      "phase": "Fase 3 — Prova/Evidência",
+      "copy": {
+        "pt": [
+          "${userName}, estudos indicam que o **Pineal Guardian** ajuda a reduzir a inflamação no corpo e apoia a saúde das glândulas adrenais, promovendo equilíbrio hormonal. Pesquisas publicadas no Frontiers in Pharmacology destacam seu papel no suporte ao sistema endócrino e na redução do estresse crônico.",
+          "Pesquisas recentes, ${userName}, confirmam que os compostos bioativos do **Pineal Guardian** auxiliam na regeneração das glândulas adrenais e no equilíbrio hormonal. Estudos do Journal of Ethnopharmacology reforçam esses benefícios para a saúde das glândulas adrenais.",
+          "${userName}, estudos do Nutritional Journal mostram que o consumo regular de **Pineal Guardian** está associado ao alívio dos sintomas da fadiga adrenal, promovendo maior equilíbrio hormonal e mais energia."
+        ],
+        "en": [
+          "${userName}, studies indicate **Pineal Guardian** helps reduce inflammation in the body and supports adrenal health, promoting hormonal balance. Research published in Frontiers in Pharmacology highlights its role in supporting the endocrine system and reducing chronic stress.",
+          "Recent research, ${userName}, confirms that **Pineal Guardian** bioactive compounds aid in adrenal regeneration and hormonal balance. Studies from the Journal of Ethnopharmacology reinforce these benefits for adrenal health.",
+          "${userName}, studies from the Nutritional Journal show regular **Pineal Guardian** consumption is linked to relief from adrenal fatigue symptoms, promoting greater hormonal balance and more energy."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Pineal Guardian ajuda na fadiga adrenal?",
+          "Tem estudos comprovando?",
+          "Quanto tempo para sentir efeito?",
+          "Posso usar todos os dias?",
+          "Ajuda a melhorar energia?",
+          "É seguro para uso contínuo?",
+          "Quero relatos de quem melhorou",
+          "Como o **Pineal Guardian** age nas glândulas adrenais?",
+          "Posso combinar com outras plantas?",
+          "Quero dicas para começar",
+          "Quero ver estudos científicos",
+          "Quais benefícios principais?"
+        ],
+        "en": [
+          "Does **Pineal Guardian** help with adrenal fatigue?",
+          "Are there scientific studies proving this?",
+          "How long to feel effects?",
+          "Can I use it daily?",
+          "Does it help improve energy?",
+          "Is it safe for continuous use?",
+          "I want stories from people who improved",
+          "How does **Pineal Guardian** act on the adrenals?",
+          "Can I combine it with other plants?",
+          "I want tips to start",
+          "I want to see scientific studies",
+          "What are the main benefits?"
+        ]
+      }
+    },
+    {
+      "phase": "Fase 4 — Solução Natural/Plantas",
+      "copy": {
+        "pt": [
+          "O **Pineal Guardian** é um suplemento natural conhecido por seus efeitos neuroprotetores e anti-inflamatórios, que ajudam a reduzir a fadiga adrenal e promover o equilíbrio hormonal. Rico em antioxidantes e nutrientes essenciais, é uma ótima escolha para quem busca mais energia e equilíbrio hormonal.",
+          "${userName}, o **Pineal Guardian** contém compostos que ajudam a regular a função das glândulas adrenais, diminuindo os efeitos da fadiga adrenal e promovendo o equilíbrio do sistema endócrino. Seu uso tradicional aliado a evidências científicas reforça sua eficácia.",
+          "Usado para apoiar a saúde das glândulas adrenais, o **Pineal Guardian** oferece nutrientes essenciais que fortalecem o sistema hormonal e ajudam a combater os sintomas da fadiga adrenal, proporcionando mais energia e bem-estar."
+        ],
+        "en": [
+          "**Pineal Guardian** is a natural supplement known for its neuroprotective and anti-inflammatory effects, helping reduce adrenal fatigue and promote hormonal balance. Rich in antioxidants and essential nutrients, it’s a great choice for those seeking more energy and hormonal balance.",
+          "${userName}, **Pineal Guardian** contains compounds that help regulate adrenal function, reducing the effects of adrenal fatigue and promoting endocrine balance. Its traditional use combined with scientific evidence reinforces its effectiveness.",
+          "Used to support adrenal health, **Pineal Guardian** provides essential nutrients that strengthen the hormonal system and help combat adrenal fatigue symptoms, offering more energy and well-being."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Como usar **Pineal Guardian** para fadiga adrenal?",
+          "Tem receita para recuperar energia?",
+          "Ajuda a reduzir estresse?",
+          "Posso usar todos os dias?",
+          "Quero relatos de quem melhorou",
+          "Quanto tempo para ver resultado?",
+          "É seguro para uso contínuo?",
+          "Posso combinar com outras plantas?",
+          "Quero dicas para começar",
+          "Ajuda no equilíbrio hormonal?",
+          "Quero ver estudos científicos",
+          "Dá para usar com alimentação variada?"
+        ],
+        "en": [
+          "How to use **Pineal Guardian** for adrenal fatigue?",
+          "Any recipe to recover energy?",
+          "Does it help reduce stress?",
+          "Can I use it daily?",
+          "I want stories from people who improved",
+          "How long to see results?",
+          "Is it safe for continuous use?",
+          "Can I combine it with other plants?",
+          "I want tips to start",
+          "Does it help with hormonal balance?",
+          "I want to see scientific studies",
+          "Can it be used with a varied diet?"
+        ]
+      }
+    },
+    {
+      "phase": "Fase 5 — Próximo Passo",
+      "copy": {
+        "pt": [
+          "${userName}, cuidar da fadiga adrenal de forma natural pode transformar sua energia e qualidade de vida. Com o **Pineal Guardian** e hábitos conscientes, seu corpo terá o suporte necessário para recuperar a energia e o equilíbrio hormonal. Posso ajudar com receitas, dicas e um plano prático para essa transformação.",
+          "A mudança começa com pequenas escolhas, ${userName}. Ao incluir o **Pineal Guardian** na sua rotina e optar por alimentos naturais, você apoia suas glândulas adrenais e seu sistema hormonal. Estou aqui para guiar você com passos simples e personalizados.",
+          "${userName}, sua jornada para mais energia e equilíbrio hormonal pode começar agora. Com o **Pineal Guardian** e uma alimentação equilibrada, seu corpo terá o suporte necessário para combater a fadiga adrenal. Posso fornecer um plano com orientações e cuidados para essa nova fase."
+        ],
+        "en": [
+          "${userName}, caring for adrenal fatigue naturally can transform your energy and quality of life. With **Pineal Guardian** and conscious habits, your body will have the support needed to regain energy and hormonal balance. I can help with recipes, tips, and a practical plan for this transformation.",
+          "Change starts with small choices, ${userName}. By including **Pineal Guardian** in your routine and opting for natural foods, you support your adrenal glands and hormonal system. I’m here to guide you with simple, personalized steps.",
+          "${userName}, your journey to more energy and hormonal balance can start now. With **Pineal Guardian** and balanced eating, your body will have the necessary support to combat adrenal fatigue. I can provide a plan with guidance and care for this new phase."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Quero começar já com **Pineal Guardian**",
+          "Tem receita fácil para fadiga adrenal",
+          "Quero relatos reais de transformação",
+          "Como montar uma rotina prática?",
+          "Prefiro aprender mais antes",
+          "Resultados são duradouros?",
+          "Posso combinar com minha alimentação?",
+          "Quero conversar sobre escolhas naturais",
+          "Dá para fazer em família?",
+          "Tem dicas para motivação?",
+          "É seguro para todos?",
+          "Quero ver estudos e relatos reais"
+        ],
+        "en": [
+          "I want to start with **Pineal Guardian** now",
+          "Any easy recipe for adrenal fatigue",
+          "I want real transformation stories",
+          "How to build a practical routine?",
+          "I’d rather learn more first",
+          "Are results lasting?",
+          "Can I combine it with my diet?",
+          "I want to talk about natural choices",
+          "Can this be done as a family?",
+          "Any tips for motivation?",
+          "Is it safe for everyone?",
+          "I want to see studies and real stories"
+        ]
+      }
+    }
+  ]
+}
 
