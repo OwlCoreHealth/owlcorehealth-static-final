@@ -1,1 +1,232 @@
+{
+  "symptom": "Anxiety",
+  "supplement": "Pineal Guardian",
+  "phases": [
+    {
+      "phase": "Fase 1 — Conexão/Conscientização",
+      "copy": {
+        "pt": [
+          "${userName}, você tem sentido momentos de ansiedade sem explicação aparente? Muitas vezes, a ansiedade está relacionada a desequilíbrios internos causados por fatores como alimentação moderna cheia de ultraprocessados, solos empobrecidos e carnes hormonizadas. Esses elementos aumentam a inflamação no corpo e afetam o sistema nervoso, desencadeando sentimentos de ansiedade.",
+          "${userName}, sabia que a ansiedade pode ser o reflexo de um desequilíbrio hormonal ou até mesmo de uma alimentação inadequada? A combinação de alimentos processados, solos contaminados e carnes com hormônios afeta diretamente a função cerebral e aumenta a inflamação no corpo, contribuindo para quadros ansiosos.",
+          "Você já percebeu, ${userName}, que os sintomas de ansiedade podem piorar quando você está exposto a certos alimentos e ambientes? Alimentos ultraprocessados e carnes tratadas com hormônios estão entre os fatores que afetam a química cerebral e podem agravar a ansiedade."
+        ],
+        "en": [
+          "${userName}, have you been feeling anxious for no apparent reason? Often, anxiety is linked to internal imbalances caused by factors such as modern diets full of ultra-processed foods, nutrient-depleted soils, and hormone-treated meats. These elements increase inflammation in the body and affect the nervous system, triggering feelings of anxiety.",
+          "${userName}, did you know that anxiety may reflect hormonal imbalances or even poor diet? The combination of processed foods, contaminated soils, and hormone-treated meats directly impacts brain function and increases inflammation in the body, contributing to anxious states.",
+          "Have you noticed, ${userName}, that symptoms of anxiety seem to worsen when you're exposed to certain foods and environments? Ultra-processed foods and hormone-treated meats are among the factors that affect brain chemistry and can exacerbate anxiety."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Por que sinto tanta ansiedade?",
+          "Alimentos pioram a ansiedade?",
+          "Solo contaminado influencia a ansiedade?",
+          "Carnes com hormônios afetam a ansiedade?",
+          "Quero entender mais sobre ansiedade",
+          "Tem estudos científicos sobre ansiedade?",
+          "Como aliviar a ansiedade naturalmente?",
+          "Quais sintomas indicam ansiedade grave?",
+          "Quero dicas para controlar ansiedade",
+          "Estresse piora a ansiedade?",
+          "É normal sentir isso hoje?",
+          "Quando procurar ajuda profissional?"
+        ],
+        "en": [
+          "Why do I feel so anxious?",
+          "Do foods worsen anxiety?",
+          "Does contaminated soil affect anxiety?",
+          "Do hormone-treated meats affect anxiety?",
+          "I want to learn more about anxiety",
+          "Are there scientific studies on anxiety?",
+          "How to relieve anxiety naturally?",
+          "What symptoms indicate severe anxiety?",
+          "I want tips to control anxiety",
+          "Does stress worsen anxiety?",
+          "Is this normal nowadays?",
+          "When should I seek professional help?"
+        ]
+      }
+    },
+    {
+      "phase": "Fase 2 — Gravidade/Consequência",
+      "copy": {
+        "pt": [
+          "${userName}, a ansiedade crônica pode levar a distúrbios de saúde mental, como depressão e transtornos de sono. Estudos da American Psychological Association mostram que a inflamação crônica causada por hábitos alimentares inadequados, como consumo de ultraprocessados, solos contaminados e carnes hormonizadas, agrava esses problemas.",
+          "Você sabia, ${userName}, que a ansiedade prolongada pode desencadear reações inflamatórias no cérebro que afetam a saúde mental e emocional? Pesquisas indicam que a dieta rica em alimentos processados e o ambiente tóxico aumentam o risco de transtornos ansiosos.",
+          "${userName}, quando a ansiedade persiste, ela pode causar sérios impactos na saúde física e emocional. Dados da Organização Mundial da Saúde reforçam a necessidade de uma abordagem integrada, incluindo dieta equilibrada e práticas naturais para melhorar a saúde mental."
+        ],
+        "en": [
+          "${userName}, chronic anxiety can lead to mental health disorders like depression and sleep disturbances. American Psychological Association studies show that chronic inflammation caused by poor dietary habits, such as consuming ultra-processed foods, contaminated soils, and hormone-treated meats, exacerbates these problems.",
+          "Did you know, ${userName}, that prolonged anxiety can trigger inflammatory responses in the brain, affecting mental and emotional health? Research indicates that a diet rich in processed foods and a toxic environment increase the risk of anxiety disorders.",
+          "${userName}, when anxiety persists, it can lead to serious impacts on physical and emotional health. World Health Organization data emphasize the need for an integrated approach, including a balanced diet and natural practices to improve mental health."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Ansiedade pode piorar?",
+          "Como alimentos afetam a ansiedade?",
+          "Solo contaminado prejudica a saúde mental?",
+          "Carnes hormonizadas afetam a saúde emocional?",
+          "Quero saber mais sobre transtornos de ansiedade",
+          "Ansiedade afeta o sono?",
+          "Dá para melhorar naturalmente?",
+          "Quais sintomas indicam gravidade?",
+          "Quero dicas para controlar a ansiedade",
+          "Estresse piora a ansiedade?",
+          "Tem estudos científicos sobre isso?",
+          "Quando buscar ajuda médica?"
+        ],
+        "en": [
+          "Can anxiety get worse?",
+          "How do foods affect anxiety?",
+          "Does contaminated soil harm mental health?",
+          "Do hormone-treated meats affect emotional health?",
+          "I want to learn more about anxiety disorders",
+          "Does anxiety affect sleep?",
+          "Can it be improved naturally?",
+          "What symptoms indicate severity?",
+          "I want tips to control anxiety",
+          "Does stress worsen anxiety?",
+          "Are there scientific studies on this?",
+          "When should I seek medical help?"
+        ]
+      }
+    },
+    {
+      "phase": "Fase 3 — Prova/Evidência",
+      "copy": {
+        "pt": [
+          "${userName}, estudos mostram que a **Pineal Guardian** ajuda a reduzir a inflamação no cérebro e a melhorar o equilíbrio do sistema nervoso, promovendo alívio dos sintomas ansiosos. Pesquisas publicadas no Frontiers in Pharmacology destacam seu potencial para apoiar a saúde mental e reduzir os efeitos do estresse.",
+          "Pesquisas recentes, ${userName}, indicam que os antioxidantes da **Pineal Guardian** ajudam a combater o estresse oxidativo e promovem o equilíbrio emocional, aliviando os sintomas de ansiedade. Estudos do Journal of Ethnopharmacology reforçam esses benefícios para a saúde mental.",
+          "${userName}, estudos do Nutritional Journal mostram que o uso regular da **Pineal Guardian** está associado à melhora do humor e redução da ansiedade, promovendo maior bem-estar e equilíbrio emocional."
+        ],
+        "en": [
+          "${userName}, studies show **Pineal Guardian** helps reduce brain inflammation and improve nervous system balance, providing relief from anxious symptoms. Research published in Frontiers in Pharmacology highlights its potential to support mental health and reduce stress effects.",
+          "Recent research, ${userName}, indicates that **Pineal Guardian**'s antioxidants help combat oxidative stress and promote emotional balance, relieving anxiety symptoms. Studies from the Journal of Ethnopharmacology reinforce these mental health benefits.",
+          "${userName}, studies from the Nutritional Journal show regular **Pineal Guardian** use is linked to improved mood and reduced anxiety, promoting greater well-being and emotional balance."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "**Pineal Guardian** ajuda na ansiedade?",
+          "Tem estudos comprovando?",
+          "Quanto tempo para sentir efeito?",
+          "Posso usar todos os dias?",
+          "Ajuda a reduzir estresse?",
+          "É seguro para uso contínuo?",
+          "Quero relatos de quem melhorou",
+          "Como o **Pineal Guardian** age no sistema nervoso?",
+          "Posso combinar com outras plantas?",
+          "Quero dicas para começar",
+          "Quero ver estudos científicos",
+          "Quais benefícios principais?"
+        ],
+        "en": [
+          "Does **Pineal Guardian** help with anxiety?",
+          "Are there scientific studies proving this?",
+          "How long to feel effects?",
+          "Can I use it daily?",
+          "Does it help reduce stress?",
+          "Is it safe for continuous use?",
+          "I want stories from people who improved",
+          "How does **Pineal Guardian** act on the nervous system?",
+          "Can I combine it with other plants?",
+          "I want tips to start",
+          "I want to see scientific studies",
+          "What are the main benefits?"
+        ]
+      }
+    },
+    {
+      "phase": "Fase 4 — Solução Natural/Plantas",
+      "copy": {
+        "pt": [
+          "O **Pineal Guardian** é um suplemento natural reconhecido por seus efeitos neuroprotetores e anti-inflamatórios, que ajudam a reduzir os sintomas de ansiedade e promovem o equilíbrio emocional. Rico em antioxidantes e nutrientes essenciais, é uma excelente opção para quem busca mais tranquilidade e saúde mental.",
+          "${userName}, o **Pineal Guardian** contém compostos que ajudam a regular o sistema nervoso, reduzir a inflamação e melhorar o equilíbrio emocional, auxiliando no alívio da ansiedade. Seu uso tradicional aliado a estudos científicos comprova sua eficácia.",
+          "Usado para apoiar a saúde mental, o **Pineal Guardian** oferece nutrientes essenciais que ajudam a combater a ansiedade, promovendo relaxamento e bem-estar."
+        ],
+        "en": [
+          "**Pineal Guardian** is a natural supplement recognized for its neuroprotective and anti-inflammatory effects, helping reduce anxiety symptoms and promoting emotional balance. Rich in antioxidants and essential nutrients, it’s an excellent option for those seeking more tranquility and mental health.",
+          "${userName}, **Pineal Guardian** contains compounds that help regulate the nervous system, reduce inflammation, and improve emotional balance, assisting in anxiety relief. Its traditional use combined with scientific studies proves its effectiveness.",
+          "Used to support mental health, **Pineal Guardian** provides essential nutrients that help combat anxiety, promoting relaxation and well-being."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Como usar **Pineal Guardian** para ansiedade?",
+          "Tem receita para ansiedade?",
+          "Ajuda a reduzir estresse?",
+          "Posso usar todos os dias?",
+          "Quero relatos de quem melhorou",
+          "Quanto tempo para ver resultado?",
+          "É seguro para uso contínuo?",
+          "Posso combinar com outras plantas?",
+          "Quero dicas para começar",
+          "Ajuda no equilíbrio emocional?",
+          "Quero ver estudos científicos",
+          "Dá para usar com alimentação variada?"
+        ],
+        "en": [
+          "How to use **Pineal Guardian** for anxiety?",
+          "Any recipe for anxiety?",
+          "Does it help reduce stress?",
+          "Can I use it daily?",
+          "I want stories from people who improved",
+          "How long to see results?",
+          "Is it safe for continuous use?",
+          "Can I combine it with other plants?",
+          "I want tips to start",
+          "Does it help with emotional balance?",
+          "I want to see scientific studies",
+          "Can it be used with a varied diet?"
+        ]
+      }
+    },
+    {
+      "phase": "Fase 5 — Próximo Passo",
+      "copy": {
+        "pt": [
+          "${userName}, cuidar da ansiedade de forma natural pode melhorar muito a qualidade da sua vida e saúde mental. Com o **Pineal Guardian** e práticas conscientes, seu corpo terá o suporte necessário para alcançar mais equilíbrio emocional e bem-estar. Posso ajudar com receitas, dicas e um plano prático para essa transformação.",
+          "A transformação começa com pequenas escolhas, ${userName}. Ao incluir o **Pineal Guardian** na sua rotina e optar por alimentos naturais, você apoia seu corpo na busca por um estado mental mais equilibrado. Estou aqui para guiar você com passos simples e personalizados.",
+          "${userName}, sua jornada para mais tranquilidade e equilíbrio emocional pode começar agora. Com o **Pineal Guardian** e uma alimentação equilibrada, seu corpo terá o suporte necessário para melhorar a sua saúde mental. Posso fornecer um plano com orientações e cuidados para essa nova fase."
+        ],
+        "en": [
+          "${userName}, caring for anxiety naturally can greatly improve your life quality and mental health. With **Pineal Guardian** and conscious practices, your body will have the necessary support to achieve more emotional balance and well-being. I can help with recipes, tips, and a practical plan for this transformation.",
+          "Change starts with small choices, ${userName}. By including **Pineal Guardian** in your routine and opting for natural foods, you support your body in seeking a more balanced mental state. I’m here to guide you with simple, personalized steps.",
+          "${userName}, your journey to more tranquility and emotional balance can start now. With **Pineal Guardian** and a balanced diet, your body will have the necessary support to improve your mental health. I can provide a plan with guidance and care for this new phase."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Quero começar já com **Pineal Guardian**",
+          "Tem receita fácil para ansiedade",
+          "Quero relatos reais de transformação",
+          "Como montar uma rotina prática?",
+          "Prefiro aprender mais antes",
+          "Resultados são duradouros?",
+          "Posso combinar com minha alimentação?",
+          "Quero conversar sobre escolhas naturais",
+          "Dá para fazer em família?",
+          "Tem dicas para motivação?",
+          "É seguro para todos?",
+          "Quero ver estudos e relatos reais"
+        ],
+        "en": [
+          "I want to start with **Pineal Guardian** now",
+          "Any easy recipe for anxiety",
+          "I want real transformation stories",
+          "How to build a practical routine?",
+          "I’d rather learn more first",
+          "Are results lasting?",
+          "Can I combine it with my diet?",
+          "I want to talk about natural choices",
+          "Can this be done as a family?",
+          "Any tips for motivation?",
+          "Is it safe for everyone?",
+          "I want to see studies and real stories"
+        ]
+      }
+    }
+  ]
+}
 
