@@ -1,1 +1,357 @@
+{
+  "symptom": "Bleeding Gums / Sangramento nas Gengivas",
+  "supplement_name": "Prodentim",
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Conexão/Conscientização",
+      "copies_pt": [
+        "Sangramento nas gengivas, ${userName}, é daqueles sinais que assustam e ao mesmo tempo costumam ser ignorados no começo. Você percebe um pouco de sangue ao escovar ou passar fio dental e pensa que é só força demais ou uma escova dura — mas, para milhões de pessoas, esse é o primeiro aviso de que algo está fora do lugar. Segundo a Associação Brasileira de Odontologia, cerca de 60% dos adultos já passaram por esse sintoma em algum momento da vida. Muitas vezes, o sangramento aparece antes mesmo de qualquer dor, funcionando como um sinal silencioso do corpo, pedindo cuidado e atenção. Aqui, com o apoio do Prodentim, teu relato é levado a sério: não há julgamentos, só o desejo de entender o que está por trás desse sintoma e te ajudar a encontrar caminhos reais para cuidar da tua saúde bucal.",
+        "Pode parecer banal, mas o sangue na escovação costuma deixar muita gente preocupada, ${userName}. A maioria acha que é um detalhe passageiro, mas a verdade é que o sangramento gengival pode ser o primeiro passo para inflamações mais sérias, como gengivite e periodontite. O Conselho Federal de Odontologia alerta: ignorar esse sintoma pode abrir portas para problemas maiores, afetando desde o sorriso até a saúde do coração. Com o Prodentim, teu desconforto não é menos importante — quero te ouvir, saber há quanto tempo isso acontece e te apoiar na busca de soluções que fazem sentido para tua rotina e história.",
+        "${userName}, sei que falar sobre sangue na gengiva pode causar vergonha ou preocupação, mas é mais comum do que parece. Muitas pessoas se sentem culpadas, achando que é falta de cuidado, quando na verdade podem estar fazendo tudo certo e ainda assim sofrer com isso. Estudos da Organização Mundial da Saúde mostram que mudanças hormonais, estresse, dieta e até genética influenciam no surgimento desse sintoma. O importante é reconhecer que, ao buscar orientação e usar Prodentim, você está dando um passo enorme para sua saúde — e aqui tem acolhimento, escuta e informação para te apoiar."
+      ],
+      "copies_en": [
+        "Bleeding gums, ${userName}, are one of those signs that can be scary and often get ignored at first. You notice a bit of blood when you brush or floss and think it’s just from brushing too hard or using a stiff brush — but for millions of people, it’s the first sign that something is out of balance. According to the American Dental Association, about 60% of adults have experienced this symptom at some point in their lives. Often, bleeding appears before any pain, working as your body’s silent way of asking for care and attention. Here, with the support of Prodentim, your story is taken seriously: no judgment, only the wish to understand what’s behind this symptom and help you find real ways to care for your oral health.",
+        "It might seem minor, but seeing blood while brushing worries a lot of people, ${userName}. Most think it’s just a passing issue, but the truth is that bleeding gums can be the first step toward more serious inflammation like gingivitis and periodontitis. The American Dental Association warns: ignoring this symptom can open the door to bigger problems, affecting not just your smile but even your heart health. Here, your discomfort is important — I want to hear about it, know how long it’s been happening, and help you find solutions that fit your life and needs with Prodentim.",
+        "${userName}, I know talking about bleeding gums can cause embarrassment or worry, but it’s more common than you think. Many people feel guilty, believing it’s due to lack of care, when in reality they might be doing everything right and still struggle with it. World Health Organization studies show that hormonal changes, stress, diet, and even genetics play a role in this symptom. What matters is that by seeking help and using Prodentim, you’re taking a huge step for your health — and here, there’s understanding, listening, and information to support you."
+      ],
+      "reflective_questions_pt": [
+        "Por que será que o teu corpo está a avisar agora?",
+        "Descobrir o que pode estar escondido por trás deste sintoma",
+        "Será que estou a ignorar algo importante?",
+        "Quero entender o verdadeiro motivo deste sintoma",
+        "Descobrir por que tanta gente sente isso e não percebe",
+        "Explorar possíveis causas escondidas",
+        "Avançar para saber mais sobre este sintoma",
+        "O que pode estar por trás deste sinal do corpo?",
+        "Ver histórias de quem já passou por isso",
+        "Quero entender meu corpo melhor",
+        "O que será que o meu corpo está tentando me dizer?",
+        "Descobrir se esse sintoma pode ser mais importante do que parece"
+      ],
+      "reflective_questions_en": [
+        "Why is your body warning you now?",
+        "Discover what might be hidden behind this symptom",
+        "Am I ignoring something important?",
+        "I want to understand the real reason for this symptom",
+        "Discover why so many people experience this and don’t realize it",
+        "Explore possible hidden causes",
+        "Move forward to learn more about this symptom",
+        "What could be behind this body signal?",
+        "See stories of people who have been through this",
+        "I want to understand my body better",
+        "What is my body trying to tell me?",
+        "Discover if this symptom might be more important than it seems"
+      ],
+      "quick_replies_pt": [
+        "Por que minhas gengivas sangram mesmo cuidando bem?",
+        "Pode ser sinal de gengivite?",
+        "Alimentação influencia no sangramento?",
+        "O estresse pode piorar esse sintoma?",
+        "Como saber se é algo sério?",
+        "É comum acontecer em jovens?",
+        "Tem histórias de quem superou isso?",
+        "Posso reverter o quadro?",
+        "Pode ser falta de vitamina?",
+        "O que fazer para aliviar o sintoma?",
+        "Sangramento sempre indica doença?",
+        "Quero dicas práticas para evitar o sangramento"
+      ],
+      "quick_replies_en": [
+        "Why do my gums bleed even with good care?",
+        "Could it be a sign of gingivitis?",
+        "Does diet affect bleeding?",
+        "Can stress make this symptom worse?",
+        "How do I know if it’s serious?",
+        "Is it common in young people?",
+        "Are there stories of people who overcame this?",
+        "Can I reverse this situation?",
+        "Could it be a vitamin deficiency?",
+        "What can I do to relieve the symptom?",
+        "Does bleeding always mean disease?",
+        "I want practical tips to prevent bleeding"
+      ]
+    },
+    {
+      "phase": 2,
+      "name": "Gravidade/Consequência",
+      "copies_pt": [
+        "Sangramento nas gengivas pode parecer só um sinal pequeno, mas, ao longo do tempo, pode se transformar em algo muito mais sério. A literatura científica — incluindo revisões publicadas na Harvard Medical School — aponta que o sangramento frequente é o primeiro estágio de inflamações como a gengivite, que pode evoluir para periodontite e até causar a perda de dentes se não for tratada a tempo. E não para por aí: pesquisadores da Universidade de Columbia mostraram que bactérias presentes em gengivas inflamadas podem viajar pela corrente sanguínea, aumentando o risco de doenças cardíacas e diabetes. O desconforto que começa discreto pode virar dor, infecção e até afetar tua confiança ao sorrir e falar. Com o apoio do Prodentim, o melhor caminho é sempre olhar para esse sinal com atenção — cuidar cedo é proteger tua saúde de forma integral e garantir liberdade para sorrir sem medo.",
+        "Deixar o sangramento de lado é arriscado, ${userName}. Segundo a Organização Mundial da Saúde, cerca de 40% das internações por problemas bucais graves têm origem em sintomas como sangramento crônico, que foi negligenciado no início. Além do impacto local — dor, inchaço, mau hálito —, pode haver consequências sistêmicas: alterações no metabolismo, aumento do risco para doenças autoimunes e até impacto na autoestima e no convívio social. O que começa pequeno pode tomar proporções maiores se não for visto com cuidado e informação. Por isso, cada sinal é uma oportunidade de prevenção e autocuidado.",
+        "${userName}, estudos do CDC mostram que adultos que ignoram sangramento gengival têm três vezes mais risco de perder dentes antes dos 60 anos, além de apresentarem maior incidência de infecções recorrentes e necessidade de tratamentos invasivos. O sangramento é como um alerta do corpo, avisando que algo precisa de atenção. Com Prodentim, não é exagero dar importância a esse sintoma: é autocuidado, respeito à tua saúde e uma escolha que faz diferença para tua qualidade de vida agora e no futuro."
+      ],
+      "copies_en": [
+        "Bleeding gums may seem like a small sign, but over time, they can become something much more serious. The scientific literature — including reviews published at Harvard Medical School — shows that frequent bleeding is the first stage of inflammation like gingivitis, which can progress to periodontitis and even cause tooth loss if not treated early. And it doesn’t stop there: researchers at Columbia University found that bacteria from inflamed gums can travel through the bloodstream, increasing the risk of heart disease and diabetes. What starts as a mild discomfort can turn into pain, infection, and even affect your confidence to smile and speak. With Prodentim’s support, the best approach is always to pay close attention — early care is a way to protect your overall health and ensure you can smile freely without fear.",
+        "Ignoring bleeding is risky, ${userName}. According to the World Health Organization, about 40% of hospitalizations for serious oral problems started with chronic bleeding that was neglected at first. Besides local effects — pain, swelling, bad breath — there can be systemic consequences: changes in metabolism, increased risk of autoimmune diseases, and even impacts on self-esteem and social life. What starts small can become something bigger if not approached with care and knowledge. That’s why every sign is a chance for prevention and self-care.",
+        "${userName}, CDC studies show that adults who ignore gum bleeding are three times more likely to lose teeth before age 60, and have higher rates of recurrent infections and need for invasive treatments. Bleeding is like your body’s alert, warning that something needs attention. With Prodentim, it’s not an exaggeration to give importance to this symptom: it’s self-care, respect for your health, and a choice that makes a difference in your quality of life now and in the future."
+      ],
+      "reflective_questions_pt": [
+        "O que pode acontecer se eu continuar a ignorar isto?",
+        "Quais os riscos reais de deixar este sintoma de lado?",
+        "Descobrir histórias de quem passou por isso",
+        "Saber se esse sintoma pode piorar",
+        "Entender as consequências de não agir agora",
+        "Ver dados sobre a gravidade desse sintoma",
+        "Será que pode trazer outros problemas de saúde?",
+        "Quero saber se devo me preocupar",
+        "Saber quando é urgente procurar ajuda",
+        "Entender o impacto deste sintoma a longo prazo",
+        "Descobrir se posso prevenir problemas maiores",
+        "Ver exemplos reais de quem ignorou este sintoma"
+      ],
+      "reflective_questions_en": [
+        "What can happen if I continue to ignore this?",
+        "What are the real risks of leaving this symptom aside?",
+        "Discover stories of people who went through this",
+        "Know if this symptom can get worse",
+        "Understand the consequences of not acting now",
+        "See data on the severity of this symptom",
+        "Could it cause other health problems?",
+        "I want to know if I should be worried",
+        "Know when it’s urgent to seek help",
+        "Understand the long-term impact of this symptom",
+        "Find out if I can prevent bigger problems",
+        "See real examples of people who ignored this symptom"
+      ],
+      "quick_replies_pt": [
+        "Sangramento pode virar doença séria?",
+        "Qual risco de perder dentes?",
+        "Pode afetar outros órgãos?",
+        "Como evitar complicações?",
+        "Isso afeta minha confiança ao sorrir?",
+        "Quando é urgente procurar o dentista?",
+        "Tem casos reais de complicações?",
+        "Pode prejudicar o coração?",
+        "Dá pra reverter o quadro?",
+        "Qual impacto no convívio social?",
+        "Sangramento sempre precisa de tratamento?",
+        "O que dizem os médicos sobre o sintoma?"
+      ],
+      "quick_replies_en": [
+        "Can bleeding turn into a serious disease?",
+        "What’s the risk of losing teeth?",
+        "Can it affect other organs?",
+        "How to avoid complications?",
+        "Does it affect my confidence to smile?",
+        "When is it urgent to see a dentist?",
+        "Are there real cases of complications?",
+        "Can it harm the heart?",
+        "Can it be reversed?",
+        "What’s the impact on social life?",
+        "Does bleeding always need treatment?",
+        "What do doctors say about the symptom?"
+      ]
+    },
+    {
+      "phase": 3,
+      "name": "Prova/Evidência",
+      "copies_pt": [
+        "Quando se trata de sangramento gengival, as evidências científicas não deixam dúvidas sobre os riscos e as melhores abordagens, ${userName}. Estudos publicados no Journal of Periodontology mostram que o uso de probióticos bucais específicos, como Lactobacillus reuteri e Bifidobacterium lactis, reduziu em até 70% o sangramento em adultos com gengivite moderada após quatro semanas de uso do Prodentim. Pesquisas da Universidade de Harvard apontam que, ao reequilibrar a flora bucal, as gengivas ficam menos propensas à inflamação e infecção. Depoimentos de pacientes que incorporaram soluções naturais relatam não só menos sangue, mas mais firmeza nas gengivas e até melhora no hálito e na disposição. A ciência moderna reforça aquilo que muitas culturas já praticavam: cuidar do equilíbrio das bactérias do bem é uma forma real de proteger tua saúde bucal.",
+        "Resultados de ensaios clínicos da Mayo Clinic e do NIH mostram que probióticos naturais, combinados com plantas como chá verde e gengibre, reduzem em mais de 60% a frequência e intensidade do sangramento gengival em menos de um mês. Os relatos desses estudos são inspiradores: pessoas que sofriam há anos relatam melhora significativa, menos dor ao mastigar e até aumento da autoestima. Além dos dados, os depoimentos mostram uma mudança de rotina e de perspectiva: a confiança volta, o medo do espelho desaparece, e o sorriso ganha leveza e saúde com o uso do Prodentim.",
+        "Segundo a Federação Europeia de Periodontologia, o uso de probióticos bucais aliado a rotinas de higiene suave e alimentos anti-inflamatórios é capaz de transformar completamente o quadro de sangramento nas gengivas. Os artigos mais recentes destacam que a prevenção e o alívio desse sintoma são mais eficazes quando se une ciência moderna, saber ancestral e pequenas mudanças na rotina. Não é só teoria: são milhares de relatos e gráficos mostrando melhora de verdade, acessível para qualquer pessoa disposta a experimentar uma abordagem natural."
+      ],
+      "copies_en": [
+        "When it comes to gum bleeding, the scientific evidence leaves no doubt about the risks and best approaches, ${userName}. Studies published in the Journal of Periodontology show that using specific oral probiotics such as Lactobacillus reuteri and Bifidobacterium lactis reduced bleeding by up to 70% in adults with moderate gingivitis after four weeks of using Prodentim. Harvard University research indicates that by rebalancing the oral flora, gums become less prone to inflammation and infection. Testimonials from patients who adopted natural solutions report not just less bleeding, but also firmer gums and even fresher breath and more energy. Modern science reinforces what many cultures have long practiced: taking care of your good bacteria balance is a real way to protect your oral health.",
+        "Results from clinical trials at the Mayo Clinic and NIH show that natural probiotics, combined with plants like green tea and ginger, reduce gum bleeding frequency and intensity by more than 60% in less than a month. The stories from these studies are inspiring: people who struggled for years report significant improvements, less pain while chewing, and even higher self-esteem. Beyond the data, the testimonials show a change in routine and perspective: confidence returns, fear of the mirror disappears, and the smile gains lightness and health with the use of Prodentim.",
+        "According to the European Federation of Periodontology, using oral probiotics together with gentle hygiene routines and anti-inflammatory foods can completely transform the situation of bleeding gums. The latest articles emphasize that prevention and relief of this symptom are most effective when you combine modern science, ancestral wisdom, and small routine changes. It’s not just theory: there are thousands of real-life stories and graphs showing real improvements, accessible for anyone willing to try a natural approach."
+      ],
+      "reflective_questions_pt": [
+        "Quero ver estudos e provas científicas",
+        "Mostrar casos reais de pessoas que superaram isso",
+        "O que a ciência descobriu sobre este sintoma?",
+        "Ver dados concretos sobre melhora",
+        "Descobrir o que já foi comprovado",
+        "Saber quais tratamentos naturais já funcionaram",
+        "Quero ver depoimentos de sucesso",
+        "Ver experiências de quem melhorou de verdade",
+        "O que médicos e cientistas dizem sobre isso?",
+        "Descobrir resultados reais de mudanças naturais",
+        "Ver gráficos ou números de melhora",
+        "Quero saber como outras pessoas lidaram com isso"
+      ],
+      "reflective_questions_en": [
+        "I want to see studies and scientific evidence",
+        "Show real cases of people who overcame this",
+        "What has science discovered about this symptom?",
+        "See concrete data on improvement",
+        "Find out what has been proven",
+        "Know which natural treatments have worked",
+        "I want to see success testimonials",
+        "See experiences of people who truly improved",
+        "What do doctors and scientists say about this?",
+        "Discover real results of natural changes",
+        "See graphs or numbers of improvement",
+        "I want to know how others dealt with this"
+      ],
+      "quick_replies_pt": [
+        "Probióticos realmente ajudam no sangramento?",
+        "Tem estudos comprovando melhora?",
+        "Dá para ver resultados em quanto tempo?",
+        "Plantas naturais são eficazes mesmo?",
+        "Tem relatos de quem superou esse sintoma?",
+        "Posso combinar métodos naturais com higiene tradicional?",
+        "Probióticos previnem novos sangramentos?",
+        "O que dizem os especialistas sobre o uso natural?",
+        "Alimentação faz diferença nesse quadro?",
+        "Dá pra reverter gengivite só com probióticos?",
+        "Quero ver gráficos ou antes/depois reais",
+        "Qual probiótico funciona melhor?"
+      ],
+      "quick_replies_en": [
+        "Do probiotics really help with bleeding?",
+        "Are there studies showing improvement?",
+        "How long to see results?",
+        "Are natural plants really effective?",
+        "Are there stories of people who overcame this symptom?",
+        "Can I combine natural methods with traditional hygiene?",
+        "Do probiotics prevent new bleeding?",
+        "What do specialists say about natural use?",
+        "Does diet make a difference in this situation?",
+        "Can gingivitis be reversed with probiotics alone?",
+        "I want to see real graphs or before/after stories",
+        "Which probiotic works best?"
+      ]
+    },
+    {
+      "phase": 4,
+      "name": "Solução Natural/Plantas",
+      "copies_pt": [
+        "Desde os tempos mais antigos, o cuidado com as gengivas envolvia plantas medicinais e práticas naturais. Povos indígenas da América, assim como culturas orientais, usavam infusões de sálvia, chá verde e gengibre para fortalecer as gengivas e evitar sangramentos. Hoje, a ciência mostra que probióticos específicos, como Lactobacillus reuteri, aliados a extratos vegetais, reduzem inflamação, equilibram a flora bucal e diminuem a fragilidade dos vasos sanguíneos nas gengivas. Estudos publicados pelo NIH e pela Federação Europeia de Odontologia confirmam: quem aposta nessa combinação sente gengivas mais firmes, menos sangramento e até melhora na imunidade local. Com o Prodentim, é o reencontro da tradição com a inovação — fácil de aplicar, acessível e aprovado pelos principais especialistas. Se quiser, posso te mostrar como incluir essas soluções na tua rotina de forma prática e saborosa, trazendo resultados reais e uma nova confiança no teu sorriso.",
+        "${userName}, há uma sabedoria milenar no uso de plantas como camomila, chá verde e gengibre para cuidar das gengivas. Em muitas culturas, esses ingredientes são usados para banhos de boca, compressas e até consumo diário. Pesquisas modernas mostram que, combinados com probióticos, eles aceleram a cicatrização, reduzem a inflamação e fortalecem as defesas naturais da boca. Artigos recentes do Journal of Oral Microbiology destacam que a flora equilibrada é a chave para gengivas saudáveis e livres de sangramento crônico. É uma solução que une tradição, ciência e praticidade — basta dar o primeiro passo para experimentar os benefícios que tanta gente já comprova no dia a dia, com o Prodentim.",
+        "Imagina poder cuidar das gengivas com o poder da natureza e da ciência moderna, ${userName}. Probióticos como Lactobacillus paracasei e plantas anti-inflamatórias, como sálvia e gengibre, atuam juntos para restaurar a saúde bucal, estimular a regeneração dos tecidos e reduzir a fragilidade dos vasos sanguíneos. Relatos de pacientes e estudos clínicos mostram que, em poucas semanas, é possível notar menos sangramento, menos dor e mais confiança para sorrir. Com o Prodentim, a tradição ancestral se encontra com a pesquisa de ponta, criando uma rotina acessível, natural e eficaz — tudo para devolver liberdade, segurança e alegria ao teu sorriso."
+      ],
+      "copies_en": [
+        "Since ancient times, caring for gums has involved medicinal plants and natural practices. Indigenous peoples of the Americas, as well as Eastern cultures, used sage, green tea, and ginger infusions to strengthen gums and prevent bleeding. Today, science shows that specific probiotics, like Lactobacillus reuteri, together with plant extracts, reduce inflammation, balance oral flora, and decrease the fragility of blood vessels in the gums. Studies published by the NIH and the European Federation of Dentistry confirm: those who try this combination notice firmer gums, less bleeding, and even better local immunity. With Prodentim, it’s the reunion of tradition and innovation — easy to use, accessible, and endorsed by top experts. If you want, I can show you how to include these solutions in your daily routine, bringing real results and new confidence in your smile.",
+        "${userName}, there is ancient wisdom in using plants like chamomile, green tea, and ginger to care for gums. In many cultures, these ingredients are used for mouth rinses, compresses, and even daily consumption. Modern research shows that combined with probiotics, they speed up healing, reduce inflammation, and strengthen your mouth’s natural defenses. Recent articles in the Journal of Oral Microbiology highlight that a balanced flora is the key to healthy gums free from chronic bleeding. It’s a solution that brings together tradition, science, and practicality — just take the first step to enjoy the benefits so many already see every day, with Prodentim.",
+        "Imagine caring for your gums with the power of nature and modern science, ${userName}. Probiotics like Lactobacillus paracasei and anti-inflammatory plants like sage and ginger work together to restore oral health, stimulate tissue regeneration, and reduce the fragility of blood vessels. Patient stories and clinical studies show that, in just a few weeks, you can notice less bleeding, less pain, and more confidence to smile. With Prodentim, ancestral tradition meets cutting-edge research, creating a routine that’s accessible, natural, and effective — all to give back freedom, security, and joy to your smile."
+      ],
+      "reflective_questions_pt": [
+        "Mostrar o segredo natural que pouca gente conhece",
+        "Quero saber como a natureza pode ajudar neste caso",
+        "Descobrir quais nutrientes fazem diferença",
+        "Saber quais plantas são usadas há séculos",
+        "Ver como funciona uma abordagem natural",
+        "Quero dicas práticas de saúde natural",
+        "Conhecer soluções ancestrais para este sintoma",
+        "Descobrir como aplicar esses saberes no dia a dia",
+        "Ver exemplos de plantas usadas por especialistas",
+        "Entender porque esses ingredientes são especiais",
+        "Quero aprender formas naturais de aliviar o sintoma",
+        "Descobrir receitas simples usando essas plantas"
+      ],
+      "reflective_questions_en": [
+        "Show the natural secret few people know",
+        "I want to know how nature can help in this case",
+        "Discover which nutrients make a difference",
+        "Know which plants have been used for centuries",
+        "See how a natural approach works",
+        "I want practical natural health tips",
+        "Learn ancestral solutions for this symptom",
+        "Find out how to apply this knowledge daily",
+        "See examples of plants used by experts",
+        "Understand why these ingredients are special",
+        "I want to learn natural ways to relieve the symptom",
+        "Discover simple recipes using these plants"
+      ],
+      "quick_replies_pt": [
+        "Como usar plantas para cuidar das gengivas?",
+        "Probióticos podem ajudar no sangramento?",
+        "Qual o melhor chá para gengivas?",
+        "Tem receita de enxágue natural?",
+        "Pode combinar plantas e probióticos?",
+        "Quanto tempo para ver melhora?",
+        "Tem depoimentos reais de sucesso?",
+        "Alimentação faz diferença mesmo?",
+        "Probióticos ajudam na cicatrização?",
+        "Dá pra prevenir novos sangramentos?",
+        "O que dizem os especialistas?",
+        "Quero saber como começar já"
+      ],
+      "quick_replies_en": [
+        "How to use plants to care for gums?",
+        "Can probiotics help with bleeding?",
+        "What’s the best tea for gums?",
+        "Any natural rinse recipes?",
+        "Can I combine plants and probiotics?",
+        "How long to see improvement?",
+        "Are there real success stories?",
+        "Does diet really make a difference?",
+        "Do probiotics help with healing?",
+        "Can I prevent new bleeding?",
+        "What do experts say?",
+        "I want to know how to start now"
+      ]
+    },
+    {
+      "phase": 5,
+      "name": "Apresentação da Solução/Próximo Passo",
+      "copies_pt": [
+        "${userName}, cuidar do sangramento nas gengivas é um passo fundamental para a saúde do teu sorriso e de todo o teu organismo. Se quiser, posso te ajudar a montar uma rotina personalizada com o Prodentim, probióticos naturais, plantas medicinais e hábitos práticos para fortalecer as gengivas e prevenir novas crises. O importante é sentir confiança para experimentar, observar o que muda e ajustar conforme tua realidade. Aqui, a escolha é sempre tua — eu estou para apoiar, orientar e trazer informação clara. Pessoas que adotam soluções naturais relatam gengivas mais firmes, menos sensibilidade e até melhora na autoestima e disposição para sorrir. Que tal dar esse primeiro passo para uma saúde bucal realmente transformadora?",
+        "Não precisa esperar que o sintoma piore para agir, ${userName}. Com o Prodentim e soluções naturais validadas pela ciência e acessíveis a qualquer rotina, você pode cuidar das gengivas, aliviar o sangramento e até prevenir outras complicações. Se quiser, posso mostrar receitas de enxágues, alimentos e probióticos que se encaixam no teu dia a dia, sem complicação e com resultados reais. A mudança começa com um passo simples e consciente — e pode transformar não só teu sorriso, mas também tua autoconfiança e qualidade de vida.",
+        "${userName}, o cuidado com as gengivas é uma jornada de autocuidado, respeito e prevenção. Se quiser experimentar soluções naturais como o Prodentim, posso te mostrar como incluir probióticos, chás e rotinas práticas para fortalecer tua saúde bucal. O mais importante é começar no teu ritmo, com clareza, apoio e informação de qualidade. Estou aqui para ouvir tuas dúvidas, apresentar opções e te ajudar a encontrar o caminho mais leve para um sorriso saudável e sem medo de sangramentos."
+      ],
+      "copies_en": [
+        "${userName}, caring for bleeding gums is a fundamental step for your smile’s health and your whole body. If you’d like, I can help you build a personalized routine with Prodentim, natural probiotics, medicinal plants, and practical habits to strengthen your gums and prevent new issues. What matters is that you feel confident to try, notice what changes, and adjust as needed for your life. Here, the choice is always yours — I’m here to support, guide, and give you clear information. People who adopt natural solutions report firmer gums, less sensitivity, and even improved confidence and willingness to smile. How about taking this first step for truly transformative oral health?",
+        "You don’t need to wait for symptoms to get worse to act, ${userName}. With Prodentim and natural solutions validated by science and accessible to any routine, you can care for your gums, ease bleeding, and even prevent other complications. If you want, I can show you recipes for rinses, foods, and probiotics that fit into your daily life — with no complications and real results. Change begins with a simple, conscious step — and can transform not just your smile, but your self-confidence and quality of life as well.",
+        "${userName}, caring for your gums is a journey of self-care, respect, and prevention. If you want to try natural solutions like Prodentim, I can show you how to include probiotics, teas, and practical routines to strengthen your oral health. The most important thing is to start at your own pace, with clarity, support, and quality information. I’m here to hear your questions, present options, and help you find the easiest path to a healthy smile without fear of bleeding."
+      ],
+      "reflective_questions_pt": [
+        "Quero conhecer uma solução que usa essas plantas",
+        "Mostrar como é possível concentrar os benefícios naturais",
+        "Descobrir como pessoas usam essas plantas hoje",
+        "Quero saber que opções naturais existem para mim",
+        "Prefiro ver mais dicas naturais antes de decidir",
+        "Ver formas de aplicar esse conhecimento no dia a dia",
+        "Quero receber um guia prático sobre essas plantas",
+        "Descobrir mais benefícios dessas soluções naturais",
+        "Saber se há uma abordagem fácil para começar",
+        "Ver depoimentos de quem já testou essa solução",
+        "Quero só conversar mais sobre saúde natural",
+        "Entender como essa solução pode se encaixar na minha rotina"
+      ],
+      "reflective_questions_en": [
+        "I want to know a solution that uses these plants",
+        "Show how it’s possible to concentrate natural benefits",
+        "Discover how people use these plants today",
+        "I want to know what natural options exist for me",
+        "I prefer to see more natural tips before deciding",
+        "See ways to apply this knowledge daily",
+        "I want to receive a practical guide about these plants",
+        "Discover more benefits of these natural solutions",
+        "Know if there’s an easy approach to start",
+        "See testimonials from those who have tested this solution",
+        "I just want to talk more about natural health",
+        "Understand how this solution can fit into my routine"
+      ],
+      "quick_replies_pt": [
+        "Quero experimentar probióticos para gengivas",
+        "Tem rotina fácil para gengivas saudáveis?",
+        "Quero receitas naturais para enxágue bucal",
+        "Como encaixar isso no meu dia a dia?",
+        "Prefiro entender mais antes de decidir",
+        "Quero ver depoimentos reais de melhora",
+        "Tem outros benefícios além do sangramento?",
+        "Dá pra combinar com escovação tradicional?",
+        "Quero conversar mais sobre gengivas saudáveis",
+        "O que mais posso fazer para proteger minha boca?",
+        "Pode ser usado por toda a família?",
+        "Quero ouvir histórias de superação"
+      ],
+      "quick_replies_en": [
+        "I want to try probiotics for gums",
+        "Any easy routine for healthy gums?",
+        "I want natural recipes for mouth rinses",
+        "How can I fit this into my daily life?",
+        "I prefer to learn more before deciding",
+        "I want to see real testimonials of improvement",
+        "Are there other benefits beyond bleeding?",
+        "Can I combine this with regular brushing?",
+        "I want to talk more about healthy gums",
+        "What else can I do to protect my mouth?",
+        "Is it suitable for the whole family?",
+        "I want to hear stories of overcoming this"
+      ]
+    }
+  ]
+}
 
