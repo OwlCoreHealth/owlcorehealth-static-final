@@ -1,1 +1,217 @@
+{
+  "supplement": "Moringa Magic",
+  "symptom": "Slow Metabolism / Metabolismo Lento",
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Conexão/Conscientização",
+      "copies_pt": [
+        "${userName}, sentir que o metabolismo não responde como antes, mesmo com esforços para se alimentar bem e praticar exercícios, é uma realidade que muitas pessoas enfrentam hoje. A combinação da alimentação moderna — ultraprocessados cheios de aditivos e conservantes — com solos cada vez mais empobrecidos e animais tratados com hormônios, prejudica o funcionamento do metabolismo natural do corpo. Estudos mostram que um metabolismo lento está associado à dificuldade em queimar gordura, fadiga e ganho de peso, mesmo com dieta e atividade física. Reconhecer essa dificuldade é o primeiro passo para entender como recuperar sua vitalidade.",
+        "Você já sentiu que, apesar de fazer tudo ‘certo’, seu corpo parece reagir lentamente? Isso não é apenas impressão, ${userName}. O metabolismo depende de nutrientes essenciais, muitos dos quais estão ausentes em nossa alimentação atual, marcada por produtos industrializados e alimentos de solos degradados. Além disso, hormônios e antibióticos presentes na carne que consumimos podem interferir diretamente na função metabólica. A ciência confirma que esses fatores tornam a queima de energia mais difícil, criando um ciclo frustrante para quem busca saúde e peso equilibrado.",
+        "${userName}, o metabolismo lento é um sintoma silencioso que prejudica sua energia e bem-estar. Com os alimentos processados, solos contaminados e carnes manipuladas, seu organismo recebe menos vitaminas e minerais essenciais para manter o metabolismo ativo. Pesquisas da OMS indicam que cerca de 40% das pessoas enfrentam esse desafio, que vai muito além da alimentação e envolve um sistema corporal complexo. Entender esse quadro é fundamental para buscar soluções que respeitem o funcionamento natural do seu corpo."
+      ],
+      "copies_en": [
+        "${userName}, feeling like your metabolism isn’t responding as it used to, despite efforts to eat well and exercise, is a reality many face today. The combination of modern diets — ultra-processed foods full of additives and preservatives — with increasingly depleted soils and hormone-treated animals harms the body’s natural metabolic function. Studies show slow metabolism is linked to difficulty burning fat, fatigue, and weight gain even with diet and exercise. Recognizing this challenge is the first step to regaining vitality.",
+        "Have you felt, despite doing everything ‘right’, your body seems slow to respond? It’s not just your impression, ${userName}. Metabolism depends on essential nutrients, many missing in today’s diet full of industrialized products and food grown in degraded soils. Additionally, hormones and antibiotics in meat directly interfere with metabolic function. Science confirms these factors make burning energy harder, creating a frustrating cycle for those seeking health and balanced weight.",
+        "${userName}, slow metabolism is a silent symptom hurting your energy and well-being. With processed foods, contaminated soils, and manipulated meats, your body receives fewer essential vitamins and minerals to keep metabolism active. WHO research indicates about 40% of people face this challenge, which goes beyond diet and involves a complex bodily system. Understanding this is key to finding solutions that respect your body’s natural function."
+      ],
+      "quick_replies_pt": [
+        "Por que meu metabolismo é lento?",
+        "Processados dificultam a queima de energia?",
+        "Solo pobre influencia no metabolismo?",
+        "Hormônios na carne afetam o corpo?",
+        "Quero saber mais sobre metabolismo lento",
+        "Tem dados científicos sobre isso?",
+        "Como acelerar o metabolismo naturalmente?",
+        "É normal esse sintoma?",
+        "Fadiga está ligada ao metabolismo?",
+        "Quais sinais indicam metabolismo lento?",
+        "Quero dicas para melhorar meu metabolismo",
+        "Estresse interfere no metabolismo?"
+      ],
+      "quick_replies_en": [
+        "Why is my metabolism slow?",
+        "Do processed foods hinder energy burning?",
+        "Does poor soil affect metabolism?",
+        "Do hormones in meat affect the body?",
+        "I want to learn more about slow metabolism",
+        "Are there scientific data on this?",
+        "How to speed up metabolism naturally?",
+        "Is this symptom normal?",
+        "Is fatigue linked to metabolism?",
+        "What signs indicate slow metabolism?",
+        "I want tips to improve my metabolism",
+        "Does stress affect metabolism?"
+      ]
+    },
+    {
+      "phase": 2,
+      "name": "Gravidade/Consequência",
+      "copies_pt": [
+        "${userName}, o metabolismo lento pode ter consequências profundas para sua saúde. Estudos da Harvard Medical School indicam que ele está ligado ao aumento do risco de obesidade, diabetes tipo 2 e doenças cardiovasculares. Além disso, a alimentação com ultraprocessados, solos contaminados e carnes com hormônios intensificam a inflamação crônica, dificultando ainda mais a queima de calorias e o equilíbrio hormonal. Ignorar essa situação não é só perder peso, é comprometer sua energia, humor e qualidade de vida no longo prazo.",
+        "Você sabia, ${userName}, que a desaceleração do metabolismo não afeta apenas o peso, mas todo o funcionamento do organismo? Pesquisas da Organização Mundial da Saúde mostram que ela está diretamente associada a desequilíbrios hormonais, fadiga crônica e inflamação sistêmica. A exposição contínua a aditivos químicos e a ingestão de alimentos provenientes de solos degradados e animais manipulados pioram ainda mais esse quadro. Cuidar desse sintoma é essencial para evitar complicações maiores e melhorar seu bem-estar geral.",
+        "${userName}, quando o metabolismo não funciona direito, o corpo perde a capacidade de processar nutrientes e produzir energia adequadamente. Segundo dados do NIH, isso aumenta o risco de doenças metabólicas, distúrbios hormonais e baixa imunidade. A alimentação moderna — ultraprocessados, solos contaminados e hormônios em carnes — agrava o problema, criando um ciclo vicioso que afeta sua saúde física e mental. Reconhecer a gravidade desse sintoma é um passo decisivo para recuperar o controle do seu corpo."
+      ],
+      "copies_en": [
+        "${userName}, slow metabolism can have deep consequences for your health. Harvard Medical School studies indicate it’s linked to increased risk of obesity, type 2 diabetes, and cardiovascular disease. Additionally, diets with ultra-processed foods, contaminated soils, and hormone-treated meats intensify chronic inflammation, making calorie burning and hormonal balance even harder. Ignoring this is not just about weight loss, it’s risking your energy, mood, and long-term quality of life.",
+        "Did you know, ${userName}, that metabolic slowdown affects more than weight — it disrupts your entire body function? WHO research shows it’s directly associated with hormonal imbalances, chronic fatigue, and systemic inflammation. Continuous exposure to chemicals and eating food from degraded soils and manipulated animals worsens this condition. Caring for this symptom is essential to avoid bigger complications and improve overall well-being.",
+        "${userName}, when metabolism doesn’t work right, the body loses the ability to process nutrients and produce energy properly. NIH data shows this increases risk of metabolic diseases, hormonal disorders, and low immunity. Modern diets — ultra-processed foods, contaminated soils, and hormone-fed meats — worsen the problem, creating a vicious cycle affecting physical and mental health. Recognizing the severity of this symptom is a crucial step to regain control of your body."
+      ],
+      "quick_replies_pt": [
+        "Metabolismo lento traz riscos?",
+        "Processados pioram esse quadro?",
+        "Solo contaminado afeta metabolismo?",
+        "Hormônios em carnes prejudicam?",
+        "Quero saber mais sobre inflamação",
+        "Metabolismo lento causa fadiga?",
+        "Dá para reverter esse quadro?",
+        "Quais os principais perigos?",
+        "Preciso mudar toda alimentação?",
+        "Quero dados científicos confiáveis",
+        "Como o metabolismo afeta meu humor?",
+        "Estresse piora o metabolismo?"
+      ],
+      "quick_replies_en": [
+        "Does slow metabolism bring risks?",
+        "Do processed foods worsen this?",
+        "Does contaminated soil affect metabolism?",
+        "Do hormones in meat harm?",
+        "I want to learn more about inflammation",
+        "Does slow metabolism cause fatigue?",
+        "Can this be reversed?",
+        "What are the main dangers?",
+        "Do I need to change my whole diet?",
+        "I want reliable scientific data",
+        "How does metabolism affect my mood?",
+        "Does stress worsen metabolism?"
+      ]
+    },
+    {
+      "phase": 3,
+      "name": "Prova/Evidência",
+      "copies_pt": [
+        "${userName}, a Moringa é uma planta comprovadamente rica em nutrientes que atuam diretamente para melhorar o metabolismo. Estudos do Journal of Food Science and Technology destacam a presença de vitaminas do complexo B, ferro, cálcio e antioxidantes que ajudam a acelerar a queima de gordura, equilibrar hormônios e reduzir a inflamação — tudo fundamental para quem tem metabolismo lento. Pessoas que integraram Moringa na alimentação relatam mais disposição e perda de peso gradual, comprovando o poder dessa planta.",
+        "Pesquisas recentes, ${userName}, mostram que os compostos bioativos da Moringa promovem a melhora do metabolismo energético e auxiliam na regulação dos níveis de insulina e glicose no sangue. Publicações da Frontiers in Pharmacology indicam que esses nutrientes também combatem o estresse oxidativo, um dos principais causadores da desaceleração metabólica. A combinação desses efeitos faz da Moringa uma aliada poderosa para quem busca recuperar o equilíbrio corporal.",
+        "${userName}, estudos científicos da International Journal of Molecular Sciences comprovam que os aminoácidos essenciais, vitaminas e minerais da Moringa contribuem para a função mitocondrial, peça-chave na produção de energia celular. Essa ação aumenta a eficiência do metabolismo e promove a redução da inflamação crônica, fatores decisivos para quem enfrenta metabolismo lento. Pessoas que consomem Moringa diariamente relatam melhora na disposição, foco e controle do peso corporal."
+      ],
+      "copies_en": [
+        "${userName}, Moringa is a plant proven to be rich in nutrients that directly improve metabolism. Studies from the Journal of Food Science and Technology highlight its B vitamins, iron, calcium, and antioxidants that help speed fat burning, balance hormones, and reduce inflammation — all crucial for slow metabolism. People who added Moringa to their diet report more energy and gradual weight loss, proving its power.",
+        "Recent research, ${userName}, shows Moringa’s bioactive compounds improve energy metabolism and help regulate blood insulin and glucose levels. Publications from Frontiers in Pharmacology indicate these nutrients also fight oxidative stress — a main cause of metabolic slowdown. This combination makes Moringa a powerful ally for those seeking body balance.",
+        "${userName}, scientific studies from the International Journal of Molecular Sciences confirm that Moringa’s essential amino acids, vitamins, and minerals support mitochondrial function, key in cellular energy production. This action boosts metabolism efficiency and reduces chronic inflammation — decisive factors for slow metabolism. People consuming Moringa daily report better energy, focus, and weight control."
+      ],
+      "quick_replies_pt": [
+        "Quais nutrientes da Moringa ajudam no metabolismo?",
+        "Tem estudos confiáveis sobre isso?",
+        "Quanto tempo para sentir efeito?",
+        "Posso usar Moringa todos os dias?",
+        "Moringa ajuda na perda de peso?",
+        "Ajuda a controlar açúcar no sangue?",
+        "É seguro para uso contínuo?",
+        "Quero relatos de quem melhorou metabolismo",
+        "Como a Moringa age no corpo?",
+        "Posso combinar com outras plantas?",
+        "Quero dicas para começar",
+        "Quero ver estudos científicos"
+      ],
+      "quick_replies_en": [
+        "What nutrients in Moringa help metabolism?",
+        "Are there reliable studies on this?",
+        "How long to feel effects?",
+        "Can I use Moringa daily?",
+        "Does Moringa help weight loss?",
+        "Does it help control blood sugar?",
+        "Is it safe for continuous use?",
+        "I want stories from people who improved metabolism",
+        "How does Moringa act in the body?",
+        "Can I combine it with other plants?",
+        "I want tips to start",
+        "I want to see scientific studies"
+      ]
+    },
+    {
+      "phase": 4,
+      "name": "Solução Natural/Plantas",
+      "copies_pt": [
+        "A Moringa é um verdadeiro tesouro natural para quem luta contra o metabolismo lento. Conhecida há séculos, ela reúne vitaminas A, C, E, complexo B, cálcio, ferro e antioxidantes que ajudam a restaurar o equilíbrio hormonal e a acelerar a queima de gordura. Estudos recentes, como os da Frontiers in Nutrition, comprovam que a Moringa reduz a inflamação e promove a saúde celular, contribuindo para uma melhora significativa na energia e no peso corporal. Incorporar essa planta à sua rotina é abraçar um caminho natural e eficaz para transformar sua saúde.",
+        "${userName}, as folhas da Moringa são uma fonte concentrada de nutrientes essenciais para reativar seu metabolismo. Seu alto teor de vitaminas e minerais ajuda a regular o sistema endócrino, controlar os níveis de açúcar no sangue e combater a inflamação silenciosa que dificulta a queima calórica. Usada tradicionalmente em diversas culturas, a Moringa agora tem respaldo científico robusto que confirma sua eficácia para quem busca mais disposição e equilíbrio metabólico.",
+        "Em tempos modernos, a Moringa aparece como uma aliada poderosa para recuperar o metabolismo e a vitalidade. Com suas propriedades antioxidantes e anti-inflamatórias, ela atua diretamente nas mitocôndrias, melhorando a produção de energia celular e reduzindo os efeitos do estresse oxidativo. Pesquisas da Nutritional Journal mostram que seu uso regular pode ajudar a controlar o peso e aumentar a resistência física, promovendo uma transformação profunda e natural."
+      ],
+      "copies_en": [
+        "Moringa is a true natural treasure for those struggling with slow metabolism. Known for centuries, it combines vitamins A, C, E, B-complex, calcium, iron, and antioxidants that help restore hormonal balance and speed fat burning. Recent studies, like those from Frontiers in Nutrition, confirm Moringa reduces inflammation and promotes cellular health, significantly improving energy and body weight. Incorporating this plant into your routine embraces a natural and effective path to transform your health.",
+        "${userName}, Moringa leaves are a concentrated source of essential nutrients to reactivate your metabolism. Their high vitamin and mineral content helps regulate the endocrine system, control blood sugar levels, and fight silent inflammation that hampers calorie burning. Traditionally used in many cultures, Moringa now has strong scientific backing confirming its effectiveness for those seeking more energy and metabolic balance.",
+        "In modern times, Moringa emerges as a powerful ally to regain metabolism and vitality. With antioxidant and anti-inflammatory properties, it acts directly on mitochondria, improving cellular energy production and reducing oxidative stress effects. Research from the Nutritional Journal shows regular use can help control weight and increase physical endurance, promoting a deep, natural transformation."
+      ],
+      "quick_replies_pt": [
+        "Como incluir Moringa na rotina?",
+        "Tem receita fácil para metabolismo?",
+        "Ajuda na perda de peso?",
+        "Posso usar todos os dias?",
+        "Quero relatos de quem melhorou metabolismo",
+        "Quanto tempo para sentir diferença?",
+        "É seguro para uso contínuo?",
+        "Posso combinar com outras plantas?",
+        "Quero dicas práticas para começar",
+        "Ajuda a controlar açúcar no sangue?",
+        "Quero ver estudos científicos",
+        "Dá para usar com alimentação variada?"
+      ],
+      "quick_replies_en": [
+        "How to include Moringa in my routine?",
+        "Any easy recipe for metabolism?",
+        "Does it help with weight loss?",
+        "Can I use it daily?",
+        "I want stories from people who improved metabolism",
+        "How long to feel difference?",
+        "Is it safe for continuous use?",
+        "Can I combine with other plants?",
+        "I want practical tips to start",
+        "Does it help control blood sugar?",
+        "I want to see scientific studies",
+        "Can it be used with varied diet?"
+      ]
+    },
+    {
+      "phase": 5,
+      "name": "Próximo Passo",
+      "copies_pt": [
+        "${userName}, você pode iniciar hoje uma nova fase de energia e equilíbrio, incorporando Moringa e escolhas naturais na sua rotina. Essa planta milenar vai ajudar seu metabolismo a voltar a funcionar em sua capacidade plena, aumentando disposição e promovendo melhor qualidade de vida. Posso te orientar com receitas, dicas e um plano prático para que essa transformação seja leve e sustentável, respeitando seu ritmo.",
+        "A transformação começa com uma decisão simples, ${userName}. Ao trazer a Moringa para sua alimentação diária, você oferece ao seu corpo a chance de restaurar o metabolismo, equilibrar hormônios e melhorar o bem-estar geral. Estou aqui para te guiar com passos práticos, ajudando você a sentir os benefícios dessa planta incrível de forma natural e prazerosa.",
+        "${userName}, retomar o controle do seu metabolismo é possível com escolhas naturais e conscientes. Com Moringa e uma alimentação equilibrada, seu corpo terá o suporte necessário para recuperar a energia e a vitalidade. Se desejar, posso fornecer um plano personalizado com orientações, receitas e cuidados para essa nova etapa."
+      ],
+      "copies_en": [
+        "${userName}, you can start today a new phase of energy and balance by incorporating Moringa and natural choices into your routine. This ancient plant will help your metabolism function at full capacity, boosting vitality and improving quality of life. I can guide you with recipes, tips, and a practical plan to make this transformation gentle and sustainable, respecting your pace.",
+        "Transformation begins with a simple decision, ${userName}. By bringing Moringa into your daily diet, you give your body the chance to restore metabolism, balance hormones, and improve overall well-being. I’m here to guide you with practical steps, helping you experience the benefits of this amazing plant naturally and enjoyably.",
+        "${userName}, regaining control of your metabolism is possible with natural and conscious choices. With Moringa and balanced nutrition, your body will have the support it needs to recover energy and vitality. If you want, I can provide a personalized plan with guidance, recipes, and care for this new chapter."
+      ],
+      "quick_replies_pt": [
+        "Quero começar já com Moringa",
+        "Tem receita fácil para rotina?",
+        "Quero relatos reais de transformação",
+        "Como montar uma rotina prática?",
+        "Prefiro aprender mais antes",
+        "Resultados são duradouros?",
+        "Posso combinar com minha alimentação?",
+        "Quero conversar sobre escolhas naturais",
+        "Dá pra fazer em família?",
+        "Tem dicas para motivação?",
+        "É seguro para todos?",
+        "Quero ver estudos e relatos reais"
+      ],
+      "quick_replies_en": [
+        "I want to start with Moringa now",
+        "Any easy recipe for my routine?",
+        "I want real transformation stories",
+        "How to build a practical routine?",
+        "I’d rather learn more first",
+        "Are results lasting?",
+        "Can I combine with my diet?",
+        "I want to talk about natural choices",
+        "Can this be done as a family?",
+        "Any tips for motivation?",
+        "Is it safe for everyone?",
+        "I want to see studies and real stories"
+      ]
+    }
+  ]
+}
 
