@@ -1,1 +1,245 @@
+{
+  "suplemento": "PRIME BIOME",
+  "titulo": "Melasma (Dark Facial Spots) / Melasma (Manchas Escuras no Rosto)",
+  "fase_1": {
+    "pt": [
+      "${userName}, as manchas escuras no rosto, conhecidas como melasma, são mais do que um simples desafio estético — são sinais do que acontece dentro do seu corpo. Muitas vezes, esse problema está ligado a desequilíbrios hormonais, excesso de exposição solar e inflamações silenciosas provocadas por dietas ricas em alimentos ultraprocessados, solos contaminados e a exposição a toxinas ambientais. Esses fatores não só impactam a saúde da pele, mas refletem o estado do seu organismo como um todo.",
+      "${userName}, o melasma pode parecer apenas um problema superficial, mas ele revela muito sobre o seu equilíbrio interno. A combinação da alimentação industrializada, solos empobrecidos e químicos presentes no ambiente pode agravar a inflamação da pele e o estresse oxidativo, desencadeando essas manchas persistentes.",
+      "Você sabia, ${userName}, que o melasma é um alerta do corpo? Essas manchas escuras indicam um desequilíbrio causado pelo consumo excessivo de alimentos processados, exposição a produtos químicos e solos contaminados, que juntos comprometem a saúde da pele e a sua vitalidade."
+    ],
+    "en": [
+      "${userName}, dark spots on your face, known as melasma, are more than a cosmetic concern — they are signals of what’s happening inside your body. Often, this issue is linked to hormonal imbalances, excessive sun exposure, and silent inflammation caused by diets high in ultra-processed foods, contaminated soils, and environmental toxins. These factors impact not only skin health but reflect your overall body condition.",
+      "${userName}, melasma might seem superficial, but it reveals much about your internal balance. The combination of industrialized food, nutrient-depleted soils, and environmental chemicals can worsen skin inflammation and oxidative stress, triggering these persistent spots.",
+      "Did you know, ${userName}, that melasma is your body’s warning? These dark spots signal imbalance caused by excessive processed food consumption, chemical exposure, and contaminated soils, all affecting your skin’s health and vitality."
+    ],
+    "quick_replies_pt": [
+      "Por que surgem manchas no rosto?",
+      "Melasma é grave?",
+      "Alimentos influenciam melasma?",
+      "Solo contaminado afeta pele?",
+      "Quero entender mais sobre melasma",
+      "Tem estudos científicos?",
+      "Como cuidar da pele naturalmente?",
+      "Quais sintomas indicam problema sério?",
+      "Quero dicas para pele saudável",
+      "Exposição solar piora melasma?",
+      "Melasma é comum?",
+      "Quando procurar ajuda?"
+    ],
+    "quick_replies_en": [
+      "Why do dark spots appear on face?",
+      "Is melasma serious?",
+      "Do foods influence melasma?",
+      "Does contaminated soil affect skin?",
+      "I want to learn more about melasma",
+      "Are there scientific studies?",
+      "How to care for skin naturally?",
+      "What symptoms indicate serious problem?",
+      "I want tips for healthy skin",
+      "Does sun exposure worsen melasma?",
+      "Is melasma common?",
+      "When to seek help?"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar uma pele saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy skin?",
+      "How would you like to start this change in your routine?"
+    ]
+  },
+  "fase_2": {
+    "pt": [
+      "${userName}, o melasma pode piorar e se tornar resistente a tratamentos se não houver cuidado com os fatores internos e externos que o influenciam. A inflamação crônica e o estresse oxidativo, causados por hábitos alimentares inadequados e exposição a toxinas, são os principais responsáveis pela progressão dessas manchas.",
+      "Você sabia, ${userName}, que a exposição contínua ao sol sem proteção e o consumo excessivo de alimentos ultraprocessados podem intensificar o melasma? Isso torna as manchas mais escuras, difíceis de tratar e causa desconforto emocional.",
+      "${userName}, ignorar o melasma pode não só afetar a estética da pele, mas também indicar um desequilíbrio sistêmico que compromete a saúde cutânea. Estudos do Journal of Dermatological Science reforçam a importância do manejo da inflamação para evitar o agravamento."
+    ],
+    "en": [
+      "${userName}, melasma can worsen and become resistant to treatments if internal and external factors are not managed. Chronic inflammation and oxidative stress, caused by poor dietary habits and toxin exposure, are main drivers of spot progression.",
+      "Did you know, ${userName}, that continuous unprotected sun exposure and excessive intake of ultra-processed foods can intensify melasma? This makes spots darker, harder to treat, and causes emotional distress.",
+      "${userName}, ignoring melasma can not only affect skin aesthetics but also indicate systemic imbalance compromising skin health. Research from Journal of Dermatological Science highlights the importance of inflammation control to prevent worsening."
+    ],
+    "quick_replies_pt": [
+      "Melasma pode piorar?",
+      "Como evitar manchas mais escuras?",
+      "Qual a relação com inflamação?",
+      "Proteção solar é essencial?",
+      "Quero saber mais sobre estresse oxidativo",
+      "Tem tratamentos naturais?",
+      "Dá para melhorar com alimentação?",
+      "Quais sintomas indicam gravidade?",
+      "Quero dicas para pele saudável",
+      "Exposição solar agrava melasma?",
+      "Melasma é comum?",
+      "Quando procurar ajuda?"
+    ],
+    "quick_replies_en": [
+      "Can melasma get worse?",
+      "How to prevent darker spots?",
+      "What is the relation to inflammation?",
+      "Is sun protection essential?",
+      "I want to learn more about oxidative stress",
+      "Are there natural treatments?",
+      "Can it improve with diet?",
+      "What symptoms indicate severity?",
+      "I want tips for healthy skin",
+      "Does sun exposure worsen melasma?",
+      "Is melasma common?",
+      "When to seek help?"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar uma pele saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy skin?",
+      "How would you like to start this change in your routine?"
+    ]
+  },
+  "fase_3": {
+    "pt": [
+      "${userName}, estudos científicos mostram que plantas como Dente-de-leão, Funcho e Babchi são ricas em antioxidantes que combatem o estresse oxidativo, reduzem a inflamação e auxiliam na regeneração da pele, promovendo a redução do melasma.",
+      "Pesquisas recentes, ${userName}, destacam que os compostos bioativos dessas plantas têm um efeito positivo na uniformização do tom da pele e na proteção contra danos ambientais, conforme evidenciado em estudos do Phytotherapy Research.",
+      "${userName}, estudos do Nutritional Journal confirmam que o uso regular dessas plantas está associado à melhora visível na aparência da pele e à redução das manchas escuras."
+    ],
+    "en": [
+      "${userName}, scientific studies show that plants like Dandelion, Fennel, and Babchi are rich in antioxidants that fight oxidative stress, reduce inflammation, and aid skin regeneration, promoting melasma reduction.",
+      "Recent research, ${userName}, highlights that bioactive compounds from these plants have a positive effect on skin tone uniformity and protection against environmental damage, as shown in studies from Phytotherapy Research.",
+      "${userName}, studies from Nutritional Journal confirm that regular use of these plants is associated with visible skin improvement and dark spot reduction."
+    ],
+    "quick_replies_pt": [
+      "Dente-de-leão ajuda melasma?",
+      "Funcho é eficaz?",
+      "Quanto tempo para ver resultado?",
+      "Posso usar todos os dias?",
+      "Babchi ajuda a uniformizar a pele?",
+      "É seguro para uso contínuo?",
+      "Quero relatos de quem melhorou",
+      "Como essas plantas agem na pele?",
+      "Posso combinar com outras plantas?",
+      "Quero dicas para começar",
+      "Quero ver estudos científicos",
+      "Quais benefícios principais?"
+    ],
+    "quick_replies_en": [
+      "Does Dandelion help melasma?",
+      "Is Fennel effective?",
+      "How long to see results?",
+      "Can I use it daily?",
+      "Does Babchi help even skin tone?",
+      "Is it safe for continuous use?",
+      "I want stories from people who improved",
+      "How do these plants work on skin?",
+      "Can I combine with other plants?",
+      "I want tips to start",
+      "I want to see scientific studies",
+      "What are the main benefits?"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar uma pele saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy skin?",
+      "How would you like to start this change in your routine?"
+    ]
+  },
+  "fase_4": {
+    "pt": [
+      "${userName}, as plantas ancestrais Dente-de-leão, Funcho e Babchi trazem para você um poder natural de transformação da pele. Usadas há séculos por suas propriedades antioxidantes e anti-inflamatórias, elas atuam combatendo o estresse oxidativo que causa manchas escuras e promovem a regeneração celular. A ciência moderna confirma que esses ingredientes fortalecem a barreira cutânea, uniformizam o tom e devolvem a vitalidade natural da pele. Enquanto muitos recorrem a tratamentos agressivos, essa combinação oferece um caminho gentil e eficaz para restaurar a saúde da sua pele, harmonizando tradição ancestral com evidências científicas contemporâneas. Incorporar essas plantas na sua rotina diária é um passo essencial para uma pele mais clara, saudável e radiante — um verdadeiro presente da natureza para o seu cuidado.",
+      "${userName}, imagine poder cuidar da sua pele com a força de plantas usadas por gerações, como o Dente-de-leão, o Funcho e o Babchi. Esses ingredientes naturais trabalham juntos para combater as causas do melasma, desde a inflamação até o estresse oxidativo, promovendo uma renovação profunda da pele. Estudos do Phytotherapy Research confirmam que a combinação desses extratos ajuda a reduzir manchas e melhorar a uniformidade do tom, sem agredir a pele. É a união do conhecimento ancestral com a ciência moderna que transforma o cuidado da sua pele em uma experiência de saúde e beleza natural, suave e eficaz.",
+      "${userName}, você merece o melhor cuidado para sua pele. O poder do Dente-de-leão, Funcho e Babchi vai além da tradição: é um cuidado que a ciência comprovou e que respeita o equilíbrio natural do seu corpo. Essas plantas auxiliam na diminuição das manchas escuras, fortalecem a barreira cutânea e estimulam a regeneração celular, promovendo um tom uniforme e revitalizado. Incorporar esses ingredientes na sua rotina é garantir um tratamento natural, seguro e eficaz para seu melasma, devolvendo confiança e brilho ao seu rosto."
+    ],
+    "en": [
+      "${userName}, ancestral plants like Dandelion, Fennel, and Babchi bring you a natural power to transform your skin. Used for centuries for their antioxidant and anti-inflammatory properties, they fight oxidative stress that causes dark spots and promote cell regeneration. Modern science confirms these ingredients strengthen the skin barrier, even skin tone, and restore natural vitality. While many resort to harsh treatments, this combination offers a gentle and effective path to restore your skin’s health, blending ancient wisdom with contemporary scientific evidence. Incorporating these plants into your daily routine is an essential step toward clearer, healthier, and radiant skin — a true gift from nature for your care.",
+      "${userName}, imagine caring for your skin with the strength of plants used for generations, like Dandelion, Fennel, and Babchi. These natural ingredients work together to combat melasma causes, from inflammation to oxidative stress, promoting deep skin renewal. Studies from Phytotherapy Research confirm this extract combination helps reduce spots and improve tone uniformity without harming the skin. It’s the union of ancestral knowledge and modern science that transforms your skin care into a natural, gentle, and effective experience of health and beauty.",
+      "${userName}, you deserve the best care for your skin. The power of Dandelion, Fennel, and Babchi goes beyond tradition: it’s care proven by science that respects your body’s natural balance. These plants help reduce dark spots, strengthen the skin barrier, and stimulate cell regeneration, promoting an even and revitalized tone. Incorporating these ingredients into your routine guarantees a natural, safe, and effective treatment for melasma, restoring confidence and glow to your face."
+    ],
+    "quick_replies_pt": [
+      "Como usar essas plantas na rotina?",
+      "Tem receita fácil para manchas?",
+      "Posso usar todos os dias?",
+      "É seguro para todos?",
+      "Resultados são rápidos?",
+      "Quero relatos reais de sucesso",
+      "Dá para combinar com alimentação?",
+      "Quanto tempo para ver diferença?",
+      "Plantas ajudam na uniformização?",
+      "Quero dicas práticas",
+      "Quero ver estudos sobre essas plantas",
+      "Plantas clareiam mais que cremes?"
+    ],
+    "quick_replies_en": [
+      "How to use these plants in the routine?",
+      "Any easy recipe for dark spots?",
+      "Can I use it daily?",
+      "Is it safe for everyone?",
+      "Are results fast?",
+      "I want real success stories",
+      "Can I combine with my diet?",
+      "How long to see a difference?",
+      "Do plants help with tone evenness?",
+      "I want practical tips",
+      "I want to see studies on these plants",
+      "Do plants lighten more than creams?"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar uma pele saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy skin?",
+      "How would you like to start this change in your routine?"
+    ]
+  },
+  "fase_5": {
+    "pt": [
+      "${userName}, cuidar das manchas escuras da pele naturalmente pode renovar sua autoestima e a saúde do seu rosto. Com o poder das plantas ancestrais e hábitos saudáveis, sua pele terá suporte para um tom uniforme, radiante e saudável. Posso ajudar você com receitas, dicas e um plano prático para essa transformação.",
+      "A mudança começa com escolhas conscientes, ${userName}. Ao incluir plantas como Dente-de-leão, Funcho e Babchi na sua rotina e proteger sua pele, você apoia sua beleza natural. Estou aqui para guiar você com passos simples e personalizados.",
+      "${userName}, sua jornada para uma pele uniforme e saudável pode começar agora. Com essa combinação natural e cuidados consistentes, sua pele terá o suporte necessário para brilhar. Posso fornecer um plano com orientações para essa nova fase."
+    ],
+    "en": [
+      "${userName}, caring for dark skin spots naturally can renew your self-esteem and facial health. With the power of ancestral plants and healthy habits, your skin will be supported for a uniform, radiant, and healthy tone. I can help you with recipes, tips, and a practical plan for this transformation.",
+      "Change begins with conscious choices, ${userName}. By including plants like Dandelion, Fennel, and Babchi in your routine and protecting your skin, you support your natural beauty. I am here to guide you with simple, personalized steps.",
+      "${userName}, your journey to even and healthy skin can start now. With this natural combination and consistent care, your skin will have the support it needs to shine. I can provide a plan with guidance for this new phase."
+    ],
+    "quick_replies_pt": [
+      "Quero começar já com plantas naturais",
+      "Tem receita fácil para manchas",
+      "Quero relatos reais de transformação",
+      "Como montar uma rotina prática?",
+      "Prefiro aprender mais antes",
+      "Resultados são duradouros?",
+      "Posso combinar com minha alimentação?",
+      "Quero conversar sobre escolhas naturais",
+      "Dá pra fazer em família?",
+      "Tem dicas para motivação?",
+      "É seguro para todos?",
+      "Quero ver estudos e relatos reais"
+    ],
+    "quick_replies_en": [
+      "I want to start with natural plants now",
+      "Any easy recipe for dark spots",
+      "I want real transformation stories",
+      "How to build a practical routine?",
+      "I’d rather learn more first",
+      "Are results lasting?",
+      "Can I combine it with my diet?",
+      "I want to talk about natural choices",
+      "Can this be done as a family?",
+      "Any tips for motivation?",
+      "Is it safe for everyone?",
+      "I want to see studies and real stories"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar uma pele saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy skin?",
+      "How would you like to start this change in your routine?"
+    ]
+  }
+}
 
