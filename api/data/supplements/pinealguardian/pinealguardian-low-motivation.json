@@ -1,1 +1,232 @@
+{
+  "supplement": "Pineal Guardian",
+  "symptom": "Low Motivation",
+  "phases": [
+    {
+      "phase": "Fase 1 — Conexão/Conscientização",
+      "copy": {
+        "pt": [
+          "${userName}, você tem sentido falta de motivação, mesmo quando precisa realizar tarefas importantes? Isso pode ser um sinal de que sua mente e corpo estão sobrecarregados. A alimentação atual, repleta de ultraprocessados, solos empobrecidos e carnes tratadas com hormônios, pode afetar seu equilíbrio neurológico, dificultando o impulso necessário para agir.",
+          "A falta de motivação, ${userName}, pode estar relacionada a desequilíbrios alimentares e ambientais. Alimentos processados, solos contaminados e carnes hormonizadas aumentam a inflamação e prejudicam o funcionamento adequado do cérebro, o que afeta diretamente a sua disposição e motivação.",
+          "Você sabia, ${userName}, que uma alimentação desequilibrada pode afetar diretamente sua motivação e disposição para as atividades diárias? A combinação de alimentos ultraprocessados, solos empobrecidos e carnes com hormônios afeta a função do cérebro, dificultando o foco e a ação."
+        ],
+        "en": [
+          "${userName}, have you been feeling a lack of motivation, even when you need to get important tasks done? This could be a sign that your mind and body are overloaded. Modern diets, full of ultra-processed foods, nutrient-depleted soils, and hormone-treated meats, can affect your neurological balance, making it harder to find the drive to act.",
+          "Lack of motivation, ${userName}, may be related to dietary and environmental imbalances. Processed foods, contaminated soils, and hormone-treated meats increase inflammation and hinder proper brain function, directly affecting your drive and motivation.",
+          "Did you know, ${userName}, that an unbalanced diet can directly affect your motivation and willingness to engage in daily activities? The combination of ultra-processed foods, depleted soils, and hormone-treated meats impairs brain function, making it harder to focus and take action."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Por que estou sem motivação?",
+          "Alimentos afetam minha motivação?",
+          "Solo contaminado prejudica minha disposição?",
+          "Carnes com hormônios influenciam?",
+          "Quero entender mais sobre motivação",
+          "Tem estudos científicos?",
+          "Como melhorar minha motivação naturalmente?",
+          "Quais sintomas indicam falta de motivação grave?",
+          "Quero dicas para ter mais disposição",
+          "Estresse piora a motivação?",
+          "Falta de motivação é comum?",
+          "Quando buscar ajuda profissional?"
+        ],
+        "en": [
+          "Why do I have no motivation?",
+          "Do foods affect my motivation?",
+          "Does contaminated soil affect my drive?",
+          "Do hormone-treated meats influence?",
+          "I want to learn more about motivation",
+          "Are there scientific studies?",
+          "How to boost motivation naturally?",
+          "What symptoms indicate severe lack of motivation?",
+          "I want tips to feel more energized",
+          "Does stress worsen motivation?",
+          "Is lack of motivation common?",
+          "When to seek professional help?"
+        ]
+      }
+    },
+    {
+      "phase": "Fase 2 — Gravidade/Consequência",
+      "copy": {
+        "pt": [
+          "${userName}, a falta de motivação constante pode afetar sua produtividade e bem-estar, aumentando o risco de estresse, ansiedade e até depressão. Estudos mostram que uma dieta inadequada e exposição a toxinas ambientais contribuem para a diminuição da disposição e comprometem a saúde mental.",
+          "Você sabia, ${userName}, que a motivação baixa prolongada pode desencadear um ciclo de estresse e fadiga? Pesquisas indicam que a alimentação desequilibrada e a exposição a substâncias químicas nos alimentos prejudicam o funcionamento do cérebro e a produção de neurotransmissores essenciais para o bem-estar.",
+          "${userName}, quando a falta de motivação persiste, o corpo e a mente entram em um ciclo negativo. Dados da Organização Mundial da Saúde mostram que maus hábitos alimentares e ambientais são fatores chave na prevalência dessa condição."
+        ],
+        "en": [
+          "${userName}, constant lack of motivation can affect your productivity and well-being, increasing the risk of stress, anxiety, and even depression. Studies show that poor diet and exposure to environmental toxins contribute to decreased energy and impair mental health.",
+          "Did you know, ${userName}, that prolonged low motivation can trigger a cycle of stress and fatigue? Research indicates that an unbalanced diet and exposure to chemicals in food harm brain function and the production of neurotransmitters essential for well-being.",
+          "${userName}, when lack of motivation persists, the body and mind enter a negative cycle. World Health Organization data show that poor dietary and environmental habits are key factors in the prevalence of this condition."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Falta de motivação pode piorar?",
+          "Como alimentos afetam a motivação?",
+          "Solo contaminado prejudica minha disposição?",
+          "Carnes hormonizadas afetam minha motivação?",
+          "Quero saber mais sobre como melhorar minha motivação",
+          "Falta de motivação afeta saúde mental?",
+          "Dá para melhorar naturalmente?",
+          "Quais sinais indicam gravidade?",
+          "Quero dicas para ter mais motivação",
+          "Estresse piora a motivação?",
+          "Tem estudos científicos?",
+          "Quando buscar ajuda?"
+        ],
+        "en": [
+          "Can lack of motivation get worse?",
+          "How do foods affect motivation?",
+          "Does contaminated soil harm my drive?",
+          "Do hormone-treated meats affect motivation?",
+          "I want to learn more about how to improve motivation",
+          "Does lack of motivation affect mental health?",
+          "Can it be improved naturally?",
+          "What symptoms indicate severity?",
+          "I want tips to get more motivated",
+          "Does stress worsen motivation?",
+          "Are there scientific studies?",
+          "When to seek help?"
+        ]
+      }
+    },
+    {
+      "phase": "Fase 3 — Prova/Evidência",
+      "copy": {
+        "pt": [
+          "${userName}, estudos indicam que certos compostos naturais podem ajudar a aumentar a motivação, melhorar o foco e reduzir a inflamação no cérebro. Pesquisas publicadas no Frontiers in Pharmacology destacam os benefícios neuroprotetores que esses compostos oferecem.",
+          "Pesquisas recentes confirmam que compostos antioxidantes ajudam a melhorar o equilíbrio neurológico, favorecendo a disposição e o foco. Estudos do Journal of Ethnopharmacology reforçam os efeitos positivos desses compostos no bem-estar geral.",
+          "${userName}, estudos do Nutritional Journal mostram que o consumo regular de compostos naturais está associado a uma maior motivação, produtividade e equilíbrio emocional, promovendo bem-estar."
+        ],
+        "en": [
+          "${userName}, studies indicate that certain natural compounds can help boost motivation, improve focus, and reduce brain inflammation. Research published in Frontiers in Pharmacology highlights the neuroprotective benefits these compounds provide.",
+          "Recent research confirms that antioxidant compounds help improve neurological balance, promoting energy and focus. Studies from the Journal of Ethnopharmacology reinforce the positive effects of these compounds on overall well-being.",
+          "${userName}, studies from the Nutritional Journal show that regular consumption of natural compounds is linked to increased motivation, productivity, and emotional balance, promoting well-being."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Compostos naturais ajudam a motivação?",
+          "Tem estudos comprovando?",
+          "Quanto tempo para sentir efeito?",
+          "Posso usar todos os dias?",
+          "Ajuda a melhorar disposição?",
+          "É seguro para uso contínuo?",
+          "Quero relatos de quem melhorou",
+          "Como esses compostos atuam no cérebro?",
+          "Posso combinar com outras plantas?",
+          "Quero dicas para começar",
+          "Quero ver estudos científicos",
+          "Quais benefícios principais?"
+        ],
+        "en": [
+          "Do natural compounds help motivation?",
+          "Are there studies proving this?",
+          "How long to feel effects?",
+          "Can I use it daily?",
+          "Does it help improve energy?",
+          "Is it safe for continuous use?",
+          "I want stories from people who improved",
+          "How do these compounds act on the brain?",
+          "Can I combine with other plants?",
+          "I want tips to start",
+          "I want to see scientific studies",
+          "What are the main benefits?"
+        ]
+      }
+    },
+    {
+      "phase": "Fase 4 — Solução Natural/Plantas",
+      "copy": {
+        "pt": [
+          "Plantas e compostos naturais ajudam a melhorar a motivação, aumentar o foco e reduzir a inflamação cerebral. Esses compostos protegem o sistema nervoso e promovem o equilíbrio emocional.",
+          "A Moringa e outras plantas têm efeitos neuroprotetores, que ajudam a melhorar o foco, aumentar a energia e reduzir a fadiga mental. Seu uso tradicional, aliado a pesquisas científicas, reforça sua eficácia no aumento da motivação.",
+          "Compostos naturais oferecem nutrientes essenciais que estimulam a mente e aumentam a motivação. Seu uso regular pode ser uma forma eficaz de melhorar a produtividade e bem-estar."
+        ],
+        "en": [
+          "Plants and natural compounds help improve motivation, increase focus, and reduce brain inflammation. These compounds protect the nervous system and promote emotional balance.",
+          "Moringa and other plants have neuroprotective effects that help improve focus, increase energy, and reduce mental fatigue. Their traditional use, combined with scientific research, reinforces their effectiveness in boosting motivation.",
+          "Natural compounds offer essential nutrients that stimulate the mind and boost motivation. Regular use can be an effective way to improve productivity and well-being."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Como usar para aumentar motivação?",
+          "Tem receita para aumentar disposição?",
+          "Ajuda a reduzir estresse?",
+          "Posso usar todos os dias?",
+          "Quero relatos de quem melhorou",
+          "Quanto tempo para ver resultado?",
+          "É seguro para uso contínuo?",
+          "Posso combinar com outras plantas?",
+          "Quero dicas para começar",
+          "Ajuda no equilíbrio neurológico?",
+          "Quero ver estudos científicos",
+          "Dá para usar com alimentação variada?"
+        ],
+        "en": [
+          "How to use to boost motivation?",
+          "Any recipe for more energy?",
+          "Does it help reduce stress?",
+          "Can I use it daily?",
+          "I want stories from people who improved",
+          "How long to see results?",
+          "Is it safe for continuous use?",
+          "Can I combine it with other plants?",
+          "I want tips to start",
+          "Does it help with neurological balance?",
+          "I want to see scientific studies",
+          "Can it be used with varied diet?"
+        ]
+      }
+    },
+    {
+      "phase": "Fase 5 — Próximo Passo",
+      "copy": {
+        "pt": [
+          "${userName}, melhorar sua motivação naturalmente pode transformar sua rotina e produtividade. Com práticas naturais e hábitos saudáveis, você pode alcançar mais disposição e foco. Posso ajudar com receitas, dicas e um plano prático para essa transformação.",
+          "A mudança começa com pequenas escolhas, ${userName}. Ao incluir compostos naturais em sua rotina, você ajuda seu corpo a funcionar melhor, aumentando sua motivação e disposição. Estou aqui para guiar você com passos simples e personalizados.",
+          "${userName}, sua jornada para mais motivação e foco pode começar agora. Com hábitos saudáveis e práticas naturais, você terá o suporte necessário para melhorar a sua disposição e produtividade. Posso fornecer um plano com orientações e cuidados para essa nova fase."
+        ],
+        "en": [
+          "${userName}, boosting motivation naturally can transform your routine and productivity. With natural practices and healthy habits, you can achieve more energy and focus. I can help with recipes, tips, and a practical plan for this transformation.",
+          "The change begins with small choices, ${userName}. By including natural compounds in your routine, you help your body perform better, increasing your motivation and energy. I’m here to guide you with simple, personalized steps.",
+          "${userName}, your journey to more motivation and focus can start now. With healthy habits and natural practices, you’ll have the support needed to improve your energy and productivity. I can provide a plan with guidance and care for this new phase."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Quero começar já",
+          "Tem receita fácil para motivação",
+          "Quero relatos reais de transformação",
+          "Como montar uma rotina prática?",
+          "Prefiro aprender mais antes",
+          "Resultados são duradouros?",
+          "Posso combinar com minha alimentação?",
+          "Quero conversar sobre escolhas naturais",
+          "Dá para fazer em família?",
+          "Tem dicas para motivação?",
+          "É seguro para todos?",
+          "Quero ver estudos e relatos reais"
+        ],
+        "en": [
+          "I want to start now",
+          "Any easy recipe for motivation",
+          "I want real transformation stories",
+          "How to build a practical routine?",
+          "I’d rather learn more first",
+          "Are results lasting?",
+          "Can I combine with my diet?",
+          "I want to talk about natural choices",
+          "Can this be done as a family?",
+          "Any tips for motivation?",
+          "Is it safe for everyone?",
+          "I want to see studies and real stories"
+        ]
+      }
+    }
+  ]
+}
 
