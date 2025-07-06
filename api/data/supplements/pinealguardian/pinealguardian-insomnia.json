@@ -1,1 +1,232 @@
+{
+  "supplement": "Pineal Guardian",
+  "symptom": "Insomnia",
+  "phases": [
+    {
+      "phase": "Fase 1 — Conexão/Conscientização",
+      "copy": {
+        "pt": [
+          "${userName}, você tem dificuldades para pegar no sono ou acorda várias vezes durante a noite? A insônia não é apenas um problema de descanso, mas um sinal de que seu corpo e mente estão desequilibrados. A alimentação atual, cheia de ultraprocessados, solos empobrecidos e carnes tratadas com hormônios, pode interferir na produção dos neurotransmissores responsáveis pelo sono. Além disso, a inflamação silenciosa gerada por esses fatores pode dificultar a recuperação natural do organismo enquanto você dorme.",
+          "Você sabia, ${userName}, que a insônia pode estar relacionada ao estilo de vida e à qualidade dos alimentos que você consome? Alimentos processados, solos contaminados e carnes hormonizadas podem desequilibrar seus hormônios, dificultando o descanso e a recuperação do corpo durante a noite.",
+          "A falta de sono reparador, ${userName}, pode ser mais do que um simples desconforto. Muitas vezes, ela está ligada à alimentação e aos hábitos diários. A combinação de ultraprocessados, solos empobrecidos e carnes com hormônios afeta diretamente o sistema nervoso, prejudicando a qualidade do seu sono."
+        ],
+        "en": [
+          "${userName}, do you have trouble falling asleep or wake up several times during the night? Insomnia is not just a rest problem but a sign your body and mind are out of balance. Modern diets full of ultra-processed foods, nutrient-depleted soils, and hormone-treated meats can interfere with neurotransmitter production responsible for sleep. Moreover, silent inflammation from these factors can hinder your body’s natural recovery while you sleep.",
+          "Did you know, ${userName}, that insomnia may be linked to lifestyle and the quality of the food you consume? Processed foods, contaminated soils, and hormone-treated meats can disrupt your hormones, making it harder to rest and allowing your body to recover overnight.",
+          "Lack of restorative sleep, ${userName}, may be more than just discomfort. Often, it’s linked to diet and daily habits. The combination of ultra-processed foods, depleted soils, and hormone-treated meats directly affects the nervous system, disrupting the quality of your sleep."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Por que não consigo dormir?",
+          "Alimentos afetam o sono?",
+          "Solo contaminado prejudica?",
+          "Carnes com hormônios influenciam?",
+          "Quero entender mais sobre insônia",
+          "Tem estudos científicos?",
+          "Como melhorar o sono naturalmente?",
+          "Quais sintomas indicam insônia grave?",
+          "Quero dicas para dormir melhor",
+          "Estresse piora a insônia?",
+          "É normal ter insônia hoje?",
+          "Insônia pode virar doença?"
+        ],
+        "en": [
+          "Why can’t I sleep?",
+          "Do foods affect sleep?",
+          "Does contaminated soil harm?",
+          "Do hormone-treated meats influence?",
+          "I want to learn more about insomnia",
+          "Are there scientific studies?",
+          "How to improve sleep naturally?",
+          "What symptoms indicate severe insomnia?",
+          "I want tips to sleep better",
+          "Does stress worsen insomnia?",
+          "Is insomnia normal nowadays?",
+          "Can insomnia become a disease?"
+        ]
+      }
+    },
+    {
+      "phase": "Fase 2 — Gravidade/Consequência",
+      "copy": {
+        "pt": [
+          "${userName}, a insônia persistente pode afetar sua saúde física e mental, aumentando o risco de ansiedade, depressão e doenças cardiovasculares. Estudos do Sleep Foundation indicam que a inflamação crônica provocada por uma dieta rica em ultraprocessados, solos empobrecidos e carnes com hormônios piora a qualidade do sono e o equilíbrio hormonal.",
+          "Você sabia, ${userName}, que a falta de sono contínua pode desencadear processos inflamatórios que comprometem o sistema nervoso e a imunidade? Pesquisas mostram que a exposição a alimentos processados e contaminados afeta a produção dos hormônios do sono, dificultando o descanso.",
+          "${userName}, a insônia não tratada pode levar a um ciclo vicioso de fadiga e piora da saúde geral. Dados da Organização Mundial da Saúde confirmam que maus hábitos alimentares e ambientais são fatores-chave que agravam esses sintomas e comprometem o bem-estar."
+        ],
+        "en": [
+          "${userName}, persistent insomnia can affect your physical and mental health, increasing risk of anxiety, depression, and cardiovascular diseases. Sleep Foundation studies indicate chronic inflammation caused by a diet rich in ultra-processed foods, depleted soils, and hormone-treated meats worsens sleep quality and hormonal balance.",
+          "Did you know, ${userName}, that continuous lack of sleep can trigger inflammatory processes compromising the nervous system and immunity? Research shows exposure to processed and contaminated foods affects sleep hormone production, making rest difficult.",
+          "${userName}, untreated insomnia can lead to a vicious cycle of fatigue and worsening health. World Health Organization data confirm poor dietary and environmental habits are key factors aggravating these symptoms and compromising well-being."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Insônia pode causar doenças?",
+          "Como alimentos pioram o sono?",
+          "Solo contaminado afeta sono?",
+          "Carnes hormonizadas prejudicam?",
+          "Quero saber mais sobre sono",
+          "Insônia afeta imunidade?",
+          "Dá para melhorar naturalmente?",
+          "Quais sinais indicam gravidade?",
+          "Quero dicas para dormir melhor",
+          "Estresse piora insônia?",
+          "Tem estudos científicos?",
+          "Como cuidar do sono?"
+        ],
+        "en": [
+          "Can insomnia cause diseases?",
+          "How do foods worsen sleep?",
+          "Does contaminated soil affect sleep?",
+          "Do hormone-treated meats harm?",
+          "I want to learn more about sleep",
+          "Does insomnia affect immunity?",
+          "Can it be improved naturally?",
+          "What symptoms indicate severity?",
+          "I want tips to sleep better",
+          "Does stress worsen insomnia?",
+          "Are there scientific studies?",
+          "How to care for sleep?"
+        ]
+      }
+    },
+    {
+      "phase": "Fase 3 — Prova/Evidência",
+      "copy": {
+        "pt": [
+          "${userName}, estudos indicam que certos compostos naturais podem ajudar a regular o sono, combatendo a inflamação e promovendo o equilíbrio do sistema nervoso. Pesquisas publicadas no Frontiers in Pharmacology mostram seu potencial para melhorar a qualidade do sono e reduzir a insônia.",
+          "Pesquisas recentes confirmam que antioxidantes e compostos bioativos ajudam a reduzir o estresse oxidativo e equilibrar os neurotransmissores, favorecendo o descanso. Estudos do Journal of Ethnopharmacology reforçam esses benefícios.",
+          "${userName}, estudos do Nutritional Journal mostram que o uso regular de certos compostos naturais está associado à melhora do padrão do sono e à redução dos episódios de insônia, promovendo maior equilíbrio e qualidade de vida."
+        ],
+        "en": [
+          "${userName}, studies indicate certain natural compounds help regulate sleep by combating inflammation and promoting nervous system balance. Research published in Frontiers in Pharmacology shows its potential to improve sleep quality and reduce insomnia.",
+          "Recent research confirms antioxidants and bioactive compounds help reduce oxidative stress and balance neurotransmitters, favoring rest. Studies from the Journal of Ethnopharmacology reinforce these benefits.",
+          "${userName}, studies from the Nutritional Journal show that regular use of certain natural compounds is linked to improved sleep patterns and reduced insomnia episodes, promoting greater balance and quality of life."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Moringa ajuda a dormir melhor?",
+          "Tem estudos comprovando?",
+          "Quanto tempo para sentir efeito?",
+          "Posso usar todos os dias?",
+          "Ajuda a reduzir insônia?",
+          "É seguro para uso contínuo?",
+          "Quero relatos de quem melhorou sono",
+          "Como a Moringa age no sono?",
+          "Posso combinar com outras plantas?",
+          "Quero dicas para começar",
+          "Quero ver estudos científicos",
+          "Quais benefícios principais?"
+        ],
+        "en": [
+          "Does Moringa help improve sleep?",
+          "Are there studies proving this?",
+          "How long to feel effects?",
+          "Can I use it daily?",
+          "Does it help reduce insomnia?",
+          "Is it safe for continuous use?",
+          "I want stories from people who improved sleep",
+          "How does Moringa act on sleep?",
+          "Can I combine it with other plants?",
+          "I want tips to start",
+          "I want to see scientific studies",
+          "What are the main benefits?"
+        ]
+      }
+    },
+    {
+      "phase": "Fase 4 — Solução Natural/Plantas",
+      "copy": {
+        "pt": [
+          "Certas plantas e compostos naturais ajudam a regular o sono, melhorar a qualidade do descanso e reduzir a insônia. Essas plantas combatem a inflamação e equilibram o sistema nervoso, promovendo um sono mais profundo e reparador.",
+          "${userName}, algumas plantas têm propriedades que ajudam a regular os neurotransmissores, reduzir a inflamação e promover o equilíbrio do sistema nervoso, favorecendo um sono mais tranquilo. Seu uso tradicional aliado a evidências científicas reforça sua eficácia.",
+          "Utilizada por séculos em diversas culturas, a Moringa e outras plantas oferecem nutrientes essenciais que promovem o relaxamento e o equilíbrio do corpo, facilitando o adormecer e melhorando a qualidade do sono."
+        ],
+        "en": [
+          "Certain plants and natural compounds help regulate sleep, improve rest quality, and reduce insomnia. These plants combat inflammation and balance the nervous system, promoting deeper, restorative sleep.",
+          "${userName}, some plants have properties that help regulate neurotransmitters, reduce inflammation, and promote nervous system balance, favoring a more peaceful sleep. Their traditional use combined with scientific evidence reinforces their effectiveness.",
+          "Used for centuries in various cultures, Moringa and other plants offer essential nutrients that promote relaxation and body balance, helping to fall asleep and improve sleep quality."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Como usar Moringa para insônia?",
+          "Tem receita para dormir melhor?",
+          "Ajuda a reduzir ansiedade?",
+          "Posso usar todos os dias?",
+          "Quero relatos de quem melhorou sono",
+          "Quanto tempo para ver resultado?",
+          "É seguro para uso contínuo?",
+          "Posso combinar com outras plantas?",
+          "Quero dicas para começar",
+          "Ajuda no equilíbrio do sono?",
+          "Quero ver estudos científicos",
+          "Dá para usar com alimentação variada?"
+        ],
+        "en": [
+          "How to use Moringa for insomnia?",
+          "Any recipe for better sleep?",
+          "Does it help reduce anxiety?",
+          "Can I use it daily?",
+          "I want stories from people who improved sleep",
+          "How long to see results?",
+          "Is it safe for continuous use?",
+          "Can I combine it with other plants?",
+          "I want tips to start",
+          "Does it help sleep balance?",
+          "I want to see scientific studies",
+          "Can it be used with varied diet?"
+        ]
+      }
+    },
+    {
+      "phase": "Fase 5 — Próximo Passo",
+      "copy": {
+        "pt": [
+          "${userName}, cuidar da insônia de forma natural pode transformar sua qualidade de vida e disposição. Ao adotar hábitos saudáveis e práticas naturais, você pode conquistar um sono mais profundo e restaurador. Posso ajudar com receitas, dicas e um plano prático para essa transformação.",
+          "A mudança começa com pequenas escolhas, ${userName}. Ao incluir alimentos naturais e equilibrados na sua rotina, você pode apoiar seu corpo a ter noites de sono mais tranquilas. Estou aqui para guiar você com passos simples e personalizados.",
+          "${userName}, sua jornada para noites de sono restauradoras pode começar agora. Com uma alimentação equilibrada e práticas naturais, seu corpo terá o suporte necessário para melhorar a qualidade do descanso. Posso fornecer um plano com orientações e cuidados para essa nova fase."
+        ],
+        "en": [
+          "${userName}, caring for insomnia naturally can transform your quality of life and well-being. By adopting healthy habits and natural practices, you can achieve deeper, restorative sleep. I can help with recipes, tips, and a practical plan for this transformation.",
+          "The change begins with small choices, ${userName}. By including natural and balanced foods in your routine, you can support your body in achieving more peaceful nights of sleep. I’m here to guide you with simple, personalized steps.",
+          "${userName}, your journey to restorative sleep can start now. With balanced eating and natural practices, your body will have the support needed to improve sleep quality. I can provide a plan with guidance and care for this new phase."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Quero começar já com Moringa",
+          "Tem receita fácil para dormir bem",
+          "Quero relatos reais de transformação",
+          "Como montar uma rotina prática?",
+          "Prefiro aprender mais antes",
+          "Resultados são duradouros?",
+          "Posso combinar com minha alimentação?",
+          "Quero conversar sobre escolhas naturais",
+          "Dá para fazer em família?",
+          "Tem dicas para motivação?",
+          "É seguro para todos?",
+          "Quero ver estudos e relatos reais"
+        ],
+        "en": [
+          "I want to start with Moringa now",
+          "Any easy recipe for better sleep",
+          "I want real transformation stories",
+          "How to build a practical routine?",
+          "I’d rather learn more first",
+          "Are results lasting?",
+          "Can I combine with my diet?",
+          "I want to talk about natural choices",
+          "Can this be done as a family?",
+          "Any tips for motivation?",
+          "Is it safe for everyone?",
+          "I want to see studies and real stories"
+        ]
+      }
+    }
+  ]
+}
 
