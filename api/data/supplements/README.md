@@ -20,12 +20,12 @@ Cada suplemento é representado por um arquivo `.json` e segue o padrão abaixo:
 
 ```json
 {
-  "suplemento": "Nome do suplemento",
+  "suplemento": "Mitolyn",
   "sintomas": {
-    "sintoma_exemplo": {
+    "gordura_abdominal_resistente": {
       "fase_1": {
-        "copy_pt": ["Texto de introdução em português"],
-        "copy_en": ["Intro text in English"],
+        "copy_pt": ["Texto de introdução sobre gordura abdominal resistente"],
+        "copy_en": ["Introduction text about stubborn belly fat"],
         "quick_replies_pt": ["Resposta rápida 1", "Resposta rápida 2"],
         "quick_replies_en": ["Quick reply 1", "Quick reply 2"],
         "reflective_questions_pt": ["Pergunta reflexiva 1", "Pergunta reflexiva 2"],
