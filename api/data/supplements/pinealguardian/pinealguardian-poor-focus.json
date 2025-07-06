@@ -1,1 +1,232 @@
+{
+  "supplement": "Pineal Guardian",
+  "symptom": "Poor Focus",
+  "phases": [
+    {
+      "phase": "Fase 1 — Conexão/Conscientização",
+      "copy": {
+        "pt": [
+          "${userName}, você já percebeu que, apesar de tentar, seu foco parece não estar presente quando mais precisa? A dificuldade em manter a atenção pode ser um sinal de que seu cérebro está sobrecarregado por fatores invisíveis, como a alimentação repleta de ultraprocessados, solos empobrecidos e carnes tratadas com hormônios. Esses fatores aumentam a inflamação cerebral, afetando sua capacidade de concentração.",
+          "Falta de foco constante, ${userName}, pode ser um reflexo do impacto da alimentação e do ambiente no seu cérebro. A exposição a alimentos processados e a toxinas ambientais pode dificultar a conexão entre os neurotransmissores, comprometendo seu desempenho mental.",
+          "Você sabia, ${userName}, que sua alimentação e o ambiente ao seu redor afetam diretamente seu foco? A combinação de dietas industrializadas, solos contaminados e carnes com hormônios interfere na função cerebral e pode prejudicar seu poder de concentração."
+        ],
+        "en": [
+          "${userName}, have you noticed that, despite trying, your focus seems absent when you need it the most? Difficulty in maintaining attention may be a sign that your brain is overloaded by invisible factors like diets full of ultra-processed foods, nutrient-depleted soils, and hormone-treated meats. These factors increase brain inflammation, affecting your concentration ability.",
+          "Constant lack of focus, ${userName}, can be a reflection of the impact that diet and the environment have on your brain. Exposure to processed foods and environmental toxins can disrupt neurotransmitter connections, impairing mental performance.",
+          "Did you know, ${userName}, that your diet and environment around you directly affect your focus? The combination of industrialized diets, contaminated soils, and hormone-treated meats interferes with brain function and can impair your concentration."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Por que não consigo focar?",
+          "Alimentos afetam a concentração?",
+          "Solo contaminado influencia o foco?",
+          "Carnes com hormônios prejudicam?",
+          "Quero entender mais sobre foco",
+          "Tem estudos científicos?",
+          "Como melhorar o foco naturalmente?",
+          "Quais sintomas indicam um problema sério?",
+          "Quero dicas para aumentar a concentração",
+          "Estresse piora o foco?",
+          "Falta de foco é comum hoje?",
+          "Quando procurar ajuda médica?"
+        ],
+        "en": [
+          "Why can't I focus?",
+          "Do foods affect concentration?",
+          "Does contaminated soil influence focus?",
+          "Do hormone-treated meats harm focus?",
+          "I want to understand more about focus",
+          "Are there scientific studies?",
+          "How to improve focus naturally?",
+          "What symptoms indicate a serious problem?",
+          "I want tips to improve concentration",
+          "Does stress worsen focus?",
+          "Is lack of focus common nowadays?",
+          "When to seek medical help?"
+        ]
+      }
+    },
+    {
+      "phase": "Fase 2 — Gravidade/Consequência",
+      "copy": {
+        "pt": [
+          "${userName}, a falta de foco persistente pode afetar sua produtividade, memória e até o seu humor, prejudicando sua qualidade de vida. Estudos mostram que a inflamação cerebral provocada por uma alimentação inadequada e exposição a toxinas ambientais pode prejudicar o foco e a clareza mental.",
+          "Você sabia, ${userName}, que a dificuldade em focar pode ser uma indicação de um desequilíbrio neurológico causado pela dieta e pelo ambiente ao seu redor? Alimentação rica em ultraprocessados, solos contaminados e carnes hormonizadas podem afetar diretamente seu desempenho cognitivo.",
+          "${userName}, quando a falta de foco se torna constante, ela pode evoluir para distúrbios mais graves, como transtornos cognitivos. A Organização Mundial da Saúde alerta para o impacto da má alimentação e ambiente contaminado na saúde mental e capacidade de concentração."
+        ],
+        "en": [
+          "${userName}, persistent lack of focus can affect your productivity, memory, and even your mood, impairing your quality of life. Studies show that brain inflammation caused by poor diet and exposure to environmental toxins can hinder focus and mental clarity.",
+          "Did you know, ${userName}, that difficulty focusing may indicate a neurological imbalance caused by diet and your environment? Diets rich in ultra-processed foods, contaminated soils, and hormone-treated meats can directly affect your cognitive performance.",
+          "${userName}, when lack of focus becomes constant, it can evolve into more severe disorders, such as cognitive impairments. The World Health Organization warns about the impact of poor diet and contaminated environment on mental health and concentration ability."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Falta de foco pode piorar?",
+          "Como alimentos afetam a concentração?",
+          "Solo contaminado prejudica o foco?",
+          "Carnes hormonizadas influenciam?",
+          "Quero saber mais sobre concentração",
+          "Falta de foco afeta a memória?",
+          "Dá para melhorar naturalmente?",
+          "Quais sintomas indicam gravidade?",
+          "Quero dicas para melhorar concentração",
+          "Estresse piora foco?",
+          "Tem estudos científicos?",
+          "Quando procurar ajuda?"
+        ],
+        "en": [
+          "Can lack of focus get worse?",
+          "How do foods affect concentration?",
+          "Does contaminated soil harm focus?",
+          "Do hormone-treated meats influence?",
+          "I want to learn more about concentration",
+          "Does lack of focus affect memory?",
+          "Can it be improved naturally?",
+          "What symptoms indicate severity?",
+          "I want tips to improve focus",
+          "Does stress worsen focus?",
+          "Are there scientific studies?",
+          "When to seek help?"
+        ]
+      }
+    },
+    {
+      "phase": "Fase 3 — Prova/Evidência",
+      "copy": {
+        "pt": [
+          "${userName}, estudos indicam que compostos naturais ajudam a reduzir a inflamação cerebral e melhorar a concentração. Pesquisas publicadas no Frontiers in Pharmacology destacam o papel neuroprotetor desses compostos.",
+          "Pesquisas recentes confirmam que os antioxidantes e compostos bioativos de certas plantas ajudam a proteger o cérebro e a melhorar a função cognitiva, contribuindo para o aumento da concentração e da clareza mental.",
+          "${userName}, estudos do Nutritional Journal mostram que o consumo regular de compostos naturais pode melhorar o foco, a memória e a capacidade de concentração, promovendo maior bem-estar."
+        ],
+        "en": [
+          "${userName}, studies indicate that natural compounds help reduce brain inflammation and improve focus. Research published in Frontiers in Pharmacology highlights the neuroprotective role of these compounds.",
+          "Recent research confirms that antioxidants and bioactive compounds from certain plants help protect the brain and improve cognitive function, contributing to increased concentration and mental clarity.",
+          "${userName}, studies from the Nutritional Journal show that regular consumption of natural compounds can improve focus, memory, and concentration, promoting greater well-being."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Compostos naturais ajudam na concentração?",
+          "Tem estudos comprovando?",
+          "Quanto tempo para sentir efeito?",
+          "Posso usar todos os dias?",
+          "Ajuda a melhorar memória?",
+          "É seguro para uso contínuo?",
+          "Quero relatos de quem melhorou",
+          "Como esses compostos atuam no cérebro?",
+          "Posso combinar com outras plantas?",
+          "Quero dicas para começar",
+          "Quero ver estudos científicos",
+          "Quais benefícios principais?"
+        ],
+        "en": [
+          "Do natural compounds help with focus?",
+          "Are there studies proving this?",
+          "How long to feel effects?",
+          "Can I use it daily?",
+          "Does it help improve memory?",
+          "Is it safe for continuous use?",
+          "I want stories from people who improved",
+          "How do these compounds act on the brain?",
+          "Can I combine with other plants?",
+          "I want tips to start",
+          "I want to see scientific studies",
+          "What are the main benefits?"
+        ]
+      }
+    },
+    {
+      "phase": "Fase 4 — Solução Natural/Plantas",
+      "copy": {
+        "pt": [
+          "Plantas e compostos naturais podem ajudar a reduzir a inflamação cerebral, melhorar a concentração e aumentar a clareza mental. Esses compostos protegem o sistema nervoso e ajudam a manter o foco.",
+          "Certas plantas possuem efeitos neuroprotetores que favorecem a saúde cerebral e a concentração. Seu uso tradicional, aliado a estudos científicos, mostra sua eficácia na melhora da função cognitiva.",
+          "Compostos naturais oferecem nutrientes essenciais para a saúde cerebral, contribuindo para o foco e a memória, além de promoverem maior bem-estar."
+        ],
+        "en": [
+          "Plants and natural compounds can help reduce brain inflammation, improve concentration, and increase mental clarity. These compounds protect the nervous system and help maintain focus.",
+          "Certain plants have neuroprotective effects that favor brain health and concentration. Their traditional use, combined with scientific research, shows their effectiveness in improving cognitive function.",
+          "Natural compounds offer essential nutrients for brain health, contributing to focus and memory, while promoting greater well-being."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Como usar para melhorar a concentração?",
+          "Tem receita para aumentar o foco?",
+          "Ajuda a reduzir estresse?",
+          "Posso usar todos os dias?",
+          "Quero relatos de quem melhorou",
+          "Quanto tempo para ver resultado?",
+          "É seguro para uso contínuo?",
+          "Posso combinar com outras plantas?",
+          "Quero dicas para começar",
+          "Ajuda no equilíbrio neurológico?",
+          "Quero ver estudos científicos",
+          "Dá para usar com alimentação variada?"
+        ],
+        "en": [
+          "How to use to improve concentration?",
+          "Any recipe to increase focus?",
+          "Does it help reduce stress?",
+          "Can I use it daily?",
+          "I want stories from people who improved",
+          "How long to see results?",
+          "Is it safe for continuous use?",
+          "Can I combine with other plants?",
+          "I want tips to start",
+          "Does it help with neurological balance?",
+          "I want to see scientific studies",
+          "Can it be used with varied diet?"
+        ]
+      }
+    },
+    {
+      "phase": "Fase 5 — Próximo Passo",
+      "copy": {
+        "pt": [
+          "${userName}, melhorar o foco naturalmente pode transformar sua rotina e produtividade. Com práticas naturais e hábitos saudáveis, seu cérebro terá suporte para melhorar a clareza mental e o foco. Posso ajudar com receitas, dicas e um plano prático para essa transformação.",
+          "A mudança começa com pequenas escolhas, ${userName}. Ao incluir compostos naturais em sua rotina, você ajuda seu cérebro a funcionar melhor. Estou aqui para guiar você com passos simples e personalizados.",
+          "${userName}, sua jornada para mais foco e clareza mental pode começar agora. Com hábitos saudáveis e práticas naturais, seu cérebro terá o suporte necessário para atingir seu potencial. Posso fornecer um plano com orientações e cuidados para essa nova fase."
+        ],
+        "en": [
+          "${userName}, improving focus naturally can transform your routine and productivity. With natural practices and healthy habits, your brain will have the support to improve mental clarity and focus. I can help with recipes, tips, and a practical plan for this transformation.",
+          "The change begins with small choices, ${userName}. By including natural compounds in your routine, you help your brain function better. I’m here to guide you with simple, personalized steps.",
+          "${userName}, your journey to improving focus and mental clarity can start now. With healthy habits and natural practices, your brain will have the support needed to reach its potential. I can provide a plan with guidance and care for this new phase."
+        ]
+      },
+      "quick_replies": {
+        "pt": [
+          "Quero começar já",
+          "Tem receita fácil para melhorar o foco",
+          "Quero relatos reais de transformação",
+          "Como montar uma rotina prática?",
+          "Prefiro aprender mais antes",
+          "Resultados são duradouros?",
+          "Posso combinar com minha alimentação?",
+          "Quero conversar sobre escolhas naturais",
+          "Dá para fazer em família?",
+          "Tem dicas para motivação?",
+          "É seguro para todos?",
+          "Quero ver estudos e relatos reais"
+        ],
+        "en": [
+          "I want to start now",
+          "Any easy recipe for improving focus",
+          "I want real transformation stories",
+          "How to build a practical routine?",
+          "I’d rather learn more first",
+          "Are results lasting?",
+          "Can I combine with my diet?",
+          "I want to talk about natural choices",
+          "Can this be done as a family?",
+          "Any tips for motivation?",
+          "Is it safe for everyone?",
+          "I want to see studies and real stories"
+        ]
+      }
+    }
+  ]
+}
 
