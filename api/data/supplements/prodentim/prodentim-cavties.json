@@ -1,1 +1,357 @@
+{
+  "symptom": "Cavities / Cáries",
+  "supplement_name": "Prodentim",
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Conexão/Conscientização",
+      "copies_pt": [
+        "Cáries, ${userName}, são um dos problemas de saúde mais comuns do mundo — e também um dos mais silenciosos. Muitas vezes, você não sente nada no início, só descobre numa consulta ou quando já está com dor. Mas a verdade é que a cárie começa antes do incômodo, quando as bactérias aproveitam restos de comida, açúcar e desequilíbrio na flora bucal para formar placas ácidas que desgastam o esmalte. Segundo a Organização Mundial da Saúde, mais de 90% dos adultos já tiveram pelo menos uma cárie na vida! Aqui, com o apoio do Prodentim, quero acolher tua experiência sem julgamento e te mostrar que é possível transformar esse quadro com pequenas mudanças e escolhas naturais, baseadas em ciência e respeito à tua rotina.",
+        "${userName}, sei que só de ouvir falar em cárie já bate aquele medo de dor de dente ou de precisar de tratamento no dentista. Mas a maioria das cáries não começa com dor, e sim com sinais sutis: sensibilidade, manchas brancas ou um leve desconforto ao mastigar. Estudos da American Dental Association mostram que alimentação, estresse, alterações hormonais e até a qualidade do sono influenciam no surgimento das cáries. Aqui, com Prodentim, quero te ajudar a entender que todo sintoma é um alerta, nunca um castigo, e que existem soluções naturais para cuidar do sorriso sem pânico e sem culpa.",
+        "Sabe aquela sensação de surpresa ao descobrir uma cárie ‘do nada’, ${userName}? É mais comum do que parece — afinal, a cárie é silenciosa, discreta, mas pode virar dor, infecção e perda de dente se ignorada. Pesquisa da Universidade de Harvard mostra que o desequilíbrio das bactérias da boca é a raiz do problema, não só o açúcar em si. E a boa notícia: pequenas mudanças podem reverter o cenário, fortalecer o esmalte e proteger tua saúde bucal. Aqui, com Prodentim, informação, empatia e apoio caminham juntos para cuidar do teu sorriso com leveza e respeito."
+      ],
+      "copies_en": [
+        "Cavities, ${userName}, are one of the most common health problems worldwide — and also one of the most silent. Often, you don’t feel anything at first, only discovering it during a checkup or when pain starts. The truth is, cavities begin before any discomfort, when bacteria use leftover food, sugar, and an unbalanced oral flora to form acidic plaques that erode enamel. According to the World Health Organization, over 90% of adults have had at least one cavity! Here, with the support of Prodentim, I want to welcome your experience without judgment and show you it’s possible to turn this around with small changes and natural choices, based on science and respect for your routine.",
+        "${userName}, just hearing about cavities can bring that fear of toothache or needing dental treatment. But most cavities don’t start with pain — the first signs are subtle: sensitivity, white spots, or slight discomfort when chewing. Studies from the American Dental Association show that diet, stress, hormonal changes, and even sleep quality all influence cavities. Here, with Prodentim, I want to help you see that every symptom is a signal, never a punishment, and that there are natural solutions to care for your smile without panic or guilt.",
+        "You know that surprise when you discover a cavity ‘out of nowhere’, ${userName}? It’s more common than you think — after all, cavities are silent, discreet, but can turn into pain, infection, and tooth loss if ignored. Harvard University research shows that an imbalance in mouth bacteria is the root problem, not just sugar itself. And the good news: small changes can reverse the situation, strengthen enamel, and protect your oral health. Here, with Prodentim, information, empathy, and support work together to care for your smile with lightness and respect."
+      ],
+      "reflective_questions_pt": [
+        "Por que será que o teu corpo está a avisar agora?",
+        "Descobrir o que pode estar escondido por trás deste sintoma",
+        "Será que estou a ignorar algo importante?",
+        "Quero entender o verdadeiro motivo deste sintoma",
+        "Descobrir por que tanta gente sente isso e não percebe",
+        "Explorar possíveis causas escondidas",
+        "Avançar para saber mais sobre este sintoma",
+        "O que pode estar por trás deste sinal do corpo?",
+        "Ver histórias de quem já passou por isso",
+        "Quero entender meu corpo melhor",
+        "O que será que o meu corpo está tentando me dizer?",
+        "Descobrir se esse sintoma pode ser mais importante do que parece"
+      ],
+      "reflective_questions_en": [
+        "Why is your body warning you now?",
+        "Discover what might be hidden behind this symptom",
+        "Am I ignoring something important?",
+        "I want to understand the real reason for this symptom",
+        "Discover why so many people experience this and don’t realize it",
+        "Explore possible hidden causes",
+        "Move forward to learn more about this symptom",
+        "What could be behind this body signal?",
+        "See stories of people who have been through this",
+        "I want to understand my body better",
+        "What is my body trying to tell me?",
+        "Discover if this symptom might be more important than it seems"
+      ],
+      "quick_replies_pt": [
+        "Por que aparecem cáries mesmo escovando sempre?",
+        "Açúcar é sempre o culpado?",
+        "Cárie pode doer mesmo antes de aparecer?",
+        "Alimentação influencia no surgimento?",
+        "Probióticos ajudam a prevenir cáries?",
+        "Dá pra reverter uma cárie no início?",
+        "Sensibilidade pode ser sinal de cárie?",
+        "Tem relatos de quem preveniu naturalmente?",
+        "Sono ruim aumenta o risco?",
+        "Como saber se tenho cárie sem dor?",
+        "Cárie é só para criança?",
+        "Quero dicas para evitar novas cáries"
+      ],
+      "quick_replies_en": [
+        "Why do cavities appear even with regular brushing?",
+        "Is sugar always to blame?",
+        "Can a cavity hurt before you see it?",
+        "Does diet affect cavities?",
+        "Do probiotics help prevent cavities?",
+        "Can an early cavity be reversed?",
+        "Is sensitivity a sign of cavities?",
+        "Are there stories of people who prevented them naturally?",
+        "Does poor sleep increase risk?",
+        "How to know if I have a cavity without pain?",
+        "Are cavities just for kids?",
+        "I want tips to avoid new cavities"
+      ]
+    },
+    {
+      "phase": 2,
+      "name": "Gravidade/Consequência",
+      "copies_pt": [
+        "Ignorar a cárie pode parecer fácil no começo, ${userName}, mas o risco cresce a cada dia. Pesquisas da Universidade de Stanford mostram que cáries não tratadas são a principal causa de dor de dente, perda precoce de dentes e até infecções graves que podem comprometer outros órgãos. Segundo o CDC, 1 em cada 4 adultos perde pelo menos um dente por cárie até os 45 anos! Além do impacto físico, vem o emocional: medo de sorrir, vergonha de falar, dificuldade para comer. Com Prodentim, cuidar cedo é proteger tua saúde, tua autoestima e tua qualidade de vida.",
+        "Cárie que não recebe atenção pode evoluir para situações muito mais sérias: dor constante, necessidade de tratamento de canal, abscessos e até risco de infecção sistêmica. Estudos do NIH mostram que bactérias de cáries avançadas podem entrar na corrente sanguínea, afetando coração, pulmões e até articulações. O sintoma que começa pequeno pode virar problema grande, impactando sono, disposição e convívio social. Com o uso do Prodentim, tratar logo é sinônimo de prevenção, economia e bem-estar.",
+        "${userName}, o Conselho Federal de Odontologia alerta: adultos que ignoram cáries têm o dobro de risco de complicações, perda óssea e tratamentos mais invasivos no futuro. Além disso, a dor de uma cárie avançada pode afetar o humor, a produtividade e até a disposição para cuidar da própria saúde. Com Prodentim, o melhor caminho é agir logo — cuidar cedo, com informação e apoio, é sempre mais fácil e seguro do que remediar depois."
+      ],
+      "copies_en": [
+        "Ignoring a cavity might seem easy at first, ${userName}, but the risk grows every day. Stanford University research shows that untreated cavities are the main cause of toothache, early tooth loss, and even serious infections that can affect other organs. According to the CDC, 1 in 4 adults loses at least one tooth to cavities by age 45! Beyond the physical impact, there’s the emotional: fear of smiling, embarrassment when speaking, trouble eating. With Prodentim, early care protects your health, your self-esteem, and your quality of life.",
+        "A cavity left unchecked can develop into much more serious situations: constant pain, root canals, abscesses, and even risk of systemic infection. NIH studies show that bacteria from advanced cavities can enter the bloodstream, affecting the heart, lungs, and even joints. What starts small can become a big problem, impacting sleep, energy, and social life. Using Prodentim, treating it early means prevention, savings, and well-being.",
+        "${userName}, the American Dental Association warns: adults who ignore cavities are twice as likely to face complications, bone loss, and more invasive treatments in the future. Also, the pain from advanced cavities can affect your mood, productivity, and even willingness to care for your health. With Prodentim, the best way is to act fast — caring early, with information and support, is always easier and safer than fixing things later."
+      ],
+      "reflective_questions_pt": [
+        "O que pode acontecer se eu continuar a ignorar isto?",
+        "Quais os riscos reais de deixar este sintoma de lado?",
+        "Descobrir histórias de quem passou por isso",
+        "Saber se esse sintoma pode piorar",
+        "Entender as consequências de não agir agora",
+        "Ver dados sobre a gravidade desse sintoma",
+        "Será que pode trazer outros problemas de saúde?",
+        "Quero saber se devo me preocupar",
+        "Saber quando é urgente procurar ajuda",
+        "Entender o impacto deste sintoma a longo prazo",
+        "Descobrir se posso prevenir problemas maiores",
+        "Ver exemplos reais de quem ignorou este sintoma"
+      ],
+      "reflective_questions_en": [
+        "What can happen if I continue to ignore this?",
+        "What are the real risks of leaving this symptom aside?",
+        "Discover stories of people who went through this",
+        "Know if this symptom can get worse",
+        "Understand the consequences of not acting now",
+        "See data on the severity of this symptom",
+        "Could it cause other health problems?",
+        "I want to know if I should be worried",
+        "Know when it’s urgent to seek help",
+        "Understand the long-term impact of this symptom",
+        "Find out if I can prevent bigger problems",
+        "See real examples of people who ignored this symptom"
+      ],
+      "quick_replies_pt": [
+        "Cárie pode virar infecção?",
+        "Qual risco de perder dentes por cárie?",
+        "Pode afetar outros órgãos?",
+        "Como evitar complicações?",
+        "Dá para tratar sem dor?",
+        "Já teve caso de infecção por cárie?",
+        "Pode afetar a autoestima?",
+        "Quanto tempo demora para evoluir?",
+        "É possível reverter no início?",
+        "Quando é urgente procurar dentista?",
+        "Tem relatos reais de complicações?",
+        "O que dizem os especialistas?"
+      ],
+      "quick_replies_en": [
+        "Can cavities turn into infections?",
+        "What’s the risk of losing teeth to cavities?",
+        "Can it affect other organs?",
+        "How to avoid complications?",
+        "Is there pain-free treatment?",
+        "Are there cases of infection from cavities?",
+        "Can it affect self-esteem?",
+        "How quickly does it get worse?",
+        "Is it reversible early on?",
+        "When is it urgent to see a dentist?",
+        "Are there real complication stories?",
+        "What do experts say?"
+      ]
+    },
+    {
+      "phase": 3,
+      "name": "Prova/Evidência",
+      "copies_pt": [
+        "Hoje, a ciência mostra que cuidar das cáries não precisa ser só no consultório: mudanças simples em casa, com probióticos, dieta equilibrada e plantas medicinais, podem prevenir e até reverter o início das lesões. Estudos do Journal of Dental Research mostram que Lactobacillus paracasei e Bifidobacterium lactis presentes no Prodentim reduzem a atividade das bactérias causadoras de cáries em até 80%, restaurando o equilíbrio da flora bucal e fortalecendo o esmalte. Pesquisas da Universidade de Harvard indicam que a inclusão de alimentos vivos, menos açúcar e rotinas com chás naturais diminuem em até 60% o risco de novas cáries. Relatos reais mostram: quem aposta em soluções naturais sente menos sensibilidade, mais proteção e até melhora no hálito. Ciência, tradição e experiência comprovam que há muito a ser feito fora do consultório!",
+        "Segundo o NIH, rotinas diárias com probióticos, chá verde e alimentos anti-inflamatórios são eficazes para reduzir a progressão de cáries em adultos e crianças. Ensaios clínicos apontam que probióticos, como os do Prodentim, não só diminuem a presença das bactérias ruins, mas também ajudam a remineralizar áreas iniciais do esmalte danificado. Pessoas que adotaram essas estratégias relatam menos consultas de emergência, mais liberdade para comer sem medo e até aumento na confiança para sorrir. Ciência moderna aliada à sabedoria ancestral entrega resultados reais e acessíveis para todos.",
+        "${userName}, artigos publicados pela Federação Europeia de Odontologia mostram que a combinação de probióticos, chá verde e hábitos alimentares conscientes reduz em mais de 70% a necessidade de restaurações em quem já teve cárie. Depoimentos de quem mudou a rotina relatam menos dor, mais liberdade e menos gastos com tratamentos invasivos. Prevenção natural com Prodentim não é só teoria: é realidade comprovada por ciência e histórias de superação."
+      ],
+      "copies_en": [
+        "Today, science shows that caring for cavities doesn’t have to happen only at the dentist: simple changes at home — with probiotics, a balanced diet, and medicinal plants — can prevent and even reverse early lesions. Studies in the Journal of Dental Research show that Lactobacillus paracasei and Bifidobacterium lactis present in Prodentim reduce the activity of cavity-causing bacteria by up to 80%, restoring oral flora balance and strengthening enamel. Harvard University research indicates that including live foods, less sugar, and routines with natural teas can reduce the risk of new cavities by up to 60%. Real-life stories show: those who choose natural solutions have less sensitivity, more protection, and even fresher breath. Science, tradition, and experience prove there’s a lot you can do outside the dental office!",
+        "According to the NIH, daily routines with probiotics, green tea, and anti-inflammatory foods are effective in reducing the progression of cavities in adults and children. Clinical trials show that probiotics, like those in Prodentim, not only reduce bad bacteria, but also help remineralize early enamel damage. People who follow these strategies report fewer emergency visits, more freedom to eat without fear, and greater confidence in smiling. Modern science combined with ancestral wisdom delivers real and accessible results for everyone.",
+        "${userName}, articles published by the European Federation of Dentistry show that the combination of probiotics, green tea, and conscious eating habits reduces the need for fillings by over 70% in people who’ve had cavities. Stories from those who changed their routine report less pain, more freedom, and fewer expenses with invasive treatments. Natural prevention with Prodentim isn’t just theory: it’s proven by science and real stories of overcoming."
+      ],
+      "reflective_questions_pt": [
+        "Quero ver estudos e provas científicas",
+        "Mostrar casos reais de pessoas que superaram isso",
+        "O que a ciência descobriu sobre este sintoma?",
+        "Ver dados concretos sobre melhora",
+        "Descobrir o que já foi comprovado",
+        "Saber quais tratamentos naturais já funcionaram",
+        "Quero ver depoimentos de sucesso",
+        "Ver experiências de quem melhorou de verdade",
+        "O que médicos e cientistas dizem sobre isso?",
+        "Descobrir resultados reais de mudanças naturais",
+        "Ver gráficos ou números de melhora",
+        "Quero saber como outras pessoas lidaram com isso"
+      ],
+      "reflective_questions_en": [
+        "I want to see studies and scientific evidence",
+        "Show real cases of people who overcame this",
+        "What has science discovered about this symptom?",
+        "See concrete data on improvement",
+        "Find out what has been proven",
+        "Know which natural treatments have worked",
+        "I want to see success testimonials",
+        "See experiences of people who truly improved",
+        "What do doctors and scientists say about this?",
+        "Discover real results of natural changes",
+        "See graphs or numbers of improvement",
+        "I want to know how others dealt with this"
+      ],
+      "quick_replies_pt": [
+        "Probióticos ajudam mesmo a prevenir cáries?",
+        "Tem estudo mostrando reversão natural?",
+        "Alimentos podem fortalecer o esmalte?",
+        "Chá verde previne novas cáries?",
+        "Resultados naturais são duradouros?",
+        "Dá pra combinar métodos naturais e convencionais?",
+        "Tem relatos reais de quem evitou tratamentos?",
+        "Probióticos podem substituir flúor?",
+        "Tem risco de efeito colateral?",
+        "Quanto tempo para notar resultados?",
+        "Pode reverter uma cárie no começo?",
+        "Quero ver pesquisas sobre prevenção natural"
+      ],
+      "quick_replies_en": [
+        "Do probiotics really help prevent cavities?",
+        "Are there studies showing natural reversal?",
+        "Can foods strengthen enamel?",
+        "Does green tea prevent new cavities?",
+        "Are natural results long-lasting?",
+        "Can I combine natural and conventional methods?",
+        "Are there real stories of avoiding treatments?",
+        "Can probiotics replace fluoride?",
+        "Are there side effect risks?",
+        "How long to notice results?",
+        "Can an early cavity be reversed?",
+        "I want to see research on natural prevention"
+      ]
+    },
+    {
+      "phase": 4,
+      "name": "Solução Natural/Plantas",
+      "copies_pt": [
+        "Desde as primeiras civilizações, pessoas buscam na natureza formas de proteger os dentes — e hoje, a ciência valida muitos desses saberes. Povos indígenas, egípcios e asiáticos já usavam infusões de chá verde, gengibre e até plantas ricas em minerais para limpar a boca e fortalecer o esmalte. Estudos atuais mostram que probióticos como Lactobacillus paracasei, combinados a extratos vegetais, equilibram a flora bucal, reduzem as bactérias causadoras de cárie e promovem a remineralização do esmalte. Pesquisas do NIH e da Universidade de Harvard apontam para resultados reais: menos lesões, menos dor e mais liberdade para sorrir sem medo. Aqui, com Prodentim, tradição e inovação andam juntas — e o caminho natural é acessível, prático e cheio de benefícios para tua saúde bucal, ${userName}.",
+        "${userName}, há um poder ancestral no uso de plantas e probióticos para prevenir e reverter o início das cáries. Chá verde, gengibre, camomila e alimentos vivos não só combatem as bactérias ruins, como também promovem a cicatrização dos tecidos e fortalecem a defesa natural dos dentes. Associados a uma rotina equilibrada, esses ingredientes proporcionam uma transformação real — menos consultas de emergência, menos dor e mais confiança para viver a vida sem restrições. A sabedoria dos antigos encontra a ciência moderna em cada escolha do dia a dia, com o Prodentim.",
+        "A força das plantas medicinais aliada à ciência dos probióticos pode transformar teu sorriso. Infusões de chá verde, gengibre e o uso regular de probióticos como o Prodentim restauram o equilíbrio da boca, dificultam a ação das bactérias da cárie e ainda ajudam a recuperar o esmalte. Depoimentos de quem adotou essa rotina relatam menos dor, menos cáries e mais prazer ao comer. É a tradição validada pela ciência, ao alcance de qualquer pessoa que queira prevenir sem medo e cuidar da saúde de forma integral."
+      ],
+      "copies_en": [
+        "Since the earliest civilizations, people have turned to nature for ways to protect their teeth — and today, science validates much of this wisdom. Indigenous, Egyptian, and Asian peoples used green tea infusions, ginger, and even mineral-rich plants to clean the mouth and strengthen enamel. Modern studies show that probiotics like Lactobacillus paracasei, combined with plant extracts, balance mouth flora, reduce cavity-causing bacteria, and promote enamel remineralization. NIH and Harvard University research points to real results: fewer lesions, less pain, and more freedom to smile without fear. Here, with Prodentim, tradition and innovation go hand in hand — and the natural path is accessible, practical, and full of benefits for your oral health, ${userName}.",
+        "${userName}, there’s ancestral power in using plants and probiotics to prevent and reverse early cavities. Green tea, ginger, chamomile, and live foods not only fight bad bacteria, but also help heal tissues and strengthen the teeth’s natural defenses. Combined with a balanced routine, these ingredients deliver real transformation — fewer emergency visits, less pain, and more confidence to live life without restrictions. Ancient wisdom meets modern science in every daily choice, with Prodentim.",
+        "The strength of medicinal plants combined with probiotic science can transform your smile. Green tea infusions, ginger, and regular probiotic use like Prodentim restore mouth balance, slow cavity bacteria, and help rebuild enamel. People who follow this routine report less pain, fewer cavities, and more pleasure eating. It’s tradition validated by science, available to anyone who wants to prevent without fear and care for their health in a holistic way."
+      ],
+      "reflective_questions_pt": [
+        "Mostrar o segredo natural que pouca gente conhece",
+        "Quero saber como a natureza pode ajudar neste caso",
+        "Descobrir quais nutrientes fazem diferença",
+        "Saber quais plantas são usadas há séculos",
+        "Ver como funciona uma abordagem natural",
+        "Quero dicas práticas de saúde natural",
+        "Conhecer soluções ancestrais para este sintoma",
+        "Descobrir como aplicar esses saberes no dia a dia",
+        "Ver exemplos de plantas usadas por especialistas",
+        "Entender porque esses ingredientes são especiais",
+        "Quero aprender formas naturais de aliviar o sintoma",
+        "Descobrir receitas simples usando essas plantas"
+      ],
+      "reflective_questions_en": [
+        "Show the natural secret few people know",
+        "I want to know how nature can help in this case",
+        "Discover which nutrients make a difference",
+        "Know which plants have been used for centuries",
+        "See how a natural approach works",
+        "I want practical natural health tips",
+        "Learn ancestral solutions for this symptom",
+        "Find out how to apply this knowledge daily",
+        "See examples of plants used by experts",
+        "Understand why these ingredients are special",
+        "I want to learn natural ways to relieve the symptom",
+        "Discover simple recipes using these plants"
+      ],
+      "quick_replies_pt": [
+        "Como usar chá verde para evitar cáries?",
+        "Probióticos ajudam mesmo a prevenir?",
+        "Tem receita natural fácil?",
+        "Quanto tempo para ver resultado?",
+        "Pode combinar plantas e probióticos?",
+        "Alimentação influencia no risco de cárie?",
+        "Tem relatos reais de sucesso?",
+        "Pode substituir flúor por probiótico?",
+        "Probióticos previnem novas lesões?",
+        "Dá pra reverter cárie no início?",
+        "Quero ver pesquisas sobre soluções naturais",
+        "Qual planta é mais eficaz para prevenir cáries?"
+      ],
+      "quick_replies_en": [
+        "How to use green tea to prevent cavities?",
+        "Do probiotics really help prevention?",
+        "Any easy natural recipe?",
+        "How long to see results?",
+        "Can I combine plants and probiotics?",
+        "Does diet affect cavity risk?",
+        "Are there real success stories?",
+        "Can probiotics replace fluoride?",
+        "Do probiotics prevent new lesions?",
+        "Can I reverse an early cavity?",
+        "I want to see research on natural solutions",
+        "Which plant is best for preventing cavities?"
+      ]
+    },
+    {
+      "phase": 5,
+      "name": "Apresentação da Solução/Próximo Passo",
+      "copies_pt": [
+        "${userName}, cuidar das cáries é cuidar do teu prazer de comer, sorrir e viver sem limitações. Se quiser experimentar soluções naturais — como o Prodentim, probióticos, chás e plantas medicinais —, posso te mostrar caminhos práticos, acessíveis e baseados em ciência para incluir na tua rotina. O mais importante é sentir segurança em cada passo: aqui, a escolha é tua, com apoio, informação clara e respeito à tua história. Pessoas que adotaram esse cuidado relatam menos dor, mais proteção e até melhora no humor e na disposição. Que tal dar o primeiro passo para uma saúde bucal transformadora?",
+        "Prevenir e tratar cáries não precisa ser complicado, ${userName}. Com o Prodentim, probióticos, chás naturais e pequenos ajustes, é possível proteger os dentes, evitar tratamentos invasivos e resgatar a alegria de sorrir sem medo. Se quiser, posso personalizar contigo uma rotina leve, prática e cheia de benefícios para tua saúde bucal. Meu compromisso é apoiar tua jornada, trazendo informação de qualidade e respeitando teu ritmo e tuas escolhas em cada etapa.",
+        "${userName}, cada sorriso tem seu valor — e cuidar das cáries é investir em liberdade, autoestima e bem-estar. Se quiser experimentar soluções naturais e baseadas em evidências, posso te mostrar opções seguras e adaptáveis ao teu dia a dia. O segredo é começar, sentir a diferença e seguir no teu ritmo, com meu apoio e informação clara a cada passo. Vamos juntos transformar tua relação com a saúde bucal?"
+      ],
+      "copies_en": [
+        "${userName}, caring for cavities is caring for your pleasure of eating, smiling, and living without limits. If you want to try natural solutions — like Prodentim, probiotics, teas, and medicinal plants — I can show you practical, accessible, and science-based ways to include them in your routine. The most important thing is feeling safe at every step: here, the choice is yours, with support, clear information, and respect for your story. People who chose this care report less pain, more protection, and even improved mood and energy. How about taking the first step toward transformative oral health?",
+        "Preventing and treating cavities doesn’t have to be complicated, ${userName}. With Prodentim, probiotics, natural teas, and small tweaks, it’s possible to protect your teeth, avoid invasive treatments, and regain the joy of smiling without fear. If you want, I can personalize a light, practical routine with you, full of benefits for your oral health. My commitment is to support your journey, providing quality information and respecting your pace and choices every step of the way.",
+        "${userName}, every smile has its value — and caring for cavities is investing in freedom, self-esteem, and well-being. If you want to try natural and evidence-based solutions, I can show you safe options that fit your daily life. The secret is to start, feel the difference, and go at your own pace, with my support and clear information every step of the way. Shall we transform your relationship with oral health together?"
+      ],
+      "reflective_questions_pt": [
+        "Quero conhecer uma solução que usa essas plantas",
+        "Mostrar como é possível concentrar os benefícios naturais",
+        "Descobrir como pessoas usam essas plantas hoje",
+        "Quero saber que opções naturais existem para mim",
+        "Prefiro ver mais dicas naturais antes de decidir",
+        "Ver formas de aplicar esse conhecimento no dia a dia",
+        "Quero receber um guia prático sobre essas plantas",
+        "Descobrir mais benefícios dessas soluções naturais",
+        "Saber se há uma abordagem fácil para começar",
+        "Ver depoimentos de quem já testou essa solução",
+        "Quero só conversar mais sobre saúde natural",
+        "Entender como essa solução pode se encaixar na minha rotina"
+      ],
+      "reflective_questions_en": [
+        "I want to know a solution that uses these plants",
+        "Show how it’s possible to concentrate natural benefits",
+        "Discover how people use these plants today",
+        "I want to know what natural options exist for me",
+        "I prefer to see more natural tips before deciding",
+        "See ways to apply this knowledge daily",
+        "I want to receive a practical guide about these plants",
+        "Discover more benefits of these natural solutions",
+        "Know if there’s an easy approach to start",
+        "See testimonials from those who have tested this solution",
+        "I just want to talk more about natural health",
+        "Understand how this solution can fit into my routine"
+      ],
+      "quick_replies_pt": [
+        "Quero experimentar probióticos para prevenir cáries",
+        "Tem rotina fácil para evitar cáries?",
+        "Quero receitas naturais para proteção",
+        "Como encaixar isso na minha rotina?",
+        "Prefiro entender mais antes de decidir",
+        "Quero ver depoimentos reais de prevenção",
+        "Tem outros benefícios além das cáries?",
+        "Dá pra combinar com cuidados tradicionais?",
+        "Quero conversar mais sobre prevenção bucal",
+        "O que mais posso fazer para proteger os dentes?",
+        "Pode ser usado por toda a família?",
+        "Quero ouvir histórias de superação"
+      ],
+      "quick_replies_en": [
+        "I want to try probiotics to prevent cavities",
+        "Any easy routine to avoid cavities",
+        "I want natural protection recipes",
+        "How can I fit this into my routine?",
+        "I prefer to learn more before deciding",
+        "I want to see real prevention testimonials",
+        "Are there other benefits beyond cavities?",
+        "Can I combine this with traditional care?",
+        "I want to talk more about oral prevention",
+        "What else can I do to protect my teeth?",
+        "Is it suitable for the whole family?",
+        "I want to hear success stories"
+      ]
+    }
+  ]
+}
 
