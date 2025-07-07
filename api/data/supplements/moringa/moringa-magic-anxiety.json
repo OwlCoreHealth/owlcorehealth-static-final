@@ -1,7 +1,8 @@
 {
   "suplemento": "Moringa",
-  "symptom": "ansiedade",
-  "fase_1": {
+  "sintomas": {
+    "ansiedade": {
+      "fase_1": {
         "copy_pt": [
           "${userName}, a ansiedade muitas vezes surge como uma resposta do corpo a desequilíbrios internos causados por alimentação e estilo de vida. A exposição frequente a alimentos ultraprocessados, solos contaminados e carnes com hormônios pode aumentar a inflamação no organismo, afetando diretamente o sistema nervoso e potencializando sentimentos de ansiedade. Entender essas causas é o primeiro passo para retomar o controle da sua saúde emocional e física.",
           "${userName}, você sabia que a ansiedade pode estar relacionada a fatores silenciosos como a má qualidade dos alimentos e a contaminação do solo? A combinação de ultraprocessados, solos empobrecidos e carnes hormonizadas altera a química do corpo, aumentando a inflamação e prejudicando o equilíbrio do sistema nervoso, o que pode agravar o estado ansioso.",
