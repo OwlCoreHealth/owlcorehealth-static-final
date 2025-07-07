@@ -1,208 +1,204 @@
 {
   "suplemento": "Moringa",
-  "sintomas": {
-    "ansiedade": {
-      "fase_1": {
-        "copy_pt": [
-          "${userName}, a ansiedade muitas vezes surge como uma resposta do corpo a desequilíbrios internos causados por alimentação e estilo de vida. A exposição frequente a alimentos ultraprocessados, solos contaminados e carnes com hormônios pode aumentar a inflamação no organismo, afetando diretamente o sistema nervoso e potencializando sentimentos de ansiedade. Entender essas causas é o primeiro passo para retomar o controle da sua saúde emocional e física.",
-          "${userName}, você sabia que a ansiedade pode estar relacionada a fatores silenciosos como a má qualidade dos alimentos e a contaminação do solo? A combinação de ultraprocessados, solos empobrecidos e carnes hormonizadas altera a química do corpo, aumentando a inflamação e prejudicando o equilíbrio do sistema nervoso, o que pode agravar o estado ansioso.",
-          "Você já sentiu, ${userName}, que a ansiedade parece estar sempre presente, mesmo sem um motivo claro? Muitas vezes, isso é reflexo dos impactos da alimentação industrializada e do ambiente contaminado no nosso organismo. Esses fatores silenciosos interferem no funcionamento do cérebro e nos hormônios que regulam o humor e o estresse."
-        ],
-        "copy_en": [
-          "${userName}, anxiety often arises as the body’s response to internal imbalances caused by diet and lifestyle. Frequent exposure to ultra-processed foods, contaminated soils, and hormone-treated meats can increase inflammation in the body, directly affecting the nervous system and heightening feelings of anxiety. Understanding these causes is the first step to regaining control of your emotional and physical health.",
-          "${userName}, did you know anxiety may be linked to silent factors like poor food quality and soil contamination? The combination of ultra-processed foods, depleted soils, and hormone-treated meats alters body chemistry, increasing inflammation and harming nervous system balance, which can worsen anxious states.",
-          "Have you noticed, ${userName}, that anxiety seems always present even without a clear reason? Often, this reflects the impact of industrialized food and contaminated environments on our body. These silent factors interfere with brain function and hormones regulating mood and stress."
-        ],
-        "quick_replies_pt": [
-          "Por que sinto tanta ansiedade?",
-          "Alimentos pioram a ansiedade?",
-          "Solo contaminado influencia?",
-          "Carnes com hormônios afetam?",
-          "Quero entender mais sobre ansiedade",
-          "Tem estudos científicos?",
-          "Como aliviar ansiedade naturalmente?",
-          "Quais sintomas indicam ansiedade grave?",
-          "Quero dicas para controlar ansiedade",
-          "Estresse piora ansiedade?",
-          "Ansiedade é normal hoje?",
-          "Quando buscar ajuda profissional?"
-        ],
-        "quick_replies_en": [
-          "Why do I feel so anxious?",
-          "Do foods worsen anxiety?",
-          "Does contaminated soil influence?",
-          "Do hormone-treated meats affect?",
-          "I want to learn more about anxiety",
-          "Are there scientific studies?",
-          "How to relieve anxiety naturally?",
-          "What symptoms indicate severe anxiety?",
-          "I want tips to control anxiety",
-          "Does stress worsen anxiety?",
-          "Is anxiety normal nowadays?",
-          "When to seek professional help?"
-        ]
-      },
-      "fase_2": {
-        "copy_pt": [
-          "${userName}, a ansiedade não tratada pode evoluir para transtornos que impactam a saúde mental e física, aumentando o risco de depressão, insônia e doenças cardiovasculares. Estudos indicam que a inflamação crônica causada por hábitos alimentares inadequados e exposição a toxinas afeta o sistema nervoso central, agravando esses quadros.",
-          "Você sabia, ${userName}, que a persistência da ansiedade pode desencadear processos inflamatórios no cérebro que comprometem o funcionamento cognitivo e emocional? Pesquisas mostram que a dieta rica em ultraprocessados e a contaminação ambiental são fatores que dificultam o controle da ansiedade.",
-          "${userName}, a ansiedade crônica está associada a um aumento da inflamação sistêmica e redução da qualidade de vida. Dados da Organização Mundial da Saúde reforçam a importância de uma abordagem integrada que envolva alimentação saudável e cuidados naturais para o sistema nervoso."
-        ],
-        "copy_en": [
-          "${userName}, untreated anxiety can evolve into disorders impacting mental and physical health, increasing risk of depression, insomnia, and cardiovascular diseases. Studies indicate chronic inflammation caused by poor dietary habits and toxin exposure affects the central nervous system, worsening these conditions.",
-          "Did you know, ${userName}, that persistent anxiety can trigger inflammatory processes in the brain compromising cognitive and emotional function? Research shows diets rich in ultra-processed foods and environmental contamination are factors that hinder anxiety control.",
-          "${userName}, chronic anxiety is linked to increased systemic inflammation and reduced quality of life. World Health Organization data emphasize the importance of an integrated approach involving healthy eating and natural care for the nervous system."
-        ],
-        "quick_replies_pt": [
-          "Ansiedade pode piorar?",
-          "Como alimentos afetam ansiedade?",
-          "Solo contaminado influencia?",
-          "Carnes hormonizadas prejudicam?",
-          "Quero saber mais sobre ansiedade",
-          "Ansiedade afeta saúde mental?",
-          "Dá para melhorar naturalmente?",
-          "Quais sintomas indicam gravidade?",
-          "Quero dicas para controlar ansiedade",
-          "Estresse piora ansiedade?",
-          "Tem estudos científicos?",
-          "Quando buscar ajuda?"
-        ],
-        "quick_replies_en": [
-          "Can anxiety get worse?",
-          "How do foods affect anxiety?",
-          "Does contaminated soil influence?",
-          "Do hormone-treated meats harm?",
-          "I want to learn more about anxiety",
-          "Does anxiety affect mental health?",
-          "Can it be improved naturally?",
-          "What symptoms indicate severity?",
-          "I want tips to control anxiety",
-          "Does stress worsen anxiety?",
-          "Are there scientific studies?",
-          "When to seek help?"
-        ]
-      },
-      "fase_3": {
-        "copy_pt": [
-          "${userName}, estudos indicam que a Moringa possui compostos que ajudam a modular o sistema nervoso, reduzir inflamação e melhorar o equilíbrio emocional. Pesquisas publicadas no Frontiers in Pharmacology destacam seu potencial para apoiar a saúde mental e aliviar sintomas ansiosos.",
-          "Pesquisas recentes, ${userName}, confirmam que os antioxidantes da Moringa reduzem o estresse oxidativo e promovem o equilíbrio dos neurotransmissores, contribuindo para o alívio da ansiedade. Estudos do Journal of Ethnopharmacology reforçam esses benefícios.",
-          "${userName}, estudos do Nutritional Journal mostram que o consumo regular da Moringa está associado à melhora do humor e redução dos níveis de ansiedade, promovendo maior bem-estar."
-        ],
-        "copy_en": [
-          "${userName}, studies indicate Moringa contains compounds that help modulate the nervous system, reduce inflammation, and improve emotional balance. Research published in Frontiers in Pharmacology highlights its potential to support mental health and relieve anxious symptoms.",
-          "Recent research, ${userName}, confirms Moringa’s antioxidants reduce oxidative stress and promote neurotransmitter balance, contributing to anxiety relief. Studies from the Journal of Ethnopharmacology reinforce these benefits.",
-          "${userName}, studies from the Nutritional Journal show regular Moringa consumption is linked to improved mood and reduced anxiety levels, promoting greater well-being."
-        ],
-        "quick_replies_pt": [
-          "Moringa ajuda na ansiedade?",
-          "Tem estudos científicos?",
-          "Quanto tempo para sentir efeito?",
-          "Posso usar todos os dias?",
-          "Ajuda a reduzir estresse?",
-          "É seguro para uso contínuo?",
-          "Quero relatos de quem melhorou",
-          "Como a Moringa age no sistema nervoso?",
-          "Posso combinar com outras plantas?",
-          "Quero dicas para começar",
-          "Quero ver estudos científicos",
-          "Quais benefícios principais?"
-        ],
-        "quick_replies_en": [
-          "Does Moringa help anxiety?",
-          "Are there scientific studies?",
-          "How long to feel effects?",
-          "Can I use it daily?",
-          "Does it help reduce stress?",
-          "Is it safe for continuous use?",
-          "I want stories from people who improved",
-          "How does Moringa act on the nervous system?",
-          "Can I combine it with other plants?",
-          "I want tips to start",
-          "I want to see scientific studies",
-          "What are the main benefits?"
-        ]
-      },
-      "fase_4": {
-        "copy_pt": [
-          "A Moringa é uma planta ancestral reconhecida por seus compostos que ajudam a equilibrar o sistema nervoso e a reduzir a inflamação, promovendo maior tranquilidade e bem-estar emocional. Rica em antioxidantes, ela é uma aliada natural para quem enfrenta ansiedade.",
-          "${userName}, as folhas da Moringa possuem propriedades que modulam a resposta inflamatória e promovem o equilíbrio dos neurotransmissores, contribuindo para o alívio dos sintomas ansiosos. Seu uso tradicional aliado a evidências científicas reforça seu papel como suporte natural para a saúde mental.",
-          "Utilizada há séculos, a Moringa oferece nutrientes essenciais que fortalecem o sistema nervoso e promovem o relaxamento, ajudando a reduzir a ansiedade e melhorar a qualidade de vida."
-        ],
-        "copy_en": [
-          "Moringa is an ancestral plant recognized for compounds that help balance the nervous system and reduce inflammation, promoting greater calm and emotional well-being. Rich in antioxidants, it’s a natural ally for those facing anxiety.",
-          "${userName}, Moringa leaves contain properties that modulate inflammatory response and promote neurotransmitter balance, contributing to anxiety symptom relief. Its traditional use combined with scientific evidence reinforces its role as natural mental health support.",
-          "Used for centuries, Moringa offers essential nutrients that strengthen the nervous system and promote relaxation, helping reduce anxiety and improve quality of life."
-        ],
-        "quick_replies_pt": [
-          "Como usar Moringa para ansiedade?",
-          "Tem receita para ansiedade?",
-          "Ajuda a reduzir estresse?",
-          "Posso usar todos os dias?",
-          "Quero relatos de quem melhorou",
-          "Quanto tempo para ver resultado?",
-          "É seguro para uso contínuo?",
-          "Posso combinar com outras plantas?",
-          "Quero dicas para começar",
-          "Ajuda no equilíbrio emocional?",
-          "Quero ver estudos científicos",
-          "Dá para usar com alimentação variada?"
-        ],
-        "quick_replies_en": [
-          "How to use Moringa for anxiety?",
-          "Any recipe for anxiety?",
-          "Does it help reduce stress?",
-          "Can I use it daily?",
-          "I want stories from people who improved",
-          "How long to see results?",
-          "Is it safe for continuous use?",
-          "Can I combine it with other plants?",
-          "I want tips to start",
-          "Does it help emotional balance?",
-          "I want to see scientific studies",
-          "Can it be used with varied diet?"
-        ]
-      },
-      "fase_5": {
-        "copy_pt": [
-          "${userName}, cuidar da ansiedade de forma natural pode trazer grande alívio e melhorar sua qualidade de vida. Com a Moringa e hábitos conscientes, seu corpo terá suporte para equilibrar o sistema nervoso e reduzir a inflamação. Posso ajudar com receitas, dicas e um plano prático para essa transformação.",
-          "A mudança começa com pequenas escolhas, ${userName}. Ao incluir a Moringa na sua rotina e optar por alimentos naturais, você apoia seu organismo na busca pelo equilíbrio emocional e bem-estar. Estou aqui para guiar você com passos simples e personalizados.",
-          "${userName}, sua jornada para controlar a ansiedade pode começar agora. Com a Moringa e uma alimentação equilibrada, seu corpo terá o suporte necessário para promover tranquilidade e qualidade de vida. Posso fornecer um plano com orientações e cuidados para essa nova fase."
-        ],
-        "copy_en": [
-          "${userName}, caring for your anxiety naturally can bring great relief and improve your quality of life. With Moringa and conscious habits, your body will have the support to balance the nervous system and reduce inflammation. I can help with recipes, tips, and a practical plan for this transformation.",
-          "The change starts with small actions, ${userName}. By including Moringa in your routine and opting for natural foods, you support your body in the pursuit of emotional balance and well-being. I’m here to guide you with simple, personalized steps.",
-          "${userName}, your journey to control anxiety can start now. With Moringa and a balanced diet, your body will have the support to promote calm and quality of life. I can provide a plan with guidance, recipes, and care for this new phase."
-        ],
-        "quick_replies_pt": [
-          "Quero começar já com Moringa",
-          "Tem receita fácil para ansiedade",
-          "Quero relatos reais de transformação",
-          "Como montar uma rotina prática?",
-          "Prefiro aprender mais antes",
-          "Resultados são duradouros?",
-          "Posso combinar com minha alimentação?",
-          "Quero conversar sobre escolhas naturais",
-          "Dá pra fazer em família?",
-          "Tem dicas para motivação?",
-          "É seguro para todos?",
-          "Quero ver estudos e relatos reais"
-        ],
-        "quick_replies_en": [
-          "I want to start with Moringa now",
-          "Any easy recipe for anxiety",
-          "I want real transformation stories",
-          "How to build a practical routine?",
-          "I’d rather learn more first",
-          "Are results lasting?",
-          "Can I combine with my diet?",
-          "I want to talk about natural choices",
-          "Can this be done as a family?",
-          "Any tips for motivation?",
-          "Is it safe for everyone?",
-          "I want to see studies and real stories"
-        ]
-      }
-    }
+  "symptom": "ansiedade",
+  "fase_1": {
+    "copy_pt": [
+      "${userName}, a ansiedade muitas vezes surge como uma resposta do corpo a desequilíbrios internos causados por alimentação e estilo de vida. A exposição frequente a alimentos ultraprocessados, solos contaminados e carnes com hormônios pode aumentar a inflamação no organismo, afetando diretamente o sistema nervoso e potencializando sentimentos de ansiedade. Entender essas causas é o primeiro passo para retomar o controle da sua saúde emocional e física.",
+      "${userName}, você sabia que a ansiedade pode estar relacionada a fatores silenciosos como a má qualidade dos alimentos e a contaminação do solo? A combinação de ultraprocessados, solos empobrecidos e carnes hormonizadas altera a química do corpo, aumentando a inflamação e prejudicando o equilíbrio do sistema nervoso, o que pode agravar o estado ansioso.",
+      "Você já sentiu, ${userName}, que a ansiedade parece estar sempre presente, mesmo sem um motivo claro? Muitas vezes, isso é reflexo dos impactos da alimentação industrializada e do ambiente contaminado no nosso organismo. Esses fatores silenciosos interferem no funcionamento do cérebro e nos hormônios que regulam o humor e o estresse."
+    ],
+    "copy_en": [
+      "${userName}, anxiety often arises as the body’s response to internal imbalances caused by diet and lifestyle. Frequent exposure to ultra-processed foods, contaminated soils, and hormone-treated meats can increase inflammation in the body, directly affecting the nervous system and heightening feelings of anxiety. Understanding these causes is the first step to regaining control of your emotional and physical health.",
+      "${userName}, did you know anxiety may be linked to silent factors like poor food quality and soil contamination? The combination of ultra-processed foods, depleted soils, and hormone-treated meats alters body chemistry, increasing inflammation and harming nervous system balance, which can worsen anxious states.",
+      "Have you noticed, ${userName}, that anxiety seems always present even without a clear reason? Often, this reflects the impact of industrialized food and contaminated environments on our body. These silent factors interfere with brain function and hormones regulating mood and stress."
+    ],
+    "quick_replies_pt": [
+      "Por que sinto tanta ansiedade?",
+      "Alimentos pioram a ansiedade?",
+      "Solo contaminado influencia?",
+      "Carnes com hormônios afetam?",
+      "Quero entender mais sobre ansiedade",
+      "Tem estudos científicos?",
+      "Como aliviar ansiedade naturalmente?",
+      "Quais sintomas indicam ansiedade grave?",
+      "Quero dicas para controlar ansiedade",
+      "Estresse piora ansiedade?",
+      "Ansiedade é normal hoje?",
+      "Quando buscar ajuda profissional?"
+    ],
+    "quick_replies_en": [
+      "Why do I feel so anxious?",
+      "Do foods worsen anxiety?",
+      "Does contaminated soil influence?",
+      "Do hormone-treated meats affect?",
+      "I want to learn more about anxiety",
+      "Are there scientific studies?",
+      "How to relieve anxiety naturally?",
+      "What symptoms indicate severe anxiety?",
+      "I want tips to control anxiety",
+      "Does stress worsen anxiety?",
+      "Is anxiety normal nowadays?",
+      "When to seek professional help?"
+    ]
+  },
+  "fase_2": {
+    "copy_pt": [
+      "${userName}, a ansiedade não tratada pode evoluir para transtornos que impactam a saúde mental e física, aumentando o risco de depressão, insônia e doenças cardiovasculares. Estudos indicam que a inflamação crônica causada por hábitos alimentares inadequados e exposição a toxinas afeta o sistema nervoso central, agravando esses quadros.",
+      "Você sabia, ${userName}, que a persistência da ansiedade pode desencadear processos inflamatórios no cérebro que comprometem o funcionamento cognitivo e emocional? Pesquisas mostram que a dieta rica em ultraprocessados e a contaminação ambiental são fatores que dificultam o controle da ansiedade.",
+      "${userName}, a ansiedade crônica está associada a um aumento da inflamação sistêmica e redução da qualidade de vida. Dados da Organização Mundial da Saúde reforçam a importância de uma abordagem integrada que envolva alimentação saudável e cuidados naturais para o sistema nervoso."
+    ],
+    "copy_en": [
+      "${userName}, untreated anxiety can evolve into disorders impacting mental and physical health, increasing risk of depression, insomnia, and cardiovascular diseases. Studies indicate chronic inflammation caused by poor dietary habits and toxin exposure affects the central nervous system, worsening these conditions.",
+      "Did you know, ${userName}, that persistent anxiety can trigger inflammatory processes in the brain compromising cognitive and emotional function? Research shows diets rich in ultra-processed foods and environmental contamination are factors that hinder anxiety control.",
+      "${userName}, chronic anxiety is linked to increased systemic inflammation and reduced quality of life. World Health Organization data emphasize the importance of an integrated approach involving healthy eating and natural care for the nervous system."
+    ],
+    "quick_replies_pt": [
+      "Ansiedade pode piorar?",
+      "Como alimentos afetam ansiedade?",
+      "Solo contaminado influencia?",
+      "Carnes hormonizadas prejudicam?",
+      "Quero saber mais sobre ansiedade",
+      "Ansiedade afeta saúde mental?",
+      "Dá para melhorar naturalmente?",
+      "Quais sintomas indicam gravidade?",
+      "Quero dicas para controlar ansiedade",
+      "Estresse piora ansiedade?",
+      "Tem estudos científicos?",
+      "Quando buscar ajuda?"
+    ],
+    "quick_replies_en": [
+      "Can anxiety get worse?",
+      "How do foods affect anxiety?",
+      "Does contaminated soil influence?",
+      "Do hormone-treated meats harm?",
+      "I want to learn more about anxiety",
+      "Does anxiety affect mental health?",
+      "Can it be improved naturally?",
+      "What symptoms indicate severity?",
+      "I want tips to control anxiety",
+      "Does stress worsen anxiety?",
+      "Are there scientific studies?",
+      "When to seek help?"
+    ]
+  },
+  "fase_3": {
+    "copy_pt": [
+      "${userName}, estudos indicam que a Moringa possui compostos que ajudam a modular o sistema nervoso, reduzir inflamação e melhorar o equilíbrio emocional. Pesquisas publicadas no Frontiers in Pharmacology destacam seu potencial para apoiar a saúde mental e aliviar sintomas ansiosos.",
+      "Pesquisas recentes, ${userName}, confirmam que os antioxidantes da Moringa reduzem o estresse oxidativo e promovem o equilíbrio dos neurotransmissores, contribuindo para o alívio da ansiedade. Estudos do Journal of Ethnopharmacology reforçam esses benefícios.",
+      "${userName}, estudos do Nutritional Journal mostram que o consumo regular da Moringa está associado à melhora do humor e redução dos níveis de ansiedade, promovendo maior bem-estar."
+    ],
+    "copy_en": [
+      "${userName}, studies indicate Moringa contains compounds that help modulate the nervous system, reduce inflammation, and improve emotional balance. Research published in Frontiers in Pharmacology highlights its potential to support mental health and relieve anxious symptoms.",
+      "Recent research, ${userName}, confirms Moringa’s antioxidants reduce oxidative stress and promote neurotransmitter balance, contributing to anxiety relief. Studies from the Journal of Ethnopharmacology reinforce these benefits.",
+      "${userName}, studies from the Nutritional Journal show regular Moringa consumption is linked to improved mood and reduced anxiety levels, promoting greater well-being."
+    ],
+    "quick_replies_pt": [
+      "Moringa ajuda na ansiedade?",
+      "Tem estudos científicos?",
+      "Quanto tempo para sentir efeito?",
+      "Posso usar todos os dias?",
+      "Ajuda a reduzir estresse?",
+      "É seguro para uso contínuo?",
+      "Quero relatos de quem melhorou",
+      "Como a Moringa age no sistema nervoso?",
+      "Posso combinar com outras plantas?",
+      "Quero dicas para começar",
+      "Quero ver estudos científicos",
+      "Quais benefícios principais?"
+    ],
+    "quick_replies_en": [
+      "Does Moringa help anxiety?",
+      "Are there scientific studies?",
+      "How long to feel effects?",
+      "Can I use it daily?",
+      "Does it help reduce stress?",
+      "Is it safe for continuous use?",
+      "I want stories from people who improved",
+      "How does Moringa act on the nervous system?",
+      "Can I combine it with other plants?",
+      "I want tips to start",
+      "I want to see scientific studies",
+      "What are the main benefits?"
+    ]
+  },
+  "fase_4": {
+    "copy_pt": [
+      "A Moringa é uma planta ancestral reconhecida por seus compostos que ajudam a equilibrar o sistema nervoso e a reduzir a inflamação, promovendo maior tranquilidade e bem-estar emocional. Rica em antioxidantes, ela é uma aliada natural para quem enfrenta ansiedade.",
+      "${userName}, as folhas da Moringa possuem propriedades que modulam a resposta inflamatória e promovem o equilíbrio dos neurotransmissores, contribuindo para o alívio dos sintomas ansiosos. Seu uso tradicional aliado a evidências científicas reforça seu papel como suporte natural para a saúde mental.",
+      "Utilizada há séculos, a Moringa oferece nutrientes essenciais que fortalecem o sistema nervoso e promovem o relaxamento, ajudando a reduzir a ansiedade e melhorar a qualidade de vida."
+    ],
+    "copy_en": [
+      "Moringa is an ancestral plant recognized for compounds that help balance the nervous system and reduce inflammation, promoting greater calm and emotional well-being. Rich in antioxidants, it’s a natural ally for those facing anxiety.",
+      "${userName}, Moringa leaves contain properties that modulate inflammatory response and promote neurotransmitter balance, contributing to anxiety symptom relief. Its traditional use combined with scientific evidence reinforces its role as natural mental health support.",
+      "Used for centuries, Moringa offers essential nutrients that strengthen the nervous system and promote relaxation, helping reduce anxiety and improve quality of life."
+    ],
+    "quick_replies_pt": [
+      "Como usar Moringa para ansiedade?",
+      "Tem receita para ansiedade?",
+      "Ajuda a reduzir estresse?",
+      "Posso usar todos os dias?",
+      "Quero relatos de quem melhorou",
+      "Quanto tempo para ver resultado?",
+      "É seguro para uso contínuo?",
+      "Posso combinar com outras plantas?",
+      "Quero dicas para começar",
+      "Ajuda no equilíbrio emocional?",
+      "Quero ver estudos científicos",
+      "Dá para usar com alimentação variada?"
+    ],
+    "quick_replies_en": [
+      "How to use Moringa for anxiety?",
+      "Any recipe for anxiety?",
+      "Does it help reduce stress?",
+      "Can I use it daily?",
+      "I want stories from people who improved",
+      "How long to see results?",
+      "Is it safe for continuous use?",
+      "Can I combine it with other plants?",
+      "I want tips to start",
+      "Does it help emotional balance?",
+      "I want to see scientific studies",
+      "Can it be used with varied diet?"
+    ]
+  },
+  "fase_5": {
+    "copy_pt": [
+      "${userName}, cuidar da ansiedade de forma natural pode trazer grande alívio e melhorar sua qualidade de vida. Com a Moringa e hábitos conscientes, seu corpo terá suporte para equilibrar o sistema nervoso e reduzir a inflamação. Posso ajudar com receitas, dicas e um plano prático para essa transformação.",
+      "A mudança começa com pequenas escolhas, ${userName}. Ao incluir a Moringa na sua rotina e optar por alimentos naturais, você apoia seu organismo na busca pelo equilíbrio emocional e bem-estar. Estou aqui para guiar você com passos simples e personalizados.",
+      "${userName}, sua jornada para controlar a ansiedade pode começar agora. Com a Moringa e uma alimentação equilibrada, seu corpo terá o suporte necessário para promover tranquilidade e qualidade de vida. Posso fornecer um plano com orientações e cuidados para essa nova fase."
+    ],
+    "copy_en": [
+      "${userName}, caring for your anxiety naturally can bring great relief and improve your quality of life. With Moringa and conscious habits, your body will have the support to balance the nervous system and reduce inflammation. I can help with recipes, tips, and a practical plan for this transformation.",
+      "The change starts with small actions, ${userName}. By including Moringa in your routine and opting for natural foods, you support your body in the pursuit of emotional balance and well-being. I’m here to guide you with simple, personalized steps.",
+      "${userName}, your journey to control anxiety can start now. With Moringa and a balanced diet, your body will have the support to promote calm and quality of life. I can provide a plan with guidance, recipes, and care for this new phase."
+    ],
+    "quick_replies_pt": [
+      "Quero começar já com Moringa",
+      "Tem receita fácil para ansiedade",
+      "Quero relatos reais de transformação",
+      "Como montar uma rotina prática?",
+      "Prefiro aprender mais antes",
+      "Resultados são duradouros?",
+      "Posso combinar com minha alimentação?",
+      "Quero conversar sobre escolhas naturais",
+      "Dá pra fazer em família?",
+      "Tem dicas para motivação?",
+      "É seguro para todos?",
+      "Quero ver estudos e relatos reais"
+    ],
+    "quick_replies_en": [
+      "I want to start with Moringa now",
+      "Any easy recipe for anxiety",
+      "I want real transformation stories",
+      "How to build a practical routine?",
+      "I’d rather learn more first",
+      "Are results lasting?",
+      "Can I combine with my diet?",
+      "I want to talk about natural choices",
+      "Can this be done as a family?",
+      "Any tips for motivation?",
+      "Is it safe for everyone?",
+      "I want to see studies and real stories"
+    ]
   }
 }
-
