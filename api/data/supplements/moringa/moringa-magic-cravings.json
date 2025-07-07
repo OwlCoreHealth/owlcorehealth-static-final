@@ -1,294 +1,288 @@
 {
-  "suplemento": "Moringa",   
-  "sintomas": {
-    "desejos_alimentares": {
-      "desejos_food_cravings": {
-        "fase_1": {
-          "copy_pt": [
-            "${userName}, você já sentiu aquela vontade incontrolável de comer doces, salgados ou alimentos específicos, mesmo sabendo que não está com fome? Esses desejos intensos são mais comuns do que se imagina e estão profundamente ligados ao que consumimos diariamente. A alimentação moderna, com ultraprocessados, açúcar em excesso, solos empobrecidos e carnes tratadas com hormônios, desequilibra os níveis de nutrientes essenciais no corpo, provocando esses desejos. Reconhecer essa conexão é o primeiro passo para retomar o controle.",
-            "${userName}, os desejos alimentares são sinais do corpo que indicam falta de nutrientes e desequilíbrio hormonal, muitas vezes causados pelo consumo de alimentos processados, solos degradados e carnes contaminadas. Essa realidade da alimentação moderna faz com que o organismo peça aquilo que ele realmente precisa, mas de forma distorcida, gerando aquela vontade difícil de resistir. Entender esse mecanismo é essencial para buscar alternativas saudáveis.",
-            "Você já percebeu, ${userName}, como seu corpo parece pedir certos alimentos em momentos de estresse ou cansaço? Isso não é apenas vontade, mas um alerta do organismo sobre a falta de nutrientes vitais, agravada pela dieta cheia de ultraprocessados e produtos de baixa qualidade. Solos contaminados e carnes com hormônios pioram ainda mais esse quadro, tornando esses desejos mais frequentes e difíceis de controlar."
-          ],
-          "copy_en": [
-            "${userName}, have you ever felt that uncontrollable craving for sweets, salty snacks, or specific foods, even when you’re not hungry? These intense cravings are more common than you think and deeply connected to what we consume daily. Modern diets with ultra-processed foods, excess sugar, depleted soils, and hormone-treated meats imbalance essential nutrient levels, triggering these urges. Recognizing this connection is the first step to regain control.",
-            "${userName}, cravings are the body’s signals indicating nutrient deficiencies and hormonal imbalances, often caused by processed foods, degraded soils, and contaminated meats. This reality of modern eating makes the body ask for what it really needs but in a distorted way, generating those hard-to-resist urges. Understanding this mechanism is essential to seek healthy alternatives.",
-            "Have you noticed, ${userName}, how your body seems to demand certain foods during stress or fatigue? It’s not just a desire but an alert from your body about lacking vital nutrients, worsened by diets full of ultra-processed and low-quality products. Contaminated soils and hormone-fed meats worsen this, making cravings more frequent and difficult to control."
-          ],
-          "quick_replies_pt": [
-            "Por que sinto esses desejos?",
-            "Como alimentação influencia desejos?",
-            "Solo contaminado piora os desejos?",
-            "Hormônios em carnes afetam?",
-            "Quero entender mais sobre cravings",
-            "Tem estudos científicos?",
-            "Como controlar desejos naturalmente?",
-            "Estresse aumenta esses desejos?",
-            "Quais sintomas acompanham desejos?",
-            "É normal sentir isso hoje?",
-            "Quero dicas para controlar vontade",
-            "Desejos podem indicar falta de nutrientes?"
-          ],
-          "quick_replies_en": [
-            "Why do I have these cravings?",
-            "How does diet influence cravings?",
-            "Does contaminated soil worsen cravings?",
-            "Do hormones in meat affect cravings?",
-            "I want to learn more about cravings",
-            "Are there scientific studies?",
-            "How to control cravings naturally?",
-            "Does stress increase cravings?",
-            "What symptoms accompany cravings?",
-            "Is it normal to feel this today?",
-            "I want tips to control urges",
-            "Can cravings indicate nutrient deficiency?"
-          ],
-          "reflective_questions_pt": [
-            "Por que será que o teu corpo está a avisar agora?",
-            "Descobrir o que pode estar escondido por trás deste sintoma",
-            "Será que estou a ignorar algo importante?",
-            "Quero entender o verdadeiro motivo deste sintoma",
-            "Descobrir por que tanta gente sente isso e não percebe",
-            "Explorar possíveis causas escondidas",
-            "Avançar para saber mais sobre este sintoma",
-            "O que pode estar por trás deste sinal do corpo?",
-            "Ver histórias de quem já passou por isso",
-            "Quero entender meu corpo melhor",
-            "O que será que o meu corpo está tentando me dizer?",
-            "Descobrir se esse sintoma pode ser mais importante do que parece"
-          ],
-          "reflective_questions_en": [
-            "Why is your body warning you now?",
-            "Discover what may be hidden behind this symptom",
-            "Am I ignoring something important?",
-            "I want to understand the true cause of this symptom",
-            "Discover why so many people feel this way and don't realize it",
-            "Explore possible hidden causes",
-            "Move forward to learn more about this symptom",
-            "What could be behind this signal from the body?",
-            "See stories of those who’ve been through this",
-            "I want to understand my body better",
-            "What could my body be trying to tell me?",
-            "Discover if this symptom could be more important than it seems"
-          ]
-        },
-        "fase_2": {
-          "copy_pt": [
-            "${userName}, desejos alimentares frequentes e descontrolados podem comprometer sua saúde de várias formas. Estudos indicam que esses impulsos estão ligados a desequilíbrios hormonais e inflamação crônica, causados por alimentos ultraprocessados, solos degradados e carnes com hormônios. Ignorar esses sinais pode levar ao ganho de peso, resistência à insulina e outras complicações metabólicas.",
-            "Você sabia, ${userName}, que ceder constantemente aos desejos pode aumentar o risco de doenças metabólicas e inflamatórias? Pesquisas da Harvard Medical School mostram que a exposição contínua a aditivos químicos e alimentos contaminados altera o funcionamento do organismo, dificultando o equilíbrio hormonal e o controle do apetite.",
-            "${userName}, quando os desejos alimentares não são controlados, eles podem desencadear um ciclo vicioso de alimentação desregulada e ganho de peso, além de aumentar a inflamação no corpo. Dados da OMS indicam que essa situação está associada ao desenvolvimento de doenças crônicas e problemas de saúde mental, tornando urgente o cuidado com esses sintomas."
-          ],
-          "copy_en": [
-            "${userName}, frequent and uncontrolled food cravings can compromise your health in many ways. Studies show these impulses are linked to hormonal imbalances and chronic inflammation caused by ultra-processed foods, degraded soils, and hormone-treated meats. Ignoring these signs can lead to weight gain, insulin resistance, and other metabolic complications.",
-            "Did you know, ${userName}, that constantly giving in to cravings increases risk of metabolic and inflammatory diseases? Harvard Medical School research shows continuous exposure to chemicals and contaminated foods alters body function, making hormonal balance and appetite control difficult.",
-            "${userName}, when food cravings are uncontrolled, they can trigger a vicious cycle of unregulated eating and weight gain, also increasing body inflammation. WHO data links this to chronic diseases and mental health problems, making care for these symptoms urgent."
-          ],
-          "quick_replies_pt": [
-            "Desejos frequentes são perigosos?",
-            "Como processados pioram isso?",
-            "Solo contaminado afeta?",
-            "Hormônios em carnes prejudicam?",
-            "Quero saber mais sobre inflamação",
-            "Desejos causam ganho de peso?",
-            "Dá para controlar naturalmente?",
-            "Quais sinais de alerta?",
-            "Quero dicas para controlar desejos",
-            "Estresse piora desejos?",
-            "Tem estudos confiáveis?",
-            "Como melhorar o equilíbrio hormonal?"
-          ],
-          "quick_replies_en": [
-            "Are frequent cravings dangerous?",
-            "How do processed foods worsen it?",
-            "Does contaminated soil affect?",
-            "Do hormones in meat harm?",
-            "I want to learn more about inflammation",
-            "Do cravings cause weight gain?",
-            "Can cravings be controlled naturally?",
-            "What are warning signs?",
-            "I want tips to control cravings",
-            "Does stress worsen cravings?",
-            "Are there reliable studies?",
-            "How to improve hormonal balance?"
-          ],
-          "reflective_questions_pt": [
-            "O que pode acontecer se eu continuar a ignorar isto?",
-            "Quais os riscos reais de deixar este sintoma de lado?",
-            "Descobrir histórias de quem passou por isso",
-            "Saber se esse sintoma pode piorar",
-            "Entender as consequências de não agir agora",
-            "Ver dados sobre a gravidade desse sintoma",
-            "Será que pode trazer outros problemas de saúde?",
-            "Quero saber se devo me preocupar",
-            "Saber quando é urgente procurar ajuda",
-            "Entender o impacto deste sintoma a longo prazo",
-            "Descobrir se posso prevenir problemas maiores",
-            "Ver exemplos reais de quem ignorou este sintoma"
-          ],
-          "reflective_questions_en": [
-            "What could happen if I continue to ignore this?",
-            "What are the real risks of neglecting this symptom?",
-            "See stories of those who’ve been through this",
-            "Learn if this symptom could worsen",
-            "Understand the consequences of not acting now",
-            "See data about the severity of this symptom",
-            "Could it lead to other health problems?",
-            "I want to know if I should worry",
-            "Know when it’s urgent to seek help",
-            "Understand the long-term impact of this symptom",
-            "Learn if I can prevent bigger problems",
-            "See real examples of those who ignored this symptom"
-          ]
-        },
-        "fase_3": {
-          "copy_pt": [
-            "${userName}, estudos científicos confirmam que a Moringa contém nutrientes essenciais que ajudam a equilibrar os hormônios e reduzir a inflamação, fatores que diminuem os desejos alimentares. Publicações no Frontiers in Pharmacology destacam o efeito positivo da planta na regulação do apetite e na melhora do metabolismo.",
-            "Pesquisas recentes, ${userName}, mostram que os compostos bioativos da Moringa auxiliam na modulação hormonal, ajudando a controlar os impulsos alimentares e promovendo o equilíbrio metabólico. O Journal of Ethnopharmacology reforça sua eficácia para quem deseja reduzir desejos e melhorar a saúde geral.",
-            "${userName}, estudos do Nutritional Journal indicam que a Moringa age no sistema nervoso, promovendo sensação de saciedade e ajudando a controlar os desejos por alimentos ultraprocessados, colaborando para uma alimentação mais consciente e equilibrada."
-          ],
-          "copy_en": [
-            "${userName}, scientific studies confirm Moringa contains essential nutrients that help balance hormones and reduce inflammation, factors that decrease food cravings. Publications in Frontiers in Pharmacology highlight the plant’s positive effect on appetite regulation and metabolic improvement.",
-            "Recent research, ${userName}, shows Moringa’s bioactive compounds assist in hormonal modulation, helping control food impulses and promoting metabolic balance. The Journal of Ethnopharmacology reinforces its effectiveness for those wanting to reduce cravings and improve overall health.",
-            "${userName}, studies from the Nutritional Journal indicate Moringa acts on the nervous system, promoting satiety and helping control cravings for ultra-processed foods, supporting more conscious and balanced eating."
-          ],
-          "quick_replies_pt": [
-            "Moringa ajuda a controlar desejos?",
-            "Tem estudos científicos?",
-            "Quanto tempo para sentir efeito?",
-            "Posso usar todos os dias?",
-            "Moringa ajuda na modulação hormonal?",
-            "Ajuda a reduzir inflamação?",
-            "É seguro para uso contínuo?",
-            "Quero relatos de quem controlou desejos",
-            "Como a Moringa age no corpo?",
-            "Posso combinar com outras plantas?",
-            "Quero dicas para começar",
-            "Quero ver estudos científicos"
-          ],
-          "quick_replies_en": [
-            "Does Moringa help control cravings?",
-            "Are there scientific studies?",
-            "How long to feel effects?",
-            "Can I use it daily?",
-            "Does Moringa help hormonal modulation?",
-            "Does it help reduce inflammation?",
-            "Is it safe for continuous use?",
-            "I want stories from people who controlled cravings",
-            "How does Moringa act in the body?",
-            "Can I combine it with other plants?",
-            "I want tips to start",
-            "I want to see scientific studies"
-          ],
-          "reflective_questions_pt": [
-            "Moringa ajuda a controlar desejos?",
-            "Tem estudos científicos?",
-            "Quanto tempo para sentir efeito?",
-            "Posso usar todos os dias?",
-            "Moringa ajuda na modulação hormonal?",
-            "Ajuda a reduzir inflamação?",
-            "É seguro para uso contínuo?",
-            "Quero relatos de quem controlou desejos",
-            "Como a Moringa age no corpo?",
-            "Posso combinar com outras plantas?",
-            "Quero dicas para começar",
-            "Quero ver estudos científicos"
-          ],
-          "reflective_questions_en": [
-            "Does Moringa help control cravings?",
-            "Are there scientific studies?",
-            "How long to feel effects?",
-            "Can I use it daily?",
-            "Does Moringa help hormonal modulation?",
-            "Does it help reduce inflammation?",
-            "Is it safe for continuous use?",
-            "I want stories from people who controlled cravings",
-            "How does Moringa act in the body?",
-            "Can I combine it with other plants?",
-            "I want tips to start",
-            "I want to see scientific studies"
-          ]
-        },
-        "fase_4": {
-          "copy_pt": [
-            "A Moringa é uma planta ancestral reconhecida por ajudar a equilibrar os hormônios e reduzir a inflamação, o que contribui para o controle dos desejos alimentares. Rica em vitaminas, minerais e antioxidantes, ela atua promovendo a sensação de saciedade e melhorando o metabolismo, auxiliando quem busca uma alimentação mais consciente.",
-            "${userName}, as folhas da Moringa possuem compostos que ajudam a regular o apetite e controlar os impulsos alimentares, além de fortalecer o sistema metabólico. Estudos comprovam seu uso tradicional para diminuir os desejos por alimentos processados e melhorar o equilíbrio do corpo de forma natural.",
-            "Com raízes em práticas milenares, a Moringa oferece nutrientes que atuam no sistema nervoso e endócrino, ajudando a reduzir os desejos alimentares e promover o bem-estar geral. Seu consumo regular pode ser uma ferramenta poderosa para quem busca controlar a alimentação e manter o equilíbrio corporal."
-          ],
-          "copy_en": [
-            "Moringa is an ancient plant known to help balance hormones and reduce inflammation, which contributes to controlling food cravings. Rich in vitamins, minerals, and antioxidants, it promotes satiety and improves metabolism, assisting those seeking more conscious eating.",
-            "${userName}, Moringa leaves contain compounds that help regulate appetite and control food impulses, while strengthening metabolic systems. Studies confirm its traditional use to reduce cravings for processed foods and naturally improve body balance.",
-            "With roots in millenary practices, Moringa offers nutrients that act on the nervous and endocrine systems, helping reduce food cravings and promote overall well-being. Regular consumption can be a powerful tool for those seeking to control eating and maintain body balance."
-          ],
-          "quick_replies_pt": [
-            "Como usar Moringa para controlar desejos?",
-            "Tem receita para saciedade?",
-            "Ajuda na modulação hormonal?",
-            "Posso usar todos os dias?",
-            "Quero relatos de quem controlou desejos",
-            "Quanto tempo para ver resultado?",
-            "É seguro para uso contínuo?",
-            "Posso combinar com outras plantas?",
-            "Quero dicas para começar",
-            "Ajuda no metabolismo?",
-            "Quero ver estudos científicos",
-            "Dá para usar com alimentação variada?"
-          ],
-          "quick_replies_en": [
-            "How to use Moringa to control cravings?",
-            "Any recipe for satiety?",
-            "Does it help hormonal modulation?",
-            "Can I use it daily?",
-            "I want stories from people who controlled cravings",
-            "How long to see results?",
-            "Is it safe for continuous use?",
-            "Can I combine it with other plants?",
-            "I want tips to start",
-            "Does it help metabolism?",
-            "I want to see scientific studies",
-            "Can it be used with a varied diet?"
-          ]
-        },
-        "fase_5": {
-          "copy_pt": [
-            "${userName}, controlar os desejos alimentares pode ser simples e natural com a Moringa e escolhas alimentares conscientes. Incorporar essa planta na sua rotina ajuda a equilibrar os hormônios, reduzir a inflamação e promover a saciedade, facilitando uma alimentação mais equilibrada. Posso te ajudar com receitas, dicas e um plano acessível para essa transformação.",
-            "A mudança começa com pequenas decisões, ${userName}. Ao incluir a Moringa na alimentação diária e optar por alimentos naturais, você oferece ao corpo suporte para controlar os desejos, melhorar o metabolismo e aumentar o bem-estar geral. Estou aqui para te guiar com passos práticos que respeitam seu ritmo.",
-            "${userName}, sua jornada para controlar os desejos alimentares e recuperar o equilíbrio metabólico pode começar agora. Com a Moringa e uma alimentação balanceada, seu corpo terá o suporte necessário para manter o apetite sob controle e melhorar a qualidade de vida. Posso fornecer um plano personalizado com orientações, receitas e cuidados."
-          ],
-          "copy_en": [
-            "${userName}, controlling food cravings can be simple and natural with Moringa and conscious food choices. Incorporating this plant into your routine helps balance hormones, reduce inflammation, and promote satiety, facilitating more balanced eating. I can help you with recipes, tips, and an affordable plan for this transformation.",
-            "Change starts with small decisions, ${userName}. By adding Moringa to your daily eating habits and opting for natural foods, you provide the body with support to control cravings, improve metabolism, and boost overall well-being. I am here to guide you with practical steps that respect your pace.",
-            "${userName}, your journey to control food cravings and regain metabolic balance can start now. With Moringa and a balanced diet, your body will have the necessary support to keep appetite under control and improve quality of life. I can provide a personalized plan with guidance, recipes, and care."
-          ],
-          "quick_replies_pt": [
-            "Quero começar já com Moringa",
-            "Tem receita fácil para saciedade",
-            "Quero relatos reais de transformação",
-            "Como montar uma rotina prática?",
-            "Prefiro aprender mais antes",
-            "Resultados são duradouros?",
-            "Posso combinar com minha alimentação?",
-            "Quero conversar sobre escolhas naturais",
-            "Dá pra fazer em família?",
-            "Tem dicas para motivação?",
-            "É seguro para todos?",
-            "Quero ver estudos e relatos reais"
-          ],
-          "quick_replies_en": [
-            "I want to start with Moringa now",
-            "Any easy recipe for satiety",
-            "I want real transformation stories",
-            "How to build a practical routine?",
-            "I’d rather learn more first",
-            "Are results lasting?",
-            "Can I combine with my diet?",
-            "I want to talk about natural choices",
-            "Can this be done as a family?",
-            "Any tips for motivation?",
-            "Is it safe for everyone?",
-            "I want to see studies and real stories"
-          ]
-        }
-      }
-    }
+  "suplemento": "Moringa",
+  "symptom": "desejos_alimentares",
+  "fase_1": {
+    "copy_pt": [
+      "${userName}, você já sentiu aquela vontade incontrolável de comer doces, salgados ou alimentos específicos, mesmo sabendo que não está com fome? Esses desejos intensos são mais comuns do que se imagina e estão profundamente ligados ao que consumimos diariamente. A alimentação moderna, com ultraprocessados, açúcar em excesso, solos empobrecidos e carnes tratadas com hormônios, desequilibra os níveis de nutrientes essenciais no corpo, provocando esses desejos. Reconhecer essa conexão é o primeiro passo para retomar o controle.",
+      "${userName}, os desejos alimentares são sinais do corpo que indicam falta de nutrientes e desequilíbrio hormonal, muitas vezes causados pelo consumo de alimentos processados, solos degradados e carnes contaminadas. Essa realidade da alimentação moderna faz com que o organismo peça aquilo que ele realmente precisa, mas de forma distorcida, gerando aquela vontade difícil de resistir. Entender esse mecanismo é essencial para buscar alternativas saudáveis.",
+      "Você já percebeu, ${userName}, como seu corpo parece pedir certos alimentos em momentos de estresse ou cansaço? Isso não é apenas vontade, mas um alerta do organismo sobre a falta de nutrientes vitais, agravada pela dieta cheia de ultraprocessados e produtos de baixa qualidade. Solos contaminados e carnes com hormônios pioram ainda mais esse quadro, tornando esses desejos mais frequentes e difíceis de controlar."
+    ],
+    "copy_en": [
+      "${userName}, have you ever felt that uncontrollable craving for sweets, salty snacks, or specific foods, even when you’re not hungry? These intense cravings are more common than you think and deeply connected to what we consume daily. Modern diets with ultra-processed foods, excess sugar, depleted soils, and hormone-treated meats imbalance essential nutrient levels, triggering these urges. Recognizing this connection is the first step to regain control.",
+      "${userName}, cravings are the body’s signals indicating nutrient deficiencies and hormonal imbalances, often caused by processed foods, degraded soils, and contaminated meats. This reality of modern eating makes the body ask for what it really needs but in a distorted way, generating those hard-to-resist urges. Understanding this mechanism is essential to seek healthy alternatives.",
+      "Have you noticed, ${userName}, how your body seems to demand certain foods during stress or fatigue? It’s not just a desire but an alert from your body about lacking vital nutrients, worsened by diets full of ultra-processed and low-quality products. Contaminated soils and hormone-fed meats worsen this, making cravings more frequent and difficult to control."
+    ],
+    "quick_replies_pt": [
+      "Por que sinto esses desejos?",
+      "Como alimentação influencia desejos?",
+      "Solo contaminado piora os desejos?",
+      "Hormônios em carnes afetam?",
+      "Quero entender mais sobre cravings",
+      "Tem estudos científicos?",
+      "Como controlar desejos naturalmente?",
+      "Estresse aumenta esses desejos?",
+      "Quais sintomas acompanham desejos?",
+      "É normal sentir isso hoje?",
+      "Quero dicas para controlar vontade",
+      "Desejos podem indicar falta de nutrientes?"
+    ],
+    "quick_replies_en": [
+      "Why do I have these cravings?",
+      "How does diet influence cravings?",
+      "Does contaminated soil worsen cravings?",
+      "Do hormones in meat affect cravings?",
+      "I want to learn more about cravings",
+      "Are there scientific studies?",
+      "How to control cravings naturally?",
+      "Does stress increase cravings?",
+      "What symptoms accompany cravings?",
+      "Is it normal to feel this today?",
+      "I want tips to control urges",
+      "Can cravings indicate nutrient deficiency?"
+    ],
+    "reflective_questions_pt": [
+      "Por que será que o teu corpo está a avisar agora?",
+      "Descobrir o que pode estar escondido por trás deste sintoma",
+      "Será que estou a ignorar algo importante?",
+      "Quero entender o verdadeiro motivo deste sintoma",
+      "Descobrir por que tanta gente sente isso e não percebe",
+      "Explorar possíveis causas escondidas",
+      "Avançar para saber mais sobre este sintoma",
+      "O que pode estar por trás deste sinal do corpo?",
+      "Ver histórias de quem já passou por isso",
+      "Quero entender meu corpo melhor",
+      "O que será que o meu corpo está tentando me dizer?",
+      "Descobrir se esse sintoma pode ser mais importante do que parece"
+    ],
+    "reflective_questions_en": [
+      "Why is your body warning you now?",
+      "Discover what may be hidden behind this symptom",
+      "Am I ignoring something important?",
+      "I want to understand the true cause of this symptom",
+      "Discover why so many people feel this way and don't realize it",
+      "Explore possible hidden causes",
+      "Move forward to learn more about this symptom",
+      "What could be behind this signal from the body?",
+      "See stories of those who’ve been through this",
+      "I want to understand my body better",
+      "What could my body be trying to tell me?",
+      "Discover if this symptom could be more important than it seems"
+    ]
+  },
+  "fase_2": {
+    "copy_pt": [
+      "${userName}, desejos alimentares frequentes e descontrolados podem comprometer sua saúde de várias formas. Estudos indicam que esses impulsos estão ligados a desequilíbrios hormonais e inflamação crônica, causados por alimentos ultraprocessados, solos degradados e carnes com hormônios. Ignorar esses sinais pode levar ao ganho de peso, resistência à insulina e outras complicações metabólicas.",
+      "Você sabia, ${userName}, que ceder constantemente aos desejos pode aumentar o risco de doenças metabólicas e inflamatórias? Pesquisas da Harvard Medical School mostram que a exposição contínua a aditivos químicos e alimentos contaminados altera o funcionamento do organismo, dificultando o equilíbrio hormonal e o controle do apetite.",
+      "${userName}, quando os desejos alimentares não são controlados, eles podem desencadear um ciclo vicioso de alimentação desregulada e ganho de peso, além de aumentar a inflamação no corpo. Dados da OMS indicam que essa situação está associada ao desenvolvimento de doenças crônicas e problemas de saúde mental, tornando urgente o cuidado com esses sintomas."
+    ],
+    "copy_en": [
+      "${userName}, frequent and uncontrolled food cravings can compromise your health in many ways. Studies show these impulses are linked to hormonal imbalances and chronic inflammation caused by ultra-processed foods, degraded soils, and hormone-treated meats. Ignoring these signs can lead to weight gain, insulin resistance, and other metabolic complications.",
+      "Did you know, ${userName}, that constantly giving in to cravings increases risk of metabolic and inflammatory diseases? Harvard Medical School research shows continuous exposure to chemicals and contaminated foods alters body function, making hormonal balance and appetite control difficult.",
+      "${userName}, when food cravings are uncontrolled, they can trigger a vicious cycle of unregulated eating and weight gain, also increasing body inflammation. WHO data links this to chronic diseases and mental health problems, making care for these symptoms urgent."
+    ],
+    "quick_replies_pt": [
+      "Desejos frequentes são perigosos?",
+      "Como processados pioram isso?",
+      "Solo contaminado afeta?",
+      "Hormônios em carnes prejudicam?",
+      "Quero saber mais sobre inflamação",
+      "Desejos causam ganho de peso?",
+      "Dá para controlar naturalmente?",
+      "Quais sinais de alerta?",
+      "Quero dicas para controlar desejos",
+      "Estresse piora desejos?",
+      "Tem estudos confiáveis?",
+      "Como melhorar o equilíbrio hormonal?"
+    ],
+    "quick_replies_en": [
+      "Are frequent cravings dangerous?",
+      "How do processed foods worsen it?",
+      "Does contaminated soil affect?",
+      "Do hormones in meat harm?",
+      "I want to learn more about inflammation",
+      "Do cravings cause weight gain?",
+      "Can cravings be controlled naturally?",
+      "What are warning signs?",
+      "I want tips to control cravings",
+      "Does stress worsen cravings?",
+      "Are there reliable studies?",
+      "How to improve hormonal balance?"
+    ],
+    "reflective_questions_pt": [
+      "O que pode acontecer se eu continuar a ignorar isto?",
+      "Quais os riscos reais de deixar este sintoma de lado?",
+      "Descobrir histórias de quem passou por isso",
+      "Saber se esse sintoma pode piorar",
+      "Entender as consequências de não agir agora",
+      "Ver dados sobre a gravidade desse sintoma",
+      "Será que pode trazer outros problemas de saúde?",
+      "Quero saber se devo me preocupar",
+      "Saber quando é urgente procurar ajuda",
+      "Entender o impacto deste sintoma a longo prazo",
+      "Descobrir se posso prevenir problemas maiores",
+      "Ver exemplos reais de quem ignorou este sintoma"
+    ],
+    "reflective_questions_en": [
+      "What could happen if I continue to ignore this?",
+      "What are the real risks of neglecting this symptom?",
+      "See stories of those who’ve been through this",
+      "Learn if this symptom could worsen",
+      "Understand the consequences of not acting now",
+      "See data about the severity of this symptom",
+      "Could it lead to other health problems?",
+      "I want to know if I should worry",
+      "Know when it’s urgent to seek help",
+      "Understand the long-term impact of this symptom",
+      "Learn if I can prevent bigger problems",
+      "See real examples of those who ignored this symptom"
+    ]
+  },
+  "fase_3": {
+    "copy_pt": [
+      "${userName}, estudos científicos confirmam que a Moringa contém nutrientes essenciais que ajudam a equilibrar os hormônios e reduzir a inflamação, fatores que diminuem os desejos alimentares. Publicações no Frontiers in Pharmacology destacam o efeito positivo da planta na regulação do apetite e na melhora do metabolismo.",
+      "Pesquisas recentes, ${userName}, mostram que os compostos bioativos da Moringa auxiliam na modulação hormonal, ajudando a controlar os impulsos alimentares e promovendo o equilíbrio metabólico. O Journal of Ethnopharmacology reforça sua eficácia para quem deseja reduzir desejos e melhorar a saúde geral.",
+      "${userName}, estudos do Nutritional Journal indicam que a Moringa age no sistema nervoso, promovendo sensação de saciedade e ajudando a controlar os desejos por alimentos ultraprocessados, colaborando para uma alimentação mais consciente e equilibrada."
+    ],
+    "copy_en": [
+      "${userName}, scientific studies confirm Moringa contains essential nutrients that help balance hormones and reduce inflammation, factors that decrease food cravings. Publications in Frontiers in Pharmacology highlight the plant’s positive effect on appetite regulation and metabolic improvement.",
+      "Recent research, ${userName}, shows Moringa’s bioactive compounds assist in hormonal modulation, helping control food impulses and promoting metabolic balance. The Journal of Ethnopharmacology reinforces its effectiveness for those wanting to reduce cravings and improve overall health.",
+      "${userName}, studies from the Nutritional Journal indicate Moringa acts on the nervous system, promoting satiety and helping control cravings for ultra-processed foods, supporting more conscious and balanced eating."
+    ],
+    "quick_replies_pt": [
+      "Moringa ajuda a controlar desejos?",
+      "Tem estudos científicos?",
+      "Quanto tempo para sentir efeito?",
+      "Posso usar todos os dias?",
+      "Moringa ajuda na modulação hormonal?",
+      "Ajuda a reduzir inflamação?",
+      "É seguro para uso contínuo?",
+      "Quero relatos de quem controlou desejos",
+      "Como a Moringa age no corpo?",
+      "Posso combinar com outras plantas?",
+      "Quero dicas para começar",
+      "Quero ver estudos científicos"
+    ],
+    "quick_replies_en": [
+      "Does Moringa help control cravings?",
+      "Are there scientific studies?",
+      "How long to feel effects?",
+      "Can I use it daily?",
+      "Does Moringa help hormonal modulation?",
+      "Does it help reduce inflammation?",
+      "Is it safe for continuous use?",
+      "I want stories from people who controlled cravings",
+      "How does Moringa act in the body?",
+      "Can I combine it with other plants?",
+      "I want tips to start",
+      "I want to see scientific studies"
+    ],
+    "reflective_questions_pt": [
+      "Moringa ajuda a controlar desejos?",
+      "Tem estudos científicos?",
+      "Quanto tempo para sentir efeito?",
+      "Posso usar todos os dias?",
+      "Moringa ajuda na modulação hormonal?",
+      "Ajuda a reduzir inflamação?",
+      "É seguro para uso contínuo?",
+      "Quero relatos de quem controlou desejos",
+      "Como a Moringa age no corpo?",
+      "Posso combinar com outras plantas?",
+      "Quero dicas para começar",
+      "Quero ver estudos científicos"
+    ],
+    "reflective_questions_en": [
+      "Does Moringa help control cravings?",
+      "Are there scientific studies?",
+      "How long to feel effects?",
+      "Can I use it daily?",
+      "Does Moringa help hormonal modulation?",
+      "Does it help reduce inflammation?",
+      "Is it safe for continuous use?",
+      "I want stories from people who controlled cravings",
+      "How does Moringa act in the body?",
+      "Can I combine it with other plants?",
+      "I want tips to start",
+      "I want to see scientific studies"
+    ]
+  },
+  "fase_4": {
+    "copy_pt": [
+      "A Moringa é uma planta ancestral reconhecida por ajudar a equilibrar os hormônios e reduzir a inflamação, o que contribui para o controle dos desejos alimentares. Rica em vitaminas, minerais e antioxidantes, ela atua promovendo a sensação de saciedade e melhorando o metabolismo, auxiliando quem busca uma alimentação mais consciente.",
+      "${userName}, as folhas da Moringa possuem compostos que ajudam a regular o apetite e controlar os impulsos alimentares, além de fortalecer o sistema metabólico. Estudos comprovam seu uso tradicional para diminuir os desejos por alimentos processados e melhorar o equilíbrio do corpo de forma natural.",
+      "Com raízes em práticas milenares, a Moringa oferece nutrientes que atuam no sistema nervoso e endócrino, ajudando a reduzir os desejos alimentares e promover o bem-estar geral. Seu consumo regular pode ser uma ferramenta poderosa para quem busca controlar a alimentação e manter o equilíbrio corporal."
+    ],
+    "copy_en": [
+      "Moringa is an ancient plant known to help balance hormones and reduce inflammation, which contributes to controlling food cravings. Rich in vitamins, minerals, and antioxidants, it promotes satiety and improves metabolism, assisting those seeking more conscious eating.",
+      "${userName}, Moringa leaves contain compounds that help regulate appetite and control food impulses, while strengthening metabolic systems. Studies confirm its traditional use to reduce cravings for processed foods and naturally improve body balance.",
+      "With roots in millenary practices, Moringa offers nutrients that act on the nervous and endocrine systems, helping reduce food cravings and promote overall well-being. Regular consumption can be a powerful tool for those seeking to control eating and maintain body balance."
+    ],
+    "quick_replies_pt": [
+      "Como usar Moringa para controlar desejos?",
+      "Tem receita para saciedade?",
+      "Ajuda na modulação hormonal?",
+      "Posso usar todos os dias?",
+      "Quero relatos de quem controlou desejos",
+      "Quanto tempo para ver resultado?",
+      "É seguro para uso contínuo?",
+      "Posso combinar com outras plantas?",
+      "Quero dicas para começar",
+      "Ajuda no metabolismo?",
+      "Quero ver estudos científicos",
+      "Dá para usar com alimentação variada?"
+    ],
+    "quick_replies_en": [
+      "How to use Moringa to control cravings?",
+      "Any recipe for satiety?",
+      "Does it help hormonal modulation?",
+      "Can I use it daily?",
+      "I want stories from people who controlled cravings",
+      "How long to see results?",
+      "Is it safe for continuous use?",
+      "Can I combine it with other plants?",
+      "I want tips to start",
+      "Does it help metabolism?",
+      "I want to see scientific studies",
+      "Can it be used with a varied diet?"
+    ]
+  },
+  "fase_5": {
+    "copy_pt": [
+      "${userName}, controlar os desejos alimentares pode ser simples e natural com a Moringa e escolhas alimentares conscientes. Incorporar essa planta na sua rotina ajuda a equilibrar os hormônios, reduzir a inflamação e promover a saciedade, facilitando uma alimentação mais equilibrada. Posso te ajudar com receitas, dicas e um plano acessível para essa transformação.",
+      "A mudança começa com pequenas decisões, ${userName}. Ao incluir a Moringa na alimentação diária e optar por alimentos naturais, você oferece ao corpo suporte para controlar os desejos, melhorar o metabolismo e aumentar o bem-estar geral. Estou aqui para te guiar com passos práticos que respeitam seu ritmo.",
+      "${userName}, sua jornada para controlar os desejos alimentares e recuperar o equilíbrio metabólico pode começar agora. Com a Moringa e uma alimentação balanceada, seu corpo terá o suporte necessário para manter o apetite sob controle e melhorar a qualidade de vida. Posso fornecer um plano personalizado com orientações, receitas e cuidados."
+    ],
+    "copy_en": [
+      "${userName}, controlling food cravings can be simple and natural with Moringa and conscious food choices. Incorporating this plant into your routine helps balance hormones, reduce inflammation, and promote satiety, facilitating more balanced eating. I can help you with recipes, tips, and an affordable plan for this transformation.",
+      "Change starts with small decisions, ${userName}. By adding Moringa to your daily eating habits and opting for natural foods, you provide the body with support to control cravings, improve metabolism, and boost overall well-being. I am here to guide you with practical steps that respect your pace.",
+      "${userName}, your journey to control food cravings and regain metabolic balance can start now. With Moringa and a balanced diet, your body will have the necessary support to keep appetite under control and improve quality of life. I can provide a personalized plan with guidance, recipes, and care."
+    ],
+    "quick_replies_pt": [
+      "Quero começar já com Moringa",
+      "Tem receita fácil para saciedade",
+      "Quero relatos reais de transformação",
+      "Como montar uma rotina prática?",
+      "Prefiro aprender mais antes",
+      "Resultados são duradouros?",
+      "Posso combinar com minha alimentação?",
+      "Quero conversar sobre escolhas naturais",
+      "Dá pra fazer em família?",
+      "Tem dicas para motivação?",
+      "É seguro para todos?",
+      "Quero ver estudos e relatos reais"
+    ],
+    "quick_replies_en": [
+      "I want to start with Moringa now",
+      "Any easy recipe for satiety",
+      "I want real transformation stories",
+      "How to build a practical routine?",
+      "I’d rather learn more first",
+      "Are results lasting?",
+      "Can I combine with my diet?",
+      "I want to talk about natural choices",
+      "Can this be done as a family?",
+      "Any tips for motivation?",
+      "Is it safe for everyone?",
+      "I want to see studies and real stories"
+    ]
   }
 }
-
