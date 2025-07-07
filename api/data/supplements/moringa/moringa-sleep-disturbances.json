@@ -1,210 +1,204 @@
 {
   "suplemento": "Moringa",
-  "sintomas": {
-    "disturbios_do_sono": {
-      "sleep_disturbances": {
-        "fase_1": {
-          "copy_pt": [
-            "${userName}, já percebeu como suas noites podem parecer menos reparadoras, mesmo depois de várias horas na cama? Distúrbios do sono são sinais de que algo no seu corpo não está em equilíbrio, e muitas vezes a raiz desse problema está na alimentação e no ambiente em que vivemos. Hoje, o solo empobrecido em nutrientes, a presença de ultraprocessados e carnes com hormônios sintéticos impactam diretamente a qualidade do sono, interferindo nos ciclos naturais de descanso do corpo. Estudos indicam que mais de 60% das pessoas enfrentam problemas relacionados ao sono, e compreender isso é essencial para melhorar sua saúde e bem-estar.",
-            "${userName}, dormir mal vai muito além do cansaço: é um reflexo do impacto que a rotina moderna e a alimentação industrializada causam em seu organismo. Solos contaminados, alimentos ultraprocessados e carnes tratadas com hormônios afetam a produção de neurotransmissores e hormônios como a melatonina, que regulam o sono. Isso pode fazer com que seu corpo não consiga descansar adequadamente, prejudicando sua energia, humor e capacidade de concentração no dia seguinte.",
-            "Você sabia, ${userName}, que o solo degradado, a alimentação rica em processados e a ingestão de carnes com hormônios sintéticos alteram profundamente o ciclo natural do sono? Esses fatores comprometem a regeneração celular e a produção dos hormônios essenciais para o descanso, causando distúrbios que afetam o corpo e a mente. Entender esses sinais é fundamental para recuperar noites tranquilas e uma vida mais saudável."
-          ],
-          "copy_en": [
-            "${userName}, have you noticed how your nights feel less restorative even after several hours in bed? Sleep disturbances are signs that something in your body is out of balance, often rooted in diet and environment. Today, nutrient-depleted soils, ultra-processed foods, and hormone-treated meats directly impact sleep quality by interfering with the body’s natural rest cycles. Studies show over 60% of people face sleep-related issues, and understanding this is key to improving your health and well-being.",
-            "${userName}, poor sleep goes beyond fatigue: it reflects the impact modern routines and industrialized diets have on your body. Contaminated soils, ultra-processed foods, and hormone-treated meats affect neurotransmitter and hormone production like melatonin, which regulate sleep. This can prevent your body from resting properly, impairing energy, mood, and concentration the next day.",
-            "Did you know, ${userName}, that degraded soils, processed food, and consumption of hormone-treated meats profoundly alter natural sleep cycles? These factors compromise cellular regeneration and the production of essential sleep hormones, causing disturbances that affect body and mind. Understanding these signs is vital to reclaim peaceful nights and a healthier life."
-          ],
-          "quick_replies_pt": [
-            "Por que não consigo dormir bem?",
-            "Alimentos influenciam o sono?",
-            "Solo contaminado prejudica o sono?",
-            "Carnes com hormônios afetam?",
-            "Quero entender mais sobre distúrbios do sono",
-            "Tem estudos científicos?",
-            "Como melhorar o sono naturalmente?",
-            "Estresse interfere no sono?",
-            "Quais sintomas indicam problema sério?",
-            "É normal dormir pouco hoje?",
-            "Quero dicas para dormir melhor",
-            "Sono ruim pode causar doenças?"
-          ],
-          "quick_replies_en": [
-            "Why can’t I sleep well?",
-            "Do foods influence sleep?",
-            "Does contaminated soil harm sleep?",
-            "Do hormone-treated meats affect sleep?",
-            "I want to learn more about sleep disturbances",
-            "Are there scientific studies?",
-            "How to improve sleep naturally?",
-            "Does stress affect sleep?",
-            "What symptoms indicate serious problems?",
-            "Is it normal to sleep little nowadays?",
-            "I want tips to sleep better",
-            "Can poor sleep cause diseases?"
-          ]
-        },
-        "fase_2": {
-          "copy_pt": [
-            "${userName}, a privação do sono e os distúrbios relacionados têm impactos sérios na saúde física e mental. Estudos da National Sleep Foundation mostram que a falta de um sono reparador está ligada a maior risco de doenças cardiovasculares, obesidade, depressão e redução do sistema imunológico. A má qualidade dos alimentos consumidos, solos empobrecidos e carnes hormonizadas agravam esses problemas, dificultando a recuperação natural do corpo.",
-            "Você sabia, ${userName}, que dormir mal de forma crônica compromete a capacidade do organismo de se regenerar? Pesquisas indicam que alimentos ultraprocessados, solos contaminados e carnes tratadas com hormônios sintéticos alteram a produção de melatonina e outros neurotransmissores essenciais, tornando o sono superficial e fragmentado.",
-            "${userName}, quando o sono não é reparador, o corpo não consegue recuperar as funções vitais. Dados da Organização Mundial da Saúde associam distúrbios do sono ao aumento do risco de diabetes, hipertensão e problemas neurológicos. A influência negativa dos ultraprocessados, solos degradados e carnes hormonizadas potencializa esses efeitos, tornando urgente o cuidado com a alimentação e o descanso."
-          ],
-          "copy_en": [
-            "${userName}, sleep deprivation and related disturbances have serious impacts on physical and mental health. National Sleep Foundation studies link poor restorative sleep to higher risk of cardiovascular diseases, obesity, depression, and weakened immune system. Poor-quality food, depleted soils, and hormone-treated meats worsen these issues, making the body’s natural recovery harder.",
-            "Did you know, ${userName}, that chronic poor sleep impairs the body’s ability to regenerate? Research shows ultra-processed foods, contaminated soils, and hormone-treated meats alter melatonin and other essential neurotransmitter production, causing shallow and fragmented sleep.",
-            "${userName}, when sleep isn’t restorative, the body can’t recover vital functions. World Health Organization data associate sleep disturbances with increased risk of diabetes, hypertension, and neurological problems. The negative influence of ultra-processed foods, degraded soils, and hormone-treated meats amplifies these effects, making nutrition and rest care urgent."
-          ],
-          "quick_replies_pt": [
-            "Sono ruim pode causar doenças?",
-            "Alimentos pioram o sono?",
-            "Solo contaminado afeta o sono?",
-            "Carnes com hormônios prejudicam?",
-            "Quero saber mais sobre melatonina",
-            "Sono ruim afeta imunidade?",
-            "Dá para melhorar naturalmente?",
-            "Quais sintomas devo observar?",
-            "Quero dicas para dormir melhor",
-            "Estresse piora o sono?",
-            "Tem estudos científicos?",
-            "Como cuidar do sono?"
-          ],
-          "quick_replies_en": [
-            "Can poor sleep cause diseases?",
-            "Do foods worsen sleep?",
-            "Does contaminated soil affect sleep?",
-            "Do hormone-treated meats harm?",
-            "I want to learn more about melatonin",
-            "Does poor sleep affect immunity?",
-            "Can it be improved naturally?",
-            "What symptoms should I watch for?",
-            "I want tips to sleep better",
-            "Does stress worsen sleep?",
-            "Are there scientific studies?",
-            "How to care for sleep?"
-          ]
-        },
-        "fase_3": {
-          "copy_pt": [
-            "${userName}, estudos mostram que a Moringa possui compostos que auxiliam na regulação do sono, estimulando a produção de melatonina e reduzindo o estresse oxidativo cerebral. Pesquisas publicadas no Frontiers in Pharmacology indicam que seu uso contribui para um sono mais profundo e restaurador, promovendo melhor qualidade de vida.",
-            "Pesquisas recentes, ${userName}, confirmam que a Moringa ajuda a equilibrar os neurotransmissores envolvidos no ciclo do sono, combatendo a insônia e promovendo a regeneração celular durante a noite. Estudos do Journal of Ethnopharmacology reforçam seu potencial terapêutico para distúrbios do sono.",
-            "${userName}, estudos do Nutritional Journal demonstram que os antioxidantes e vitaminas da Moringa auxiliam na melhora da qualidade do sono, aumentando a sensação de descanso e reduzindo a fadiga diurna. Seu uso regular está associado a um ciclo de sono mais saudável e equilibrado."
-          ],
-          "copy_en": [
-            "${userName}, studies show Moringa contains compounds that aid sleep regulation by stimulating melatonin production and reducing brain oxidative stress. Research published in Frontiers in Pharmacology indicates its use contributes to deeper, restorative sleep, promoting better quality of life.",
-            "Recent research, ${userName}, confirms Moringa helps balance neurotransmitters involved in sleep cycles, combating insomnia and promoting cellular regeneration during the night. Studies from the Journal of Ethnopharmacology reinforce its therapeutic potential for sleep disturbances.",
-            "${userName}, studies from the Nutritional Journal demonstrate that Moringa’s antioxidants and vitamins aid sleep quality, increasing restfulness and reducing daytime fatigue. Regular use is associated with a healthier, more balanced sleep cycle."
-          ],
-          "quick_replies_pt": [
-            "Moringa ajuda a dormir melhor?",
-            "Tem estudos comprovando?",
-            "Quanto tempo para sentir efeito?",
-            "Posso usar todos os dias?",
-            "Ajuda contra insônia?",
-            "É seguro para uso contínuo?",
-            "Quero relatos de quem melhorou sono",
-            "Como a Moringa age no sono?",
-            "Posso combinar com outras plantas?",
-            "Quero dicas para começar",
-            "Quero ver estudos científicos",
-            "Quais benefícios principais?"
-          ],
-          "quick_replies_en": [
-            "Does Moringa help improve sleep?",
-            "Are there studies proving this?",
-            "How long to feel effects?",
-            "Can I use it daily?",
-            "Does it help insomnia?",
-            "Is it safe for continuous use?",
-            "I want stories from people who improved sleep",
-            "How does Moringa act on sleep?",
-            "Can I combine it with other plants?",
-            "I want tips to start",
-            "I want to see scientific studies",
-            "What are the main benefits?"
-          ]
-        },
-        "fase_4": {
-          "copy_pt": [
-            "A Moringa é uma planta milenar conhecida por suas propriedades que auxiliam na regulação do sono e na redução do estresse. Rica em antioxidantes, vitaminas e minerais, ela ajuda a equilibrar os neurotransmissores e a estimular a produção natural de melatonina, promovendo noites de sono mais profundas e restauradoras.",
-            "${userName}, as folhas da Moringa contêm compostos que atuam no sistema nervoso central, promovendo relaxamento e ajudando a combater a insônia e a fadiga. Seu uso tradicional, aliado a estudos científicos recentes, mostra que a Moringa é uma aliada eficaz para quem busca melhorar a qualidade do sono naturalmente.",
-            "De uso ancestral, a Moringa oferece uma combinação de nutrientes que fortalecem o sistema nervoso e promovem o equilíbrio hormonal necessário para um sono saudável. O consumo regular da planta pode trazer benefícios significativos para a recuperação do corpo durante a noite."
-          ],
-          "copy_en": [
-            "Moringa is a millenary plant known for its properties that aid sleep regulation and stress reduction. Rich in antioxidants, vitamins, and minerals, it helps balance neurotransmitters and stimulate natural melatonin production, promoting deeper, restorative sleep.",
-            "${userName}, Moringa leaves contain compounds that act on the central nervous system, promoting relaxation and helping combat insomnia and fatigue. Its traditional use, along with recent scientific studies, shows Moringa as an effective ally for those seeking to naturally improve sleep quality.",
-            "Traditionally used, Moringa offers a combination of nutrients that strengthen the nervous system and promote the hormonal balance needed for healthy sleep. Regular consumption can bring significant benefits for body recovery during the night."
-          ],
-          "quick_replies_pt": [
-            "Como usar Moringa para dormir melhor?",
-            "Tem receita para insônia?",
-            "Ajuda a reduzir estresse?",
-            "Posso usar todos os dias?",
-            "Quero relatos de quem melhorou sono",
-            "Quanto tempo para ver resultado?",
-            "É seguro para uso contínuo?",
-            "Posso combinar com outras plantas?",
-            "Quero dicas para começar",
-            "Ajuda na produção de melatonina?",
-            "Quero ver estudos científicos",
-            "Dá para usar com alimentação variada?"
-          ],
-          "quick_replies_en": [
-            "How to use Moringa to sleep better?",
-            "Any recipe for insomnia?",
-            "Does it help reduce stress?",
-            "Can I use it daily?",
-            "I want stories from people who improved sleep",
-            "How long to see results?",
-            "Is it safe for continuous use?",
-            "Can I combine with other plants?",
-            "I want tips to start",
-            "Does it help melatonin production?",
-            "I want to see scientific studies",
-            "Can it be used with varied diet?"
-          ]
-        },
-        "fase_5": {
-          "copy_pt": [
-            "${userName}, começar a cuidar da qualidade do seu sono pode transformar sua vida. Com a Moringa e escolhas naturais, seu corpo encontrará o suporte necessário para restaurar os ciclos do sono, promovendo descanso profundo e recuperação. Posso te ajudar com receitas, dicas e um plano prático para essa transformação.",
-            "A melhoria do sono, ${userName}, começa com pequenas atitudes e escolhas conscientes. Ao incluir Moringa na sua rotina e optar por alimentos naturais, você oferece ao corpo o suporte para dormir melhor e acordar revigorado. Estou aqui para guiar você com passos simples e personalizados.",
-            "${userName}, sua jornada para noites tranquilas e um sono reparador pode começar agora. Com a Moringa e hábitos saudáveis, seu corpo terá o suporte necessário para recuperar a energia e a vitalidade. Posso fornecer um plano com orientações, receitas e cuidados para essa nova etapa."
-          ],
-          "copy_en": [
-            "${userName}, starting natural care to improve the quality of your sleep can transform your life. With Moringa and natural choices, your body will find the necessary support to restore sleep cycles, promoting deep rest and recovery. I can help you with recipes, tips, and a practical plan for this transformation.",
-            "Improving sleep, ${userName}, starts with small actions and conscious choices. By adding Moringa to your routine and opting for natural foods, you provide your body with the support to sleep better and wake up refreshed. I’m here to guide you with simple, personalized steps.",
-            "${userName}, your journey to peaceful nights and restorative sleep can start now. With Moringa and healthy habits, your body will have the necessary support to restore energy and vitality. I can provide a plan with guidance, recipes, and care for this new phase."
-          ],
-          "quick_replies_pt": [
-            "Quero começar já com Moringa",
-            "Tem receita fácil para dormir melhor",
-            "Quero relatos reais de transformação",
-            "Como montar uma rotina prática?",
-            "Prefiro aprender mais antes",
-            "Resultados são duradouros?",
-            "Posso combinar com minha alimentação?",
-            "Quero conversar sobre escolhas naturais",
-            "Dá pra fazer em família?",
-            "Tem dicas para motivação?",
-            "É seguro para todos?",
-            "Quero ver estudos e relatos reais"
-          ],
-          "quick_replies_en": [
-            "I want to start with Moringa now",
-            "Any easy recipe to sleep better",
-            "I want real transformation stories",
-            "How to build a practical routine?",
-            "I’d rather learn more first",
-            "Are results lasting?",
-            "Can I combine with my diet?",
-            "I want to talk about natural choices",
-            "Can this be done as a family?",
-            "Any tips for motivation?",
-            "Is it safe for everyone?",
-            "I want to see studies and real stories"
-          ]
-        }
-      }
-    }
+  "symptom": "digestive_issues",
+  "fase_1": {
+    "copy_pt": [
+      "${userName}, você já sentiu desconfortos como inchaço, gases, azia ou aquela sensação de estômago pesado que insiste em não passar? Esses sintomas digestivos são comuns, mas não devem ser ignorados. Muitas vezes, eles são sinais de que seu sistema digestivo está sofrendo com uma alimentação inadequada, repleta de ultraprocessados, solos empobrecidos e carnes tratadas com hormônios. Esses fatores comprometem a saúde intestinal, prejudicando a absorção de nutrientes e causando inflamação, o que pode afetar seu bem-estar geral.",
+      "Você sabia, ${userName}, que a qualidade dos alimentos que ingerimos, bem como o estado do solo onde são cultivados, impacta diretamente a saúde do seu sistema digestivo? Alimentos industrializados, solos contaminados e carnes com hormônios sintéticos podem alterar o equilíbrio da flora intestinal, provocando desconfortos como prisão de ventre, azia e má digestão. Reconhecer esses sinais é fundamental para cuidar melhor do seu corpo.",
+      "${userName}, o sistema digestivo é um dos pilares da sua saúde, e sintomas como inchaço, dor abdominal e refluxo são formas de o corpo avisar que algo não vai bem. A alimentação moderna, cheia de produtos ultraprocessados, solos degradados e carnes com hormônios, está entre as principais causas desses problemas. Entender essa conexão é o primeiro passo para restabelecer seu equilíbrio interno."
+    ],
+    "copy_en": [
+      "${userName}, have you experienced discomforts like bloating, gas, heartburn, or that persistent heavy stomach feeling? These digestive symptoms are common but shouldn’t be ignored. Often, they signal your digestive system is suffering due to an inadequate diet filled with ultra-processed foods, nutrient-depleted soils, and hormone-treated meats. These factors harm intestinal health, impair nutrient absorption, and cause inflammation, affecting your overall well-being.",
+      "Did you know, ${userName}, that the quality of the food we consume and the state of the soil where it’s grown directly impact your digestive system health? Industrialized foods, contaminated soils, and meats with synthetic hormones can disrupt gut flora balance, causing discomforts like constipation, heartburn, and poor digestion. Recognizing these signs is key to better body care.",
+      "${userName}, your digestive system is a pillar of your health, and symptoms like bloating, abdominal pain, and reflux are ways your body signals something’s off. Modern diets rich in ultra-processed products, degraded soils, and hormone-treated meats are among the main causes of these problems. Understanding this connection is the first step to restoring your internal balance."
+    ],
+    "quick_replies_pt": [
+      "Por que tenho inchaço e gases?",
+      "Alimentos afetam meu sistema digestivo?",
+      "Solo contaminado prejudica a digestão?",
+      "Carnes com hormônios influenciam?",
+      "Quero entender mais sobre problemas digestivos",
+      "Tem estudos científicos?",
+      "Como melhorar a digestão naturalmente?",
+      "Quais sintomas indicar perigo?",
+      "Quero dicas para aliviar desconforto",
+      "Estresse piora os sintomas?",
+      "É normal sentir isso hoje?",
+      "Sintomas digestivos podem virar doença?"
+    ],
+    "quick_replies_en": [
+      "Why do I have bloating and gas?",
+      "Do foods affect my digestive system?",
+      "Does contaminated soil harm digestion?",
+      "Do hormone-treated meats influence?",
+      "I want to learn more about digestive issues",
+      "Are there scientific studies?",
+      "How to improve digestion naturally?",
+      "What symptoms indicate danger?",
+      "I want tips to relieve discomfort",
+      "Does stress worsen symptoms?",
+      "Is this normal nowadays?",
+      "Can digestive symptoms become disease?"
+    ]
+  },
+  "fase_2": {
+    "copy_pt": [
+      "${userName}, sintomas digestivos não tratados podem evoluir para problemas mais sérios, como gastrite, refluxo crônico e até doenças inflamatórias intestinais. Estudos do Gastroenterology Research apontam que a má alimentação, solos contaminados e carnes hormonizadas agravam a inflamação intestinal, prejudicando a barreira natural do sistema digestivo e afetando a absorção de nutrientes vitais.",
+      "Você sabia, ${userName}, que o desconforto contínuo no sistema digestivo pode levar à inflamação crônica e ao desequilíbrio da microbiota intestinal? Pesquisas indicam que alimentos ultraprocessados, solos degradados e carnes com hormônios sintéticos intensificam esses processos, dificultando a recuperação do organismo e aumentando o risco de doenças.",
+      "${userName}, quando os sintomas digestivos persistem, há risco de desenvolver condições crônicas que comprometem não só o trato digestivo, mas também a saúde geral. Dados da OMS mostram que a alimentação inadequada, marcada por ultraprocessados e solos empobrecidos, é um fator-chave na prevalência dessas doenças."
+    ],
+    "copy_en": [
+      "${userName}, untreated digestive symptoms can progress to more serious issues like gastritis, chronic reflux, and even inflammatory bowel diseases. Studies from Gastroenterology Research show poor diet, contaminated soils, and hormone-treated meats worsen intestinal inflammation, harming the digestive system’s natural barrier and vital nutrient absorption.",
+      "Did you know, ${userName}, that ongoing digestive discomfort can lead to chronic inflammation and gut microbiota imbalance? Research indicates ultra-processed foods, degraded soils, and hormone-treated meats intensify these processes, making recovery harder and increasing disease risk.",
+      "${userName}, when digestive symptoms persist, there’s a risk of developing chronic conditions that compromise not only the digestive tract but overall health. WHO data show poor diet, marked by ultra-processed foods and nutrient-depleted soils, is a key factor in the prevalence of these diseases."
+    ],
+    "quick_replies_pt": [
+      "Sintomas digestivos são graves?",
+      "Como processados pioram a digestão?",
+      "Solo contaminado afeta intestino?",
+      "Carnes hormonizadas prejudicam?",
+      "Quero saber mais sobre inflamação intestinal",
+      "Problemas digestivos afetam saúde geral?",
+      "Dá para melhorar naturalmente?",
+      "Quais sintomas devo observar?",
+      "Quero dicas para melhorar digestão",
+      "Estresse piora sintomas digestivos?",
+      "Tem estudos científicos?",
+      "Como cuidar da saúde intestinal?"
+    ],
+    "quick_replies_en": [
+      "Are digestive symptoms serious?",
+      "How do processed foods worsen digestion?",
+      "Does contaminated soil affect gut?",
+      "Do hormone-treated meats harm?",
+      "I want to learn more about intestinal inflammation",
+      "Do digestive problems affect overall health?",
+      "Can it be improved naturally?",
+      "What symptoms should I watch for?",
+      "I want tips to improve digestion",
+      "Does stress worsen digestive symptoms?",
+      "Are there scientific studies?",
+      "How to care for gut health?"
+    ]
+  },
+  "fase_3": {
+    "copy_pt": [
+      "${userName}, estudos indicam que a Moringa possui propriedades anti-inflamatórias e antioxidantes que ajudam a proteger o sistema digestivo e a equilibrar a microbiota intestinal. Pesquisas publicadas no Journal of Ethnopharmacology demonstram que seu uso regular pode reduzir a inflamação e melhorar a função digestiva.",
+      "Pesquisas recentes, ${userName}, confirmam que os compostos bioativos da Moringa fortalecem a barreira intestinal e auxiliam na regeneração da mucosa, contribuindo para a melhora de sintomas como inchaço e desconforto. Estudos do Nutritional Journal reforçam seu papel na promoção da saúde digestiva.",
+      "${userName}, estudos do Frontiers in Pharmacology apontam que os antioxidantes da Moringa ajudam a reduzir o estresse oxidativo intestinal e equilibrar a flora bacteriana, colaborando para uma digestão mais eficiente e menos sintomas desconfortáveis."
+    ],
+    "copy_en": [
+      "${userName}, studies indicate Moringa has anti-inflammatory and antioxidant properties that help protect the digestive system and balance gut microbiota. Research published in the Journal of Ethnopharmacology shows its regular use can reduce inflammation and improve digestive function.",
+      "Recent research, ${userName}, confirms Moringa’s bioactive compounds strengthen the intestinal barrier and aid mucosal regeneration, helping improve symptoms like bloating and discomfort. Studies from the Nutritional Journal reinforce its role in promoting digestive health.",
+      "${userName}, studies from Frontiers in Pharmacology indicate Moringa’s antioxidants help reduce intestinal oxidative stress and balance bacterial flora, supporting more efficient digestion and less discomfort."
+    ],
+    "quick_replies_pt": [
+      "Moringa ajuda na digestão?",
+      "Tem estudos científicos?",
+      "Quanto tempo para sentir efeito?",
+      "Posso usar todos os dias?",
+      "Ajuda a reduzir inflamação?",
+      "É seguro para uso contínuo?",
+      "Quero relatos de quem melhorou digestão",
+      "Como a Moringa age no sistema digestivo?",
+      "Posso combinar com outras plantas?",
+      "Quero dicas para começar",
+      "Quero ver estudos científicos",
+      "Quais benefícios principais?"
+    ],
+    "quick_replies_en": [
+      "Does Moringa help digestion?",
+      "Are there scientific studies?",
+      "How long to feel effects?",
+      "Can I use it daily?",
+      "Does it help reduce inflammation?",
+      "Is it safe for continuous use?",
+      "I want stories from people who improved digestion",
+      "How does Moringa act on digestive system?",
+      "Can I combine with other plants?",
+      "I want tips to start",
+      "I want to see scientific studies",
+      "What are the main benefits?"
+    ]
+  },
+  "fase_4": {
+    "copy_pt": [
+      "A Moringa é uma planta ancestral rica em antioxidantes, vitaminas e minerais que auxiliam na proteção do sistema digestivo e no equilíbrio da microbiota intestinal. Seus compostos bioativos promovem a redução da inflamação e melhoram a regeneração da mucosa, contribuindo para uma digestão mais saudável e confortável.",
+      "${userName}, as folhas da Moringa possuem propriedades anti-inflamatórias e antioxidantes que fortalecem a barreira intestinal e ajudam a manter o equilíbrio da flora bacteriana. Utilizada há séculos em práticas tradicionais, a planta é uma aliada natural para quem busca melhorar a saúde digestiva.",
+      "Com uso tradicional em diversas culturas, a Moringa oferece nutrientes essenciais que apoiam o funcionamento saudável do sistema digestivo, promovendo conforto e bem-estar. Seu consumo regular pode ser uma ferramenta valiosa para quem sofre com desconfortos digestivos."
+    ],
+    "copy_en": [
+      "Moringa is an ancestral plant rich in antioxidants, vitamins, and minerals that aid in protecting the digestive system and balancing gut microbiota. Its bioactive compounds promote inflammation reduction and mucosal regeneration, contributing to healthier, more comfortable digestion.",
+      "${userName}, Moringa leaves have anti-inflammatory and antioxidant properties that strengthen the intestinal barrier and help maintain bacterial flora balance. Used for centuries in traditional practices, the plant is a natural ally for those seeking to improve digestive health.",
+      "Traditionally used in various cultures, Moringa offers essential nutrients that support healthy digestive system function, promoting comfort and well-being. Regular consumption can be a valuable tool for those suffering digestive discomfort."
+    ],
+    "quick_replies_pt": [
+      "Como usar Moringa para digestão?",
+      "Tem receita para desconforto digestivo?",
+      "Ajuda a reduzir inflamação?",
+      "Posso usar todos os dias?",
+      "Quero relatos de quem melhorou digestão",
+      "Quanto tempo para ver resultado?",
+      "É seguro para uso contínuo?",
+      "Posso combinar com outras plantas?",
+      "Quero dicas para começar",
+      "Ajuda na microbiota intestinal?",
+      "Quero ver estudos científicos",
+      "Dá para usar com alimentação variada?"
+    ],
+    "quick_replies_en": [
+      "How to use Moringa for digestion?",
+      "Any recipe for digestive discomfort?",
+      "Does it help reduce inflammation?",
+      "Can I use it daily?",
+      "I want stories from people who improved digestion",
+      "How long to see results?",
+      "Is it safe for continuous use?",
+      "Can I combine with other plants?",
+      "I want tips to start",
+      "Does it help gut microbiota?",
+      "I want to see scientific studies",
+      "Can it be used with varied diet?"
+    ]
+  },
+  "fase_5": {
+    "copy_pt": [
+      "${userName}, cuidar da saúde digestiva de forma natural é um caminho para melhorar seu bem-estar e qualidade de vida. Com a Moringa e escolhas alimentares conscientes, seu organismo terá suporte para restabelecer o equilíbrio intestinal e a função digestiva. Posso te ajudar com receitas, dicas e um plano prático para essa transformação.",
+      "A jornada para uma digestão saudável, ${userName}, começa com escolhas naturais e conscientes. Ao incluir a Moringa na sua rotina e optar por alimentos nutritivos, você promove a saúde do seu sistema digestivo e o equilíbrio da microbiota. Estou aqui para guiar você com passos simples e personalizados.",
+      "${userName}, sua caminhada para um sistema digestivo equilibrado pode começar agora. Com a Moringa e hábitos saudáveis, seu corpo terá o suporte necessário para melhorar a digestão, reduzir desconfortos e promover o bem-estar geral. Posso fornecer um plano com orientações, receitas e cuidados para essa nova fase."
+    ],
+    "copy_en": [
+      "${userName}, caring for digestive health naturally is a path to greater well-being and quality of life. With Moringa and conscious food choices, your body will have support to restore intestinal balance and digestive function. I can help you with recipes, tips, and a practical plan for this transformation.",
+      "The journey to healthy digestion, ${userName}, starts with natural, conscious choices. By including Moringa in your routine and opting for nutritious foods, you promote your digestive system’s health and gut balance. I’m here to guide you with simple, personalized steps.",
+      "${userName}, your path to a balanced digestive system can start now. With Moringa and healthy habits, your body will have the support to improve digestion, reduce discomfort, and promote overall well-being. I can provide a plan with guidance, recipes, and care for this new phase."
+    ],
+    "quick_replies_pt": [
+      "Quero começar já com Moringa",
+      "Tem receita fácil para digestão",
+      "Quero relatos reais de transformação",
+      "Como montar uma rotina prática?",
+      "Prefiro aprender mais antes",
+      "Resultados são duradouros?",
+      "Posso combinar com minha alimentação?",
+      "Quero conversar sobre escolhas naturais",
+      "Dá para fazer em família?",
+      "Tem dicas para motivação?",
+      "É seguro para todos?",
+      "Quero ver estudos e relatos reais"
+    ],
+    "quick_replies_en": [
+      "I want to start with Moringa now",
+      "Any easy recipe for digestion",
+      "I want real transformation stories",
+      "How to build a practical routine?",
+      "I’d rather learn more first",
+      "Are results lasting?",
+      "Can I combine with my diet?",
+      "I want to talk about natural choices",
+      "Can this be done as a family?",
+      "Any tips for motivation?",
+      "Is it safe for everyone?",
+      "I want to see studies and real stories"
+    ]
   }
 }
-
