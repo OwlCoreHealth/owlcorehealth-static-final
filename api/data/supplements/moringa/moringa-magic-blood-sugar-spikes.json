@@ -4,7 +4,7 @@
   "phases": [
     {
       "phase": 1,
-      "name": "Conexão/Conscientização",
+      "name": "Conexão/Conscientização", 
       "copies_pt": [
         "${userName}, já sentiu aquela sensação de energia que sobe e desce rapidamente, como se seu corpo estivesse numa montanha-russa? Esses picos de açúcar no sangue são comuns hoje devido à alimentação carregada de açúcares refinados, ultraprocessados e alimentos cultivados em solos pobres, que não fornecem os nutrientes necessários para o controle glicêmico. Além disso, o consumo de carnes tratadas com hormônios pode afetar negativamente a regulação hormonal do corpo, agravando o problema. Reconhecer esses sinais é fundamental para evitar complicações maiores.",
         "Você sabia, ${userName}, que os picos repentinos de açúcar no sangue podem causar cansaço, irritabilidade e até dificuldade de concentração? A origem desses sintomas está na alimentação moderna, rica em açúcares ocultos, ultraprocessados e alimentos de baixa qualidade nutricional, devido aos solos empobrecidos e aos hormônios presentes nas carnes. Estes fatores afetam diretamente o equilíbrio do seu corpo e sua saúde metabólica.",
