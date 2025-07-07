@@ -1,8 +1,7 @@
 {
-  "suplemento": "Moringa",  
-  "sintomas": { 
-    "digestive_issues": {
-      "fase_1": {
+  "suplemento": "Moringa",
+  "symptom": "digestive_issues",
+  "fase_1": {
         "copy_pt": [
           "${userName}, você já sentiu desconfortos como inchaço, gases, azia ou aquela sensação de estômago pesado que insiste em não passar? Esses sintomas digestivos são comuns, mas não devem ser ignorados. Muitas vezes, eles são sinais de que seu sistema digestivo está sofrendo com uma alimentação inadequada, repleta de ultraprocessados, solos empobrecidos e carnes tratadas com hormônios. Esses fatores comprometem a saúde intestinal, prejudicando a absorção de nutrientes e causando inflamação, o que pode afetar seu bem-estar geral.",
           "Você sabia, ${userName}, que a qualidade dos alimentos que ingerimos, bem como o estado do solo onde são cultivados, impacta diretamente a saúde do seu sistema digestivo? Alimentos industrializados, solos contaminados e carnes com hormônios sintéticos podem alterar o equilíbrio da flora intestinal, provocando desconfortos como prisão de ventre, azia e má digestão. Reconhecer esses sinais é fundamental para cuidar melhor do seu corpo.",
