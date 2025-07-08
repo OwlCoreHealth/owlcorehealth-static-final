@@ -1,208 +1,204 @@
 {
-  "suplemento": "Moringa", 
-  "sintomas": {
-    "stress": {
-      "fase_1": {
-        "copy_pt": [
-          "${userName}, você tem sentido que a pressão do dia a dia está ficando cada vez mais difícil de suportar? O estresse constante é um sinal de que seu corpo está em alerta, tentando lidar com fatores que muitas vezes vêm da rotina agitada, mas também da alimentação e ambiente ao seu redor. A ciência mostra que os alimentos ultraprocessados, solos empobrecidos e carnes tratadas com hormônios aumentam a produção de substâncias inflamatórias que agravam o estresse no organismo. Entender como esses fatores atuam no seu corpo é o primeiro passo para recuperar o equilíbrio.",
-          "${userName}, o estresse não é apenas um estado mental, mas uma resposta física complexa que pode ser exacerbada por maus hábitos alimentares e ambientais. Alimentos processados, solos contaminados e carnes com hormônios sintéticos provocam inflamação crônica, dificultando a recuperação do corpo e mente. Estudos indicam que mais de 70% das pessoas relatam sintomas de estresse relacionado a esses fatores, mostrando que cuidar da alimentação é essencial para enfrentar esse desafio.",
-          "Você já sentiu, ${userName}, que o estresse parece se intensificar sem motivo aparente? Muitas vezes, o que comemos e o ambiente em que vivemos contribuem para essa sensação. Os ultraprocessados, solos empobrecidos e carnes tratadas com hormônios criam um ambiente interno inflamatório que dificulta o equilíbrio hormonal e neurológico, ampliando os efeitos do estresse no corpo e na mente."
-        ],
-        "copy_en": [
-          "${userName}, have you felt that daily pressure is becoming harder to bear? Constant stress signals your body is on alert, trying to handle factors from both your busy routine and the food and environment around you. Science shows ultra-processed foods, depleted soils, and hormone-treated meats increase inflammatory substances that worsen stress in the body. Understanding these factors’ impact is the first step to regaining balance.",
-          "${userName}, stress isn’t just a mental state but a complex physical response worsened by poor dietary and environmental habits. Processed foods, contaminated soils, and meats with synthetic hormones cause chronic inflammation, making it harder for body and mind to recover. Studies indicate over 70% of people report stress symptoms linked to these factors, highlighting the importance of diet care.",
-          "Have you noticed, ${userName}, that stress seems to intensify without clear reason? Often, what we eat and where we live contribute to this feeling. Ultra-processed foods, nutrient-depleted soils, and hormone-treated meats create an inflammatory internal environment that disrupts hormonal and neurological balance, amplifying stress effects on body and mind."
-        ],
-        "quick_replies_pt": [
-          "Por que o estresse aumenta?",
-          "Alimentos influenciam o estresse?",
-          "Solo contaminado piora o estresse?",
-          "Carnes com hormônios afetam?",
-          "Quero entender mais sobre estresse",
-          "Tem estudos científicos?",
-          "Como controlar o estresse naturalmente?",
-          "Estresse afeta a saúde?",
-          "Quais sintomas indicam estresse grave?",
-          "É normal sentir isso hoje?",
-          "Quero dicas para aliviar estresse",
-          "Estresse pode causar doenças?"
-        ],
-        "quick_replies_en": [
-          "Why does stress increase?",
-          "Do foods influence stress?",
-          "Does contaminated soil worsen stress?",
-          "Do hormone-treated meats affect stress?",
-          "I want to learn more about stress",
-          "Are there scientific studies?",
-          "How to control stress naturally?",
-          "Does stress affect health?",
-          "What symptoms indicate severe stress?",
-          "Is this normal nowadays?",
-          "I want tips to relieve stress",
-          "Can stress cause diseases?"
-        ]
-      },
-      "fase_2": {
-        "copy_pt": [
-          "${userName}, o estresse crônico pode trazer sérias consequências para a saúde física e mental, incluindo aumento do risco de doenças cardíacas, depressão e comprometimento do sistema imunológico. Estudos da American Psychological Association apontam que a combinação de maus hábitos alimentares — como consumo de ultraprocessados, solos degradados e carnes com hormônios — intensifica a resposta inflamatória do organismo, agravando o impacto do estresse.",
-          "Você sabia, ${userName}, que o estresse prolongado pode afetar negativamente o funcionamento do cérebro e do corpo? Pesquisas indicam que a inflamação crônica causada por alimentos processados e contaminados prejudica a capacidade do organismo de lidar com o estresse, aumentando sintomas como ansiedade, fadiga e distúrbios do sono.",
-          "${userName}, quando o estresse se torna constante, ele pode desencadear uma série de problemas como hipertensão, alterações hormonais e baixa imunidade. Dados da Organização Mundial da Saúde confirmam que o consumo de alimentos ultraprocessados, solos empobrecidos e carnes hormonizadas potencializam esses efeitos negativos, tornando essencial o cuidado com a alimentação e o estilo de vida."
-        ],
-        "copy_en": [
-          "${userName}, chronic stress can have serious consequences for physical and mental health, including increased risk of heart disease, depression, and immune system impairment. American Psychological Association studies point out that poor dietary habits — like ultra-processed foods, degraded soils, and hormone-treated meats — intensify the body's inflammatory response, worsening stress impact.",
-          "Did you know, ${userName}, that prolonged stress negatively affects brain and body function? Research indicates chronic inflammation caused by processed and contaminated foods hampers the body's ability to manage stress, increasing symptoms like anxiety, fatigue, and sleep disorders.",
-          "${userName}, when stress becomes constant, it can trigger issues like hypertension, hormonal changes, and low immunity. World Health Organization data confirm consumption of ultra-processed foods, depleted soils, and hormone-treated meats amplify these negative effects, making diet and lifestyle care essential."
-        ],
-        "quick_replies_pt": [
-          "Estresse crônico é perigoso?",
-          "Como alimentos pioram o estresse?",
-          "Solo contaminado afeta estresse?",
-          "Carnes hormonizadas prejudicam?",
-          "Quero saber mais sobre inflamação",
-          "Estresse afeta imunidade?",
-          "Dá para controlar?",
-          "Quais sinais devo observar?",
-          "Quero dicas para aliviar estresse",
-          "Estresse piora outras doenças?",
-          "Tem estudos científicos?",
-          "Como cuidar do estresse?"
-        ],
-        "quick_replies_en": [
-          "Is chronic stress dangerous?",
-          "How do foods worsen stress?",
-          "Does contaminated soil affect stress?",
-          "Do hormone-treated meats harm?",
-          "I want to learn more about inflammation",
-          "Does stress affect immunity?",
-          "Can it be controlled?",
-          "What signs should I watch for?",
-          "I want tips to relieve stress",
-          "Does stress worsen other diseases?",
-          "Are there scientific studies?",
-          "How to care for stress?"
-        ]
-      },
-      "fase_3": {
-        "copy_pt": [
-          "${userName}, estudos científicos confirmam que a Moringa possui compostos bioativos que ajudam a reduzir a inflamação e o estresse oxidativo, promovendo equilíbrio mental e físico. Pesquisas publicadas no Frontiers in Pharmacology destacam que seu uso regular contribui para a diminuição da ansiedade e melhora do humor.",
-          "Pesquisas recentes, ${userName}, indicam que os antioxidantes da Moringa têm efeito neuroprotetor, ajudando a equilibrar os níveis de cortisol, hormônio ligado ao estresse. Estudos do Journal of Ethnopharmacology reforçam seu potencial para auxiliar no controle do estresse e promover bem-estar.",
-          "${userName}, estudos do Nutritional Journal confirmam que a Moringa atua na modulação do sistema nervoso, reduzindo os sintomas físicos e emocionais do estresse, como fadiga e irritabilidade, e promovendo maior equilíbrio e resiliência."
-        ],
-        "copy_en": [
-          "${userName}, scientific studies confirm Moringa contains bioactive compounds that help reduce inflammation and oxidative stress, promoting mental and physical balance. Research published in Frontiers in Pharmacology highlights its regular use decreases anxiety and improves mood.",
-          "Recent research, ${userName}, indicates Moringa’s antioxidants have neuroprotective effects, helping balance cortisol levels, the hormone linked to stress. Studies from the Journal of Ethnopharmacology reinforce its potential to aid stress control and promote well-being.",
-          "${userName}, studies from the Nutritional Journal confirm Moringa modulates the nervous system, reducing physical and emotional stress symptoms like fatigue and irritability, promoting greater balance and resilience."
-        ],
-        "quick_replies_pt": [
-          "Moringa ajuda a controlar estresse?",
-          "Tem estudos comprovando?",
-          "Quanto tempo para sentir efeito?",
-          "Posso usar todos os dias?",
-          "Ajuda a reduzir cortisol?",
-          "É seguro para uso contínuo?",
-          "Quero relatos de quem melhorou",
-          "Como a Moringa age no estresse?",
-          "Posso combinar com outras plantas?",
-          "Quero dicas para começar",
-          "Quero ver estudos científicos",
-          "Quais benefícios principais?"
-        ],
-        "quick_replies_en": [
-          "Does Moringa help control stress?",
-          "Are there studies proving this?",
-          "How long to feel effects?",
-          "Can I use it daily?",
-          "Does it help reduce cortisol?",
-          "Is it safe for continuous use?",
-          "I want stories from people who improved",
-          "How does Moringa act on stress?",
-          "Can I combine with other plants?",
-          "I want tips to start",
-          "I want to see scientific studies",
-          "What are the main benefits?"
-        ]
-      },
-      "fase_4": {
-        "copy_pt": [
-          "A Moringa é uma planta ancestral com propriedades que ajudam a reduzir a inflamação e o estresse oxidativo, promovendo equilíbrio mental e físico. Rica em antioxidantes, vitaminas e minerais, ela atua como um suporte natural para fortalecer o sistema nervoso e melhorar a resiliência emocional.",
-          "${userName}, as folhas da Moringa contêm compostos bioativos que ajudam a modular a resposta ao estresse, diminuindo a produção excessiva de cortisol e promovendo relaxamento. Seu uso tradicional e os recentes estudos científicos mostram que a Moringa é uma aliada poderosa para o equilíbrio emocional.",
-          "Com raízes em práticas milenares, a Moringa oferece nutrientes essenciais que fortalecem o sistema nervoso e combatem os efeitos negativos do estresse. Incorporar essa planta na rotina é uma forma natural e eficaz de cuidar da saúde mental e emocional."
-        ],
-        "copy_en": [
-          "Moringa is an ancestral plant with properties that help reduce inflammation and oxidative stress, promoting mental and physical balance. Rich in antioxidants, vitamins, and minerals, it acts as a natural support to strengthen the nervous system and improve emotional resilience.",
-          "${userName}, Moringa leaves contain bioactive compounds that help modulate the stress response, decreasing excessive cortisol production and promoting relaxation. Its traditional use and recent scientific studies show Moringa is a powerful ally for emotional balance.",
-          "Rooted in millenary practices, Moringa offers essential nutrients that strengthen the nervous system and combat stress’s negative effects. Incorporating this plant into your routine is a natural and effective way to care for mental and emotional health."
-        ],
-        "quick_replies_pt": [
-          "Como usar Moringa para estresse?",
-          "Tem receita para ansiedade?",
-          "Ajuda a reduzir cortisol?",
-          "Posso usar todos os dias?",
-          "Quero relatos de quem melhorou",
-          "Quanto tempo para ver resultado?",
-          "É seguro para uso contínuo?",
-          "Posso combinar com outras plantas?",
-          "Quero dicas para começar",
-          "Ajuda na resiliência emocional?",
-          "Quero ver estudos científicos",
-          "Dá para usar com alimentação variada?"
-        ],
-        "quick_replies_en": [
-          "How to use Moringa for stress?",
-          "Any recipe for anxiety?",
-          "Does it help reduce cortisol?",
-          "Can I use it daily?",
-          "I want stories from people who improved",
-          "How long to see results?",
-          "Is it safe for continuous use?",
-          "Can I combine with other plants?",
-          "I want tips to start",
-          "Does it help emotional resilience?",
-          "I want to see scientific studies",
-          "Can it be used with varied diet?"
-        ]
-      },
-      "fase_5": {
-        "copy_pt": [
-          "${userName}, cuidar do estresse de forma natural pode transformar sua vida e seu bem-estar. Com a Moringa e escolhas conscientes, seu corpo encontrará suporte para recuperar o equilíbrio emocional e a energia. Posso te ajudar com receitas, dicas e um plano prático para essa transformação.",
-          "A transformação começa com pequenas atitudes, ${userName}. Ao incluir a Moringa na rotina e optar por alimentos naturais, você apoia seu organismo no caminho para o equilíbrio emocional e físico. Estou aqui para te guiar com passos simples e personalizados.",
-          "${userName}, sua jornada para um corpo e mente mais equilibrados pode começar agora. Com a Moringa e hábitos saudáveis, seu organismo terá o suporte necessário para reduzir o estresse e promover bem-estar. Posso fornecer um plano com orientações e cuidados para essa nova etapa."
-        ],
-        "copy_en": [
-          "${userName}, starting natural care to improve the quality of your sleep can transform your life and well-being. With Moringa and conscious choices, your body will find support to recover emotional balance and energy. I can help you with recipes, tips, and a practical plan for this transformation.",
-          "Transformation starts with small actions, ${userName}. By adding Moringa to your routine and opting for natural foods, you support your body on the path to emotional and physical balance. I'm here to guide you with simple and personalized steps.",
-          "${userName}, your journey to a more balanced body and mind can start now. With Moringa and healthy habits, your body will have the necessary support to reduce stress and promote well-being. I can provide a plan with guidance and care for this new phase."
-        ],
-        "quick_replies_pt": [
-          "Quero começar já com Moringa",
-          "Tem receita fácil para estresse",
-          "Quero relatos reais de transformação",
-          "Como montar uma rotina prática?",
-          "Prefiro aprender mais antes",
-          "Resultados são duradouros?",
-          "Posso combinar com minha alimentação?",
-          "Quero conversar sobre escolhas naturais",
-          "Dá pra fazer em família?",
-          "Tem dicas para motivação?",
-          "É seguro para todos?",
-          "Quero ver estudos e relatos reais"
-        ],
-        "quick_replies_en": [
-          "I want to start with Moringa now",
-          "Any easy recipe for stress relief",
-          "I want real transformation stories",
-          "How to build a practical routine?",
-          "I’d rather learn more first",
-          "Are results lasting?",
-          "Can I combine with my diet?",
-          "I want to talk about natural choices",
-          "Can this be done as a family?",
-          "Any tips for motivation?",
-          "Is it safe for everyone?",
-          "I want to see studies and real stories"
-        ]
-      }
-    }
+  "suplemento": "Moringa",
+  "symptom": "stress",
+  "fase_1": {
+    "copy_pt": [
+      "${userName}, você tem sentido que a pressão do dia a dia está ficando cada vez mais difícil de suportar? O estresse constante é um sinal de que seu corpo está em alerta, tentando lidar com fatores que muitas vezes vêm da rotina agitada, mas também da alimentação e ambiente ao seu redor. A ciência mostra que os alimentos ultraprocessados, solos empobrecidos e carnes tratadas com hormônios aumentam a produção de substâncias inflamatórias que agravam o estresse no organismo. Entender como esses fatores atuam no seu corpo é o primeiro passo para recuperar o equilíbrio.",
+      "${userName}, o estresse não é apenas um estado mental, mas uma resposta física complexa que pode ser exacerbada por maus hábitos alimentares e ambientais. Alimentos processados, solos contaminados e carnes com hormônios sintéticos provocam inflamação crônica, dificultando a recuperação do corpo e mente. Estudos indicam que mais de 70% das pessoas relatam sintomas de estresse relacionado a esses fatores, mostrando que cuidar da alimentação é essencial para enfrentar esse desafio.",
+      "Você já sentiu, ${userName}, que o estresse parece se intensificar sem motivo aparente? Muitas vezes, o que comemos e o ambiente em que vivemos contribuem para essa sensação. Os ultraprocessados, solos empobrecidos e carnes tratadas com hormônios criam um ambiente interno inflamatório que dificulta o equilíbrio hormonal e neurológico, ampliando os efeitos do estresse no corpo e na mente."
+    ],
+    "copy_en": [
+      "${userName}, have you felt that daily pressure is becoming harder to bear? Constant stress signals your body is on alert, trying to handle factors from both your busy routine and the food and environment around you. Science shows ultra-processed foods, depleted soils, and hormone-treated meats increase inflammatory substances that worsen stress in the body. Understanding these factors’ impact is the first step to regaining balance.",
+      "${userName}, stress isn’t just a mental state but a complex physical response worsened by poor dietary and environmental habits. Processed foods, contaminated soils, and meats with synthetic hormones cause chronic inflammation, making it harder for body and mind to recover. Studies indicate over 70% of people report stress symptoms linked to these factors, highlighting the importance of diet care.",
+      "Have you noticed, ${userName}, that stress seems to intensify without clear reason? Often, what we eat and where we live contribute to this feeling. Ultra-processed foods, nutrient-depleted soils, and hormone-treated meats create an inflammatory internal environment that disrupts hormonal and neurological balance, amplifying stress effects on body and mind."
+    ],
+    "quick_replies_pt": [
+      "Por que o estresse aumenta?",
+      "Alimentos influenciam o estresse?",
+      "Solo contaminado piora o estresse?",
+      "Carnes com hormônios afetam?",
+      "Quero entender mais sobre estresse",
+      "Tem estudos científicos?",
+      "Como controlar o estresse naturalmente?",
+      "Estresse afeta a saúde?",
+      "Quais sintomas indicam estresse grave?",
+      "É normal sentir isso hoje?",
+      "Quero dicas para aliviar estresse",
+      "Estresse pode causar doenças?"
+    ],
+    "quick_replies_en": [
+      "Why does stress increase?",
+      "Do foods influence stress?",
+      "Does contaminated soil worsen stress?",
+      "Do hormone-treated meats affect stress?",
+      "I want to learn more about stress",
+      "Are there scientific studies?",
+      "How to control stress naturally?",
+      "Does stress affect health?",
+      "What symptoms indicate severe stress?",
+      "Is this normal nowadays?",
+      "I want tips to relieve stress",
+      "Can stress cause diseases?"
+    ]
+  },
+  "fase_2": {
+    "copy_pt": [
+      "${userName}, o estresse crônico pode trazer sérias consequências para a saúde física e mental, incluindo aumento do risco de doenças cardíacas, depressão e comprometimento do sistema imunológico. Estudos da American Psychological Association apontam que a combinação de maus hábitos alimentares — como consumo de ultraprocessados, solos degradados e carnes com hormônios — intensifica a resposta inflamatória do organismo, agravando o impacto do estresse.",
+      "Você sabia, ${userName}, que o estresse prolongado pode afetar negativamente o funcionamento do cérebro e do corpo? Pesquisas indicam que a inflamação crônica causada por alimentos processados e contaminados prejudica a capacidade do organismo de lidar com o estresse, aumentando sintomas como ansiedade, fadiga e distúrbios do sono.",
+      "${userName}, quando o estresse se torna constante, ele pode desencadear uma série de problemas como hipertensão, alterações hormonais e baixa imunidade. Dados da Organização Mundial da Saúde confirmam que o consumo de alimentos ultraprocessados, solos empobrecidos e carnes hormonizadas potencializam esses efeitos negativos, tornando essencial o cuidado com a alimentação e o estilo de vida."
+    ],
+    "copy_en": [
+      "${userName}, chronic stress can have serious consequences for physical and mental health, including increased risk of heart disease, depression, and immune system impairment. American Psychological Association studies point out that poor dietary habits — like ultra-processed foods, degraded soils, and hormone-treated meats — intensify the body's inflammatory response, worsening stress impact.",
+      "Did you know, ${userName}, that prolonged stress negatively affects brain and body function? Research indicates chronic inflammation caused by processed and contaminated foods hampers the body's ability to manage stress, increasing symptoms like anxiety, fatigue, and sleep disorders.",
+      "${userName}, when stress becomes constant, it can trigger issues like hypertension, hormonal changes, and low immunity. World Health Organization data confirm consumption of ultra-processed foods, depleted soils, and hormone-treated meats amplify these negative effects, making diet and lifestyle care essential."
+    ],
+    "quick_replies_pt": [
+      "Estresse crônico é perigoso?",
+      "Como alimentos pioram o estresse?",
+      "Solo contaminado afeta estresse?",
+      "Carnes hormonizadas prejudicam?",
+      "Quero saber mais sobre inflamação",
+      "Estresse afeta imunidade?",
+      "Dá para controlar?",
+      "Quais sinais devo observar?",
+      "Quero dicas para aliviar estresse",
+      "Estresse piora outras doenças?",
+      "Tem estudos científicos?",
+      "Como cuidar do estresse?"
+    ],
+    "quick_replies_en": [
+      "Is chronic stress dangerous?",
+      "How do foods worsen stress?",
+      "Does contaminated soil affect stress?",
+      "Do hormone-treated meats harm?",
+      "I want to learn more about inflammation",
+      "Does stress affect immunity?",
+      "Can it be controlled?",
+      "What signs should I watch for?",
+      "I want tips to relieve stress",
+      "Does stress worsen other diseases?",
+      "Are there scientific studies?",
+      "How to care for stress?"
+    ]
+  },
+  "fase_3": {
+    "copy_pt": [
+      "${userName}, estudos científicos confirmam que a Moringa possui compostos bioativos que ajudam a reduzir a inflamação e o estresse oxidativo, promovendo equilíbrio mental e físico. Pesquisas publicadas no Frontiers in Pharmacology destacam que seu uso regular contribui para a diminuição da ansiedade e melhora do humor.",
+      "Pesquisas recentes, ${userName}, indicam que os antioxidantes da Moringa têm efeito neuroprotetor, ajudando a equilibrar os níveis de cortisol, hormônio ligado ao estresse. Estudos do Journal of Ethnopharmacology reforçam seu potencial para auxiliar no controle do estresse e promover bem-estar.",
+      "${userName}, estudos do Nutritional Journal confirmam que a Moringa atua na modulação do sistema nervoso, reduzindo os sintomas físicos e emocionais do estresse, como fadiga e irritabilidade, e promovendo maior equilíbrio e resiliência."
+    ],
+    "copy_en": [
+      "${userName}, scientific studies confirm Moringa contains bioactive compounds that help reduce inflammation and oxidative stress, promoting mental and physical balance. Research published in Frontiers in Pharmacology highlights its regular use decreases anxiety and improves mood.",
+      "Recent research, ${userName}, indicates Moringa’s antioxidants have neuroprotective effects, helping balance cortisol levels, the hormone linked to stress. Studies from the Journal of Ethnopharmacology reinforce its potential to aid stress control and promote well-being.",
+      "${userName}, studies from the Nutritional Journal confirm Moringa modulates the nervous system, reducing physical and emotional stress symptoms like fatigue and irritability, promoting greater balance and resilience."
+    ],
+    "quick_replies_pt": [
+      "Moringa ajuda a controlar estresse?",
+      "Tem estudos comprovando?",
+      "Quanto tempo para sentir efeito?",
+      "Posso usar todos os dias?",
+      "Ajuda a reduzir cortisol?",
+      "É seguro para uso contínuo?",
+      "Quero relatos de quem melhorou",
+      "Como a Moringa age no estresse?",
+      "Posso combinar com outras plantas?",
+      "Quero dicas para começar",
+      "Quero ver estudos científicos",
+      "Quais benefícios principais?"
+    ],
+    "quick_replies_en": [
+      "Does Moringa help control stress?",
+      "Are there studies proving this?",
+      "How long to feel effects?",
+      "Can I use it daily?",
+      "Does it help reduce cortisol?",
+      "Is it safe for continuous use?",
+      "I want stories from people who improved",
+      "How does Moringa act on stress?",
+      "Can I combine it with other plants?",
+      "I want tips to start",
+      "I want to see scientific studies",
+      "What are the main benefits?"
+    ]
+  },
+  "fase_4": {
+    "copy_pt": [
+      "A Moringa é uma planta ancestral com propriedades que ajudam a reduzir a inflamação e o estresse oxidativo, promovendo equilíbrio mental e físico. Rica em antioxidantes, vitaminas e minerais, ela atua como um suporte natural para fortalecer o sistema nervoso e melhorar a resiliência emocional.",
+      "${userName}, as folhas da Moringa contêm compostos bioativos que ajudam a modular a resposta ao estresse, diminuindo a produção excessiva de cortisol e promovendo relaxamento. Seu uso tradicional e os recentes estudos científicos mostram que a Moringa é uma aliada poderosa para o equilíbrio emocional.",
+      "Com raízes em práticas milenares, a Moringa oferece nutrientes essenciais que fortalecem o sistema nervoso e combatem os efeitos negativos do estresse. Incorporar essa planta na rotina é uma forma natural e eficaz de cuidar da saúde mental e emocional."
+    ],
+    "copy_en": [
+      "Moringa is an ancestral plant with properties that help reduce inflammation and oxidative stress, promoting mental and physical balance. Rich in antioxidants, vitamins, and minerals, it acts as a natural support to strengthen the nervous system and improve emotional resilience.",
+      "${userName}, Moringa leaves contain bioactive compounds that help modulate the stress response, decreasing excessive cortisol production and promoting relaxation. Its traditional use and recent scientific studies show Moringa is a powerful ally for emotional balance.",
+      "Rooted in millenary practices, Moringa offers essential nutrients that strengthen the nervous system and combat stress’s negative effects. Incorporating this plant into your routine is a natural and effective way to care for mental and emotional health."
+    ],
+    "quick_replies_pt": [
+      "Como usar Moringa para estresse?",
+      "Tem receita para ansiedade?",
+      "Ajuda a reduzir cortisol?",
+      "Posso usar todos os dias?",
+      "Quero relatos de quem melhorou",
+      "Quanto tempo para ver resultado?",
+      "É seguro para uso contínuo?",
+      "Posso combinar com outras plantas?",
+      "Quero dicas para começar",
+      "Ajuda na resiliência emocional?",
+      "Quero ver estudos científicos",
+      "Dá para usar com alimentação variada?"
+    ],
+    "quick_replies_en": [
+      "How to use Moringa for stress?",
+      "Any recipe for anxiety?",
+      "Does it help reduce cortisol?",
+      "Can I use it daily?",
+      "I want stories from people who improved",
+      "How long to see results?",
+      "Is it safe for continuous use?",
+      "Can I combine with other plants?",
+      "I want tips to start",
+      "Does it help emotional resilience?",
+      "I want to see scientific studies",
+      "Can it be used with varied diet?"
+    ]
+  },
+  "fase_5": {
+    "copy_pt": [
+      "${userName}, cuidar do estresse de forma natural pode transformar sua vida e seu bem-estar. Com a Moringa e escolhas conscientes, seu corpo encontrará suporte para recuperar o equilíbrio emocional e a energia. Posso te ajudar com receitas, dicas e um plano prático para essa transformação.",
+      "A transformação começa com pequenas atitudes, ${userName}. Ao incluir a Moringa na rotina e optar por alimentos naturais, você apoia seu organismo no caminho para o equilíbrio emocional e físico. Estou aqui para te guiar com passos simples e personalizados.",
+      "${userName}, sua jornada para um corpo e mente mais equilibrados pode começar agora. Com a Moringa e hábitos saudáveis, seu organismo terá o suporte necessário para reduzir o estresse e promover bem-estar. Posso fornecer um plano com orientações e cuidados para essa nova etapa."
+    ],
+    "copy_en": [
+      "${userName}, starting natural care to improve the quality of your sleep can transform your life and well-being. With Moringa and conscious choices, your body will find support to recover emotional balance and energy. I can help you with recipes, tips, and a practical plan for this transformation.",
+      "Transformation starts with small actions, ${userName}. By adding Moringa to your routine and opting for natural foods, you support your body on the path to emotional and physical balance. I'm here to guide you with simple and personalized steps.",
+      "${userName}, your journey to a more balanced body and mind can start now. With Moringa and healthy habits, your body will have the necessary support to reduce stress and promote well-being. I can provide a plan with guidance and care for this new phase."
+    ],
+    "quick_replies_pt": [
+      "Quero começar já com Moringa",
+      "Tem receita fácil para estresse",
+      "Quero relatos reais de transformação",
+      "Como montar uma rotina prática?",
+      "Prefiro aprender mais antes",
+      "Resultados são duradouros?",
+      "Posso combinar com minha alimentação?",
+      "Quero conversar sobre escolhas naturais",
+      "Dá pra fazer em família?",
+      "Tem dicas para motivação?",
+      "É seguro para todos?",
+      "Quero ver estudos e relatos reais"
+    ],
+    "quick_replies_en": [
+      "I want to start with Moringa now",
+      "Any easy recipe for stress relief",
+      "I want real transformation stories",
+      "How to build a practical routine?",
+      "I’d rather learn more first",
+      "Are results lasting?",
+      "Can I combine with my diet?",
+      "I want to talk about natural choices",
+      "Can this be done as a family?",
+      "Any tips for motivation?",
+      "Is it safe for everyone?",
+      "I want to see studies and real stories"
+    ]
   }
 }
-
