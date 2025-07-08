@@ -1,248 +1,244 @@
 {
-  "suplemento": "PRIME BIOME", 
-  "sintomas": {
-    "frequent_skin_redness_and_irritation": {
-      "fase_1": {
-        "copy_pt": [
-          "${userName}, sentir a pele frequentemente vermelha e irritada pode ser muito desconfortável e afetar sua autoestima. Muitas vezes, essa reação é causada por inflamações silenciosas no organismo, agravadas pela alimentação industrializada, solos contaminados e o uso de produtos químicos que comprometem a saúde da pele.",
-          "${userName}, a vermelhidão e irritação constantes na pele são sinais de que seu corpo está tentando alertar para desequilíbrios internos. A combinação de ultraprocessados, solos empobrecidos e toxinas ambientais pode desencadear essas respostas inflamatórias.",
-          "Você já percebeu, ${userName}, que a saúde da sua pele reflete o que acontece dentro do seu corpo? A alimentação pobre em nutrientes, associada à exposição a agentes tóxicos, pode causar vermelhidão e irritação frequentes, afetando seu bem-estar."
-        ],
-        "copy_en": [
-          "${userName}, experiencing frequent skin redness and irritation can be very uncomfortable and affect your self-esteem. Often, this reaction is caused by silent inflammation in the body, worsened by industrialized diets, contaminated soils, and chemical exposure that compromise skin health.",
-          "${userName}, constant redness and irritation are signs your body is trying to alert you to internal imbalances. The combination of ultra-processed foods, nutrient-depleted soils, and environmental toxins can trigger these inflammatory responses.",
-          "Have you noticed, ${userName}, that your skin’s health reflects what’s happening inside your body? Nutrient-poor diets combined with exposure to toxins can cause frequent redness and irritation, impacting your well-being."
-        ],
-        "quick_replies_pt": [
-          "O que causa vermelhidão na pele?",
-          "Como aliviar irritação?",
-          "Alimentos pioram a pele?",
-          "Solo contaminado afeta pele?",
-          "Quero entender mais sobre inflamação",
-          "Tem estudos científicos?",
-          "Como cuidar da pele naturalmente?",
-          "Quais sintomas indicam problema sério?",
-          "Quero dicas para pele saudável",
-          "Estresse piora vermelhidão?",
-          "Vermelhidão é comum?",
-          "Quando procurar ajuda?"
-        ],
-        "quick_replies_en": [
-          "What causes skin redness?",
-          "How to relieve irritation?",
-          "Do foods worsen skin?",
-          "Does contaminated soil affect skin?",
-          "I want to learn more about inflammation",
-          "Are there scientific studies?",
-          "How to care for skin naturally?",
-          "What symptoms indicate serious problem?",
-          "I want tips for healthy skin",
-          "Does stress worsen redness?",
-          "Is redness common?",
-          "When to seek help?"
-        ],
-        "reflective_questions_pt": [
-          "Você percebe relação entre sua alimentação e a vermelhidão da pele?",
-          "Qual situação mais desencadeia irritação na sua pele?"
-        ],
-        "reflective_questions_en": [
-          "Do you notice any link between your diet and skin redness?",
-          "What situation most often triggers irritation for your skin?"
-        ]
-      },
-      "fase_2": {
-        "copy_pt": [
-          "${userName}, a vermelhidão e irritação constantes podem causar danos à barreira da pele, deixando-a mais vulnerável a infecções e inflamações crônicas. Estudos indicam que a inflamação sistêmica causada por desequilíbrios alimentares e ambientais está relacionada a esses problemas.",
-          "Você sabia, ${userName}, que a exposição contínua a toxinas e alimentos ultraprocessados pode agravar a vermelhidão e irritação, além de comprometer a saúde da pele a longo prazo?",
-          "${userName}, ignorar esses sintomas pode levar a quadros inflamatórios crônicos e problemas dermatológicos mais graves. Pesquisas do Journal of Dermatological Science ressaltam a importância do cuidado natural."
-        ],
-        "copy_en": [
-          "${userName}, constant redness and irritation can damage the skin barrier, making it more vulnerable to infections and chronic inflammation. Studies indicate systemic inflammation caused by dietary and environmental imbalances is linked to these issues.",
-          "Did you know, ${userName}, continuous exposure to toxins and ultra-processed foods can worsen redness and irritation and compromise skin health long-term?",
-          "${userName}, ignoring these symptoms can lead to chronic inflammatory conditions and more severe dermatological problems. Research from Journal of Dermatological Science emphasizes the importance of natural care."
-        ],
-        "quick_replies_pt": [
-          "Vermelhidão pode piorar?",
-          "Quais complicações podem ocorrer?",
-          "Como proteger a barreira da pele?",
-          "Inflamação sistêmica afeta pele?",
-          "Quero saber mais sobre danos crônicos",
-          "Quais sinais indicam gravidade?",
-          "Dá para melhorar naturalmente?",
-          "Quais riscos de não cuidar?",
-          "Quero dicas para proteção diária",
-          "Estresse piora vermelhidão?",
-          "Tem estudos científicos?",
-          "Quando procurar ajuda?"
-        ],
-        "quick_replies_en": [
-          "Can redness get worse?",
-          "What complications can occur?",
-          "How to protect the skin barrier?",
-          "Does systemic inflammation affect skin?",
-          "I want to know more about chronic damage",
-          "What signs indicate severity?",
-          "Can it improve naturally?",
-          "What are the risks of not caring?",
-          "I want tips for daily protection",
-          "Does stress worsen redness?",
-          "Are there scientific studies?",
-          "When to seek help?"
-        ],
-        "reflective_questions_pt": [
-          "Você já percebeu agravamento dos sintomas com exposição a certos alimentos ou ambientes?",
-          "Quais mudanças poderiam ajudar a proteger sua pele?"
-        ],
-        "reflective_questions_en": [
-          "Have you noticed worsening symptoms with certain foods or environments?",
-          "What changes could help protect your skin?"
-        ]
-      },
-      "fase_3": {
-        "copy_pt": [
-          "${userName}, estudos mostram que plantas como Dente-de-leão, Funcho e Babchi possuem propriedades anti-inflamatórias e antioxidantes que ajudam a fortalecer a barreira cutânea e reduzir a vermelhidão e irritação.",
-          "Pesquisas recentes, ${userName}, indicam que esses ingredientes naturais são eficazes na proteção da pele e na melhora da saúde dermatológica, conforme evidenciado em estudos do Phytotherapy Research.",
-          "${userName}, estudos do Nutritional Journal confirmam que o uso regular dessas plantas promove a saúde da pele e alivia sintomas de vermelhidão e irritação."
-        ],
-        "copy_en": [
-          "${userName}, studies show plants like Dandelion, Fennel, and Babchi have anti-inflammatory and antioxidant properties that help strengthen the skin barrier and reduce redness and irritation.",
-          "Recent research, ${userName}, indicates these natural ingredients are effective in protecting skin and improving dermatological health, as evidenced in studies from Phytotherapy Research.",
-          "${userName}, studies from Nutritional Journal confirm regular use of these plants promotes skin health and relieves redness and irritation symptoms."
-        ],
-        "quick_replies_pt": [
-          "Quais plantas ajudam na vermelhidão?",
-          "Esses estudos são confiáveis?",
-          "Posso usar essas plantas todo dia?",
-          "Funcho e Babchi realmente funcionam?",
-          "Quero ver depoimentos reais",
-          "Dente-de-leão é seguro para pele sensível?",
-          "Quanto tempo para notar diferença?",
-          "Resultados são duradouros?",
-          "Posso combinar essas plantas?",
-          "Plantas ajudam com coceira também?",
-          "Quero dicas para uso prático",
-          "Quero ver estudos científicos"
-        ],
-        "quick_replies_en": [
-          "Which plants help with redness?",
-          "Are these studies reliable?",
-          "Can I use these plants every day?",
-          "Do fennel and Babchi really work?",
-          "I want to see real testimonials",
-          "Is dandelion safe for sensitive skin?",
-          "How long to notice a difference?",
-          "Are results lasting?",
-          "Can I combine these plants?",
-          "Do plants help with itching too?",
-          "I want practical usage tips",
-          "I want to see scientific studies"
-        ],
-        "reflective_questions_pt": [
-          "Você já tentou soluções naturais para vermelhidão? Quais?",
-          "Quais dúvidas ainda tem sobre o uso de plantas para pele?"
-        ],
-        "reflective_questions_en": [
-          "Have you tried natural solutions for redness? Which ones?",
-          "What questions do you still have about using plants for your skin?"
-        ]
-      },
-      "fase_4": {
-        "copy_pt": [
-          "Plantas ancestrais como Dente-de-leão, Funcho e Babchi são aliadas poderosas para fortalecer a pele, reduzir inflamações e restaurar a saúde da barreira cutânea, promovendo uma aparência calma e equilibrada.",
-          "${userName}, essas plantas naturais auxiliam no fortalecimento da pele e na redução da vermelhidão, promovendo um efeito calmante e proteção contra agressões externas.",
-          "Utilizadas há séculos, essas plantas oferecem nutrientes essenciais para a saúde da pele, combatendo irritações e restaurando a vitalidade e o equilíbrio natural."
-        ],
-        "copy_en": [
-          "Ancestral plants like Dandelion, Fennel, and Babchi are powerful allies to strengthen skin, reduce inflammation, and restore skin barrier health, promoting a calm and balanced appearance.",
-          "${userName}, these natural plants help strengthen skin and reduce redness, providing a calming effect and protection against external aggressors.",
-          "Used for centuries, these plants provide essential nutrients for skin health, fighting irritation and restoring natural vitality and balance."
-        ],
-        "quick_replies_pt": [
-          "Como incluir essas plantas na rotina?",
-          "Tem receita fácil para pele irritada?",
-          "Essas plantas combinam entre si?",
-          "Posso usar em qualquer tipo de pele?",
-          "Quero relatos de transformação",
-          "É seguro para crianças?",
-          "Posso usar junto com cremes convencionais?",
-          "Resultados são rápidos?",
-          "Quais plantas ajudam mais no meu caso?",
-          "Quero dicas para rotina prática",
-          "Plantas ajudam no estresse também?",
-          "Quero ver estudos de eficácia"
-        ],
-        "quick_replies_en": [
-          "How to include these plants in routine?",
-          "Any easy recipe for irritated skin?",
-          "Can these plants be combined?",
-          "Are they safe for all skin types?",
-          "I want transformation stories",
-          "Is it safe for children?",
-          "Can I use with conventional creams?",
-          "Are results quick?",
-          "Which plants help most in my case?",
-          "I want tips for a practical routine",
-          "Do plants help with stress too?",
-          "I want to see efficacy studies"
-        ],
-        "reflective_questions_pt": [
-          "Como você poderia adaptar sua rotina para incluir plantas naturais?",
-          "Quais benefícios você mais deseja perceber na sua pele?"
-        ],
-        "reflective_questions_en": [
-          "How could you adapt your routine to include natural plants?",
-          "What benefits do you most want to see for your skin?"
-        ]
-      },
-      "fase_5": {
-        "copy_pt": [
-          "${userName}, cuidar da sua pele naturalmente pode trazer alívio e renovar sua confiança. Com plantas ancestrais e hábitos saudáveis, sua pele terá o suporte para ficar equilibrada e protegida. Posso ajudar com receitas, dicas e um plano prático para essa transformação.",
-          "A mudança começa com pequenas escolhas, ${userName}. Ao incluir plantas como Dente-de-leão, Funcho e Babchi na rotina e adotar hábitos naturais, você apoia sua pele para um aspecto saudável e protegido. Estou aqui para guiar você com passos simples e personalizados.",
-          "${userName}, sua jornada para uma pele calma, equilibrada e protegida pode começar agora. Com essa combinação natural e cuidados consistentes, sua pele terá o suporte necessário para renovar sua vitalidade. Posso fornecer um plano com orientações para essa nova fase."
-        ],
-        "copy_en": [
-          "${userName}, caring for your skin naturally can bring relief and renew your confidence. With ancestral plants and healthy habits, your skin will have the support to stay balanced and protected. I can help with recipes, tips, and a practical plan for this transformation.",
-          "Change starts with small choices, ${userName}. By including plants like Dandelion, Fennel, and Babchi in your routine and adopting natural habits, you support your skin for a healthy and protected look. I’m here to guide you with simple, personalized steps.",
-          "${userName}, your journey to calm, balanced, and protected skin can begin now. With this natural combination and consistent care, your skin will have the support it needs to renew its vitality. I can provide a plan with guidance for this new phase."
-        ],
-        "quick_replies_pt": [
-          "Quero começar já com plantas naturais",
-          "Tem receita fácil para pele irritada",
-          "Quero relatos reais de transformação",
-          "Como montar uma rotina prática?",
-          "Prefiro aprender mais antes",
-          "Resultados são duradouros?",
-          "Posso combinar com minha alimentação?",
-          "Quero conversar sobre escolhas naturais",
-          "Dá pra fazer em família?",
-          "Tem dicas para motivação?",
-          "É seguro para todos?",
-          "Quero ver estudos e relatos reais"
-        ],
-        "quick_replies_en": [
-          "I want to start with natural plants now",
-          "Any easy recipe for irritated skin",
-          "I want real transformation stories",
-          "How to build a practical routine?",
-          "I’d rather learn more first",
-          "Are results lasting?",
-          "Can I combine it with my diet?",
-          "I want to talk about natural choices",
-          "Can this be done as a family?",
-          "Any tips for motivation?",
-          "Is it safe for everyone?",
-          "I want to see studies and real stories"
-        ],
-        "reflective_questions_pt": [
-          "O que mais te motiva a buscar uma pele saudável?",
-          "Como você gostaria de iniciar essa mudança na sua rotina?"
-        ],
-        "reflective_questions_en": [
-          "What motivates you most to seek healthy skin?",
-          "How would you like to start this change in your routine?"
-        ]
-      }
-    }
+  "suplemento": "PRIME BIOME",
+  "symptom": "frequent_skin_redness_and_irritation",
+  "fase_1": {
+    "copy_pt": [
+      "${userName}, sentir a pele frequentemente vermelha e irritada pode ser muito desconfortável e afetar sua autoestima. Muitas vezes, essa reação é causada por inflamações silenciosas no organismo, agravadas pela alimentação industrializada, solos contaminados e o uso de produtos químicos que comprometem a saúde da pele.",
+      "${userName}, a vermelhidão e irritação constantes na pele são sinais de que seu corpo está tentando alertar para desequilíbrios internos. A combinação de ultraprocessados, solos empobrecidos e toxinas ambientais pode desencadear essas respostas inflamatórias.",
+      "Você já percebeu, ${userName}, que a saúde da sua pele reflete o que acontece dentro do seu corpo? A alimentação pobre em nutrientes, associada à exposição a agentes tóxicos, pode causar vermelhidão e irritação frequentes, afetando seu bem-estar."
+    ],
+    "copy_en": [
+      "${userName}, experiencing frequent skin redness and irritation can be very uncomfortable and affect your self-esteem. Often, this reaction is caused by silent inflammation in the body, worsened by industrialized diets, contaminated soils, and chemical exposure that compromise skin health.",
+      "${userName}, constant redness and irritation are signs your body is trying to alert you to internal imbalances. The combination of ultra-processed foods, nutrient-depleted soils, and environmental toxins can trigger these inflammatory responses.",
+      "Have you noticed, ${userName}, that your skin’s health reflects what’s happening inside your body? Nutrient-poor diets combined with exposure to toxins can cause frequent redness and irritation, impacting your well-being."
+    ],
+    "quick_replies_pt": [
+      "O que causa vermelhidão na pele?",
+      "Como aliviar irritação?",
+      "Alimentos pioram a pele?",
+      "Solo contaminado afeta pele?",
+      "Quero entender mais sobre inflamação",
+      "Tem estudos científicos?",
+      "Como cuidar da pele naturalmente?",
+      "Quais sintomas indicam problema sério?",
+      "Quero dicas para pele saudável",
+      "Estresse piora vermelhidão?",
+      "Vermelhidão é comum?",
+      "Quando procurar ajuda?"
+    ],
+    "quick_replies_en": [
+      "What causes skin redness?",
+      "How to relieve irritation?",
+      "Do foods worsen skin?",
+      "Does contaminated soil affect skin?",
+      "I want to learn more about inflammation",
+      "Are there scientific studies?",
+      "How to care for skin naturally?",
+      "What symptoms indicate serious problem?",
+      "I want tips for healthy skin",
+      "Does stress worsen redness?",
+      "Is redness common?",
+      "When to seek help?"
+    ],
+    "reflective_questions_pt": [
+      "Você percebe relação entre sua alimentação e a vermelhidão da pele?",
+      "Qual situação mais desencadeia irritação na sua pele?"
+    ],
+    "reflective_questions_en": [
+      "Do you notice any link between your diet and skin redness?",
+      "What situation most often triggers irritation for your skin?"
+    ]
+  },
+  "fase_2": {
+    "copy_pt": [
+      "${userName}, a vermelhidão e irritação constantes podem causar danos à barreira da pele, deixando-a mais vulnerável a infecções e inflamações crônicas. Estudos indicam que a inflamação sistêmica causada por desequilíbrios alimentares e ambientais está relacionada a esses problemas.",
+      "Você sabia, ${userName}, que a exposição contínua a toxinas e alimentos ultraprocessados pode agravar a vermelhidão e irritação, além de comprometer a saúde da pele a longo prazo?",
+      "${userName}, ignorar esses sintomas pode levar a quadros inflamatórios crônicos e problemas dermatológicos mais graves. Pesquisas do Journal of Dermatological Science ressaltam a importância do cuidado natural."
+    ],
+    "copy_en": [
+      "${userName}, constant redness and irritation can damage the skin barrier, making it more vulnerable to infections and chronic inflammation. Studies indicate systemic inflammation caused by dietary and environmental imbalances is linked to these issues.",
+      "Did you know, ${userName}, continuous exposure to toxins and ultra-processed foods can worsen redness and irritation and compromise skin health long-term?",
+      "${userName}, ignoring these symptoms can lead to chronic inflammatory conditions and more severe dermatological problems. Research from Journal of Dermatological Science emphasizes the importance of natural care."
+    ],
+    "quick_replies_pt": [
+      "Vermelhidão pode piorar?",
+      "Quais complicações podem ocorrer?",
+      "Como proteger a barreira da pele?",
+      "Inflamação sistêmica afeta pele?",
+      "Quero saber mais sobre danos crônicos",
+      "Quais sinais indicam gravidade?",
+      "Dá para melhorar naturalmente?",
+      "Quais riscos de não cuidar?",
+      "Quero dicas para proteção diária",
+      "Estresse piora vermelhidão?",
+      "Tem estudos científicos?",
+      "Quando procurar ajuda?"
+    ],
+    "quick_replies_en": [
+      "Can redness get worse?",
+      "What complications can occur?",
+      "How to protect the skin barrier?",
+      "Does systemic inflammation affect skin?",
+      "I want to know more about chronic damage",
+      "What signs indicate severity?",
+      "Can it improve naturally?",
+      "What are the risks of not caring?",
+      "I want tips for daily protection",
+      "Does stress worsen redness?",
+      "Are there scientific studies?",
+      "When to seek help?"
+    ],
+    "reflective_questions_pt": [
+      "Você já percebeu agravamento dos sintomas com exposição a certos alimentos ou ambientes?",
+      "Quais mudanças poderiam ajudar a proteger sua pele?"
+    ],
+    "reflective_questions_en": [
+      "Have you noticed worsening symptoms with certain foods or environments?",
+      "What changes could help protect your skin?"
+    ]
+  },
+  "fase_3": {
+    "copy_pt": [
+      "${userName}, estudos mostram que plantas como Dente-de-leão, Funcho e Babchi possuem propriedades anti-inflamatórias e antioxidantes que ajudam a fortalecer a barreira cutânea e reduzir a vermelhidão e irritação.",
+      "Pesquisas recentes, ${userName}, indicam que esses ingredientes naturais são eficazes na proteção da pele e na melhora da saúde dermatológica, conforme evidenciado em estudos do Phytotherapy Research.",
+      "${userName}, estudos do Nutritional Journal confirmam que o uso regular dessas plantas promove a saúde da pele e alivia sintomas de vermelhidão e irritação."
+    ],
+    "copy_en": [
+      "${userName}, studies show plants like Dandelion, Fennel, and Babchi have anti-inflammatory and antioxidant properties that help strengthen the skin barrier and reduce redness and irritation.",
+      "Recent research, ${userName}, indicates these natural ingredients are effective in protecting skin and improving dermatological health, as evidenced in studies from Phytotherapy Research.",
+      "${userName}, studies from Nutritional Journal confirm regular use of these plants promotes skin health and relieves redness and irritation symptoms."
+    ],
+    "quick_replies_pt": [
+      "Quais plantas ajudam na vermelhidão?",
+      "Esses estudos são confiáveis?",
+      "Posso usar essas plantas todo dia?",
+      "Funcho e Babchi realmente funcionam?",
+      "Quero ver depoimentos reais",
+      "Dente-de-leão é seguro para pele sensível?",
+      "Quanto tempo para notar diferença?",
+      "Resultados são duradouros?",
+      "Posso combinar essas plantas?",
+      "Plantas ajudam com coceira também?",
+      "Quero dicas para uso prático",
+      "Quero ver estudos científicos"
+    ],
+    "quick_replies_en": [
+      "Which plants help with redness?",
+      "Are these studies reliable?",
+      "Can I use these plants every day?",
+      "Do fennel and Babchi really work?",
+      "I want to see real testimonials",
+      "Is dandelion safe for sensitive skin?",
+      "How long to notice a difference?",
+      "Are results lasting?",
+      "Can I combine these plants?",
+      "Do plants help with itching too?",
+      "I want practical usage tips",
+      "I want to see scientific studies"
+    ],
+    "reflective_questions_pt": [
+      "Você já tentou soluções naturais para vermelhidão? Quais?",
+      "Quais dúvidas ainda tem sobre o uso de plantas para pele?"
+    ],
+    "reflective_questions_en": [
+      "Have you tried natural solutions for redness? Which ones?",
+      "What questions do you still have about using plants for your skin?"
+    ]
+  },
+  "fase_4": {
+    "copy_pt": [
+      "Plantas ancestrais como Dente-de-leão, Funcho e Babchi são aliadas poderosas para fortalecer a pele, reduzir inflamações e restaurar a saúde da barreira cutânea, promovendo uma aparência calma e equilibrada.",
+      "${userName}, essas plantas naturais auxiliam no fortalecimento da pele e na redução da vermelhidão, promovendo um efeito calmante e proteção contra agressões externas.",
+      "Utilizadas há séculos, essas plantas oferecem nutrientes essenciais para a saúde da pele, combatendo irritações e restaurando a vitalidade e o equilíbrio natural."
+    ],
+    "copy_en": [
+      "Ancestral plants like Dandelion, Fennel, and Babchi are powerful allies to strengthen skin, reduce inflammation, and restore skin barrier health, promoting a calm and balanced appearance.",
+      "${userName}, these natural plants help strengthen skin and reduce redness, providing a calming effect and protection against external aggressors.",
+      "Used for centuries, these plants provide essential nutrients for skin health, fighting irritation and restoring natural vitality and balance."
+    ],
+    "quick_replies_pt": [
+      "Como incluir essas plantas na rotina?",
+      "Tem receita fácil para pele irritada?",
+      "Essas plantas combinam entre si?",
+      "Posso usar em qualquer tipo de pele?",
+      "Quero relatos de transformação",
+      "É seguro para crianças?",
+      "Posso usar junto com cremes convencionais?",
+      "Resultados são rápidos?",
+      "Quais plantas ajudam mais no meu caso?",
+      "Quero dicas para rotina prática",
+      "Plantas ajudam no estresse também?",
+      "Quero ver estudos de eficácia"
+    ],
+    "quick_replies_en": [
+      "How to include these plants in routine?",
+      "Any easy recipe for irritated skin?",
+      "Can these plants be combined?",
+      "Are they safe for all skin types?",
+      "I want transformation stories",
+      "Is it safe for children?",
+      "Can I use with conventional creams?",
+      "Are results quick?",
+      "Which plants help most in my case?",
+      "I want tips for a practical routine",
+      "Do plants help with stress too?",
+      "I want to see efficacy studies"
+    ],
+    "reflective_questions_pt": [
+      "Como você poderia adaptar sua rotina para incluir plantas naturais?",
+      "Quais benefícios você mais deseja perceber na sua pele?"
+    ],
+    "reflective_questions_en": [
+      "How could you adapt your routine to include natural plants?",
+      "What benefits do you most want to see for your skin?"
+    ]
+  },
+  "fase_5": {
+    "copy_pt": [
+      "${userName}, cuidar da sua pele naturalmente pode trazer alívio e renovar sua confiança. Com plantas ancestrais e hábitos saudáveis, sua pele terá o suporte para ficar equilibrada e protegida. Posso ajudar com receitas, dicas e um plano prático para essa transformação.",
+      "A mudança começa com pequenas escolhas, ${userName}. Ao incluir plantas como Dente-de-leão, Funcho e Babchi na rotina e adotar hábitos naturais, você apoia sua pele para um aspecto saudável e protegido. Estou aqui para guiar você com passos simples e personalizados.",
+      "${userName}, sua jornada para uma pele calma, equilibrada e protegida pode começar agora. Com essa combinação natural e cuidados consistentes, sua pele terá o suporte necessário para renovar sua vitalidade. Posso fornecer um plano com orientações para essa nova fase."
+    ],
+    "copy_en": [
+      "${userName}, caring for your skin naturally can bring relief and renew your confidence. With ancestral plants and healthy habits, your skin will have the support to stay balanced and protected. I can help with recipes, tips, and a practical plan for this transformation.",
+      "Change starts with small choices, ${userName}. By including plants like Dandelion, Fennel, and Babchi in your routine and adopting natural habits, you support your skin for a healthy and protected look. I’m here to guide you with simple, personalized steps.",
+      "${userName}, your journey to calm, balanced, and protected skin can begin now. With this natural combination and consistent care, your skin will have the support it needs to renew its vitality. I can provide a plan with guidance for this new phase."
+    ],
+    "quick_replies_pt": [
+      "Quero conhecer a solução com essas plantas para metabolismo lento",
+      "Como funciona essa solução natural com plantas para acelerar o metabolismo?",
+      "Mostra como posso começar uma rotina usando essas plantas",
+      "Quero saber mais sobre essa solução que inclui essas plantas no dia a dia",
+      "Essa solução com plantas serve para qualquer idade?",
+      "Como posso adaptar essa solução para a minha rotina?",
+      "Explica como as plantas agem juntas na solução",
+      "Tem um passo a passo para experimentar essa solução natural?",
+      "Quero ver relatos de quem já usou essa solução com plantas",
+      "Dá para combinar essa solução com alimentação atual?",
+      "Resultados dessa solução são duradouros?",
+      "Quero acessar mais informações sobre essa solução com plantas"
+    ],
+    "quick_replies_en": [
+      "I want to know the solution with these plants for slow metabolism",
+      "How does this natural plant solution work for boosting metabolism?",
+      "Show me how I can start a routine using these plants",
+      "I want to learn more about this solution that includes these plants daily",
+      "Is this plant-based solution right for any age?",
+      "How can I adapt this solution to my routine?",
+      "Explain how these plants work together in the solution",
+      "Is there a step-by-step guide to try this natural solution?",
+      "I want stories from people who used this plant solution",
+      "Can I combine this solution with my current diet?",
+      "Are results from this solution long-lasting?",
+      "I want more information about this plant solution"
+    ],
+    "reflective_questions_pt": [
+      "O que mais te motiva a buscar uma pele saudável?",
+      "Como você gostaria de iniciar essa mudança na sua rotina?"
+    ],
+    "reflective_questions_en": [
+      "What motivates you most to seek healthy skin?",
+      "How would you like to start this change in your routine?"
+    ]
   }
 }
-
