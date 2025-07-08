@@ -1,208 +1,204 @@
 {
-  "suplemento": "Moringa",  
-  "sintomas": {
-    "headache": {
-      "fase_1": {
-        "copy_pt": [
-          "${userName}, aquela dor de cabeça frequente pode ser mais do que um simples incômodo. Ela pode ser o corpo te alertando para desequilíbrios causados pela alimentação e pelo ambiente em que você vive. Alimentos ultraprocessados, solos empobrecidos e carnes com hormônios sintéticos contribuem para inflamações que afetam não só a cabeça, mas todo o organismo. Entender essa conexão é fundamental para começar a cuidar melhor da sua saúde e prevenir episódios cada vez mais frequentes.",
-          "${userName}, dores de cabeça constantes são sinais claros de que algo no seu corpo não está em harmonia. Muitas vezes, essa dor está relacionada a fatores silenciosos, como a ingestão de alimentos industrializados, solos contaminados e carnes tratadas com hormônios que aumentam a inflamação no organismo. Reconhecer esses sinais é o primeiro passo para uma abordagem natural e eficaz para o alívio.",
-          "Você sabia, ${userName}, que a alimentação e o ambiente podem influenciar diretamente na frequência e intensidade das suas dores de cabeça? O consumo regular de ultraprocessados, solos degradados e carnes hormonizadas pode desencadear processos inflamatórios que tornam a dor mais frequente e difícil de controlar. Ouvir seu corpo e entender esses sinais é essencial para agir com consciência."
-        ],
-        "copy_en": [
-          "${userName}, frequent headaches may be more than just an annoyance. They could be your body alerting you to imbalances caused by diet and environment. Ultra-processed foods, nutrient-depleted soils, and hormone-treated meats contribute to inflammation that affects not just your head but your whole body. Understanding this connection is key to better health care and preventing more frequent episodes.",
-          "${userName}, constant headaches are clear signs something in your body isn’t in harmony. Often, this pain relates to silent factors like industrialized food intake, contaminated soils, and hormone-treated meats that increase inflammation. Recognizing these signs is the first step toward a natural and effective relief approach.",
-          "Did you know, ${userName}, that diet and environment can directly influence the frequency and intensity of your headaches? Regular consumption of ultra-processed foods, degraded soils, and hormone-treated meats can trigger inflammatory processes that make headaches more frequent and harder to control. Listening to your body and understanding these signals is essential for conscious action."
-        ],
-        "quick_replies_pt": [
-          "Por que tenho dor de cabeça frequente?",
-          "Alimentos pioram a dor?",
-          "Solo contaminado afeta a dor?",
-          "Carnes com hormônios influenciam?",
-          "Quero entender mais sobre dores de cabeça",
-          "Tem estudos científicos?",
-          "Como aliviar dor naturalmente?",
-          "Quais sintomas indicam problema sério?",
-          "Quero dicas para prevenir dores",
-          "Estresse piora a dor?",
-          "Dor de cabeça é normal hoje?",
-          "Quando procurar ajuda médica?"
-        ],
-        "quick_replies_en": [
-          "Why do I have frequent headaches?",
-          "Do foods worsen headaches?",
-          "Does contaminated soil affect pain?",
-          "Do hormone-treated meats influence?",
-          "I want to learn more about headaches",
-          "Are there scientific studies?",
-          "How to relieve headache naturally?",
-          "What symptoms indicate serious problem?",
-          "I want tips to prevent headaches",
-          "Does stress worsen headaches?",
-          "Are headaches normal nowadays?",
-          "When to seek medical help?"
-        ]
-      },
-      "fase_2": {
-        "copy_pt": [
-          "${userName}, dores de cabeça frequentes e não tratadas podem evoluir para enxaquecas e impactar seriamente sua qualidade de vida. Estudos do American Migraine Foundation indicam que a inflamação crônica causada por má alimentação, solos contaminados e carnes hormonizadas aumenta a sensibilidade nervosa, agravando a dor.",
-          "Você sabia, ${userName}, que dores de cabeça persistentes podem indicar processos inflamatórios que afetam o sistema nervoso central? Pesquisas mostram que o consumo de ultraprocessados e alimentos contaminados pode intensificar essas respostas, dificultando o controle da dor.",
-          "${userName}, dores frequentes na cabeça não devem ser ignoradas, pois podem levar a complicações como enxaqueca crônica e problemas neurológicos. Dados da Organização Mundial da Saúde destacam que a alimentação e o ambiente são fatores que influenciam diretamente a ocorrência desses sintomas."
-        ],
-        "copy_en": [
-          "${userName}, frequent untreated headaches can progress to migraines and seriously impact your quality of life. American Migraine Foundation studies indicate that chronic inflammation caused by poor diet, contaminated soils, and hormone-treated meats increases nerve sensitivity, worsening the pain.",
-          "Did you know, ${userName}, persistent headaches may indicate inflammatory processes affecting the central nervous system? Research shows that consumption of ultra-processed and contaminated foods can intensify these responses, making pain control harder.",
-          "${userName}, frequent headaches shouldn’t be ignored as they may lead to complications like chronic migraine and neurological problems. World Health Organization data highlight diet and environment as key factors influencing these symptoms."
-        ],
-        "quick_replies_pt": [
-          "Dor de cabeça pode piorar?",
-          "Como alimentos pioram a dor?",
-          "Solo contaminado afeta?",
-          "Carnes hormonizadas prejudicam?",
-          "Quero saber mais sobre enxaqueca",
-          "Dor de cabeça afeta qualidade de vida?",
-          "Dá para aliviar naturalmente?",
-          "Quais sintomas indicam gravidade?",
-          "Quero dicas para prevenir dor",
-          "Estresse piora dor de cabeça?",
-          "Tem estudos científicos?",
-          "Quando procurar ajuda médica?"
-        ],
-        "quick_replies_en": [
-          "Can headaches get worse?",
-          "How do foods worsen pain?",
-          "Does contaminated soil affect?",
-          "Do hormone-treated meats harm?",
-          "I want to learn more about migraines",
-          "Do headaches affect quality of life?",
-          "Can it be relieved naturally?",
-          "What symptoms indicate severity?",
-          "I want tips to prevent pain",
-          "Does stress worsen headaches?",
-          "Are there scientific studies?",
-          "When to seek medical help?"
-        ]
-      },
-      "fase_3": {
-        "copy_pt": [
-          "${userName}, estudos científicos indicam que a Moringa possui propriedades antioxidantes e anti-inflamatórias que ajudam a reduzir a frequência e intensidade das dores de cabeça. Pesquisas publicadas no Frontiers in Pharmacology demonstram seu potencial para modular processos inflamatórios no sistema nervoso.",
-          "Pesquisas recentes, ${userName}, confirmam que os compostos bioativos da Moringa auxiliam na proteção do sistema nervoso e na redução do estresse oxidativo, fatores relacionados ao alívio das dores de cabeça. Estudos do Journal of Ethnopharmacology reforçam esses benefícios.",
-          "${userName}, estudos do Nutritional Journal mostram que o uso regular da Moringa está associado à diminuição da dor e melhora da qualidade de vida em pessoas que sofrem com dores de cabeça frequentes."
-        ],
-        "copy_en": [
-          "${userName}, scientific studies indicate Moringa has antioxidant and anti-inflammatory properties that help reduce headache frequency and intensity. Research published in Frontiers in Pharmacology shows its potential to modulate inflammatory processes in the nervous system.",
-          "Recent research, ${userName}, confirms Moringa’s bioactive compounds aid in nervous system protection and oxidative stress reduction, factors related to headache relief. Studies from the Journal of Ethnopharmacology reinforce these benefits.",
-          "${userName}, studies from the Nutritional Journal show regular Moringa use is associated with decreased pain and improved quality of life in people suffering from frequent headaches."
-        ],
-        "quick_replies_pt": [
-          "Moringa ajuda na dor de cabeça?",
-          "Tem estudos comprovando?",
-          "Quanto tempo para sentir efeito?",
-          "Posso usar todos os dias?",
-          "Ajuda a reduzir inflamação?",
-          "É seguro para uso contínuo?",
-          "Quero relatos de quem melhorou",
-          "Como a Moringa age na dor de cabeça?",
-          "Posso combinar com outras plantas?",
-          "Quero dicas para começar",
-          "Quero ver estudos científicos",
-          "Quais benefícios principais?"
-        ],
-        "quick_replies_en": [
-          "Does Moringa help headache?",
-          "Are there studies proving this?",
-          "How long to feel effects?",
-          "Can I use it daily?",
-          "Does it help reduce inflammation?",
-          "Is it safe for continuous use?",
-          "I want stories from people who improved",
-          "How does Moringa act on headache?",
-          "Can I combine it with other plants?",
-          "I want tips to start",
-          "I want to see scientific studies",
-          "What are the main benefits?"
-        ]
-      },
-      "fase_4": {
-        "copy_pt": [
-          "A Moringa é uma planta milenar reconhecida por suas propriedades antioxidantes e anti-inflamatórias que ajudam a proteger o sistema nervoso e reduzir dores de cabeça. Rica em vitaminas e minerais, ela é uma aliada natural para quem busca alívio sem efeitos colaterais.",
-          "${userName}, as folhas da Moringa contêm compostos bioativos que modulam processos inflamatórios e promovem o equilíbrio do sistema nervoso, contribuindo para a redução das dores de cabeça. Seu uso tradicional aliado a evidências científicas recentes faz dela uma poderosa aliada natural.",
-          "Utilizada há séculos, a Moringa oferece uma combinação de nutrientes que fortalecem o organismo e ajudam a combater os processos inflamatórios associados às dores de cabeça, promovendo maior qualidade de vida."
-        ],
-        "copy_en": [
-          "Moringa is a millenary plant recognized for its antioxidant and anti-inflammatory properties that help protect the nervous system and reduce headaches. Rich in vitamins and minerals, it’s a natural ally for those seeking relief without side effects.",
-          "${userName}, Moringa leaves contain bioactive compounds that modulate inflammatory processes and promote nervous system balance, contributing to headache reduction. Its traditional use combined with recent scientific evidence makes it a powerful natural ally.",
-          "Used for centuries, Moringa offers a combination of nutrients that strengthen the body and help fight inflammatory processes associated with headaches, promoting better quality of life."
-        ],
-        "quick_replies_pt": [
-          "Como usar Moringa para dor de cabeça?",
-          "Tem receita para alívio rápido?",
-          "Ajuda a reduzir inflamação?",
-          "Posso usar todos os dias?",
-          "Quero relatos de quem melhorou",
-          "Quanto tempo para ver resultado?",
-          "É seguro para uso contínuo?",
-          "Posso combinar com outras plantas?",
-          "Quero dicas para começar",
-          "Ajuda no sistema nervoso?",
-          "Quero ver estudos científicos",
-          "Dá para usar com alimentação variada?"
-        ],
-        "quick_replies_en": [
-          "How to use Moringa for headache?",
-          "Any recipe for quick relief?",
-          "Does it help reduce inflammation?",
-          "Can I use it daily?",
-          "I want stories from people who improved",
-          "How long to see results?",
-          "Is it safe for continuous use?",
-          "Can I combine with other plants?",
-          "I want tips to start",
-          "Does it help the nervous system?",
-          "I want to see scientific studies",
-          "Can it be used with varied diet?"
-        ]
-      },
-      "fase_5": {
-        "copy_pt": [
-          "${userName}, cuidar das suas dores de cabeça com soluções naturais pode transformar sua qualidade de vida. Com a Moringa e hábitos alimentares saudáveis, seu organismo terá suporte para reduzir inflamação e promover equilíbrio no sistema nervoso. Posso ajudar você com receitas, dicas e um plano prático para essa mudança.",
-          "A transformação começa com pequenas escolhas, ${userName}. Ao incluir a Moringa na sua rotina e optar por alimentos naturais, você apoia seu corpo no caminho para reduzir dores de cabeça e aumentar o bem-estar. Estou aqui para guiar você com passos simples e personalizados.",
-          "${userName}, sua jornada para menos dores de cabeça e mais qualidade de vida pode começar agora. Com a Moringa e uma alimentação equilibrada, seu corpo terá o suporte necessário para melhorar seu estado geral. Posso fornecer um plano com orientações e cuidados para essa nova fase."
-        ],
-        "copy_en": [
-          "${userName}, caring for your headaches with natural solutions can transform your quality of life. With Moringa and healthy eating habits, your body will have support to reduce inflammation and promote balance in the nervous system. I can help you with recipes, tips, and a practical plan for this change.",
-          "The transformation begins with small choices, ${userName}. By including Moringa in your routine and choosing natural foods, you support your body on the path to reducing headaches and increasing well-being. I am here to guide you with simple and personalized steps.",
-          "${userName}, your journey to fewer headaches and better quality of life can start now. With Moringa and a balanced diet, your body will have the necessary support to improve your overall condition. I can provide a plan with guidance, recipes, and care for this new phase."
-        ],
-        "quick_replies_pt": [
-          "Quero começar já com Moringa",
-          "Tem receita fácil para dor de cabeça",
-          "Quero relatos reais de transformação",
-          "Como montar uma rotina prática?",
-          "Prefiro aprender mais antes",
-          "Resultados são duradouros?",
-          "Posso combinar com minha alimentação?",
-          "Quero conversar sobre escolhas naturais",
-          "Dá pra fazer em família?",
-          "Tem dicas para motivação?",
-          "É seguro para todos?",
-          "Quero ver estudos e relatos reais"
-        ],
-        "quick_replies_en": [
-          "I want to start with Moringa now",
-          "Any easy recipe for headache relief",
-          "I want real transformation stories",
-          "How to build a practical routine?",
-          "I’d rather learn more first",
-          "Are results lasting?",
-          "Can I combine with my diet?",
-          "I want to talk about natural choices",
-          "Can this be done as a family?",
-          "Any tips for motivation?",
-          "Is it safe for everyone?",
-          "I want to see studies and real stories"
-        ]
-      }
-    }
+  "suplemento": "Moringa",
+  "symptom": "headache",
+  "fase_1": {
+    "copy_pt": [
+      "${userName}, aquela dor de cabeça frequente pode ser mais do que um simples incômodo. Ela pode ser o corpo te alertando para desequilíbrios causados pela alimentação e pelo ambiente em que você vive. Alimentos ultraprocessados, solos empobrecidos e carnes com hormônios sintéticos contribuem para inflamações que afetam não só a cabeça, mas todo o organismo. Entender essa conexão é fundamental para começar a cuidar melhor da sua saúde e prevenir episódios cada vez mais frequentes.",
+      "${userName}, dores de cabeça constantes são sinais claros de que algo no seu corpo não está em harmonia. Muitas vezes, essa dor está relacionada a fatores silenciosos, como a ingestão de alimentos industrializados, solos contaminados e carnes tratadas com hormônios que aumentam a inflamação no organismo. Reconhecer esses sinais é o primeiro passo para uma abordagem natural e eficaz para o alívio.",
+      "Você sabia, ${userName}, que a alimentação e o ambiente podem influenciar diretamente na frequência e intensidade das suas dores de cabeça? O consumo regular de ultraprocessados, solos degradados e carnes hormonizadas pode desencadear processos inflamatórios que tornam a dor mais frequente e difícil de controlar. Ouvir seu corpo e entender esses sinais é essencial para agir com consciência."
+    ],
+    "copy_en": [
+      "${userName}, frequent headaches may be more than just an annoyance. They could be your body alerting you to imbalances caused by diet and environment. Ultra-processed foods, nutrient-depleted soils, and hormone-treated meats contribute to inflammation that affects not just your head but your whole body. Understanding this connection is key to better health care and preventing more frequent episodes.",
+      "${userName}, constant headaches are clear signs something in your body isn’t in harmony. Often, this pain relates to silent factors like industrialized food intake, contaminated soils, and hormone-treated meats that increase inflammation. Recognizing these signs is the first step toward a natural and effective relief approach.",
+      "Did you know, ${userName}, that diet and environment can directly influence the frequency and intensity of your headaches? Regular consumption of ultra-processed foods, degraded soils, and hormone-treated meats can trigger inflammatory processes that make headaches more frequent and harder to control. Listening to your body and understanding these signals is essential for conscious action."
+    ],
+    "quick_replies_pt": [
+      "Por que tenho dor de cabeça frequente?",
+      "Alimentos pioram a dor?",
+      "Solo contaminado afeta a dor?",
+      "Carnes com hormônios influenciam?",
+      "Quero entender mais sobre dores de cabeça",
+      "Tem estudos científicos?",
+      "Como aliviar dor naturalmente?",
+      "Quais sintomas indicam problema sério?",
+      "Quero dicas para prevenir dores",
+      "Estresse piora a dor?",
+      "Dor de cabeça é normal hoje?",
+      "Quando procurar ajuda médica?"
+    ],
+    "quick_replies_en": [
+      "Why do I have frequent headaches?",
+      "Do foods worsen headaches?",
+      "Does contaminated soil affect pain?",
+      "Do hormone-treated meats influence?",
+      "I want to learn more about headaches",
+      "Are there scientific studies?",
+      "How to relieve headache naturally?",
+      "What symptoms indicate serious problem?",
+      "I want tips to prevent headaches",
+      "Does stress worsen headaches?",
+      "Are headaches normal nowadays?",
+      "When to seek medical help?"
+    ]
+  },
+  "fase_2": {
+    "copy_pt": [
+      "${userName}, dores de cabeça frequentes e não tratadas podem evoluir para enxaquecas e impactar seriamente sua qualidade de vida. Estudos do American Migraine Foundation indicam que a inflamação crônica causada por má alimentação, solos contaminados e carnes hormonizadas aumenta a sensibilidade nervosa, agravando a dor.",
+      "Você sabia, ${userName}, que dores de cabeça persistentes podem indicar processos inflamatórios que afetam o sistema nervoso central? Pesquisas mostram que o consumo de ultraprocessados e alimentos contaminados pode intensificar essas respostas, dificultando o controle da dor.",
+      "${userName}, dores frequentes na cabeça não devem ser ignoradas, pois podem levar a complicações como enxaqueca crônica e problemas neurológicos. Dados da Organização Mundial da Saúde destacam que a alimentação e o ambiente são fatores que influenciam diretamente a ocorrência desses sintomas."
+    ],
+    "copy_en": [
+      "${userName}, frequent untreated headaches can progress to migraines and seriously impact your quality of life. American Migraine Foundation studies indicate that chronic inflammation caused by poor diet, contaminated soils, and hormone-treated meats increases nerve sensitivity, worsening the pain.",
+      "Did you know, ${userName}, persistent headaches may indicate inflammatory processes affecting the central nervous system? Research shows that consumption of ultra-processed and contaminated foods can intensify these responses, making pain control harder.",
+      "${userName}, frequent headaches shouldn’t be ignored as they may lead to complications like chronic migraine and neurological problems. World Health Organization data highlight diet and environment as key factors influencing these symptoms."
+    ],
+    "quick_replies_pt": [
+      "Dor de cabeça pode piorar?",
+      "Como alimentos pioram a dor?",
+      "Solo contaminado afeta?",
+      "Carnes hormonizadas prejudicam?",
+      "Quero saber mais sobre enxaqueca",
+      "Dor de cabeça afeta qualidade de vida?",
+      "Dá para aliviar naturalmente?",
+      "Quais sintomas indicam gravidade?",
+      "Quero dicas para prevenir dor",
+      "Estresse piora dor de cabeça?",
+      "Tem estudos científicos?",
+      "Quando procurar ajuda médica?"
+    ],
+    "quick_replies_en": [
+      "Can headaches get worse?",
+      "How do foods worsen pain?",
+      "Does contaminated soil affect?",
+      "Do hormone-treated meats harm?",
+      "I want to learn more about migraines",
+      "Do headaches affect quality of life?",
+      "Can it be relieved naturally?",
+      "What symptoms indicate severity?",
+      "I want tips to prevent pain",
+      "Does stress worsen headaches?",
+      "Are there scientific studies?",
+      "When to seek medical help?"
+    ]
+  },
+  "fase_3": {
+    "copy_pt": [
+      "${userName}, estudos científicos indicam que a Moringa possui propriedades antioxidantes e anti-inflamatórias que ajudam a reduzir a frequência e intensidade das dores de cabeça. Pesquisas publicadas no Frontiers in Pharmacology demonstram seu potencial para modular processos inflamatórios no sistema nervoso.",
+      "Pesquisas recentes, ${userName}, confirmam que os compostos bioativos da Moringa auxiliam na proteção do sistema nervoso e na redução do estresse oxidativo, fatores relacionados ao alívio das dores de cabeça. Estudos do Journal of Ethnopharmacology reforçam esses benefícios.",
+      "${userName}, estudos do Nutritional Journal mostram que o uso regular da Moringa está associado à diminuição da dor e melhora da qualidade de vida em pessoas que sofrem com dores de cabeça frequentes."
+    ],
+    "copy_en": [
+      "${userName}, scientific studies indicate Moringa has antioxidant and anti-inflammatory properties that help reduce headache frequency and intensity. Research published in Frontiers in Pharmacology shows its potential to modulate inflammatory processes in the nervous system.",
+      "Recent research, ${userName}, confirms Moringa’s bioactive compounds aid in nervous system protection and oxidative stress reduction, factors related to headache relief. Studies from the Journal of Ethnopharmacology reinforce these benefits.",
+      "${userName}, studies from the Nutritional Journal show regular Moringa use is associated with decreased pain and improved quality of life in people suffering from frequent headaches."
+    ],
+    "quick_replies_pt": [
+      "Moringa ajuda na dor de cabeça?",
+      "Tem estudos comprovando?",
+      "Quanto tempo para sentir efeito?",
+      "Posso usar todos os dias?",
+      "Ajuda a reduzir inflamação?",
+      "É seguro para uso contínuo?",
+      "Quero relatos de quem melhorou",
+      "Como a Moringa age na dor de cabeça?",
+      "Posso combinar com outras plantas?",
+      "Quero dicas para começar",
+      "Quero ver estudos científicos",
+      "Quais benefícios principais?"
+    ],
+    "quick_replies_en": [
+      "Does Moringa help headache?",
+      "Are there studies proving this?",
+      "How long to feel effects?",
+      "Can I use it daily?",
+      "Does it help reduce inflammation?",
+      "Is it safe for continuous use?",
+      "I want stories from people who improved",
+      "How does Moringa act on headache?",
+      "Can I combine it with other plants?",
+      "I want tips to start",
+      "I want to see scientific studies",
+      "What are the main benefits?"
+    ]
+  },
+  "fase_4": {
+    "copy_pt": [
+      "A Moringa é uma planta milenar reconhecida por suas propriedades antioxidantes e anti-inflamatórias que ajudam a proteger o sistema nervoso e reduzir dores de cabeça. Rica em vitaminas e minerais, ela é uma aliada natural para quem busca alívio sem efeitos colaterais.",
+      "${userName}, as folhas da Moringa contêm compostos bioativos que modulam processos inflamatórios e promovem o equilíbrio do sistema nervoso, contribuindo para a redução das dores de cabeça. Seu uso tradicional aliado a evidências científicas recentes faz dela uma poderosa aliada natural.",
+      "Utilizada há séculos, a Moringa oferece uma combinação de nutrientes que fortalecem o organismo e ajudam a combater os processos inflamatórios associados às dores de cabeça, promovendo maior qualidade de vida."
+    ],
+    "copy_en": [
+      "Moringa is a millenary plant recognized for its antioxidant and anti-inflammatory properties that help protect the nervous system and reduce headaches. Rich in vitamins and minerals, it’s a natural ally for those seeking relief without side effects.",
+      "${userName}, Moringa leaves contain bioactive compounds that modulate inflammatory processes and promote nervous system balance, contributing to headache reduction. Its traditional use combined with recent scientific evidence makes it a powerful natural ally.",
+      "Used for centuries, Moringa offers a combination of nutrients that strengthen the body and help fight inflammatory processes associated with headaches, promoting better quality of life."
+    ],
+    "quick_replies_pt": [
+      "Como usar Moringa para dor de cabeça?",
+      "Tem receita para alívio rápido?",
+      "Ajuda a reduzir inflamação?",
+      "Posso usar todos os dias?",
+      "Quero relatos de quem melhorou",
+      "Quanto tempo para ver resultado?",
+      "É seguro para uso contínuo?",
+      "Posso combinar com outras plantas?",
+      "Quero dicas para começar",
+      "Ajuda no sistema nervoso?",
+      "Quero ver estudos científicos",
+      "Dá para usar com alimentação variada?"
+    ],
+    "quick_replies_en": [
+      "How to use Moringa for headache?",
+      "Any recipe for quick relief?",
+      "Does it help reduce inflammation?",
+      "Can I use it daily?",
+      "I want stories from people who improved",
+      "How long to see results?",
+      "Is it safe for continuous use?",
+      "Can I combine with other plants?",
+      "I want tips to start",
+      "Does it help the nervous system?",
+      "I want to see scientific studies",
+      "Can it be used with varied diet?"
+    ]
+  },
+  "fase_5": {
+    "copy_pt": [
+      "${userName}, cuidar das suas dores de cabeça com soluções naturais pode transformar sua qualidade de vida. Com a Moringa e hábitos alimentares saudáveis, seu organismo terá suporte para reduzir inflamação e promover equilíbrio no sistema nervoso. Posso ajudar você com receitas, dicas e um plano prático para essa mudança.",
+      "A transformação começa com pequenas escolhas, ${userName}. Ao incluir a Moringa na sua rotina e optar por alimentos naturais, você apoia seu corpo no caminho para reduzir dores de cabeça e aumentar o bem-estar. Estou aqui para guiar você com passos simples e personalizados.",
+      "${userName}, sua jornada para menos dores de cabeça e mais qualidade de vida pode começar agora. Com Moringa e uma alimentação equilibrada, seu corpo terá o suporte necessário para melhorar seu estado geral. Posso fornecer um plano com orientações e cuidados para essa nova fase."
+    ],
+    "copy_en": [
+      "${userName}, caring for your headaches with natural solutions can transform your quality of life. With Moringa and healthy eating habits, your body will have support to reduce inflammation and promote balance in the nervous system. I can help you with recipes, tips, and a practical plan for this change.",
+      "The transformation begins with small choices, ${userName}. By including Moringa in your routine and choosing natural foods, you support your body on the path to reducing headaches and increasing well-being. I am here to guide you with simple and personalized steps.",
+      "${userName}, your journey to fewer headaches and better quality of life can start now. With Moringa and a balanced diet, your body will have the necessary support to improve your overall condition. I can provide a plan with guidance, recipes, and care for this new phase."
+    ],
+    "quick_replies_pt": [
+      "Quero conhecer a solução com essas plantas para metabolismo lento",
+      "Como funciona essa solução natural com plantas para acelerar o metabolismo?",
+      "Mostra como posso começar uma rotina usando essas plantas",
+      "Quero saber mais sobre essa solução que inclui essas plantas no dia a dia",
+      "Essa solução com plantas serve para qualquer idade?",
+      "Como posso adaptar essa solução para a minha rotina?",
+      "Explica como as plantas agem juntas na solução",
+      "Tem um passo a passo para experimentar essa solução natural?",
+      "Quero ver relatos de quem já usou essa solução com plantas",
+      "Dá para combinar essa solução com alimentação atual?",
+      "Resultados dessa solução são duradouros?",
+      "Quero acessar mais informações sobre essa solução com plantas"
+    ],
+    "quick_replies_en": [
+      "I want to know the solution with these plants for slow metabolism",
+      "How does this natural plant solution work for boosting metabolism?",
+      "Show me how I can start a routine using these plants",
+      "I want to learn more about this solution that includes these plants daily",
+      "Is this plant-based solution right for any age?",
+      "How can I adapt this solution to my routine?",
+      "Explain how these plants work together in the solution",
+      "Is there a step-by-step guide to try this natural solution?",
+      "I want stories from people who used this plant solution",
+      "Can I combine this solution with my current diet?",
+      "Are results from this solution long-lasting?",
+      "I want more information about this plant solution"
+    ]
   }
 }
-
