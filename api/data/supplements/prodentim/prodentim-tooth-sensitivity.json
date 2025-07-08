@@ -39,14 +39,7 @@
       "Are there hidden symptoms behind this?",
       "I want tips to relieve the discomfort",
       "Is it a sign of another problem?"
-    ],
-    "reflective_questions_pt": [
-      "O que mais te motiva a buscar alívio para a sensibilidade dentária?",
-      "Como você gostaria de começar a cuidar melhor dos seus dentes?"
-    ],
-    "reflective_questions_en": [
-      "What motivates you most to seek relief from tooth sensitivity?",
-      "How would you like to start taking better care of your teeth?"
+    
     ]
   },
   "fase_2": {
@@ -87,14 +80,7 @@
       "Can it affect sleep?",
       "Is it fully reversible?",
       "Is there a way to prevent enamel wear?"
-    ],
-    "reflective_questions_pt": [
-      "O que mais te motiva a buscar alívio para a sensibilidade dentária?",
-      "Como você gostaria de começar a cuidar melhor dos seus dentes?"
-    ],
-    "reflective_questions_en": [
-      "What motivates you most to seek relief from tooth sensitivity?",
-      "How would you like to start taking better care of your teeth?"
+    
     ]
   },
   "fase_3": {
@@ -135,14 +121,7 @@
       "What has science discovered recently?",
       "Which probiotic is best?",
       "Can new crises be prevented?"
-    ],
-    "reflective_questions_pt": [
-      "O que mais te motiva a buscar alívio para a sensibilidade dentária?",
-      "Como você gostaria de começar a cuidar melhor dos seus dentes?"
-    ],
-    "reflective_questions_en": [
-      "What motivates you most to seek relief from tooth sensitivity?",
-      "How would you like to start taking better care of your teeth?"
+    
     ]
   },
   "fase_4": {
@@ -183,14 +162,7 @@
       "Any recipe with fermented foods?",
       "What do dentists say about it?",
       "I want to see real testimonials"
-    ],
-    "reflective_questions_pt": [
-      "O que mais te motiva a buscar alívio para a sensibilidade dentária?",
-      "Como você gostaria de começar a cuidar melhor dos seus dentes?"
-    ],
-    "reflective_questions_en": [
-      "What motivates you most to seek relief from tooth sensitivity?",
-      "How would you like to start taking better care of your teeth?"
+    
     ]
   },
   "fase_5": {
@@ -204,41 +176,34 @@
       "Sensitivity doesn’t have to be your ‘normal.’ If you want, I can show you natural, safe options backed by major universities — at your own pace, no rush, and with total clarity. Your oral health is your freedom — and it starts with a simple choice.",
       "If you feel it’s time for a change, I’m here to support your decision with natural, human, and tested solutions. Your experience is unique — and deserves the best care possible, always with science and understanding."
     ],
-    "quick_replies_pt": [
-      "Quero experimentar probióticos para sensibilidade",
-      "Tem dica fácil pra começar?",
-      "Quero guia prático de dentes saudáveis",
-      "Como encaixar isso na rotina?",
-      "Prefiro só entender mais antes de decidir",
-      "Quero ver depoimentos reais",
-      "Tem benefícios além da sensibilidade?",
-      "Pode combinar com escovação normal?",
-      "Quero conversar mais sobre saúde bucal",
-      "O que mais posso fazer pelos meus dentes?",
-      "Pode ser usado por toda a família?",
-      "Quero ouvir histórias de superação"
-    ],
-    "quick_replies_en": [
-      "I want to try probiotics for sensitivity",
-      "Any easy tip to start?",
-      "I want a practical guide to healthy teeth",
-      "How can I fit this into my routine?",
-      "I prefer to learn more before deciding",
-      "I want to see real testimonials",
-      "Are there benefits beyond sensitivity?",
-      "Can I combine with regular brushing?",
-      "I want to talk more about oral health",
-      "What else can I do for my teeth?",
-      "Is it suitable for the whole family?",
-      "I want to hear stories of overcoming it"
-    ],
-    "reflective_questions_pt": [
-      "O que mais te motiva a buscar alívio para a sensibilidade dentária?",
-      "Como você gostaria de começar a cuidar melhor dos seus dentes?"
-    ],
-    "reflective_questions_en": [
-      "What motivates you most to seek relief from tooth sensitivity?",
-      "How would you like to start taking better care of your teeth?"
+     "quick_replies_pt": [
+    "Quero conhecer a solução com essas plantas para metabolismo lento",
+    "Como funciona essa solução natural com plantas para acelerar o metabolismo?",
+    "Mostra como posso começar uma rotina usando essas plantas",
+    "Quero saber mais sobre essa solução que inclui essas plantas no meu dia a dia",
+    "Essa solução com plantas serve para qualquer idade?",
+    "Como posso adaptar essa solução para a minha rotina?",
+    "Explica como as plantas agem juntas na solução",
+    "Tem um passo a passo para experimentar essa solução natural?",
+    "Quero ver relatos de quem já usou essa solução com plantas",
+    "Dá para combinar essa solução com minha alimentação atual?",
+    "Resultados dessa solução são duradouros?",
+    "Quero acessar mais informações sobre essa solução com plantas"
+  ],
+  "quick_replies_en": [
+    "I want to know the solution with these plants for slow metabolism",
+    "How does this natural plant solution work for boosting metabolism?",
+    "Show me how I can start a routine using these plants",
+    "I want to learn more about this solution that includes these plants daily",
+    "Is this plant-based solution right for any age?",
+    "How can I adapt this solution to my routine?",
+    "Explain how these plants work together in the solution",
+    "Is there a step-by-step guide to try this natural solution?",
+    "I want stories from people who used this plant solution",
+    "Can I combine this solution with my current diet?",
+    "Are results from this solution long-lasting?",
+    "I want more information about this plant solution"
+    
     ]
   }
 }
