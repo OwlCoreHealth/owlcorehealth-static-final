@@ -1,187 +1,183 @@
 {
-  "suplemento": "MITOLYN",  
-  "sintomas": {
-    "abdominal_bloating": {
-      "fase_1": {
-        "copy_pt": [
-          "${userName}, sentir a barriga estufada, pesada, ou até dolorida ao longo do dia pode roubar tua disposição, teu humor e até tua confiança para vestir o que gosta. Não é frescura: o inchaço abdominal afeta mais de 35% da população adulta, segundo dados da Mayo Clinic. Na maioria das vezes, ele é causado pela alimentação moderna — cheia de ultraprocessados, açúcares escondidos e aditivos químicos que prejudicam a digestão. O segredo está nas plantas e ingredientes naturais, como Maqui Berry, Schisandra e Amla, usadas há séculos para aliviar desconfortos, melhorar a digestão e devolver a leveza ao corpo. Talvez teu organismo só precise de um resgate daquilo que a natureza já conhece e a ciência confirma."
-        ],
-        "copy_en": [
-          "${userName}, feeling bloated, heavy, or even sore in your belly throughout the day can steal your energy, mood, and even your confidence to wear what you like. It’s not just in your head: abdominal bloating affects more than 35% of adults, according to the Mayo Clinic. Most of the time, it’s caused by modern eating — full of ultra-processed foods, hidden sugars, and chemical additives that disrupt digestion. The answer lies in plants and natural ingredients like Maqui Berry, Schisandra, and Amla, used for centuries to ease discomfort, improve digestion, and bring lightness back to your body. Maybe your system just needs the rescue that nature already knows and science confirms."
-        ],
-        "quick_replies_pt": [
-          "Por que fico tão inchado?",
-          "Plantas ajudam na digestão?",
-          "O que piora o inchaço?",
-          "Açúcar escondido causa desconforto?",
-          "Tem relatos de quem melhorou o inchaço?",
-          "Processados influenciam no inchaço?",
-          "Como usar essas plantas no dia a dia?",
-          "O que faz a barriga estufar?",
-          "Stress piora o quadro?",
-          "Tem dicas práticas para aliviar já?",
-          "Preciso mudar muito a alimentação?",
-          "Quero entender meu corpo melhor"
-        ],
-        "quick_replies_en": [
-          "Why am I so bloated?",
-          "Do plants help with digestion?",
-          "What makes bloating worse?",
-          "Do hidden sugars cause discomfort?",
-          "Any stories of people who improved their bloating?",
-          "Do processed foods affect bloating?",
-          "How to use these plants daily?",
-          "What causes belly swelling?",
-          "Does stress make it worse?",
-          "Any quick tips to ease this?",
-          "Do I need to change my diet a lot?",
-          "I want to understand my body better"
-        ]
-      },
-      "fase_2": {
-        "copy_pt": [
-          "O inchaço abdominal frequente não é só um incômodo estético, ${userName} — pode sinalizar desequilíbrios digestivos, inflamação intestinal e até intolerâncias alimentares. Estudos da Johns Hopkins mostram que o consumo regular de ultraprocessados, corantes e conservantes pode prejudicar o funcionamento do intestino e aumentar o risco de síndrome do intestino irritável. Ao contrário, plantas como Schisandra, Amla e Maqui Berry contêm compostos bioativos que aliviam inflamação, estimulam a digestão e ajudam a restaurar a flora intestinal. Ignorar esses sinais pode trazer mais desconfortos e até complicações a longo prazo, mas a natureza oferece um caminho seguro para a leveza e o bem-estar."
-        ],
-        "copy_en": [
-          "Frequent abdominal bloating isn’t just a cosmetic issue, ${userName} — it can signal digestive imbalances, intestinal inflammation, or even food intolerances. Johns Hopkins studies show that regular consumption of ultra-processed foods, artificial colors, and preservatives can harm intestinal function and raise the risk of irritable bowel syndrome. In contrast, plants like Schisandra, Amla, and Maqui Berry contain bioactive compounds that relieve inflammation, stimulate digestion, and help restore gut flora. Ignoring these signals can bring more discomfort and even complications in the long run, but nature offers a safe path to lightness and well-being."
-        ],
-        "quick_replies_pt": [
-          "Inchaço pode ser sinal de doença?",
-          "Plantas ajudam a restaurar o intestino?",
-          "Processados pioram o quadro?",
-          "O que é síndrome do intestino irritável?",
-          "Como aliviar a inflamação digestiva?",
-          "Açúcar influencia no inchaço?",
-          "Dá para prevenir complicações?",
-          "Tem relatos de quem melhorou com plantas?",
-          "Preciso mudar totalmente minha alimentação?",
-          "Plantas ajudam a aliviar dor também?",
-          "Tem dados sobre riscos do inchaço?",
-          "Quero dicas para rotina leve"
-        ],
-        "quick_replies_en": [
-          "Can bloating be a sign of illness?",
-          "Do plants help restore the gut?",
-          "Do processed foods make it worse?",
-          "What is irritable bowel syndrome?",
-          "How to relieve digestive inflammation?",
-          "Do sugars affect bloating?",
-          "Can I prevent complications?",
-          "Are there stories of improvement with plants?",
-          "Do I need to totally change my diet?",
-          "Do plants help with pain too?",
-          "Are there data on bloating risks?",
-          "I want tips for a lighter routine"
-        ]
-      },
-      "fase_3": {
-        "copy_pt": [
-          "Plantas como Maqui Berry, Schisandra e Amla são reconhecidas por suas propriedades digestivas e anti-inflamatórias. Estudos publicados na Nature Reviews Gastroenterology mostram que compostos dessas plantas ajudam a equilibrar a microbiota intestinal, reduzem gases, aliviam a sensação de barriga estufada e melhoram a digestão em até 31%. Ao contrário, dietas ricas em ultraprocessados dificultam a ação desses nutrientes e aumentam o desconforto abdominal. Depoimentos de pessoas que resgataram essas plantas relatam menos inchaço, mais disposição e até melhora no humor — tudo sem radicalismos ou restrições extremas."
-        ],
-        "copy_en": [
-          "Plants like Maqui Berry, Schisandra, and Amla are recognized for their digestive and anti-inflammatory properties. Studies in Nature Reviews Gastroenterology show that compounds from these plants help balance gut microbiota, reduce gas, ease the bloated feeling, and improve digestion by up to 31%. On the other hand, diets high in ultra-processed foods make it harder for these nutrients to work and increase abdominal discomfort. People who turn to these plants report less bloating, more energy, and even better mood — all without extreme diets or radical restrictions."
-        ],
-        "quick_replies_pt": [
-          "Essas plantas têm comprovação científica?",
-          "Resultados são rápidos?",
-          "Plantas ajudam mesmo a reduzir gases?",
-          "Posso usar todos os dias?",
-          "Processados bloqueiam o efeito?",
-          "Tem relatos de melhora com essas plantas?",
-          "Quanto tempo para sentir diferença?",
-          "Resultados são duradouros?",
-          "Plantas ajudam no humor também?",
-          "Quero dicas práticas para usar já",
-          "É seguro a longo prazo?",
-          "Quero ver estudos sobre digestão"
-        ],
-        "quick_replies_en": [
-          "Are these plants scientifically proven?",
-          "Are results fast?",
-          "Do plants really help reduce gas?",
-          "Can I use them every day?",
-          "Do processed foods block the effect?",
-          "Are there stories of improvement with these plants?",
-          "How long to feel a difference?",
-          "Are results lasting?",
-          "Do plants help with mood too?",
-          "I want practical tips to use now",
-          "Is it safe for long-term use?",
-          "I want to see studies on digestion"
-        ]
-      },
-      "fase_4": {
-        "copy_pt": [
-          "Desde a antiguidade, culturas de todo o mundo recorreram a plantas como Maqui Berry, Schisandra e Amla para aliviar desconfortos digestivos. Essas plantas são ricas em fibras, antioxidantes e compostos que facilitam a digestão, equilibram a flora intestinal e reduzem a inflamação — efeitos comprovados em estudos modernos e celebrados em rituais tradicionais de saúde. O contraste com os ultraprocessados é enorme: enquanto eles estufam, fermentam e dificultam a digestão, as plantas naturais trazem leveza, regulam o intestino e devolvem a sensação de bem-estar dia após dia."
-        ],
-        "copy_en": [
-          "Since ancient times, cultures worldwide have relied on plants like Maqui Berry, Schisandra, and Amla to ease digestive discomfort. These plants are rich in fiber, antioxidants, and compounds that support digestion, balance gut flora, and reduce inflammation — effects proven in modern studies and celebrated in traditional health rituals. The contrast with ultra-processed foods is huge: while they bloat, ferment, and make digestion harder, natural plants bring lightness, regulate the gut, and restore well-being day after day."
-        ],
-        "quick_replies_pt": [
-          "Como incluir essas plantas nas refeições?",
-          "Tem receita fácil para digestão leve?",
-          "Plantas podem ser usadas todos os dias?",
-          "Resultados são rápidos?",
-          "Posso combinar plantas diferentes?",
-          "Quero relatos de quem melhorou o inchaço",
-          "Dá para usar com alimentação variada?",
-          "Preciso cortar todos os processados?",
-          "Plantas ajudam na flora intestinal?",
-          "Quero dicas para rotina prática",
-          "É seguro para todos?",
-          "Quero ver estudos sobre digestão"
-        ],
-        "quick_replies_en": [
-          "How to include these plants in meals?",
-          "Any easy recipe for lighter digestion?",
-          "Can plants be used daily?",
-          "Are results quick?",
-          "Can I combine different plants?",
-          "I want stories from people who improved bloating",
-          "Can I use them with a varied diet?",
-          "Do I need to cut all processed foods?",
-          "Do plants help gut flora?",
-          "I want tips for a practical routine",
-          "Is it safe for everyone?",
-          "I want to see studies on digestion"
-        ]
-      },
-      "fase_5": {
-        "copy_pt": [
-          "${userName}, sentir-se leve de novo pode ser mais simples do que imagina. Ao valorizar plantas como Maqui Berry, Schisandra e Amla, escolhendo alimentos naturais e receitas práticas, o corpo volta ao equilíbrio — sem necessidade de restrições radicais ou sofrimento. Se quiser, posso sugerir formas fáceis de inserir essas plantas no seu dia a dia, com dicas, receitas e relatos reais de quem conquistou mais leveza e disposição. Seu corpo merece essa leveza natural!"
-        ],
-        "copy_en": [
-          "${userName}, feeling light again can be easier than you think. By valuing plants like Maqui Berry, Schisandra, and Amla, and choosing natural foods and practical recipes, your body finds balance again — without radical restrictions or suffering. If you’d like, I can suggest easy ways to bring these plants into your daily life, with tips, recipes, and real stories from people who achieved more lightness and energy. Your body deserves this natural lightness!"
-        ],
-        "quick_replies_pt": [
-          "Quero começar já com essas plantas",
-          "Tem receita fácil para inchaço?",
-          "Quero relatos reais de leveza",
-          "Como montar uma rotina prática?",
-          "Prefiro saber mais antes de mudar",
-          "Resultados são duradouros?",
-          "Posso combinar com minha alimentação?",
-          "Quero conversar sobre digestão natural",
-          "Dá pra fazer em família?",
-          "Tem dicas para motivação?",
-          "É seguro para todos?",
-          "Quero ver estudos e relatos reais"
-        ],
-        "quick_replies_en": [
-          "I want to start with these plants now",
-          "Any easy recipe for bloating?",
-          "I want real stories of lightness",
-          "How to build a practical routine?",
-          "I’d rather learn more before changing",
-          "Are results lasting?",
-          "Can I combine with my current diet?",
-          "I want to talk about natural digestion",
-          "Can this be done as a family?",
-          "Any tips for motivation?",
-          "Is it safe for everyone?"
-        ]
-      }
-    }
+  "suplemento": "MITOLYN",
+  "symptom": "abdominal_bloating",
+  "fase_1": {
+    "copy_pt": [
+      "${userName}, sentir a barriga estufada, pesada, ou até dolorida ao longo do dia pode roubar tua disposição, teu humor e até tua confiança para vestir o que gosta. Não é frescura: o inchaço abdominal afeta mais de 35% da população adulta, segundo dados da Mayo Clinic. Na maioria das vezes, ele é causado pela alimentação moderna — cheia de ultraprocessados, açúcares escondidos e aditivos químicos que prejudicam a digestão. O segredo está nas plantas e ingredientes naturais, como Maqui Berry, Schisandra e Amla, usadas há séculos para aliviar desconfortos, melhorar a digestão e devolver a leveza ao corpo. Talvez teu organismo só precise de um resgate daquilo que a natureza já conhece e a ciência confirma."
+    ],
+    "copy_en": [
+      "${userName}, feeling bloated, heavy, or even sore in your belly throughout the day can steal your energy, mood, and even your confidence to wear what you like. It’s not just in your head: abdominal bloating affects more than 35% of adults, according to the Mayo Clinic. Most of the time, it’s caused by modern eating — full of ultra-processed foods, hidden sugars, and chemical additives that disrupt digestion. The answer lies in plants and natural ingredients like Maqui Berry, Schisandra, and Amla, used for centuries to ease discomfort, improve digestion, and bring lightness back to your body. Maybe your system just needs the rescue that nature already knows and science confirms."
+    ],
+    "quick_replies_pt": [
+      "Por que fico tão inchado?",
+      "Plantas ajudam na digestão?",
+      "O que piora o inchaço?",
+      "Açúcar escondido causa desconforto?",
+      "Tem relatos de quem melhorou o inchaço?",
+      "Processados influenciam no inchaço?",
+      "Como usar essas plantas no dia a dia?",
+      "O que faz a barriga estufar?",
+      "Stress piora o quadro?",
+      "Tem dicas práticas para aliviar já?",
+      "Preciso mudar muito a alimentação?",
+      "Quero entender meu corpo melhor"
+    ],
+    "quick_replies_en": [
+      "Why am I so bloated?",
+      "Do plants help with digestion?",
+      "What makes bloating worse?",
+      "Do hidden sugars cause discomfort?",
+      "Any stories of people who improved their bloating?",
+      "Do processed foods affect bloating?",
+      "How to use these plants daily?",
+      "What causes belly swelling?",
+      "Does stress make it worse?",
+      "Any quick tips to ease this?",
+      "Do I need to change my diet a lot?",
+      "I want to understand my body better"
+    ]
+  },
+  "fase_2": {
+    "copy_pt": [
+      "O inchaço abdominal frequente não é só um incômodo estético, ${userName} — pode sinalizar desequilíbrios digestivos, inflamação intestinal e até intolerâncias alimentares. Estudos da Johns Hopkins mostram que o consumo regular de ultraprocessados, corantes e conservantes pode prejudicar o funcionamento do intestino e aumentar o risco de síndrome do intestino irritável. Ao contrário, plantas como Schisandra, Amla e Maqui Berry contêm compostos bioativos que aliviam inflamação, estimulam a digestão e ajudam a restaurar a flora intestinal. Ignorar esses sinais pode trazer mais desconfortos e até complicações a longo prazo, mas a natureza oferece um caminho seguro para a leveza e o bem-estar."
+    ],
+    "copy_en": [
+      "Frequent abdominal bloating isn’t just a cosmetic issue, ${userName} — it can signal digestive imbalances, intestinal inflammation, or even food intolerances. Johns Hopkins studies show that regular consumption of ultra-processed foods, artificial colors, and preservatives can harm intestinal function and raise the risk of irritable bowel syndrome. In contrast, plants like Schisandra, Amla, and Maqui Berry contain bioactive compounds that relieve inflammation, stimulate digestion, and help restore gut flora. Ignoring these signals can bring more discomfort and even complications in the long run, but nature offers a safe path to lightness and well-being."
+    ],
+    "quick_replies_pt": [
+      "Inchaço pode ser sinal de doença?",
+      "Plantas ajudam a restaurar o intestino?",
+      "Processados pioram o quadro?",
+      "O que é síndrome do intestino irritável?",
+      "Como aliviar a inflamação digestiva?",
+      "Açúcar influencia no inchaço?",
+      "Dá para prevenir complicações?",
+      "Tem relatos de quem melhorou com plantas?",
+      "Preciso mudar totalmente minha alimentação?",
+      "Plantas ajudam a aliviar dor também?",
+      "Tem dados sobre riscos do inchaço?",
+      "Quero dicas para rotina leve"
+    ],
+    "quick_replies_en": [
+      "Can bloating be a sign of illness?",
+      "Do plants help restore the gut?",
+      "Do processed foods make it worse?",
+      "What is irritable bowel syndrome?",
+      "How to relieve digestive inflammation?",
+      "Do sugars affect bloating?",
+      "Can I prevent complications?",
+      "Are there stories of improvement with plants?",
+      "Do I need to totally change my diet?",
+      "Do plants help with pain too?",
+      "Are there data on bloating risks?",
+      "I want tips for a lighter routine"
+    ]
+  },
+  "fase_3": {
+    "copy_pt": [
+      "Plantas como Maqui Berry, Schisandra e Amla são reconhecidas por suas propriedades digestivas e anti-inflamatórias. Estudos publicados na Nature Reviews Gastroenterology mostram que compostos dessas plantas ajudam a equilibrar a microbiota intestinal, reduzem gases, aliviam a sensação de barriga estufada e melhoram a digestão em até 31%. Ao contrário, dietas ricas em ultraprocessados dificultam a ação desses nutrientes e aumentam o desconforto abdominal. Depoimentos de pessoas que resgataram essas plantas relatam menos inchaço, mais disposição e até melhora no humor — tudo sem radicalismos ou restrições extremas."
+    ],
+    "copy_en": [
+      "Plants like Maqui Berry, Schisandra, and Amla are recognized for their digestive and anti-inflammatory properties. Studies in Nature Reviews Gastroenterology show that compounds from these plants help balance gut microbiota, reduce gas, ease the bloated feeling, and improve digestion by up to 31%. On the other hand, diets high in ultra-processed foods make it harder for these nutrients to work and increase abdominal discomfort. People who turn to these plants report less bloating, more energy, and even better mood — all without extreme diets or radical restrictions."
+    ],
+    "quick_replies_pt": [
+      "Essas plantas têm comprovação científica?",
+      "Resultados são rápidos?",
+      "Plantas ajudam mesmo a reduzir gases?",
+      "Posso usar todos os dias?",
+      "Processados bloqueiam o efeito?",
+      "Tem relatos de melhora com essas plantas?",
+      "Quanto tempo para sentir diferença?",
+      "Resultados são duradouros?",
+      "Plantas ajudam no humor também?",
+      "Quero dicas práticas para usar já",
+      "É seguro a longo prazo?",
+      "Quero ver estudos sobre digestão"
+    ],
+    "quick_replies_en": [
+      "Are these plants scientifically proven?",
+      "Are results fast?",
+      "Do plants really help reduce gas?",
+      "Can I use them every day?",
+      "Do processed foods block the effect?",
+      "Are there stories of improvement with these plants?",
+      "How long to feel a difference?",
+      "Are results lasting?",
+      "Do plants help with mood too?",
+      "I want practical tips to use now",
+      "Is it safe for long-term use?",
+      "I want to see studies on digestion"
+    ]
+  },
+  "fase_4": {
+    "copy_pt": [
+      "Desde a antiguidade, culturas de todo o mundo recorreram a plantas como Maqui Berry, Schisandra e Amla para aliviar desconfortos digestivos. Essas plantas são ricas em fibras, antioxidantes e compostos que facilitam a digestão, equilibram a flora intestinal e reduzem a inflamação — efeitos comprovados em estudos modernos e celebrados em rituais tradicionais de saúde. O contraste com os ultraprocessados é enorme: enquanto eles estufam, fermentam e dificultam a digestão, as plantas naturais trazem leveza, regulam o intestino e devolvem a sensação de bem-estar dia após dia."
+    ],
+    "copy_en": [
+      "Since ancient times, cultures worldwide have relied on plants like Maqui Berry, Schisandra, and Amla to ease digestive discomfort. These plants are rich in fiber, antioxidants, and compounds that support digestion, balance gut flora, and reduce inflammation — effects proven in modern studies and celebrated in traditional health rituals. The contrast with ultra-processed foods is huge: while they bloat, ferment, and make digestion harder, natural plants bring lightness, regulate the gut, and restore well-being day after day."
+    ],
+    "quick_replies_pt": [
+      "Como incluir essas plantas nas refeições?",
+      "Tem receita fácil para digestão leve?",
+      "Plantas podem ser usadas todos os dias?",
+      "Resultados são rápidos?",
+      "Posso combinar plantas diferentes?",
+      "Quero relatos de quem melhorou o inchaço",
+      "Dá para usar com alimentação variada?",
+      "Preciso cortar todos os processados?",
+      "Plantas ajudam na flora intestinal?",
+      "Quero dicas para rotina prática",
+      "É seguro para todos?",
+      "Quero ver estudos sobre digestão"
+    ],
+    "quick_replies_en": [
+      "How to include these plants in meals?",
+      "Any easy recipe for lighter digestion?",
+      "Can plants be used daily?",
+      "Are results quick?",
+      "Can I combine different plants?",
+      "I want stories from people who improved bloating",
+      "Can I use them with a varied diet?",
+      "Do I need to cut all processed foods?",
+      "Do plants help gut flora?",
+      "I want tips for a practical routine",
+      "Is it safe for everyone?",
+      "I want to see studies on digestion"
+    ]
+  },
+  "fase_5": {
+    "copy_pt": [
+      "${userName}, sentir-se leve de novo pode ser mais simples do que imagina. Ao valorizar plantas como Maqui Berry, Schisandra e Amla, escolhendo alimentos naturais e receitas práticas, o corpo volta ao equilíbrio — sem necessidade de restrições radicais ou sofrimento. Se quiser, posso sugerir formas fáceis de inserir essas plantas no seu dia a dia, com dicas, receitas e relatos reais de quem conquistou mais leveza e disposição. Seu corpo merece essa leveza natural!"
+    ],
+    "copy_en": [
+      "${userName}, feeling light again can be easier than you think. By valuing plants like Maqui Berry, Schisandra, and Amla, and choosing natural foods and practical recipes, your body finds balance again — without radical restrictions or suffering. If you’d like, I can suggest easy ways to bring these plants into your daily life, with tips, recipes, and real stories from people who achieved more lightness and energy. Your body deserves this natural lightness!"
+    ],
+    "quick_replies_pt": [
+      "Quero começar já com essas plantas",
+      "Tem receita fácil para inchaço?",
+      "Quero relatos reais de leveza",
+      "Como montar uma rotina prática?",
+      "Prefiro saber mais antes de mudar",
+      "Resultados são duradouros?",
+      "Posso combinar com minha alimentação?",
+      "Quero conversar sobre digestão natural",
+      "Dá pra fazer em família?",
+      "Tem dicas para motivação?",
+      "É seguro para todos?",
+      "Quero ver estudos e relatos reais"
+    ],
+    "quick_replies_en": [
+      "I want to start with these plants now",
+      "Any easy recipe for bloating?",
+      "I want real stories of lightness",
+      "How to build a practical routine?",
+      "I’d rather learn more before changing",
+      "Are results lasting?",
+      "Can I combine with my current diet?",
+      "I want to talk about natural digestion",
+      "Can this be done as a family?",
+      "Any tips for motivation?",
+      "Is it safe for everyone?"
+    ]
   }
 }
-
