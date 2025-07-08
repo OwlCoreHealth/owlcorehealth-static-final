@@ -204,42 +204,42 @@
       "Transformation starts with small choices, ${userName}. By including Dandelion, Fennel, Babchi, and a quality probiotic in your daily life—plus reviewing your diet and reducing stress—your skin gets support to regenerate and resist eczema triggers. I’m here to share guidance, motivational tips, and real stories to inspire your self-care.",
       "${userName}, your journey to healthier, less sensitive skin can start now—with science, tradition, and self-care. With the right ingredients, an adjusted diet, and a consistent routine, you’ll see the difference in comfort and skin vitality. If you’d like, I can help you set up a detailed plan, with guidance, recipes, and tips to strengthen your self-care routine."
     ],
-    "quick_replies_pt": [
-      "Quero começar já com plantas e probióticos",
-      "Tem receita fácil para pele sensível",
-      "Quero relatos reais de melhora",
-      "Como montar uma rotina prática?",
-      "Prefiro aprender mais antes",
-      "Resultados são duradouros?",
-      "Posso combinar com minha alimentação?",
-      "Quero conversar sobre escolhas naturais",
-      "Dá pra fazer em família?",
-      "Tem dicas para motivação?",
-      "É seguro para todos?",
-      "Quero ver estudos e relatos reais"
-    ],
-    "quick_replies_en": [
-      "I want to start with plants and probiotics now",
-      "Any easy recipe for sensitive skin",
-      "I want real improvement stories",
-      "How to build a practical routine?",
-      "I’d rather learn more first",
-      "Are results lasting?",
-      "Can I combine it with my diet?",
-      "I want to talk about natural choices",
-      "Can this be done as a family?",
-      "Any tips for motivation?",
-      "Is it safe for everyone?",
-      "I want to see studies and real stories"
-    ],
-    "reflective_questions_pt": [
-      "O que mais te motiva a buscar uma pele saudável?",
-      "Como você gostaria de iniciar essa mudança na sua rotina?"
-    ],
-    "reflective_questions_en": [
-      "What motivates you most to seek healthy skin?",
-      "How would you like to start this change in your routine?"
-    ]
+      "quick_replies_pt": [
+    "Quero conhecer a solução com essas plantas para metabolismo lento",
+    "Como funciona essa solução natural com plantas para acelerar o metabolismo?",
+    "Mostra como posso começar uma rotina usando essas plantas",
+    "Quero saber mais sobre essa solução que inclui essas plantas no dia a dia",
+    "Essa solução com plantas serve para qualquer idade?",
+    "Como posso adaptar essa solução para a minha rotina?",
+    "Explica como as plantas agem juntas na solução",
+    "Tem um passo a passo para experimentar essa solução natural?",
+    "Quero ver relatos de quem já usou essa solução com plantas",
+    "Dá para combinar essa solução com alimentação atual?",
+    "Resultados dessa solução são duradouros?",
+    "Quero acessar mais informações sobre essa solução com plantas"
+  ],
+  "quick_replies_en": [
+    "I want to know the solution with these plants for slow metabolism",
+    "How does this natural plant solution work for boosting metabolism?",
+    "Show me how I can start a routine using these plants",
+    "I want to learn more about this solution that includes these plants daily",
+    "Is this plant-based solution right for any age?",
+    "How can I adapt this solution to my routine?",
+    "Explain how these plants work together in the solution",
+    "Is there a step-by-step guide to try this natural solution?",
+    "I want stories from people who used this plant solution",
+    "Can I combine this solution with my current diet?",
+    "Are results from this solution long-lasting?",
+    "I want more information about this plant solution"
+  ],
+  "reflective_questions_pt": [
+    "O que mais te motiva a buscar uma pele saudável?",
+    "Como você gostaria de iniciar essa mudança na sua rotina?"
+  ],
+  "reflective_questions_en": [
+    "What motivates you most to seek healthy skin?",
+    "How would you like to start this change in your routine?"
+  ]
   }
 }
 
