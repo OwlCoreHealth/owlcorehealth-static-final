@@ -39,14 +39,7 @@
       "Can inflammation be reversed?",
       "What do dentists recommend?",
       "I want tips to take better care"
-    ],
-    "reflective_questions_pt": [
-      "O que mais te motiva a buscar gengivas saudáveis?",
-      "Como você gostaria de começar a cuidar melhor da sua saúde bucal?"
-    ],
-    "reflective_questions_en": [
-      "What motivates you most to seek healthy gums?",
-      "How would you like to start taking better care of your oral health?"
+    
     ]
   },
   "fase_2": {
@@ -87,14 +80,7 @@
       "Are there stories of people who overcame this?",
       "When should I urgently see a dentist?",
       "What has science found about the consequences?"
-    ],
-    "reflective_questions_pt": [
-      "O que mais te motiva a buscar gengivas saudáveis?",
-      "Como você gostaria de começar a cuidar melhor da sua saúde bucal?"
-    ],
-    "reflective_questions_en": [
-      "What motivates you most to seek healthy gums?",
-      "How would you like to start taking better care of your oral health?"
+    
     ]
   },
   "fase_3": {
@@ -135,14 +121,7 @@
       "How do they target inflammation?",
       "Are there cases of full recovery?",
       "I want to know more about the research"
-    ],
-    "reflective_questions_pt": [
-      "O que mais te motiva a buscar gengivas saudáveis?",
-      "Como você gostaria de começar a cuidar melhor da sua saúde bucal?"
-    ],
-    "reflective_questions_en": [
-      "What motivates you most to seek healthy gums?",
-      "How would you like to start taking better care of your oral health?"
+    
     ]
   },
   "fase_4": {
@@ -183,14 +162,7 @@
       "Any results seen in older adults?",
       "Any recipe with fermented foods?",
       "I want testimonials from people who improved"
-    ],
-    "reflective_questions_pt": [
-      "O que mais te motiva a buscar gengivas saudáveis?",
-      "Como você gostaria de começar a cuidar melhor da sua saúde bucal?"
-    ],
-    "reflective_questions_en": [
-      "What motivates you most to seek healthy gums?",
-      "How would you like to start taking better care of your oral health?"
+   
     ]
   },
   "fase_5": {
@@ -204,41 +176,34 @@
       "Now that you know how science and tradition unite to care for gums, maybe it’s time to try this care in real life. I can suggest natural paths, backed by studies and without complication. Your pace, your decision — I’m just here to guide.",
       "No one needs to live with inflammation and pain. If you feel it’s time for a change, I’m here to support you with natural, science-based solutions. How would you like to move forward from here, ${userName}?"
     ],
-    "quick_replies_pt": [
-      "Quero experimentar probióticos para gengivas",
-      "Tem dica fácil pra começar?",
-      "Quero guia prático de saúde gengival",
-      "Como encaixar isso na rotina?",
-      "Prefiro só entender mais antes de decidir",
-      "Quero ver depoimentos reais",
-      "Tem benefícios além da gengiva?",
-      "Pode combinar com escovação normal?",
-      "Quero conversar mais sobre gengiva saudável",
-      "O que mais posso fazer por minha boca?",
-      "Pode ser usado por toda a família?",
-      "Quero ouvir histórias de transformação"
-    ],
-    "quick_replies_en": [
-      "I want to try probiotics for gums",
-      "Any easy tip to start?",
-      "I want a practical guide to gum health",
-      "How can I fit this into my routine?",
-      "I prefer to learn more before deciding",
-      "I want to see real testimonials",
-      "Are there benefits beyond gums?",
-      "Can I combine with regular brushing?",
-      "I want to talk more about healthy gums",
-      "What else can I do for my mouth?",
-      "Is it suitable for the whole family?",
-      "I want to hear transformation stories"
-    ],
-    "reflective_questions_pt": [
-      "O que mais te motiva a buscar gengivas saudáveis?",
-      "Como você gostaria de começar a cuidar melhor da sua saúde bucal?"
-    ],
-    "reflective_questions_en": [
-      "What motivates you most to seek healthy gums?",
-      "How would you like to start taking better care of your oral health?"
+     "quick_replies_pt": [
+    "Quero conhecer a solução com essas plantas para gengivas saudáveis",
+    "Como funciona essa solução natural com plantas para melhorar a saúde gengival?",
+    "Mostra como posso começar uma rotina usando essas plantas para gengivas saudáveis",
+    "Quero saber mais sobre essa solução que inclui essas plantas no meu dia a dia",
+    "Essa solução com plantas serve para qualquer idade?",
+    "Como posso adaptar essa solução para a minha rotina?",
+    "Explica como as plantas agem juntas para melhorar a saúde gengival",
+    "Tem um passo a passo para experimentar essa solução natural para gengivas?",
+    "Quero ver relatos de quem já usou essa solução com plantas para gengivas saudáveis",
+    "Dá para combinar essa solução com escovação tradicional?",
+    "Resultados dessa solução para gengivas saudáveis são duradouros?",
+    "Quero acessar mais informações sobre essa solução com plantas para gengivas"
+  ],
+  "quick_replies_en": [
+    "I want to know the solution with these plants for healthy gums",
+    "How does this natural plant solution work to improve gum health?",
+    "Show me how I can start a routine using these plants for healthy gums",
+    "I want to learn more about this solution that includes these plants in my daily life",
+    "Is this plant-based solution right for any age?",
+    "How can I adapt this solution to my routine?",
+    "Explain how these plants work together to improve gum health",
+    "Is there a step-by-step guide to try this natural solution for gums?",
+    "I want stories from people who used this plant solution for healthy gums",
+    "Can I combine this solution with regular brushing?",
+    "Are results from this solution for healthy gums long-lasting?",
+    "I want more information about this plant solution for gums"
+    
     ]
   }
 }
