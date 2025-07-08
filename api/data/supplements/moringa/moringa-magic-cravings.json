@@ -1,6 +1,6 @@
 {
   "suplemento": "Moringa",
-  "symptom": "desejos_alimentares",
+  "symptom": "desejos_alimentares", 
   "fase_1": {
     "copy_pt": [
       "${userName}, você já sentiu aquela vontade incontrolável de comer doces, salgados ou alimentos específicos, mesmo sabendo que não está com fome? Esses desejos intensos são mais comuns do que se imagina e estão profundamente ligados ao que consumimos diariamente. A alimentação moderna, com ultraprocessados, açúcar em excesso, solos empobrecidos e carnes tratadas com hormônios, desequilibra os níveis de nutrientes essenciais no corpo, provocando esses desejos. Reconhecer essa conexão é o primeiro passo para retomar o controle.",
