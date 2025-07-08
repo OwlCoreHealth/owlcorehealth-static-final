@@ -1,208 +1,204 @@
 {
-  "suplemento": "Moringa", 
-  "sintomas": {
-    "joint_pain": {
-      "fase_1": {
-        "copy_pt": [
-          "${userName}, você já sentiu aquelas dores persistentes nas articulações que parecem aumentar ao longo do dia? Essas dores podem ser um sinal do seu corpo pedindo atenção. Hoje, muitos fatores contribuem para esse desconforto, desde a alimentação rica em ultraprocessados, solos empobrecidos até carnes tratadas com hormônios que podem aumentar a inflamação no organismo. Entender essas conexões é essencial para que você possa agir e recuperar sua mobilidade e qualidade de vida.",
-          "${userName}, a dor nas articulações não é apenas um incômodo passageiro — ela pode estar ligada a processos inflamatórios silenciosos que se intensificam devido a hábitos alimentares e ambientais modernos. Alimentos processados, solos contaminados e carnes com hormônios aumentam a produção de substâncias inflamatórias, piorando o quadro. Reconhecer esses sinais pode ser o primeiro passo para buscar soluções naturais e efetivas.",
-          "Você sabia, ${userName}, que a qualidade da sua alimentação e do ambiente pode influenciar diretamente na saúde das suas articulações? A combinação de ultraprocessados, solos empobrecidos e carnes hormonizadas está relacionada ao aumento da inflamação, o que pode desencadear ou agravar dores articulares. Escutar seu corpo e entender esses sinais é fundamental para cuidar melhor de você."
-        ],
-        "copy_en": [
-          "${userName}, have you experienced those persistent joint pains that seem to worsen throughout the day? These pains can be your body’s way of asking for attention. Today, many factors contribute to this discomfort, from diets rich in ultra-processed foods and nutrient-depleted soils to hormone-treated meats that may increase inflammation in the body. Understanding these connections is essential for you to take action and regain mobility and quality of life.",
-          "${userName}, joint pain is not just a passing nuisance — it may be linked to silent inflammatory processes worsened by modern dietary and environmental habits. Processed foods, contaminated soils, and hormone-treated meats increase inflammatory substances, exacerbating the condition. Recognizing these signs can be the first step toward effective natural solutions.",
-          "Did you know, ${userName}, that the quality of your diet and environment can directly impact your joint health? The combination of ultra-processed foods, depleted soils, and hormone-treated meats is related to increased inflammation, which can trigger or worsen joint pain. Listening to your body and understanding these signals is key to better self-care."
-        ],
-        "quick_replies_pt": [
-          "Por que sinto dor nas articulações?",
-          "Alimentos pioram a dor?",
-          "Solo contaminado afeta as articulações?",
-          "Carnes com hormônios prejudicam?",
-          "Quero entender mais sobre inflamação",
-          "Tem estudos científicos?",
-          "Como aliviar dor naturalmente?",
-          "Quais sintomas indicar problema sério?",
-          "Quero dicas para cuidar das articulações",
-          "Estresse piora a dor?",
-          "Dor nas articulações é comum?",
-          "Quando procurar ajuda médica?"
-        ],
-        "quick_replies_en": [
-          "Why do I feel joint pain?",
-          "Do foods worsen the pain?",
-          "Does contaminated soil affect joints?",
-          "Do hormone-treated meats harm?",
-          "I want to learn more about inflammation",
-          "Are there scientific studies?",
-          "How to relieve pain naturally?",
-          "What symptoms indicate serious problem?",
-          "I want tips to care for joints",
-          "Does stress worsen pain?",
-          "Is joint pain common?",
-          "When to seek medical help?"
-        ]
-      },
-      "fase_2": {
-        "copy_pt": [
-          "${userName}, a dor nas articulações, quando não tratada, pode evoluir para condições crônicas que limitam a mobilidade e a qualidade de vida. Estudos da Arthritis Foundation mostram que a inflamação exacerbada por alimentos ultraprocessados, solos contaminados e carnes hormonizadas está ligada à progressão de doenças articulares, como artrite e osteoartrite.",
-          "Você sabia, ${userName}, que a persistência da dor articular pode indicar um processo inflamatório crônico que afeta não só as articulações, mas o organismo como um todo? Pesquisas indicam que a má alimentação e a exposição a substâncias hormonais aumentam a inflamação sistêmica, dificultando a recuperação.",
-          "${userName}, a dor contínua nas articulações é um alerta para cuidados urgentes. Dados da Organização Mundial da Saúde reforçam que a combinação de ultraprocessados, solos empobrecidos e carnes com hormônios contribui para a inflamação crônica e doenças musculoesqueléticas, impactando a qualidade de vida."
-        ],
-        "copy_en": [
-          "${userName}, untreated joint pain can progress to chronic conditions that limit mobility and quality of life. Arthritis Foundation studies show inflammation exacerbated by ultra-processed foods, contaminated soils, and hormone-treated meats is linked to the progression of joint diseases like arthritis and osteoarthritis.",
-          "Did you know, ${userName}, that persistent joint pain may indicate a chronic inflammatory process affecting not just joints but the whole body? Research shows poor diet and exposure to hormonal substances increase systemic inflammation, making recovery harder.",
-          "${userName}, ongoing joint pain is a warning for urgent care. World Health Organization data reinforce that the combination of ultra-processed foods, depleted soils, and hormone-treated meats contributes to chronic inflammation and musculoskeletal diseases, impacting quality of life."
-        ],
-        "quick_replies_pt": [
-          "Dor nas articulações pode piorar?",
-          "Como processados influenciam a dor?",
-          "Solo contaminado afeta inflamação?",
-          "Carnes hormonizadas prejudicam?",
-          "Quero saber mais sobre artrite",
-          "Dor nas articulações afeta qualidade de vida?",
-          "Dá para melhorar naturalmente?",
-          "Quais sintomas indicam gravidade?",
-          "Quero dicas para aliviar dor",
-          "Estresse piora a dor?",
-          "Tem estudos científicos?",
-          "Quando procurar ajuda médica?"
-        ],
-        "quick_replies_en": [
-          "Can joint pain get worse?",
-          "How do processed foods affect pain?",
-          "Does contaminated soil affect inflammation?",
-          "Do hormone-treated meats harm?",
-          "I want to learn more about arthritis",
-          "Does joint pain affect quality of life?",
-          "Can it be improved naturally?",
-          "What symptoms indicate severity?",
-          "I want tips to relieve pain",
-          "Does stress worsen pain?",
-          "Are there scientific studies?",
-          "When to seek medical help?"
-        ]
-      },
-      "fase_3": {
-        "copy_pt": [
-          "${userName}, estudos indicam que a Moringa possui propriedades anti-inflamatórias e antioxidantes que ajudam a reduzir a dor e a inflamação nas articulações. Pesquisas publicadas no Frontiers in Pharmacology demonstram que seu uso regular pode contribuir para o alívio dos sintomas e a melhora da mobilidade.",
-          "Pesquisas recentes, ${userName}, mostram que os compostos bioativos da Moringa modulam a resposta inflamatória e auxiliam na regeneração dos tecidos articulares. Estudos do Journal of Ethnopharmacology reforçam seu papel no suporte natural para dores articulares.",
-          "${userName}, estudos do Nutritional Journal confirmam que o consumo de Moringa ajuda a diminuir o estresse oxidativo e melhora a função articular, contribuindo para maior conforto e qualidade de vida."
-        ],
-        "copy_en": [
-          "${userName}, studies indicate Moringa has anti-inflammatory and antioxidant properties that help reduce joint pain and inflammation. Research published in Frontiers in Pharmacology shows its regular use may contribute to symptom relief and improved mobility.",
-          "Recent research, ${userName}, shows Moringa’s bioactive compounds modulate inflammatory response and aid in joint tissue regeneration. Studies from the Journal of Ethnopharmacology reinforce its role as natural support for joint pain.",
-          "${userName}, studies from the Nutritional Journal confirm Moringa consumption helps decrease oxidative stress and improve joint function, contributing to greater comfort and quality of life."
-        ],
-        "quick_replies_pt": [
-          "Moringa ajuda na dor nas articulações?",
-          "Tem estudos científicos?",
-          "Quanto tempo para sentir efeito?",
-          "Posso usar todos os dias?",
-          "Ajuda a reduzir inflamação?",
-          "É seguro para uso contínuo?",
-          "Quero relatos de quem melhorou",
-          "Como a Moringa age nas articulações?",
-          "Posso combinar com outras plantas?",
-          "Quero dicas para começar",
-          "Quero ver estudos científicos",
-          "Quais benefícios principais?"
-        ],
-        "quick_replies_en": [
-          "Does Moringa help joint pain?",
-          "Are there scientific studies?",
-          "How long to feel effects?",
-          "Can I use it daily?",
-          "Does it help reduce inflammation?",
-          "Is it safe for continuous use?",
-          "I want stories from people who improved",
-          "How does Moringa act on joints?",
-          "Can I combine it with other plants?",
-          "I want tips to start",
-          "I want to see scientific studies",
-          "What are the main benefits?"
-        ]
-      },
-      "fase_4": {
-        "copy_pt": [
-          "A Moringa é uma planta milenar reconhecida por suas propriedades anti-inflamatórias e antioxidantes que auxiliam no alívio das dores articulares e na melhora da mobilidade. Rica em vitaminas, minerais e compostos bioativos, ela fortalece o sistema musculoesquelético e combate o estresse oxidativo.",
-          "${userName}, as folhas da Moringa contêm substâncias que modulam a resposta inflamatória, ajudam na regeneração dos tecidos e promovem maior conforto nas articulações. Seu uso tradicional aliado a evidências científicas recentes fazem dela uma aliada natural para quem sofre com dores articulares.",
-          "Utilizada há séculos em diversas culturas, a Moringa oferece uma combinação única de nutrientes que fortalecem as articulações e promovem a saúde óssea e muscular, contribuindo para a qualidade de vida e bem-estar."
-        ],
-        "copy_en": [
-          "Moringa is a millenary plant recognized for its anti-inflammatory and antioxidant properties that aid in relieving joint pain and improving mobility. Rich in vitamins, minerals, and bioactive compounds, it strengthens the musculoskeletal system and combats oxidative stress.",
-          "${userName}, Moringa leaves contain substances that modulate inflammatory response, help tissue regeneration, and promote greater joint comfort. Its traditional use combined with recent scientific evidence makes it a natural ally for those suffering joint pain.",
-          "Used for centuries in various cultures, Moringa offers a unique combination of nutrients that strengthen joints and promote bone and muscle health, contributing to quality of life and well-being."
-        ],
-        "quick_replies_pt": [
-          "Como usar Moringa para dor nas articulações?",
-          "Tem receita para aliviar dor?",
-          "Ajuda a reduzir inflamação?",
-          "Posso usar todos os dias?",
-          "Quero relatos de quem melhorou",
-          "Quanto tempo para ver resultado?",
-          "É seguro para uso contínuo?",
-          "Posso combinar com outras plantas?",
-          "Quero dicas para começar",
-          "Ajuda na saúde óssea?",
-          "Quero ver estudos científicos",
-          "Dá para usar com alimentação variada?"
-        ],
-        "quick_replies_en": [
-          "How to use Moringa for joint pain?",
-          "Any recipe to relieve pain?",
-          "Does it help reduce inflammation?",
-          "Can I use it daily?",
-          "I want stories from people who improved",
-          "How long to see results?",
-          "Is it safe for continuous use?",
-          "Can I combine with other plants?",
-          "I want tips to start",
-          "Does it help bone health?",
-          "I want to see scientific studies",
-          "Can it be used with varied diet?"
-        ]
-      },
-      "fase_5": {
-        "copy_pt": [
-          "${userName}, cuidar das dores nas articulações de forma natural pode transformar sua qualidade de vida. Com a Moringa e hábitos conscientes, seu corpo terá suporte para reduzir a inflamação, melhorar a mobilidade e recuperar o bem-estar. Posso te ajudar com receitas, dicas e um plano prático para essa transformação.",
-          "A transformação começa com pequenas atitudes, ${userName}. Ao incluir a Moringa na sua rotina e optar por alimentos naturais, você apoia seu organismo no caminho para articulações mais saudáveis e maior conforto. Estou aqui para guiar você com passos simples e personalizados.",
-          "${userName}, sua jornada para articulações saudáveis pode começar agora. Com a Moringa e escolhas alimentares equilibradas, seu corpo terá o suporte necessário para aliviar as dores e promover qualidade de vida. Posso fornecer um plano com orientações e cuidados para essa nova fase."
-        ],
-        "copy_en": [
-          "${userName}, caring for your joint pain naturally can transform your quality of life. With Moringa and conscious habits, your body will have support to reduce inflammation, improve mobility, and regain well-being. I can help you with recipes, tips, and a practical plan for this transformation.",
-          "The transformation begins with small actions, ${userName}. By adding Moringa to your routine and choosing natural foods, you support your body on the path to healthier joints and greater comfort. I am here to guide you with simple and personalized steps.",
-          "${userName}, your journey to healthy joints can begin now. With Moringa and balanced food choices, your body will have the necessary support to relieve pain and promote quality of life. I can provide a plan with guidance, recipes, and care for this new phase."
-        ],
-        "quick_replies_pt": [
-          "Quero começar já com Moringa",
-          "Tem receita fácil para dor nas articulações",
-          "Quero relatos reais de transformação",
-          "Como montar uma rotina prática?",
-          "Prefiro aprender mais antes",
-          "Resultados são duradouros?",
-          "Posso combinar com minha alimentação?",
-          "Quero conversar sobre escolhas naturais",
-          "Dá pra fazer em família?",
-          "Tem dicas para motivação?",
-          "É seguro para todos?",
-          "Quero ver estudos e relatos reais"
-        ],
-        "quick_replies_en": [
-          "I want to start with Moringa now",
-          "Any easy recipe for joint pain",
-          "I want real transformation stories",
-          "How to build a practical routine?",
-          "I’d rather learn more first",
-          "Are results lasting?",
-          "Can I combine with my diet?",
-          "I want to talk about natural choices",
-          "Can this be done as a family?",
-          "Any tips for motivation?",
-          "Is it safe for everyone?",
-          "I want to see studies and real stories"
-        ]
-      }
-    }
+  "suplemento": "Moringa",
+  "symptom": "joint_pain",
+  "fase_1": {
+    "copy_pt": [
+      "${userName}, você já sentiu aquelas dores persistentes nas articulações que parecem aumentar ao longo do dia? Essas dores podem ser um sinal do seu corpo pedindo atenção. Hoje, muitos fatores contribuem para esse desconforto, desde a alimentação rica em ultraprocessados, solos empobrecidos até carnes tratadas com hormônios que podem aumentar a inflamação no organismo. Entender essas conexões é essencial para que você possa agir e recuperar sua mobilidade e qualidade de vida.",
+      "${userName}, a dor nas articulações não é apenas um incômodo passageiro — ela pode estar ligada a processos inflamatórios silenciosos que se intensificam devido a hábitos alimentares e ambientais modernos. Alimentos processados, solos contaminados e carnes com hormônios aumentam a produção de substâncias inflamatórias, piorando o quadro. Reconhecer esses sinais pode ser o primeiro passo para buscar soluções naturais e efetivas.",
+      "Você sabia, ${userName}, que a qualidade da sua alimentação e do ambiente pode influenciar diretamente na saúde das suas articulações? A combinação de ultraprocessados, solos empobrecidos e carnes hormonizadas está relacionada ao aumento da inflamação, o que pode desencadear ou agravar dores articulares. Escutar seu corpo e entender esses sinais é fundamental para cuidar melhor de você."
+    ],
+    "copy_en": [
+      "${userName}, have you experienced those persistent joint pains that seem to worsen throughout the day? These pains can be your body’s way of asking for attention. Today, many factors contribute to this discomfort, from diets rich in ultra-processed foods and nutrient-depleted soils to hormone-treated meats that may increase inflammation in the body. Understanding these connections is essential for you to take action and regain mobility and quality of life.",
+      "${userName}, joint pain is not just a passing nuisance — it may be linked to silent inflammatory processes worsened by modern dietary and environmental habits. Processed foods, contaminated soils, and hormone-treated meats increase inflammatory substances, exacerbating the condition. Recognizing these signs can be the first step toward effective natural solutions.",
+      "Did you know, ${userName}, that the quality of your diet and environment can directly impact your joint health? The combination of ultra-processed foods, depleted soils, and hormone-treated meats is related to increased inflammation, which can trigger or worsen joint pain. Listening to your body and understanding these signals is key to better self-care."
+    ],
+    "quick_replies_pt": [
+      "Por que sinto dor nas articulações?",
+      "Alimentos pioram a dor?",
+      "Solo contaminado afeta as articulações?",
+      "Carnes com hormônios prejudicam?",
+      "Quero entender mais sobre inflamação",
+      "Tem estudos científicos?",
+      "Como aliviar dor naturalmente?",
+      "Quais sintomas indicar problema sério?",
+      "Quero dicas para cuidar das articulações",
+      "Estresse piora a dor?",
+      "Dor nas articulações é comum?",
+      "Quando procurar ajuda médica?"
+    ],
+    "quick_replies_en": [
+      "Why do I feel joint pain?",
+      "Do foods worsen the pain?",
+      "Does contaminated soil affect joints?",
+      "Do hormone-treated meats harm?",
+      "I want to learn more about inflammation",
+      "Are there scientific studies?",
+      "How to relieve pain naturally?",
+      "What symptoms indicate serious problem?",
+      "I want tips to care for joints",
+      "Does stress worsen pain?",
+      "Is joint pain common?",
+      "When to seek medical help?"
+    ]
+  },
+  "fase_2": {
+    "copy_pt": [
+      "${userName}, a dor nas articulações, quando não tratada, pode evoluir para condições crônicas que limitam a mobilidade e a qualidade de vida. Estudos da Arthritis Foundation mostram que a inflamação exacerbada por alimentos ultraprocessados, solos contaminados e carnes hormonizadas está ligada à progressão de doenças articulares, como artrite e osteoartrite.",
+      "Você sabia, ${userName}, que a persistência da dor articular pode indicar um processo inflamatório crônico que afeta não só as articulações, mas o organismo como um todo? Pesquisas indicam que a má alimentação e a exposição a substâncias hormonais aumentam a inflamação sistêmica, dificultando a recuperação.",
+      "${userName}, a dor contínua nas articulações é um alerta para cuidados urgentes. Dados da Organização Mundial da Saúde reforçam que a combinação de ultraprocessados, solos empobrecidos e carnes com hormônios contribui para a inflamação crônica e doenças musculoesqueléticas, impactando a qualidade de vida."
+    ],
+    "copy_en": [
+      "${userName}, untreated joint pain can progress to chronic conditions that limit mobility and quality of life. Arthritis Foundation studies show inflammation exacerbated by ultra-processed foods, contaminated soils, and hormone-treated meats is linked to the progression of joint diseases like arthritis and osteoarthritis.",
+      "Did you know, ${userName}, that persistent joint pain may indicate a chronic inflammatory process affecting not just joints but the whole body? Research shows poor diet and exposure to hormonal substances increase systemic inflammation, making recovery harder.",
+      "${userName}, ongoing joint pain is a warning for urgent care. World Health Organization data reinforce that the combination of ultra-processed foods, depleted soils, and hormone-treated meats contributes to chronic inflammation and musculoskeletal diseases, impacting quality of life."
+    ],
+    "quick_replies_pt": [
+      "Dor nas articulações pode piorar?",
+      "Como processados influenciam a dor?",
+      "Solo contaminado afeta inflamação?",
+      "Carnes hormonizadas prejudicam?",
+      "Quero saber mais sobre artrite",
+      "Dor nas articulações afeta qualidade de vida?",
+      "Dá para melhorar naturalmente?",
+      "Quais sintomas indicam gravidade?",
+      "Quero dicas para aliviar dor",
+      "Estresse piora a dor?",
+      "Tem estudos científicos?",
+      "Quando procurar ajuda médica?"
+    ],
+    "quick_replies_en": [
+      "Can joint pain get worse?",
+      "How do processed foods affect pain?",
+      "Does contaminated soil affect inflammation?",
+      "Do hormone-treated meats harm?",
+      "I want to learn more about arthritis",
+      "Does joint pain affect quality of life?",
+      "Can it be improved naturally?",
+      "What symptoms indicate severity?",
+      "I want tips to relieve pain",
+      "Does stress worsen pain?",
+      "Are there scientific studies?",
+      "When to seek medical help?"
+    ]
+  },
+  "fase_3": {
+    "copy_pt": [
+      "${userName}, estudos indicam que a Moringa possui propriedades anti-inflamatórias e antioxidantes que ajudam a reduzir a dor e a inflamação nas articulações. Pesquisas publicadas no Frontiers in Pharmacology demonstram que seu uso regular pode contribuir para o alívio dos sintomas e a melhora da mobilidade.",
+      "Pesquisas recentes, ${userName}, mostram que os compostos bioativos da Moringa modulam a resposta inflamatória e auxiliam na regeneração dos tecidos articulares. Estudos do Journal of Ethnopharmacology reforçam seu papel no suporte natural para dores articulares.",
+      "${userName}, estudos do Nutritional Journal confirmam que o consumo de Moringa ajuda a diminuir o estresse oxidativo e melhora a função articular, contribuindo para maior conforto e qualidade de vida."
+    ],
+    "copy_en": [
+      "${userName}, studies indicate Moringa has anti-inflammatory and antioxidant properties that help reduce joint pain and inflammation. Research published in Frontiers in Pharmacology shows its regular use may contribute to symptom relief and improved mobility.",
+      "Recent research, ${userName}, shows Moringa’s bioactive compounds modulate inflammatory response and aid in joint tissue regeneration. Studies from the Journal of Ethnopharmacology reinforce its role as natural support for joint pain.",
+      "${userName}, studies from the Nutritional Journal confirm Moringa consumption helps decrease oxidative stress and improve joint function, contributing to greater comfort and quality of life."
+    ],
+    "quick_replies_pt": [
+      "Moringa ajuda na dor nas articulações?",
+      "Tem estudos científicos?",
+      "Quanto tempo para sentir efeito?",
+      "Posso usar todos os dias?",
+      "Ajuda a reduzir inflamação?",
+      "É seguro para uso contínuo?",
+      "Quero relatos de quem melhorou",
+      "Como a Moringa age nas articulações?",
+      "Posso combinar com outras plantas?",
+      "Quero dicas para começar",
+      "Quero ver estudos científicos",
+      "Quais benefícios principais?"
+    ],
+    "quick_replies_en": [
+      "Does Moringa help joint pain?",
+      "Are there scientific studies?",
+      "How long to feel effects?",
+      "Can I use it daily?",
+      "Does it help reduce inflammation?",
+      "Is it safe for continuous use?",
+      "I want stories from people who improved",
+      "How does Moringa act on joints?",
+      "Can I combine it with other plants?",
+      "I want tips to start",
+      "I want to see scientific studies",
+      "What are the main benefits?"
+    ]
+  },
+  "fase_4": {
+    "copy_pt": [
+      "A Moringa é uma planta milenar reconhecida por suas propriedades anti-inflamatórias e antioxidantes que auxiliam no alívio das dores articulares e na melhora da mobilidade. Rica em vitaminas, minerais e compostos bioativos, ela fortalece o sistema musculoesquelético e combate o estresse oxidativo.",
+      "${userName}, as folhas da Moringa contêm substâncias que modulam a resposta inflamatória, ajudam na regeneração dos tecidos e promovem maior conforto nas articulações. Seu uso tradicional aliado a evidências científicas recentes fazem dela uma aliada natural para quem sofre com dores articulares.",
+      "Utilizada há séculos em diversas culturas, a Moringa oferece uma combinação única de nutrientes que fortalecem as articulações e promovem a saúde óssea e muscular, contribuindo para a qualidade de vida e bem-estar."
+    ],
+    "copy_en": [
+      "Moringa is a millenary plant recognized for its anti-inflammatory and antioxidant properties that aid in relieving joint pain and improving mobility. Rich in vitamins, minerals, and bioactive compounds, it strengthens the musculoskeletal system and combats oxidative stress.",
+      "${userName}, Moringa leaves contain substances that modulate inflammatory response, help tissue regeneration, and promote greater joint comfort. Its traditional use combined with recent scientific evidence makes it a natural ally for those suffering joint pain.",
+      "Used for centuries in various cultures, Moringa offers a unique combination of nutrients that strengthen joints and promote bone and muscle health, contributing to quality of life and well-being."
+    ],
+    "quick_replies_pt": [
+      "Como usar Moringa para dor nas articulações?",
+      "Tem receita para aliviar dor?",
+      "Ajuda a reduzir inflamação?",
+      "Posso usar todos os dias?",
+      "Quero relatos de quem melhorou",
+      "Quanto tempo para ver resultado?",
+      "É seguro para uso contínuo?",
+      "Posso combinar com outras plantas?",
+      "Quero dicas para começar",
+      "Ajuda na saúde óssea?",
+      "Quero ver estudos científicos",
+      "Dá para usar com alimentação variada?"
+    ],
+    "quick_replies_en": [
+      "How to use Moringa for joint pain?",
+      "Any recipe to relieve pain?",
+      "Does it help reduce inflammation?",
+      "Can I use it daily?",
+      "I want stories from people who improved",
+      "How long to see results?",
+      "Is it safe for continuous use?",
+      "Can I combine with other plants?",
+      "I want tips to start",
+      "Does it help bone health?",
+      "I want to see scientific studies",
+      "Can it be used with varied diet?"
+    ]
+  },
+  "fase_5": {
+    "copy_pt": [
+      "${userName}, cuidar das dores nas articulações de forma natural pode transformar sua qualidade de vida. Com a Moringa e hábitos conscientes, seu corpo terá suporte para reduzir a inflamação, melhorar a mobilidade e recuperar o bem-estar. Posso te ajudar com receitas, dicas e um plano prático para essa transformação.",
+      "A transformação começa com pequenas atitudes, ${userName}. Ao incluir a Moringa na sua rotina e optar por alimentos naturais, você apoia seu organismo no caminho para articulações mais saudáveis e maior conforto. Estou aqui para guiar você com passos simples e personalizados.",
+      "${userName}, sua jornada para articulações saudáveis pode começar agora. Com a Moringa e escolhas alimentares equilibradas, seu corpo terá o suporte necessário para aliviar as dores e promover qualidade de vida. Posso fornecer um plano com orientações e cuidados para essa nova fase."
+    ],
+    "copy_en": [
+      "${userName}, caring for your joint pain naturally can transform your quality of life. With Moringa and conscious habits, your body will have support to reduce inflammation, improve mobility, and regain well-being. I can help you with recipes, tips, and a practical plan for this transformation.",
+      "The transformation begins with small actions, ${userName}. By adding Moringa to your routine and choosing natural foods, you support your body on the path to healthier joints and greater comfort. I am here to guide you with simple and personalized steps.",
+      "${userName}, your journey to healthy joints can begin now. With Moringa and balanced food choices, your body will have the necessary support to relieve pain and promote quality of life. I can provide a plan with guidance, recipes, and care for this new phase."
+    ],
+    "quick_replies_pt": [
+      "Quero conhecer a solução com essas plantas para metabolismo lento",
+      "Como funciona essa solução natural com plantas para acelerar o metabolismo?",
+      "Mostra como posso começar uma rotina usando essas plantas",
+      "Quero saber mais sobre essa solução que inclui essas plantas no dia a dia",
+      "Essa solução com plantas serve para qualquer idade?",
+      "Como posso adaptar essa solução para a minha rotina?",
+      "Explica como as plantas agem juntas na solução",
+      "Tem um passo a passo para experimentar essa solução natural?",
+      "Quero ver relatos de quem já usou essa solução com plantas",
+      "Dá para combinar essa solução com alimentação atual?",
+      "Resultados dessa solução são duradouros?",
+      "Quero acessar mais informações sobre essa solução com plantas"
+    ],
+    "quick_replies_en": [
+      "I want to know the solution with these plants for slow metabolism",
+      "How does this natural plant solution work for boosting metabolism?",
+      "Show me how I can start a routine using these plants",
+      "I want to learn more about this solution that includes these plants daily",
+      "Is this plant-based solution right for any age?",
+      "How can I adapt this solution to my routine?",
+      "Explain how these plants work together in the solution",
+      "Is there a step-by-step guide to try this natural solution?",
+      "I want stories from people who used this plant solution",
+      "Can I combine this solution with my current diet?",
+      "Are results from this solution long-lasting?",
+      "I want more information about this plant solution"
+    ]
   }
 }
-
