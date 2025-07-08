@@ -204,41 +204,34 @@
       "Change begins with small, conscious choices, ${userName}. By introducing plants like Dandelion, Fennel, Babchi, and quality probiotics, as well as adjusting your diet and managing emotions, your skin gains real support to renew itself. You are not alone in this process: together, we can create an easier journey where every victory is celebrated. I can share real stories, daily tips, and a complete plan to make this path possible.",
       "${userName}, your journey to calmer, more beautiful, and healthier skin can start now—not with miracles, but with science, tradition, and self-care. With the right natural ingredients, proper dietary choices, and a consistent self-care routine, your skin can respond positively. If you want, I can help you assemble a plan with practical tips, recipes, and guidance to boost your confidence and quality of life."
     ],
-    "quick_replies_pt": [
-      "Quero começar já com plantas e probióticos",
-      "Tem receita fácil para rosácea",
-      "Quero relatos reais de superação",
-      "Como montar uma rotina prática?",
-      "Prefiro aprender mais antes",
-      "Resultados são duradouros?",
-      "Posso combinar com minha alimentação?",
-      "Quero conversar sobre escolhas naturais",
-      "Dá pra fazer em família?",
-      "Tem dicas para motivação?",
-      "É seguro para todos?",
-      "Quero ver estudos e relatos reais"
-    ],
-    "quick_replies_en": [
-      "I want to start with plants and probiotics now",
-      "Any easy recipe for rosacea",
-      "I want real stories of overcoming rosacea",
-      "How to build a practical routine?",
-      "I’d rather learn more first",
-      "Are results lasting?",
-      "Can I combine it with my diet?",
-      "I want to talk about natural choices",
-      "Can this be done as a family?",
-      "Any tips for motivation?",
-      "Is it safe for everyone?",
-      "I want to see studies and real stories"
-    ],
-    "reflective_questions_pt": [
-      "O que mais te motiva a buscar uma pele saudável?",
-      "Como você gostaria de iniciar essa mudança na sua rotina?"
-    ],
-    "reflective_questions_en": [
-      "What motivates you most to seek healthy skin?",
-      "How would you like to start this change in your routine?"
+   "quick_replies_pt": [
+  "Quero começar já com plantas e probióticos",
+  "Tem receita fácil para rosácea",
+  "Quero relatos reais de superação",
+  "Como montar uma rotina prática?",
+  "Prefiro aprender mais antes",
+  "Resultados são duradouros?",
+  "Posso combinar com minha alimentação?",
+  "Quero conversar sobre escolhas naturais",
+  "Dá pra fazer em família?",
+  "Tem dicas para motivação?",
+  "É seguro para todos?",
+  "Quero ver estudos e relatos reais"
+],
+"quick_replies_en": [
+  "I want to start with plants and probiotics now",
+  "Any easy recipe for rosacea",
+  "I want real stories of overcoming rosacea",
+  "How to build a practical routine?",
+  "I’d rather learn more first",
+  "Are results lasting?",
+  "Can I combine it with my diet?",
+  "I want to talk about natural choices",
+  "Can this be done as a family?",
+  "Any tips for motivation?",
+  "Is it safe for everyone?",
+  "I want to see studies and real stories"
+  
     ]
   }
 }
