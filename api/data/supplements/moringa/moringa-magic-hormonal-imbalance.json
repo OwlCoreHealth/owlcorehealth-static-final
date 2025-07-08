@@ -1,210 +1,204 @@
 {
-  "suplemento": "Moringa", 
-  "sintomas": {
-    "desequilibrio_hormonal": {
-      "hormonal_imbalance": {
-        "fase_1": {
-          "copy_pt": [
-            "${userName}, já sentiu seu corpo fora do ritmo, com mudanças de humor, cansaço ou até dificuldades para dormir? Esses são sinais comuns de desequilíbrio hormonal, um problema cada vez mais frequente na nossa rotina agitada. A alimentação atual, dominada por ultraprocessados, solos degradados e carnes tratadas com hormônios sintéticos, interfere diretamente na produção natural dos seus hormônios. Estudos mostram que cerca de 70% das pessoas enfrentam algum grau desse desequilíbrio, muitas vezes sem saber. Entender esse sintoma é essencial para cuidar do seu corpo de forma integral e consciente.",
-            "Você já percebeu, ${userName}, que sua energia varia muito ao longo do dia, e que o humor pode oscilar sem motivo aparente? Isso pode estar relacionado a um desequilíbrio hormonal silencioso, agravado pelo consumo de alimentos industrializados e contaminados, solos empobrecidos e carnes com hormônios artificiais. Pesquisas recentes indicam que esses fatores interferem na regulação hormonal e na saúde metabólica, prejudicando seu bem-estar geral.",
-            "${userName}, sentir que o corpo não responde como antes, com sintomas como irritabilidade, fadiga e alterações no sono, pode ser resultado do desequilíbrio hormonal causado por maus hábitos alimentares. A ciência comprova que a combinação de ultraprocessados, solos contaminados e carnes hormonizadas afeta diretamente a produção e o equilíbrio dos hormônios, impactando a saúde física e emocional."
-          ],
-          "copy_en": [
-            "${userName}, have you felt your body out of sync, with mood swings, fatigue, or even sleep difficulties? These are common signs of hormonal imbalance, an increasingly frequent problem in our busy lives. Today's diet, dominated by ultra-processed foods, degraded soils, and hormone-treated meats, directly interferes with your body's natural hormone production. Studies show about 70% of people face some degree of this imbalance, often unknowingly. Understanding this symptom is essential to caring for your body in an integral and conscious way.",
-            "Have you noticed, ${userName}, that your energy fluctuates a lot during the day and your mood can swing without clear reason? This might be related to a silent hormonal imbalance worsened by consuming industrialized, contaminated foods, depleted soils, and meats with artificial hormones. Recent research indicates these factors interfere with hormonal regulation and metabolic health, harming your overall well-being.",
-            "${userName}, feeling that your body isn’t responding like before, with symptoms like irritability, fatigue, and sleep changes, may result from hormonal imbalance caused by poor dietary habits. Science proves that the combination of ultra-processed foods, contaminated soils, and hormone-treated meats directly affects hormone production and balance, impacting physical and emotional health."
-          ],
-          "quick_replies_pt": [
-            "O que é desequilíbrio hormonal?",
-            "Como a alimentação afeta os hormônios?",
-            "Solo contaminado influencia os hormônios?",
-            "Carnes com hormônios prejudicam?",
-            "Quero entender mais sobre hormônios",
-            "Tem estudos científicos?",
-            "Quais sintomas devo observar?",
-            "Dá para reverter naturalmente?",
-            "É comum hoje em dia?",
-            "Quero dicas para melhorar meu equilíbrio",
-            "Estresse piora o desequilíbrio?",
-            "Como cuidar dos hormônios no dia a dia?"
-          ],
-          "quick_replies_en": [
-            "What is hormonal imbalance?",
-            "How does diet affect hormones?",
-            "Does contaminated soil influence hormones?",
-            "Do hormone-treated meats harm?",
-            "I want to learn more about hormones",
-            "Are there scientific studies?",
-            "What symptoms should I watch for?",
-            "Can it be reversed naturally?",
-            "Is it common nowadays?",
-            "I want tips to improve my balance",
-            "Does stress worsen imbalance?",
-            "How to care for hormones daily?"
-          ]
-        },
-        "fase_2": {
-          "copy_pt": [
-            "${userName}, o desequilíbrio hormonal pode causar impactos profundos no corpo e na mente. Estudos da Mayo Clinic indicam que ele está associado a problemas como ganho de peso, ansiedade, depressão, fadiga crônica e até dificuldades cognitivas. A alimentação com ultraprocessados, solos degradados e carnes com hormônios intensifica esses efeitos, comprometendo a saúde física e emocional. Identificar esses sintomas precocemente é fundamental para evitar agravamentos.",
-            "Você sabia, ${userName}, que o desequilíbrio hormonal afeta não só o corpo, mas também a mente? Pesquisas mostram que a exposição constante a toxinas e hormônios artificiais presentes nos alimentos industrializados e contaminados interfere na regulação do sistema endócrino, provocando alterações de humor e redução da qualidade de vida.",
-            "${userName}, quando os hormônios estão fora de equilíbrio, o organismo enfrenta desafios que podem levar a doenças crônicas, problemas de sono, alterações metabólicas e dificuldades emocionais. Dados da Organização Mundial da Saúde reforçam que o consumo de alimentos processados, solos empobrecidos e carnes hormonizadas potencializam esses problemas."
-          ],
-          "copy_en": [
-            "${userName}, hormonal imbalance can have profound effects on the body and mind. Mayo Clinic studies link it to weight gain, anxiety, depression, chronic fatigue, and even cognitive difficulties. Diets rich in ultra-processed foods, degraded soils, and hormone-treated meats intensify these effects, compromising physical and emotional health. Early symptom identification is key to avoiding worsening.",
-            "Did you know, ${userName}, hormonal imbalance affects not only the body but also the mind? Research shows constant exposure to toxins and artificial hormones in industrialized and contaminated foods disrupts endocrine regulation, causing mood swings and reduced quality of life.",
-            "${userName}, when hormones are out of balance, the body faces challenges that can lead to chronic diseases, sleep problems, metabolic changes, and emotional difficulties. World Health Organization data reinforce that consumption of processed foods, depleted soils, and hormone-treated meats exacerbates these issues."
-          ],
-          "quick_replies_pt": [
-            "Desequilíbrio hormonal é sério?",
-            "Como processados pioram o quadro?",
-            "Solo contaminado afeta hormônios?",
-            "Carnes hormonizadas prejudicam?",
-            "Quero saber mais sobre toxinas e hormônios",
-            "Desequilíbrio afeta saúde mental?",
-            "Dá para reverter?",
-            "Quais sintomas devo observar?",
-            "Quero dicas para melhorar",
-            "Estresse piora o desequilíbrio?",
-            "Tem estudos confiáveis?",
-            "Como cuidar no dia a dia?"
-          ],
-          "quick_replies_en": [
-            "Is hormonal imbalance serious?",
-            "Do processed foods worsen it?",
-            "Does contaminated soil affect hormones?",
-            "Do hormone-treated meats harm?",
-            "I want to learn more about toxins and hormones",
-            "Does imbalance affect mental health?",
-            "Can it be reversed?",
-            "What symptoms should I watch for?",
-            "I want tips to improve",
-            "Does stress worsen imbalance?",
-            "Are there reliable studies?",
-            "How to care daily?"
-          ]
-        },
-        "fase_3": {
-          "copy_pt": [
-            "${userName}, a Moringa contém nutrientes essenciais que ajudam a equilibrar os hormônios e reduzir a inflamação, fatores que contribuem para o equilíbrio endócrino. Estudos publicados no Frontiers in Pharmacology indicam que seus compostos bioativos têm efeito anti-inflamatório e ajudam na regulação hormonal, promovendo o bem-estar físico e emocional.",
-            "Pesquisas recentes, ${userName}, mostram que a Moringa atua como um modulador natural do sistema endócrino, auxiliando na redução do estresse oxidativo e promovendo a estabilidade hormonal. Publicações do Journal of Ethnopharmacology reforçam sua eficácia no tratamento natural de desequilíbrios hormonais.",
-            "${userName}, estudos do Nutritional Journal confirmam que os antioxidantes e vitaminas presentes na Moringa auxiliam na proteção celular e no equilíbrio hormonal, melhorando a qualidade de vida e reduzindo sintomas comuns do desequilíbrio."
-          ],
-          "copy_en": [
-            "${userName}, Moringa contains essential nutrients that help balance hormones and reduce inflammation, factors contributing to endocrine balance. Studies published in Frontiers in Pharmacology indicate its bioactive compounds have anti-inflammatory effects and assist hormonal regulation, promoting physical and emotional well-being.",
-            "Recent research, ${userName}, shows Moringa acts as a natural modulator of the endocrine system, aiding oxidative stress reduction and hormonal stability. Publications from the Journal of Ethnopharmacology reinforce its effectiveness in natural hormonal imbalance treatment.",
-            "${userName}, studies from the Nutritional Journal confirm antioxidants and vitamins in Moringa help protect cells and balance hormones, improving quality of life and reducing common imbalance symptoms."
-          ],
-          "quick_replies_pt": [
-            "Moringa ajuda no equilíbrio hormonal?",
-            "Tem estudos científicos?",
-            "Quanto tempo para sentir efeito?",
-            "Posso usar todos os dias?",
-            "Ajuda a reduzir inflamação?",
-            "É seguro para uso contínuo?",
-            "Quero relatos de quem melhorou",
-            "Como a Moringa age no corpo?",
-            "Posso combinar com outras plantas?",
-            "Quero dicas para começar",
-            "Quero ver estudos científicos",
-            "Quais benefícios principais?"
-          ],
-          "quick_replies_en": [
-            "Does Moringa help hormonal balance?",
-            "Are there scientific studies?",
-            "How long to feel effects?",
-            "Can I use it daily?",
-            "Does it help reduce inflammation?",
-            "Is it safe for continuous use?",
-            "I want stories from people who improved",
-            "How does Moringa act in the body?",
-            "Can I combine it with other plants?",
-            "I want tips to start",
-            "I want to see scientific studies",
-            "What are the main benefits?"
-          ]
-        },
-        "fase_4": {
-          "copy_pt": [
-            "A Moringa é uma planta ancestral que oferece uma combinação poderosa de nutrientes que auxiliam na regulação hormonal e na redução da inflamação. Rica em vitaminas, minerais e antioxidantes, ela ajuda a restaurar o equilíbrio do sistema endócrino, promovendo saúde física e emocional.",
-            "${userName}, as folhas da Moringa possuem compostos bioativos que modulam o sistema endócrino, combatendo o estresse oxidativo e promovendo a estabilidade hormonal. Utilizada há séculos em diversas culturas, a planta é uma aliada natural eficaz para quem busca equilíbrio hormonal.",
-            "De uso tradicional, a Moringa oferece vitaminas e antioxidantes que fortalecem o sistema imunológico e auxiliam na regulação dos hormônios. Seu consumo regular pode ajudar a melhorar sintomas comuns do desequilíbrio, promovendo mais vitalidade e bem-estar."
-          ],
-          "copy_en": [
-            "Moringa is an ancestral plant offering a powerful combination of nutrients that aid hormonal regulation and reduce inflammation. Rich in vitamins, minerals, and antioxidants, it helps restore endocrine system balance, promoting physical and emotional health.",
-            "${userName}, Moringa leaves contain bioactive compounds that modulate the endocrine system, combat oxidative stress, and promote hormonal stability. Used for centuries in various cultures, the plant is an effective natural ally for those seeking hormonal balance.",
-            "Traditionally used, Moringa provides vitamins and antioxidants that strengthen the immune system and assist hormone regulation. Regular consumption can help improve common imbalance symptoms, promoting vitality and well-being."
-          ],
-          "quick_replies_pt": [
-            "Como usar Moringa para hormônios?",
-            "Tem receita para equilíbrio hormonal?",
-            "Ajuda a reduzir inflamação?",
-            "Posso usar todos os dias?",
-            "Quero relatos de quem melhorou",
-            "Quanto tempo para ver resultado?",
-            "É seguro para uso contínuo?",
-            "Posso combinar com outras plantas?",
-            "Quero dicas para começar",
-            "Ajuda no bem-estar emocional?",
-            "Quero ver estudos científicos",
-            "Dá para usar com alimentação variada?"
-          ],
-          "quick_replies_en": [
-            "How to use Moringa for hormones?",
-            "Any recipe for hormonal balance?",
-            "Does it help reduce inflammation?",
-            "Can I use it daily?",
-            "I want stories from people who improved",
-            "How long to see results?",
-            "Is it safe for continuous use?",
-            "Can I combine with other plants?",
-            "I want tips to start",
-            "Does it help emotional well-being?",
-            "I want to see scientific studies",
-            "Can it be used with varied diet?"
-          ]
-        },
-        "fase_5": {
-          "copy_pt": [
-            "${userName}, começar a cuidar do equilíbrio hormonal de forma natural pode transformar sua qualidade de vida. Com a Moringa e uma alimentação equilibrada, seu corpo encontrará o suporte necessário para restaurar a saúde física e emocional. Posso te ajudar com receitas, dicas e um plano prático para essa mudança.",
-            "A transformação começa com pequenas escolhas, ${userName}. Ao incluir a Moringa na rotina e optar por alimentos naturais, você apoia seu organismo no caminho para o equilíbrio hormonal e bem-estar. Estou aqui para guiar você com passos simples e personalizados.",
-            "${userName}, sua jornada para um corpo e mente equilibrados pode começar agora. Com Moringa e hábitos alimentares conscientes, seu organismo terá suporte para restaurar a harmonia hormonal e promover vitalidade. Posso fornecer um plano com orientações e cuidados para essa nova etapa."
-          ],
-          "copy_en": [
-            "${userName}, starting natural care to improve hormonal balance can transform your quality of life. With Moringa and a balanced diet, your body will find the necessary support to restore physical and emotional health. I can help you with recipes, tips, and a practical plan for this change.",
-            "Transformation begins with small choices, ${userName}. By adding Moringa to your routine and opting for natural foods, you support your body in the journey to hormonal balance and well-being. I’m here to guide you with simple, personalized steps.",
-            "${userName}, your journey to a balanced body and mind can start now. With Moringa and conscious eating habits, your body will receive support to restore hormonal harmony and promote vitality. I can provide a plan with guidance and care for this new stage."
-          ],
-          "quick_replies_pt": [
-            "Quero começar já com Moringa",
-            "Tem receita fácil para equilíbrio hormonal",
-            "Quero relatos reais de transformação",
-            "Como montar uma rotina prática?",
-            "Prefiro aprender mais antes",
-            "Resultados são duradouros?",
-            "Posso combinar com minha alimentação?",
-            "Quero conversar sobre escolhas naturais",
-            "Dá pra fazer em família?",
-            "Tem dicas para motivação?",
-            "É seguro para todos?",
-            "Quero ver estudos e relatos reais"
-          ],
-          "quick_replies_en": [
-            "I want to start with Moringa now",
-            "Any easy recipe for hormonal balance",
-            "I want real transformation stories",
-            "How to build a practical routine?",
-            "I’d rather learn more first",
-            "Are results lasting?",
-            "Can I combine with my diet?",
-            "I want to talk about natural choices",
-            "Can this be done as a family?",
-            "Any tips for motivation?",
-            "Is it safe for everyone?",
-            "I want to see studies and real stories"
-          ]
-        }
-      }
-    }
+  "suplemento": "Moringa",
+  "symptom": "hormonal_imbalance",
+  "fase_1": {
+    "copy_pt": [
+      "${userName}, já sentiu seu corpo fora do ritmo, com mudanças de humor, cansaço ou até dificuldades para dormir? Esses são sinais comuns de desequilíbrio hormonal, um problema cada vez mais frequente na nossa rotina agitada. A alimentação atual, dominada por ultraprocessados, solos degradados e carnes tratadas com hormônios sintéticos, interfere diretamente na produção natural dos seus hormônios. Estudos mostram que cerca de 70% das pessoas enfrentam algum grau desse desequilíbrio, muitas vezes sem saber. Entender esse sintoma é essencial para cuidar do seu corpo de forma integral e consciente.",
+      "Você já percebeu, ${userName}, que sua energia varia muito ao longo do dia, e que o humor pode oscilar sem motivo aparente? Isso pode estar relacionado a um desequilíbrio hormonal silencioso, agravado pelo consumo de alimentos industrializados e contaminados, solos empobrecidos e carnes com hormônios artificiais. Pesquisas recentes indicam que esses fatores interferem na regulação hormonal e na saúde metabólica, prejudicando seu bem-estar geral.",
+      "${userName}, sentir que o corpo não responde como antes, com sintomas como irritabilidade, fadiga e alterações no sono, pode ser resultado do desequilíbrio hormonal causado por maus hábitos alimentares. A ciência comprova que a combinação de ultraprocessados, solos contaminados e carnes hormonizadas afeta diretamente a produção e o equilíbrio dos hormônios, impactando a saúde física e emocional."
+    ],
+    "copy_en": [
+      "${userName}, have you felt your body out of sync, with mood swings, fatigue, or even sleep difficulties? These are common signs of hormonal imbalance, an increasingly frequent problem in our busy lives. Today's diet, dominated by ultra-processed foods, degraded soils, and hormone-treated meats, directly interferes with your body's natural hormone production. Studies show about 70% of people face some degree of this imbalance, often unknowingly. Understanding this symptom is essential to caring for your body in an integral and conscious way.",
+      "Have you noticed, ${userName}, that your energy fluctuates a lot during the day and your mood can swing without clear reason? This might be related to a silent hormonal imbalance worsened by consuming industrialized, contaminated foods, depleted soils, and meats with artificial hormones. Recent research indicates these factors interfere with hormonal regulation and metabolic health, harming your overall well-being.",
+      "${userName}, feeling that your body isn’t responding like before, with symptoms like irritability, fatigue, and sleep changes, may result from hormonal imbalance caused by poor dietary habits. Science proves that the combination of ultra-processed foods, contaminated soils, and hormone-treated meats directly affects hormone production and balance, impacting physical and emotional health."
+    ],
+    "quick_replies_pt": [
+      "O que é desequilíbrio hormonal?",
+      "Como a alimentação afeta os hormônios?",
+      "Solo contaminado influencia os hormônios?",
+      "Carnes com hormônios prejudicam?",
+      "Quero entender mais sobre hormônios",
+      "Tem estudos científicos?",
+      "Quais sintomas devo observar?",
+      "Dá para reverter naturalmente?",
+      "É comum hoje em dia?",
+      "Quero dicas para melhorar meu equilíbrio",
+      "Estresse piora o desequilíbrio?",
+      "Como cuidar dos hormônios no dia a dia?"
+    ],
+    "quick_replies_en": [
+      "What is hormonal imbalance?",
+      "How does diet affect hormones?",
+      "Does contaminated soil influence hormones?",
+      "Do hormone-treated meats harm?",
+      "I want to learn more about hormones",
+      "Are there scientific studies?",
+      "What symptoms should I watch for?",
+      "Can it be reversed naturally?",
+      "Is it common nowadays?",
+      "I want tips to improve my balance",
+      "Does stress worsen imbalance?",
+      "How to care for hormones daily?"
+    ]
+  },
+  "fase_2": {
+    "copy_pt": [
+      "${userName}, o desequilíbrio hormonal pode causar impactos profundos no corpo e na mente. Estudos da Mayo Clinic indicam que ele está associado a problemas como ganho de peso, ansiedade, depressão, fadiga crônica e até dificuldades cognitivas. A alimentação com ultraprocessados, solos degradados e carnes com hormônios intensifica esses efeitos, comprometendo a saúde física e emocional. Identificar esses sintomas precocemente é fundamental para evitar agravamentos.",
+      "Você sabia, ${userName}, que o desequilíbrio hormonal afeta não só o corpo, mas também a mente? Pesquisas mostram que a exposição constante a toxinas e hormônios artificiais presentes nos alimentos industrializados e contaminados interfere na regulação do sistema endócrino, provocando alterações de humor e redução da qualidade de vida.",
+      "${userName}, quando os hormônios estão fora de equilíbrio, o organismo enfrenta desafios que podem levar a doenças crônicas, problemas de sono, alterações metabólicas e dificuldades emocionais. Dados da Organização Mundial da Saúde reforçam que o consumo de alimentos processados, solos empobrecidos e carnes hormonizadas potencializam esses problemas."
+    ],
+    "copy_en": [
+      "${userName}, hormonal imbalance can have profound effects on the body and mind. Mayo Clinic studies link it to weight gain, anxiety, depression, chronic fatigue, and even cognitive difficulties. Diets rich in ultra-processed foods, degraded soils, and hormone-treated meats intensify these effects, compromising physical and emotional health. Early symptom identification is key to avoiding worsening.",
+      "Did you know, ${userName}, hormonal imbalance affects not only the body but also the mind? Research shows constant exposure to toxins and artificial hormones in industrialized and contaminated foods disrupts endocrine regulation, causing mood swings and reduced quality of life.",
+      "${userName}, when hormones are out of balance, the body faces challenges that can lead to chronic diseases, sleep problems, metabolic changes, and emotional difficulties. World Health Organization data reinforce that consumption of processed foods, depleted soils, and hormone-treated meats exacerbates these issues."
+    ],
+    "quick_replies_pt": [
+      "Desequilíbrio hormonal é sério?",
+      "Como processados pioram o quadro?",
+      "Solo contaminado afeta hormônios?",
+      "Carnes hormonizadas prejudicam?",
+      "Quero saber mais sobre toxinas e hormônios",
+      "Desequilíbrio afeta saúde mental?",
+      "Dá para reverter?",
+      "Quais sintomas devo observar?",
+      "Quero dicas para melhorar",
+      "Estresse piora o desequilíbrio?",
+      "Tem estudos confiáveis?",
+      "Como cuidar no dia a dia?"
+    ],
+    "quick_replies_en": [
+      "Is hormonal imbalance serious?",
+      "Do processed foods worsen it?",
+      "Does contaminated soil affect hormones?",
+      "Do hormone-treated meats harm?",
+      "I want to learn more about toxins and hormones",
+      "Does imbalance affect mental health?",
+      "Can it be reversed?",
+      "What symptoms should I watch for?",
+      "I want tips to improve",
+      "Does stress worsen imbalance?",
+      "Are there reliable studies?",
+      "How to care daily?"
+    ]
+  },
+  "fase_3": {
+    "copy_pt": [
+      "${userName}, a Moringa contém nutrientes essenciais que ajudam a equilibrar os hormônios e reduzir a inflamação, fatores que contribuem para o equilíbrio endócrino. Estudos publicados no Frontiers in Pharmacology indicam que seus compostos bioativos têm efeito anti-inflamatório e ajudam na regulação hormonal, promovendo o bem-estar físico e emocional.",
+      "Pesquisas recentes, ${userName}, mostram que a Moringa atua como um modulador natural do sistema endócrino, auxiliando na redução do estresse oxidativo e promovendo a estabilidade hormonal. Publicações do Journal of Ethnopharmacology reforçam sua eficácia no tratamento natural de desequilíbrios hormonais.",
+      "${userName}, estudos do Nutritional Journal confirmam que os antioxidantes e vitaminas presentes na Moringa auxiliam na proteção celular e no equilíbrio hormonal, melhorando a qualidade de vida e reduzindo sintomas comuns do desequilíbrio."
+    ],
+    "copy_en": [
+      "${userName}, Moringa contains essential nutrients that help balance hormones and reduce inflammation, factors contributing to endocrine balance. Studies published in Frontiers in Pharmacology indicate its bioactive compounds have anti-inflammatory effects and assist hormonal regulation, promoting physical and emotional well-being.",
+      "Recent research, ${userName}, shows Moringa acts as a natural modulator of the endocrine system, aiding oxidative stress reduction and hormonal stability. Publications from the Journal of Ethnopharmacology reinforce its effectiveness in natural hormonal imbalance treatment.",
+      "${userName}, studies from the Nutritional Journal confirm antioxidants and vitamins in Moringa help protect cells and balance hormones, improving quality of life and reducing common imbalance symptoms."
+    ],
+    "quick_replies_pt": [
+      "Moringa ajuda no equilíbrio hormonal?",
+      "Tem estudos científicos?",
+      "Quanto tempo para sentir efeito?",
+      "Posso usar todos os dias?",
+      "Ajuda a reduzir inflamação?",
+      "É seguro para uso contínuo?",
+      "Quero relatos de quem melhorou",
+      "Como a Moringa age no corpo?",
+      "Posso combinar com outras plantas?",
+      "Quero dicas para começar",
+      "Quero ver estudos científicos",
+      "Quais benefícios principais?"
+    ],
+    "quick_replies_en": [
+      "Does Moringa help hormonal balance?",
+      "Are there scientific studies?",
+      "How long to feel effects?",
+      "Can I use it daily?",
+      "Does it help reduce inflammation?",
+      "Is it safe for continuous use?",
+      "I want stories from people who improved",
+      "How does Moringa act in the body?",
+      "Can I combine it with other plants?",
+      "I want tips to start",
+      "I want to see scientific studies",
+      "What are the main benefits?"
+    ]
+  },
+  "fase_4": {
+    "copy_pt": [
+      "A Moringa é uma planta ancestral que oferece uma combinação poderosa de nutrientes que auxiliam na regulação hormonal e na redução da inflamação. Rica em vitaminas, minerais e antioxidantes, ela ajuda a restaurar o equilíbrio do sistema endócrino, promovendo saúde física e emocional.",
+      "${userName}, as folhas da Moringa possuem compostos bioativos que modulam o sistema endócrino, combatendo o estresse oxidativo e promovendo a estabilidade hormonal. Utilizada há séculos em diversas culturas, a planta é uma aliada natural eficaz para quem busca equilíbrio hormonal.",
+      "De uso tradicional, a Moringa oferece vitaminas e antioxidantes que fortalecem o sistema imunológico e auxiliam na regulação dos hormônios. Seu consumo regular pode ajudar a melhorar sintomas comuns do desequilíbrio, promovendo mais vitalidade e bem-estar."
+    ],
+    "copy_en": [
+      "Moringa is an ancestral plant offering a powerful combination of nutrients that aid hormonal regulation and reduce inflammation. Rich in vitamins, minerals, and antioxidants, it helps restore endocrine system balance, promoting physical and emotional health.",
+      "${userName}, Moringa leaves contain bioactive compounds that modulate the endocrine system, combat oxidative stress, and promote hormonal stability. Used for centuries in various cultures, the plant is an effective natural ally for those seeking hormonal balance.",
+      "Traditionally used, Moringa provides vitamins and antioxidants that strengthen the immune system and assist hormone regulation. Regular consumption can help improve common imbalance symptoms, promoting vitality and well-being."
+    ],
+    "quick_replies_pt": [
+      "Como usar Moringa para hormônios?",
+      "Tem receita para equilíbrio hormonal?",
+      "Ajuda a reduzir inflamação?",
+      "Posso usar todos os dias?",
+      "Quero relatos de quem melhorou",
+      "Quanto tempo para ver resultado?",
+      "É seguro para uso contínuo?",
+      "Posso combinar com outras plantas?",
+      "Quero dicas para começar",
+      "Ajuda no bem-estar emocional?",
+      "Quero ver estudos científicos",
+      "Dá para usar com alimentação variada?"
+    ],
+    "quick_replies_en": [
+      "How to use Moringa for hormones?",
+      "Any recipe for hormonal balance?",
+      "Does it help reduce inflammation?",
+      "Can I use it daily?",
+      "I want stories from people who improved",
+      "How long to see results?",
+      "Is it safe for continuous use?",
+      "Can I combine with other plants?",
+      "I want tips to start",
+      "Does it help emotional well-being?",
+      "I want to see scientific studies",
+      "Can it be used with varied diet?"
+    ]
+  },
+  "fase_5": {
+    "copy_pt": [
+      "${userName}, começar a cuidar do equilíbrio hormonal de forma natural pode transformar sua qualidade de vida. Com a Moringa e uma alimentação equilibrada, seu corpo encontrará o suporte necessário para restaurar a saúde física e emocional. Posso te ajudar com receitas, dicas e um plano prático para essa mudança.",
+      "A transformação começa com pequenas escolhas, ${userName}. Ao incluir a Moringa na rotina e optar por alimentos naturais, você apoia seu organismo no caminho para o equilíbrio hormonal e bem-estar. Estou aqui para guiar você com passos simples e personalizados.",
+      "${userName}, sua jornada para um corpo e mente equilibrados pode começar agora. Com Moringa e hábitos alimentares conscientes, seu organismo terá suporte para restaurar a harmonia hormonal e promover vitalidade. Posso fornecer um plano com orientações e cuidados para essa nova etapa."
+    ],
+    "copy_en": [
+      "${userName}, starting natural care to improve hormonal balance can transform your quality of life. With Moringa and a balanced diet, your body will find the necessary support to restore physical and emotional health. I can help you with recipes, tips, and a practical plan for this change.",
+      "Transformation begins with small choices, ${userName}. By adding Moringa to your routine and opting for natural foods, you support your body in the journey to hormonal balance and well-being. I’m here to guide you with simple, personalized steps.",
+      "${userName}, your journey to a balanced body and mind can start now. With Moringa and conscious eating habits, your body will receive support to restore hormonal harmony and promote vitality. I can provide a plan with guidance and care for this new stage."
+    ],
+    "quick_replies_pt": [
+      "Quero começar já com Moringa",
+      "Tem receita fácil para equilíbrio hormonal",
+      "Quero relatos reais de transformação",
+      "Como montar uma rotina prática?",
+      "Prefiro aprender mais antes",
+      "Resultados são duradouros?",
+      "Posso combinar com minha alimentação?",
+      "Quero conversar sobre escolhas naturais",
+      "Dá pra fazer em família?",
+      "Tem dicas para motivação?",
+      "É seguro para todos?",
+      "Quero ver estudos e relatos reais"
+    ],
+    "quick_replies_en": [
+      "I want to start with Moringa now",
+      "Any easy recipe for hormonal balance",
+      "I want real transformation stories",
+      "How to build a practical routine?",
+      "I’d rather learn more first",
+      "Are results lasting?",
+      "Can I combine with my diet?",
+      "I want to talk about natural choices",
+      "Can this be done as a family?",
+      "Any tips for motivation?",
+      "Is it safe for everyone?",
+      "I want to see studies and real stories"
+    ]
   }
 }
-
