@@ -196,34 +196,34 @@
           "${userName}, your journey to more energy and hormonal balance can start now. With **Pineal Guardian** and balanced eating, your body will have the necessary support to combat adrenal fatigue. I can provide a plan with guidance and care for this new phase."
         ]
       },
-      "quick_replies": {
-        "pt": [
-          "Quero começar já com **Pineal Guardian**",
-          "Tem receita fácil para fadiga adrenal",
-          "Quero relatos reais de transformação",
-          "Como montar uma rotina prática?",
-          "Prefiro aprender mais antes",
-          "Resultados são duradouros?",
-          "Posso combinar com minha alimentação?",
-          "Quero conversar sobre escolhas naturais",
-          "Dá para fazer em família?",
-          "Tem dicas para motivação?",
-          "É seguro para todos?",
-          "Quero ver estudos e relatos reais"
-        ],
-        "en": [
-          "I want to start with **Pineal Guardian** now",
-          "Any easy recipe for adrenal fatigue",
-          "I want real transformation stories",
-          "How to build a practical routine?",
-          "I’d rather learn more first",
-          "Are results lasting?",
-          "Can I combine it with my diet?",
-          "I want to talk about natural choices",
-          "Can this be done as a family?",
-          "Any tips for motivation?",
-          "Is it safe for everyone?",
-          "I want to see studies and real stories"
+"quick_replies": {
+    "pt": [
+      "Quero conhecer a solução com essas plantas para metabolismo lento",
+      "Como funciona essa solução natural com plantas para acelerar o metabolismo?",
+      "Mostra como posso começar uma rotina usando essas plantas",
+      "Quero saber mais sobre essa solução que inclui essas plantas no dia a dia",
+      "Essa solução com plantas serve para qualquer idade?",
+      "Como posso adaptar essa solução para a minha rotina?",
+      "Explica como as plantas agem juntas na solução",
+      "Tem um passo a passo para experimentar essa solução natural?",
+      "Quero ver relatos de quem já usou essa solução com plantas",
+      "Dá para combinar essa solução com alimentação atual?",
+      "Resultados dessa solução são duradouros?",
+      "Quero acessar mais informações sobre essa solução com plantas"
+    ],
+    "en": [
+      "I want to know the solution with these plants for slow metabolism",
+      "How does this natural plant solution work for boosting metabolism?",
+      "Show me how I can start a routine using these plants",
+      "I want to learn more about this solution that includes these plants daily",
+      "Is this plant-based solution right for any age?",
+      "How can I adapt this solution to my routine?",
+      "Explain how these plants work together in the solution",
+      "Is there a step-by-step guide to try this natural solution?",
+      "I want stories from people who used this plant solution",
+      "Can I combine this solution with my current diet?",
+      "Are results from this solution long-lasting?",
+      "I want more information about this plant solution"
         ]
       }
     }
