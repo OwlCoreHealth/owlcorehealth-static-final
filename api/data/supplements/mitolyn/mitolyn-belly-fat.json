@@ -1,188 +1,204 @@
 {
-  "suplemento": "MITOLYN", 
-  "sintomas": {
-    "belly_fat": {
-      "fase_1": {
-        "copy_en": [
-          "${userName}, if you feel like belly fat just won’t go away no matter what you try, you’re not alone. It’s not just about calories or doing enough sit-ups — it’s often your body responding to stress, processed foods, and a lack of the right nutrients. Research shows that ultra-processed foods, hidden sugars, and chemical additives make it easy for your body to store fat, especially around your waist. The good news: plants like Maqui Berry, Schisandra, Rhodiola Rosea, and Amla — all found in MITOLYN — are proven to help balance hormones, reduce inflammation, and activate your body’s natural fat-burning pathways. Sometimes, what you need is less restriction and more of the real foods nature intended."
-        ],
-        "copy_pt": [
-          "${userName}, se você sente que a gordura abdominal simplesmente não vai embora, por mais que tente, saiba que isso é muito comum. Não se trata apenas de calorias ou abdominais — muitas vezes, é o corpo respondendo ao estresse, aos processados e à falta dos nutrientes certos. Pesquisas mostram que alimentos ultraprocessados, açúcares escondidos e aditivos químicos facilitam o acúmulo de gordura, principalmente na barriga. A boa notícia: plantas como Maqui Berry, Schisandra, Rhodiola Rosea e Amla — presentes no MITOLYN — comprovadamente equilibram hormônios, reduzem inflamação e ativam os caminhos naturais de queima de gordura. Às vezes, o segredo não é restringir mais, mas sim trazer de volta o que a natureza oferece de melhor."
-        ],
-        "quick_replies_en": [
-          "Why do I have stubborn belly fat?",
-          "Can plants really help reduce belly fat?",
-          "Does stress affect my waistline?",
-          "Are processed foods a big problem?",
-          "How do these plants work?",
-          "Any real stories of losing belly fat?",
-          "Do I have to quit all sugar?",
-          "Is exercise enough for belly fat?",
-          "What foods make belly fat worse?",
-          "Can I see results without suffering?",
-          "How do I start using these plants?",
-          "Is belly fat really dangerous?"
-        ],
-        "quick_replies_pt": [
-          "Por que a gordura abdominal é tão difícil de perder?",
-          "Plantas ajudam mesmo a perder barriga?",
-          "O estresse influencia na gordura abdominal?",
-          "Processados pioram a barriga?",
-          "Como essas plantas funcionam?",
-          "Tem relatos reais de quem perdeu barriga?",
-          "Preciso cortar todo açúcar?",
-          "Exercício resolve sozinho?",
-          "Quais alimentos pioram a gordura?",
-          "Dá para ver resultado sem sofrimento?",
-          "Como começo a usar essas plantas?",
-          "Gordura na barriga é perigosa mesmo?"
-        ]
-      },
-      "fase_2": {
-        "copy_en": [
-          "Ignoring belly fat isn’t just a matter of appearance, ${userName}. Research from Harvard and the NIH shows that excess fat around your midsection is linked to a higher risk of diabetes, heart disease, and hormone imbalances. Processed foods, sugar, and chronic stress make this fat even more stubborn. But traditional plants like those in MITOLYN can help your body recover its balance, lower inflammation, and make it easier to lose that harmful belly fat over time. Not acting means missing the chance to protect your health for years to come."
-        ],
-        "copy_pt": [
-          "Ignorar a gordura abdominal não é só uma questão estética, ${userName}. Pesquisas de Harvard e do NIH mostram que o excesso de gordura na região da barriga está associado a riscos maiores de diabetes, doenças cardíacas e desequilíbrios hormonais. Processados, açúcar e estresse crônico tornam essa gordura ainda mais resistente. Mas plantas tradicionais como as do MITOLYN podem ajudar o corpo a recuperar o equilíbrio, reduzir a inflamação e facilitar a eliminação dessa gordura perigosa ao longo do tempo. Não agir é perder a chance de proteger a saúde para o futuro."
-        ],
-        "quick_replies_en": [
-          "Is belly fat really a health risk?",
-          "How does processed food affect belly fat?",
-          "Can I reverse belly fat naturally?",
-          "Is stress making my belly worse?",
-          "Do I need to avoid all carbs?",
-          "How fast can I see results?",
-          "Do plants help with hormone balance?",
-          "Any scientific studies on this?",
-          "What changes if I cut out processed foods?",
-          "Can I lose belly fat without medication?",
-          "Do plants help with energy?",
-          "I want tips to reduce belly fat"
-        ],
-        "quick_replies_pt": [
-          "Gordura abdominal é mesmo perigosa?",
-          "Como processados afetam a barriga?",
-          "Dá para reverter gordura abdominal naturalmente?",
-          "O estresse piora a gordura abdominal?",
-          "Preciso evitar todos os carboidratos?",
-          "Quanto tempo para ver resultado?",
-          "Plantas ajudam no equilíbrio hormonal?",
-          "Tem estudos científicos sobre isso?",
-          "O que muda se cortar processados?",
-          "Posso perder barriga sem remédio?",
-          "Plantas ajudam na energia?",
-          "Quero dicas para reduzir barriga"
-        ]
-      },
-      "fase_3": {
-        "copy_en": [
-          "Multiple studies prove that plants like Maqui Berry, Schisandra, Rhodiola Rosea, and Amla can reduce belly fat. For example, research published in the International Journal of Obesity found that these plants lower inflammation, balance blood sugar, and support healthy metabolism, helping reduce abdominal fat by up to 20% in just a few weeks. Real testimonials confirm: people feel less bloated, have more energy, and see their waist shrink — all without extreme diets or suffering."
-        ],
-        "copy_pt": [
-          "Diversos estudos comprovam que plantas como Maqui Berry, Schisandra, Rhodiola Rosea e Amla podem reduzir gordura abdominal. Pesquisas no International Journal of Obesity mostram que essas plantas reduzem a inflamação, equilibram a glicemia e aceleram o metabolismo, ajudando a diminuir a gordura na barriga em até 20% em poucas semanas. Relatos reais confirmam: as pessoas se sentem menos inchadas, com mais energia e notam a cintura diminuir — tudo isso sem dietas radicais ou sofrimento."
-        ],
-        "quick_replies_en": [
-          "Are these plants proven by science?",
-          "How long to see results?",
-          "Can I combine these plants?",
-          "Is it safe for long-term use?",
-          "Any stories of success?",
-          "Do I need to change my whole diet?",
-          "Can I use plants every day?",
-          "Do processed foods block plant effects?",
-          "Can plants help with energy?",
-          "Any tips for stubborn belly fat?",
-          "How do these plants work on metabolism?",
-          "I want to see research on belly fat"
-        ],
-        "quick_replies_pt": [
-          "Essas plantas têm comprovação científica?",
-          "Quanto tempo para ver resultado?",
-          "Posso combinar essas plantas?",
-          "É seguro para uso prolongado?",
-          "Tem relatos de sucesso?",
-          "Preciso mudar toda minha alimentação?",
-          "Posso usar as plantas todos os dias?",
-          "Processados bloqueiam o efeito das plantas?",
-          "Plantas ajudam na energia?",
-          "Dicas para gordura abdominal resistente?",
-          "Como essas plantas atuam no metabolismo?",
-          "Quero ver pesquisas sobre gordura abdominal"
-        ]
-      },
-      "fase_4": {
-        "copy_en": [
-          "Incorporating MITOLYN’s plants into your routine — Maqui Berry, Schisandra, Rhodiola Rosea, and Amla — helps your body burn belly fat naturally, balance hormones, and fight inflammation. Unlike crash diets or harsh treatments, these plants offer gentle, lasting results, supporting digestion, reducing bloating, and helping your waistline shrink in a healthy way. When you choose nature, you give your body the chance to transform for good."
-        ],
-        "copy_pt": [
-          "Ao incluir as plantas do MITOLYN na rotina — Maqui Berry, Schisandra, Rhodiola Rosea e Amla — você ajuda seu corpo a queimar gordura abdominal de forma natural, equilibrar hormônios e combater a inflamação. Diferente de dietas restritivas ou soluções agressivas, essas plantas trazem resultados duradouros e suaves, apoiam a digestão, reduzem o inchaço e ajudam a cintura a diminuir de maneira saudável. Ao escolher a natureza, você dá ao corpo a chance de se transformar de verdade."
-        ],
-        "quick_replies_en": [
-          "How can I start with these plants?",
-          "Any simple recipes?",
-          "Do I need to stop eating processed foods?",
-          "Are results permanent?",
-          "Can I use MITOLYN every day?",
-          "Do I need extra supplements?",
-          "Any tips for daily routine?",
-          "How fast will my belly change?",
-          "Can I combine these plants with exercise?",
-          "Are there any side effects?",
-          "Can plants help my mood?",
-          "I want real stories of change"
-        ],
-        "quick_replies_pt": [
-          "Como começar a usar essas plantas?",
-          "Tem receitas simples?",
-          "Preciso parar de comer processados?",
-          "Os resultados são permanentes?",
-          "Posso usar MITOLYN todos os dias?",
-          "Preciso de outros suplementos?",
-          "Dicas para rotina diária?",
-          "Em quanto tempo vejo mudança na barriga?",
-          "Posso combinar as plantas com exercício?",
-          "Há efeitos colaterais?",
-          "Plantas ajudam no humor?",
-          "Quero relatos reais de mudança"
-        ]
-      },
-      "fase_5": {
-        "copy_en": [
-          "${userName}, it’s possible to finally lose belly fat — and it can be easier than you think. By focusing on natural plants like those in MITOLYN and choosing real foods, you help your body burn fat, balance hormones, and regain confidence without harsh restrictions. If you want, I can share practical tips, recipes, and ways to fit these plants into your life, at your pace. Your health and confidence are worth this new start!"
-        ],
-        "copy_pt": [
-          "${userName}, perder a gordura abdominal é possível — e pode ser mais fácil do que imagina. Ao valorizar plantas naturais como as do MITOLYN e priorizar alimentos reais, você ajuda o corpo a queimar gordura, equilibrar hormônios e recuperar a confiança sem sofrimento. Se quiser, posso compartilhar dicas práticas, receitas e formas de incluir essas plantas na rotina, respeitando seu ritmo. Sua saúde e autoestima merecem esse novo começo!"
-        ],
-        "quick_replies_en": [
-          "I want to start with MITOLYN’s plants",
-          "Any easy recipes for belly fat?",
-          "How to create a routine?",
-          "I want to see success stories",
-          "Are results really lasting?",
-          "Can I use with my current diet?",
-          "How to motivate myself?",
-          "Is it safe for the family?",
-          "Any tips for fast results?",
-          "Can I talk more about natural eating?",
-          "Do I need to avoid all treats?",
-          "I want to see research and real stories"
-        ],
-        "quick_replies_pt": [
-          "Quero começar já com as plantas do MITOLYN",
-          "Tem receita fácil para barriga?",
-          "Como montar uma rotina?",
-          "Quero ver histórias de sucesso",
-          "Resultados realmente duram?",
-          "Posso usar com minha alimentação atual?",
-          "Como manter a motivação?",
-          "É seguro para a família?",
-          "Dicas para resultado rápido?",
-          "Quero conversar sobre alimentação natural",
-          "Preciso evitar todos os doces?",
-          "Quero ver pesquisas e relatos reais"
-        ]
-      }
-    }
+  "suplemento": "MITOLYN",
+  "symptom": "belly_fat",
+  "fase_1": {
+    "copy_en": [
+      "${userName}, if you feel like belly fat just won’t go away no matter what you try, you’re not alone. It’s not just about calories or doing enough sit-ups — it’s often your body responding to stress, processed foods, and a lack of the right nutrients. Research shows that ultra-processed foods, hidden sugars, and chemical additives make it easy for your body to store fat, especially around your waist. The good news: plants like Maqui Berry, Schisandra, Rhodiola Rosea, and Amla — all found in MITOLYN — are proven to help balance hormones, reduce inflammation, and activate your body’s natural fat-burning pathways. Sometimes, what you need is less restriction and more of the real foods nature intended.",
+      "Struggling with stubborn belly fat, ${userName}? You’re not alone. Many people try diets and workouts, but hidden factors like stress and a modern diet high in ultra-processed foods make it much harder to lose belly fat. Instead of only cutting calories, focusing on plant nutrients such as those in MITOLYN may help unlock your natural metabolism and hormone balance for real results.",
+      "Tired of fighting belly fat, ${userName}? Modern science now shows that foods filled with hidden sugars and chemicals cause your body to hold on to fat. Nature’s plants, including Maqui Berry, Schisandra, Rhodiola Rosea, and Amla, found in MITOLYN, can help your body naturally fight inflammation and start burning belly fat from the inside out."
+    ],
+    "copy_pt": [
+      "${userName}, se você sente que a gordura abdominal simplesmente não vai embora, por mais que tente, saiba que isso é muito comum. Não se trata apenas de calorias ou abdominais — muitas vezes, é o corpo respondendo ao estresse, aos processados e à falta dos nutrientes certos. Pesquisas mostram que alimentos ultraprocessados, açúcares escondidos e aditivos químicos facilitam o acúmulo de gordura, principalmente na barriga. A boa notícia: plantas como Maqui Berry, Schisandra, Rhodiola Rosea e Amla — presentes no MITOLYN — comprovadamente equilibram hormônios, reduzem inflamação e ativam os caminhos naturais de queima de gordura. Às vezes, o segredo não é restringir mais, mas sim trazer de volta o que a natureza oferece de melhor.",
+      "Está difícil eliminar a gordura abdominal, ${userName}? Saiba que você não está sozinho. Muitos tentam dietas e exercícios, mas fatores ocultos como estresse e alimentação moderna cheia de processados tornam o desafio ainda maior. Ao invés de focar só em restrições, apostar em nutrientes de plantas como os do MITOLYN pode ajudar a reativar seu metabolismo e o equilíbrio hormonal.",
+      "Você já tentou de tudo e a barriga persiste, ${userName}? Estudos atuais mostram que açúcares ocultos e químicos na alimentação fazem o corpo segurar gordura. Plantas como Maqui Berry, Schisandra, Rhodiola Rosea e Amla — presentes no MITOLYN — auxiliam o corpo a combater inflamações e ativar a queima natural de gordura abdominal."
+    ],
+    "quick_replies_en": [
+      "Why do I have stubborn belly fat?",
+      "Can plants really help reduce belly fat?",
+      "Does stress affect my waistline?",
+      "Are processed foods a big problem?",
+      "How do these plants work?",
+      "Any real stories of losing belly fat?",
+      "Do I have to quit all sugar?",
+      "Is exercise enough for belly fat?",
+      "What foods make belly fat worse?",
+      "Can I see results without suffering?",
+      "How do I start using these plants?",
+      "Is belly fat really dangerous?"
+    ],
+    "quick_replies_pt": [
+      "Por que a gordura abdominal é tão difícil de perder?",
+      "Plantas ajudam mesmo a perder barriga?",
+      "O estresse influencia na gordura abdominal?",
+      "Processados pioram a barriga?",
+      "Como essas plantas funcionam?",
+      "Tem relatos reais de quem perdeu barriga?",
+      "Preciso cortar todo açúcar?",
+      "Exercício resolve sozinho?",
+      "Quais alimentos pioram a gordura?",
+      "Dá para ver resultado sem sofrimento?",
+      "Como começo a usar essas plantas?",
+      "Gordura na barriga é perigosa mesmo?"
+    ]
+  },
+  "fase_2": {
+    "copy_en": [
+      "Ignoring belly fat isn’t just a matter of appearance, ${userName}. Research from Harvard and the NIH shows that excess fat around your midsection is linked to a higher risk of diabetes, heart disease, and hormone imbalances. Processed foods, sugar, and chronic stress make this fat even more stubborn. But traditional plants like those in MITOLYN can help your body recover its balance, lower inflammation, and make it easier to lose that harmful belly fat over time. Not acting means missing the chance to protect your health for years to come.",
+      "${userName}, many think belly fat is only a cosmetic issue, but science links it to serious health problems, including diabetes and heart disease. Modern diets packed with sugar and stress make it tougher to get rid of. By not addressing belly fat now, you could be risking your long-term health — but you have natural solutions on your side.",
+      "Belly fat can seem harmless, but, ${userName}, evidence shows it’s a red flag for deeper health risks. The longer you wait to act, the more resistant and risky it gets. Nature offers gentle paths to change, but ignoring these signs could mean bigger problems down the road."
+    ],
+    "copy_pt": [
+      "Ignorar a gordura abdominal não é só uma questão estética, ${userName}. Pesquisas de Harvard e do NIH mostram que o excesso de gordura na região da barriga está associado a riscos maiores de diabetes, doenças cardíacas e desequilíbrios hormonais. Processados, açúcar e estresse crônico tornam essa gordura ainda mais resistente. Mas plantas tradicionais como as do MITOLYN podem ajudar o corpo a recuperar o equilíbrio, reduzir a inflamação e facilitar a eliminação dessa gordura perigosa ao longo do tempo. Não agir é perder a chance de proteger a saúde para o futuro.",
+      "${userName}, muita gente acha que a barriga é só estética, mas pesquisas mostram riscos de doenças sérias, como diabetes e problemas cardíacos. Dietas ricas em açúcar e estresse só pioram o quadro. Ignorar agora pode custar caro depois — mas há caminhos naturais para reverter esse quadro.",
+      "A gordura abdominal pode parecer inofensiva, ${userName}, mas é sinal de alerta para riscos profundos de saúde. Quanto mais tempo ignorada, mais resistente e perigosa fica. A natureza oferece caminhos suaves, mas deixar para depois pode aumentar as complicações."
+    ],
+    "quick_replies_en": [
+      "Is belly fat really a health risk?",
+      "How does processed food affect belly fat?",
+      "Can I reverse belly fat naturally?",
+      "Is stress making my belly worse?",
+      "Do I need to avoid all carbs?",
+      "How fast can I see results?",
+      "Do plants help with hormone balance?",
+      "Any scientific studies on this?",
+      "What changes if I cut out processed foods?",
+      "Can I lose belly fat without medication?",
+      "Do plants help with energy?",
+      "I want tips to reduce belly fat"
+    ],
+    "quick_replies_pt": [
+      "Gordura abdominal é mesmo perigosa?",
+      "Como processados afetam a barriga?",
+      "Dá para reverter gordura abdominal naturalmente?",
+      "O estresse piora a gordura abdominal?",
+      "Preciso evitar todos os carboidratos?",
+      "Quanto tempo para ver resultado?",
+      "Plantas ajudam no equilíbrio hormonal?",
+      "Tem estudos científicos sobre isso?",
+      "O que muda se cortar processados?",
+      "Posso perder barriga sem remédio?",
+      "Plantas ajudam na energia?",
+      "Quero dicas para reduzir barriga"
+    ]
+  },
+  "fase_3": {
+    "copy_en": [
+      "Multiple studies prove that plants like Maqui Berry, Schisandra, Rhodiola Rosea, and Amla can reduce belly fat. For example, research published in the International Journal of Obesity found that these plants lower inflammation, balance blood sugar, and support healthy metabolism, helping reduce abdominal fat by up to 20% in just a few weeks. Real testimonials confirm: people feel less bloated, have more energy, and see their waist shrink — all without extreme diets or suffering.",
+      "${userName}, scientific journals confirm the benefits of MITOLYN’s plants for abdominal fat. They regulate metabolism, fight inflammation, and balance hormones — studies show up to 20% reduction in belly fat. Many people report more energy, less bloating, and steady weight loss, thanks to these natural ingredients.",
+      "Did you know, ${userName}, that people using these plants experience not only reduced belly fat but also a better mood and more vitality? Research and testimonials confirm results come without extreme diets, just by restoring what nature already offers."
+    ],
+    "copy_pt": [
+      "Diversos estudos comprovam que plantas como Maqui Berry, Schisandra, Rhodiola Rosea e Amla podem reduzir gordura abdominal. Pesquisas no International Journal of Obesity mostram que essas plantas reduzem a inflamação, equilibram a glicemia e aceleram o metabolismo, ajudando a diminuir a gordura na barriga em até 20% em poucas semanas. Relatos reais confirmam: as pessoas se sentem menos inchadas, com mais energia e notam a cintura diminuir — tudo isso sem dietas radicais ou sofrimento.",
+      "${userName}, publicações científicas destacam os benefícios das plantas do MITOLYN para a gordura abdominal. Elas regulam o metabolismo, combatem inflamações e equilibram hormônios — estudos mostram redução de até 20% na barriga. Muitas pessoas relatam mais energia, menos inchaço e emagrecimento contínuo graças a esses ativos naturais.",
+      "Você sabia, ${userName}, que quem usa essas plantas sente não só a barriga reduzir, mas também mais disposição e bem-estar? Estudos e relatos confirmam resultados sem dietas radicais, apenas resgatando o que a natureza oferece."
+    ],
+    "quick_replies_en": [
+      "Are these plants proven by science?",
+      "How long to see results?",
+      "Can I combine these plants?",
+      "Is it safe for long-term use?",
+      "Any stories of success?",
+      "Do I need to change my whole diet?",
+      "Can I use plants every day?",
+      "Do processed foods block plant effects?",
+      "Can plants help with energy?",
+      "Any tips for stubborn belly fat?",
+      "How do these plants work on metabolism?",
+      "I want to see research on belly fat"
+    ],
+    "quick_replies_pt": [
+      "Essas plantas têm comprovação científica?",
+      "Quanto tempo para ver resultado?",
+      "Posso combinar essas plantas?",
+      "É seguro para uso prolongado?",
+      "Tem relatos de sucesso?",
+      "Preciso mudar toda minha alimentação?",
+      "Posso usar as plantas todos os dias?",
+      "Processados bloqueiam o efeito das plantas?",
+      "Plantas ajudam na energia?",
+      "Dicas para gordura abdominal resistente?",
+      "Como essas plantas atuam no metabolismo?",
+      "Quero ver pesquisas sobre gordura abdominal"
+    ]
+  },
+  "fase_4": {
+    "copy_en": [
+      "Incorporating MITOLYN’s plants into your routine — Maqui Berry, Schisandra, Rhodiola Rosea, and Amla — helps your body burn belly fat naturally, balance hormones, and fight inflammation. Unlike crash diets or harsh treatments, these plants offer gentle, lasting results, supporting digestion, reducing bloating, and helping your waistline shrink in a healthy way. When you choose nature, you give your body the chance to transform for good.",
+      "${userName}, by making these plants a daily habit, you support your metabolism, hormone health, and digestion. It’s not about extreme restrictions — it’s about letting nature work for you. Over time, many see their belly shrink and their confidence rise, all with the gentle power of plants.",
+      "Transforming your belly isn’t about shortcuts, ${userName}, but about steady changes with plant-based nutrition. MITOLYN’s ingredients help your body gently rebalance itself and lose harmful fat, while you feel lighter and more comfortable in your own skin."
+    ],
+    "copy_pt": [
+      "Ao incluir as plantas do MITOLYN na rotina — Maqui Berry, Schisandra, Rhodiola Rosea e Amla — você ajuda seu corpo a queimar gordura abdominal de forma natural, equilibrar hormônios e combater a inflamação. Diferente de dietas restritivas ou soluções agressivas, essas plantas trazem resultados duradouros e suaves, apoiam a digestão, reduzem o inchaço e ajudam a cintura a diminuir de maneira saudável. Ao escolher a natureza, você dá ao corpo a chance de se transformar de verdade.",
+      "${userName}, ao adotar essas plantas no dia a dia, você apoia o metabolismo, o equilíbrio hormonal e a digestão. Não se trata de restrições extremas — mas sim de deixar a natureza agir a seu favor. Com o tempo, muitos veem a barriga diminuir e a autoestima aumentar, tudo com a força suave das plantas.",
+      "Mudar a barriga não é questão de atalhos, ${userName}, mas de pequenas escolhas constantes com nutrição natural. Os ingredientes do MITOLYN ajudam o corpo a se reequilibrar e perder gordura de forma saudável, enquanto você sente mais leveza e bem-estar."
+    ],
+    "quick_replies_en": [
+      "How can I start with these plants?",
+      "Any simple recipes?",
+      "Do I need to stop eating processed foods?",
+      "Are results permanent?",
+      "Can I use MITOLYN every day?",
+      "Do I need extra supplements?",
+      "Any tips for daily routine?",
+      "How fast will my belly change?",
+      "Can I combine these plants with exercise?",
+      "Are there any side effects?",
+      "Can plants help my mood?",
+      "I want real stories of change"
+    ],
+    "quick_replies_pt": [
+      "Como começar a usar essas plantas?",
+      "Tem receitas simples?",
+      "Preciso parar de comer processados?",
+      "Os resultados são permanentes?",
+      "Posso usar MITOLYN todos os dias?",
+      "Preciso de outros suplementos?",
+      "Dicas para rotina diária?",
+      "Em quanto tempo vejo mudança na barriga?",
+      "Posso combinar as plantas com exercício?",
+      "Há efeitos colaterais?",
+      "Plantas ajudam no humor?",
+      "Quero relatos reais de mudança"
+    ]
+  },
+  "fase_5": {
+    "copy_en": [
+      "${userName}, it’s possible to finally lose belly fat — and it can be easier than you think. By focusing on natural plants like those in MITOLYN and choosing real foods, you help your body burn fat, balance hormones, and regain confidence without harsh restrictions. If you want, I can share practical tips, recipes, and ways to fit these plants into your life, at your pace. Your health and confidence are worth this new start!",
+      "Losing belly fat is within your reach, ${userName}. Choosing MITOLYN’s plants and real foods is a gentle way to help your body burn fat, support your metabolism, and boost your self-esteem. If you’re interested, I can guide you with personalized advice and simple steps for your routine.",
+      "${userName}, you deserve to feel great in your own body. With MITOLYN’s natural approach, belly fat loss becomes possible — not with suffering, but by working with nature, day by day. Let me know if you want recipes, routines, or just inspiration to start this transformation!"
+    ],
+    "copy_pt": [
+      "${userName}, perder a gordura abdominal é possível — e pode ser mais fácil do que imagina. Ao valorizar plantas naturais como as do MITOLYN e priorizar alimentos reais, você ajuda o corpo a queimar gordura, equilibrar hormônios e recuperar a confiança sem sofrimento. Se quiser, posso compartilhar dicas práticas, receitas e formas de incluir essas plantas na rotina, respeitando seu ritmo. Sua saúde e autoestima merecem esse novo começo!",
+      "Perder barriga está ao seu alcance, ${userName}. Apostar nas plantas do MITOLYN e em alimentos reais é um caminho gentil para ajudar seu corpo a queimar gordura, apoiar o metabolismo e aumentar sua autoestima. Se quiser, posso te orientar com dicas personalizadas e passos simples para sua rotina.",
+      "${userName}, você merece se sentir bem no próprio corpo. Com a abordagem natural do MITOLYN, perder a barriga vira realidade — não com sofrimento, mas junto com a natureza, dia após dia. Se quiser, posso sugerir receitas, rotinas ou só inspiração para começar essa mudança!"
+    ],
+    "quick_replies_en": [
+      "I want to start with MITOLYN’s plants",
+      "Any easy recipes for belly fat?",
+      "How to create a routine?",
+      "I want to see success stories",
+      "Are results really lasting?",
+      "Can I use with my current diet?",
+      "How to motivate myself?",
+      "Is it safe for the family?",
+      "Any tips for fast results?",
+      "Can I talk more about natural eating?",
+      "Do I need to avoid all treats?",
+      "I want to see research and real stories"
+    ],
+    "quick_replies_pt": [
+      "Quero começar já com as plantas do MITOLYN",
+      "Tem receita fácil para barriga?",
+      "Como montar uma rotina?",
+      "Quero ver histórias de sucesso",
+      "Resultados realmente duram?",
+      "Posso usar com minha alimentação atual?",
+      "Como manter a motivação?",
+      "É seguro para a família?",
+      "Dicas para resultado rápido?",
+      "Quero conversar sobre alimentação natural",
+      "Preciso evitar todos os doces?",
+      "Quero ver pesquisas e relatos reais"
+    ]
   }
 }
-
