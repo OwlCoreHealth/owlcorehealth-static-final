@@ -13,33 +13,32 @@
       "Few people talk about it, but bad breath is far more common than it seems — and it’s not just about brushing, you know, ${userName}? Research from the World Health Organization shows that emotional factors, medication use, dry mouth, and bacterial imbalance are frequent causes. What matters most is recognizing the symptom without guilt and looking for solutions. Your discomfort is valid, and your search for relief deserves understanding and information. Here, I’m here to help you understand what might be behind this symptom — and to show there are, indeed, safe and natural solutions."
     ],
     "quick_replies_pt": [
-      "Por que tenho mau hálito mesmo escovando bem?",
-      "Alimentação influencia no hálito?",
-      "Pode ser sinal de problema no estômago?",
-      "Boca seca piora o sintoma?",
-      "Probióticos ajudam no mau hálito?",
-      "Tem solução natural que funciona?",
-      "O que mais pode causar mau hálito?",
-      "Dá para evitar de manhã?",
-      "Tem histórias reais de superação?",
-      "Preciso de exame para saber a causa?",
-      "O que fazer quando percebo o sintoma?",
-      "Quero dicas práticas para o dia a dia"
+      "Quero conhecer a solução com essas plantas para hálito fresco",
+      "Como funciona essa solução natural com plantas para melhorar o hálito?",
+      "Mostra como posso começar uma rotina usando essas plantas para o hálito",
+      "Quero saber mais sobre essa solução que inclui essas plantas no meu dia a dia",
+      "Essa solução com plantas serve para qualquer idade?",
+      "Como posso adaptar essa solução para a minha rotina?",
+      "Explica como as plantas agem juntas para melhorar o hálito",
+      "Tem um passo a passo para experimentar essa solução natural para hálito?",
+      "Quero ver relatos de quem já usou essa solução com plantas para hálito fresco",
+      "Dá para combinar essa solução com minha higiene bucal atual?",
+      "Resultados dessa solução para hálito fresco são duradouros?",
+      "Quero acessar mais informações sobre essa solução com plantas para hálito"
     ],
     "quick_replies_en": [
-      "Why do I have bad breath even with good brushing?",
-      "Does diet affect breath?",
-      "Could it be a sign of stomach problems?",
-      "Does dry mouth make it worse?",
-      "Do probiotics help with bad breath?",
-      "Are there natural solutions that work?",
-      "What else can cause bad breath?",
-      "How can I avoid it in the morning?",
-      "Are there real stories of overcoming this?",
-      "Do I need tests to find the cause?",
-      "What should I do when I notice the symptom?",
-      "I want practical daily tips"
-    
+      "I want to know the solution with these plants for fresh breath",
+      "How does this natural plant solution work to improve breath?",
+      "Show me how I can start a routine using these plants for breath",
+      "I want to learn more about this solution that includes these plants in my daily life",
+      "Is this plant-based solution right for any age?",
+      "How can I adapt this solution to my routine?",
+      "Explain how these plants work together to improve breath",
+      "Is there a step-by-step guide to try this natural solution for breath?",
+      "I want stories from people who used this plant solution for fresh breath",
+      "Can I combine this solution with my current oral hygiene?",
+      "Are results from this solution for fresh breath long-lasting?",
+      "I want more information about this plant solution for breath"
     ]
   },
   "fase_2": {
@@ -80,7 +79,6 @@
       "Can it cause mouth infections?",
       "What do experts say about bad breath?",
       "I want tips to prevent complications"
-   
     ]
   },
   "fase_3": {
@@ -121,7 +119,6 @@
       "What’s the best way to start?",
       "Can chronic cases be reversed?",
       "I want to see transformation testimonials"
-    
     ]
   },
   "fase_4": {
@@ -162,7 +159,6 @@
       "Can I avoid morning bad breath?",
       "I want to see research on natural solutions",
       "Which tea is best for fresh breath?"
-    
     ]
   },
   "fase_5": {
@@ -176,36 +172,33 @@
       "Changing your breath is possible, ${userName}, and it doesn’t have to be a lonely struggle or require miracle recipes. With science, tradition, and the right guidance, you can turn the symptom into self-confidence, lightness, and overall health. If you’d like, I can personalize tips and routines with probiotics, natural teas, and dietary tweaks, always respecting your time and needs. With each choice, you gain more autonomy and joy in self-care. I’m here to support, clarify, and walk beside you in this journey.",
       "${userName}, caring for your breath is about caring for your whole well-being — no pressure, just information, support, and accessible practices. If you want to try a natural approach, I can show you recipes, routines, and real testimonials to inspire and make the process easier. The secret is to take the first step: try, adjust, and feel the well-being that comes with small changes. Your journey is unique — and I’ll be here for every decision, supporting your search for more health and the freedom to smile."
     ],
-    {
-  "quick_replies_pt": [
-    "Quero conhecer a solução com essas plantas para hálito fresco",
-    "Como funciona essa solução natural com plantas para melhorar o hálito?",
-    "Mostra como posso começar uma rotina usando essas plantas para o hálito",
-    "Quero saber mais sobre essa solução que inclui essas plantas no meu dia a dia",
-    "Essa solução com plantas serve para qualquer idade?",
-    "Como posso adaptar essa solução para a minha rotina?",
-    "Explica como as plantas agem juntas para melhorar o hálito",
-    "Tem um passo a passo para experimentar essa solução natural para hálito?",
-    "Quero ver relatos de quem já usou essa solução com plantas para hálito fresco",
-    "Dá para combinar essa solução com minha higiene bucal atual?",
-    "Resultados dessa solução para hálito fresco são duradouros?",
-    "Quero acessar mais informações sobre essa solução com plantas para hálito"
-  ],
-  "quick_replies_en": [
-    "I want to know the solution with these plants for fresh breath",
-    "How does this natural plant solution work to improve breath?",
-    "Show me how I can start a routine using these plants for breath",
-    "I want to learn more about this solution that includes these plants in my daily life",
-    "Is this plant-based solution right for any age?",
-    "How can I adapt this solution to my routine?",
-    "Explain how these plants work together to improve breath",
-    "Is there a step-by-step guide to try this natural solution for breath?",
-    "I want stories from people who used this plant solution for fresh breath",
-    "Can I combine this solution with my current oral hygiene?",
-    "Are results from this solution for fresh breath long-lasting?",
-    "I want more information about this plant solution for breath"
-  
+    "quick_replies_pt": [
+      "Quero conhecer a solução com essas plantas para hálito fresco",
+      "Como funciona essa solução natural com plantas para melhorar o hálito?",
+      "Mostra como posso começar uma rotina usando essas plantas para o hálito",
+      "Quero saber mais sobre essa solução que inclui essas plantas no meu dia a dia",
+      "Essa solução com plantas serve para qualquer idade?",
+      "Como posso adaptar essa solução para a minha rotina?",
+      "Explica como as plantas agem juntas para melhorar o hálito",
+      "Tem um passo a passo para experimentar essa solução natural para hálito?",
+      "Quero ver relatos de quem já usou essa solução com plantas para hálito fresco",
+      "Dá para combinar essa solução com minha higiene bucal atual?",
+      "Resultados dessa solução para hálito fresco são duradouros?",
+      "Quero acessar mais informações sobre essa solução com plantas para hálito"
+    ],
+    "quick_replies_en": [
+      "I want to know the solution with these plants for fresh breath",
+      "How does this natural plant solution work to improve breath?",
+      "Show me how I can start a routine using these plants for breath",
+      "I want to learn more about this solution that includes these plants in my daily life",
+      "Is this plant-based solution right for any age?",
+      "How can I adapt this solution to my routine?",
+      "Explain how these plants work together to improve breath",
+      "Is there a step-by-step guide to try this natural solution for breath?",
+      "I want stories from people who used this plant solution for fresh breath",
+      "Can I combine this solution with my current oral hygiene?",
+      "Are results from this solution for fresh breath long-lasting?",
+      "I want more information about this plant solution for breath"
     ]
   }
 }
-
