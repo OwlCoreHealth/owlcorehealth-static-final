@@ -1,210 +1,204 @@
 {
-  "suplemento": "Moringa", 
-  "sintomas": {
-    "falta_de_foco": {
-      "poor_focus": {
-        "fase_1": {
-          "copy_pt": [
-            "${userName}, você já percebeu como está cada vez mais difícil manter o foco durante o dia, mesmo quando tenta se concentrar? A falta de foco pode estar ligada a muitos fatores, mas um dos principais é a alimentação moderna — cheia de ultraprocessados, solos pobres em nutrientes e carnes com hormônios — que prejudicam o funcionamento do cérebro. Essa combinação afeta a energia mental e a clareza necessária para as tarefas do dia a dia.",
-            "${userName}, sentir dificuldade para se concentrar não é algo raro, mas pode ser um sinal de que seu cérebro está pedindo socorro. A ciência mostra que alimentos industrializados, contaminados por agrotóxicos e nutrientes escassos devido à degradação do solo, além do consumo de carnes tratadas com hormônios, impactam negativamente a saúde cerebral e a capacidade de foco.",
-            "Você já notou, ${userName}, que mesmo com todo esforço, sua mente parece dispersar facilmente? Esse sintoma está muito relacionado ao que ingerimos diariamente: alimentos processados, solos empobrecidos e carnes hormonizadas podem diminuir a capacidade do cérebro de manter a atenção, gerando essa sensação de falta de foco e energia mental."
-          ],
-          "copy_en": [
-            "${userName}, have you noticed it’s increasingly hard to maintain focus throughout the day, even when you try? Poor focus can be caused by many factors, but one of the main ones is modern diet — full of ultra-processed foods, nutrient-poor soils, and hormone-treated meats — that impair brain function. This mix affects mental energy and the clarity needed for daily tasks.",
-            "${userName}, struggling to concentrate isn’t uncommon, but it can be a sign your brain is asking for help. Science shows industrialized foods contaminated by pesticides and depleted nutrients due to soil degradation, plus hormone-treated meats, negatively impact brain health and focus ability.",
-            "Have you noticed, ${userName}, that no matter how hard you try, your mind drifts easily? This symptom is closely related to what we consume daily: processed foods, depleted soils, and hormone-treated meats reduce the brain’s ability to sustain attention, causing poor focus and mental fatigue."
-          ],
-          "quick_replies_pt": [
-            "Por que tenho dificuldade de foco?",
-            "Alimentos influenciam minha concentração?",
-            "Solo pobre afeta o cérebro?",
-            "Hormônios em carnes prejudicam?",
-            "Quero saber mais sobre falta de foco",
-            "Tem estudos científicos?",
-            "Como melhorar a concentração naturalmente?",
-            "Estresse piora a falta de foco?",
-            "Quais sintomas acompanham isso?",
-            "É normal sentir isso hoje?",
-            "Quero dicas para melhorar foco",
-            "Isso pode ser reversível?"
-          ],
-          "quick_replies_en": [
-            "Why do I have trouble focusing?",
-            "Do foods influence my concentration?",
-            "Does poor soil affect the brain?",
-            "Do hormones in meat harm?",
-            "I want to learn more about poor focus",
-            "Are there scientific studies?",
-            "How to improve concentration naturally?",
-            "Does stress worsen poor focus?",
-            "What symptoms accompany this?",
-            "Is this normal nowadays?",
-            "I want tips to improve focus",
-            "Can this be reversed?"
-          ]
-        },
-        "fase_2": {
-          "copy_pt": [
-            "${userName}, a falta de foco constante pode afetar sua produtividade, humor e até saúde mental. Estudos da Universidade de Stanford mostram que a exposição prolongada a alimentos ultraprocessados, solos degradados e carnes com hormônios está associada à diminuição da função cognitiva e ao aumento do risco de ansiedade e depressão. Reconhecer esse sintoma é essencial para agir antes que cause impactos maiores.",
-            "Você sabia, ${userName}, que a falta de concentração persistente pode ser um sinal de inflamação cerebral causada por maus hábitos alimentares? Pesquisas indicam que o consumo de alimentos processados, contaminados por pesticidas e carnes hormonizadas agrava a inflamação, prejudicando a saúde do cérebro e comprometendo a capacidade de foco.",
-            "${userName}, quando a mente não consegue se concentrar, isso pode levar ao desgaste mental e emocional. Dados da Organização Mundial da Saúde indicam que essa condição está ligada a maiores índices de estresse, ansiedade e problemas de saúde mental. A alimentação inadequada — com processados, solos contaminados e carnes tratadas — é um dos fatores que agravam esse quadro."
-          ],
-          "copy_en": [
-            "${userName}, constant poor focus can affect your productivity, mood, and even mental health. Stanford University studies show prolonged exposure to ultra-processed foods, degraded soils, and hormone-treated meats is linked to decreased cognitive function and increased risk of anxiety and depression. Recognizing this symptom is key to acting before bigger impacts occur.",
-            "Did you know, ${userName}, that persistent concentration issues can signal brain inflammation caused by poor dietary habits? Research shows processed foods contaminated by pesticides and hormone-treated meats worsen inflammation, harming brain health and focus ability.",
-            "${userName}, when the mind can’t concentrate, it can lead to mental and emotional exhaustion. World Health Organization data link this condition to higher rates of stress, anxiety, and mental health problems. Poor diet — with processed foods, contaminated soils, and treated meats — is a factor that worsens this condition."
-          ],
-          "quick_replies_pt": [
-            "Falta de foco pode ser grave?",
-            "Como processados pioram isso?",
-            "Solo contaminado afeta cérebro?",
-            "Hormônios em carnes prejudicam?",
-            "Quero saber mais sobre inflamação cerebral",
-            "Falta de foco afeta saúde mental?",
-            "Dá para melhorar?",
-            "Quais sintomas devo observar?",
-            "Quero dicas para melhorar foco",
-            "Estresse piora o quadro?",
-            "Tem estudos científicos?",
-            "Como cuidar da saúde cerebral?"
-          ],
-          "quick_replies_en": [
-            "Can poor focus be serious?",
-            "How do processed foods worsen it?",
-            "Does contaminated soil affect brain?",
-            "Do hormones in meat harm?",
-            "I want to learn more about brain inflammation",
-            "Does poor focus affect mental health?",
-            "Can it be improved?",
-            "What symptoms should I watch for?",
-            "I want tips to improve focus",
-            "Does stress worsen this?",
-            "Are there scientific studies?",
-            "How to care for brain health?"
-          ]
-        },
-        "fase_3": {
-          "copy_pt": [
-            "${userName}, estudos mostram que a Moringa é rica em antioxidantes, vitaminas do complexo B, ferro e cálcio, nutrientes que protegem o cérebro contra o estresse oxidativo e inflamação, causas comuns da falta de foco. Pesquisas publicadas na Frontiers in Pharmacology indicam que a planta melhora a função cognitiva e ajuda a restaurar a concentração e a clareza mental.",
-            "Pesquisas recentes, ${userName}, demonstram que os compostos bioativos da Moringa possuem efeito neuroprotetor, ajudando a reduzir a inflamação cerebral e melhorando a função mitocondrial. Publicações do Journal of Ethnopharmacology reforçam seu potencial para combater a fadiga mental e melhorar o desempenho cognitivo.",
-            "${userName}, estudos do Nutritional Journal confirmam que o consumo regular de Moringa está associado a maior resistência mental, melhora da memória e aumento da clareza. Seus aminoácidos e antioxidantes atuam no combate ao estresse oxidativo, fundamental para manter o foco."
-          ],
-          "copy_en": [
-            "${userName}, studies show Moringa is rich in antioxidants, B vitamins, iron, and calcium — nutrients that protect the brain from oxidative stress and inflammation, common causes of poor focus. Research published in Frontiers in Pharmacology indicates the plant improves cognitive function and helps restore concentration and mental clarity.",
-            "Recent research, ${userName}, demonstrates that Moringa’s bioactive compounds have neuroprotective effects, helping reduce brain inflammation and improving mitochondrial function. Publications in the Journal of Ethnopharmacology reinforce its potential to combat mental fatigue and enhance cognitive performance.",
-            "${userName}, studies from the Nutritional Journal confirm regular Moringa consumption is linked to greater mental resilience, improved memory, and increased clarity. Its amino acids and antioxidants fight oxidative stress, essential for maintaining focus."
-          ],
-          "quick_replies_pt": [
-            "Moringa ajuda na concentração?",
-            "Tem estudos comprovando isso?",
-            "Quanto tempo para sentir efeito?",
-            "Posso usar todos os dias?",
-            "Moringa ajuda contra fadiga mental?",
-            "Ajuda a reduzir inflamação cerebral?",
-            "É seguro para uso contínuo?",
-            "Quero relatos de quem melhorou foco",
-            "Como a Moringa age no cérebro?",
-            "Posso combinar com outras plantas?",
-            "Quero dicas para começar",
-            "Quero ver estudos científicos"
-          ],
-          "quick_replies_en": [
-            "Does Moringa help concentration?",
-            "Are there studies proving this?",
-            "How long to feel effects?",
-            "Can I use it daily?",
-            "Does Moringa help mental fatigue?",
-            "Does it reduce brain inflammation?",
-            "Is it safe for continuous use?",
-            "I want stories from people who improved focus",
-            "How does Moringa act on the brain?",
-            "Can I combine it with other plants?",
-            "I want tips to start",
-            "I want to see scientific studies"
-          ]
-        },
-        "fase_4": {
-          "copy_pt": [
-            "A Moringa é uma planta milenar que oferece uma combinação única de vitaminas, minerais e antioxidantes que fortalecem a saúde cerebral. Seus compostos atuam na proteção contra o estresse oxidativo e a inflamação, restaurando a clareza mental e aumentando a capacidade de concentração. Incorporar a Moringa na rotina é abraçar uma solução natural eficaz para melhorar o foco e a produtividade.",
-            "${userName}, a força da Moringa está em seus nutrientes que atuam como neuroprotetores naturais, ajudando a reduzir a inflamação cerebral e a fadiga mental. Utilizada há séculos em diversas culturas, a planta agora conta com comprovação científica que reforça seu papel na melhora da função cognitiva e da memória.",
-            "Com raízes na medicina tradicional, a Moringa é reconhecida por suas propriedades antioxidantes e anti-inflamatórias que favorecem o funcionamento do sistema nervoso. Estudos recentes indicam que o consumo regular da planta pode aumentar a resistência mental, clareza e memória, promovendo melhor desempenho nas tarefas diárias."
-          ],
-          "copy_en": [
-            "Moringa is a millenary plant offering a unique combination of vitamins, minerals, and antioxidants that strengthen brain health. Its compounds protect against oxidative stress and inflammation, restoring mental clarity and boosting concentration. Incorporating Moringa into your routine embraces an effective natural solution to improve focus and productivity.",
-            "${userName}, Moringa’s strength lies in its nutrients acting as natural neuroprotectors, helping reduce brain inflammation and mental fatigue. Used for centuries in various cultures, the plant now has scientific backing reinforcing its role in improving cognitive function and memory.",
-            "Rooted in traditional medicine, Moringa is recognized for its antioxidant and anti-inflammatory properties that support nervous system function. Recent studies indicate regular consumption can increase mental resilience, clarity, and memory, promoting better performance in daily tasks."
-          ],
-          "quick_replies_pt": [
-            "Como usar Moringa para foco?",
-            "Tem receita para clareza mental?",
-            "Ajuda contra fadiga mental?",
-            "Posso usar todos os dias?",
-            "Quero relatos de quem melhorou foco",
-            "Quanto tempo para ver resultado?",
-            "É seguro para uso contínuo?",
-            "Posso combinar com outras plantas?",
-            "Quero dicas para começar",
-            "Moringa ajuda na memória?",
-            "Quero ver estudos científicos",
-            "Dá para usar com alimentação variada?"
-          ],
-          "quick_replies_en": [
-            "How to use Moringa for focus?",
-            "Any recipe for mental clarity?",
-            "Does it help mental fatigue?",
-            "Can I use it daily?",
-            "I want stories from people who improved focus",
-            "How long to see results?",
-            "Is it safe for continuous use?",
-            "Can I combine it with other plants?",
-            "I want tips to start",
-            "Does Moringa help memory?",
-            "I want to see scientific studies",
-            "Can it be used with varied diet?"
-          ]
-        },
-        "fase_5": {
-          "copy_pt": [
-            "${userName}, iniciar o cuidado natural para melhorar o foco é mais simples do que imagina. Com a Moringa e uma alimentação equilibrada, seu cérebro terá o suporte necessário para funcionar com mais clareza, energia e produtividade. Posso te ajudar com receitas, dicas e um plano prático para essa transformação.",
-            "A jornada para um foco melhor, ${userName}, começa com escolhas naturais e conscientes. Ao incluir Moringa na sua rotina, você oferece ao cérebro nutrientes essenciais para recuperar a concentração e o bem-estar mental. Estou aqui para te guiar com passos simples e personalizados para que você sinta os benefícios de forma real e duradoura.",
-            "${userName}, sua mente pode estar mais focada e clara a partir de hoje. A Moringa é uma aliada poderosa para restaurar a energia mental e a função cognitiva. Posso fornecer um plano com orientações, receitas e cuidados para que essa mudança aconteça de forma segura e prazerosa."
-          ],
-          "copy_en": [
-            "${userName}, starting natural care to improve focus is simpler than you think. With Moringa and a balanced diet, your brain will have the support it needs to function with more clarity, energy, and productivity. I can help you with recipes, tips, and a practical plan for this transformation.",
-            "The journey to better focus, ${userName}, starts with natural and conscious choices. By including Moringa in your routine, you provide your brain with essential nutrients to regain concentration and mental well-being. I’m here to guide you with simple, personalized steps so you can feel the benefits in a real and lasting way.",
-            "${userName}, your mind can be clearer and more focused starting today. Moringa is a powerful ally in restoring mental energy and cognitive function. I can provide a plan with guidance, recipes, and care so that this change happens safely and enjoyably."
-          ],
-          "quick_replies_pt": [
-            "Quero começar já com Moringa",
-            "Tem receita fácil para foco mental?",
-            "Quero relatos reais de transformação",
-            "Como montar uma rotina prática?",
-            "Prefiro aprender mais antes",
-            "Resultados são duradouros?",
-            "Posso combinar com minha alimentação?",
-            "Quero conversar sobre escolhas naturais",
-            "Dá pra fazer em família?",
-            "Tem dicas para motivação?",
-            "É seguro para todos?",
-            "Quero ver estudos e relatos reais"
-          ],
-          "quick_replies_en": [
-            "I want to start with Moringa now",
-            "Any easy recipe for mental focus?",
-            "I want real transformation stories",
-            "How to build a practical routine?",
-            "I’d rather learn more first",
-            "Are results lasting?",
-            "Can I combine with my diet?",
-            "I want to talk about natural choices",
-            "Can this be done as a family?",
-            "Any tips for motivation?",
-            "Is it safe for everyone?",
-            "I want to see studies and real stories"
-          ]
-        }
-      }
-    }
+  "suplemento": "Moringa",
+  "symptom": "poor_focus",
+  "fase_1": {
+    "copy_pt": [
+      "${userName}, você já percebeu como está cada vez mais difícil manter o foco durante o dia, mesmo quando tenta se concentrar? A falta de foco pode estar ligada a muitos fatores, mas um dos principais é a alimentação moderna — cheia de ultraprocessados, solos pobres em nutrientes e carnes com hormônios — que prejudicam o funcionamento do cérebro. Essa combinação afeta a energia mental e a clareza necessária para as tarefas do dia a dia.",
+      "${userName}, sentir dificuldade para se concentrar não é algo raro, mas pode ser um sinal de que seu cérebro está pedindo socorro. A ciência mostra que alimentos industrializados, contaminados por agrotóxicos e nutrientes escassos devido à degradação do solo, além do consumo de carnes tratadas com hormônios, impactam negativamente a saúde cerebral e a capacidade de foco.",
+      "Você já notou, ${userName}, que mesmo com todo esforço, sua mente parece dispersar facilmente? Esse sintoma está muito relacionado ao que ingerimos diariamente: alimentos processados, solos empobrecidos e carnes hormonizadas podem diminuir a capacidade do cérebro de manter a atenção, gerando essa sensação de falta de foco e energia mental."
+    ],
+    "copy_en": [
+      "${userName}, have you noticed it’s increasingly hard to maintain focus throughout the day, even when you try? Poor focus can be caused by many factors, but one of the main ones is modern diet — full of ultra-processed foods, nutrient-poor soils, and hormone-treated meats — that impair brain function. This mix affects mental energy and the clarity needed for daily tasks.",
+      "${userName}, struggling to concentrate isn’t uncommon, but it can be a sign your brain is asking for help. Science shows industrialized foods contaminated by pesticides and depleted nutrients due to soil degradation, plus hormone-treated meats, negatively impact brain health and focus ability.",
+      "Have you noticed, ${userName}, that no matter how hard you try, your mind drifts easily? This symptom is closely related to what we consume daily: processed foods, depleted soils, and hormone-treated meats reduce the brain’s ability to sustain attention, causing poor focus and mental fatigue."
+    ],
+    "quick_replies_pt": [
+      "Por que tenho dificuldade de foco?",
+      "Alimentos influenciam minha concentração?",
+      "Solo pobre afeta o cérebro?",
+      "Hormônios em carnes prejudicam?",
+      "Quero saber mais sobre falta de foco",
+      "Tem estudos científicos?",
+      "Como melhorar a concentração naturalmente?",
+      "Estresse piora a falta de foco?",
+      "Quais sintomas acompanham isso?",
+      "É normal sentir isso hoje?",
+      "Quero dicas para melhorar foco",
+      "Isso pode ser reversível?"
+    ],
+    "quick_replies_en": [
+      "Why do I have trouble focusing?",
+      "Do foods influence my concentration?",
+      "Does poor soil affect the brain?",
+      "Do hormones in meat harm?",
+      "I want to learn more about poor focus",
+      "Are there scientific studies?",
+      "How to improve concentration naturally?",
+      "Does stress worsen poor focus?",
+      "What symptoms accompany this?",
+      "Is this normal nowadays?",
+      "I want tips to improve focus",
+      "Can this be reversed?"
+    ]
+  },
+  "fase_2": {
+    "copy_pt": [
+      "${userName}, a falta de foco constante pode afetar sua produtividade, humor e até saúde mental. Estudos da Universidade de Stanford mostram que a exposição prolongada a alimentos ultraprocessados, solos degradados e carnes com hormônios está associada à diminuição da função cognitiva e ao aumento do risco de ansiedade e depressão. Reconhecer esse sintoma é essencial para agir antes que cause impactos maiores.",
+      "Você sabia, ${userName}, que a falta de concentração persistente pode ser um sinal de inflamação cerebral causada por maus hábitos alimentares? Pesquisas indicam que o consumo de alimentos processados, contaminados por pesticidas e carnes hormonizadas agrava a inflamação, prejudicando a saúde do cérebro e comprometendo a capacidade de foco.",
+      "${userName}, quando a mente não consegue se concentrar, isso pode levar ao desgaste mental e emocional. Dados da Organização Mundial da Saúde indicam que essa condição está ligada a maiores índices de estresse, ansiedade e problemas de saúde mental. A alimentação inadequada — com processados, solos contaminados e carnes tratadas — é um dos fatores que agravam esse quadro."
+    ],
+    "copy_en": [
+      "${userName}, constant poor focus can affect your productivity, mood, and even mental health. Stanford University studies show prolonged exposure to ultra-processed foods, degraded soils, and hormone-treated meats is linked to decreased cognitive function and increased risk of anxiety and depression. Recognizing this symptom is key to acting before bigger impacts occur.",
+      "Did you know, ${userName}, that persistent concentration issues can signal brain inflammation caused by poor dietary habits? Research shows processed foods contaminated by pesticides and hormone-treated meats worsen inflammation, harming brain health and focus ability.",
+      "${userName}, when the mind can’t concentrate, it can lead to mental and emotional exhaustion. World Health Organization data link this condition to higher rates of stress, anxiety, and mental health problems. Poor diet — with processed foods, contaminated soils, and treated meats — is a factor that worsens this condition."
+    ],
+    "quick_replies_pt": [
+      "Falta de foco pode ser grave?",
+      "Como processados pioram isso?",
+      "Solo contaminado afeta cérebro?",
+      "Hormônios em carnes prejudicam?",
+      "Quero saber mais sobre inflamação cerebral",
+      "Falta de foco afeta saúde mental?",
+      "Dá para melhorar?",
+      "Quais sintomas devo observar?",
+      "Quero dicas para melhorar foco",
+      "Estresse piora o quadro?",
+      "Tem estudos científicos?",
+      "Como cuidar da saúde cerebral?"
+    ],
+    "quick_replies_en": [
+      "Can poor focus be serious?",
+      "How do processed foods worsen it?",
+      "Does contaminated soil affect brain?",
+      "Do hormones in meat harm?",
+      "I want to learn more about brain inflammation",
+      "Does poor focus affect mental health?",
+      "Can it be improved?",
+      "What symptoms should I watch for?",
+      "I want tips to improve focus",
+      "Does stress worsen this?",
+      "Are there scientific studies?",
+      "How to care for brain health?"
+    ]
+  },
+  "fase_3": {
+    "copy_pt": [
+      "${userName}, estudos mostram que a Moringa é rica em antioxidantes, vitaminas do complexo B, ferro e cálcio, nutrientes que protegem o cérebro contra o estresse oxidativo e inflamação, causas comuns da falta de foco. Pesquisas publicadas na Frontiers in Pharmacology indicam que a planta melhora a função cognitiva e ajuda a restaurar a concentração e a clareza mental.",
+      "Pesquisas recentes, ${userName}, demonstram que os compostos bioativos da Moringa possuem efeito neuroprotetor, ajudando a reduzir a inflamação cerebral e melhorando a função mitocondrial. Publicações do Journal of Ethnopharmacology reforçam seu potencial para combater a fadiga mental e melhorar o desempenho cognitivo.",
+      "${userName}, estudos do Nutritional Journal confirmam que o consumo regular de Moringa está associado a maior resistência mental, melhora da memória e aumento da clareza. Seus aminoácidos e antioxidantes atuam no combate ao estresse oxidativo, fundamental para manter o foco."
+    ],
+    "copy_en": [
+      "${userName}, studies show Moringa is rich in antioxidants, B vitamins, iron, and calcium — nutrients that protect the brain from oxidative stress and inflammation, common causes of poor focus. Research published in Frontiers in Pharmacology indicates the plant improves cognitive function and helps restore concentration and mental clarity.",
+      "Recent research, ${userName}, demonstrates that Moringa’s bioactive compounds have neuroprotective effects, helping reduce brain inflammation and improving mitochondrial function. Publications in the Journal of Ethnopharmacology reinforce its potential to combat mental fatigue and enhance cognitive performance.",
+      "${userName}, studies from the Nutritional Journal confirm regular Moringa consumption is linked to greater mental resilience, improved memory, and increased clarity. Its amino acids and antioxidants fight oxidative stress, essential for maintaining focus."
+    ],
+    "quick_replies_pt": [
+      "Moringa ajuda na concentração?",
+      "Tem estudos comprovando isso?",
+      "Quanto tempo para sentir efeito?",
+      "Posso usar todos os dias?",
+      "Moringa ajuda contra fadiga mental?",
+      "Ajuda a reduzir inflamação cerebral?",
+      "É seguro para uso contínuo?",
+      "Quero relatos de quem melhorou foco",
+      "Como a Moringa age no cérebro?",
+      "Posso combinar com outras plantas?",
+      "Quero dicas para começar",
+      "Quero ver estudos científicos"
+    ],
+    "quick_replies_en": [
+      "Does Moringa help concentration?",
+      "Are there studies proving this?",
+      "How long to feel effects?",
+      "Can I use it daily?",
+      "Does Moringa help mental fatigue?",
+      "Does it reduce brain inflammation?",
+      "Is it safe for continuous use?",
+      "I want stories from people who improved focus",
+      "How does Moringa act on the brain?",
+      "Can I combine it with other plants?",
+      "I want tips to start",
+      "I want to see scientific studies"
+    ]
+  },
+  "fase_4": {
+    "copy_pt": [
+      "A Moringa é uma planta milenar que oferece uma combinação única de vitaminas, minerais e antioxidantes que fortalecem a saúde cerebral. Seus compostos atuam na proteção contra o estresse oxidativo e a inflamação, restaurando a clareza mental e aumentando a capacidade de concentração. Incorporar a Moringa na rotina é abraçar uma solução natural eficaz para melhorar o foco e a produtividade.",
+      "${userName}, a força da Moringa está em seus nutrientes que atuam como neuroprotetores naturais, ajudando a reduzir a inflamação cerebral e a fadiga mental. Utilizada há séculos em diversas culturas, a planta agora conta com comprovação científica que reforça seu papel na melhora da função cognitiva e da memória.",
+      "Com raízes na medicina tradicional, a Moringa é reconhecida por suas propriedades antioxidantes e anti-inflamatórias que favorecem o funcionamento do sistema nervoso. Estudos recentes indicam que o consumo regular da planta pode aumentar a resistência mental, clareza e memória, promovendo melhor desempenho nas tarefas diárias."
+    ],
+    "copy_en": [
+      "Moringa is a millenary plant offering a unique combination of vitamins, minerals, and antioxidants that strengthen brain health. Its compounds protect against oxidative stress and inflammation, restoring mental clarity and boosting concentration. Incorporating Moringa into your routine embraces an effective natural solution to improve focus and productivity.",
+      "${userName}, Moringa’s strength lies in its nutrients acting as natural neuroprotectors, helping reduce brain inflammation and mental fatigue. Used for centuries in various cultures, the plant now has scientific backing reinforcing its role in improving cognitive function and memory.",
+      "Rooted in traditional medicine, Moringa is recognized for its antioxidant and anti-inflammatory properties that support nervous system function. Recent studies indicate regular consumption can increase mental resilience, clarity, and memory, promoting better performance in daily tasks."
+    ],
+    "quick_replies_pt": [
+      "Como usar Moringa para foco?",
+      "Tem receita para clareza mental?",
+      "Ajuda contra fadiga mental?",
+      "Posso usar todos os dias?",
+      "Quero relatos de quem melhorou foco",
+      "Quanto tempo para ver resultado?",
+      "É seguro para uso contínuo?",
+      "Posso combinar com outras plantas?",
+      "Quero dicas para começar",
+      "Moringa ajuda na memória?",
+      "Quero ver estudos científicos",
+      "Dá para usar com alimentação variada?"
+    ],
+    "quick_replies_en": [
+      "How to use Moringa for focus?",
+      "Any recipe for mental clarity?",
+      "Does it help mental fatigue?",
+      "Can I use it daily?",
+      "I want stories from people who improved focus",
+      "How long to see results?",
+      "Is it safe for continuous use?",
+      "Can I combine with other plants?",
+      "I want tips to start",
+      "Does Moringa help memory?",
+      "I want to see scientific studies",
+      "Can it be used with varied diet?"
+    ]
+  },
+  "fase_5": {
+    "copy_pt": [
+      "${userName}, iniciar o cuidado natural para melhorar o foco é mais simples do que imagina. Com a Moringa e uma alimentação equilibrada, seu cérebro terá o suporte necessário para funcionar com mais clareza, energia e produtividade. Posso te ajudar com receitas, dicas e um plano prático para essa transformação.",
+      "A jornada para um foco melhor, ${userName}, começa com escolhas naturais e conscientes. Ao incluir Moringa na sua rotina, você oferece ao cérebro nutrientes essenciais para recuperar a concentração e o bem-estar mental. Estou aqui para te guiar com passos simples e personalizados para que você sinta os benefícios de forma real e duradoura.",
+      "${userName}, sua mente pode estar mais focada e clara a partir de hoje. A Moringa é uma aliada poderosa para restaurar a energia mental e a função cognitiva. Posso fornecer um plano com orientações, receitas e cuidados para que essa mudança aconteça de forma segura e prazerosa."
+    ],
+    "copy_en": [
+      "${userName}, starting natural care to improve focus is simpler than you think. With Moringa and a balanced diet, your brain will have the support it needs to function with more clarity, energy, and productivity. I can help you with recipes, tips, and a practical plan for this transformation.",
+      "The journey to better focus, ${userName}, starts with natural and conscious choices. By including Moringa in your routine, you provide your brain with essential nutrients to regain concentration and mental well-being. I’m here to guide you with simple, personalized steps so you can feel the benefits in a real and lasting way.",
+      "${userName}, your mind can be clearer and more focused starting today. Moringa is a powerful ally in restoring mental energy and cognitive function. I can provide a plan with guidance, recipes, and care so that this change happens safely and enjoyably."
+    ],
+    "quick_replies_pt": [
+      "Quero começar já com Moringa",
+      "Tem receita fácil para foco mental?",
+      "Quero relatos reais de transformação",
+      "Como montar uma rotina prática?",
+      "Prefiro aprender mais antes",
+      "Resultados são duradouros?",
+      "Posso combinar com minha alimentação?",
+      "Quero conversar sobre escolhas naturais",
+      "Dá pra fazer em família?",
+      "Tem dicas para motivação?",
+      "É seguro para todos?",
+      "Quero ver estudos e relatos reais"
+    ],
+    "quick_replies_en": [
+      "I want to start with Moringa now",
+      "Any easy recipe for mental focus?",
+      "I want real transformation stories",
+      "How to build a practical routine?",
+      "I’d rather learn more first",
+      "Are results lasting?",
+      "Can I combine with my diet?",
+      "I want to talk about natural choices",
+      "Can this be done as a family?",
+      "Any tips for motivation?",
+      "Is it safe for everyone?",
+      "I want to see studies and real stories"
+    ]
   }
 }
-
