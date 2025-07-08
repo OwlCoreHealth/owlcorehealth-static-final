@@ -1,187 +1,203 @@
 {
-  "suplemento": "MITOLYN", 
-  "sintomas": {
-    "difficulty_losing_weight": {
-      "fase_1": {
-        "copy_pt": [
-          "${userName}, não existe sensação mais injusta do que fazer dieta, tentar de tudo e ver que o ponteiro da balança simplesmente não se mexe. Mas a verdade é que o problema raramente está só na força de vontade. Nossa rotina moderna, cheia de industrializados, açúcares ocultos e falta das plantas certas, cria bloqueios metabólicos que tornam o emagrecimento cada vez mais difícil. Plantas como Rhodiola Rosea, Maqui Berry, Amla e Schisandra, estudadas por universidades como Harvard e Oxford, são conhecidas por restaurar o metabolismo, combater a inflamação interna e ajudar o corpo a finalmente responder aos seus esforços. Quando nada parece funcionar, talvez seja o momento de resgatar o poder ancestral e natural desses ingredientes esquecidos pela indústria."
-        ],
-        "copy_en": [
-          "${userName}, there’s no more unfair feeling than dieting, trying everything, and seeing the scale refuse to move. But the truth is, the problem is rarely just about willpower. Our modern routines, full of processed foods, hidden sugars, and missing the right plants, create metabolic blockages that make losing weight harder and harder. Plants like Rhodiola Rosea, Maqui Berry, Amla, and Schisandra, studied by universities such as Harvard and Oxford, are known for restoring metabolism, fighting inner inflammation, and helping the body finally respond to your efforts. When nothing seems to work, maybe it’s time to rediscover the ancestral and natural power of these ingredients forgotten by the industry."
-        ],
-        "quick_replies_pt": [
-          "Por que é tão difícil emagrecer hoje?",
-          "Plantas ajudam de verdade?",
-          "O que trava o metabolismo?",
-          "Processados atrapalham mesmo?",
-          "Tem relatos de quem conseguiu mudar?",
-          "Como as plantas agem no corpo?",
-          "Açúcar escondido impede emagrecimento?",
-          "O que posso mudar primeiro?",
-          "Exercício basta para emagrecer?",
-          "Quero dicas práticas para começar",
-          "Dá para perder peso sem sofrimento?",
-          "Quero entender mais sobre metabolismo"
-        ],
-        "quick_replies_en": [
-          "Why is it so hard to lose weight today?",
-          "Can plants really help?",
-          "What blocks metabolism?",
-          "Do processed foods really get in the way?",
-          "Are there stories of success?",
-          "How do these plants act in the body?",
-          "Do hidden sugars stop weight loss?",
-          "What should I change first?",
-          "Is exercise enough for weight loss?",
-          "I want practical tips to start",
-          "Can I lose weight without suffering?",
-          "I want to understand more about metabolism"
-        ]
-      },
-      "fase_2": {
-        "copy_pt": [
-          "Quando o corpo não consegue emagrecer, não é só questão de estética, ${userName}. A dificuldade em perder peso está ligada ao aumento do risco de doenças como diabetes, hipertensão e até depressão. Estudos da OMS apontam que mais de 70% das pessoas que lutam contra o peso consomem alimentos pobres em fibras, antioxidantes e fitonutrientes — justamente o que as plantas como Maqui Berry, Amla e Rhodiola oferecem em abundância. Persistir em dietas cheias de restrições e sem plantas naturais pode criar um ciclo de frustração e culpa, enquanto mudar a base da alimentação pode destravar o metabolismo de forma leve e saudável."
-        ],
-        "copy_en": [
-          "When your body can’t lose weight, it’s not just about appearance, ${userName}. Difficulty losing weight is linked to increased risk of diseases like diabetes, hypertension, and even depression. WHO studies show that over 70% of people struggling with weight eat foods low in fiber, antioxidants, and phytonutrients — exactly what plants like Maqui Berry, Amla, and Rhodiola provide in abundance. Sticking to restrictive diets without natural plants can create a cycle of frustration and guilt, while changing your food foundation can unlock metabolism in a lighter, healthier way."
-        ],
-        "quick_replies_pt": [
-          "Dificuldade para emagrecer traz riscos reais?",
-          "Plantas podem destravar o metabolismo?",
-          "Processados causam doenças mesmo?",
-          "Tem relação com depressão?",
-          "O que muda com alimentação natural?",
-          "Como evitar frustração nas dietas?",
-          "Quero relatos de superação",
-          "Dá para emagrecer sem cortar tudo?",
-          "Fibra ajuda de verdade?",
-          "Antioxidantes fazem diferença?",
-          "Tem dados sobre esses riscos?",
-          "Quero dicas para sair desse ciclo"
-        ],
-        "quick_replies_en": [
-          "Is difficulty losing weight a real risk?",
-          "Can plants unlock metabolism?",
-          "Do processed foods really cause diseases?",
-          "Is there a link to depression?",
-          "What changes with natural eating?",
-          "How to avoid frustration with diets?",
-          "I want stories of overcoming this",
-          "Can I lose weight without cutting everything?",
-          "Does fiber really help?",
-          "Do antioxidants make a difference?",
-          "Are there data on these risks?",
-          "I want tips to break the cycle"
-        ]
-      },
-      "fase_3": {
-        "copy_pt": [
-          "A ciência comprova: plantas como Maqui Berry, Rhodiola Rosea, Schisandra e Amla aceleram o metabolismo, melhoram a sensibilidade à insulina e reduzem a inflamação que impede a perda de peso. Estudos publicados no International Journal of Obesity mostram que a inclusão diária dessas plantas pode aumentar a queima de gordura em até 23%, mesmo sem mudanças drásticas em exercício. Já os alimentos processados dificultam a ação desses ingredientes, promovendo resistência metabólica. Depoimentos de pessoas que trocaram ultraprocessados por essas plantas relatam emagrecimento consistente, mais energia e bem-estar emocional — tudo isso sem dietas radicais."
-        ],
-        "copy_en": [
-          "Science proves it: plants like Maqui Berry, Rhodiola Rosea, Schisandra, and Amla speed up metabolism, improve insulin sensitivity, and reduce the inflammation that blocks weight loss. Studies published in the International Journal of Obesity show that daily inclusion of these plants can boost fat burning by up to 23%, even without major changes in exercise. Processed foods, however, make it harder for these ingredients to work, promoting metabolic resistance. People who switch from ultra-processed foods to these plants report consistent weight loss, more energy, and better emotional well-being — all without extreme diets."
-        ],
-        "quick_replies_pt": [
-          "Essas plantas têm comprovação científica?",
-          "Resultados são rápidos?",
-          "Plantas ajudam mesmo a emagrecer?",
-          "Processados bloqueiam o efeito?",
-          "Quero relatos reais de sucesso",
-          "Como as plantas agem no metabolismo?",
-          "Dá pra emagrecer sem cortar tudo?",
-          "Resultados são duradouros?",
-          "Preciso de exercício intenso junto?",
-          "Quanto tempo para sentir diferença?",
-          "Tem dados sobre queima de gordura?",
-          "Quero ver estudos sobre essas plantas"
-        ],
-        "quick_replies_en": [
-          "Are these plants scientifically proven?",
-          "Are results quick?",
-          "Do plants really help lose weight?",
-          "Do processed foods block their effects?",
-          "I want real success stories",
-          "How do plants work on metabolism?",
-          "Can I lose weight without cutting everything?",
-          "Are results long-lasting?",
-          "Do I need intense exercise too?",
-          "How long to feel a difference?",
-          "Are there data on fat burning?",
-          "I want to see studies on these plants"
-        ]
-      },
-      "fase_4": {
-        "copy_pt": [
-          "Por trás de culturas milenares que sempre valorizaram ingredientes naturais, existe o segredo para vencer a dificuldade de emagrecer: plantas como Maqui Berry, Rhodiola Rosea, Schisandra e Amla, ignoradas pela indústria moderna, ativam o metabolismo, controlam o apetite, melhoram o humor e combatem a inflamação. Ao incluir essas plantas no dia a dia, o corpo volta a reconhecer o caminho do emagrecimento saudável e consistente — sem sofrimento, efeito sanfona ou dependência de dietas radicais. O verdadeiro diferencial está no simples: valorizar a natureza e eliminar, aos poucos, o excesso de industrializados."
-        ],
-        "copy_en": [
-          "Behind ancient cultures that have always valued natural ingredients is the secret to overcoming difficulty losing weight: plants like Maqui Berry, Rhodiola Rosea, Schisandra, and Amla, overlooked by the modern industry, activate metabolism, control appetite, improve mood, and fight inflammation. By including these plants in your daily life, your body rediscovers the path to healthy, consistent weight loss — without suffering, yo-yo effects, or dependence on extreme diets. The true difference is in the simple: valuing nature and gradually cutting back on industrialized foods."
-        ],
-        "quick_replies_pt": [
-          "Como incluir essas plantas no dia a dia?",
-          "Tem receita fácil com essas plantas?",
-          "Preciso cortar tudo dos processados?",
-          "Plantas ajudam no controle da ansiedade?",
-          "Resultados são rápidos?",
-          "Dá para combinar plantas diferentes?",
-          "Quero depoimentos reais de quem conseguiu",
-          "Quanto tempo para ver diferença?",
-          "Plantas ajudam no humor?",
-          "Posso usar com minha alimentação atual?",
-          "Resultados são duradouros?",
-          "Quero ver estudos sobre essas plantas"
-        ],
-        "quick_replies_en": [
-          "How to include these plants in daily life?",
-          "Any easy recipe with these plants?",
-          "Do I need to cut all processed foods?",
-          "Do plants help with anxiety control?",
-          "Are results quick?",
-          "Can I combine different plants?",
-          "I want real testimonials from people who succeeded",
-          "How long to see a difference?",
-          "Do plants help with mood?",
-          "Can I use with my current diet?",
-          "Are results lasting?",
-          "I want to see studies on these plants"
-        ]
-      },
-      "fase_5": {
-        "copy_pt": [
-          "${userName}, transformar a dificuldade para emagrecer é possível — e começa valorizando o simples: plantas e ingredientes naturais no lugar dos ultraprocessados. Se quiser, posso te mostrar rotinas práticas e prazerosas para incluir Maqui Berry, Rhodiola Rosea, Schisandra e Amla no dia a dia, sem sofrimento e respeitando teu ritmo. O segredo está no equilíbrio, na constância e no resgate da sabedoria natural que o corpo reconhece. O próximo passo pode ser mais leve do que você imagina!"
-        ],
-        "copy_en": [
-          "${userName}, overcoming difficulty losing weight is possible — and it starts by valuing the simple: plants and natural ingredients instead of ultra-processed foods. If you’d like, I can show you practical and enjoyable routines for including Maqui Berry, Rhodiola Rosea, Schisandra, and Amla in your daily life, with no suffering and at your own pace. The secret is balance, consistency, and rediscovering the natural wisdom your body knows. The next step can be lighter than you think!"
-        ],
-        "quick_replies_pt": [
-          "Quero dicas práticas com essas plantas",
-          "Tem rotina fácil para o dia a dia?",
-          "Quero receitas naturais para começar já",
-          "Como encaixar na minha rotina?",
-          "Prefiro saber mais antes de iniciar",
-          "Resultados são duradouros?",
-          "Posso combinar com minha alimentação?",
-          "Quero conversar sobre escolhas naturais",
-          "Dá pra fazer em família?",
-          "Tem dicas para motivação?",
-          "É seguro para todos?",
-          "Quero ver estudos e relatos reais"
-        ],
-        "quick_replies_en": [
-          "I want practical tips with these plants",
-          "Any easy daily routine?",
-          "I want natural recipes to start now",
-          "How to fit it into my routine?",
-          "I’d like to learn more before starting",
-          "Are results lasting?",
-          "Can I combine with my diet?",
-          "I want to talk about natural choices",
-          "Can this be done as a family?",
-          "Any tips for motivation?",
-          "Is it safe for everyone?"
-        ]
-      }
-    }
+  "suplemento": "MITOLYN",
+  "symptom": "difficulty_losing_weight",
+  "fase_1": {
+    "copy_pt": [
+      "${userName}, não existe sensação mais injusta do que tentar de tudo e ver que o ponteiro da balança não mexe. Muitas vezes, não é só questão de força de vontade: a rotina moderna, cheia de processados e sem as plantas certas, cria bloqueios no metabolismo. O segredo pode estar em valorizar ingredientes naturais reconhecidos pela ciência.",
+      "Já percebeu que dietas radicais nem sempre resolvem, ${userName}? O excesso de industrializados e a falta de fibras e plantas específicas podem travar a perda de peso. Trazer de volta hábitos mais naturais pode ser o diferencial.",
+      "${userName}, o corpo pode estar só pedindo uma mudança de estratégia: menos restrição, mais natureza no prato. Estudos mostram que plantas tradicionais ajudam a restaurar o metabolismo, combater a inflamação e facilitam o emagrecimento."
+    ],
+    "copy_en": [
+      "${userName}, there’s no more unfair feeling than trying everything and seeing the scale stay the same. Often, it’s not just about willpower: modern routines full of processed foods and lacking the right plants can block your metabolism. The answer may be in valuing natural ingredients backed by science.",
+      "Have you noticed that strict diets don’t always work, ${userName}? Too many processed foods and too little fiber or special plants can block weight loss. Bringing natural habits back can make all the difference.",
+      "${userName}, your body may just need a change of strategy: less restriction, more natural foods on your plate. Studies show that traditional plants can help restore metabolism, fight inflammation, and support weight loss."
+    ],
+    "quick_replies_pt": [
+      "Por que é tão difícil emagrecer hoje?",
+      "Plantas ajudam de verdade?",
+      "O que trava o metabolismo?",
+      "Processados atrapalham mesmo?",
+      "Tem relatos de quem conseguiu mudar?",
+      "Como as plantas agem no corpo?",
+      "Açúcar escondido impede emagrecimento?",
+      "O que posso mudar primeiro?",
+      "Exercício basta para emagrecer?",
+      "Quero dicas práticas para começar",
+      "Dá para perder peso sem sofrimento?",
+      "Quero entender mais sobre metabolismo"
+    ],
+    "quick_replies_en": [
+      "Why is it so hard to lose weight today?",
+      "Can plants really help?",
+      "What blocks metabolism?",
+      "Do processed foods really get in the way?",
+      "Are there stories of success?",
+      "How do these plants act in the body?",
+      "Do hidden sugars stop weight loss?",
+      "What should I change first?",
+      "Is exercise enough for weight loss?",
+      "I want practical tips to start",
+      "Can I lose weight without suffering?",
+      "I want to understand more about metabolism"
+    ]
+  },
+  "fase_2": {
+    "copy_pt": [
+      "Quando o corpo não emagrece, não é só estética, ${userName}. A dificuldade em perder peso pode aumentar o risco de doenças como diabetes e hipertensão. Estudos mostram que dietas pobres em fibras e plantas aumentam esse bloqueio. Mudar a alimentação pode transformar sua saúde.",
+      "${userName}, ignorar o bloqueio para emagrecer pode trazer consequências sérias. A falta de ingredientes naturais na rotina aumenta inflamações silenciosas. Experimente incluir mais fibras, plantas e alimentos naturais — seu corpo pode responder rapidamente.",
+      "A luta para emagrecer vai além do visual. Segundo a OMS, hábitos alimentares pobres em plantas favorecem doenças crônicas. Quebrar esse ciclo é possível com pequenas mudanças e o resgate do que a natureza oferece."
+    ],
+    "copy_en": [
+      "When your body can’t lose weight, it’s not just about looks, ${userName}. Difficulty losing weight can increase the risk of diseases like diabetes and hypertension. Studies show that diets low in fiber and plants make this block stronger. Changing your eating habits can transform your health.",
+      "${userName}, ignoring weight loss struggles can have real consequences. Lack of natural ingredients in your routine increases silent inflammation. Try including more fiber, plants, and natural foods — your body may quickly respond.",
+      "The struggle to lose weight goes beyond appearance. According to WHO, eating habits low in plants favor chronic diseases. Breaking this cycle is possible with small changes and rediscovering what nature offers."
+    ],
+    "quick_replies_pt": [
+      "Dificuldade para emagrecer traz riscos reais?",
+      "Plantas podem destravar o metabolismo?",
+      "Processados causam doenças mesmo?",
+      "Tem relação com depressão?",
+      "O que muda com alimentação natural?",
+      "Como evitar frustração nas dietas?",
+      "Quero relatos de superação",
+      "Dá para emagrecer sem cortar tudo?",
+      "Fibra ajuda de verdade?",
+      "Antioxidantes fazem diferença?",
+      "Tem dados sobre esses riscos?",
+      "Quero dicas para sair desse ciclo"
+    ],
+    "quick_replies_en": [
+      "Is difficulty losing weight a real risk?",
+      "Can plants unlock metabolism?",
+      "Do processed foods really cause diseases?",
+      "Is there a link to depression?",
+      "What changes with natural eating?",
+      "How to avoid frustration with diets?",
+      "I want stories of overcoming this",
+      "Can I lose weight without cutting everything?",
+      "Does fiber really help?",
+      "Do antioxidants make a difference?",
+      "Are there data on these risks?",
+      "I want tips to break the cycle"
+    ]
+  },
+  "fase_3": {
+    "copy_pt": [
+      "Estudos comprovam: plantas como Rhodiola, Maqui Berry e Amla aceleram o metabolismo, melhoram a resposta à insulina e reduzem inflamação. Pessoas que usam esses ingredientes relatam mais energia, menos fome e emagrecimento sem sofrimento.",
+      "${userName}, a ciência mostra que incluir plantas tradicionais pode aumentar a queima de gordura em até 23%. Mesmo sem grandes mudanças, pequenas doses desses ingredientes já fazem diferença.",
+      "O segredo do metabolismo saudável pode estar no simples: combinar plantas conhecidas pela ciência e reduzir ultraprocessados pode transformar sua rotina e seu corpo."
+    ],
+    "copy_en": [
+      "Research shows: plants like Rhodiola, Maqui Berry, and Amla speed up metabolism, improve insulin response, and reduce inflammation. People using these ingredients report more energy, less hunger, and weight loss without suffering.",
+      "${userName}, science shows that including traditional plants can boost fat burning by up to 23%. Even small amounts of these ingredients make a difference.",
+      "The secret to a healthy metabolism may be simple: combine science-backed plants and cut ultra-processed foods, and you can transform your routine and your body."
+    ],
+    "quick_replies_pt": [
+      "Essas plantas têm comprovação científica?",
+      "Resultados são rápidos?",
+      "Plantas ajudam mesmo a emagrecer?",
+      "Processados bloqueiam o efeito?",
+      "Quero relatos reais de sucesso",
+      "Como as plantas agem no metabolismo?",
+      "Dá pra emagrecer sem cortar tudo?",
+      "Resultados são duradouros?",
+      "Preciso de exercício intenso junto?",
+      "Quanto tempo para sentir diferença?",
+      "Tem dados sobre queima de gordura?",
+      "Quero ver estudos sobre essas plantas"
+    ],
+    "quick_replies_en": [
+      "Are these plants scientifically proven?",
+      "Are results quick?",
+      "Do plants really help lose weight?",
+      "Do processed foods block their effects?",
+      "I want real success stories",
+      "How do plants work on metabolism?",
+      "Can I lose weight without cutting everything?",
+      "Are results long-lasting?",
+      "Do I need intense exercise too?",
+      "How long to feel a difference?",
+      "Are there data on fat burning?",
+      "I want to see studies on these plants"
+    ]
+  },
+  "fase_4": {
+    "copy_pt": [
+      "O segredo para vencer a dificuldade de emagrecer pode estar na natureza. Plantas tradicionais ativam o metabolismo, controlam o apetite e combatem a inflamação — tudo isso já comprovado em culturas milenares e estudos modernos.",
+      "${userName}, incluir essas plantas no dia a dia pode ajudar seu corpo a redescobrir o caminho do emagrecimento saudável — sem sofrimento, efeito sanfona ou dietas radicais. O diferencial está no simples: valorizar a natureza e reduzir o excesso de industrializados.",
+      "Ao valorizar o que é natural, você permite ao corpo transformar a rotina. Mudanças pequenas podem trazer resultados surpreendentes para quem enfrenta bloqueios para emagrecer."
+    ],
+    "copy_en": [
+      "The key to overcoming difficulty losing weight may be in nature. Traditional plants activate metabolism, control appetite, and fight inflammation — benefits proven by both ancient cultures and modern science.",
+      "${userName}, including these plants in your daily routine can help your body rediscover healthy weight loss — without suffering, yo-yo effects, or extreme diets. The difference is in simplicity: valuing nature and reducing processed foods.",
+      "By valuing what’s natural, you allow your body to transform your routine. Small changes can bring big results for those struggling to lose weight."
+    ],
+    "quick_replies_pt": [
+      "Como incluir essas plantas no dia a dia?",
+      "Tem receita fácil com essas plantas?",
+      "Preciso cortar tudo dos processados?",
+      "Plantas ajudam no controle da ansiedade?",
+      "Resultados são rápidos?",
+      "Dá para combinar plantas diferentes?",
+      "Quero depoimentos reais de quem conseguiu",
+      "Quanto tempo para ver diferença?",
+      "Plantas ajudam no humor?",
+      "Posso usar com minha alimentação atual?",
+      "Resultados são duradouros?",
+      "Quero ver estudos sobre essas plantas"
+    ],
+    "quick_replies_en": [
+      "How to include these plants in daily life?",
+      "Any easy recipe with these plants?",
+      "Do I need to cut all processed foods?",
+      "Do plants help with anxiety control?",
+      "Are results quick?",
+      "Can I combine different plants?",
+      "I want real testimonials from people who succeeded",
+      "How long to see a difference?",
+      "Do plants help with mood?",
+      "Can I use with my current diet?",
+      "Are results lasting?",
+      "I want to see studies on these plants"
+    ]
+  },
+  "fase_5": {
+    "copy_pt": [
+      "${userName}, transformar a dificuldade para emagrecer é possível — e começa valorizando o simples: plantas e ingredientes naturais no lugar dos ultraprocessados. Se quiser, posso te mostrar rotinas práticas e prazerosas para incluir esses ingredientes no dia a dia, sem sofrimento e respeitando teu ritmo.",
+      "Seu próximo passo para uma rotina mais leve pode ser mais fácil do que imagina. Se quiser, posso compartilhar dicas, receitas e formas práticas de trazer mais natureza para sua alimentação e facilitar o emagrecimento.",
+      "${userName}, o segredo está no equilíbrio e no resgate da sabedoria natural que o corpo reconhece. Se quiser conhecer maneiras simples e prazerosas de incluir plantas que ativam o metabolismo, posso te ajudar a dar esse próximo passo."
+    ],
+    "copy_en": [
+      "${userName}, overcoming difficulty losing weight is possible — and it starts by valuing the simple: plants and natural ingredients instead of ultra-processed foods. If you’d like, I can show you practical routines for including these ingredients in your daily life, with no suffering and at your own pace.",
+      "Your next step toward a lighter routine may be easier than you think. If you want, I can share tips, recipes, and practical ways to add more nature to your diet and make weight loss easier.",
+      "${userName}, the secret is balance and rediscovering the natural wisdom your body knows. If you’d like to know simple and enjoyable ways to include plants that boost metabolism, I can help you take that next step."
+    ],
+    "quick_replies_pt": [
+      "Quero dicas práticas com essas plantas",
+      "Tem rotina fácil para o dia a dia?",
+      "Quero receitas naturais para começar já",
+      "Como encaixar na minha rotina?",
+      "Prefiro saber mais antes de iniciar",
+      "Resultados são duradouros?",
+      "Posso combinar com minha alimentação?",
+      "Quero conversar sobre escolhas naturais",
+      "Dá pra fazer em família?",
+      "Tem dicas para motivação?",
+      "É seguro para todos?",
+      "Quero ver estudos e relatos reais"
+    ],
+    "quick_replies_en": [
+      "I want practical tips with these plants",
+      "Any easy daily routine?",
+      "I want natural recipes to start now",
+      "How to fit it into my routine?",
+      "I’d like to learn more before starting",
+      "Are results lasting?",
+      "Can I combine with my diet?",
+      "I want to talk about natural choices",
+      "Can this be done as a family?",
+      "Any tips for motivation?",
+      "Is it safe for everyone?"
+    ]
   }
 }
-
