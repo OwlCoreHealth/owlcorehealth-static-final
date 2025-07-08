@@ -96,40 +96,40 @@
       "phase": "Fase 3 — Prova/Evidência",
       "copy": {
         "pt": [
-          "${userName}, estudos indicam que a **Pineal Guardian** ajuda a reduzir a inflamação cerebral e melhorar as funções cognitivas, favorecendo a clareza mental e o foco. Pesquisas do Frontiers in Pharmacology destacam seu papel neuroprotetor e no suporte mental.",
-          "Pesquisas recentes, ${userName}, confirmam que os antioxidantes e compostos bioativos da **Pineal Guardian** fortalecem a saúde do cérebro, promovendo melhor concentração e clareza mental. Estudos do Journal of Ethnopharmacology reforçam esses efeitos.",
-          "${userName}, estudos do Nutritional Journal mostram que o consumo regular da **Pineal Guardian** está associado à melhora do foco, memória e redução da inflamação cerebral, promovendo maior bem-estar."
+          "${userName}, estudos indicam que o uso de soluções naturais ajuda a reduzir a inflamação cerebral e melhorar as funções cognitivas, favorecendo a clareza mental e o foco. Pesquisas do Frontiers in Pharmacology destacam seu papel neuroprotetor e no suporte mental.",
+          "Pesquisas recentes, ${userName}, confirmam que os antioxidantes e compostos bioativos em soluções naturais fortalecem a saúde do cérebro, promovendo melhor concentração e clareza mental. Estudos do Journal of Ethnopharmacology reforçam esses efeitos.",
+          "${userName}, estudos do Nutritional Journal mostram que o consumo regular de soluções naturais está associado à melhora do foco, memória e redução da inflamação cerebral, promovendo maior bem-estar."
         ],
         "en": [
-          "${userName}, studies indicate **Pineal Guardian** helps reduce brain inflammation and improve cognitive functions, enhancing mental clarity and focus. Research from Frontiers in Pharmacology highlights its neuroprotective and mental support role.",
-          "Recent research, ${userName}, confirms that **Pineal Guardian**'s antioxidants and bioactives strengthen brain health, promoting better concentration and mental clarity. Studies from the Journal of Ethnopharmacology reinforce these effects.",
-          "${userName}, studies from the Nutritional Journal show regular **Pineal Guardian** use is linked to improved focus, memory, and reduced brain inflammation, promoting greater well-being."
+          "${userName}, studies indicate that natural solutions help reduce brain inflammation and improve cognitive functions, enhancing mental clarity and focus. Research from Frontiers in Pharmacology highlights its neuroprotective and mental support role.",
+          "Recent research, ${userName}, confirms that antioxidants and bioactives in natural solutions strengthen brain health, promoting better concentration and mental clarity. Studies from the Journal of Ethnopharmacology reinforce these effects.",
+          "${userName}, studies from the Nutritional Journal show regular use of natural solutions is linked to improved focus, memory, and reduced brain inflammation, promoting greater well-being."
         ]
       },
       "quick_replies": {
         "pt": [
-          "**Pineal Guardian** ajuda no foco?",
+          "A solução natural ajuda no foco?",
           "Tem estudos comprovando?",
           "Quanto tempo para sentir efeito?",
           "Posso usar todos os dias?",
           "Ajuda a reduzir estresse?",
           "É seguro para uso contínuo?",
           "Quero relatos de quem melhorou",
-          "Como a **Pineal Guardian** age no cérebro?",
+          "Como age no cérebro?",
           "Posso combinar com outras plantas?",
           "Quero dicas para começar",
           "Quero ver estudos científicos",
           "Quais benefícios principais?"
         ],
         "en": [
-          "Does **Pineal Guardian** help with focus?",
+          "Does the natural solution help with focus?",
           "Are there scientific studies proving this?",
           "How long to feel effects?",
           "Can I use it daily?",
           "Does it help reduce stress?",
           "Is it safe for continuous use?",
           "I want stories from people who improved",
-          "How does **Pineal Guardian** act on the brain?",
+          "How does it act on the brain?",
           "Can I combine it with other plants?",
           "I want tips to start",
           "I want to see scientific studies",
@@ -141,19 +141,19 @@
       "phase": "Fase 4 — Solução Natural/Plantas",
       "copy": {
         "pt": [
-          "O **Pineal Guardian** é um suplemento natural reconhecido por seus efeitos neuroprotetores e anti-inflamatórios, que ajudam a reduzir os sintomas do brain fog e promovem o equilíbrio emocional. Rico em antioxidantes e nutrientes essenciais, é uma excelente opção para quem busca mais clareza mental.",
-          "${userName}, o **Pineal Guardian** contém compostos que ajudam a regular o sistema nervoso, reduzir a inflamação e melhorar o equilíbrio emocional, auxiliando no alívio do brain fog. Seu uso tradicional aliado a estudos científicos comprova sua eficácia.",
-          "Usado para apoiar a saúde mental, o **Pineal Guardian** oferece nutrientes essenciais que ajudam a combater o brain fog, promovendo relaxamento e bem-estar."
+          "Essa solução natural é reconhecida por seus efeitos neuroprotetores e anti-inflamatórios, que ajudam a reduzir os sintomas de brain fog e promovem o equilíbrio emocional. Rica em antioxidantes e nutrientes essenciais, é uma excelente opção para quem busca mais clareza mental.",
+          "${userName}, essa solução natural contém compostos que ajudam a regular o sistema nervoso, reduzir a inflamação e melhorar o equilíbrio emocional, auxiliando no alívio do brain fog. Seu uso tradicional aliado a estudos científicos comprova sua eficácia.",
+          "Usada para apoiar a saúde mental, essa solução natural oferece nutrientes essenciais que ajudam a combater o brain fog, promovendo relaxamento e bem-estar."
         ],
         "en": [
-          "**Pineal Guardian** is a natural supplement recognized for its neuroprotective and anti-inflammatory effects, helping reduce brain fog symptoms and promoting emotional balance. Rich in antioxidants and essential nutrients, it’s an excellent option for those seeking more mental clarity.",
-          "${userName}, **Pineal Guardian** contains compounds that help regulate the nervous system, reduce inflammation, and improve emotional balance, assisting in brain fog relief. Its traditional use combined with scientific studies proves its effectiveness.",
-          "Used to support mental health, **Pineal Guardian** provides essential nutrients that help combat brain fog, promoting relaxation and well-being."
+          "This natural solution is recognized for its neuroprotective and anti-inflammatory effects, helping reduce brain fog symptoms and promoting emotional balance. Rich in antioxidants and essential nutrients, it’s an excellent option for those seeking more mental clarity.",
+          "${userName}, this natural solution contains compounds that help regulate the nervous system, reduce inflammation, and improve emotional balance, assisting in brain fog relief. Its traditional use combined with scientific studies proves its effectiveness.",
+          "Used to support mental health, this natural solution provides essential nutrients that help combat brain fog, promoting relaxation and well-being."
         ]
       },
       "quick_replies": {
         "pt": [
-          "Como usar **Pineal Guardian** para brain fog?",
+          "Como usar essa solução natural para brain fog?",
           "Tem receita para clareza mental?",
           "Ajuda a reduzir estresse?",
           "Posso usar todos os dias?",
@@ -167,7 +167,7 @@
           "Dá para usar com alimentação variada?"
         ],
         "en": [
-          "How to use **Pineal Guardian** for brain fog?",
+          "How to use this natural solution for brain fog?",
           "Any recipe for mental clarity?",
           "Does it help reduce stress?",
           "Can I use it daily?",
@@ -178,7 +178,7 @@
           "I want tips to start",
           "Does it help neurological balance?",
           "I want to see scientific studies",
-          "Can it be used with varied diet?"
+          "Can it be used with a varied diet?"
         ]
       }
     },
@@ -186,47 +186,46 @@
       "phase": "Fase 5 — Próximo Passo",
       "copy": {
         "pt": [
-          "${userName}, melhorar a clareza mental naturalmente pode transformar sua rotina e produtividade. Com o **Pineal Guardian** e hábitos conscientes, seu cérebro terá suporte para alcançar mais foco e clareza. Posso ajudar com receitas, dicas e um plano prático para essa transformação.",
-          "A mudança começa com pequenas escolhas, ${userName}. Ao incluir o **Pineal Guardian** na rotina e optar por alimentos naturais, você apoia seu cérebro a funcionar melhor. Estou aqui para guiar você com passos simples e personalizados.",
-          "${userName}, sua jornada para mais clareza mental e foco pode começar agora. Com o **Pineal Guardian** e uma alimentação equilibrada, seu cérebro terá o suporte necessário para atingir seu potencial. Posso fornecer um plano com orientações e cuidados para essa nova fase."
+          "${userName}, melhorar a clareza mental naturalmente pode transformar sua rotina e produtividade. Com essa solução natural e hábitos conscientes, seu cérebro terá suporte para alcançar mais foco e clareza. Posso ajudar com receitas, dicas e um plano prático para essa transformação.",
+          "A mudança começa com pequenas escolhas, ${userName}. Ao incluir essa solução natural na rotina e optar por alimentos naturais, você apoia seu cérebro a funcionar melhor. Estou aqui para guiar você com passos simples e personalizados.",
+          "${userName}, sua jornada para mais clareza mental e foco pode começar agora. Com essa solução natural e uma alimentação equilibrada, seu cérebro terá o suporte necessário para atingir seu potencial. Posso fornecer um plano com orientações e cuidados para essa nova fase."
         ],
         "en": [
-          "${userName}, improving mental clarity naturally can transform your routine and productivity. With **Pineal Guardian** and conscious habits, your brain will have the support to achieve more focus and clarity. I can help with recipes, tips, and a practical plan for this transformation.",
-          "Change starts with small choices, ${userName}. By including **Pineal Guardian** in your routine and opting for natural foods, you support your brain to function better. I’m here to guide you with simple, personalized steps.",
-          "${userName}, your journey to more mental clarity and focus can start now. With **Pineal Guardian** and a balanced diet, your brain will have the necessary support to reach its potential. I can provide a plan with guidance and care for this new phase."
+          "${userName}, improving mental clarity naturally can transform your routine and productivity. With this natural solution and conscious habits, your brain will have the support to achieve more focus and clarity. I can help with recipes, tips, and a practical plan for this transformation.",
+          "Change starts with small choices, ${userName}. By including this natural solution in your routine and opting for natural foods, you support your brain to function better. I’m here to guide you with simple, personalized steps.",
+          "${userName}, your journey to more mental clarity and focus can start now. With this natural solution and a balanced diet, your brain will have the necessary support to reach its potential. I can provide a plan with guidance and care for this new phase."
         ]
       },
       "quick_replies": {
-        "pt": [
-          "Quero começar já com **Pineal Guardian**",
-          "Tem receita fácil para clareza mental",
-          "Quero relatos reais de transformação",
-          "Como montar uma rotina prática?",
-          "Prefiro aprender mais antes",
-          "Resultados são duradouros?",
-          "Posso combinar com minha alimentação?",
-          "Quero conversar sobre escolhas naturais",
-          "Dá para fazer em família?",
-          "Tem dicas para motivação?",
-          "É seguro para todos?",
-          "Quero ver estudos e relatos reais"
-        ],
-        "en": [
-          "I want to start with **Pineal Guardian** now",
-          "Any easy recipe for mental clarity",
-          "I want real transformation stories",
-          "How to build a practical routine?",
-          "I’d rather learn more first",
-          "Are results lasting?",
-          "Can I combine it with my diet?",
-          "I want to talk about natural choices",
-          "Can this be done as a family?",
-          "Any tips for motivation?",
-          "Is it safe for everyone?",
-          "I want to see studies and real stories"
+    "pt": [
+      "Quero conhecer a solução natural para metabolismo lento",
+      "Como funciona essa solução natural para acelerar o metabolismo?",
+      "Mostra como posso começar uma rotina usando essas plantas",
+      "Quero saber mais sobre essa solução natural no dia a dia",
+      "Essa solução natural serve para qualquer idade?",
+      "Como posso adaptar essa solução natural para a minha rotina?",
+      "Explica como as plantas agem juntas nessa solução natural",
+      "Tem um passo a passo para experimentar essa solução natural?",
+      "Quero ver relatos de quem já usou essa solução natural",
+      "Dá para combinar essa solução natural com alimentação atual?",
+      "Resultados dessa solução natural são duradouros?",
+      "Quero acessar mais informações sobre essa solução natural"
+    ],
+    "en": [
+      "I want to know the natural solution for slow metabolism",
+      "How does this natural plant solution work for boosting metabolism?",
+      "Show me how I can start a routine using these plants",
+      "I want to learn more about this natural solution that includes these plants daily",
+      "Is this natural solution right for any age?",
+      "How can I adapt this natural solution to my routine?",
+      "Explain how these plants work together in the natural solution",
+      "Is there a step-by-step guide to try this natural solution?",
+      "I want stories from people who used this natural plant solution",
+      "Can I combine this natural solution with my current diet?",
+      "Are results from this natural solution long-lasting?",
+      "I want more information about this natural plant solution"
         ]
       }
     }
   ]
 }
-
