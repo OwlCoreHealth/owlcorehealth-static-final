@@ -39,14 +39,7 @@
       "Does stress worsen aging?",
       "Do wrinkles appear early?",
       "When to seek help?"
-    ],
-    "reflective_questions_pt": [
-      "O que mais te motiva a buscar uma pele saudável?",
-      "Como você gostaria de iniciar essa mudança na sua rotina?"
-    ],
-    "reflective_questions_en": [
-      "What motivates you most to seek healthy skin?",
-      "How would you like to start this change in your routine?"
+   
     ]
   },
   "fase_2": {
@@ -87,14 +80,7 @@
       "Does stress worsen aging?",
       "Are there scientific studies?",
       "When to seek help?"
-    ],
-    "reflective_questions_pt": [
-      "O que mais te motiva a buscar uma pele saudável?",
-      "Como você gostaria de iniciar essa mudança na sua rotina?"
-    ],
-    "reflective_questions_en": [
-      "What motivates you most to seek healthy skin?",
-      "How would you like to start this change in your routine?"
+    
     ]
   },
   "fase_3": {
@@ -135,14 +121,7 @@
       "I want to see scientific studies",
       "Are results visible quickly?",
       "What are the main benefits of these plants?"
-    ],
-    "reflective_questions_pt": [
-      "O que mais te motiva a buscar uma pele saudável?",
-      "Como você gostaria de iniciar essa mudança na sua rotina?"
-    ],
-    "reflective_questions_en": [
-      "What motivates you most to seek healthy skin?",
-      "How would you like to start this change in your routine?"
+    
     ]
   },
   "fase_4": {
@@ -183,14 +162,7 @@
       "I want practical tips for elasticity",
       "I want to see studies on rejuvenation",
       "Do plants work better than creams?"
-    ],
-    "reflective_questions_pt": [
-      "O que mais te motiva a buscar uma pele saudável?",
-      "Como você gostaria de iniciar essa mudança na sua rotina?"
-    ],
-    "reflective_questions_en": [
-      "What motivates you most to seek healthy skin?",
-      "How would you like to start this change in your routine?"
+    
     ]
   },
   "fase_5": {
@@ -231,14 +203,7 @@
   "Can I combine this solution with my current diet?",
   "Are results from this solution long-lasting?",
   "I want more information about this plant solution"
-],
-"reflective_questions_pt": [
-  "O que mais te motiva a buscar uma pele saudável?",
-  "Como você gostaria de iniciar essa mudança na sua rotina?"
-],
-"reflective_questions_en": [
-  "What motivates you most to seek healthy skin?",
-  "How would you like to start this change in your routine?"
+
     ]
   }
 }
