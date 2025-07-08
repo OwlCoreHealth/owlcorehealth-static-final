@@ -1,4 +1,5 @@
 {
+  "suplemento": "PRODENTIM",
   "symptom": "Plaque Buildup / Acúmulo de Placa", 
   "phases": {
     "phase1": {
@@ -243,4 +244,3 @@
     }
   }
 }
-
