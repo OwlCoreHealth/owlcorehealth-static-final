@@ -39,14 +39,7 @@
       "Do I need tests to find the cause?",
       "What should I do when I notice the symptom?",
       "I want practical daily tips"
-    ],
-    "reflective_questions_pt": [
-      "O que mais te motiva a buscar um hálito fresco e saudável?",
-      "Como você gostaria de começar a transformar sua rotina bucal?"
-    ],
-    "reflective_questions_en": [
-      "What motivates you most to seek fresh and healthy breath?",
-      "How would you like to start transforming your oral care routine?"
+    
     ]
   },
   "fase_2": {
@@ -87,14 +80,7 @@
       "Can it cause mouth infections?",
       "What do experts say about bad breath?",
       "I want tips to prevent complications"
-    ],
-    "reflective_questions_pt": [
-      "O que mais te motiva a buscar um hálito fresco e saudável?",
-      "Como você gostaria de começar a transformar sua rotina bucal?"
-    ],
-    "reflective_questions_en": [
-      "What motivates you most to seek fresh and healthy breath?",
-      "How would you like to start transforming your oral care routine?"
+   
     ]
   },
   "fase_3": {
@@ -135,14 +121,7 @@
       "What’s the best way to start?",
       "Can chronic cases be reversed?",
       "I want to see transformation testimonials"
-    ],
-    "reflective_questions_pt": [
-      "O que mais te motiva a buscar um hálito fresco e saudável?",
-      "Como você gostaria de começar a transformar sua rotina bucal?"
-    ],
-    "reflective_questions_en": [
-      "What motivates you most to seek fresh and healthy breath?",
-      "How would you like to start transforming your oral care routine?"
+    
     ]
   },
   "fase_4": {
@@ -183,14 +162,7 @@
       "Can I avoid morning bad breath?",
       "I want to see research on natural solutions",
       "Which tea is best for fresh breath?"
-    ],
-    "reflective_questions_pt": [
-      "O que mais te motiva a buscar um hálito fresco e saudável?",
-      "Como você gostaria de começar a transformar sua rotina bucal?"
-    ],
-    "reflective_questions_en": [
-      "What motivates you most to seek fresh and healthy breath?",
-      "How would you like to start transforming your oral care routine?"
+    
     ]
   },
   "fase_5": {
@@ -204,41 +176,35 @@
       "Changing your breath is possible, ${userName}, and it doesn’t have to be a lonely struggle or require miracle recipes. With science, tradition, and the right guidance, you can turn the symptom into self-confidence, lightness, and overall health. If you’d like, I can personalize tips and routines with probiotics, natural teas, and dietary tweaks, always respecting your time and needs. With each choice, you gain more autonomy and joy in self-care. I’m here to support, clarify, and walk beside you in this journey.",
       "${userName}, caring for your breath is about caring for your whole well-being — no pressure, just information, support, and accessible practices. If you want to try a natural approach, I can show you recipes, routines, and real testimonials to inspire and make the process easier. The secret is to take the first step: try, adjust, and feel the well-being that comes with small changes. Your journey is unique — and I’ll be here for every decision, supporting your search for more health and the freedom to smile."
     ],
-    "quick_replies_pt": [
-      "Quero experimentar probióticos para hálito",
-      "Tem rotina fácil para hálito fresco?",
-      "Quero receitas naturais para hálito",
-      "Como encaixar isso na minha rotina?",
-      "Prefiro entender mais antes de decidir",
-      "Quero ver depoimentos reais de transformação",
-      "Tem outros benefícios além do hálito?",
-      "Dá pra combinar com higiene tradicional?",
-      "Quero conversar mais sobre cuidados bucais",
-      "O que mais posso fazer para manter hálito fresco?",
-      "Pode ser usado por toda a família?",
-      "Quero ouvir histórias de superação"
-    ],
-    "quick_replies_en": [
-      "I want to try probiotics for breath",
-      "Any easy routine for fresh breath?",
-      "I want natural breath recipes",
-      "How can I fit this into my routine?",
-      "I prefer to learn more before deciding",
-      "I want to see real transformation stories",
-      "Are there other benefits beyond breath?",
-      "Can I combine this with regular hygiene?",
-      "I want to talk more about oral care",
-      "What else can I do for fresh breath?",
-      "Is it suitable for the whole family?",
-      "I want to hear success stories"
-    ],
-    "reflective_questions_pt": [
-      "O que mais te motiva a buscar um hálito fresco e saudável?",
-      "Como você gostaria de começar a transformar sua rotina bucal?"
-    ],
-    "reflective_questions_en": [
-      "What motivates you most to seek fresh and healthy breath?",
-      "How would you like to start transforming your oral care routine?"
+    {
+  "quick_replies_pt": [
+    "Quero conhecer a solução com essas plantas para hálito fresco",
+    "Como funciona essa solução natural com plantas para melhorar o hálito?",
+    "Mostra como posso começar uma rotina usando essas plantas para o hálito",
+    "Quero saber mais sobre essa solução que inclui essas plantas no meu dia a dia",
+    "Essa solução com plantas serve para qualquer idade?",
+    "Como posso adaptar essa solução para a minha rotina?",
+    "Explica como as plantas agem juntas para melhorar o hálito",
+    "Tem um passo a passo para experimentar essa solução natural para hálito?",
+    "Quero ver relatos de quem já usou essa solução com plantas para hálito fresco",
+    "Dá para combinar essa solução com minha higiene bucal atual?",
+    "Resultados dessa solução para hálito fresco são duradouros?",
+    "Quero acessar mais informações sobre essa solução com plantas para hálito"
+  ],
+  "quick_replies_en": [
+    "I want to know the solution with these plants for fresh breath",
+    "How does this natural plant solution work to improve breath?",
+    "Show me how I can start a routine using these plants for breath",
+    "I want to learn more about this solution that includes these plants in my daily life",
+    "Is this plant-based solution right for any age?",
+    "How can I adapt this solution to my routine?",
+    "Explain how these plants work together to improve breath",
+    "Is there a step-by-step guide to try this natural solution for breath?",
+    "I want stories from people who used this plant solution for fresh breath",
+    "Can I combine this solution with my current oral hygiene?",
+    "Are results from this solution for fresh breath long-lasting?",
+    "I want more information about this plant solution for breath"
+  
     ]
   }
 }
