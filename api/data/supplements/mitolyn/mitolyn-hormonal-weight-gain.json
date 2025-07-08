@@ -1,203 +1,209 @@
 {
   "suplemento": "MITOLYN",
-  "sintomas": [
-    {
-      "symptom": "hormonal_weight_gain",
+  "symptom": "hormonal_weight_gain",
 
-      "fase_1_copy_pt": [
-        "${userName}, sentir o corpo mudar e a gordura acumular, especialmente em fases como menopausa ou após gravidez, pode ser angustiante. Mas o ganho de peso hormonal não é falta de esforço: são os hormônios reagindo ao estresse, à idade e à falta das plantas certas. Natureza e ciência mostram que plantas como Rhodiola Rosea, Schisandra, Maqui Berry e Amla podem apoiar esse equilíbrio.",
-        "Quando os hormônios mudam, o corpo responde de forma diferente — e a barriga pode aumentar mesmo com alimentação equilibrada. O segredo muitas vezes está em devolver à rotina plantas naturais que ajudam a modular o sistema endócrino e combater a inflamação.",
-        "O ganho de peso hormonal assusta porque parece fora de controle. Mas na verdade, fatores como estresse, envelhecimento e alimentação pobre em nutrientes bloqueiam o metabolismo. Plantas ancestrais, reconhecidas pela ciência, podem ser aliadas para reverter esse cenário."
-      ],
-      "fase_1_copy_en": [
-        "${userName}, feeling your body change and gaining weight during menopause, after pregnancy, or over the years can feel overwhelming. But hormonal weight gain is not a lack of effort: it’s how hormones respond to stress, aging, and missing the right plants. Science and nature show plants like Rhodiola Rosea, Schisandra, Maqui Berry, and Amla can help restore balance.",
-        "Hormonal shifts make the body store fat differently — and even a balanced diet may not be enough. Often, what’s missing is bringing natural plants back into your daily routine to help the endocrine system and reduce inflammation.",
-        "Hormonal weight gain can feel out of control, but stress, age, and a nutrient-poor diet are often the real blockers. Ancient plants, validated by science, may be key allies in reversing this pattern."
-      ],
-      "fase_1_quick_replies_pt": [
-        "Por que os hormônios fazem ganhar peso?",
-        "Plantas ajudam a equilibrar hormônios?",
-        "Quais fases aumentam o risco de ganho hormonal?",
-        "Alimentação moderna piora o quadro?",
-        "Tem relatos de quem superou isso?",
-        "Menopausa causa esse tipo de ganho?",
-        "Estresse influencia nos hormônios?",
-        "Dá para prevenir ganho hormonal?",
-        "Quero dicas para aliviar os sintomas",
-        "Plantas ajudam no humor também?",
-        "Ganho hormonal é diferente do comum?",
-        "Como saber se o ganho é hormonal?"
-      ],
-      "fase_1_quick_replies_en": [
-        "Why do hormones cause weight gain?",
-        "Do plants help balance hormones?",
-        "Which life stages increase hormonal risk?",
-        "Does modern food make it worse?",
-        "Are there stories of overcoming this?",
-        "Does menopause cause this kind of gain?",
-        "Does stress affect hormones?",
-        "Can I prevent hormonal gain?",
-        "I want tips to relieve symptoms",
-        "Do plants help with mood too?",
-        "Is hormonal gain different from normal?",
-        "How to know if my gain is hormonal?"
-      ],
+  "fase_1": {
+    "copy_pt": [
+      "${userName}, sentir o corpo mudar e a gordura acumular, especialmente em fases como menopausa ou após gravidez, pode ser angustiante. Mas o ganho de peso hormonal não é falta de esforço: são os hormônios reagindo ao estresse, à idade e à falta das plantas certas. Natureza e ciência mostram que plantas como Rhodiola Rosea, Schisandra, Maqui Berry e Amla podem apoiar esse equilíbrio.",
+      "Quando os hormônios mudam, o corpo responde de forma diferente — e a barriga pode aumentar mesmo com alimentação equilibrada. O segredo muitas vezes está em devolver à rotina plantas naturais que ajudam a modular o sistema endócrino e combater a inflamação.",
+      "O ganho de peso hormonal assusta porque parece fora de controle. Mas na verdade, fatores como estresse, envelhecimento e alimentação pobre em nutrientes bloqueiam o metabolismo. Plantas ancestrais, reconhecidas pela ciência, podem ser aliadas para reverter esse cenário."
+    ],
+    "copy_en": [
+      "${userName}, feeling your body change and gaining weight during menopause, after pregnancy, or over the years can feel overwhelming. But hormonal weight gain is not a lack of effort: it’s how hormones respond to stress, aging, and missing the right plants. Science and nature show plants like Rhodiola Rosea, Schisandra, Maqui Berry, and Amla can help restore balance.",
+      "Hormonal shifts make the body store fat differently — and even a balanced diet may not be enough. Often, what’s missing is bringing natural plants back into your daily routine to help the endocrine system and reduce inflammation.",
+      "Hormonal weight gain can feel out of control, but stress, age, and a nutrient-poor diet are often the real blockers. Ancient plants, validated by science, may be key allies in reversing this pattern."
+    ],
+    "quick_replies_pt": [
+      "Por que os hormônios fazem ganhar peso?",
+      "Plantas ajudam a equilibrar hormônios?",
+      "Quais fases aumentam o risco de ganho hormonal?",
+      "Alimentação moderna piora o quadro?",
+      "Tem relatos de quem superou isso?",
+      "Menopausa causa esse tipo de ganho?",
+      "Estresse influencia nos hormônios?",
+      "Dá para prevenir ganho hormonal?",
+      "Quero dicas para aliviar os sintomas",
+      "Plantas ajudam no humor também?",
+      "Ganho hormonal é diferente do comum?",
+      "Como saber se o ganho é hormonal?"
+    ],
+    "quick_replies_en": [
+      "Why do hormones cause weight gain?",
+      "Do plants help balance hormones?",
+      "Which life stages increase hormonal risk?",
+      "Does modern food make it worse?",
+      "Are there stories of overcoming this?",
+      "Does menopause cause this kind of gain?",
+      "Does stress affect hormones?",
+      "Can I prevent hormonal gain?",
+      "I want tips to relieve symptoms",
+      "Do plants help with mood too?",
+      "Is hormonal gain different from normal?",
+      "How to know if my gain is hormonal?"
+    ]
+  },
 
-      "fase_2_copy_pt": [
-        "Ignorar o ganho de peso hormonal pode gerar consequências sérias, ${userName}. Pesquisas da Harvard mostram que desequilíbrios hormonais elevam o risco de diabetes e alterações de humor. Ultraprocessados e açúcares aumentam a resistência do corpo. Valorizar plantas naturais é o primeiro passo para restaurar o equilíbrio.",
-        "O ganho de peso hormonal sem atenção leva a quadros como síndrome metabólica, ansiedade e resistência ao emagrecimento. Plantas ricas em antioxidantes e compostos reguladores podem proteger a saúde física e emocional a longo prazo.",
-        "Quando o corpo resiste a perder peso, os hormônios podem ser o motivo principal. Alimentos industrializados intensificam esse ciclo. Apostar em plantas adaptógenas e antioxidantes pode ajudar a romper esse bloqueio, devolvendo equilíbrio e bem-estar."
-      ],
-      "fase_2_copy_en": [
-        "Leaving hormonal weight gain unchecked can bring serious consequences, ${userName}. Harvard research links hormonal fat to diabetes and mood changes. Ultra-processed foods and sugars make your body more resistant. Natural plants are a powerful way to start restoring balance.",
-        "Untreated hormonal weight gain leads to metabolic syndrome, anxiety, and blocks weight loss. Plants rich in antioxidants and regulatory compounds can protect your long-term physical and emotional health.",
-        "When the body resists losing weight, hormones are often the main reason. Processed foods worsen this cycle. Turning to adaptogenic, antioxidant plants can help break the block, restoring balance and well-being."
-      ],
-      "fase_2_quick_replies_pt": [
-        "Ganho hormonal pode trazer doenças?",
-        "Plantas ajudam a prevenir complicações?",
-        "Processados pioram o ganho hormonal?",
-        "Hormônios desregulados dificultam emagrecer?",
-        "Como evitar doenças metabólicas?",
-        "Tem relatos de reversão do quadro?",
-        "Açúcar tem papel nesse ganho?",
-        "Dá para equilibrar hormônios sem remédio?",
-        "Plantas ajudam na menopausa?",
-        "É diferente dos outros tipos de ganho?",
-        "Como saber se estou em risco?",
-        "Quero ver estudos científicos"
-      ],
-      "fase_2_quick_replies_en": [
-        "Can hormonal gain cause disease?",
-        "Do plants help prevent complications?",
-        "Do processed foods worsen hormonal gain?",
-        "Do unbalanced hormones hinder weight loss?",
-        "How to avoid metabolic diseases?",
-        "Are there stories of reversal?",
-        "Do sugars play a role in this gain?",
-        "Can I balance hormones without medication?",
-        "Do plants help during menopause?",
-        "Is this different from other types of gain?",
-        "How do I know if I’m at risk?",
-        "I want to see scientific studies"
-      ],
+  "fase_2": {
+    "copy_pt": [
+      "Ignorar o ganho de peso hormonal pode gerar consequências sérias, ${userName}. Pesquisas da Harvard mostram que desequilíbrios hormonais elevam o risco de diabetes e alterações de humor. Ultraprocessados e açúcares aumentam a resistência do corpo. Valorizar plantas naturais é o primeiro passo para restaurar o equilíbrio.",
+      "O ganho de peso hormonal sem atenção leva a quadros como síndrome metabólica, ansiedade e resistência ao emagrecimento. Plantas ricas em antioxidantes e compostos reguladores podem proteger a saúde física e emocional a longo prazo.",
+      "Quando o corpo resiste a perder peso, os hormônios podem ser o motivo principal. Alimentos industrializados intensificam esse ciclo. Apostar em plantas adaptógenas e antioxidantes pode ajudar a romper esse bloqueio, devolvendo equilíbrio e bem-estar."
+    ],
+    "copy_en": [
+      "Leaving hormonal weight gain unchecked can bring serious consequences, ${userName}. Harvard research links hormonal fat to diabetes and mood changes. Ultra-processed foods and sugars make your body more resistant. Natural plants are a powerful way to start restoring balance.",
+      "Untreated hormonal weight gain leads to metabolic syndrome, anxiety, and blocks weight loss. Plants rich in antioxidants and regulatory compounds can protect your long-term physical and emotional health.",
+      "When the body resists losing weight, hormones are often the main reason. Processed foods worsen this cycle. Turning to adaptogenic, antioxidant plants can help break the block, restoring balance and well-being."
+    ],
+    "quick_replies_pt": [
+      "Ganho hormonal pode trazer doenças?",
+      "Plantas ajudam a prevenir complicações?",
+      "Processados pioram o ganho hormonal?",
+      "Hormônios desregulados dificultam emagrecer?",
+      "Como evitar doenças metabólicas?",
+      "Tem relatos de reversão do quadro?",
+      "Açúcar tem papel nesse ganho?",
+      "Dá para equilibrar hormônios sem remédio?",
+      "Plantas ajudam na menopausa?",
+      "É diferente dos outros tipos de ganho?",
+      "Como saber se estou em risco?",
+      "Quero ver estudos científicos"
+    ],
+    "quick_replies_en": [
+      "Can hormonal gain cause disease?",
+      "Do plants help prevent complications?",
+      "Do processed foods worsen hormonal gain?",
+      "Do unbalanced hormones hinder weight loss?",
+      "How to avoid metabolic diseases?",
+      "Are there stories of reversal?",
+      "Do sugars play a role in this gain?",
+      "Can I balance hormones without medication?",
+      "Do plants help during menopause?",
+      "Is this different from other types of gain?",
+      "How do I know if I’m at risk?",
+      "I want to see scientific studies"
+    ]
+  },
 
-      "fase_3_copy_pt": [
-        "Estudos mostram que plantas como Rhodiola Rosea, Schisandra e Maqui Berry reduzem o cortisol, melhoram a insulina e combatem a inflamação — essenciais para o controle do ganho de peso hormonal. Pessoas que usam essas plantas relatam mais equilíbrio e leveza.",
-        "A inclusão dessas plantas na rotina pode reduzir o acúmulo de gordura abdominal em até 21% e melhorar o humor, mesmo em fases críticas como menopausa. Quem deixa ultraprocessados de lado e aposta nas plantas sente diferença real no corpo e na mente.",
-        "Plantas adaptógenas e antioxidantes potencializam a regulação hormonal, devolvendo autoestima e equilíbrio. Depoimentos reais destacam mais disposição, menos ansiedade e redução no acúmulo de gordura, sem dietas radicais."
-      ],
-      "fase_3_copy_en": [
-        "Studies show that plants like Rhodiola Rosea, Schisandra, and Maqui Berry reduce cortisol, improve insulin, and fight inflammation — all crucial for controlling hormonal weight gain. People using these plants report more balance and lightness.",
-        "Including these plants daily can reduce abdominal fat by up to 21% and boost mood, even during menopause or postpartum. Those who swap processed foods for plants see real body and mind changes.",
-        "Adaptogenic and antioxidant plants help regulate hormones, restoring self-esteem and balance. Real testimonials show more energy, less anxiety, and reduced fat gain — all without extreme diets."
-      ],
-      "fase_3_quick_replies_pt": [
-        "Essas plantas têm comprovação científica?",
-        "Plantas ajudam a regular o cortisol?",
-        "Resultados são rápidos?",
-        "Hormônios atrapalham tanto assim?",
-        "Tem relatos de melhora no humor?",
-        "Posso combinar essas plantas?",
-        "Ultraprocessados atrapalham o efeito?",
-        "Quanto tempo para sentir diferença?",
-        "Resultados são duradouros?",
-        "Plantas ajudam na pós-gravidez?",
-        "Quero ver estudos sobre essas plantas",
-        "Plantas ajudam no controle do apetite?"
-      ],
-      "fase_3_quick_replies_en": [
-        "Are these plants scientifically proven?",
-        "Do plants help regulate cortisol?",
-        "Are results fast?",
-        "Do hormones really get in the way?",
-        "Any stories about mood improvement?",
-        "Can I combine these plants?",
-        "Do ultra-processed foods block the effect?",
-        "How long to see a difference?",
-        "Are results lasting?",
-        "Do plants help after pregnancy?",
-        "I want studies on these plants",
-        "Do plants help with appetite control?"
-      ],
+  "fase_3": {
+    "copy_pt": [
+      "Estudos mostram que plantas como Rhodiola Rosea, Schisandra e Maqui Berry reduzem o cortisol, melhoram a insulina e combatem a inflamação — essenciais para o controle do ganho de peso hormonal. Pessoas que usam essas plantas relatam mais equilíbrio e leveza.",
+      "A inclusão dessas plantas na rotina pode reduzir o acúmulo de gordura abdominal em até 21% e melhorar o humor, mesmo em fases críticas como menopausa. Quem deixa ultraprocessados de lado e aposta nas plantas sente diferença real no corpo e na mente.",
+      "Plantas adaptógenas e antioxidantes potencializam a regulação hormonal, devolvendo autoestima e equilíbrio. Depoimentos reais destacam mais disposição, menos ansiedade e redução no acúmulo de gordura, sem dietas radicais."
+    ],
+    "copy_en": [
+      "Studies show that plants like Rhodiola Rosea, Schisandra, and Maqui Berry reduce cortisol, improve insulin, and fight inflammation — all crucial for controlling hormonal weight gain. People using these plants report more balance and lightness.",
+      "Including these plants daily can reduce abdominal fat by up to 21% and boost mood, even during menopause or postpartum. Those who swap processed foods for plants see real body and mind changes.",
+      "Adaptogenic and antioxidant plants help regulate hormones, restoring self-esteem and balance. Real testimonials show more energy, less anxiety, and reduced fat gain — all without extreme diets."
+    ],
+    "quick_replies_pt": [
+      "Essas plantas têm comprovação científica?",
+      "Plantas ajudam a regular o cortisol?",
+      "Resultados são rápidos?",
+      "Hormônios atrapalham tanto assim?",
+      "Tem relatos de melhora no humor?",
+      "Posso combinar essas plantas?",
+      "Ultraprocessados atrapalham o efeito?",
+      "Quanto tempo para sentir diferença?",
+      "Resultados são duradouros?",
+      "Plantas ajudam na pós-gravidez?",
+      "Quero ver estudos sobre essas plantas",
+      "Plantas ajudam no controle do apetite?"
+    ],
+    "quick_replies_en": [
+      "Are these plants scientifically proven?",
+      "Do plants help regulate cortisol?",
+      "Are results fast?",
+      "Do hormones really get in the way?",
+      "Any stories about mood improvement?",
+      "Can I combine these plants?",
+      "Do ultra-processed foods block the effect?",
+      "How long to see a difference?",
+      "Are results lasting?",
+      "Do plants help after pregnancy?",
+      "I want studies on these plants",
+      "Do plants help with appetite control?"
+    ]
+  },
 
-      "fase_4_copy_pt": [
-        "Culturas tradicionais usam plantas adaptógenas como Rhodiola, Schisandra e Maqui Berry para modular hormônios e equilibrar o corpo. Essas plantas protegem contra o efeito dos processados, melhoram o sono, o humor e facilitam o emagrecimento em fases hormonais difíceis.",
-        "A sabedoria ancestral e a ciência concordam: plantas antioxidantes ajudam o corpo a recuperar o equilíbrio perdido com o estresse e a alimentação moderna. Incorporar essas plantas traz resultados em bem-estar, energia e leveza.",
-        "Ao apostar nessas plantas diariamente, você sente diferença não só no peso, mas no humor, sono e disposição. O segredo está em incluir ingredientes naturais que modulam hormônios e reduzem inflamação, protegendo sua saúde."
-      ],
-      "fase_4_copy_en": [
-        "Traditional cultures use adaptogenic plants like Rhodiola, Schisandra, and Maqui Berry to balance hormones and restore the body. These plants protect against processed food effects, improve sleep and mood, and ease weight loss during hormonal phases.",
-        "Ancient wisdom and science agree: antioxidant plants help the body recover balance lost to stress and modern eating. Adding these plants brings results for well-being, energy, and lightness.",
-        "Using these plants daily makes a difference not just in weight, but in mood, sleep, and energy. The secret is in natural ingredients that modulate hormones and reduce inflammation, protecting your health."
-      ],
-      "fase_4_quick_replies_pt": [
-        "Como usar essas plantas na rotina?",
-        "Plantas ajudam no sono e humor?",
-        "Preciso cortar todos os processados?",
-        "Resultados são rápidos?",
-        "Dá para combinar plantas diferentes?",
-        "Plantas ajudam após gravidez?",
-        "Quero relatos de equilíbrio hormonal",
-        "Quanto tempo para sentir diferença?",
-        "É seguro para longo prazo?",
-        "Quero dicas para o dia a dia",
-        "Plantas ajudam em qualquer idade?",
-        "Tem estudos sobre essas plantas?"
-      ],
-      "fase_4_quick_replies_en": [
-        "How to use these plants daily?",
-        "Do plants help with sleep and mood?",
-        "Do I need to cut all processed foods?",
-        "Are results quick?",
-        "Can I combine different plants?",
-        "Do plants help after pregnancy?",
-        "I want stories of hormonal balance",
-        "How long to feel a difference?",
-        "Is it safe for long-term use?",
-        "I want daily tips",
-        "Do plants help at any age?",
-        "Are there studies on these plants?"
-      ],
+  "fase_4": {
+    "copy_pt": [
+      "Culturas tradicionais usam plantas adaptógenas como Rhodiola, Schisandra e Maqui Berry para modular hormônios e equilibrar o corpo. Essas plantas protegem contra o efeito dos processados, melhoram o sono, o humor e facilitam o emagrecimento em fases hormonais difíceis.",
+      "A sabedoria ancestral e a ciência concordam: plantas antioxidantes ajudam o corpo a recuperar o equilíbrio perdido com o estresse e a alimentação moderna. Incorporar essas plantas traz resultados em bem-estar, energia e leveza.",
+      "Ao apostar nessas plantas diariamente, você sente diferença não só no peso, mas no humor, sono e disposição. O segredo está em incluir ingredientes naturais que modulam hormônios e reduzem inflamação, protegendo sua saúde."
+    ],
+    "copy_en": [
+      "Traditional cultures use adaptogenic plants like Rhodiola, Schisandra, and Maqui Berry to balance hormones and restore the body. These plants protect against processed food effects, improve sleep and mood, and ease weight loss during hormonal phases.",
+      "Ancient wisdom and science agree: antioxidant plants help the body recover balance lost to stress and modern eating. Adding these plants brings results for well-being, energy, and lightness.",
+      "Using these plants daily makes a difference not just in weight, but in mood, sleep, and energy. The secret is in natural ingredients that modulate hormones and reduce inflammation, protecting your health."
+    ],
+    "quick_replies_pt": [
+      "Como usar essas plantas na rotina?",
+      "Plantas ajudam no sono e humor?",
+      "Preciso cortar todos os processados?",
+      "Resultados são rápidos?",
+      "Dá para combinar plantas diferentes?",
+      "Plantas ajudam após gravidez?",
+      "Quero relatos de equilíbrio hormonal",
+      "Quanto tempo para sentir diferença?",
+      "É seguro para longo prazo?",
+      "Quero dicas para o dia a dia",
+      "Plantas ajudam em qualquer idade?",
+      "Tem estudos sobre essas plantas?"
+    ],
+    "quick_replies_en": [
+      "How to use these plants daily?",
+      "Do plants help with sleep and mood?",
+      "Do I need to cut all processed foods?",
+      "Are results quick?",
+      "Can I combine different plants?",
+      "Do plants help after pregnancy?",
+      "I want stories of hormonal balance",
+      "How long to feel a difference?",
+      "Is it safe for long-term use?",
+      "I want daily tips",
+      "Do plants help at any age?",
+      "Are there studies on these plants?"
+    ]
+  },
 
-      "fase_5_copy_pt": [
-        "${userName}, superar o ganho de peso hormonal pode ser mais simples do que imagina. Com o apoio das plantas certas, seu corpo pode voltar ao equilíbrio natural, com mais leveza, disposição e autoestima. Se quiser, posso mostrar a solução natural completa com essas plantas para sua rotina.",
-        "O caminho para o equilíbrio hormonal pode ser leve e prazeroso, usando plantas que apoiam o corpo nos momentos mais desafiadores. Gostaria de conhecer a solução natural e personalizada para incluir essas plantas no seu dia a dia?",
-        "Transformar o corpo e a mente é possível com escolhas naturais. Posso apresentar um passo a passo com essas plantas para ajudar você a recuperar o controle do peso e do bem-estar de forma natural. Quer conhecer essa solução?"
-      ],
-      "fase_5_copy_en": [
-        "${userName}, overcoming hormonal weight gain can be easier than you think. With the right plants, your body can regain its natural balance, lightness, and confidence. If you’d like, I can show you the complete natural solution with these plants for your routine.",
-        "The path to hormonal balance can be light and enjoyable using plants that support your body through every challenge. Would you like to know the natural, personalized solution to include these plants daily?",
-        "Transforming body and mind is possible with natural choices. I can share a step-by-step plan with these plants to help you regain control of weight and well-being in a natural way. Want to know this solution?"
-      ],
-      "fase_5_quick_replies_pt": [
-        "Quero conhecer a solução com essas plantas naturais",
-        "Como funciona essa solução com plantas para o equilíbrio hormonal?",
-        "Mostra como posso começar a usar essas plantas na prática",
-        "Quero saber mais sobre a solução natural que inclui essas plantas",
-        "Essa solução com plantas serve para mim?",
-        "Como posso incluir essa solução natural na minha rotina?",
-        "Explica mais sobre a solução com plantas para desbloquear o metabolismo",
-        "Tem algum passo a passo para usar essas plantas de forma prática?",
-        "Quero entender como essas plantas atuam juntas na solução",
-        "Quero dicas para começar hoje mesmo com essa solução natural",
-        "Quero relatos de quem usou essa solução com plantas",
-        "Quero ver resultados reais de quem já testou essa solução natural"
-      ],
-      "fase_5_quick_replies_en": [
-        "I want to know the solution with these natural plants",
-        "How does this plant-based solution for hormonal balance work?",
-        "Show me how I can start using these plants in practice",
-        "I want to know more about the natural solution that includes these plants",
-        "Is this plant solution right for me?",
-        "How can I include this natural solution in my routine?",
-        "Explain more about the solution with plants to unlock metabolism",
-        "Is there a step-by-step guide to using these plants practically?",
-        "I want to understand how these plants work together in the solution",
-        "I want tips to start today with this natural solution",
-        "I want stories from people who used this plant solution",
-        "I want to see real results from people who have already tried this natural solution"
-      ]
-    }
-  ]
+  "fase_5": {
+    "copy_pt": [
+      "${userName}, superar o ganho de peso hormonal pode ser mais simples do que imagina. Com o apoio das plantas certas, seu corpo pode voltar ao equilíbrio natural, com mais leveza, disposição e autoestima. Se quiser, posso mostrar a solução natural completa com essas plantas para sua rotina.",
+      "O caminho para o equilíbrio hormonal pode ser leve e prazeroso, usando plantas que apoiam o corpo nos momentos mais desafiadores. Gostaria de conhecer a solução natural e personalizada para incluir essas plantas no seu dia a dia?",
+      "Transformar o corpo e a mente é possível com escolhas naturais. Posso apresentar um passo a passo com essas plantas para ajudar você a recuperar o controle do peso e do bem-estar de forma natural. Quer conhecer essa solução?"
+    ],
+    "copy_en": [
+      "${userName}, overcoming hormonal weight gain can be easier than you think. With the right plants, your body can regain its natural balance, lightness, and confidence. If you’d like, I can show you the complete natural solution with these plants for your routine.",
+      "The path to hormonal balance can be light and enjoyable using plants that support your body through every challenge. Would you like to know the natural, personalized solution to include these plants daily?",
+      "Transforming body and mind is possible with natural choices. I can share a step-by-step plan with these plants to help you regain control of weight and well-being in a natural way. Want to know this solution?"
+    ],
+    "quick_replies_pt": [
+      "Quero conhecer a solução com essas plantas naturais",
+      "Como funciona essa solução com plantas para o equilíbrio hormonal?",
+      "Mostra como posso começar a usar essas plantas na prática",
+      "Quero saber mais sobre a solução natural que inclui essas plantas",
+      "Essa solução com plantas serve para mim?",
+      "Como posso incluir essa solução natural na minha rotina?",
+      "Explica mais sobre a solução com plantas para desbloquear o metabolismo",
+      "Tem algum passo a passo para usar essas plantas de forma prática?",
+      "Quero entender como essas plantas atuam juntas na solução",
+      "Quero dicas para começar hoje mesmo com essa solução natural",
+      "Quero relatos de quem usou essa solução com plantas",
+      "Quero ver resultados reais de quem já testou essa solução natural"
+    ],
+    "quick_replies_en": [
+      "I want to know the solution with these natural plants",
+      "How does this plant-based solution for hormonal balance work?",
+      "Show me how I can start using these plants in practice",
+      "I want to know more about the natural solution that includes these plants",
+      "Is this plant solution right for me?",
+      "How can I include this natural solution in my routine?",
+      "Explain more about the solution with plants to unlock metabolism",
+      "Is there a step-by-step guide to using these plants practically?",
+      "I want to understand how these plants work together in the solution",
+      "I want tips to start today with this natural solution",
+      "I want stories from people who used this plant solution",
+      "I want to see real results from people who have already tried this natural solution"
+    ]
+  }
 }
