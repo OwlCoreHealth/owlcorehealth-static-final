@@ -204,41 +204,41 @@
       "Every change starts with small choices, ${userName}. By adding Dandelion, Fennel, Babchi, and a quality probiotic to your routine—plus reviewing your diet and managing your emotions—your digestive system gains real support to recover and function better. I’m here to guide you, share real stories, motivational tips, and a practical plan tailored to your routine and needs.",
       "${userName}, your journey to a healthier, more comfortable, and pain-free gut can start now—not with miracle solutions, but with science, tradition, and self-care. With the right ingredients, an adjusted diet, and a consistent self-care routine, your body can respond positively. If you wish, I can help you set up a detailed plan, with guidance, recipes, and tips to strengthen your gut balance."
     ],
-    "quick_replies_pt": [
-      "Quero começar já com plantas e probióticos",
-      "Tem receita fácil para dor intestinal",
-      "Quero relatos reais de melhora",
-      "Como montar uma rotina prática?",
-      "Prefiro aprender mais antes",
-      "Resultados são duradouros?",
-      "Posso combinar com minha alimentação?",
-      "Quero conversar sobre escolhas naturais",
-      "Dá pra fazer em família?",
-      "Tem dicas para motivação?",
-      "É seguro para todos?",
-      "Quero ver estudos e relatos reais"
-    ],
-    "quick_replies_en": [
-      "I want to start with plants and probiotics now",
-      "Any easy recipe for gut pain",
-      "I want real improvement stories",
-      "How to build a practical routine?",
-      "I’d rather learn more first",
-      "Are results lasting?",
-      "Can I combine it with my diet?",
-      "I want to talk about natural choices",
-      "Can this be done as a family?",
-      "Any tips for motivation?",
-      "Is it safe for everyone?",
-      "I want to see studies and real stories"
-    ],
-    "reflective_questions_pt": [
-      "O que mais te motiva a buscar um intestino saudável?",
-      "Como você gostaria de iniciar essa mudança na sua rotina?"
-    ],
-    "reflective_questions_en": [
-      "What motivates you most to seek a healthy gut?",
-      "How would you like to start this change in your routine?"
+   "quick_replies_pt": [
+  "Quero conhecer a solução com essas plantas para metabolismo lento",
+  "Como funciona essa solução natural com plantas para acelerar o metabolismo?",
+  "Mostra como posso começar uma rotina usando essas plantas",
+  "Quero saber mais sobre essa solução que inclui essas plantas no dia a dia",
+  "Essa solução com plantas serve para qualquer idade?",
+  "Como posso adaptar essa solução para a minha rotina?",
+  "Explica como as plantas agem juntas na solução",
+  "Tem um passo a passo para experimentar essa solução natural?",
+  "Quero ver relatos de quem já usou essa solução com plantas",
+  "Dá para combinar essa solução com alimentação atual?",
+  "Resultados dessa solução são duradouros?",
+  "Quero acessar mais informações sobre essa solução com plantas"
+],
+"quick_replies_en": [
+  "I want to know the solution with these plants for slow metabolism",
+  "How does this natural plant solution work for boosting metabolism?",
+  "Show me how I can start a routine using these plants",
+  "I want to learn more about this solution that includes these plants daily",
+  "Is this plant-based solution right for any age?",
+  "How can I adapt this solution to my routine?",
+  "Explain how these plants work together in the solution",
+  "Is there a step-by-step guide to try this natural solution?",
+  "I want stories from people who used this plant solution",
+  "Can I combine this solution with my current diet?",
+  "Are results from this solution long-lasting?",
+  "I want more information about this plant solution"
+],
+"reflective_questions_pt": [
+  "O que mais te motiva a buscar um intestino saudável?",
+  "Como você gostaria de iniciar essa mudança na sua rotina?"
+],
+"reflective_questions_en": [
+  "What motivates you most to seek a healthy gut?",
+  "How would you like to start this change in your routine?"
     ]
   }
 }
