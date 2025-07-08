@@ -196,34 +196,34 @@
           "${userName}, your journey to improving mental energy can start now. With healthy habits and natural practices, your brain will have the support needed to reach its potential. I can provide a plan with guidance and care for this new phase."
         ]
       },
-      "quick_replies": {
-        "pt": [
-          "Quero começar já",
-          "Tem receita fácil para melhorar a energia mental",
-          "Quero relatos reais de transformação",
-          "Como montar uma rotina prática?",
-          "Prefiro aprender mais antes",
-          "Resultados são duradouros?",
-          "Posso combinar com minha alimentação?",
-          "Quero conversar sobre escolhas naturais",
-          "Dá para fazer em família?",
-          "Tem dicas para motivação?",
-          "É seguro para todos?",
-          "Quero ver estudos e relatos reais"
-        ],
-        "en": [
-          "I want to start now",
-          "Any easy recipe for mental energy",
-          "I want real transformation stories",
-          "How to build a practical routine?",
-          "I’d rather learn more first",
-          "Are results lasting?",
-          "Can I combine with my diet?",
-          "I want to talk about natural choices",
-          "Can this be done as a family?",
-          "Any tips for motivation?",
-          "Is it safe for everyone?",
-          "I want to see studies and real stories"
+     "quick_replies": {
+    "pt": [
+      "Quero conhecer a solução natural para melhorar a energia mental",
+      "Como funciona essa solução natural para aumentar a energia mental?",
+      "Mostra como posso começar uma rotina usando essas plantas para melhorar a energia mental",
+      "Quero saber mais sobre essa solução natural para aumentar a energia mental no dia a dia",
+      "Essa solução natural serve para qualquer idade?",
+      "Como posso adaptar essa solução natural para minha rotina de energia mental?",
+      "Explica como as plantas agem juntas nessa solução natural para melhorar a energia mental",
+      "Tem um passo a passo para experimentar essa solução natural para energia mental?",
+      "Quero ver relatos de quem já usou essa solução natural para aumentar a energia mental",
+      "Dá para combinar essa solução natural com alimentação atual?",
+      "Resultados dessa solução natural para energia mental são duradouros?",
+      "Quero acessar mais informações sobre essa solução natural para melhorar a energia mental"
+    ],
+    "en": [
+      "I want to know the natural solution for mental energy",
+      "How does this natural plant solution work to boost mental energy?",
+      "Show me how I can start a routine using these plants to improve mental energy",
+      "I want to learn more about this natural solution that includes these plants daily for mental energy",
+      "Is this natural solution right for any age?",
+      "How can I adapt this natural solution to my mental energy routine?",
+      "Explain how these plants work together in this natural solution for mental energy",
+      "Is there a step-by-step guide to try this natural solution for mental energy?",
+      "I want stories from people who used this natural solution to boost mental energy",
+      "Can I combine this solution with my current diet?",
+      "Are results from this natural solution for mental energy long-lasting?",
+      "I want more information about this natural plant solution for mental energy"
         ]
       }
     }
