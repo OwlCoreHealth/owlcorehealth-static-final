@@ -1,6 +1,6 @@
 {
   "suplemento": "Moringa", 
-  "symptom": "digestive_issues",
+  "symptom": "digestive_issues", 
   "fase_1": {
     "copy_pt": [
       "${userName}, você já sentiu desconfortos como inchaço, gases, azia ou aquela sensação de estômago pesado que insiste em não passar? Esses sintomas digestivos são comuns, mas não devem ser ignorados. Muitas vezes, eles são sinais de que seu sistema digestivo está sofrendo com uma alimentação inadequada, repleta de ultraprocessados, solos empobrecidos e carnes tratadas com hormônios. Esses fatores comprometem a saúde intestinal, prejudicando a absorção de nutrientes e causando inflamação, o que pode afetar seu bem-estar geral.",
