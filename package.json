@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "dependencies": {
-    "@notionhq/client": "^2.2.3",
+    "@notionhq/client": "^5.9.0",
     "dotenv": "^16.0.0",
     "node-fetch": "^3.3.2",
     "cosine-similarity": "^1.0.0"
